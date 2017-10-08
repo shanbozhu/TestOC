@@ -1,0 +1,1 @@
+../../../../YYModel/YYModel.framework/Headers/YYClassInfo.h
