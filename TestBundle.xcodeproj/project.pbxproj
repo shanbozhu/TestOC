@@ -34,6 +34,7 @@
 		B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04AC51F9E02A600F69AC3 /* PBList.m */; };
 		B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04AC91F9E02A600F69AC3 /* PBListCell.m */; };
 		B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04ACB1F9E02A600F69AC3 /* PBListView.m */; };
+		B0F04AD71F9E033D00F69AC3 /* PBFindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04AD61F9E033D00F69AC3 /* PBFindController.m */; };
 		BD18854D3F0B5C4EF16EE22E /* libPods-TestBundle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEAE59FC1B4DF75AB5D1773 /* libPods-TestBundle.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		B0F04AC91F9E02A600F69AC3 /* PBListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListCell.m; sourceTree = "<group>"; };
 		B0F04ACA1F9E02A600F69AC3 /* PBListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBListView.h; sourceTree = "<group>"; };
 		B0F04ACB1F9E02A600F69AC3 /* PBListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListView.m; sourceTree = "<group>"; };
+		B0F04AD51F9E033D00F69AC3 /* PBFindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBFindController.h; sourceTree = "<group>"; };
+		B0F04AD61F9E033D00F69AC3 /* PBFindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBFindController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,7 @@
 		B0300E831F11DF9100624D91 /* 列表页面 */ = {
 			isa = PBXGroup;
 			children = (
+				B0F04AD11F9E030700F69AC3 /* 发现 */,
 				B0F04ABD1F9E02A600F69AC3 /* 详情 */,
 				B0F04A9A1F9E01BD00F69AC3 /* 首页 */,
 				B0F04AA61F9E01BD00F69AC3 /* 我的 */,
@@ -380,6 +384,39 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B0F04AD11F9E030700F69AC3 /* 发现 */ = {
+			isa = PBXGroup;
+			children = (
+				B0F04AD21F9E030700F69AC3 /* Controllers */,
+				B0F04AD31F9E030700F69AC3 /* Models */,
+				B0F04AD41F9E030700F69AC3 /* Views */,
+			);
+			path = "发现";
+			sourceTree = "<group>";
+		};
+		B0F04AD21F9E030700F69AC3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B0F04AD51F9E033D00F69AC3 /* PBFindController.h */,
+				B0F04AD61F9E033D00F69AC3 /* PBFindController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B0F04AD31F9E030700F69AC3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B0F04AD41F9E030700F69AC3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -520,6 +557,7 @@
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				B0F04A5D1F9C8A9800F69AC3 /* PBNavigationController.m in Sources */,
 				B03011AA1F1644A300624D91 /* YYFPSLabel.m in Sources */,
+				B0F04AD71F9E033D00F69AC3 /* PBFindController.m in Sources */,
 				B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */,
 				B0F04A631F9C8C7B00F69AC3 /* UIImage+ImageEffects.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,

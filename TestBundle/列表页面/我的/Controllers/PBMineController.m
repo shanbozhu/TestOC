@@ -20,6 +20,12 @@
     return YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSLog(@"self.view.frame.size.height = %lf", self.view.frame.size.height);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "PBHomeController.h"
+#import "PBFindController.h"
 #import "PBMineController.h"
+
 
 @interface AppDelegate ()
 
@@ -32,13 +34,17 @@
     vc1.view.backgroundColor = [UIColor whiteColor];
     vc1.title = @"首页";
     
-    PBMineController *vc2 = [[PBMineController alloc]init];
+    PBFindController *vc2 = [[PBFindController alloc]init];
     vc2.view.backgroundColor = [UIColor whiteColor];
-    vc2.title = @"我的";
+    vc2.title = @"发现";
+    
+    PBMineController *vc3 = [[PBMineController alloc]init];
+    vc3.view.backgroundColor = [UIColor whiteColor];
+    vc3.title = @"我的";
     
     
     UITabBarController *tab = [[UITabBarController alloc]init];
-    tab.viewControllers = @[vc1, vc2];
+    tab.viewControllers = @[vc1, vc2, vc3];
     
     
     PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
