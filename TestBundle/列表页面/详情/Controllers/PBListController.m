@@ -63,6 +63,7 @@
     [super viewDidLoad];
     
     
+    self.navigationItem.title = @"one";
     
     
     PBListView *listView = [PBListView listView];

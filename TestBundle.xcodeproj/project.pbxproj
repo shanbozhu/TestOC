@@ -35,6 +35,8 @@
 		B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04AC91F9E02A600F69AC3 /* PBListCell.m */; };
 		B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04ACB1F9E02A600F69AC3 /* PBListView.m */; };
 		B0F04AD71F9E033D00F69AC3 /* PBFindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04AD61F9E033D00F69AC3 /* PBFindController.m */; };
+		B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04AD91F9E1BB600F69AC3 /* PBListThreeController.m */; };
+		B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04ADC1F9E1BC200F69AC3 /* PBListFourController.m */; };
 		BD18854D3F0B5C4EF16EE22E /* libPods-TestBundle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEAE59FC1B4DF75AB5D1773 /* libPods-TestBundle.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,10 @@
 		B0F04ACB1F9E02A600F69AC3 /* PBListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListView.m; sourceTree = "<group>"; };
 		B0F04AD51F9E033D00F69AC3 /* PBFindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBFindController.h; sourceTree = "<group>"; };
 		B0F04AD61F9E033D00F69AC3 /* PBFindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBFindController.m; sourceTree = "<group>"; };
+		B0F04AD81F9E1BB600F69AC3 /* PBListThreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBListThreeController.h; sourceTree = "<group>"; };
+		B0F04AD91F9E1BB600F69AC3 /* PBListThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListThreeController.m; sourceTree = "<group>"; };
+		B0F04ADB1F9E1BC200F69AC3 /* PBListFourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBListFourController.h; sourceTree = "<group>"; };
+		B0F04ADC1F9E1BC200F69AC3 /* PBListFourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListFourController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +359,10 @@
 				B0F04AC01F9E02A600F69AC3 /* PBListController.m */,
 				B0F04AC11F9E02A600F69AC3 /* PBListTwoController.h */,
 				B0F04AC21F9E02A600F69AC3 /* PBListTwoController.m */,
+				B0F04AD81F9E1BB600F69AC3 /* PBListThreeController.h */,
+				B0F04AD91F9E1BB600F69AC3 /* PBListThreeController.m */,
+				B0F04ADB1F9E1BC200F69AC3 /* PBListFourController.h */,
+				B0F04ADC1F9E1BC200F69AC3 /* PBListFourController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -553,6 +563,7 @@
 				B03011D81F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
+				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
 				B0F04A5C1F9C8A9800F69AC3 /* PBBaseController.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				B0F04A5D1F9C8A9800F69AC3 /* PBNavigationController.m in Sources */,
@@ -562,6 +573,7 @@
 				B0F04A631F9C8C7B00F69AC3 /* UIImage+ImageEffects.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
+				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
 				B03011AB1F1644A300624D91 /* YYWeakProxy.m in Sources */,
 				B03011D61F173E4300624D91 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,

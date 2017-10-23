@@ -30,21 +30,21 @@
     
     
     //Controller
-    PBHomeController *vc1 = [[PBHomeController alloc]init];
+    PBHomeController *vc0 = [[PBHomeController alloc]init];
+    vc0.view.backgroundColor = [UIColor whiteColor];
+    vc0.title = @"首页";
+    
+    PBFindController *vc1 = [[PBFindController alloc]init];
     vc1.view.backgroundColor = [UIColor whiteColor];
-    vc1.title = @"首页";
+    vc1.title = @"发现";
     
-    PBFindController *vc2 = [[PBFindController alloc]init];
+    PBMineController *vc2 = [[PBMineController alloc]init];
     vc2.view.backgroundColor = [UIColor whiteColor];
-    vc2.title = @"发现";
-    
-    PBMineController *vc3 = [[PBMineController alloc]init];
-    vc3.view.backgroundColor = [UIColor whiteColor];
-    vc3.title = @"我的";
+    vc2.title = @"我的";
     
     
     UITabBarController *tab = [[UITabBarController alloc]init];
-    tab.viewControllers = @[vc1, vc2, vc3];
+    tab.viewControllers = @[vc0, vc1, vc2];
     
     
     PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];

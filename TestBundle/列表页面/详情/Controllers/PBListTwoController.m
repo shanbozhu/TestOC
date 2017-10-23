@@ -7,6 +7,7 @@
 //
 
 #import "PBListTwoController.h"
+#import "PBListThreeController.h"
 
 @interface PBListTwoController ()
 
@@ -29,9 +30,28 @@
     
     
     //self.navigationItem.hidesBackButton = YES;
-    //self.tabBarController.navigationItem.title = @"lala";
-    self.navigationItem.title = @"lala";
+    //self.tabBarController.navigationItem.title = @"two";
+    self.navigationItem.title = @"two";
+    
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:btn];
+    btn.frame = CGRectMake(100, 100, [UIScreen mainScreen].bounds.size.width-200, 40);
+    [btn setTitle:@"点我" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    btn.backgroundColor = [UIColor redColor];
+
 }
+
+-(void)btnClick:(UIButton *)btn {
+ 
+    PBListThreeController *vc = [[PBListThreeController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    //[self.tabBarController.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
+    vc.view.backgroundColor = [UIColor whiteColor];
+}
+
 
 
 
