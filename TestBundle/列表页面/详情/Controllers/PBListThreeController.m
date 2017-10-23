@@ -47,6 +47,7 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
+    /**
     PBListFourController *vc = [[PBListFourController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     
@@ -58,7 +59,7 @@
     
     //[self.navigationController popToViewController:vc animated:YES];
     vc.view.backgroundColor = [UIColor whiteColor];
-    
+    */
     
 }
 
