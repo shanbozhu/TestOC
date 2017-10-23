@@ -7,6 +7,7 @@
 //
 
 #import "PBListThreeController.h"
+#import "PBListFourController.h"
 
 @implementation PBListThreeController
 
@@ -31,7 +32,34 @@
 -(void)backClick:(UIBarButtonItem *)btn {
     //[self.navigationController popViewControllerAnimated:YES];
     //[self.navigationController popToRootViewControllerAnimated:YES];
-    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    
+//    PBListFourController *vc = [[PBListFourController alloc]init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//
+//    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+//    [arr removeLastObject];
+//    [arr addObject:vc];
+//    self.navigationController.viewControllers = arr;
+//    
+//    [self.navigationController popToViewController:vc animated:YES];
+//    vc.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    PBListFourController *vc = [[PBListFourController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+//    [arr removeLastObject];
+    [arr addObject:vc];
+    //self.navigationController.viewControllers = arr;
+    [self.navigationController setViewControllers:arr animated:NO];
+    
+    //[self.navigationController popToViewController:vc animated:YES];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    
+    
 }
 
 @end
