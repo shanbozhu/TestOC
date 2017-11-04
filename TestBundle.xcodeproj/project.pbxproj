@@ -17,8 +17,8 @@
 		B03011D71F173E4300624D91 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B03011D11F173E4300624D91 /* UITableView+FDKeyedHeightCache.m */; };
 		B03011D81F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B03011D31F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m */; };
 		B03011D91F173E4300624D91 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = B03011D51F173E4300624D91 /* UITableView+FDTemplateLayoutCellDebug.m */; };
-		B0F04A5C1F9C8A9800F69AC3 /* PBBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04A591F9C8A9800F69AC3 /* PBBaseController.m */; };
-		B0F04A5D1F9C8A9800F69AC3 /* PBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04A5B1F9C8A9800F69AC3 /* PBNavigationController.m */; };
+		B09283961FADDC5500606098 /* PBBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09283931FADDC5500606098 /* PBBaseController.m */; };
+		B09283971FADDC5500606098 /* PBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09283951FADDC5500606098 /* PBNavigationController.m */; };
 		B0F04A631F9C8C7B00F69AC3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04A621F9C8C7B00F69AC3 /* UIImage+ImageEffects.m */; };
 		B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04A9D1F9E01BD00F69AC3 /* PBHomeController.m */; };
 		B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0F04AA01F9E01BD00F69AC3 /* pbhome_header.jpg */; };
@@ -63,10 +63,10 @@
 		B03011D31F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
 		B03011D41F173E4300624D91 /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
 		B03011D51F173E4300624D91 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
-		B0F04A581F9C8A9800F69AC3 /* PBBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBaseController.h; sourceTree = "<group>"; };
-		B0F04A591F9C8A9800F69AC3 /* PBBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBBaseController.m; sourceTree = "<group>"; };
-		B0F04A5A1F9C8A9800F69AC3 /* PBNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBNavigationController.h; sourceTree = "<group>"; };
-		B0F04A5B1F9C8A9800F69AC3 /* PBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBNavigationController.m; sourceTree = "<group>"; };
+		B09283921FADDC5500606098 /* PBBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBaseController.h; sourceTree = "<group>"; };
+		B09283931FADDC5500606098 /* PBBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBBaseController.m; sourceTree = "<group>"; };
+		B09283941FADDC5500606098 /* PBNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBNavigationController.h; sourceTree = "<group>"; };
+		B09283951FADDC5500606098 /* PBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBNavigationController.m; sourceTree = "<group>"; };
 		B0F04A611F9C8C7B00F69AC3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		B0F04A621F9C8C7B00F69AC3 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		B0F04A9C1F9E01BD00F69AC3 /* PBHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBHomeController.h; sourceTree = "<group>"; };
@@ -198,8 +198,8 @@
 		B0300E991F11E4AA00624D91 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B09283911FADDC5500606098 /* PBNavigationController */,
 				B0F04A601F9C8C7B00F69AC3 /* ImageEffect */,
-				B0F04A571F9C8A9800F69AC3 /* PBNavigationController */,
 				B03011CD1F173E4300624D91 /* FDTemplateLayoutCell */,
 				B03011A51F1644A300624D91 /* YYFPSLabel */,
 			);
@@ -232,13 +232,13 @@
 			path = FDTemplateLayoutCell;
 			sourceTree = "<group>";
 		};
-		B0F04A571F9C8A9800F69AC3 /* PBNavigationController */ = {
+		B09283911FADDC5500606098 /* PBNavigationController */ = {
 			isa = PBXGroup;
 			children = (
-				B0F04A581F9C8A9800F69AC3 /* PBBaseController.h */,
-				B0F04A591F9C8A9800F69AC3 /* PBBaseController.m */,
-				B0F04A5A1F9C8A9800F69AC3 /* PBNavigationController.h */,
-				B0F04A5B1F9C8A9800F69AC3 /* PBNavigationController.m */,
+				B09283921FADDC5500606098 /* PBBaseController.h */,
+				B09283931FADDC5500606098 /* PBBaseController.m */,
+				B09283941FADDC5500606098 /* PBNavigationController.h */,
+				B09283951FADDC5500606098 /* PBNavigationController.m */,
 			);
 			path = PBNavigationController;
 			sourceTree = "<group>";
@@ -564,16 +564,16 @@
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
-				B0F04A5C1F9C8A9800F69AC3 /* PBBaseController.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
-				B0F04A5D1F9C8A9800F69AC3 /* PBNavigationController.m in Sources */,
 				B03011AA1F1644A300624D91 /* YYFPSLabel.m in Sources */,
+				B09283961FADDC5500606098 /* PBBaseController.m in Sources */,
 				B0F04AD71F9E033D00F69AC3 /* PBFindController.m in Sources */,
 				B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */,
 				B0F04A631F9C8C7B00F69AC3 /* UIImage+ImageEffects.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
+				B09283971FADDC5500606098 /* PBNavigationController.m in Sources */,
 				B03011AB1F1644A300624D91 /* YYWeakProxy.m in Sources */,
 				B03011D61F173E4300624D91 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
