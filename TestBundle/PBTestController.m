@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  PBTestController.m
 //  TestBundle
 //
-//  Created by DaMaiIOS on 17/7/9.
+//  Created by DaMaiIOS on 17/11/4.
 //  Copyright © 2017年 DaMaiIOS. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "TestListController.h"
+#import "PBTestController.h"
+#import "PBTestListController.h"
 
-@interface ViewController ()
+@interface PBTestController ()
 
 @end
 
-@implementation ViewController
+@implementation PBTestController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [self.view addGestureRecognizer:tap];
     
@@ -32,15 +32,11 @@
 }
 
 -(void)tapClick:(UITapGestureRecognizer *)tap {
-
-    TestListController *testListController = [[TestListController alloc]init];
+    
+    PBTestListController *testListController = [[PBTestListController alloc]init];
     testListController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:testListController animated:YES];
     testListController.view.backgroundColor = [UIColor whiteColor];
 }
-
-
-
-
 
 @end

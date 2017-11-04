@@ -1,20 +1,20 @@
 //
-//  TestListView.m
+//  PBTestListView.m
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/7/9.
 //  Copyright © 2017年 DaMaiIOS. All rights reserved.
 //
 
-#import "TestListView.h"
+#import "PBTestListView.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
 
-@interface TestListView ()
+@interface PBTestListView ()
 
 @end
 
-@implementation TestListView
+@implementation PBTestListView
 
 +(id)testListView {
     return [[self alloc]initWithFrame:CGRectZero];

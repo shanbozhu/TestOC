@@ -1,5 +1,5 @@
 //
-//  TestListView.h
+//  PBTestListView.h
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/7/9.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestListView : UIView
+@interface PBTestListView : UIView
 
-@property(nonatomic, strong)NSArray *TestEspressosArr;
+@property(nonatomic, strong)NSArray *testEspressosArr;
 
 +(id)testListView;
 
