@@ -30,36 +30,27 @@
 }
 
 -(void)backClick:(UIBarButtonItem *)btn {
-    //[self.navigationController popViewControllerAnimated:YES];
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-    
-//    PBListFourController *vc = [[PBListFourController alloc]init];
-//    vc.hidesBottomBarWhenPushed = YES;
-//
-//    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-//    [arr removeLastObject];
-//    [arr addObject:vc];
-//    self.navigationController.viewControllers = arr;
-//    
-//    [self.navigationController popToViewController:vc animated:YES];
-//    vc.view.backgroundColor = [UIColor whiteColor];
     
     
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    /**
+    //返回到指定[控制器]
     PBListFourController *vc = [[PBListFourController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-//    [arr removeLastObject];
+    [arr removeLastObject];
     [arr addObject:vc];
-    //self.navigationController.viewControllers = arr;
-    [self.navigationController setViewControllers:arr animated:NO];
+    [arr addObject:self.navigationController.viewControllers.lastObject];
+    self.navigationController.viewControllers = arr;
     
-    //[self.navigationController popToViewController:vc animated:YES];
-    vc.view.backgroundColor = [UIColor whiteColor];
-    */
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    /**返回到指定[标签控制器]
+    UITabBarController *tab = self.navigationController.viewControllers[0];
+    tab.selectedIndex = 1;
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+     */
     
 }
 
