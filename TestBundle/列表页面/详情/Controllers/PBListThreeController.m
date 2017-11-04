@@ -43,6 +43,7 @@
     self.navigationController.viewControllers = arr;
     
     [self.navigationController popViewControllerAnimated:YES];
+    vc.view.backgroundColor = [UIColor whiteColor];
     
     
     /**返回到指定[标签控制器]
