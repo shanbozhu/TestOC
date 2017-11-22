@@ -26,11 +26,7 @@
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
 
-    NSLog(@"[UIScreen mainScreen].bounds.size.width = %lf, [UIScreen mainScreen].bounds.size.height = %lf", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    NSLog(@"NSStringFromCGRect(self.navigationController.navigationBar.frame) = %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 
-    
     PBTestListView *testListView = [PBTestListView testListView];
     self.testListView = testListView;
     [self.view addSubview:testListView];
