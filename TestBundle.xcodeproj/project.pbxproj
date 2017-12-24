@@ -232,6 +232,62 @@
 			path = FDTemplateLayoutCell;
 			sourceTree = "<group>";
 		};
+		B06B07841FEFF2FD00F316A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B06B07851FEFF2FD00F316A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B06B07861FEFF34B00F316A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B06B07871FEFF34B00F316A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B06B07881FEFF36300F316A4 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		B06B07891FEFF36B00F316A4 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		B06B078A1FEFF37F00F316A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B06B078B1FEFF37F00F316A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B09283911FADDC5500606098 /* PBNavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,10 +311,10 @@
 		B0F04A9A1F9E01BD00F69AC3 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				B06B07861FEFF34B00F316A4 /* Models */,
+				B06B07871FEFF34B00F316A4 /* Views */,
 				B0F04A9B1F9E01BD00F69AC3 /* Controllers */,
-				B0F04A9E1F9E01BD00F69AC3 /* Models */,
 				B0F04A9F1F9E01BD00F69AC3 /* Res */,
-				B0F04AA51F9E01BD00F69AC3 /* Views */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -270,13 +326,6 @@
 				B0F04A9D1F9E01BD00F69AC3 /* PBHomeController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		B0F04A9E1F9E01BD00F69AC3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		B0F04A9F1F9E01BD00F69AC3 /* Res */ = {
@@ -291,20 +340,13 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
-		B0F04AA51F9E01BD00F69AC3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				B06B078A1FEFF37F00F316A4 /* Models */,
+				B06B078B1FEFF37F00F316A4 /* Views */,
 				B0F04AA71F9E01BD00F69AC3 /* Controllers */,
-				B0F04AAA1F9E01BD00F69AC3 /* Models */,
 				B0F04AAB1F9E01BD00F69AC3 /* Res */,
-				B0F04AAE1F9E01BD00F69AC3 /* Views */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -318,13 +360,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		B0F04AAA1F9E01BD00F69AC3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		B0F04AAB1F9E01BD00F69AC3 /* Res */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,19 +369,12 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
-		B0F04AAE1F9E01BD00F69AC3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		B0F04ABD1F9E02A600F69AC3 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
+				B06B07891FEFF36B00F316A4 /* Res */,
 				B0F04ABE1F9E02A600F69AC3 /* Controllers */,
 				B0F04AC31F9E02A600F69AC3 /* Models */,
-				B0F04AC61F9E02A600F69AC3 /* Res */,
 				B0F04AC71F9E02A600F69AC3 /* Views */,
 			);
 			path = "详情";
@@ -376,13 +404,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B0F04AC61F9E02A600F69AC3 /* Res */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
 		B0F04AC71F9E02A600F69AC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,9 +418,10 @@
 		B0F04AD11F9E030700F69AC3 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				B06B07881FEFF36300F316A4 /* Res */,
+				B06B07841FEFF2FD00F316A4 /* Models */,
+				B06B07851FEFF2FD00F316A4 /* Views */,
 				B0F04AD21F9E030700F69AC3 /* Controllers */,
-				B0F04AD31F9E030700F69AC3 /* Models */,
-				B0F04AD41F9E030700F69AC3 /* Views */,
 			);
 			path = "发现";
 			sourceTree = "<group>";
@@ -411,20 +433,6 @@
 				B0F04AD61F9E033D00F69AC3 /* PBFindController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		B0F04AD31F9E030700F69AC3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		B0F04AD41F9E030700F69AC3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
