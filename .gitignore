@@ -1,0 +1,10 @@
+*.xcscmblueprint
+*.xcbkptlist
+*.xcuserstate
+*.xcactivitylog
+Cache.db
+workspace.xml
+
+#Pods/
+
+.update
