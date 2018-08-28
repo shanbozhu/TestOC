@@ -128,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				B0300E841F11DF9100624D91 /* Controllers */,
-				B0300E851F11DF9100624D91 /* Models */,
 				B0300E861F11DF9100624D91 /* Views */,
 			);
 			path = "列表页面";
@@ -141,13 +140,6 @@
 				B092837D1FADB83400606098 /* PBTestListController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		B0300E851F11DF9100624D91 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		B0300E861F11DF9100624D91 /* Views */ = {
