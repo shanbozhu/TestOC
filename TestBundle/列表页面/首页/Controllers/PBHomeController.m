@@ -15,12 +15,11 @@
 
 @implementation PBHomeController
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.tabBarController.navigationItem.title = @"haha";
     //self.navigationItem.title = @"haha";
-    
     
     NSLog(@"self.tabBarController = %@", self.tabBarController.navigationController);
     
@@ -33,8 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     UILabel *lab = [[UILabel alloc]init];
     [self.view addSubview:lab];
     lab.font = [UIFont systemFontOfSize:15];
@@ -43,12 +40,11 @@
     lab.text = @"点我吧";
     lab.userInteractionEnabled = YES;
     
-    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [self.view addGestureRecognizer:tap];
 }
 
--(void)tapClick:(UITapGestureRecognizer *)tap {
+- (void)tapClick:(UITapGestureRecognizer *)tap {
     NSLog(@"我要准备跳转了");
     
     PBListController *tvc = [[PBListController alloc]init];

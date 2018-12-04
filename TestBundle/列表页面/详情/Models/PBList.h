@@ -11,8 +11,8 @@
 
 @interface PBList : NSObject
 
-@property(nonatomic, copy)NSString *summaryText;
+@property (nonatomic, copy) NSString *summaryText;
 
-@property(nonatomic, assign)CGFloat cellHeight;
+@property (nonatomic, assign) CGFloat cellHeight;
 
 @end

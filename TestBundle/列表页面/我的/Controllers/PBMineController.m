@@ -16,11 +16,11 @@
 
 @implementation PBMineController
 
--(BOOL)pb_navigationBarHidden {
+- (BOOL)pb_navigationBarHidden {
     return YES;
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     NSLog(@"self.view.frame.size.height = %lf", self.view.frame.size.height);
@@ -29,15 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-
-    //imageView
+    // imageView
     UIImageView *imageView = [[UIImageView alloc]init];
     [self.view addSubview:imageView];
     imageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-20)/2.0, 200, 20, 20);
     imageView.image = [UIImage imageNamed:@"pbmine_circle"];
     
-    //YYLabel
+    // YYLabel
     YYLabel *lab = [[YYLabel alloc]init];
     [self.view addSubview:lab];
     lab.frame = CGRectMake(20, 250, [UIScreen mainScreen].bounds.size.width-40, 20);
@@ -49,7 +47,7 @@
     [self.view addGestureRecognizer:tap];
 }
 
--(void)tapClick:(UITapGestureRecognizer *)tap {
+- (void)tapClick:(UITapGestureRecognizer *)tap {
     NSLog(@"我要准备跳转了");
     
     PBListController *tvc = [[PBListController alloc]init];
@@ -57,9 +55,5 @@
     [self.navigationController pushViewController:tvc animated:YES];
     tvc.view.backgroundColor = [UIColor whiteColor];
 }
-
-
-
-
 
 @end

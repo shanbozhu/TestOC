@@ -11,24 +11,19 @@
 #import "PBList.h"
 #import "PBListTwoController.h"
 
-
 @interface PBListController ()<PBListViewDelegate>
 
-@property(nonatomic, weak)PBListView *listView;
+@property (nonatomic, weak) PBListView *listView;
 
-@property(nonatomic, weak)UIView *barView;
+@property (nonatomic, weak) UIView *barView;
 
 @end
 
 @implementation PBListController
 
--(void)requestData {
-    
-    
-    
+- (void)requestData {
     NSMutableArray *objs = [NSMutableArray array];
     for (int i = 0; i < 20; i++) {
-        
         PBList *testEspressos = [[PBList alloc]init];
         testEspressos.summaryText = @"这是测试GOGOGO!";
         
@@ -38,33 +33,27 @@
     NSLog(@"objs.count = %ld", objs.count);
     
     self.listView.listArr = objs;
-    
 }
 
-//-(BOOL)pb_panGestureRecognizerEnabled {
+//- (BOOL)pb_panGestureRecognizerEnabled {
 //    return NO;
 //}
--(BOOL)pb_navigationBarHidden {
+- (BOOL)pb_navigationBarHidden {
     return YES;
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     
     //self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
     
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.navigationItem.title = @"one";
-    
     
     PBListView *listView = [PBListView listView];
     self.listView = listView;
@@ -73,7 +62,6 @@
     listView.delegate = self;
     
     [self requestData];
-    
     
     UIView *barView = [[UIView alloc]init];
     self.barView = barView;
@@ -90,36 +78,28 @@
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)backBtnClick:(UIButton *)btn {
+- (void)backBtnClick:(UIButton *)btn {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)listView:(PBListView *)listView andScrollView:(UIScrollView *)scrollView {
-    
-    
+- (void)listView:(PBListView *)listView andScrollView:(UIScrollView *)scrollView {
     NSLog(@"scrollView.contentOffset.y = %lf", scrollView.contentOffset.y);
     if (scrollView.contentOffset.y <= -(44+20+150)) {
         self.barView.alpha = 0;
     } else if (scrollView.contentOffset.y > -(44+20+150) && scrollView.contentOffset.y < -(44+20)) {
-        self.barView.alpha = 1-fabsf(scrollView.contentOffset.y+44+20)/(150);
+        self.barView.alpha = 1-fabs(scrollView.contentOffset.y+44+20)/(150);
     } else {
         self.barView.alpha = 1;
     }
     NSLog(@"self.barView.alpha = %f", self.barView.alpha);
-    
-    
-
 }
 
--(void)listView:(PBListView *)listView {
-    
+- (void)listView:(PBListView *)listView {
     PBListTwoController *vc = [[PBListTwoController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     //[self.tabBarController.navigationController pushViewController:vc animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
     vc.view.backgroundColor = [UIColor whiteColor];
 }
-
-
 
 @end

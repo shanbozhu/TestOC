@@ -11,8 +11,8 @@
 
 @interface PBListCell : UITableViewCell
 
-@property(nonatomic, strong)PBList *list;
+@property (nonatomic, strong) PBList *list;
 
-+(id)listCellWithTableView:(UITableView *)tableView;
++ (id)listCellWithTableView:(UITableView *)tableView;
 
 @end

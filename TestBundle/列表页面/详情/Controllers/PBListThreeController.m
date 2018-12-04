@@ -11,9 +11,7 @@
 
 @implementation PBListThreeController
 
-
-
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.barTintColor = [UIColor grayColor];
@@ -29,10 +27,8 @@
     self.navigationItem.title = @"three";
 }
 
--(void)backClick:(UIBarButtonItem *)btn {
-    
-    
-    //返回到指定[控制器]
+- (void)backClick:(UIBarButtonItem *)btn {
+    // 返回到指定[控制器]
     PBListFourController *vc = [[PBListFourController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     
@@ -45,14 +41,12 @@
     [self.navigationController popViewControllerAnimated:YES];
     vc.view.backgroundColor = [UIColor whiteColor];
     
-    
-    /**返回到指定[标签控制器]
+    /** 返回到指定[标签控制器]
     UITabBarController *tab = self.navigationController.viewControllers[0];
     tab.selectedIndex = 1;
     
     [self.navigationController popToRootViewControllerAnimated:YES];
      */
-    
 }
 
 @end

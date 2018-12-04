@@ -12,18 +12,18 @@
 @class PBListView;
 @protocol PBListViewDelegate <NSObject>
 
--(void)listView:(PBListView *)listView;
+- (void)listView:(PBListView *)listView;
 
--(void)listView:(PBListView *)listView andScrollView:(UIScrollView *)scrollView;
+- (void)listView:(PBListView *)listView andScrollView:(UIScrollView *)scrollView;
 
 @end
 
 @interface PBListView : UIView
 
-@property(nonatomic, strong)NSArray *listArr;
+@property (nonatomic, strong) NSArray *listArr;
 
-@property(nonatomic, weak)id<PBListViewDelegate> delegate;
+@property (nonatomic, weak) id<PBListViewDelegate> delegate;
 
-+(id)listView;
++ (id)listView;
 
 @end

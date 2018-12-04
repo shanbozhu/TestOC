@@ -10,15 +10,10 @@
 
 @implementation PBListFourController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"four";
 }
-
-
-
 
 @end

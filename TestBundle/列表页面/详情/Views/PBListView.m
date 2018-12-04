@@ -13,22 +13,20 @@
 
 @interface PBListView ()<UITableViewDelegate, UITableViewDataSource>
 
-
 @property (weak, nonatomic) UITableView *tableView;
 
-@property(nonatomic, weak)UIImageView *imageView;
+@property (nonatomic, weak) UIImageView *imageView;
 
 @end
 
 @implementation PBListView
 
-+(id)listView {
++ (id)listView {
     return [[self alloc]initWithFrame:CGRectZero];
 }
 
--(id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
         self.tableView = tableView;
         [self addSubview:tableView];
@@ -38,13 +36,11 @@
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         
-        
         //缩放视图
         UIView *bgView = [[UIView alloc]init];
         tableView.backgroundView = bgView;
         //bgView.frame = CGRectMake(0, 0, tableView.frame.size.width, 0);
         bgView.backgroundColor = [UIColor redColor];
-        
         
         UIImageView *imageView = [[UIImageView alloc]init];
         self.imageView = imageView;
@@ -59,8 +55,6 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
         [imageView addGestureRecognizer:tap];
         
-        
-        
         UIView *coverView = [[UIView alloc]init];
         [bgView addSubview:coverView];
         coverView.frame = bgView.bounds;
@@ -69,16 +63,12 @@
         //coverView.backgroundColor = [UIColor redColor];
         coverView.userInteractionEnabled = YES;
         
-        
-        
         //测试
         UIButton *otherBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [tableView addSubview:otherBtn];
         otherBtn.frame = CGRectMake(20, -70, 120, 120);
         otherBtn.backgroundColor = [UIColor yellowColor];
         [otherBtn addTarget:self action:@selector(otherBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
         
         YYLabel *otherLab = [[YYLabel alloc]init];
         [tableView addSubview:otherLab];
@@ -94,18 +84,16 @@
     return self;
 }
 
--(void)otherBtnClick:(UIButton *)btn {
+- (void)otherBtnClick:(UIButton *)btn {
     NSLog(@"点击了头像");
 }
 
--(void)tapClick:(UITapGestureRecognizer *)tap {
+- (void)tapClick:(UITapGestureRecognizer *)tap {
     NSLog(@"点击了背景图片");
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.delegate listView:self andScrollView:scrollView];
-    
     
     if (scrollView.contentOffset.y < -(150+64)) {
         CGFloat sx = scrollView.contentOffset.y / -(150+64);
@@ -121,40 +109,31 @@
         //        self.imageView.center = CGPointMake(self.frame.size.width/2.0, self.imageView.frame.size.height/2.0);
         //self.imageView.center = CGPointMake(self.frame.size.width/2.0, self.imageView.frame.size.height/2.0);
         
-        
         CGRect rect = self.imageView.frame;
         rect.origin.y = -(scrollView.contentOffset.y + (150+64)) * 0.3;
         self.imageView.frame = rect;
-        
     }
 }
 
-
-
--(void)setListArr:(NSArray *)listArr {
+- (void)setListArr:(NSArray *)listArr {
     _listArr = listArr;
     
     [self.tableView reloadData];
-    
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.listArr.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
-    
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBListCell *cell = [PBListCell listCellWithTableView:tableView];
     
     cell.list = self.listArr[indexPath.row];
@@ -164,7 +143,7 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate listView:self];
 }
 
