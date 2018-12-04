@@ -10,7 +10,6 @@
 
 @interface PBNavigationController : UINavigationController
 
-
-@property(nonatomic, strong)UIPanGestureRecognizer *pan;
+@property (nonatomic, strong) UIPanGestureRecognizer *pan;
 
 @end

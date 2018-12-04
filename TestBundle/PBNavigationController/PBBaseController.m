@@ -8,18 +8,17 @@
 
 #import "PBBaseController.h"
 
-
 @implementation UIViewController (PBNavigationBar)
 
--(BOOL)pb_navigationBarHidden {
+- (BOOL)pb_navigationBarHidden {
     return NO;
 }
 
--(BOOL)pb_panGestureRecognizerEnabled {
+- (BOOL)pb_panGestureRecognizerEnabled {
     return YES;
 }
 
--(BOOL)pb_popGestureRecognizerEnabled {
+- (BOOL)pb_popGestureRecognizerEnabled {
     return YES;
 }
 
@@ -27,14 +26,14 @@
 
 @implementation PBBaseController
 
-
-//是否显示导航栏
--(void)viewWillAppear:(BOOL)animated {
+// 是否显示导航栏
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:[self pb_navigationBarHidden] animated:animated];
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 }
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (self.navigationController.viewControllers.count == 1) {
         return NO;
@@ -42,9 +41,8 @@
     return YES;
 }
 
-
-//是否使能侧滑
--(void)viewDidAppear:(BOOL)animated {
+// 是否使能侧滑
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     if ([self pb_popGestureRecognizerEnabled] == NO) {
@@ -62,8 +60,7 @@
     }
 }
 
-
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     self.navigationController.interactivePopGestureRecognizer.enabled = [super pb_panGestureRecognizerEnabled];
@@ -71,7 +68,6 @@
     if ([self.navigationController respondsToSelector:@selector(pan)]) {
         [[(PBNavigationController *)self.navigationController pan]setEnabled:[super pb_panGestureRecognizerEnabled]];
     }
-    
 }
 
 @end

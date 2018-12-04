@@ -17,23 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    //屏蔽系统边缘侧滑
+    // 屏蔽系统边缘侧滑
     self.interactivePopGestureRecognizer.enabled = NO;
     
-    
-    //代理变量具体化 自己作为自己的代理
+    // 代理变量具体化 自己作为自己的代理
     self.delegate = self;
     
-    
-    //全屏侧滑(本质是替换 委托方法)
+    // 全屏侧滑(本质是替换 委托方法)
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
     self.pan = pan;
     [self.view addGestureRecognizer:pan];
     pan.delegate = self;
 }
 
--(void)handleNavigationTransition:(UIPanGestureRecognizer *)pan {
+- (void)handleNavigationTransition:(UIPanGestureRecognizer *)pan {
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {

@@ -20,14 +20,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
     UIWindow *window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window = window;
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    
     
     //Controller
     PBHomeController *vc0 = [[PBHomeController alloc]init];
@@ -42,10 +38,8 @@
     vc2.view.backgroundColor = [UIColor whiteColor];
     vc2.title = @"我的";
     
-    
     UITabBarController *tab = [[UITabBarController alloc]init];
     tab.viewControllers = @[vc0, vc1, vc2];
-    
     
     PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
     NSLog(@"nav = %@", nav);
@@ -55,7 +49,6 @@
     //window.rootViewController
     self.window.rootViewController = nav;
     
-    
     /**
      //Controller
      PBHomeController *vc1 = [[PBHomeController alloc]init];
@@ -63,13 +56,10 @@
      vc1.view.backgroundColor = [UIColor whiteColor];
      vc1.title = @"首页";
      
-     
-     
      PBMineController *vc2 = [[PBMineController alloc]init];
      UINavigationController *nav2 = [[UINavigationController alloc]initWithRootViewController:vc2];
      vc2.view.backgroundColor = [UIColor whiteColor];
      vc2.title = @"我的";
-     
      
      UITabBarController *tab = [[UITabBarController alloc]init];
      tab.viewControllers = @[nav1, nav2];
