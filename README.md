@@ -7,7 +7,7 @@
 3.git commit -m "忽略跟踪指定的文件"<br>
 
 //git解决rebase冲突<br>
-1.git statue<br>
+1.git status<br>
 2.git add -u<br>
 3.git rebase --continue<br>
 4.git push -f<br>
