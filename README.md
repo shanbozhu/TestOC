@@ -1,6 +1,6 @@
 #TestBundle
 
-/*****************Git相关*****************/<br>
+/**********Git相关*****************/<br>
 //git添加忽略文件<br>
 1.git rm --cached UserInterfaceState.xcuserstate<br>
 2.编辑.gitignore文件<br>
