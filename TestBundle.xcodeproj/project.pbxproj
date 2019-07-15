@@ -110,62 +110,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9546C9982134F48B00618EF9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		9546C9992134F49B00618EF9 /* Res */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
-		9546C99A2134F4A600618EF9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		9546C99B2134F4D100618EF9 /* Res */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
-		9546C99C2134F4E800618EF9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		9546C99D2134F4F400618EF9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		9546C99E2134F50300618EF9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		9546C99F2134F51000618EF9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,8 +255,6 @@
 		B0F04A9A1F9E01BD00F69AC3 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				9546C99D2134F4F400618EF9 /* Views */,
-				9546C99C2134F4E800618EF9 /* Models */,
 				B0F04A9B1F9E01BD00F69AC3 /* Controllers */,
 				B0F04A9F1F9E01BD00F69AC3 /* Res */,
 			);
@@ -343,8 +285,6 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
-				9546C99F2134F51000618EF9 /* Views */,
-				9546C99E2134F50300618EF9 /* Models */,
 				B0F04AA71F9E01BD00F69AC3 /* Controllers */,
 				B0F04AAB1F9E01BD00F69AC3 /* Res */,
 			);
@@ -372,7 +312,6 @@
 		B0F04ABD1F9E02A600F69AC3 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
-				9546C99B2134F4D100618EF9 /* Res */,
 				B0F04ABE1F9E02A600F69AC3 /* Controllers */,
 				B0F04AC31F9E02A600F69AC3 /* Models */,
 				B0F04AC71F9E02A600F69AC3 /* Views */,
@@ -418,9 +357,6 @@
 		B0F04AD11F9E030700F69AC3 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
-				9546C99A2134F4A600618EF9 /* Views */,
-				9546C9992134F49B00618EF9 /* Res */,
-				9546C9982134F48B00618EF9 /* Models */,
 				B0F04AD21F9E030700F69AC3 /* Controllers */,
 			);
 			path = "发现";
