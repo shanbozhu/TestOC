@@ -10,4 +10,11 @@
 
 @implementation PBFindController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.tabBarController.navigationItem.title = @"发现";
+    self.tabBarController.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+}
+
 @end

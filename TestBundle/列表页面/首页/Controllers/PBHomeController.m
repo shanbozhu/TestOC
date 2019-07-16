@@ -18,8 +18,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.tabBarController.navigationItem.title = @"haha";
-    //self.navigationItem.title = @"haha";
+    self.tabBarController.navigationItem.title = @"首页";
+    //self.navigationItem.title = @"首页";
     
     NSLog(@"self.tabBarController = %@", self.tabBarController.navigationController);
     
