@@ -49,7 +49,8 @@
     
     PBListController *tvc = [[PBListController alloc]init];
     tvc.hidesBottomBarWhenPushed = YES;
-//    [self.tabBarController.navigationController pushViewController:tvc animated:YES];
+    
+    //[self.tabBarController.navigationController pushViewController:tvc animated:YES];
     [self.navigationController pushViewController:tvc animated:YES];
     tvc.view.backgroundColor = [UIColor whiteColor];
 }
