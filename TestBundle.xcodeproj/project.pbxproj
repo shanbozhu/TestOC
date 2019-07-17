@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95472BE622DECF1200F6BFA2 /* PBMineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95472BE522DECF1200F6BFA2 /* PBMineView.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -44,6 +45,8 @@
 		1FEAE59FC1B4DF75AB5D1773 /* libPods-TestBundle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestBundle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
+		95472BE422DECF1200F6BFA2 /* PBMineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMineView.h; sourceTree = "<group>"; };
+		95472BE522DECF1200F6BFA2 /* PBMineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBMineView.m; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95472BE322DECF0000F6BFA2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95472BE422DECF1200F6BFA2 /* PBMineView.h */,
+				95472BE522DECF1200F6BFA2 /* PBMineView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +297,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				95472BE322DECF0000F6BFA2 /* Views */,
 				B0F04AA71F9E01BD00F69AC3 /* Controllers */,
 				B0F04AAB1F9E01BD00F69AC3 /* Res */,
 			);
@@ -482,6 +495,7 @@
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				B03011AA1F1644A300624D91 /* YYFPSLabel.m in Sources */,
 				B09283961FADDC5500606098 /* PBBaseController.m in Sources */,
+				95472BE622DECF1200F6BFA2 /* PBMineView.m in Sources */,
 				B0F04AD71F9E033D00F69AC3 /* PBFindController.m in Sources */,
 				B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */,
 				B0F04A631F9C8C7B00F69AC3 /* UIImage+ImageEffects.m in Sources */,
