@@ -38,7 +38,7 @@
         // imageView
         UIImageView *imageView = [[UIImageView alloc]init];
         [self.contentView addSubview:imageView];
-        imageView.frame = CGRectMake(50, 20, 100, 20);
+        imageView.frame = CGRectMake(200, 20, 100, 20);
         imageView.image = [UIImage imageNamed:@"pbhome_icon"];
         //imageView.backgroundColor = [UIColor redColor];
     }
