@@ -10,7 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PBMineView;
+@protocol PBMineViewDelegate <NSObject>
+
+- (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface PBMineView : UIView
+
+@property (nonatomic, strong) id<PBMineViewDelegate> delegate;
 
 + (id)mineView;
 

@@ -10,7 +10,7 @@
 #import <YYText/YYText.h>
 #import "PBMineView.h"
 
-@interface PBMineController ()
+@interface PBMineController ()<PBMineViewDelegate>
 
 @end
 
@@ -33,6 +33,12 @@
     PBMineView *mineView = [PBMineView mineView];
     [self.view addSubview:mineView];
     mineView.frame = self.view.bounds;
+    mineView.delegate = self;
+}
+
+// delegate
+-(void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"indexPath.row = %ld", indexPath.row);
 }
 
 @end
