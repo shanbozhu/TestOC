@@ -11,6 +11,12 @@
 		9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */; };
 		9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319722E059A000F6BFA2 /* PBMineController.m */; };
 		9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319A22E059A000F6BFA2 /* PBMineView.m */; };
+		954731AF22E05B8D00F6BFA2 /* PBChannelHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A522E05B8D00F6BFA2 /* PBChannelHeaderView.m */; };
+		954731B022E05B8D00F6BFA2 /* PBChannelContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A622E05B8D00F6BFA2 /* PBChannelContentView.m */; };
+		954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */; };
+		954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */; };
+		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
+		954731B422E05B8D00F6BFA2 /* PBTestListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AE22E05B8D00F6BFA2 /* PBTestListController.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -51,6 +57,18 @@
 		9547319822E059A000F6BFA2 /* PBMineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMineController.h; sourceTree = "<group>"; };
 		9547319A22E059A000F6BFA2 /* PBMineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMineView.m; sourceTree = "<group>"; };
 		9547319B22E059A000F6BFA2 /* PBMineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMineView.h; sourceTree = "<group>"; };
+		954731A222E05B8D00F6BFA2 /* PBWelfareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWelfareController.h; sourceTree = "<group>"; };
+		954731A322E05B8D00F6BFA2 /* PBAllWelfareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAllWelfareController.h; sourceTree = "<group>"; };
+		954731A522E05B8D00F6BFA2 /* PBChannelHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelHeaderView.m; sourceTree = "<group>"; };
+		954731A622E05B8D00F6BFA2 /* PBChannelContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelContentView.m; sourceTree = "<group>"; };
+		954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelContentCell.m; sourceTree = "<group>"; };
+		954731A822E05B8D00F6BFA2 /* PBChannelContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentView.h; sourceTree = "<group>"; };
+		954731A922E05B8D00F6BFA2 /* PBChannelHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelHeaderView.h; sourceTree = "<group>"; };
+		954731AA22E05B8D00F6BFA2 /* PBChannelContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentCell.h; sourceTree = "<group>"; };
+		954731AB22E05B8D00F6BFA2 /* PBTestListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTestListController.h; sourceTree = "<group>"; };
+		954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllWelfareController.m; sourceTree = "<group>"; };
+		954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
+		954731AE22E05B8D00F6BFA2 /* PBTestListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTestListController.m; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -148,6 +166,41 @@
 				9547319A22E059A000F6BFA2 /* PBMineView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		954731A022E05B7400F6BFA2 /* PBAllWelfare */ = {
+			isa = PBXGroup;
+			children = (
+				954731A122E05B8D00F6BFA2 /* Controllers */,
+			);
+			path = PBAllWelfare;
+			sourceTree = "<group>";
+		};
+		954731A122E05B8D00F6BFA2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				954731A322E05B8D00F6BFA2 /* PBAllWelfareController.h */,
+				954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */,
+				954731A222E05B8D00F6BFA2 /* PBWelfareController.h */,
+				954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */,
+				954731AB22E05B8D00F6BFA2 /* PBTestListController.h */,
+				954731AE22E05B8D00F6BFA2 /* PBTestListController.m */,
+				954731A422E05B8D00F6BFA2 /* PBChannelView */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		954731A422E05B8D00F6BFA2 /* PBChannelView */ = {
+			isa = PBXGroup;
+			children = (
+				954731A922E05B8D00F6BFA2 /* PBChannelHeaderView.h */,
+				954731A522E05B8D00F6BFA2 /* PBChannelHeaderView.m */,
+				954731A822E05B8D00F6BFA2 /* PBChannelContentView.h */,
+				954731A622E05B8D00F6BFA2 /* PBChannelContentView.m */,
+				954731AA22E05B8D00F6BFA2 /* PBChannelContentCell.h */,
+				954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */,
+			);
+			path = PBChannelView;
 			sourceTree = "<group>";
 		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
@@ -325,6 +378,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				954731A022E05B7400F6BFA2 /* PBAllWelfare */,
 				9547319222E059A000F6BFA2 /* 我的 */,
 			);
 			path = "我的";
@@ -494,9 +548,12 @@
 			files = (
 				B03011D71F173E4300624D91 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */,
+				954731B022E05B8D00F6BFA2 /* PBChannelContentView.m in Sources */,
 				B03011D91F173E4300624D91 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B03011D81F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m in Sources */,
+				954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
+				954731B422E05B8D00F6BFA2 /* PBTestListController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
@@ -506,12 +563,15 @@
 				9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */,
 				B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */,
 				B0F04A631F9C8C7B00F69AC3 /* UIImage+ImageEffects.m in Sources */,
+				954731AF22E05B8D00F6BFA2 /* PBChannelHeaderView.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
 				B09283971FADDC5500606098 /* PBNavigationController.m in Sources */,
 				B03011AB1F1644A300624D91 /* YYWeakProxy.m in Sources */,
 				B03011D61F173E4300624D91 /* UITableView+FDIndexPathHeightCache.m in Sources */,
+				954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */,
+				954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
 				9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */,
 			);

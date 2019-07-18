@@ -9,6 +9,7 @@
 #import "PBMineController.h"
 #import <YYText/YYText.h>
 #import "PBMineView.h"
+#import "PBAllWelfareController.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -23,7 +24,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"self.view.frame.size.height = %lf", self.view.frame.size.height);
+    self.tabBarController.navigationItem.title = @"我的";
+    self.tabBarController.navigationController.navigationBar.barTintColor = [UIColor greenColor];
 }
 
 - (void)viewDidLoad {
@@ -38,7 +40,13 @@
 
 // delegate
 - (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath.row = %ld", indexPath.row);
+    if (indexPath.row == 0) {
+        PBAllWelfareController *allWelfareController = [[PBAllWelfareController alloc]init];
+        allWelfareController.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:allWelfareController animated:YES];
+        allWelfareController.view.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 @end
