@@ -31,7 +31,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        //scrollView
+        // scrollView
         UIScrollView *scrollView = [[UIScrollView alloc]init];
         self.scrollView = scrollView;
         [self addSubview:scrollView];
@@ -52,7 +52,7 @@
     }
     self.btnArr = nil;
     
-    //showView
+    // showView
     UIView *showView = [[UIView alloc]init];
     self.showView = showView;
     [self.scrollView addSubview:self.showView];
