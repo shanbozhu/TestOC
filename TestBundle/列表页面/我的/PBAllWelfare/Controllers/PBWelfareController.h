@@ -11,8 +11,4 @@
 
 @interface PBWelfareController : PBBaseController
 
-
-
-
-
 @end

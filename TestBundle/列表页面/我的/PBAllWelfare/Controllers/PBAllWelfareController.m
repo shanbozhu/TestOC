@@ -10,6 +10,7 @@
 #import "PBChannelHeaderView.h"
 #import "PBChannelContentView.h"
 #import "PBWelfareController.h"
+#import "PBTestListController.h"
 
 @interface PBAllWelfareController ()<PBChannelContentViewDelegate, PBChannelHeaderViewDelegate>
 
@@ -43,50 +44,34 @@
     channelContentView.delegate = self;
 }
 
-
-//delegate
--(void)channelView:(PBChannelHeaderView *)channelView andIndex:(NSInteger)index {
-    
-    //点击头部,设置内容偏移量
+// delegate
+- (void)channelView:(PBChannelHeaderView *)channelView andIndex:(NSInteger)index {
+    // 点击头部,设置内容偏移量
     [self.channelContentView setContentOffsetWithIndex:index];
 }
--(void)channelContentView:(PBChannelContentView *)channelContentView andOffset:(CGPoint)offset {
-    
-    //拖动内容,设置头部偏移量
+
+- (void)channelContentView:(PBChannelContentView *)channelContentView andOffset:(CGPoint)offset {
+    // 拖动内容,设置头部偏移量
     [self.channelHeaderView setContentOffsetWithOffset:offset];
 }
 
-//DataSource
--(UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index {
-    
-    
+// DataSource
+- (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index {
     if (index % 2 == 0) {
-        
-        
         PBWelfareController *welfareController = [[PBWelfareController alloc]init];
         
+        [self addChildViewController:welfareController];
+        [pageView addSubview:welfareController.view];
         welfareController.view.backgroundColor = [UIColor lightGrayColor];
-        
-        [self addChildViewController:welfareController];
-        
-        [pageView addSubview:welfareController.view];
-        
         return welfareController;
-        
     } else {
+        PBTestListController *testListController = [[PBTestListController alloc]init];
         
-        PBWelfareController *welfareController = [[PBWelfareController alloc]init];
-        welfareController.view.backgroundColor = [UIColor grayColor];
-        
-        [self addChildViewController:welfareController];
-        
-        [pageView addSubview:welfareController.view];
-        
-        return welfareController;
+        [self addChildViewController:testListController];
+        [pageView addSubview:testListController.view];
+        testListController.view.backgroundColor = [UIColor grayColor];
+        return testListController;
     }
-    
 }
-
-
 
 @end

@@ -10,8 +10,8 @@
 
 @interface PBChannelContentCell : UICollectionViewCell
 
-@property(nonatomic, weak)UIViewController *vc;
+@property (nonatomic, weak) UIViewController *vc;
 
-+(id)channelContentCellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath;
++ (id)channelContentCellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -9,30 +9,14 @@
 #import "PBTestListController.h"
 #import "YYFPSLabel.h"
 
-
 @interface PBTestListController ()
-
 
 @end
 
 @implementation PBTestListController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
-
-
-  
-    
-    
-    
 }
-
-
-
-
 
 @end

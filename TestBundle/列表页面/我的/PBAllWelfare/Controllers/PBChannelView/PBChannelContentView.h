@@ -11,20 +11,17 @@
 @class PBChannelContentView;
 @protocol PBChannelContentViewDelegate <NSObject>
 
--(UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index;
-
--(void)channelContentView:(PBChannelContentView *)channelContentView andOffset:(CGPoint)offset;
+- (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index;
+- (void)channelContentView:(PBChannelContentView *)channelContentView andOffset:(CGPoint)offset;
 
 @end
 
 @interface PBChannelContentView : UIView
 
-@property(nonatomic, strong)NSArray *channelArr;
+@property (nonatomic, strong) NSArray *channelArr;
+@property (nonatomic, weak) id <PBChannelContentViewDelegate> delegate;
 
-@property(nonatomic, weak)id <PBChannelContentViewDelegate> delegate;
-
-+(id)channelContentViewWithFrame:(CGRect)frame;
-
--(void)setContentOffsetWithIndex:(NSInteger)index;
++ (id)channelContentViewWithFrame:(CGRect)frame;
+- (void)setContentOffsetWithIndex:(NSInteger)index;
 
 @end

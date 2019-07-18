@@ -10,19 +10,20 @@
 
 @implementation PBChannelContentCell
 
-+(id)channelContentCellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath {
++ (id)channelContentCellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath {
     [collectionView registerClass:[self class] forCellWithReuseIdentifier:@"PBChannelContentCell"];
     PBChannelContentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PBChannelContentCell" forIndexPath:indexPath];
     return cell;
 }
--(id)initWithFrame:(CGRect)frame {
+
+- (id)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         
     }
     return self;
 }
 
--(void)dealloc {
+- (void)dealloc {
     NSLog(@"PBChannelContentCell对象被释放了");
 }
 
