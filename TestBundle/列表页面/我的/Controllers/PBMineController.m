@@ -37,7 +37,7 @@
 }
 
 // delegate
--(void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"indexPath.row = %ld", indexPath.row);
 }
 
