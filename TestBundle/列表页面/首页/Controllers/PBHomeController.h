@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PBBaseController.h"
 
 @interface PBHomeController : PBBaseController
 

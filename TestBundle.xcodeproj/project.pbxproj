@@ -93,6 +93,7 @@
 		95C8718022E708CC002795D0 /* PBCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarView.m; sourceTree = "<group>"; };
 		95C8718122E708CC002795D0 /* PBCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarCell.m; sourceTree = "<group>"; };
 		95C8718222E708CC002795D0 /* PBCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendar.m; sourceTree = "<group>"; };
+		95C8718722E70A7E002795D0 /* TestBundle.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBundle.pch; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -361,6 +362,7 @@
 			children = (
 				B0300E6F1F11DE5D00624D91 /* AppDelegate.h */,
 				B0300E701F11DE5D00624D91 /* AppDelegate.m */,
+				95C8718722E70A7E002795D0 /* TestBundle.pch */,
 			);
 			name = "通用";
 			sourceTree = "<group>";
@@ -783,6 +785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FFJNMLHK32;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT)/TestBundle.pch";
 				INFOPLIST_FILE = TestBundle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -807,6 +810,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FFJNMLHK32;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT)/TestBundle.pch";
 				INFOPLIST_FILE = TestBundle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
