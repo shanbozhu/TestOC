@@ -10,7 +10,7 @@
 
 @interface PBCalendar : NSObject
 
-@property (nonatomic, strong) void(^dateBlock)(NSInteger year, NSInteger month);
+@property (nonatomic, copy) void(^dateBlock)(NSInteger year, NSInteger month);
 
 @property (nonatomic, assign) NSInteger index;
 
