@@ -16,10 +16,15 @@
 		954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */; };
 		954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */; };
 		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
-		95C8715722E6FC81002795D0 /* PBCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8715622E6FC81002795D0 /* PBCalendarController.m */; };
-		95C8715F22E6FC8E002795D0 /* PBCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8715C22E6FC8E002795D0 /* PBCalendarView.m */; };
-		95C8716022E6FC8E002795D0 /* PBCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8715D22E6FC8E002795D0 /* PBCalendarCell.m */; };
-		95C8716122E6FC8E002795D0 /* PBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8715E22E6FC8E002795D0 /* PBCalendar.m */; };
+		95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716922E70680002795D0 /* PBGesturePasswordLab.m */; };
+		95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716A22E70680002795D0 /* PBGesturePasswordView.m */; };
+		95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */; };
+		95C8717222E70680002795D0 /* PBGesturePasswordCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716C22E70680002795D0 /* PBGesturePasswordCircleView.m */; };
+		95C8717522E70697002795D0 /* PBGesturePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8717422E70697002795D0 /* PBGesturePasswordController.m */; };
+		95C8718322E708CC002795D0 /* PBCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8717B22E708CC002795D0 /* PBCalendarController.m */; };
+		95C8718422E708CC002795D0 /* PBCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8718022E708CC002795D0 /* PBCalendarView.m */; };
+		95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8718122E708CC002795D0 /* PBCalendarCell.m */; };
+		95C8718622E708CC002795D0 /* PBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8718222E708CC002795D0 /* PBCalendar.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -70,14 +75,24 @@
 		954731AA22E05B8D00F6BFA2 /* PBChannelContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentCell.h; sourceTree = "<group>"; };
 		954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllWelfareController.m; sourceTree = "<group>"; };
 		954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
-		95C8715522E6FC81002795D0 /* PBCalendarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCalendarController.h; sourceTree = "<group>"; };
-		95C8715622E6FC81002795D0 /* PBCalendarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCalendarController.m; sourceTree = "<group>"; };
-		95C8715922E6FC8E002795D0 /* PBCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendarView.h; sourceTree = "<group>"; };
-		95C8715A22E6FC8E002795D0 /* PBCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendar.h; sourceTree = "<group>"; };
-		95C8715B22E6FC8E002795D0 /* PBCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendarCell.h; sourceTree = "<group>"; };
-		95C8715C22E6FC8E002795D0 /* PBCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarView.m; sourceTree = "<group>"; };
-		95C8715D22E6FC8E002795D0 /* PBCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarCell.m; sourceTree = "<group>"; };
-		95C8715E22E6FC8E002795D0 /* PBCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendar.m; sourceTree = "<group>"; };
+		95C8716722E70680002795D0 /* PBGesturePasswordCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordCircleView.h; sourceTree = "<group>"; };
+		95C8716822E70680002795D0 /* PBGesturePasswordLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordLockView.h; sourceTree = "<group>"; };
+		95C8716922E70680002795D0 /* PBGesturePasswordLab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordLab.m; sourceTree = "<group>"; };
+		95C8716A22E70680002795D0 /* PBGesturePasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordView.m; sourceTree = "<group>"; };
+		95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordLockView.m; sourceTree = "<group>"; };
+		95C8716C22E70680002795D0 /* PBGesturePasswordCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordCircleView.m; sourceTree = "<group>"; };
+		95C8716D22E70680002795D0 /* PBGesturePasswordLab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordLab.h; sourceTree = "<group>"; };
+		95C8716E22E70680002795D0 /* PBGesturePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordView.h; sourceTree = "<group>"; };
+		95C8717322E70697002795D0 /* PBGesturePasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordController.h; sourceTree = "<group>"; };
+		95C8717422E70697002795D0 /* PBGesturePasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordController.m; sourceTree = "<group>"; };
+		95C8717A22E708CC002795D0 /* PBCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendarController.h; sourceTree = "<group>"; };
+		95C8717B22E708CC002795D0 /* PBCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarController.m; sourceTree = "<group>"; };
+		95C8717D22E708CC002795D0 /* PBCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendarView.h; sourceTree = "<group>"; };
+		95C8717E22E708CC002795D0 /* PBCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendar.h; sourceTree = "<group>"; };
+		95C8717F22E708CC002795D0 /* PBCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCalendarCell.h; sourceTree = "<group>"; };
+		95C8718022E708CC002795D0 /* PBCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarView.m; sourceTree = "<group>"; };
+		95C8718122E708CC002795D0 /* PBCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendarCell.m; sourceTree = "<group>"; };
+		95C8718222E708CC002795D0 /* PBCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCalendar.m; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -210,25 +225,66 @@
 			path = PBChannelView;
 			sourceTree = "<group>";
 		};
-		95C8715422E6FC64002795D0 /* PBCalendar */ = {
+		95C8716222E70605002795D0 /* PBGesturePassword */ = {
 			isa = PBXGroup;
 			children = (
-				95C8715822E6FC8E002795D0 /* PBCalendarView */,
-				95C8715522E6FC81002795D0 /* PBCalendarController.h */,
-				95C8715622E6FC81002795D0 /* PBCalendarController.m */,
+				95C8716422E70661002795D0 /* Controllers */,
+			);
+			path = PBGesturePassword;
+			sourceTree = "<group>";
+		};
+		95C8716422E70661002795D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				95C8717322E70697002795D0 /* PBGesturePasswordController.h */,
+				95C8717422E70697002795D0 /* PBGesturePasswordController.m */,
+				95C8716622E70680002795D0 /* PBGesturePasswordView */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		95C8716622E70680002795D0 /* PBGesturePasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				95C8716E22E70680002795D0 /* PBGesturePasswordView.h */,
+				95C8716A22E70680002795D0 /* PBGesturePasswordView.m */,
+				95C8716D22E70680002795D0 /* PBGesturePasswordLab.h */,
+				95C8716922E70680002795D0 /* PBGesturePasswordLab.m */,
+				95C8716822E70680002795D0 /* PBGesturePasswordLockView.h */,
+				95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */,
+				95C8716722E70680002795D0 /* PBGesturePasswordCircleView.h */,
+				95C8716C22E70680002795D0 /* PBGesturePasswordCircleView.m */,
+			);
+			path = PBGesturePasswordView;
+			sourceTree = "<group>";
+		};
+		95C8717622E708BC002795D0 /* PBCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				95C8717822E708BC002795D0 /* Controllers */,
 			);
 			path = PBCalendar;
 			sourceTree = "<group>";
 		};
-		95C8715822E6FC8E002795D0 /* PBCalendarView */ = {
+		95C8717822E708BC002795D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				95C8715A22E6FC8E002795D0 /* PBCalendar.h */,
-				95C8715E22E6FC8E002795D0 /* PBCalendar.m */,
-				95C8715922E6FC8E002795D0 /* PBCalendarView.h */,
-				95C8715C22E6FC8E002795D0 /* PBCalendarView.m */,
-				95C8715B22E6FC8E002795D0 /* PBCalendarCell.h */,
-				95C8715D22E6FC8E002795D0 /* PBCalendarCell.m */,
+				95C8717A22E708CC002795D0 /* PBCalendarController.h */,
+				95C8717B22E708CC002795D0 /* PBCalendarController.m */,
+				95C8717C22E708CC002795D0 /* PBCalendarView */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		95C8717C22E708CC002795D0 /* PBCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				95C8717E22E708CC002795D0 /* PBCalendar.h */,
+				95C8718222E708CC002795D0 /* PBCalendar.m */,
+				95C8717D22E708CC002795D0 /* PBCalendarView.h */,
+				95C8718022E708CC002795D0 /* PBCalendarView.m */,
+				95C8717F22E708CC002795D0 /* PBCalendarCell.h */,
+				95C8718122E708CC002795D0 /* PBCalendarCell.m */,
 			);
 			path = PBCalendarView;
 			sourceTree = "<group>";
@@ -408,7 +464,8 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
-				95C8715422E6FC64002795D0 /* PBCalendar */,
+				95C8717622E708BC002795D0 /* PBCalendar */,
+				95C8716222E70605002795D0 /* PBGesturePassword */,
 				954731A022E05B7400F6BFA2 /* PBAllWelfare */,
 				9547319222E059A000F6BFA2 /* 我的 */,
 			);
@@ -577,19 +634,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C8716122E6FC8E002795D0 /* PBCalendar.m in Sources */,
 				B03011D71F173E4300624D91 /* UITableView+FDKeyedHeightCache.m in Sources */,
-				95C8716022E6FC8E002795D0 /* PBCalendarCell.m in Sources */,
 				B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */,
+				95C8718422E708CC002795D0 /* PBCalendarView.m in Sources */,
+				95C8718322E708CC002795D0 /* PBCalendarController.m in Sources */,
+				95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */,
+				95C8717222E70680002795D0 /* PBGesturePasswordCircleView.m in Sources */,
 				954731B022E05B8D00F6BFA2 /* PBChannelContentView.m in Sources */,
 				B03011D91F173E4300624D91 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B03011D81F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m in Sources */,
-				95C8715722E6FC81002795D0 /* PBCalendarController.m in Sources */,
 				954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
+				95C8718622E708CC002795D0 /* PBCalendar.m in Sources */,
+				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
+				95C8717522E70697002795D0 /* PBGesturePasswordController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
-				95C8715F22E6FC8E002795D0 /* PBCalendarView.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
+				95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */,
+				95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				B03011AA1F1644A300624D91 /* YYFPSLabel.m in Sources */,
 				B09283961FADDC5500606098 /* PBBaseController.m in Sources */,

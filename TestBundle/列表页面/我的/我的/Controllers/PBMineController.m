@@ -11,6 +11,7 @@
 #import "PBMineView.h"
 #import "PBAllWelfareController.h"
 #import "PBCalendarController.h"
+#import "PBGesturePasswordController.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -53,6 +54,12 @@
         
         [self.navigationController pushViewController:calendarController animated:YES];
         calendarController.view.backgroundColor = [UIColor whiteColor];
+    } else if (indexPath.row == 2) {
+        PBGesturePasswordController *gesturePasswordController = [[PBGesturePasswordController alloc]init];
+        gesturePasswordController.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:gesturePasswordController animated:YES];
+        gesturePasswordController.view.backgroundColor = [UIColor whiteColor];
     }
 }
 
