@@ -18,10 +18,6 @@
 
 @property (nonatomic, weak) PBSeatSelectionView *seatSelectionView;
 
-//@property (nonatomic, strong) NSArray *dataArr;
-//
-//@property (nonatomic, assign) NSInteger randomId;
-
 @end
 
 @implementation PBSeatSelectionController
