@@ -16,7 +16,6 @@
 		954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */; };
 		954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */; };
 		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
-		954731B422E05B8D00F6BFA2 /* PBTestListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AE22E05B8D00F6BFA2 /* PBTestListController.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -65,10 +64,8 @@
 		954731A822E05B8D00F6BFA2 /* PBChannelContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentView.h; sourceTree = "<group>"; };
 		954731A922E05B8D00F6BFA2 /* PBChannelHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelHeaderView.h; sourceTree = "<group>"; };
 		954731AA22E05B8D00F6BFA2 /* PBChannelContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentCell.h; sourceTree = "<group>"; };
-		954731AB22E05B8D00F6BFA2 /* PBTestListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTestListController.h; sourceTree = "<group>"; };
 		954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllWelfareController.m; sourceTree = "<group>"; };
 		954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
-		954731AE22E05B8D00F6BFA2 /* PBTestListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTestListController.m; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -183,8 +180,6 @@
 				954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */,
 				954731A222E05B8D00F6BFA2 /* PBWelfareController.h */,
 				954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */,
-				954731AB22E05B8D00F6BFA2 /* PBTestListController.h */,
-				954731AE22E05B8D00F6BFA2 /* PBTestListController.m */,
 				954731A422E05B8D00F6BFA2 /* PBChannelView */,
 			);
 			path = Controllers;
@@ -553,7 +548,6 @@
 				B03011D81F173E4300624D91 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
-				954731B422E05B8D00F6BFA2 /* PBTestListController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,

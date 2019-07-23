@@ -10,7 +10,6 @@
 #import "PBChannelHeaderView.h"
 #import "PBChannelContentView.h"
 #import "PBWelfareController.h"
-#import "PBTestListController.h"
 
 @interface PBAllWelfareController ()<PBChannelContentViewDelegate, PBChannelHeaderViewDelegate>
 
@@ -65,12 +64,12 @@
         welfareController.view.backgroundColor = [UIColor lightGrayColor];
         return welfareController;
     } else {
-        PBTestListController *testListController = [[PBTestListController alloc]init];
+        PBWelfareController *welfareController = [[PBWelfareController alloc]init];
         
-        [self addChildViewController:testListController];
-        [pageView addSubview:testListController.view];
-        testListController.view.backgroundColor = [UIColor grayColor];
-        return testListController;
+        [self addChildViewController:welfareController];
+        [pageView addSubview:welfareController.view];
+        welfareController.view.backgroundColor = [UIColor grayColor];
+        return welfareController;
     }
 }
 
