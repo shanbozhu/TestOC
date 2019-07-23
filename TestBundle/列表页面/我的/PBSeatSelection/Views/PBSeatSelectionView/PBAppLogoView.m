@@ -26,7 +26,7 @@
         UIImageView *appLogoImageView = [[UIImageView alloc]init];
         self.appLogoImageView = appLogoImageView;
         [self addSubview:appLogoImageView];
-        appLogoImageView.image = [UIImage imageNamed:@"maoyan_logo"];
+        appLogoImageView.image = [UIImage imageNamed:@"pbseatselection_maoyan_logo"];
     }
     return self;
 }

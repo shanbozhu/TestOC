@@ -46,7 +46,7 @@
 
 - (void)fillHallLogoView {
     // hallLogoImageView
-    self.hallLogoImageView.image = [UIImage imageNamed:@"screenBg"];
+    self.hallLogoImageView.image = [UIImage imageNamed:@"pbseatselection_screenBg"];
     self.hallLogoImageView.frame = self.bounds;
     
     // hallNameLab

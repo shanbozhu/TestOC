@@ -52,11 +52,11 @@
             
             if (seatList.type == 1) {
                 if (seatList.seatInfo.state == 0) {
-                    [seatBtn setImage:[UIImage imageNamed:@"yishou"] forState:UIControlStateNormal];
+                    [seatBtn setImage:[UIImage imageNamed:@"pbseatselection_yishou"] forState:UIControlStateNormal];
                 }
                 if (seatList.seatInfo.state == 2) {
-                    [seatBtn setImage:[UIImage imageNamed:@"kexuan"] forState:UIControlStateNormal];
-                    [seatBtn setImage:[UIImage imageNamed:@"xuanzhong"] forState:UIControlStateSelected];
+                    [seatBtn setImage:[UIImage imageNamed:@"pbseatselection_kexuan"] forState:UIControlStateNormal];
+                    [seatBtn setImage:[UIImage imageNamed:@"pbseatselection_xuanzhong"] forState:UIControlStateSelected];
                 }
             }
             [seatBtn addTarget:self action:@selector(seatBtnClick:) forControlEvents:UIControlEventTouchUpInside];

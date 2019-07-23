@@ -26,8 +26,6 @@
 
 @end
 
-#define kPBDaMaiMode YES // 支持[大麦样式]和[猫眼样式]
-
 #define kPBSeatsViewRowMargin 55
 #define kPBSeatBtnMinW_H 10
 #define kPBSeatsViewColMargin 60

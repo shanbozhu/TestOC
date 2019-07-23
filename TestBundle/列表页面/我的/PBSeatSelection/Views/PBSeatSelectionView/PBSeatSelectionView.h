@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PBTestEspressos.h"
 
+#define kPBDaMaiMode YES // 支持[大麦样式]和[猫眼样式]
+
 @interface PBSeatSelectionView : UIView
 
 @property (nonatomic, strong) PBTestEspressos *testEspressos;
