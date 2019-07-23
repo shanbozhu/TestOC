@@ -14,5 +14,4 @@
 - (void)showHintMsg:(NSString *)msg;
 - (void)showWarnMsg:(NSString *)msg;
 
-
 @end
