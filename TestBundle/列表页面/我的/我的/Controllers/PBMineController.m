@@ -10,6 +10,7 @@
 #import <YYText/YYText.h>
 #import "PBMineView.h"
 #import "PBAllWelfareController.h"
+#import "PBCalendarController.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -46,6 +47,12 @@
         
         [self.navigationController pushViewController:allWelfareController animated:YES];
         allWelfareController.view.backgroundColor = [UIColor whiteColor];
+    } else if (indexPath.row == 1) {
+        PBCalendarController *calendarController = [[PBCalendarController alloc]init];
+        calendarController.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:calendarController animated:YES];
+        calendarController.view.backgroundColor = [UIColor whiteColor];
     }
 }
 
