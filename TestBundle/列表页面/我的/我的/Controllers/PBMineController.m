@@ -43,31 +43,20 @@
 
 // delegate
 - (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *vc;
     if (indexPath.row == 0) {
-        PBAllWelfareController *allWelfareController = [[PBAllWelfareController alloc]init];
-        allWelfareController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:allWelfareController animated:YES];
-        allWelfareController.view.backgroundColor = [UIColor whiteColor];
+        vc = [[PBAllWelfareController alloc]init];
     } else if (indexPath.row == 1) {
-        PBCalendarController *calendarController = [[PBCalendarController alloc]init];
-        calendarController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:calendarController animated:YES];
-        calendarController.view.backgroundColor = [UIColor whiteColor];
+        vc = [[PBCalendarController alloc]init];
     } else if (indexPath.row == 2) {
-        PBGesturePasswordController *gesturePasswordController = [[PBGesturePasswordController alloc]init];
-        gesturePasswordController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:gesturePasswordController animated:YES];
-        gesturePasswordController.view.backgroundColor = [UIColor whiteColor];
+        vc = [[PBGesturePasswordController alloc]init];
     } else if (indexPath.row == 3) {
-        PBSeatSelectionController *seatSelectionController = [[PBSeatSelectionController alloc]init];
-        seatSelectionController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:seatSelectionController animated:YES];
-        seatSelectionController.view.backgroundColor = [UIColor whiteColor];
+        vc = [[PBSeatSelectionController alloc]init];
     }
+    vc.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    vc.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
