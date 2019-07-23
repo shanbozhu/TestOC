@@ -12,6 +12,7 @@
 #import "PBAllWelfareController.h"
 #import "PBCalendarController.h"
 #import "PBGesturePasswordController.h"
+#import "PBSeatSelectionController.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -60,6 +61,12 @@
         
         [self.navigationController pushViewController:gesturePasswordController animated:YES];
         gesturePasswordController.view.backgroundColor = [UIColor whiteColor];
+    } else if (indexPath.row == 3) {
+        PBSeatSelectionController *seatSelectionController = [[PBSeatSelectionController alloc]init];
+        seatSelectionController.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:seatSelectionController animated:YES];
+        seatSelectionController.view.backgroundColor = [UIColor whiteColor];
     }
 }
 
