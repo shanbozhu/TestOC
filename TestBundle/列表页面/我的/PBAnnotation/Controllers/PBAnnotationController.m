@@ -23,7 +23,7 @@
 
 - (void)requestData {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"annotation_info" ofType:@"json"];
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"pbannotation_info" ofType:@"json"];
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"jsonDict = %@", jsonDict);

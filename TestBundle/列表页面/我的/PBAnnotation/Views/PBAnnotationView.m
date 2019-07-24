@@ -20,7 +20,7 @@
     PBAnnotationView *annotationView = (PBAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MKAnnotationView"];
     if (annotationView == nil) {
         annotationView = [[self alloc]initWithAnnotation:annotation reuseIdentifier:@"MKAnnotationView"];
-        //annotationView.image = [UIImage imageNamed:@"PBAddressLocation"];
+        //annotationView.image = [UIImage imageNamed:@"pbaddress_location"];
     }
     return annotationView;
 }
@@ -70,7 +70,7 @@
         UIImageView *pinImageView = [[UIImageView alloc]init];
         [self addSubview:pinImageView];
         pinImageView.frame = CGRectMake((width-37)/2.0, CGRectGetMaxY(calloutView.frame)+10, 37, 37);
-        pinImageView.image = [UIImage imageNamed:@"PBAddressLocation"];
+        pinImageView.image = [UIImage imageNamed:@"pbaddress_location"];
         pinImageView.contentMode = UIViewContentModeCenter;
         //pinImageView.backgroundColor = [UIColor lightGrayColor];
         
