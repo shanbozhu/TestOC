@@ -31,8 +31,8 @@
     
     //NSLog(@"espressos = %@", espressos);
     
-    PBTestZeroEspressos *testEspressos = [PBTestZeroEspressos testEspressosWithHtmlStr:espressos];
-    self.testListView.testEspressos = testEspressos;
+    PBTestZeroEspressos *testZeroEspressos = [PBTestZeroEspressos testZeroEspressosWithHtmlStr:espressos];
+    self.testListView.testZeroEspressos = testZeroEspressos;
     self.testListView.hidden = NO;
 }
 

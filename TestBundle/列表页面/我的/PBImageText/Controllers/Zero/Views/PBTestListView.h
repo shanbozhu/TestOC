@@ -11,7 +11,7 @@
 
 @interface PBTestListView : UIView
 
-@property (nonatomic, strong) PBTestZeroEspressos *testEspressos;
+@property (nonatomic, strong) PBTestZeroEspressos *testZeroEspressos;
 
 + (id)testListView;
 

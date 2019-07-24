@@ -18,6 +18,6 @@
 
 @property (nonatomic, strong) NSMutableArray *imageObjs;
 
-+ (id)testEspressosWithHtmlStr:(NSString *)htmlStr;
++ (id)testZeroEspressosWithHtmlStr:(NSString *)htmlStr;
 
 @end

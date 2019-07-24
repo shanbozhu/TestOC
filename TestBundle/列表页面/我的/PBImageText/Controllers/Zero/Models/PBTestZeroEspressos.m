@@ -28,7 +28,7 @@
     return _imageObjs;
 }
 
-+ (id)testEspressosWithHtmlStr:(NSString *)htmlStr {
++ (id)testZeroEspressosWithHtmlStr:(NSString *)htmlStr {
     return [[self alloc] initWithHtmlStr:htmlStr];
 }
 

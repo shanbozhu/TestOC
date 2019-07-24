@@ -33,8 +33,8 @@
         [self.contentView addSubview:webView];
         webView.scrollView.scrollEnabled = NO;
         webView.delegate = self;
-        webView.layer.borderColor = [UIColor redColor].CGColor;
-        webView.layer.borderWidth = 1.0;
+        //webView.layer.borderColor = [UIColor redColor].CGColor;
+        //webView.layer.borderWidth = 1.0;
         webView.frame = CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width - 10 - 10, 1);
     }
     return self;

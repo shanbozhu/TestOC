@@ -60,6 +60,7 @@
     if (indexPath.row == 2) {
         PBTestListTwoCell *cell = [PBTestListTwoCell testListTwoCellWithTableView:tableView];
         cell.testTwoEspressos = self.testTwoEspressos;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
@@ -67,6 +68,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
         }
         cell.textLabel.text = @"UITableViewCell";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }

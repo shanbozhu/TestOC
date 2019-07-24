@@ -935,10 +935,10 @@
 		95C873D522E8440F002795D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				95C873D622E8440F002795D0 /* PBContentModel.h */,
-				95C873D722E8440F002795D0 /* PBTestZeroEspressos.m */,
-				95C873D822E8440F002795D0 /* PBContentModel.m */,
 				95C873D922E8440F002795D0 /* PBTestZeroEspressos.h */,
+				95C873D722E8440F002795D0 /* PBTestZeroEspressos.m */,
+				95C873D622E8440F002795D0 /* PBContentModel.h */,
+				95C873D822E8440F002795D0 /* PBContentModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -956,9 +956,9 @@
 			isa = PBXGroup;
 			children = (
 				95C873DE22E8440F002795D0 /* PBTestListView.h */,
-				95C873DF22E8440F002795D0 /* PBTestListCell.h */,
-				95C873E022E84410002795D0 /* PBTestListView.xib */,
 				95C873E122E84410002795D0 /* PBTestListView.m */,
+				95C873E022E84410002795D0 /* PBTestListView.xib */,
+				95C873DF22E8440F002795D0 /* PBTestListCell.h */,
 				95C873E222E84410002795D0 /* PBTestListCell.m */,
 			);
 			path = Views;
@@ -977,10 +977,10 @@
 		95C873EA22E84429002795D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				95C873EB22E84429002795D0 /* PBTestOneEspressos.m */,
-				95C873EC22E84429002795D0 /* PBContentOneModel.m */,
 				95C873ED22E84429002795D0 /* PBTestOneEspressos.h */,
+				95C873EB22E84429002795D0 /* PBTestOneEspressos.m */,
 				95C873EE22E84429002795D0 /* PBContentOneModel.h */,
+				95C873EC22E84429002795D0 /* PBContentOneModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -988,8 +988,8 @@
 		95C873EF22E84429002795D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				95C873F022E84429002795D0 /* PBTestListOneController.m */,
 				95C873F122E84429002795D0 /* PBTestListOneController.h */,
+				95C873F022E84429002795D0 /* PBTestListOneController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -997,11 +997,11 @@
 		95C873F222E84429002795D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				95C873F322E84429002795D0 /* PBTestListOneCell.m */,
+				95C873F722E84429002795D0 /* PBTestListOneView.h */,
 				95C873F422E84429002795D0 /* PBTestListOneView.m */,
 				95C873F522E84429002795D0 /* PBTestListOneView.xib */,
 				95C873F622E84429002795D0 /* PBTestListOneCell.h */,
-				95C873F722E84429002795D0 /* PBTestListOneView.h */,
+				95C873F322E84429002795D0 /* PBTestListOneCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1029,9 +1029,9 @@
 		95C8740222E84436002795D0 /* PBActivityDetailCalView */ = {
 			isa = PBXGroup;
 			children = (
+				95C8740522E84436002795D0 /* PBActivityDetailContent.h */,
 				95C8740322E84436002795D0 /* PBActivityDetailContent.m */,
 				95C8740422E84436002795D0 /* PBActivityDetail.js */,
-				95C8740522E84436002795D0 /* PBActivityDetailContent.h */,
 				95C8740622E84436002795D0 /* PBActivityDetail.css */,
 			);
 			path = PBActivityDetailCalView;
@@ -1040,8 +1040,8 @@
 		95C8740722E84436002795D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				95C8740822E84436002795D0 /* PBTestListTwoController.m */,
 				95C8740922E84436002795D0 /* PBTestListTwoController.h */,
+				95C8740822E84436002795D0 /* PBTestListTwoController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1049,10 +1049,10 @@
 		95C8740A22E84436002795D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				95C8740B22E84436002795D0 /* PBTestListTwoCell.h */,
 				95C8740C22E84436002795D0 /* PBTestListTwoView.h */,
-				95C8740D22E84436002795D0 /* PBTestListTwoCell.m */,
 				95C8740E22E84436002795D0 /* PBTestListTwoView.m */,
+				95C8740B22E84436002795D0 /* PBTestListTwoCell.h */,
+				95C8740D22E84436002795D0 /* PBTestListTwoCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";

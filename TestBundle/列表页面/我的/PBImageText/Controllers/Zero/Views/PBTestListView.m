@@ -31,8 +31,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(show:) name:@"hhhh" object:nil];
 }
 
-- (void)setTestEspressos:(PBTestZeroEspressos *)testEspressos {
-    _testEspressos = testEspressos;
+- (void)setTestZeroEspressos:(PBTestZeroEspressos *)testZeroEspressos {
+    _testZeroEspressos = testZeroEspressos;
     [self.tableView reloadData];
 }
 
@@ -41,23 +41,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.testEspressos.pEle.count;
+    return self.testZeroEspressos.pEle.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PBContentModel *contentModel = self.testEspressos.pEle[indexPath.row];
+    PBContentModel *contentModel = self.testZeroEspressos.pEle[indexPath.row];
     
     [tableView registerClass:[PBTestListCell class] forCellReuseIdentifier:@"PBTestListCell"];
     if ([contentModel height] == 0) {
-        [self.testEspressos.pEle[indexPath.row]setHeight:[tableView fd_heightForCellWithIdentifier:@"PBTestListCell" configuration:^(id cell) {
+        [self.testZeroEspressos.pEle[indexPath.row]setHeight:[tableView fd_heightForCellWithIdentifier:@"PBTestListCell" configuration:^(id cell) {
             PBTestListCell *testListCell = cell;
             testListCell.fd_enforceFrameLayout = YES;
             
-            testListCell.contentModel = self.testEspressos.pEle[indexPath.row];
+            testListCell.contentModel = self.testZeroEspressos.pEle[indexPath.row];
         }]];
     }
     
-    if (indexPath.row == self.testEspressos.pEle.count-1) {
+    if (indexPath.row == self.testZeroEspressos.pEle.count-1) {
         return [contentModel height] + 10;
     } else {
         return [contentModel height];
@@ -67,7 +67,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBTestListCell *cell = [PBTestListCell testListCellWithTableView:tableView];
     
-    cell.contentModel = self.testEspressos.pEle[indexPath.row];
+    cell.contentModel = self.testZeroEspressos.pEle[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
@@ -77,7 +77,7 @@
 - (void)show:(NSNotification *)noti {
     //NSLog(@"indexPath.row = %ld", indexPath.row);
     
-    PBContentModel *contentModel = self.testEspressos.pEle[0];
+    PBContentModel *contentModel = self.testZeroEspressos.pEle[0];
     NSDictionary *info = noti.userInfo;
     PBTestListCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
@@ -97,7 +97,7 @@
 
 // 缩略图视图
 - (UIImageView *)photoBrowserView:(PBPhotoBrowserView *)photoBrowserView andThumbImageURLWithIndex:(NSInteger)index {
-    PBContentModel *contentModel = self.testEspressos.pEle[0];
+    PBContentModel *contentModel = self.testZeroEspressos.pEle[0];
     NSLog(@"contentModel.imageViewArr[index] = %@", contentModel.imageViewArr[index]);
     return contentModel.imageViewArr[index];
 }
@@ -105,7 +105,7 @@
 // 高清图地址
 - (NSURL *)photoBrowserView:(PBPhotoBrowserView *)photoBrowserView andHDImageURLWithIndex:(NSInteger)index {
     NSLog(@"index = %ld", index);
-    PBContentModel *contentModel = self.testEspressos.pEle[0];
+    PBContentModel *contentModel = self.testZeroEspressos.pEle[0];
     return [NSURL URLWithString:contentModel.imageArr[index]];
 }
 
