@@ -14,6 +14,7 @@
 #import "PBSeatSelectionController.h"
 #import "PBQRCodeController.h"
 #import "PBAnnotationController.h"
+#import "PBTestController.h"
 
 @implementation PBMineController (Click)
 
@@ -32,6 +33,8 @@
         vc = [[PBQRCodeController alloc]init];
     } else if (indexPath.row == 5) {
         vc = [[PBAnnotationController alloc]init];
+    } else if (indexPath.row == 6) {
+        vc = [[PBTestController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     
