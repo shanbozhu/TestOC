@@ -11,7 +11,9 @@
 #import "PBTestListOneController.h"
 #import "PBTestListTwoController.h"
 
-@interface PBImageTextController ()
+@interface PBImageTextController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) UITableView *tableView;
 
 @end
 
@@ -19,6 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView = tableView;
+    [self.view addSubview:self.tableView];
+    tableView.delegate = self;
+    tableView.dataSource = self;
     
     self.tableView.tableFooterView = [UIView new];
 }
