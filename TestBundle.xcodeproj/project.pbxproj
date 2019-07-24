@@ -672,9 +672,7 @@
 			isa = PBXGroup;
 			children = (
 				95C872AF22E801DA002795D0 /* Res */,
-				95C872B122E801DA002795D0 /* Models */,
 				95C872B222E801DA002795D0 /* Controllers */,
-				95C872D122E801DA002795D0 /* Views */,
 			);
 			path = PBQRCode;
 			sourceTree = "<group>";
@@ -687,25 +685,18 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
-		95C872B122E801DA002795D0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		95C872B222E801DA002795D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				95C872B322E801DA002795D0 /* PBQRCodeScanController.h */,
-				95C872B422E801DA002795D0 /* PBQRCodeController.h */,
-				95C872B522E801DA002795D0 /* PBQRCode */,
-				95C872CB22E801DA002795D0 /* PBQRCodeGenerateController.h */,
-				95C872CC22E801DA002795D0 /* PBTestOneController.m */,
-				95C872CD22E801DA002795D0 /* PBQRCodeController.m */,
-				95C872CE22E801DA002795D0 /* PBQRCodeScanController.m */,
 				95C872CF22E801DA002795D0 /* PBTestOneController.h */,
+				95C872CC22E801DA002795D0 /* PBTestOneController.m */,
+				95C872B422E801DA002795D0 /* PBQRCodeController.h */,
+				95C872CD22E801DA002795D0 /* PBQRCodeController.m */,
+				95C872B322E801DA002795D0 /* PBQRCodeScanController.h */,
+				95C872CE22E801DA002795D0 /* PBQRCodeScanController.m */,
+				95C872CB22E801DA002795D0 /* PBQRCodeGenerateController.h */,
 				95C872D022E801DA002795D0 /* PBQRCodeGenerateController.m */,
+				95C872B522E801DA002795D0 /* PBQRCode */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -715,13 +706,13 @@
 			children = (
 				95C872B622E801DA002795D0 /* Res */,
 				95C872C322E801DA002795D0 /* PBQRCodeGenerate.h */,
-				95C872C422E801DA002795D0 /* PBQRCodeScan.h */,
-				95C872C522E801DA002795D0 /* PBQRCodeScanView.h */,
-				95C872C622E801DA002795D0 /* PBQRCodeAlbum.h */,
-				95C872C722E801DA002795D0 /* PBQRCodeScan.m */,
 				95C872C822E801DA002795D0 /* PBQRCodeGenerate.m */,
-				95C872C922E801DA002795D0 /* PBQRCodeScanView.m */,
+				95C872C622E801DA002795D0 /* PBQRCodeAlbum.h */,
 				95C872CA22E801DA002795D0 /* PBQRCodeAlbum.m */,
+				95C872C422E801DA002795D0 /* PBQRCodeScan.h */,
+				95C872C722E801DA002795D0 /* PBQRCodeScan.m */,
+				95C872C522E801DA002795D0 /* PBQRCodeScanView.h */,
+				95C872C922E801DA002795D0 /* PBQRCodeScanView.m */,
 			);
 			path = PBQRCode;
 			sourceTree = "<group>";
@@ -743,13 +734,6 @@
 				95C872C222E801DA002795D0 /* QRCodeLeftBottom@2x.png */,
 			);
 			path = Res;
-			sourceTree = "<group>";
-		};
-		95C872D122E801DA002795D0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
