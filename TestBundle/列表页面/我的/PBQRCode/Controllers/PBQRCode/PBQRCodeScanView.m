@@ -75,25 +75,25 @@
         // 扫描框左上角图标
         UIImageView *leftImageView = [[UIImageView alloc]init];
         [layer addSublayer:leftImageView.layer];
-        leftImageView.image = [UIImage imageNamed:@"QRCodeLeftTop"];
+        leftImageView.image = [UIImage imageNamed:@"qrcode_lefttop"];
         leftImageView.frame = CGRectMake(CGRectGetMinX(scanContentLayer.frame), CGRectGetMinY(scanContentLayer.frame), leftImageView.image.size.width, leftImageView.image.size.height);
         
         // 扫描框右上角图标
         UIImageView *rightImageView = [[UIImageView alloc]init];
         [layer addSublayer:rightImageView.layer];
-        rightImageView.image = [UIImage imageNamed:@"QRCodeRightTop"];
+        rightImageView.image = [UIImage imageNamed:@"qrcode_righttop"];
         rightImageView.frame = CGRectMake(CGRectGetMaxX(scanContentLayer.frame)-rightImageView.image.size.width, CGRectGetMinY(scanContentLayer.frame), rightImageView.image.size.width, rightImageView.image.size.height);
         
         // 扫描框左下角图标
         UIImageView *leftdownImageView = [[UIImageView alloc]init];
         [layer addSublayer:leftdownImageView.layer];
-        leftdownImageView.image = [UIImage imageNamed:@"QRCodeLeftBottom"];
+        leftdownImageView.image = [UIImage imageNamed:@"qrcode_leftbottom"];
         leftdownImageView.frame = CGRectMake(CGRectGetMinX(scanContentLayer.frame), CGRectGetMaxY(scanContentLayer.frame)-leftdownImageView.image.size.height, leftdownImageView.image.size.width, leftdownImageView.image.size.height);
         
         // 扫描框右下角图标
         UIImageView *rightdownImageView = [[UIImageView alloc]init];
         [layer addSublayer:rightdownImageView.layer];
-        rightdownImageView.image = [UIImage imageNamed:@"QRCodeRightBottom"];
+        rightdownImageView.image = [UIImage imageNamed:@"qrcode_rightbottom"];
         rightdownImageView.frame = CGRectMake(CGRectGetMaxX(scanContentLayer.frame)-rightdownImageView.image.size.width, CGRectGetMaxY(scanContentLayer.frame)-rightdownImageView.image.size.height, rightdownImageView.image.size.width, rightdownImageView.image.size.height);
         
         // 扫描提示语
@@ -109,15 +109,15 @@
         UIButton *flashlightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:flashlightBtn];
         flashlightBtn.frame = CGRectMake((self.frame.size.width - 30) / 2, CGRectGetMaxY(scanContentLayer.frame) + 50, 30, 30);
-        [flashlightBtn setBackgroundImage:[UIImage imageNamed:@"QRCodeFlashlightOpenImage"] forState:UIControlStateNormal];
-        [flashlightBtn setBackgroundImage:[UIImage imageNamed:@"QRCodeFlashlightCloseImage"] forState:UIControlStateSelected];
+        [flashlightBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_flashlightopenimage"] forState:UIControlStateNormal];
+        [flashlightBtn setBackgroundImage:[UIImage imageNamed:@"qrcode_flashlightcloseimage"] forState:UIControlStateSelected];
         [flashlightBtn addTarget:self action:@selector(flashlightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         // 扫描线
         UIImageView *scanLineImageView = [[UIImageView alloc]init];
         self.scanLineImageView = scanLineImageView;
         [layer addSublayer:scanLineImageView.layer];
-        scanLineImageView.image = [UIImage imageNamed:@"QRCodeScanningLine"];
+        scanLineImageView.image = [UIImage imageNamed:@"qrcode_scanningline"];
         //scanLineImageView.frame = CGRectMake(KPBScanContentX, KPBScanContentY, self.frame.size.width - 2 * KPBScanContentX, KPBScanLineHeight);
         scanLineImageView.frame = CGRectMake(KPBScanContentX, KPBScanContentY, self.frame.size.width - 2 * KPBScanContentX, KPBScanLineHeight);
         //scanLineImageView.backgroundColor = [UIColor redColor];

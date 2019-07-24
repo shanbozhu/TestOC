@@ -8,7 +8,7 @@
 
 #import "PBQRCodeScanController.h"
 #import "PBQRCodeScanView.h"
-#import "PBTestOneController.h"
+#import "PBQRCodeContentController.h"
 #import "PBQRCodeAlbum.h"
 
 @interface PBQRCodeScanController ()<PBQRCodeScanViewDelegate, PBQRCodeAlbumDelegate>
@@ -50,7 +50,7 @@
 }
 
 - (void)qrCodeScanView:(PBQRCodeScanView *)qrCodeScanView andDidOutputWithResult:(NSString *)result {
-    PBTestOneController *vc = [[PBTestOneController alloc]init];
+    PBQRCodeContentController *vc = [[PBQRCodeContentController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     vc.view.backgroundColor = [UIColor whiteColor];
@@ -66,7 +66,7 @@
 }
 
 - (void)qrCodeAlbum:(PBQRCodeAlbum *)qrCodeAlbum andDidFinishPickingMediaWithResult:(NSString *)result {
-    PBTestOneController *vc = [[PBTestOneController alloc]init];
+    PBQRCodeContentController *vc = [[PBQRCodeContentController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     vc.view.backgroundColor = [UIColor whiteColor];

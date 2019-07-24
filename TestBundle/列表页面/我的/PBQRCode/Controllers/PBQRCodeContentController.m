@@ -1,20 +1,20 @@
 //
-//  PBTestOneController.m
+//  PBQRCodeContentController.m
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/8/25.
 //  Copyright © 2017年 DaMaiIOS. All rights reserved.
 //
 
-#import "PBTestOneController.h"
+#import "PBQRCodeContentController.h"
 
-@interface PBTestOneController ()
+@interface PBQRCodeContentController ()
 
 @property (nonatomic, weak) UILabel *lab;
 
 @end
 
-@implementation PBTestOneController
+@implementation PBQRCodeContentController
 
 - (void)setDesc:(NSString *)desc {
     _desc = desc;

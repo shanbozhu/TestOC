@@ -1,5 +1,5 @@
 //
-//  PBTestOneController.h
+//  PBQRCodeContentController.h
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/8/25.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBTestOneController : PBBaseController
+@interface PBQRCodeContentController : PBBaseController
 
 @property (nonatomic, copy) NSString *desc;
 
