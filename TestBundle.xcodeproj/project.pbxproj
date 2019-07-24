@@ -103,7 +103,7 @@
 		95C873C622E83B4E002795D0 /* PBAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873C422E83B4E002795D0 /* PBAnnotationView.m */; };
 		95C873C822E83B61002795D0 /* pbaddress_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C873C722E83B61002795D0 /* pbaddress_location@2x.png */; };
 		95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873CA22E83D93002795D0 /* PBMineController+Click.m */; };
-		95C873D322E843BD002795D0 /* PBTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873D222E843BD002795D0 /* PBTestController.m */; };
+		95C873D322E843BD002795D0 /* PBImageTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873D222E843BD002795D0 /* PBImageTextController.m */; };
 		95C873E322E84410002795D0 /* PBTestZeroEspressos.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873D722E8440F002795D0 /* PBTestZeroEspressos.m */; };
 		95C873E422E84410002795D0 /* PBContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873D822E8440F002795D0 /* PBContentModel.m */; };
 		95C873E522E84410002795D0 /* PBTestListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873DC22E8440F002795D0 /* PBTestListController.m */; };
@@ -334,8 +334,8 @@
 		95C873C722E83B61002795D0 /* pbaddress_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbaddress_location@2x.png"; sourceTree = "<group>"; };
 		95C873C922E83D93002795D0 /* PBMineController+Click.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBMineController+Click.h"; sourceTree = "<group>"; };
 		95C873CA22E83D93002795D0 /* PBMineController+Click.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBMineController+Click.m"; sourceTree = "<group>"; };
-		95C873D122E843BD002795D0 /* PBTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTestController.h; sourceTree = "<group>"; };
-		95C873D222E843BD002795D0 /* PBTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTestController.m; sourceTree = "<group>"; };
+		95C873D122E843BD002795D0 /* PBImageTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBImageTextController.h; sourceTree = "<group>"; };
+		95C873D222E843BD002795D0 /* PBImageTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBImageTextController.m; sourceTree = "<group>"; };
 		95C873D622E8440F002795D0 /* PBContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBContentModel.h; sourceTree = "<group>"; };
 		95C873D722E8440F002795D0 /* PBTestZeroEspressos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTestZeroEspressos.m; sourceTree = "<group>"; };
 		95C873D822E8440F002795D0 /* PBContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBContentModel.m; sourceTree = "<group>"; };
@@ -906,8 +906,8 @@
 		95C873CF22E84377002795D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				95C873D122E843BD002795D0 /* PBTestController.h */,
-				95C873D222E843BD002795D0 /* PBTestController.m */,
+				95C873D122E843BD002795D0 /* PBImageTextController.h */,
+				95C873D222E843BD002795D0 /* PBImageTextController.m */,
 				95C873FE22E84436002795D0 /* Two */,
 				95C873E922E84429002795D0 /* One */,
 				95C873D422E8440F002795D0 /* Zero */,
@@ -1535,7 +1535,7 @@
 				95C871E922E71CDD002795D0 /* SDWebImageManager.m in Sources */,
 				95C871C122E71CBE002795D0 /* PBHallLogoView.m in Sources */,
 				95C8722A22E71D1B002795D0 /* AFURLSessionManager.m in Sources */,
-				95C873D322E843BD002795D0 /* PBTestController.m in Sources */,
+				95C873D322E843BD002795D0 /* PBImageTextController.m in Sources */,
 				95C871EE22E71CDD002795D0 /* UIImage+MultiFormat.m in Sources */,
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
 				95C871ED22E71CDD002795D0 /* UIImage+GIF.m in Sources */,

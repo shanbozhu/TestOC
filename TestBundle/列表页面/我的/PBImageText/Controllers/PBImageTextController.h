@@ -1,5 +1,5 @@
 //
-//  PBTestController.h
+//  PBImageTextController.h
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/7/9.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBTestController : UITableViewController
+@interface PBImageTextController : UITableViewController
 
 
 @end

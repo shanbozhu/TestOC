@@ -1,21 +1,21 @@
 //
-//  PBTestController.m
+//  PBImageTextController.m
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/7/9.
 //  Copyright © 2017年 DaMaiIOS. All rights reserved.
 //
 
-#import "PBTestController.h"
+#import "PBImageTextController.h"
 #import "PBTestListController.h"
 #import "PBTestListOneController.h"
 #import "PBTestListTwoController.h"
 
-@interface PBTestController ()
+@interface PBImageTextController ()
 
 @end
 
-@implementation PBTestController
+@implementation PBImageTextController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
