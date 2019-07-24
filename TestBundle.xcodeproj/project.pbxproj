@@ -97,6 +97,12 @@
 		95C872E422E801DA002795D0 /* PBQRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C872CD22E801DA002795D0 /* PBQRCodeController.m */; };
 		95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C872CE22E801DA002795D0 /* PBQRCodeScanController.m */; };
 		95C872E622E801DA002795D0 /* PBQRCodeGenerateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C872D022E801DA002795D0 /* PBQRCodeGenerateController.m */; };
+		95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873BD22E83B24002795D0 /* PBAnnotationController.m */; };
+		95C873C222E83B39002795D0 /* annotation_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C873C022E83B39002795D0 /* annotation_info.json */; };
+		95C873C322E83B39002795D0 /* PBAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873C122E83B39002795D0 /* PBAnnotation.m */; };
+		95C873C622E83B4E002795D0 /* PBAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873C422E83B4E002795D0 /* PBAnnotationView.m */; };
+		95C873C822E83B61002795D0 /* PBAddressLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C873C722E83B61002795D0 /* PBAddressLocation@2x.png */; };
+		95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873CA22E83D93002795D0 /* PBMineController+Click.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -291,6 +297,16 @@
 		95C872CE22E801DA002795D0 /* PBQRCodeScanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBQRCodeScanController.m; sourceTree = "<group>"; };
 		95C872CF22E801DA002795D0 /* PBQRCodeContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBQRCodeContentController.h; sourceTree = "<group>"; };
 		95C872D022E801DA002795D0 /* PBQRCodeGenerateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBQRCodeGenerateController.m; sourceTree = "<group>"; };
+		95C873BC22E83B24002795D0 /* PBAnnotationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAnnotationController.h; sourceTree = "<group>"; };
+		95C873BD22E83B24002795D0 /* PBAnnotationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAnnotationController.m; sourceTree = "<group>"; };
+		95C873BF22E83B39002795D0 /* PBAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAnnotation.h; sourceTree = "<group>"; };
+		95C873C022E83B39002795D0 /* annotation_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = annotation_info.json; sourceTree = "<group>"; };
+		95C873C122E83B39002795D0 /* PBAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAnnotation.m; sourceTree = "<group>"; };
+		95C873C422E83B4E002795D0 /* PBAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAnnotationView.m; sourceTree = "<group>"; };
+		95C873C522E83B4E002795D0 /* PBAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAnnotationView.h; sourceTree = "<group>"; };
+		95C873C722E83B61002795D0 /* PBAddressLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PBAddressLocation@2x.png"; sourceTree = "<group>"; };
+		95C873C922E83D93002795D0 /* PBMineController+Click.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBMineController+Click.h"; sourceTree = "<group>"; };
+		95C873CA22E83D93002795D0 /* PBMineController+Click.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBMineController+Click.m"; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -377,6 +393,8 @@
 			children = (
 				9547319822E059A000F6BFA2 /* PBMineController.h */,
 				9547319722E059A000F6BFA2 /* PBMineController.m */,
+				95C873C922E83D93002795D0 /* PBMineController+Click.h */,
+				95C873CA22E83D93002795D0 /* PBMineController+Click.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -736,6 +754,53 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
+		95C872E822E83A36002795D0 /* PBAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				95C872E922E83A36002795D0 /* Res */,
+				95C872EA22E83A36002795D0 /* Models */,
+				95C872EB22E83A36002795D0 /* Controllers */,
+				95C872EC22E83A36002795D0 /* Views */,
+			);
+			path = PBAnnotation;
+			sourceTree = "<group>";
+		};
+		95C872E922E83A36002795D0 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				95C873C722E83B61002795D0 /* PBAddressLocation@2x.png */,
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		95C872EA22E83A36002795D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				95C873C022E83B39002795D0 /* annotation_info.json */,
+				95C873BF22E83B39002795D0 /* PBAnnotation.h */,
+				95C873C122E83B39002795D0 /* PBAnnotation.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		95C872EB22E83A36002795D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				95C873BC22E83B24002795D0 /* PBAnnotationController.h */,
+				95C873BD22E83B24002795D0 /* PBAnnotationController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		95C872EC22E83A36002795D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95C873C522E83B4E002795D0 /* PBAnnotationView.h */,
+				95C873C422E83B4E002795D0 /* PBAnnotationView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +979,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				95C872E822E83A36002795D0 /* PBAnnotation */,
 				95C872AE22E801DA002795D0 /* PBQRCode */,
 				95C8719A22E70D79002795D0 /* PBSeatSelection */,
 				95C8717622E708BC002795D0 /* PBCalendar */,
@@ -1068,6 +1134,7 @@
 				95C8721D22E71D1B002795D0 /* LICENSE in Resources */,
 				95C8723922E72022002795D0 /* pbseatselection_screenBg@3x.png in Resources */,
 				9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */,
+				95C873C822E83B61002795D0 /* PBAddressLocation@2x.png in Resources */,
 				95C872DC22E801DA002795D0 /* qrcode_scanningline@3x.png in Resources */,
 				B0F04AB61F9E01BD00F69AC3 /* pbhome_icon@2x.png in Resources */,
 				9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */,
@@ -1077,6 +1144,7 @@
 				95C872D522E801DA002795D0 /* qrcode_rightbottom@2x.png in Resources */,
 				95C8723722E72022002795D0 /* pbseatselection_yishou.png in Resources */,
 				B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */,
+				95C873C222E83B39002795D0 /* annotation_info.json in Resources */,
 				95C872D622E801DA002795D0 /* qrcode_rightbottom@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1120,6 +1188,7 @@
 				95C8718422E708CC002795D0 /* PBCalendarView.m in Sources */,
 				95C8718322E708CC002795D0 /* PBCalendarController.m in Sources */,
 				95C8722122E71D1B002795D0 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */,
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
 				95C871C022E71CBE002795D0 /* PBCenterLineView.m in Sources */,
@@ -1135,6 +1204,7 @@
 				95C871AD22E71CAC002795D0 /* PBTestEspressos.m in Sources */,
 				954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
+				95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */,
 				95C8718622E708CC002795D0 /* PBCalendar.m in Sources */,
 				95C871EC22E71CDD002795D0 /* SDWebImageDownloader.m in Sources */,
 				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
@@ -1153,9 +1223,11 @@
 				95C8722022E71D1B002795D0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				B03011AA1F1644A300624D91 /* YYFPSLabel.m in Sources */,
+				95C873C622E83B4E002795D0 /* PBAnnotationView.m in Sources */,
 				95C8722D22E71D1B002795D0 /* AFSecurityPolicy.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,
 				95C8722B22E71D1B002795D0 /* AFURLRequestSerialization.m in Sources */,
+				95C873C322E83B39002795D0 /* PBAnnotation.m in Sources */,
 				B09283961FADDC5500606098 /* PBBaseController.m in Sources */,
 				95C871E922E71CDD002795D0 /* SDWebImageManager.m in Sources */,
 				95C871C122E71CBE002795D0 /* PBHallLogoView.m in Sources */,

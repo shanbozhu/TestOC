@@ -9,11 +9,6 @@
 #import "PBMineController.h"
 #import <YYText/YYText.h>
 #import "PBMineView.h"
-#import "PBAllWelfareController.h"
-#import "PBCalendarController.h"
-#import "PBGesturePasswordController.h"
-#import "PBSeatSelectionController.h"
-#import "PBQRCodeController.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -40,26 +35,6 @@
     [self.view addSubview:mineView];
     mineView.frame = self.view.bounds;
     mineView.delegate = self;
-}
-
-// delegate
-- (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *vc;
-    if (indexPath.row == 0) {
-        vc = [[PBAllWelfareController alloc]init];
-    } else if (indexPath.row == 1) {
-        vc = [[PBCalendarController alloc]init];
-    } else if (indexPath.row == 2) {
-        vc = [[PBGesturePasswordController alloc]init];
-    } else if (indexPath.row == 3) {
-        vc = [[PBSeatSelectionController alloc]init];
-    } else if (indexPath.row == 4) {
-        vc = [[PBQRCodeController alloc]init];
-    }
-    vc.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    vc.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
