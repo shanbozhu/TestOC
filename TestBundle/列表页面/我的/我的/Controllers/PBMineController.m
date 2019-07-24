@@ -13,6 +13,7 @@
 #import "PBCalendarController.h"
 #import "PBGesturePasswordController.h"
 #import "PBSeatSelectionController.h"
+#import "PBQRCodeController.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -52,6 +53,8 @@
         vc = [[PBGesturePasswordController alloc]init];
     } else if (indexPath.row == 3) {
         vc = [[PBSeatSelectionController alloc]init];
+    } else if (indexPath.row == 4) {
+        vc = [[PBQRCodeController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     
