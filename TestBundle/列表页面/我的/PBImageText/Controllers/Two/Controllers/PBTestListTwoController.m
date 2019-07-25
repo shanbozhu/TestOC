@@ -21,7 +21,7 @@
 - (void)requestData {
     //NSString *espressos = @"『乐翻了运动生态园』园区位于北京朝阳区孙河镇顺   <p>走进蹦床乐园立刻被快乐包围，这里充满着欢声笑语、炫动的灯光、炫酷的音乐</p>  @@从亲子互动到亲朋聚会一站式满足您的运动休闲生活。@@";
     
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"pbimage_text" ofType:@"json"];
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"pbimage_text" ofType:@"html"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSString *espressos = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
   

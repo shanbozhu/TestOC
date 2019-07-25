@@ -130,7 +130,7 @@
 		95C8742822E8446A002795D0 /* UIImageView+PBPhBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8742422E8446A002795D0 /* UIImageView+PBPhBrowserView.m */; };
 		95C8742922E8446A002795D0 /* PBPhotoBrowserPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8742622E8446A002795D0 /* PBPhotoBrowserPageView.m */; };
 		95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8742A22E844CA002795D0 /* libxml2.2.tbd */; };
-		95C8742E22E84E8A002795D0 /* pbimage_text.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C8742D22E84E8A002795D0 /* pbimage_text.json */; };
+		95C8742E22E84E8A002795D0 /* pbimage_text.html in Resources */ = {isa = PBXBuildFile; fileRef = 95C8742D22E84E8A002795D0 /* pbimage_text.html */; };
 		95C8763A22E87A42002795D0 /* pbseat_selection.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C8763922E87A42002795D0 /* pbseat_selection.json */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
@@ -385,7 +385,7 @@
 		95C8742522E8446A002795D0 /* PBPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPhotoBrowserView.h; sourceTree = "<group>"; };
 		95C8742622E8446A002795D0 /* PBPhotoBrowserPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPhotoBrowserPageView.m; sourceTree = "<group>"; };
 		95C8742A22E844CA002795D0 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
-		95C8742D22E84E8A002795D0 /* pbimage_text.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pbimage_text.json; sourceTree = "<group>"; };
+		95C8742D22E84E8A002795D0 /* pbimage_text.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = pbimage_text.html; sourceTree = "<group>"; };
 		95C8763922E87A42002795D0 /* pbseat_selection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pbseat_selection.json; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1068,7 +1068,7 @@
 		95C8742C22E84E66002795D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				95C8742D22E84E8A002795D0 /* pbimage_text.json */,
+				95C8742D22E84E8A002795D0 /* pbimage_text.html */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1410,7 +1410,7 @@
 				95C8741222E84436002795D0 /* PBActivityDetail.css in Resources */,
 				95C872DE22E801DA002795D0 /* qrcode_leftbottom@2x.png in Resources */,
 				95C8721D22E71D1B002795D0 /* LICENSE in Resources */,
-				95C8742E22E84E8A002795D0 /* pbimage_text.json in Resources */,
+				95C8742E22E84E8A002795D0 /* pbimage_text.html in Resources */,
 				95C8723922E72022002795D0 /* pbseatselection_screenBg@3x.png in Resources */,
 				9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */,
 				95C873C822E83B61002795D0 /* pbaddress_location@2x.png in Resources */,
