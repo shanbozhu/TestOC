@@ -6,7 +6,10 @@ platform :ios, '8.0'
 
 target "TestBundle" do
 
-  pod 'YYText'
-  pod 'YYModel'
+  pod 'YYText', '1.0.7'
+  pod 'YYModel', '1.0.4'
+  pod 'YYImage', '1.0.4'
+  pod 'YYWebImage', '1.0.5'
+  pod 'YYCache', '1.0.4'
 
 end

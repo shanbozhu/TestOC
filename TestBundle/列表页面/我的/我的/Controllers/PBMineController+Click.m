@@ -15,6 +15,7 @@
 #import "PBQRCodeController.h"
 #import "PBAnnotationController.h"
 #import "PBImageTextController.h"
+#import "PBYYTextController.h"
 
 @implementation PBMineController (Click)
 
@@ -35,6 +36,8 @@
         vc = [[PBAnnotationController alloc]init];
     } else if (indexPath.row == 6) {
         vc = [[PBImageTextController alloc]init];
+    } else if (indexPath.row == 7) {
+        vc = [[PBYYTextController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     

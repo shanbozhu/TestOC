@@ -132,6 +132,11 @@
 		95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8742A22E844CA002795D0 /* libxml2.2.tbd */; };
 		95C8742E22E84E8A002795D0 /* pbimage_text.html in Resources */ = {isa = PBXBuildFile; fileRef = 95C8742D22E84E8A002795D0 /* pbimage_text.html */; };
 		95C8763A22E87A42002795D0 /* pbseat_selection.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C8763922E87A42002795D0 /* pbseat_selection.json */; };
+		95C8764222E99252002795D0 /* PBYYTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764022E99252002795D0 /* PBYYTextController.m */; };
+		95C8764622E99260002795D0 /* PBRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764522E99260002795D0 /* PBRegex.m */; };
+		95C8764922E99281002795D0 /* PBYYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764822E99281002795D0 /* PBYYText.m */; };
+		95C8764E22E99291002795D0 /* PBYYTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764A22E99291002795D0 /* PBYYTextCell.m */; };
+		95C8764F22E99291002795D0 /* PBYYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764B22E99291002795D0 /* PBYYTextView.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -387,6 +392,16 @@
 		95C8742A22E844CA002795D0 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		95C8742D22E84E8A002795D0 /* pbimage_text.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = pbimage_text.html; sourceTree = "<group>"; };
 		95C8763922E87A42002795D0 /* pbseat_selection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pbseat_selection.json; sourceTree = "<group>"; };
+		95C8764022E99252002795D0 /* PBYYTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextController.m; sourceTree = "<group>"; };
+		95C8764122E99252002795D0 /* PBYYTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextController.h; sourceTree = "<group>"; };
+		95C8764422E99260002795D0 /* PBRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRegex.h; sourceTree = "<group>"; };
+		95C8764522E99260002795D0 /* PBRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRegex.m; sourceTree = "<group>"; };
+		95C8764722E99281002795D0 /* PBYYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYText.h; sourceTree = "<group>"; };
+		95C8764822E99281002795D0 /* PBYYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYText.m; sourceTree = "<group>"; };
+		95C8764A22E99291002795D0 /* PBYYTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextCell.m; sourceTree = "<group>"; };
+		95C8764B22E99291002795D0 /* PBYYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextView.m; sourceTree = "<group>"; };
+		95C8764C22E99291002795D0 /* PBYYTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextCell.h; sourceTree = "<group>"; };
+		95C8764D22E99291002795D0 /* PBYYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextView.h; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1073,6 +1088,63 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		95C8763B22E99240002795D0 /* PBYYText */ = {
+			isa = PBXGroup;
+			children = (
+				95C8763C22E99240002795D0 /* Res */,
+				95C8763D22E99240002795D0 /* Models */,
+				95C8763E22E99240002795D0 /* Controllers */,
+				95C8763F22E99240002795D0 /* Views */,
+			);
+			path = PBYYText;
+			sourceTree = "<group>";
+		};
+		95C8763C22E99240002795D0 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		95C8763D22E99240002795D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				95C8764722E99281002795D0 /* PBYYText.h */,
+				95C8764822E99281002795D0 /* PBYYText.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		95C8763E22E99240002795D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				95C8764122E99252002795D0 /* PBYYTextController.h */,
+				95C8764022E99252002795D0 /* PBYYTextController.m */,
+				95C8764322E99260002795D0 /* PBRegex */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		95C8763F22E99240002795D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95C8764C22E99291002795D0 /* PBYYTextCell.h */,
+				95C8764A22E99291002795D0 /* PBYYTextCell.m */,
+				95C8764D22E99291002795D0 /* PBYYTextView.h */,
+				95C8764B22E99291002795D0 /* PBYYTextView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		95C8764322E99260002795D0 /* PBRegex */ = {
+			isa = PBXGroup;
+			children = (
+				95C8764422E99260002795D0 /* PBRegex.h */,
+				95C8764522E99260002795D0 /* PBRegex.m */,
+			);
+			path = PBRegex;
+			sourceTree = "<group>";
+		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1254,6 +1326,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				95C8763B22E99240002795D0 /* PBYYText */,
 				95C873CC22E84377002795D0 /* PBImageText */,
 				95C872E822E83A36002795D0 /* PBAnnotation */,
 				95C872AE22E801DA002795D0 /* PBQRCode */,
@@ -1474,6 +1547,7 @@
 				95C8722122E71D1B002795D0 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				95C8741E22E84453002795D0 /* TFHppleElement.m in Sources */,
+				95C8764622E99260002795D0 /* PBRegex.m in Sources */,
 				95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */,
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
 				95C871C022E71CBE002795D0 /* PBCenterLineView.m in Sources */,
@@ -1511,14 +1585,17 @@
 				95C8722922E71D1B002795D0 /* AFHTTPSessionManager.m in Sources */,
 				95C8722222E71D1B002795D0 /* UIImageView+AFNetworking.m in Sources */,
 				95C873F822E84429002795D0 /* PBTestOneEspressos.m in Sources */,
+				95C8764E22E99291002795D0 /* PBYYTextCell.m in Sources */,
 				95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */,
 				95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */,
 				95C871C522E71CBE002795D0 /* PBAppLogoView.m in Sources */,
+				95C8764F22E99291002795D0 /* PBYYTextView.m in Sources */,
 				95C871F522E71CDD002795D0 /* UIView+WebCacheOperation.m in Sources */,
 				95C8722022E71D1B002795D0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				B03011AA1F1644A300624D91 /* YYFPSLabel.m in Sources */,
 				95C873C622E83B4E002795D0 /* PBAnnotationView.m in Sources */,
+				95C8764222E99252002795D0 /* PBYYTextController.m in Sources */,
 				95C8722D22E71D1B002795D0 /* AFSecurityPolicy.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,
 				95C8722B22E71D1B002795D0 /* AFURLRequestSerialization.m in Sources */,
@@ -1531,6 +1608,7 @@
 				95C871EE22E71CDD002795D0 /* UIImage+MultiFormat.m in Sources */,
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
 				95C871ED22E71CDD002795D0 /* UIImage+GIF.m in Sources */,
+				95C8764922E99281002795D0 /* PBYYText.m in Sources */,
 				95C872DF22E801DA002795D0 /* PBQRCodeScan.m in Sources */,
 				95C8741D22E84453002795D0 /* TFHpple.m in Sources */,
 				95C8722822E71D1B002795D0 /* AFURLResponseSerialization.m in Sources */,
