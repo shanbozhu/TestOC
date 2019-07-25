@@ -131,6 +131,7 @@
 		95C8742922E8446A002795D0 /* PBPhotoBrowserPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8742622E8446A002795D0 /* PBPhotoBrowserPageView.m */; };
 		95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8742A22E844CA002795D0 /* libxml2.2.tbd */; };
 		95C8742E22E84E8A002795D0 /* pbimage_text.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C8742D22E84E8A002795D0 /* pbimage_text.json */; };
+		95C8763A22E87A42002795D0 /* pbseat_selection.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C8763922E87A42002795D0 /* pbseat_selection.json */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E711F11DE5D00624D91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E701F11DE5D00624D91 /* AppDelegate.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
@@ -385,6 +386,7 @@
 		95C8742622E8446A002795D0 /* PBPhotoBrowserPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPhotoBrowserPageView.m; sourceTree = "<group>"; };
 		95C8742A22E844CA002795D0 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		95C8742D22E84E8A002795D0 /* pbimage_text.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pbimage_text.json; sourceTree = "<group>"; };
+		95C8763922E87A42002795D0 /* pbseat_selection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pbseat_selection.json; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E6F1F11DE5D00624D91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 				95C871AB22E71CAC002795D0 /* PBTestEspressosSCSLSeatInfo.m */,
 				95C871A522E71CAB002795D0 /* PBTestEspressosSeatCon.h */,
 				95C871A422E71CAB002795D0 /* PBTestEspressosSeatCon.m */,
+				95C8763922E87A42002795D0 /* pbseat_selection.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1418,6 +1421,7 @@
 				95C872D422E801DA002795D0 /* qrcode_lefttop@2x.png in Resources */,
 				95C8723522E72022002795D0 /* pbseatselection_maoyan_logo.png in Resources */,
 				95C871E822E71CDD002795D0 /* README.md in Resources */,
+				95C8763A22E87A42002795D0 /* pbseat_selection.json in Resources */,
 				95C872D522E801DA002795D0 /* qrcode_rightbottom@2x.png in Resources */,
 				95C8723722E72022002795D0 /* pbseatselection_yishou.png in Resources */,
 				B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */,

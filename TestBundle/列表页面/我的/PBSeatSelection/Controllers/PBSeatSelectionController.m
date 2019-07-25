@@ -25,6 +25,7 @@
 - (void)requestData {
     // 大麦app, 开心麻花.戏剧新体验<婿事待发> 08-25周五19:30场次
     
+    /**
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:@"https://mapi.damai.cn/B2B2C/Seat/getSeatInfo.aspx?cityId=852&osType=3&pfId=2138521420&source=10099&standId=1699297&version=50808" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -38,6 +39,16 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error = %@", error);
     }];
+     */
+    
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"pbseat_selection" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"jsonDict = %@", jsonDict);
+    
+    PBTestEspressos *testEspressos = [PBTestEspressos yy_modelWithDictionary:jsonDict];
+    
+    self.seatSelectionView.testEspressos = testEspressos;
 }
 
 - (void)viewDidLoad {
