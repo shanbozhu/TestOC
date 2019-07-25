@@ -337,7 +337,7 @@
     // gif图
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
     imageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 200);
-    imageView.image = [YYImage imageNamed:@"tiqiu"];
+    imageView.image = [YYImage imageNamed:@"pbyytext_tiqiu"];
     imageView.userInteractionEnabled = YES;
     imageView.layer.cornerRadius = 8;
     imageView.layer.masksToBounds = YES;
@@ -359,7 +359,7 @@
     // 图片
     UIImageView *twoImageView = [[UIImageView alloc]init];
     twoImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 300);
-    twoImageView.image = [UIImage imageNamed:@"pic"];
+    twoImageView.image = [UIImage imageNamed:@"pbyytext_pic"];
     twoImageView.userInteractionEnabled = YES;
     twoImageView.layer.cornerRadius = 10;
     twoImageView.layer.masksToBounds = YES;
