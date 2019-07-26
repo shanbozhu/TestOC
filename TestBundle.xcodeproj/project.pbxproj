@@ -467,26 +467,9 @@
 		958378BB22EAA4F000AA39AF /* PBAFNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				958378BC22EAA4F000AA39AF /* Res */,
-				958378BD22EAA4F000AA39AF /* Models */,
 				958378BE22EAA4F000AA39AF /* Controllers */,
-				958378BF22EAA4F000AA39AF /* Views */,
 			);
 			path = PBAFNetworking;
-			sourceTree = "<group>";
-		};
-		958378BC22EAA4F000AA39AF /* Res */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
-		958378BD22EAA4F000AA39AF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		958378BE22EAA4F000AA39AF /* Controllers */ = {
@@ -502,13 +485,6 @@
 				958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		958378BF22EAA4F000AA39AF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		95C8716222E70605002795D0 /* PBGesturePassword */ = {
