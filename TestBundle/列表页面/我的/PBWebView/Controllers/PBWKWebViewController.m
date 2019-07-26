@@ -63,15 +63,15 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     //jsCalloc
     [self.configuration.userContentController addScriptMessageHandler:self name:@"openPage"];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openPage"];
 }
