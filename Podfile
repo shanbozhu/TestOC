@@ -11,9 +11,11 @@ target "TestBundle" do
   pod 'YYImage', '1.0.4'
   pod 'YYWebImage', '1.0.5'
   pod 'YYCache', '1.0.4'
-
+  
   pod 'AFNetworking', '~> 2.6.3'
   #pod 'AFNetworking', '2.6.3'
   #pod 'AFNetworking', '~> 3.0'
+  
+  pod 'SDWebImage', '~> 5.0.6'
   
 end
