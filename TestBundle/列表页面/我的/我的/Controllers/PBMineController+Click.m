@@ -16,6 +16,7 @@
 #import "PBAnnotationController.h"
 #import "PBImageTextController.h"
 #import "PBYYTextController.h"
+#import "PBAFNetworkingController.h"
 
 @implementation PBMineController (Click)
 
@@ -38,6 +39,8 @@
         vc = [[PBImageTextController alloc]init];
     } else if (indexPath.row == 7) {
         vc = [[PBYYTextController alloc]init];
+    } else if (indexPath.row == 8) {
+        vc = [[PBAFNetworkingController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     
