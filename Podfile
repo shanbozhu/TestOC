@@ -17,5 +17,6 @@ target "TestBundle" do
   #pod 'AFNetworking', '~> 3.0'
   
   pod 'SDWebImage', '~> 5.0.6'
+  pod 'Masonry', '~> 1.1.0'
   
 end
