@@ -21,7 +21,7 @@
 
 -(void)requestData {
     
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"PBTestList" ofType:@"json"];
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"PBCellHeightZero" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
