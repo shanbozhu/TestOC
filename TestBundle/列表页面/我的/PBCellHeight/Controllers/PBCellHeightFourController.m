@@ -13,14 +13,13 @@
 
 @interface PBCellHeightFourController ()
 
-@property(nonatomic, weak)PBCellHeightFourView *testListFourView;
+@property (nonatomic, weak) PBCellHeightFourView *testListFourView;
 
 @end
 
 @implementation PBCellHeightFourController
 
--(void)requestData {
-    
+- (void)requestData {
     NSString *filePath = [[NSBundle mainBundle]pathForResource:@"PBCellHeightZero" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -31,18 +30,14 @@
     self.testListFourView.testList = testList;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
-    
     
     PBCellHeightFourView *testListFourView = [PBCellHeightFourView testListFourView];
     self.testListFourView = testListFourView;
     [self.view addSubview:testListFourView];
     testListFourView.frame = self.view.bounds;
-    
     
     [self requestData];
 }

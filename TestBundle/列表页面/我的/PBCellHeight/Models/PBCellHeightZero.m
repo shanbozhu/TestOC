@@ -10,16 +10,15 @@
 
 @implementation PBCellHeightZero
 
-+(id)testListWithDict:(NSDictionary *)dict {
++ (id)testListWithDict:(NSDictionary *)dict {
     return [[self alloc]initWithDict:dict];
 }
--(id)initWithDict:(NSDictionary *)dict {
+
+- (id)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
         
-        //
         [self setValuesForKeysWithDictionary:dict];
         
-        //
         NSMutableArray *dataArr = [NSMutableArray array];
         for (NSDictionary *dic in self.data) {
             PBCellHeightZeroData *testListData = [PBCellHeightZeroData testListDataWithDict:dic];
@@ -29,7 +28,8 @@
     }
     return self;
 }
--(void)setValue:(id)value forUndefinedKey:(NSString *)key {
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }
 

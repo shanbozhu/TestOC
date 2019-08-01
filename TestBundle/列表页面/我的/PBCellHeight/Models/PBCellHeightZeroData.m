@@ -10,18 +10,19 @@
 
 @implementation PBCellHeightZeroData
 
-+(id)testListDataWithDict:(NSDictionary *)dict {
++ (id)testListDataWithDict:(NSDictionary *)dict {
     return [[self alloc]initWithDict:dict];
 }
--(id)initWithDict:(NSDictionary *)dict {
+
+- (id)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
         
-        //
         [self setValuesForKeysWithDictionary:dict];
     }
     return self;
 }
--(void)setValue:(id)value forUndefinedKey:(NSString *)key {
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }
 

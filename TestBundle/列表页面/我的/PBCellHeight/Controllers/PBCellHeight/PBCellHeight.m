@@ -18,9 +18,9 @@
 
 @interface PBCellHeight ()
 
-@property(nonatomic, weak)id<PBCellHeightDelegate> delegate;
+@property (nonatomic, weak) id<PBCellHeightDelegate> delegate;
 
-@property(nonatomic, strong)PBCellHeightBlock block;
+@property (nonatomic, strong) PBCellHeightBlock block;
 
 @end
 

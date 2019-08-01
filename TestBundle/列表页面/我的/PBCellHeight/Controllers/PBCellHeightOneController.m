@@ -13,14 +13,13 @@
 
 @interface PBCellHeightOneController ()
 
-@property(nonatomic, weak)PBCellHeightOneView *testListOneView;
+@property (nonatomic, weak) PBCellHeightOneView *testListOneView;
 
 @end
 
 @implementation PBCellHeightOneController
 
--(void)requestData {
-    
+- (void)requestData {
     NSString *filePath = [[NSBundle mainBundle]pathForResource:@"PBCellHeightZero" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -31,22 +30,16 @@
     self.testListOneView.testList = testList;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
-    
     
     PBCellHeightOneView *testListOneView = [PBCellHeightOneView testListOneView];
     self.testListOneView = testListOneView;
     [self.view addSubview:testListOneView];
     testListOneView.frame = self.view.bounds;
     
-    
     [self requestData];
 }
-
-
 
 @end

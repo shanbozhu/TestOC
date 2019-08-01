@@ -11,8 +11,8 @@
 
 @interface PBCellHeightZeroData : NSObject
 
-@property(nonatomic, copy)NSString *content;
+@property (nonatomic, copy) NSString *content;
 
-+(id)testListDataWithDict:(NSDictionary *)dict;
++ (id)testListDataWithDict:(NSDictionary *)dict;
 
 @end
