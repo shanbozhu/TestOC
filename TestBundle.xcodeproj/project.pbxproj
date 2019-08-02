@@ -27,6 +27,7 @@
 		953341E322F3070800DC7251 /* PBCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341E222F3070800DC7251 /* PBCellHeight.m */; };
 		953341E622F3080200DC7251 /* PBCellHeightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341E422F3080200DC7251 /* PBCellHeightController.m */; };
 		953341E822F309CC00DC7251 /* PBCellHeightZero.json in Resources */ = {isa = PBXBuildFile; fileRef = 953341E722F309CC00DC7251 /* PBCellHeightZero.json */; };
+		953341F022F405DE00DC7251 /* PBTimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341EE22F405DE00DC7251 /* PBTimerController.m */; };
 		9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */; };
 		9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */; };
 		9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319722E059A000F6BFA2 /* PBMineController.m */; };
@@ -211,6 +212,8 @@
 		953341E422F3080200DC7251 /* PBCellHeightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightController.m; sourceTree = "<group>"; };
 		953341E522F3080200DC7251 /* PBCellHeightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightController.h; sourceTree = "<group>"; };
 		953341E722F309CC00DC7251 /* PBCellHeightZero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBCellHeightZero.json; sourceTree = "<group>"; };
+		953341EE22F405DE00DC7251 /* PBTimerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTimerController.m; sourceTree = "<group>"; };
+		953341EF22F405DE00DC7251 /* PBTimerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTimerController.h; sourceTree = "<group>"; };
 		9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@2x.png"; sourceTree = "<group>"; };
 		9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@3x.png"; sourceTree = "<group>"; };
 		9547319722E059A000F6BFA2 /* PBMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMineController.m; sourceTree = "<group>"; };
@@ -544,6 +547,47 @@
 				953341E222F3070800DC7251 /* PBCellHeight.m */,
 			);
 			path = PBCellHeight;
+			sourceTree = "<group>";
+		};
+		953341E922F405BD00DC7251 /* PBTimer */ = {
+			isa = PBXGroup;
+			children = (
+				953341EA22F405BD00DC7251 /* Res */,
+				953341EB22F405BD00DC7251 /* Models */,
+				953341EC22F405BD00DC7251 /* Controllers */,
+				953341ED22F405BD00DC7251 /* Views */,
+			);
+			path = PBTimer;
+			sourceTree = "<group>";
+		};
+		953341EA22F405BD00DC7251 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		953341EB22F405BD00DC7251 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		953341EC22F405BD00DC7251 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				953341EF22F405DE00DC7251 /* PBTimerController.h */,
+				953341EE22F405DE00DC7251 /* PBTimerController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		953341ED22F405BD00DC7251 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9547319222E059A000F6BFA2 /* 我的 */ = {
@@ -1384,6 +1428,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				953341E922F405BD00DC7251 /* PBTimer */,
 				953341A822F3067200DC7251 /* PBCellHeight */,
 				958378CC22EACE1400AA39AF /* PBWebView */,
 				958378BB22EAA4F000AA39AF /* PBAFNetworking */,
@@ -1640,6 +1685,7 @@
 				95C8741522E84436002795D0 /* PBTestListTwoView.m in Sources */,
 				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
+				953341F022F405DE00DC7251 /* PBTimerController.m in Sources */,
 				95C871AE22E71CAC002795D0 /* PBTestEspressosSCSeatList.m in Sources */,
 				953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */,
 				95C8717522E70697002795D0 /* PBGesturePasswordController.m in Sources */,

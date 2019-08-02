@@ -19,6 +19,7 @@
 #import "PBAFNetworkingController.h"
 #import "PBWebViewController.h"
 #import "PBCellHeightController.h"
+#import "PBTimerController.h"
 
 @implementation PBMineController (Click)
 
@@ -47,6 +48,8 @@
         vc = [[PBWebViewController alloc]init];
     } else if (indexPath.row == 10) {
         vc = [[PBCellHeightController alloc]init];
+    } else if (indexPath.row == 11) {
+        vc = [[PBTimerController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     
