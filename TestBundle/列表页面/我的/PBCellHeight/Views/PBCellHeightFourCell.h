@@ -11,8 +11,8 @@
 
 @interface PBCellHeightFourCell : UITableViewCell
 
-@property(nonatomic, strong)PBCellHeightZeroData *testListData;
+@property (nonatomic, strong) PBCellHeightZeroData *testListData;
 
-+(id)testListFourCellWithTableView:(UITableView *)tableView;
++ (id)testListFourCellWithTableView:(UITableView *)tableView;
 
 @end

@@ -11,8 +11,8 @@
 
 @interface PBCellHeightTwoCell : UITableViewCell
 
-@property(nonatomic, strong)PBCellHeightZeroData *testListData;
+@property (nonatomic, strong) PBCellHeightZeroData *testListData;
 
-+(id)testListTwoCellWithTableView:(UITableView *)tableView;
++ (id)testListTwoCellWithTableView:(UITableView *)tableView;
 
 @end

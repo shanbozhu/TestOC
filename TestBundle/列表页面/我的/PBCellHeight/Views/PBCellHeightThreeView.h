@@ -11,8 +11,8 @@
 
 @interface PBCellHeightThreeView : UIView
 
-@property(nonatomic, strong)PBCellHeightZero *testList;
+@property (nonatomic, strong) PBCellHeightZero *testList;
 
-+(id)testListThreeView;
++ (id)testListThreeView;
 
 @end

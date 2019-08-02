@@ -11,8 +11,8 @@
 
 @interface PBCellHeightTwoView : UIView
 
-@property(nonatomic, strong)PBCellHeightZero *testList;
+@property (nonatomic, strong) PBCellHeightZero *testList;
 
-+(id)testListTwoView;
++ (id)testListTwoView;
 
 @end
