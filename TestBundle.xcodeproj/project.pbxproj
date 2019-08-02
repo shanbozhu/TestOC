@@ -31,6 +31,9 @@
 		953341FC22F420A600DC7251 /* PBHttpsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341FB22F420A600DC7251 /* PBHttpsController.m */; };
 		9533420422F427C600DC7251 /* PBCopyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420322F427C600DC7251 /* PBCopyController.m */; };
 		9533420722F427D200DC7251 /* PBCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420622F427D200DC7251 /* PBCopy.m */; };
+		9533420F22F434C900DC7251 /* PBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420E22F434C900DC7251 /* PBKVOController.m */; };
+		9533421222F434D900DC7251 /* PBKVOListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533421122F434D900DC7251 /* PBKVOListController.m */; };
+		9533421522F434E700DC7251 /* PBKVOList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533421422F434E700DC7251 /* PBKVOList.m */; };
 		9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */; };
 		9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */; };
 		9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319722E059A000F6BFA2 /* PBMineController.m */; };
@@ -223,6 +226,12 @@
 		9533420322F427C600DC7251 /* PBCopyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCopyController.m; sourceTree = "<group>"; };
 		9533420522F427D200DC7251 /* PBCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCopy.h; sourceTree = "<group>"; };
 		9533420622F427D200DC7251 /* PBCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCopy.m; sourceTree = "<group>"; };
+		9533420D22F434C900DC7251 /* PBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKVOController.h; sourceTree = "<group>"; };
+		9533420E22F434C900DC7251 /* PBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKVOController.m; sourceTree = "<group>"; };
+		9533421022F434D900DC7251 /* PBKVOListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKVOListController.h; sourceTree = "<group>"; };
+		9533421122F434D900DC7251 /* PBKVOListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKVOListController.m; sourceTree = "<group>"; };
+		9533421322F434E700DC7251 /* PBKVOList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKVOList.h; sourceTree = "<group>"; };
+		9533421422F434E700DC7251 /* PBKVOList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKVOList.m; sourceTree = "<group>"; };
 		9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@2x.png"; sourceTree = "<group>"; };
 		9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@3x.png"; sourceTree = "<group>"; };
 		9547319722E059A000F6BFA2 /* PBMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMineController.m; sourceTree = "<group>"; };
@@ -595,19 +604,10 @@
 		953341FD22F427B200DC7251 /* PBCopy */ = {
 			isa = PBXGroup;
 			children = (
-				953341FE22F427B200DC7251 /* Res */,
 				953341FF22F427B200DC7251 /* Models */,
 				9533420022F427B200DC7251 /* Controllers */,
-				9533420122F427B200DC7251 /* Views */,
 			);
 			path = PBCopy;
-			sourceTree = "<group>";
-		};
-		953341FE22F427B200DC7251 /* Res */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Res;
 			sourceTree = "<group>";
 		};
 		953341FF22F427B200DC7251 /* Models */ = {
@@ -628,7 +628,45 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		9533420122F427B200DC7251 /* Views */ = {
+		9533420822F434A800DC7251 /* PBKVO */ = {
+			isa = PBXGroup;
+			children = (
+				9533420922F434A800DC7251 /* Res */,
+				9533420A22F434A800DC7251 /* Models */,
+				9533420B22F434A800DC7251 /* Controllers */,
+				9533420C22F434A800DC7251 /* Views */,
+			);
+			path = PBKVO;
+			sourceTree = "<group>";
+		};
+		9533420922F434A800DC7251 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		9533420A22F434A800DC7251 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9533421322F434E700DC7251 /* PBKVOList.h */,
+				9533421422F434E700DC7251 /* PBKVOList.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9533420B22F434A800DC7251 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9533420D22F434C900DC7251 /* PBKVOController.h */,
+				9533420E22F434C900DC7251 /* PBKVOController.m */,
+				9533421022F434D900DC7251 /* PBKVOListController.h */,
+				9533421122F434D900DC7251 /* PBKVOListController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9533420C22F434A800DC7251 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -1473,6 +1511,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				9533420822F434A800DC7251 /* PBKVO */,
 				953341FD22F427B200DC7251 /* PBCopy */,
 				953341F122F41E1800DC7251 /* PBHttps */,
 				953341E922F405BD00DC7251 /* PBTimer */,
@@ -1728,6 +1767,7 @@
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
 				953341DC22F306EE00DC7251 /* PBCellHeightFourCell.m in Sources */,
 				95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */,
+				9533421222F434D900DC7251 /* PBKVOListController.m in Sources */,
 				95C8718622E708CC002795D0 /* PBCalendar.m in Sources */,
 				953341C122F306D400DC7251 /* PBCellHeightTwoController.m in Sources */,
 				95C8741522E84436002795D0 /* PBTestListTwoView.m in Sources */,
@@ -1775,6 +1815,7 @@
 				95C8741D22E84453002795D0 /* TFHpple.m in Sources */,
 				95C873E422E84410002795D0 /* PBContentModel.m in Sources */,
 				95C871C322E71CBE002795D0 /* PBSeatButton.m in Sources */,
+				9533420F22F434C900DC7251 /* PBKVOController.m in Sources */,
 				B0F04AD71F9E033D00F69AC3 /* PBFindController.m in Sources */,
 				9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */,
 				953341E322F3070800DC7251 /* PBCellHeight.m in Sources */,
@@ -1803,6 +1844,7 @@
 				95C871A322E71C9D002795D0 /* PBSeatSelectionController.m in Sources */,
 				95C873FA22E84429002795D0 /* PBTestListOneController.m in Sources */,
 				95C873E822E84410002795D0 /* PBTestListCell.m in Sources */,
+				9533421522F434E700DC7251 /* PBKVOList.m in Sources */,
 				9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */,
 				953341D922F306EE00DC7251 /* PBCellHeightOneCell.m in Sources */,
 				95C872E622E801DA002795D0 /* PBQRCodeGenerateController.m in Sources */,
