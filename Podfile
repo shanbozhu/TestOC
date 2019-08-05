@@ -18,5 +18,6 @@ target "TestBundle" do
   
   pod 'SDWebImage', '~> 5.0.6'
   pod 'Masonry', '~> 1.1.0'
+  pod 'FMDB', '~> 2.7.5'
   
 end
