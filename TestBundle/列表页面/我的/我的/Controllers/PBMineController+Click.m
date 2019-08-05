@@ -25,6 +25,7 @@
 #import "PBKVOController.h"
 #import "PBMemoryController.h"
 #import "PBStorageController.h"
+#import "PBGCDController.h"
 
 @implementation PBMineController (Click)
 
@@ -65,6 +66,8 @@
         vc = [[PBMemoryController alloc]init];
     } else if (indexPath.row == 16) {
         vc = [[PBStorageController alloc]init];
+    } else if (indexPath.row == 17) {
+        vc = [[PBGCDController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     
