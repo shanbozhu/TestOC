@@ -43,6 +43,12 @@
 		954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */; };
 		954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */; };
 		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
+		9575930522F81E55009CA618 /* PBMemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930422F81E55009CA618 /* PBMemoryController.m */; };
+		9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930622F81E65009CA618 /* PBMemoryListController.m */; };
+		9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930722F81E65009CA618 /* PBMemoryListMRCController.m */; };
+		9575931222F81E7E009CA618 /* PBMemoryListMRCOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930E22F81E7E009CA618 /* PBMemoryListMRCOne.m */; };
+		9575931322F81E7E009CA618 /* PBMemoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930F22F81E7E009CA618 /* PBMemoryList.m */; };
+		9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575931122F81E7E009CA618 /* PBMemoryListMRC.m */; };
 		958378C222EAA50400AA39AF /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C022EAA50400AA39AF /* PBAFNetworkingController.m */; };
 		958378C922EAA52300AA39AF /* PBAFNetworkingZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */; };
 		958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */; };
@@ -248,6 +254,18 @@
 		954731AA22E05B8D00F6BFA2 /* PBChannelContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentCell.h; sourceTree = "<group>"; };
 		954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllWelfareController.m; sourceTree = "<group>"; };
 		954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
+		9575930322F81E55009CA618 /* PBMemoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryController.h; sourceTree = "<group>"; };
+		9575930422F81E55009CA618 /* PBMemoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryController.m; sourceTree = "<group>"; };
+		9575930622F81E65009CA618 /* PBMemoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListController.m; sourceTree = "<group>"; };
+		9575930722F81E65009CA618 /* PBMemoryListMRCController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListMRCController.m; sourceTree = "<group>"; };
+		9575930822F81E65009CA618 /* PBMemoryListMRCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryListMRCController.h; sourceTree = "<group>"; };
+		9575930922F81E65009CA618 /* PBMemoryListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryListController.h; sourceTree = "<group>"; };
+		9575930C22F81E7D009CA618 /* PBMemoryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryList.h; sourceTree = "<group>"; };
+		9575930D22F81E7D009CA618 /* PBMemoryListMRC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryListMRC.h; sourceTree = "<group>"; };
+		9575930E22F81E7E009CA618 /* PBMemoryListMRCOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListMRCOne.m; sourceTree = "<group>"; };
+		9575930F22F81E7E009CA618 /* PBMemoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryList.m; sourceTree = "<group>"; };
+		9575931022F81E7E009CA618 /* PBMemoryListMRCOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryListMRCOne.h; sourceTree = "<group>"; };
+		9575931122F81E7E009CA618 /* PBMemoryListMRC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListMRC.m; sourceTree = "<group>"; };
 		958378C022EAA50400AA39AF /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
 		958378C122EAA50400AA39AF /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingZeroController.m; sourceTree = "<group>"; };
@@ -743,6 +761,57 @@
 				954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */,
 			);
 			path = PBChannelView;
+			sourceTree = "<group>";
+		};
+		957592FE22F81E15009CA618 /* PBMemory */ = {
+			isa = PBXGroup;
+			children = (
+				957592FF22F81E15009CA618 /* Res */,
+				9575930022F81E15009CA618 /* Models */,
+				9575930122F81E15009CA618 /* Controllers */,
+				9575930222F81E15009CA618 /* Views */,
+			);
+			path = PBMemory;
+			sourceTree = "<group>";
+		};
+		957592FF22F81E15009CA618 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		9575930022F81E15009CA618 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9575930C22F81E7D009CA618 /* PBMemoryList.h */,
+				9575930F22F81E7E009CA618 /* PBMemoryList.m */,
+				9575930D22F81E7D009CA618 /* PBMemoryListMRC.h */,
+				9575931122F81E7E009CA618 /* PBMemoryListMRC.m */,
+				9575931022F81E7E009CA618 /* PBMemoryListMRCOne.h */,
+				9575930E22F81E7E009CA618 /* PBMemoryListMRCOne.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9575930122F81E15009CA618 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9575930322F81E55009CA618 /* PBMemoryController.h */,
+				9575930422F81E55009CA618 /* PBMemoryController.m */,
+				9575930922F81E65009CA618 /* PBMemoryListController.h */,
+				9575930622F81E65009CA618 /* PBMemoryListController.m */,
+				9575930822F81E65009CA618 /* PBMemoryListMRCController.h */,
+				9575930722F81E65009CA618 /* PBMemoryListMRCController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9575930222F81E15009CA618 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		958378BB22EAA4F000AA39AF /* PBAFNetworking */ = {
@@ -1511,6 +1580,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				957592FE22F81E15009CA618 /* PBMemory */,
 				9533420822F434A800DC7251 /* PBKVO */,
 				953341FD22F427B200DC7251 /* PBCopy */,
 				953341F122F41E1800DC7251 /* PBHttps */,
@@ -1731,6 +1801,7 @@
 				95C8742722E8446A002795D0 /* PBPhotoBrowserView.m in Sources */,
 				95C873E722E84410002795D0 /* PBTestListView.m in Sources */,
 				953341C022F306D400DC7251 /* PBCellHeightFourController.m in Sources */,
+				9575930522F81E55009CA618 /* PBMemoryController.m in Sources */,
 				B03011D71F173E4300624D91 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */,
 				95C871C222E71CBE002795D0 /* PBSeatsView.m in Sources */,
@@ -1765,6 +1836,7 @@
 				954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */,
 				95C873F922E84429002795D0 /* PBContentOneModel.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
+				9575931222F81E7E009CA618 /* PBMemoryListMRCOne.m in Sources */,
 				953341DC22F306EE00DC7251 /* PBCellHeightFourCell.m in Sources */,
 				95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */,
 				9533421222F434D900DC7251 /* PBKVOListController.m in Sources */,
@@ -1781,12 +1853,14 @@
 				953341D622F306EE00DC7251 /* PBCellHeightOneView.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
 				95C873F822E84429002795D0 /* PBTestOneEspressos.m in Sources */,
+				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				953341D722F306EE00DC7251 /* PBCellHeightTwoCell.m in Sources */,
 				958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */,
 				95C8764E22E99291002795D0 /* PBYYTextCell.m in Sources */,
 				95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */,
 				95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */,
 				953341DA22F306EE00DC7251 /* PBCellHeightThreeView.m in Sources */,
+				9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */,
 				95C871C522E71CBE002795D0 /* PBAppLogoView.m in Sources */,
 				95C8764F22E99291002795D0 /* PBYYTextView.m in Sources */,
 				953341D822F306EE00DC7251 /* PBCellHeightTwoView.m in Sources */,
@@ -1807,6 +1881,7 @@
 				B09283961FADDC5500606098 /* PBBaseController.m in Sources */,
 				95C871C122E71CBE002795D0 /* PBHallLogoView.m in Sources */,
 				95C873D322E843BD002795D0 /* PBImageTextController.m in Sources */,
+				9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */,
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
 				958378CB22EAA52300AA39AF /* PBAFNetworkingOneController.m in Sources */,
 				95C8764922E99281002795D0 /* PBYYText.m in Sources */,
@@ -1830,6 +1905,7 @@
 				953341DB22F306EE00DC7251 /* PBCellHeightZeroView.m in Sources */,
 				95C871AC22E71CAC002795D0 /* PBTestEspressosSeatCon.m in Sources */,
 				B09283971FADDC5500606098 /* PBNavigationController.m in Sources */,
+				9575931322F81E7E009CA618 /* PBMemoryList.m in Sources */,
 				B03011AB1F1644A300624D91 /* YYWeakProxy.m in Sources */,
 				95C8742922E8446A002795D0 /* PBPhotoBrowserPageView.m in Sources */,
 				95C8742822E8446A002795D0 /* UIImageView+PBPhBrowserView.m in Sources */,

@@ -23,6 +23,7 @@
 #import "PBHttpsController.h"
 #import "PBCopyController.h"
 #import "PBKVOController.h"
+#import "PBMemoryController.h"
 
 @implementation PBMineController (Click)
 
@@ -59,6 +60,8 @@
         vc = [[PBCopyController alloc]init];
     } else if (indexPath.row == 14) {
         vc = [[PBKVOController alloc]init];
+    } else if (indexPath.row == 15) {
+        vc = [[PBMemoryController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     
