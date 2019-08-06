@@ -28,6 +28,7 @@
 #import "PBGCDController.h"
 #import "PBAlgorithmController.h"
 #import "PBAVPlayerListController.h"
+#import "PBUniversalLinkController.h"
 
 @implementation PBMineController (Click)
 
@@ -74,6 +75,8 @@
         vc = [[PBAlgorithmController alloc]init];
     } else if (indexPath.row == 19) {
         vc = [[PBAVPlayerListController alloc]init];
+    } else if (indexPath.row == 20) {
+        vc = [[PBUniversalLinkController alloc]init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     

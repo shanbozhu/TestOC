@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBUniversalLinkListController : UIViewController
+@interface PBUniversalLinkListController : PBBaseController
 
 @property (nonatomic, copy) NSString *content;
 

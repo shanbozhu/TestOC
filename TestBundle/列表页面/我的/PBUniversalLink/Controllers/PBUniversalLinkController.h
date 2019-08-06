@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBUniversalLinkController : UIViewController
+@interface PBUniversalLinkController : PBBaseController
 
 @end
