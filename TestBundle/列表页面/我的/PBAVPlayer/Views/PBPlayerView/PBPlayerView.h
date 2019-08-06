@@ -10,15 +10,12 @@
 
 @interface PBPlayerView : UIView
 
-@property(nonatomic, strong)UIColor *progressBackgroundColor;
-@property(nonatomic, strong)UIColor *progressBufferColor;
-@property(nonatomic, strong)UIColor *progressPlayFinishColor;
+@property (nonatomic, strong) UIColor *progressBackgroundColor;
+@property (nonatomic, strong) UIColor *progressBufferColor;
+@property (nonatomic, strong) UIColor *progressPlayFinishColor;
+@property (nonatomic, copy) NSString *url;
 
-
-@property(nonatomic, copy)NSString *url;
-
-+(id)playerViewWithFrame:(CGRect)frame;
-
--(void)playVideo;
++ (id)playerViewWithFrame:(CGRect)frame;
+- (void)playVideo;
 
 @end

@@ -18,11 +18,11 @@
 
 @implementation PBAVPlayerListView
 
-+(id)testListView {
++ (id)testListView {
     return [[[NSBundle mainBundle]loadNibNamed:@"PBAVPlayerListView" owner:nil options:nil]lastObject];
 }
 
--(void)awakeFromNib {
+- (void)awakeFromNib {
     [super awakeFromNib];
     
     self.tableView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
@@ -31,22 +31,21 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
-
-
--(void)setTestEspressosArr:(NSArray *)testEspressosArr {
+- (void)setTestEspressosArr:(NSArray *)testEspressosArr {
     _testEspressosArr = testEspressosArr;
     
     [self.tableView reloadData];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.testEspressosArr.count;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBAVPlayerListCell *cell = [PBAVPlayerListCell testListCellWithTableView:tableView andReuseIdentifier:@"PBAVPlayerListCell"];
     
     cell.testEspressos = self.testEspressosArr[indexPath.row];
@@ -56,10 +55,9 @@
     
     return cell;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 300;
 }
-
-
 
 @end

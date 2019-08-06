@@ -11,8 +11,8 @@
 
 @interface PBAVPlayerListView : UIView
 
-@property(nonatomic, strong)NSArray *testEspressosArr;
+@property (nonatomic, strong) NSArray *testEspressosArr;
 
-+(id)testListView;
++ (id)testListView;
 
 @end

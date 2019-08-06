@@ -19,26 +19,18 @@
 
 @interface PBAVPlayerListController ()<PBAVPlayerListCellDelegate>
 
-@property(nonatomic, weak)PBAVPlayerListView *testListView;
-
-@property(nonatomic, strong)NSArray *dataArr;
-
-@property(nonatomic, assign)NSInteger randomId;
+@property (nonatomic, weak) PBAVPlayerListView *testListView;
+@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, assign) NSInteger randomId;
 
 @end
 
 @implementation PBAVPlayerListController
 
-
-
-
--(void)requestData {
-    
+- (void)requestData {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
         NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"PBAVPlayerList" ofType:@"json"]];
         NSArray *jsonArr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
 
         NSMutableArray *objs = [NSMutableArray array];
         for (NSDictionary *dict in jsonArr) {
@@ -46,18 +38,11 @@
             [objs addObject:testList];
         }
         
-        
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             self.testListView.testEspressosArr = objs;
             self.testListView.hidden = NO;
-            
         });
     });
-    
-    
-
 }
 
 - (void)viewDidLoad {
@@ -72,12 +57,7 @@
     [self requestData];
 }
 
-
-
-
--(void)testListCell:(PBAVPlayerListCell *)testListCell andTestEspressos:(PBAVPlayerList *)testEspressos {
-    
-    
+- (void)testListCell:(PBAVPlayerListCell *)testListCell andTestEspressos:(PBAVPlayerList *)testEspressos {
     PBPlayerView *playerView = [PBPlayerView playerViewWithFrame:CGRectMake(0, 0, testListCell.frame.size.width, 300)];
     [testListCell.contentView addSubview:playerView];
     
@@ -85,7 +65,5 @@
     
     [playerView playVideo];
 }
-
-
 
 @end

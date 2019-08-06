@@ -10,7 +10,6 @@
 
 @interface PBPlayerSlider : UISlider
 
-+(id)playerSlider;
-
++ (id)playerSlider;
 
 @end

@@ -12,16 +12,15 @@
 @class PBAVPlayerListCell;
 @protocol PBAVPlayerListCellDelegate <NSObject>
 
--(void)testListCell:(PBAVPlayerListCell *)testListCell andTestEspressos:(PBAVPlayerList *)testEspressos;
+- (void)testListCell:(PBAVPlayerListCell *)testListCell andTestEspressos:(PBAVPlayerList *)testEspressos;
 
 @end
 
 @interface PBAVPlayerListCell : UITableViewCell
 
-@property(nonatomic, strong)PBAVPlayerList *testEspressos;
+@property (nonatomic, strong) PBAVPlayerList *testEspressos;
+@property (nonatomic, weak) id<PBAVPlayerListCellDelegate> delegate;
 
-@property(nonatomic, weak)id<PBAVPlayerListCellDelegate> delegate;
-
-+(id)testListCellWithTableView:(UITableView *)tableView andReuseIdentifier:(NSString *)reuseIdentifier;
++ (id)testListCellWithTableView:(UITableView *)tableView andReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

@@ -11,7 +11,7 @@
 
 @interface PBAVPlayerList : NSObject
 
-@property(nonatomic, copy)NSString *pictureUrl;
-@property(nonatomic, copy)NSString *videoUrl;
+@property (nonatomic, copy) NSString *pictureUrl;
+@property (nonatomic, copy) NSString *videoUrl;
 
 @end

@@ -1296,7 +1296,6 @@
 		9575943A22F95120009CA618 /* PBPlayerView */ = {
 			isa = PBXGroup;
 			children = (
-				9575943B22F95120009CA618 /* Res */,
 				9575944822F95120009CA618 /* PBGCDTimerManager.h */,
 				9575944422F95120009CA618 /* PBGCDTimerManager.m */,
 				9575944722F95120009CA618 /* PBPlayerView.h */,
@@ -1305,6 +1304,7 @@
 				9575944922F95120009CA618 /* PBPlayerSlider.m */,
 				9575944622F95120009CA618 /* PBPlayerMaskView.h */,
 				9575944A22F95120009CA618 /* PBPlayerMaskView.m */,
+				9575943B22F95120009CA618 /* Res */,
 			);
 			path = PBPlayerView;
 			sourceTree = "<group>";

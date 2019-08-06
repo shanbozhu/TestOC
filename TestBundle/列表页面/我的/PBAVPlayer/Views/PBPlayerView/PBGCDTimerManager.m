@@ -8,33 +8,28 @@
 
 #import "PBGCDTimerManager.h"
 
-
 @interface PBGCDTimer ()
 
-@property(nonatomic, strong)dispatch_block_t action;
-@property(nonatomic, strong)dispatch_queue_t queue;
-@property(nonatomic, copy)NSString *timerName;
-@property(nonatomic, strong)NSArray *actionArr;
-@property(nonatomic, assign)BOOL repeats;
-@property(nonatomic, assign)NSTimeInterval timeInterval;
-@property(nonatomic, assign)float delaySecs;
-@property(nonatomic, assign)BOOL isRunning;
-
+@property (nonatomic, strong) dispatch_block_t action;
+@property (nonatomic, strong) dispatch_queue_t queue;
+@property (nonatomic, copy) NSString *timerName;
+@property (nonatomic, strong) NSArray *actionArr;
+@property (nonatomic, assign) BOOL repeats;
+@property (nonatomic, assign) NSTimeInterval timeInterval;
+@property (nonatomic, assign) float delaySecs;
+@property (nonatomic, assign) BOOL isRunning;
 
 @end
 
-
 @implementation PBGCDTimer
 
--(id)initWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
+- (id)initWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
     if (self = [super init]) {
-        
         self.action = action;
         self.timerName = timerName;
         self.repeats = repeats;
         self.timeInterval = timeInterval;
         self.isRunning = NO;
-        
         
         NSString *queueName = [NSString stringWithFormat:@"PBGCDTimer.%p", self];
         self.queue = dispatch_queue_create([queueName cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
@@ -43,7 +38,6 @@
         NSMutableArray *arr = [NSMutableArray array];
         [arr addObject:action];
         self.actionArr = arr;
-        
     }
     return self;
 }
@@ -56,30 +50,25 @@
 
 @end
 
-
 @interface PBGCDTimerManager ()
 
-@property(nonatomic, strong)NSMutableDictionary *timerDict;
-@property(nonatomic, strong)NSMutableDictionary *gcdTimerDict;
+@property (nonatomic, strong) NSMutableDictionary *timerDict;
+@property (nonatomic, strong) NSMutableDictionary *gcdTimerDict;
 
 @end
 
 @implementation PBGCDTimerManager
 
--(void)gcdTimerManagerWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
-    
+- (void)gcdTimerManagerWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
     PBGCDTimer *gcdTimer = self.gcdTimerDict[timerName];
     if (gcdTimer != nil) {
         return;
     }
     
     [self addGCDTimerManagerWithName:timerName andTimeInterval:timeInterval andDelaySecs:delaySecs andQueue:queue andRepeats:repeats andAction:action];
-    
-    
 }
 
--(void)addGCDTimerManagerWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
-    
+- (void)addGCDTimerManagerWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
     if (queue == nil) {
         queue = dispatch_get_global_queue(0, 0);
     }
@@ -103,7 +92,7 @@
     }
 }
 
--(void)startTimer:(NSString *)timerName {
+- (void)startTimer:(NSString *)timerName {
     PBGCDTimer *gcdTimer = self.gcdTimerDict[timerName];
     if (gcdTimer != nil && gcdTimer.isRunning == NO) {
         dispatch_source_t timer = self.timerDict[timerName];
@@ -119,7 +108,7 @@
     }
 }
 
--(void)resumeTimer:(NSString *)timerName {
+- (void)resumeTimer:(NSString *)timerName {
     dispatch_source_t timer = self.timerDict[timerName];
     if (timer == nil) {
         return;
@@ -132,7 +121,7 @@
     }
 }
 
--(void)cancelTimerWithName:(NSString *)timerName {
+- (void)cancelTimerWithName:(NSString *)timerName {
     dispatch_source_t timer = self.timerDict[timerName];
     if (timer == nil) {
         return;
@@ -147,7 +136,7 @@
     [self.gcdTimerDict removeObjectForKey:timerName];
 }
 
--(void)suspendTimer:(NSString *)timerName {
+- (void)suspendTimer:(NSString *)timerName {
     dispatch_source_t timer = self.timerDict[timerName];
     if (timer == nil) {
         return;
@@ -160,20 +149,21 @@
     }
 }
 
--(NSMutableDictionary *)gcdTimerDict {
+- (NSMutableDictionary *)gcdTimerDict {
     if (_gcdTimerDict == nil) {
         _gcdTimerDict = [NSMutableDictionary dictionary];
     }
     return _gcdTimerDict;
 }
--(NSMutableDictionary *)timerDict {
+
+- (NSMutableDictionary *)timerDict {
     if (_timerDict == nil) {
         _timerDict = [NSMutableDictionary dictionary];
     }
     return _timerDict;
 }
 
-+(id)sharedManager {
++ (id)sharedManager {
     static PBGCDTimerManager *sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -182,7 +172,7 @@
     return sharedManager;
 }
 
--(id)init {
+- (id)init {
     if (self = [super init]) {
         self.timerDict = [NSMutableDictionary dictionary];
     }
