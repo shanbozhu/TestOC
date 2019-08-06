@@ -31,6 +31,7 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>PBAPortalAAA</string>
 		<string>baidumap</string>
 		<string>iosamap</string>
 	</array>

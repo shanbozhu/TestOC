@@ -118,6 +118,9 @@
 		9575945322F95120009CA618 /* PBPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575944522F95120009CA618 /* PBPlayerView.m */; };
 		9575945422F95120009CA618 /* PBPlayerSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575944922F95120009CA618 /* PBPlayerSlider.m */; };
 		9575945522F95120009CA618 /* PBPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575944A22F95120009CA618 /* PBPlayerMaskView.m */; };
+		957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957597B122F99345009CA618 /* PBUniversalLinkController.m */; };
+		957597B522F99353009CA618 /* PBUniversalLinkListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957597B322F99353009CA618 /* PBUniversalLinkListController.m */; };
+		957597B822F99391009CA618 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 957597B722F99391009CA618 /* AppDelegate+UniversalLink.m */; };
 		958378C222EAA50400AA39AF /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C022EAA50400AA39AF /* PBAFNetworkingController.m */; };
 		958378C922EAA52300AA39AF /* PBAFNetworkingZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */; };
 		958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */; };
@@ -461,6 +464,12 @@
 		9575944822F95120009CA618 /* PBGCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGCDTimerManager.h; sourceTree = "<group>"; };
 		9575944922F95120009CA618 /* PBPlayerSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPlayerSlider.m; sourceTree = "<group>"; };
 		9575944A22F95120009CA618 /* PBPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPlayerMaskView.m; sourceTree = "<group>"; };
+		957597B022F99345009CA618 /* PBUniversalLinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUniversalLinkController.h; sourceTree = "<group>"; };
+		957597B122F99345009CA618 /* PBUniversalLinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUniversalLinkController.m; sourceTree = "<group>"; };
+		957597B322F99353009CA618 /* PBUniversalLinkListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUniversalLinkListController.m; sourceTree = "<group>"; };
+		957597B422F99353009CA618 /* PBUniversalLinkListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUniversalLinkListController.h; sourceTree = "<group>"; };
+		957597B622F99391009CA618 /* AppDelegate+UniversalLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UniversalLink.h"; sourceTree = "<group>"; };
+		957597B722F99391009CA618 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
 		958378C022EAA50400AA39AF /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
 		958378C122EAA50400AA39AF /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingZeroController.m; sourceTree = "<group>"; };
@@ -1323,6 +1332,49 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
+		957597AB22F99318009CA618 /* PBUniversalLink */ = {
+			isa = PBXGroup;
+			children = (
+				957597AC22F99318009CA618 /* Res */,
+				957597AD22F99318009CA618 /* Models */,
+				957597AE22F99318009CA618 /* Controllers */,
+				957597AF22F99318009CA618 /* Views */,
+			);
+			path = PBUniversalLink;
+			sourceTree = "<group>";
+		};
+		957597AC22F99318009CA618 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		957597AD22F99318009CA618 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		957597AE22F99318009CA618 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				957597B022F99345009CA618 /* PBUniversalLinkController.h */,
+				957597B122F99345009CA618 /* PBUniversalLinkController.m */,
+				957597B422F99353009CA618 /* PBUniversalLinkListController.h */,
+				957597B322F99353009CA618 /* PBUniversalLinkListController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		957597AF22F99318009CA618 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		958378BB22EAA4F000AA39AF /* PBAFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1984,6 +2036,8 @@
 				B0300E6F1F11DE5D00624D91 /* AppDelegate.h */,
 				B0300E701F11DE5D00624D91 /* AppDelegate.m */,
 				95C8718722E70A7E002795D0 /* TestBundle.pch */,
+				957597B622F99391009CA618 /* AppDelegate+UniversalLink.h */,
+				957597B722F99391009CA618 /* AppDelegate+UniversalLink.m */,
 			);
 			name = "通用";
 			sourceTree = "<group>";
@@ -2089,6 +2143,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				957597AB22F99318009CA618 /* PBUniversalLink */,
 				9575942222F950C9009CA618 /* PBAVPlayer */,
 				957593FC22F9274D009CA618 /* PBAlgorithm */,
 				9575934E22F84D18009CA618 /* PBGCD */,
@@ -2438,6 +2493,7 @@
 				957593D722F84F20009CA618 /* PBGCDListOneController.m in Sources */,
 				953341BE22F306D400DC7251 /* PBCellHeightOneController.m in Sources */,
 				953341FC22F420A600DC7251 /* PBHttpsController.m in Sources */,
+				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
 				953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */,
@@ -2448,6 +2504,7 @@
 				95C871C122E71CBE002795D0 /* PBHallLogoView.m in Sources */,
 				957593CC22F84F20009CA618 /* PBGCDListFourController.m in Sources */,
 				95C873D322E843BD002795D0 /* PBImageTextController.m in Sources */,
+				957597B822F99391009CA618 /* AppDelegate+UniversalLink.m in Sources */,
 				9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */,
 				957593CE22F84F20009CA618 /* PBGCDListController.m in Sources */,
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
@@ -2496,6 +2553,7 @@
 				9575931E22F82A37009CA618 /* PBStorageOneController.m in Sources */,
 				9575935722F84D28009CA618 /* PBGCDOneController.m in Sources */,
 				95C871A322E71C9D002795D0 /* PBSeatSelectionController.m in Sources */,
+				957597B522F99353009CA618 /* PBUniversalLinkListController.m in Sources */,
 				95C873FA22E84429002795D0 /* PBTestListOneController.m in Sources */,
 				95C873E822E84410002795D0 /* PBTestListCell.m in Sources */,
 				9575932A22F82A46009CA618 /* PBDatabase.m in Sources */,
