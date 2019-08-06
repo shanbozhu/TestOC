@@ -470,6 +470,7 @@
 		957597B422F99353009CA618 /* PBUniversalLinkListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUniversalLinkListController.h; sourceTree = "<group>"; };
 		957597B622F99391009CA618 /* AppDelegate+UniversalLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UniversalLink.h"; sourceTree = "<group>"; };
 		957597B722F99391009CA618 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
+		957597B922F99808009CA618 /* TestBundle.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = TestBundle.entitlements; sourceTree = "<group>"; };
 		958378C022EAA50400AA39AF /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
 		958378C122EAA50400AA39AF /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingZeroController.m; sourceTree = "<group>"; };
@@ -2047,6 +2048,7 @@
 			children = (
 				B0300E781F11DE5D00624D91 /* Assets.xcassets */,
 				B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */,
+				957597B922F99808009CA618 /* TestBundle.entitlements */,
 			);
 			name = "资源";
 			sourceTree = "<group>";
