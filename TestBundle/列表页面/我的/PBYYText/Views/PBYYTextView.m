@@ -43,6 +43,9 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (!self.testList) {
+        return 0;
+    }
     return 1;
 }
 
