@@ -32,52 +32,35 @@
 
 @implementation PBMineController (Click)
 
+- (NSArray *)pageArr {
+    return @[@"PBAllWelfareController",
+             @"PBCalendarController",
+             @"PBGesturePasswordController",
+             @"PBSeatSelectionController",
+             @"PBQRCodeController",
+             @"PBAnnotationController",
+             @"PBImageTextController",
+             @"PBYYTextController",
+             @"PBAFNetworkingController",
+             @"PBWebViewController",
+             @"PBCellHeightController",
+             @"PBTimerController",
+             @"PBHttpsController",
+             @"PBCopyController",
+             @"PBKVOController",
+             @"PBMemoryController",
+             @"PBStorageController",
+             @"PBGCDController",
+             @"PBAlgorithmController",
+             @"PBAVPlayerListController",
+             @"PBUniversalLinkController"];
+}
+
 // delegate
 - (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *vc;
-    if (indexPath.row == 0) {
-        vc = [[PBAllWelfareController alloc]init];
-    } else if (indexPath.row == 1) {
-        vc = [[PBCalendarController alloc]init];
-    } else if (indexPath.row == 2) {
-        vc = [[PBGesturePasswordController alloc]init];
-    } else if (indexPath.row == 3) {
-        vc = [[PBSeatSelectionController alloc]init];
-    } else if (indexPath.row == 4) {
-        vc = [[PBQRCodeController alloc]init];
-    } else if (indexPath.row == 5) {
-        vc = [[PBAnnotationController alloc]init];
-    } else if (indexPath.row == 6) {
-        vc = [[PBImageTextController alloc]init];
-    } else if (indexPath.row == 7) {
-        vc = [[PBYYTextController alloc]init];
-    } else if (indexPath.row == 8) {
-        vc = [[PBAFNetworkingController alloc]init];
-    } else if (indexPath.row == 9) {
-        vc = [[PBWebViewController alloc]init];
-    } else if (indexPath.row == 10) {
-        vc = [[PBCellHeightController alloc]init];
-    } else if (indexPath.row == 11) {
-        vc = [[PBTimerController alloc]init];
-    } else if (indexPath.row == 12) {
-        vc = [[PBHttpsController alloc]init];
-    } else if (indexPath.row == 13) {
-        vc = [[PBCopyController alloc]init];
-    } else if (indexPath.row == 14) {
-        vc = [[PBKVOController alloc]init];
-    } else if (indexPath.row == 15) {
-        vc = [[PBMemoryController alloc]init];
-    } else if (indexPath.row == 16) {
-        vc = [[PBStorageController alloc]init];
-    } else if (indexPath.row == 17) {
-        vc = [[PBGCDController alloc]init];
-    } else if (indexPath.row == 18) {
-        vc = [[PBAlgorithmController alloc]init];
-    } else if (indexPath.row == 19) {
-        vc = [[PBAVPlayerListController alloc]init];
-    } else if (indexPath.row == 20) {
-        vc = [[PBUniversalLinkController alloc]init];
-    }
+    NSString *page = self.pageArr[indexPath.row];
+    Class class = NSClassFromString(page);
+    UIViewController *vc = [[class alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:vc animated:YES];

@@ -10,6 +10,7 @@
 
 @interface PBMineView ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, weak) UITableView *tableView;
 
 @end
 
@@ -22,6 +23,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
+        self.tableView = tableView;
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -31,12 +33,17 @@
     return self;
 }
 
+- (void)setPageArr:(NSArray *)pageArr {
+    _pageArr = pageArr;
+    [self.tableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 21;
+    return self.pageArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,7 +51,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld, %@", indexPath.row, self.pageArr[indexPath.row]];
     return cell;
 }
 

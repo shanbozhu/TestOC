@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBMineController (Click)
 
+- (NSArray *)pageArr;
+
 @end
 
 NS_ASSUME_NONNULL_END

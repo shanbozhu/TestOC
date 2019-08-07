@@ -9,6 +9,7 @@
 #import "PBMineController.h"
 #import <YYText/YYText.h>
 #import "PBMineView.h"
+#import "PBMineController+Click.h"
 
 @interface PBMineController ()<PBMineViewDelegate>
 
@@ -35,6 +36,8 @@
     [self.view addSubview:mineView];
     mineView.frame = self.view.bounds;
     mineView.delegate = self;
+    
+    mineView.pageArr = self.pageArr;
 }
 
 @end

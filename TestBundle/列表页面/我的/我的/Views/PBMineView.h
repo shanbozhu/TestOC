@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PBMineView : UIView
 
 @property (nonatomic, strong) id<PBMineViewDelegate> delegate;
+@property (nonatomic, strong) NSArray *pageArr;
 
 + (id)mineView;
 
