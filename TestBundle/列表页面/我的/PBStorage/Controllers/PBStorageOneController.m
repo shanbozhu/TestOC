@@ -25,7 +25,7 @@
     [super viewWillAppear:animated];
     
     self.tabBarController.navigationItem.title = @"TextFile";
-    self.title = @"haha";
+    self.title = @"TextFile";
 }
 
 - (void)viewDidLoad {

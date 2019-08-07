@@ -22,7 +22,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = @"hehe";
+    self.title = @"DataBaseFile";
     self.tabBarController.navigationItem.title = @"DataBaseFile";
 }
 

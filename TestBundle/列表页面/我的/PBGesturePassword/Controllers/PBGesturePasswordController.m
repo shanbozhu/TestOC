@@ -15,7 +15,7 @@
 
 @implementation PBGesturePasswordController
 
-- (BOOL)pb_popGestureRecognizerEnabled {
+- (BOOL)pb_panGestureRecognizerEnabled {
     return NO;
 }
 
