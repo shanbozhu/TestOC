@@ -41,14 +41,19 @@
     }];
      */
     
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"pbseat_selection" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"jsonDict = %@", jsonDict);
-    
-    PBTestEspressos *testEspressos = [PBTestEspressos yy_modelWithDictionary:jsonDict];
-    
-    self.seatSelectionView.testEspressos = testEspressos;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *path = [[NSBundle mainBundle]pathForResource:@"pbseat_selection" ofType:@"json"];
+            NSData *data = [NSData dataWithContentsOfFile:path];
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"jsonDict = %@", jsonDict);
+            
+            PBTestEspressos *testEspressos = [PBTestEspressos yy_modelWithDictionary:jsonDict];
+            
+            self.seatSelectionView.testEspressos = testEspressos;
+        });
+    });
 }
 
 - (void)viewDidLoad {

@@ -51,7 +51,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld, %@", indexPath.row, self.pageArr[indexPath.row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"【%ld】%@", indexPath.row, self.pageArr[indexPath.row]];
     return cell;
 }
 
