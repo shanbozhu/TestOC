@@ -11,12 +11,13 @@
 
 @implementation UIImageView (PBPhBrowserView)
 
-//getter
--(NSInteger)pbTag {
+// getter
+- (NSInteger)pbTag {
     return [objc_getAssociatedObject(self, @selector(pbTag)) integerValue];
 }
-//setter
--(void)setPbTag:(NSInteger)pbTag {
+
+// setter
+- (void)setPbTag:(NSInteger)pbTag {
     objc_setAssociatedObject(self, @selector(pbTag), @(pbTag), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

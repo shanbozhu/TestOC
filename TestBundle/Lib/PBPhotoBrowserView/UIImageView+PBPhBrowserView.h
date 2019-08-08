@@ -11,7 +11,7 @@
 
 @interface UIImageView (PBPhBrowserView)
 
-//利用runtime运行机制在分类中动态添加属性
-@property(nonatomic, assign)NSInteger pbTag;
+// 利用runtime运行机制在分类中动态添加属性
+@property (nonatomic, assign) NSInteger pbTag;
 
 @end

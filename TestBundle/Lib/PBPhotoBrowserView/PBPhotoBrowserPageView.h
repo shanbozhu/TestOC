@@ -12,21 +12,20 @@
 @class PBPhotoBrowserPageView;
 @protocol PBPhotoBrowserPageViewDelegate <NSObject>
 
--(void)photoBrowserPageView:(PBPhotoBrowserPageView *)photoBrowserPageView andTapGestureRecognizer:(UITapGestureRecognizer *)tap;
+- (void)photoBrowserPageView:(PBPhotoBrowserPageView *)photoBrowserPageView andTapGestureRecognizer:(UITapGestureRecognizer *)tap;
 
 @end
 
 @interface PBPhotoBrowserPageView : UIView
 
-@property(nonatomic, weak)UIImageView *imageView;
-@property(nonatomic, weak)UIScrollView *scrollView;
+@property (nonatomic, weak) UIImageView *imageView;
+@property (nonatomic, weak) UIScrollView *scrollView;
 
-@property(nonatomic, assign)BOOL isLoadingImage; //是否正在加载图片
+@property (nonatomic, assign) BOOL isLoadingImage; // 是否正在加载图片
 
-@property(nonatomic, weak)id<PBPhotoBrowserPageViewDelegate> delegate;
+@property (nonatomic, weak) id<PBPhotoBrowserPageViewDelegate> delegate;
 
-+(id)photoBrowserPageView;
-
--(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImageView *)placeholder;
++ (id)photoBrowserPageView;
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImageView *)placeholder;
 
 @end
