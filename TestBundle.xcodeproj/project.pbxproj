@@ -1393,10 +1393,10 @@
 			isa = PBXGroup;
 			children = (
 				9575995D22FC2415009CA618 /* TFHppleElement.h */,
+				9575996122FC2415009CA618 /* TFHppleElement.m */,
+				9575996022FC2415009CA618 /* TFHpple.h */,
 				9575995E22FC2415009CA618 /* TFHpple.m */,
 				9575995F22FC2415009CA618 /* XPathQuery.h */,
-				9575996022FC2415009CA618 /* TFHpple.h */,
-				9575996122FC2415009CA618 /* TFHppleElement.m */,
 				9575996222FC2415009CA618 /* XPathQuery.m */,
 			);
 			path = TFHpple;
