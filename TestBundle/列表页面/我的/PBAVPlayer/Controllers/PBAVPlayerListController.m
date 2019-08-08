@@ -27,6 +27,10 @@
 
 @implementation PBAVPlayerListController
 
+- (BOOL)pb_panGestureRecognizerEnabled {
+    return NO;
+}
+
 - (void)requestData {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"PBAVPlayerList" ofType:@"json"]];

@@ -11,9 +11,8 @@
 
 @interface PBYYTextView : UIView
 
-@property(nonatomic, strong)PBYYText *testList;
+@property (nonatomic, strong) PBYYText *testList;
 
-
-+(id)testListView;
++ (id)testListView;
 
 @end
