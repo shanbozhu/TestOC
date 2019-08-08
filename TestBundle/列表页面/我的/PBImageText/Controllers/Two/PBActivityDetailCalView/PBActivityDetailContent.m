@@ -1,6 +1,6 @@
 //
 //  PBActivityDetailContent.m
-//  陪伴Ta
+//  TestBundle
 //
 //  Created by DaMaiIOS on 2016/11/11.
 //  Copyright © 2016年 朱善波. All rights reserved.

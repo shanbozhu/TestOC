@@ -1,6 +1,6 @@
 //
 //  PBPhotoBrowserView.h
-//  陪伴Ta
+//  TestBundle
 //
 //  Created by DaMaiIOS on 16/5/13.
 //  Copyright © 2016年 朱善波. All rights reserved.
