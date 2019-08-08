@@ -1406,13 +1406,13 @@
 			isa = PBXGroup;
 			children = (
 				9575996422FC2415009CA618 /* UITableView+FDKeyedHeightCache.h */,
+				9575996822FC2415009CA618 /* UITableView+FDKeyedHeightCache.m */,
 				9575996522FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.h */,
+				9575996922FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m */,
+				9575996B22FC2415009CA618 /* UITableView+FDTemplateLayoutCell.h */,
 				9575996622FC2415009CA618 /* UITableView+FDTemplateLayoutCell.m */,
 				9575996722FC2415009CA618 /* UITableView+FDIndexPathHeightCache.h */,
-				9575996822FC2415009CA618 /* UITableView+FDKeyedHeightCache.m */,
-				9575996922FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m */,
 				9575996A22FC2415009CA618 /* UITableView+FDIndexPathHeightCache.m */,
-				9575996B22FC2415009CA618 /* UITableView+FDTemplateLayoutCell.h */,
 			);
 			path = FDTemplateLayoutCell;
 			sourceTree = "<group>";
@@ -1430,10 +1430,10 @@
 			isa = PBXGroup;
 			children = (
 				9575997022FC2415009CA618 /* UIImageView+PBPhBrowserView.h */,
-				9575997122FC2415009CA618 /* PBPhotoBrowserView.m */,
-				9575997222FC2415009CA618 /* PBPhotoBrowserPageView.h */,
 				9575997322FC2415009CA618 /* UIImageView+PBPhBrowserView.m */,
 				9575997422FC2415009CA618 /* PBPhotoBrowserView.h */,
+				9575997122FC2415009CA618 /* PBPhotoBrowserView.m */,
+				9575997222FC2415009CA618 /* PBPhotoBrowserPageView.h */,
 				9575997522FC2415009CA618 /* PBPhotoBrowserPageView.m */,
 			);
 			path = PBPhotoBrowserView;
@@ -1442,10 +1442,10 @@
 		9575997622FC2415009CA618 /* YYFPSLabel */ = {
 			isa = PBXGroup;
 			children = (
+				9575997A22FC2415009CA618 /* YYWeakProxy.h */,
 				9575997722FC2415009CA618 /* YYWeakProxy.m */,
 				9575997822FC2415009CA618 /* YYFPSLabel.h */,
 				9575997922FC2415009CA618 /* YYFPSLabel.m */,
-				9575997A22FC2415009CA618 /* YYWeakProxy.h */,
 			);
 			path = YYFPSLabel;
 			sourceTree = "<group>";
@@ -1454,9 +1454,9 @@
 			isa = PBXGroup;
 			children = (
 				9575997C22FC2415009CA618 /* PBNavigationController.h */,
-				9575997D22FC2415009CA618 /* PBBaseController.m */,
 				9575997E22FC2415009CA618 /* PBNavigationController.m */,
 				9575997F22FC2415009CA618 /* PBBaseController.h */,
+				9575997D22FC2415009CA618 /* PBBaseController.m */,
 			);
 			path = PBNavigationController;
 			sourceTree = "<group>";
