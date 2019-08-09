@@ -373,7 +373,7 @@
     
     // 表情
     NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门我爱北京天安门我爱北京天安门我爱北:smile22:京天安门我爱北京天安门我爱北京天:bye55:安门我爱北京天安门我爱北京天安门:smile:我爱北京天安门:bye:我爱北京天安门我爱北京天安门"];
-    [attStrFour yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrFour.length)];
+    [attStrFour yy_setLineSpacing:(attStr.yy_lineSpacing+12) range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
     [attStr appendAttributedString:attStrFour];
