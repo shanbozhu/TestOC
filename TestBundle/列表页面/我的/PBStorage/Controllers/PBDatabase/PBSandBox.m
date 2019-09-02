@@ -11,7 +11,9 @@
 
 @implementation PBSandBoxFileInfo
 
-
+- (NSString *)description {
+    return [NSString stringWithFormat:@"filePath = %@, modifyTime = %lld, size = %lld", self.filePath, self.modifyTime, self.size];
+}
 
 @end
 
@@ -38,7 +40,7 @@
 }
 
 /**
- 获取指定路径下的文件信息
+ 获取指定路径下的[文件]信息
  */
 + (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath {
     struct stat st;
@@ -48,7 +50,7 @@
         fileInfo.modifyTime = st.st_mtime;
         fileInfo.filePath = filePath;
         if (S_ISDIR(st.st_mode)) {
-            fileInfo.size = [self directorySizeAtPath:filePath];
+            fileInfo.size = [self fileSizeAtPath:filePath];
         }
         return fileInfo;
     }
@@ -56,29 +58,52 @@
 }
 
 /**
- 获取指定路径下的[目录文件]的[实际]大小
+ 获取指定路径下的[所有][文件]信息
  */
-+ (long long)directorySizeAtPath:(NSString *)directory {
++ (NSArray *)fileInfosAtPath:(NSString *)filePath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory] || !isDirectory) {
-        return 0;
+    if (![fileManager fileExistsAtPath:filePath isDirectory:&isDirectory] || !isDirectory) {
+        return nil;
     }
     
-    long long size = 0;
-    for (NSString *filePath in [fileManager enumeratorAtPath:directory]) {
-        NSString *fullFilePath = [directory stringByAppendingPathComponent:filePath];
-        if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory] && !isDirectory) {
-            size += [self fileSizeAtPath:fullFilePath];
+    NSMutableArray *fileInfoArr = [NSMutableArray array];
+    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:filePath error:nil]) {
+        NSString *fullFilePath = [filePath stringByAppendingPathComponent:fileName];
+        if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory]) {
+            PBSandBoxFileInfo *fileInfo = [self fileInfoAtPath:fullFilePath];
+            [fileInfoArr addObject:fileInfo];
         }
     }
-    return size;
+    
+    return fileInfoArr;
 }
 
 /**
  获取指定路径下的[文件]大小
  */
 + (long long)fileSizeAtPath:(NSString *)filePath {
+    BOOL isDirectory = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:filePath isDirectory:&isDirectory]) {
+        return 0;
+    }
+    
+    if (!isDirectory) {
+        return [self sizeAtPath:filePath];
+    }
+    
+    long long size = 0;
+    for (NSString *subFilePath in [fileManager enumeratorAtPath:filePath]) {
+        NSString *fullFilePath = [filePath stringByAppendingPathComponent:subFilePath];
+        if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory] && !isDirectory) {
+            size += [self sizeAtPath:fullFilePath];
+        }
+    }
+    return size;
+}
+
++ (long long)sizeAtPath:(NSString *)filePath {
     struct stat st;
     if (lstat([filePath cStringUsingEncoding:NSUTF8StringEncoding], &st) == 0) {
         return st.st_size;

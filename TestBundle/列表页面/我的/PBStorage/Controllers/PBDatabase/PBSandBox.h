@@ -41,4 +41,9 @@
  */
 + (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath;
 
+
+
+
++ (NSArray *)fileInfosAtPath:(NSString *)filePath;
+
 @end
