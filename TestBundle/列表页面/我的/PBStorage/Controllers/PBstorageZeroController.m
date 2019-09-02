@@ -7,9 +7,9 @@
 //
 
 #import "PBStorageZeroController.h"
-#import "PBStorageListController.h"
-#import "PBStorageListOneController.h"
-#import "PBStorageListTwoController.h"
+#import "PBStorageDataBaseController.h"
+#import "PBStorageDataBaseOneController.h"
+#import "PBStorageDataBaseTwoController.h"
 
 @interface PBStorageZeroController ()
 
@@ -59,19 +59,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        PBStorageListController *testListController = [[PBStorageListController alloc]init];
+        PBStorageDataBaseController *testListController = [[PBStorageDataBaseController alloc]init];
         testListController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:testListController animated:YES];
         testListController.view.backgroundColor = [UIColor whiteColor];
     }
     if (indexPath.row == 1) {
-        PBStorageListOneController *testListOneController = [[PBStorageListOneController alloc]init];
+        PBStorageDataBaseOneController *testListOneController = [[PBStorageDataBaseOneController alloc]init];
         testListOneController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:testListOneController animated:YES];
         testListOneController.view.backgroundColor = [UIColor whiteColor];
     }
     if (indexPath.row == 2) {
-        PBStorageListTwoController *testListTwoController = [[PBStorageListTwoController alloc]init];
+        PBStorageDataBaseTwoController *testListTwoController = [[PBStorageDataBaseTwoController alloc]init];
         testListTwoController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:testListTwoController animated:YES];
         testListTwoController.view.backgroundColor = [UIColor whiteColor];

@@ -1,20 +1,20 @@
 //
-//  PBStorageListTwoController.m
+//  PBStorageDataBaseTwoController.m
 //  TestBundle
 //
 //  Created by DaMaiIOS on 2017/11/19.
 //  Copyright © 2017年 DaMaiIOS. All rights reserved.
 //
 
-#import "PBStorageListTwoController.h"
+#import "PBStorageDataBaseTwoController.h"
 #import "PBDatabase.h"
 #import "PBStorageList.h"
 
-@interface PBStorageListTwoController ()
+@interface PBStorageDataBaseTwoController ()
 
 @end
 
-@implementation PBStorageListTwoController
+@implementation PBStorageDataBaseTwoController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

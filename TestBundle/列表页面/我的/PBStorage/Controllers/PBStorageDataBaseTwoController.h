@@ -1,5 +1,5 @@
 //
-//  PBStorageListTwoController.h
+//  PBStorageDataBaseTwoController.h
 //  TestBundle
 //
 //  Created by DaMaiIOS on 2017/11/19.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBStorageListTwoController : UIViewController
+@interface PBStorageDataBaseTwoController : UIViewController
 
 @end

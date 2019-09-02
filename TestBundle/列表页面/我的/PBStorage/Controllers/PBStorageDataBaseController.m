@@ -1,18 +1,18 @@
 //
-//  PBStorageListController.m
+//  PBStorageDataBaseController.m
 //  TestBundle
 //
 //  Created by DaMaiIOS on 17/7/9.
 //  Copyright © 2017年 DaMaiIOS. All rights reserved.
 //
 
-#import "PBStorageListController.h"
+#import "PBStorageDataBaseController.h"
 #import "YYFPSLabel.h"
 #import <fmdb/FMDB.h>
 #import "PBSandBox.h"
 #import <pthread.h>
 
-@interface PBStorageListController ()
+@interface PBStorageDataBaseController ()
 
 @property (nonatomic, copy) NSString *filePath;
 @property (nonatomic, copy) NSString *testName;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation PBStorageListController
+@implementation PBStorageDataBaseController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -258,7 +258,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"PBStorageListController对象被释放了");
+    NSLog(@"PBStorageDataBaseController对象被释放了");
 }
 
 @end
