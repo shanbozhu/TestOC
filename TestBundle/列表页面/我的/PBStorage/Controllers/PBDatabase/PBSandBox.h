@@ -10,10 +10,19 @@
 
 @interface PBSandBox : NSObject
 
+// AD9F89C9-B544-4A63-B6D8-69B8A61BD54F
 + (NSString *)path4Home;
+
+// /Documents
 + (NSString *)path4Documents;
+
+// /Library
 + (NSString *)path4Library;
-+ (NSString *)path4Tmp;
+
+// /Library/Caches
 + (NSString *)path4LibraryCaches;
+
+// /tmp/
++ (NSString *)path4Tmp;
 
 @end

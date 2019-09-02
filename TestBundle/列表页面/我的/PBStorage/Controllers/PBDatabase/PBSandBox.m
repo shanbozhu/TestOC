@@ -22,12 +22,12 @@
     return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)lastObject];
 }
 
-+ (NSString *)path4Tmp {
-    return NSTemporaryDirectory();
-}
-
 + (NSString *)path4LibraryCaches {
     return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+}
+
++ (NSString *)path4Tmp {
+    return NSTemporaryDirectory();
 }
 
 @end
