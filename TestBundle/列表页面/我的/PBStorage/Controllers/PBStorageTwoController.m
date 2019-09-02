@@ -39,7 +39,7 @@
     // 获取指定路径下的所有文件路径
     for (NSString *fileName in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[PBSandBox path4Home] error:nil]) {
         NSString *filePath = [[PBSandBox path4Home] stringByAppendingPathComponent:fileName];
-        NSLog(@"fileName = %@", [PBSandBox fileInfosAtPath:filePath]);
+        NSLog(@"fileName = %@", [PBSandBox fileInfosAboutContentsOfDirectoryAtPath:filePath]);
     }
 }
 

@@ -12,7 +12,7 @@
 @implementation PBSandBoxFileInfo
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"filePath = %@, modifyTime = %lld, size = %lld", self.filePath, self.modifyTime, self.size];
+    return [NSString stringWithFormat:@"filePath = %@, fileType = %lu, size = %lld, modifyTime = %lld", self.filePath, self.fileType, self.modifyTime, self.size];
 }
 
 @end
@@ -40,7 +40,33 @@
 }
 
 /**
- 获取指定路径下的[文件]信息
+ 获取指定路径[目录]下的所有[文件]信息
+ */
++ (NSArray *)fileInfosAboutContentsOfDirectoryAtPath:(NSString *)directory {
+    BOOL isDirectory = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory] || !isDirectory) {
+        return nil;
+    }
+    
+    NSMutableArray *fileInfoArr = [NSMutableArray array];
+    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:directory error:nil]) {
+        NSString *fullFilePath = [directory stringByAppendingPathComponent:fileName];
+        if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory]) {
+            PBSandBoxFileInfo *fileInfo = [self fileInfoAtPath:fullFilePath];
+            if (fileInfo) {
+                [fileInfoArr addObject:fileInfo];
+            }
+        }
+    }
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"modifyTime" ascending:NO];
+    NSArray *sortFileInfoArr = [fileInfoArr sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    return sortFileInfoArr;
+}
+
+/**
+ 获取指定路径的[文件]信息
  */
 + (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath {
     struct stat st;
@@ -50,7 +76,10 @@
         fileInfo.modifyTime = st.st_mtime;
         fileInfo.filePath = filePath;
         if (S_ISDIR(st.st_mode)) {
+            fileInfo.fileType = PBSandBoxFileTypeDirectory;
             fileInfo.size = [self fileSizeAtPath:filePath];
+        } else {
+            fileInfo.fileType = PBSandBoxFileTypeNonDirectory;
         }
         return fileInfo;
     }
@@ -58,29 +87,7 @@
 }
 
 /**
- 获取指定路径下的[所有][文件]信息
- */
-+ (NSArray *)fileInfosAtPath:(NSString *)filePath {
-    BOOL isDirectory = NO;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:filePath isDirectory:&isDirectory] || !isDirectory) {
-        return nil;
-    }
-    
-    NSMutableArray *fileInfoArr = [NSMutableArray array];
-    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:filePath error:nil]) {
-        NSString *fullFilePath = [filePath stringByAppendingPathComponent:fileName];
-        if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory]) {
-            PBSandBoxFileInfo *fileInfo = [self fileInfoAtPath:fullFilePath];
-            [fileInfoArr addObject:fileInfo];
-        }
-    }
-    
-    return fileInfoArr;
-}
-
-/**
- 获取指定路径下的[文件]大小
+ 获取指定路径的[文件]大小
  */
 + (long long)fileSizeAtPath:(NSString *)filePath {
     BOOL isDirectory = NO;

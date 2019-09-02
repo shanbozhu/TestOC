@@ -11,11 +11,18 @@
 // Linux 遵循"所有皆文件"
 // 目录也是一种文件
 
+/// 文件类型
+typedef enum : NSUInteger {
+    PBSandBoxFileTypeNonDirectory = 0, //!< 非目录
+    PBSandBoxFileTypeDirectory = 1, //!< 目录
+} PBSandBoxFileType;
+
 @interface PBSandBoxFileInfo : NSObject
 
 @property (nonatomic, assign) long long modifyTime; //!< 文件修改时间,单位s
 @property (nonatomic, assign) long long size; //!< 文件体积
 @property (nonatomic, copy) NSString *filePath; //!< 文件路径
+@property (nonatomic, assign) PBSandBoxFileType fileType; //!< 文件类型
 
 @end
 
@@ -44,6 +51,6 @@
 
 
 
-+ (NSArray *)fileInfosAtPath:(NSString *)filePath;
++ (NSArray *)fileInfosAboutContentsOfDirectoryAtPath:(NSString *)filePath;
 
 @end
