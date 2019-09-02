@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+// Linux 遵循"所有皆文件"
+// 目录也是一种文件
+
+@interface PBSandBoxFileInfo : NSObject
+
+@property (nonatomic, assign) long long modifyTime; //!< 文件修改时间,单位s
+@property (nonatomic, assign) long long size; //!< 文件体积
+@property (nonatomic, copy) NSString *filePath; //!< 文件路径
+
+@end
+
 @interface PBSandBox : NSObject
 
 // AD9F89C9-B544-4A63-B6D8-69B8A61BD54F
@@ -24,5 +35,10 @@
 
 // /tmp/
 + (NSString *)path4Tmp;
+
+/**
+ 获取指定路径下的文件信息
+ */
++ (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath;
 
 @end

@@ -43,6 +43,7 @@
 		954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731A722E05B8D00F6BFA2 /* PBChannelContentCell.m */; };
 		954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */; };
 		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
+		95625F36231CC82C00FCF37E /* PBStorageTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95625F35231CC82C00FCF37E /* PBStorageTwoController.m */; };
 		9575930522F81E55009CA618 /* PBMemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930422F81E55009CA618 /* PBMemoryController.m */; };
 		9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930622F81E65009CA618 /* PBMemoryListController.m */; };
 		9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930722F81E65009CA618 /* PBMemoryListMRCController.m */; };
@@ -326,6 +327,8 @@
 		954731AA22E05B8D00F6BFA2 /* PBChannelContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentCell.h; sourceTree = "<group>"; };
 		954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllWelfareController.m; sourceTree = "<group>"; };
 		954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
+		95625F34231CC82C00FCF37E /* PBStorageTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBStorageTwoController.h; sourceTree = "<group>"; };
+		95625F35231CC82C00FCF37E /* PBStorageTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBStorageTwoController.m; sourceTree = "<group>"; };
 		9575930322F81E55009CA618 /* PBMemoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryController.h; sourceTree = "<group>"; };
 		9575930422F81E55009CA618 /* PBMemoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryController.m; sourceTree = "<group>"; };
 		9575930622F81E65009CA618 /* PBMemoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListController.m; sourceTree = "<group>"; };
@@ -1049,6 +1052,8 @@
 				9575931D22F82A37009CA618 /* PBstorageZeroController.m */,
 				9575931C22F82A37009CA618 /* PBStorageOneController.h */,
 				9575931B22F82A37009CA618 /* PBStorageOneController.m */,
+				95625F34231CC82C00FCF37E /* PBStorageTwoController.h */,
+				95625F35231CC82C00FCF37E /* PBStorageTwoController.m */,
 				9575933C22F82A64009CA618 /* PBStorageDataBaseController.h */,
 				9575933422F82A64009CA618 /* PBStorageDataBaseController.m */,
 				9575933322F82A64009CA618 /* PBStorageDataBaseOneController.h */,
@@ -2544,6 +2549,7 @@
 				957593F722F84F3B009CA618 /* PBGCDLockTwoController.m in Sources */,
 				9575945522F95120009CA618 /* PBPlayerMaskView.m in Sources */,
 				954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */,
+				95625F36231CC82C00FCF37E /* PBStorageTwoController.m in Sources */,
 				95C872E422E801DA002795D0 /* PBQRCodeController.m in Sources */,
 				954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
