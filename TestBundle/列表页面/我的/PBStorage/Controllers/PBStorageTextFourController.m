@@ -46,7 +46,7 @@
 
 - (void)addBtn:(UIButton *)btn {
     // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:@"/mytext"];
+    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:@"mytext"];
     self.filePath = filePath;
     if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];

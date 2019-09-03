@@ -56,7 +56,7 @@
     [archiver finishEncoding];
     
     // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:@"/myar.ar"];
+    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:@"myar.ar"];
     self.filePath = filePath;
     if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
