@@ -12,7 +12,7 @@
 @implementation PBSandBoxFileInfo
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"filePath = %@, fileType = %lu, size = %lld, modifyTime = %lld", self.filePath, self.fileType, self.modifyTime, self.size];
+    return [NSString stringWithFormat:@"path = %@, type = %lu, size = %lld, modifyTime = %lld", self.path, self.type, self.size, self.modifyTime];
 }
 
 @end
@@ -39,18 +39,18 @@
     return NSTemporaryDirectory();
 }
 
-+ (NSArray *)fileInfosAboutContentsOfDirectoryAtPath:(NSString *)directory {
++ (NSArray *)fileOrDirectoryInfosAboutContentsOfDirectoryAtPath:(NSString *)directoryPath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory] || !isDirectory) {
+    if (![fileManager fileExistsAtPath:directoryPath isDirectory:&isDirectory] || !isDirectory) {
         return nil;
     }
     
     NSMutableArray *fileInfoArr = [NSMutableArray array];
-    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:directory error:nil]) {
-        NSString *fullFilePath = [directory stringByAppendingPathComponent:fileName];
+    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:directoryPath error:nil]) {
+        NSString *fullFilePath = [directoryPath stringByAppendingPathComponent:fileName];
         if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory]) {
-            PBSandBoxFileInfo *fileInfo = [self fileInfoAtPath:fullFilePath];
+            PBSandBoxFileInfo *fileInfo = [self fileOrDirectoryInfoAtPath:fullFilePath];
             if (fileInfo) {
                 [fileInfoArr addObject:fileInfo];
             }
@@ -62,62 +62,58 @@
     return sortFileInfoArr;
 }
 
-+ (BOOL)deleteContentsOfDirectoryAtPath:(NSString *)directory {
-    @autoreleasepool {
-        BOOL isDirectory = NO;
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory] || !isDirectory) {
-            return NO;
-        }
-        
-        for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:directory error:nil]) {
-            NSString *fullFilePath = [directory stringByAppendingPathComponent:fileName];
-            [fileManager removeItemAtPath:fullFilePath error:nil];
-        }
-    }
-    return YES;
-}
-
-+ (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath {
++ (PBSandBoxFileInfo *)fileOrDirectoryInfoAtPath:(NSString *)fileOrDirectoryPath {
     struct stat st;
-    if (lstat([filePath cStringUsingEncoding:NSUTF8StringEncoding], &st) == 0) {
+    if (lstat([fileOrDirectoryPath cStringUsingEncoding:NSUTF8StringEncoding], &st) == 0) {
         PBSandBoxFileInfo *fileInfo = [[PBSandBoxFileInfo alloc] init];
         fileInfo.size = st.st_size;
         fileInfo.modifyTime = st.st_mtime;
-        fileInfo.filePath = filePath;
+        fileInfo.path = fileOrDirectoryPath;
         if (S_ISDIR(st.st_mode)) {
-            fileInfo.fileType = PBSandBoxFileTypeDirectory;
-            fileInfo.size = [self fileSizeAtPath:filePath];
+            fileInfo.type = PBSandBoxFileTypeDirectory;
+            fileInfo.size = [self directorySizeAtPath:fileOrDirectoryPath];
         } else {
-            fileInfo.fileType = PBSandBoxFileTypeNonDirectory;
+            fileInfo.type = PBSandBoxFileTypeNonDirectory;
         }
         return fileInfo;
     }
     return nil;
 }
 
-+ (long long)fileSizeAtPath:(NSString *)filePath {
++ (BOOL)deleteContentsOfDirectoryAtPath:(NSString *)directoryPath {
+    @autoreleasepool {
+        BOOL isDirectory = NO;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if (![fileManager fileExistsAtPath:directoryPath isDirectory:&isDirectory] || !isDirectory) {
+            return NO;
+        }
+        
+        for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:directoryPath error:nil]) {
+            NSString *fullFilePath = [directoryPath stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:fullFilePath error:nil];
+        }
+    }
+    return YES;
+}
+
++ (long long)directorySizeAtPath:(NSString *)directoryPath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:filePath isDirectory:&isDirectory]) {
+    if (![fileManager fileExistsAtPath:directoryPath isDirectory:&isDirectory] || !isDirectory) {
         return 0;
     }
     
-    if (!isDirectory) {
-        return [self sizeAtPath:filePath];
-    }
-    
     long long size = 0;
-    for (NSString *subFilePath in [fileManager enumeratorAtPath:filePath]) {
-        NSString *fullFilePath = [filePath stringByAppendingPathComponent:subFilePath];
+    for (NSString *subFilePath in [fileManager enumeratorAtPath:directoryPath]) {
+        NSString *fullFilePath = [directoryPath stringByAppendingPathComponent:subFilePath];
         if ([fileManager fileExistsAtPath:fullFilePath isDirectory:&isDirectory] && !isDirectory) {
-            size += [self sizeAtPath:fullFilePath];
+            size += [self fileSizeAtPath:fullFilePath];
         }
     }
     return size;
 }
 
-+ (long long)sizeAtPath:(NSString *)filePath {
++ (long long)fileSizeAtPath:(NSString *)filePath {
     struct stat st;
     if (lstat([filePath cStringUsingEncoding:NSUTF8StringEncoding], &st) == 0) {
         return st.st_size;

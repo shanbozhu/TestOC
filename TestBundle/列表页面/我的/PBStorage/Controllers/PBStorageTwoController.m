@@ -34,7 +34,7 @@
     // 获取指定路径下的所有文件路径,包括子目录中的文件路径
     for (NSString *filePath in [[NSFileManager defaultManager] enumeratorAtPath:[PBSandBox path4Home]]) {
         NSString *fullfilePath = [[PBSandBox path4Home] stringByAppendingPathComponent:filePath];
-        NSLog(@"fullfilePath = %@", [PBSandBox fileInfosAboutContentsOfDirectoryAtPath:fullfilePath]);
+        NSLog(@"fullfilePath = %@", [PBSandBox fileOrDirectoryInfosAboutContentsOfDirectoryAtPath:fullfilePath]);
     }
     
 //    // 获取指定路径下的所有文件路径
