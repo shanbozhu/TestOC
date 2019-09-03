@@ -29,19 +29,40 @@ typedef enum : NSUInteger {
 
 @interface PBSandBox : NSObject
 
-// AD9F89C9-B544-4A63-B6D8-69B8A61BD54F
+/**
+ 应用沙盒根目录
+ 
+ @return AD9F89C9-B544-4A63-B6D8-69B8A61BD54F
+ */
 + (NSString *)path4Home;
 
-// /Documents
+/**
+ 应用运行时生成的需要持久化的数据，iTunes会自动备份该目录
+ 
+ @return /Documents
+ */
 + (NSString *)path4Documents;
 
-// /Library
+/**
+ 应用的默认设置和其他状态信息，iTunes会自动备份该目录
+ Library/Preferences：保存应用的所有偏好设置
+ 
+ @return /Library
+ */
 + (NSString *)path4Library;
 
-// /Library/Caches
+/**
+ 应用缓存文件，iTunes不会备份该目录
+ 
+ @return /Library/Caches
+ */
 + (NSString *)path4LibraryCaches;
 
-// /tmp/
+/**
+ 应用临时文件，iTunes不会备份该目录。该目录下的东西随时有可能被系统清理掉
+ 
+ @return /tmp/
+ */
 + (NSString *)path4Tmp;
 
 /**
