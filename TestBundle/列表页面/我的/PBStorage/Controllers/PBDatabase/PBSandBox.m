@@ -39,9 +39,6 @@
     return NSTemporaryDirectory();
 }
 
-/**
- 获取指定路径[目录]下的所有[文件]信息
- */
 + (NSArray *)fileInfosAboutContentsOfDirectoryAtPath:(NSString *)directory {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -65,9 +62,22 @@
     return sortFileInfoArr;
 }
 
-/**
- 获取指定路径的[文件]信息
- */
++ (BOOL)deleteContentsOfDirectoryAtPath:(NSString *)directory {
+    @autoreleasepool {
+        BOOL isDirectory = NO;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory] || !isDirectory) {
+            return NO;
+        }
+        
+        for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:directory error:nil]) {
+            NSString *fullFilePath = [directory stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:fullFilePath error:nil];
+        }
+    }
+    return YES;
+}
+
 + (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath {
     struct stat st;
     if (lstat([filePath cStringUsingEncoding:NSUTF8StringEncoding], &st) == 0) {
@@ -86,9 +96,6 @@
     return nil;
 }
 
-/**
- 获取指定路径的[文件]大小
- */
 + (long long)fileSizeAtPath:(NSString *)filePath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];

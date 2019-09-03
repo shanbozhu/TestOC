@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
 @interface PBSandBoxFileInfo : NSObject
 
 @property (nonatomic, assign) long long modifyTime; //!< 文件修改时间,单位s
-@property (nonatomic, assign) long long size; //!< 文件体积
+@property (nonatomic, assign) long long size; //!< 文件体积,单位B
 @property (nonatomic, copy) NSString *filePath; //!< 文件路径
 @property (nonatomic, assign) PBSandBoxFileType fileType; //!< 文件类型
 
@@ -44,13 +44,35 @@ typedef enum : NSUInteger {
 + (NSString *)path4Tmp;
 
 /**
- 获取指定路径下的文件信息
+ 获取指定路径[目录]下的所有[文件]信息
+ 
+ @param directory 目录文件的路径
+ @return 该目录文件下的所有文件的信息
+ */
++ (NSArray *)fileInfosAboutContentsOfDirectoryAtPath:(NSString *)directory;
+
+/**
+ 删除指定路径[目录]下的所有[文件]
+ 
+ @param directory 目录文件的路径
+ @return 删除成功返回YES,否则,返回NO
+ */
++ (BOOL)deleteContentsOfDirectoryAtPath:(NSString *)directory;
+
+/**
+ 获取指定路径的[文件]信息
+ 
+ @param filePath 文件的路径
+ @return 该路径的文件信息
  */
 + (PBSandBoxFileInfo *)fileInfoAtPath:(NSString *)filePath;
 
-
-
-
-+ (NSArray *)fileInfosAboutContentsOfDirectoryAtPath:(NSString *)filePath;
+/**
+ 获取指定路径的[文件]大小
+ 
+ @param filePath 文件的路径
+ @return 该路径的文件大小,单位B
+ */
++ (long long)fileSizeAtPath:(NSString *)filePath;
 
 @end
