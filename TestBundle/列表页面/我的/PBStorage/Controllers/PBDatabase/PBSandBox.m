@@ -105,23 +105,25 @@
 + (BOOL)createFileAtPath:(NSString *)filePath {
     BOOL result = NO;
     NSError *error = nil;
-    NSString *fullFilePath = [[PBSandBox path4Home] stringByAppendingString:filePath];
-    NSString *path = [fullFilePath stringByDeletingLastPathComponent];
+    NSString *directoryPath = [filePath stringByDeletingLastPathComponent];
     
     // 自动创建父目录,不会覆盖已有目录
-    result = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    result = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
     // 无法自动创建父目录
-    result = [[NSFileManager defaultManager] createFileAtPath:fullFilePath contents:nil attributes:nil];
+    result = [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
     return result;
 }
 
 + (BOOL)createDirectoryAtPath:(NSString *)directoryPath {
     BOOL result = NO;
     NSError *error = nil;
-    NSString *fullFilePath = [[PBSandBox path4Home] stringByAppendingString:directoryPath];
     
-    result = [[NSFileManager defaultManager] createDirectoryAtPath:fullFilePath withIntermediateDirectories:YES attributes:nil error:&error];
+    result = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
     return result;
+}
+
++ (NSString *)absolutePathWithRelativePath:(NSString *)relativePath {
+    return [[PBSandBox path4Home] stringByAppendingString:relativePath];
 }
 
 #pragma mark - 沙盒目录
