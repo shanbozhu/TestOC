@@ -19,6 +19,7 @@
 
 @end
 
+// 属性列表文件的相对路径
 #define DATAPLISTFILEPATH @"/Documents/myplist.plist"
 
 static id sharedDataPList = nil;
