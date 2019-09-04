@@ -15,9 +15,11 @@
     pthread_rwlock_t _lock;
 }
 
+@property (nonatomic, copy) NSString *filePath;
+
 @end
 
-#define DATAPLISTFILENAME @"myplist.plist"
+#define DATAPLISTFILENAME @"/Documents/myplist.plist"
 
 static id sharedDataPList = nil;
 
@@ -45,6 +47,10 @@ static id sharedDataPList = nil;
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
         NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
+        
+        // 文件路径
+        self.filePath = [PBSandBox absolutePathWithRelativePath:DATAPLISTFILENAME];
+        [PBSandBox createFileAtPath:self.filePath];
     }
     return self;
 }
@@ -53,13 +59,7 @@ static id sharedDataPList = nil;
 - (void)setValue:(id)value forKey:(NSString *)key {
     pthread_rwlock_wrlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
     if (dict == nil) {
         dict = [NSMutableDictionary dictionary];
     }
@@ -67,7 +67,7 @@ static id sharedDataPList = nil;
     NSData *data = [PBDatabase dataWithObject:value andKey:key];
     [dict setValue:data forKey:key];
     
-    [dict writeToFile:filePath atomically:YES];
+    [dict writeToFile:self.filePath atomically:YES];
     
     pthread_rwlock_unlock(&_lock);
 }
@@ -76,17 +76,11 @@ static id sharedDataPList = nil;
 - (void)removeObjectForKey:(NSString *)defaultName {
     pthread_rwlock_wrlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
     
     [dict removeObjectForKey:defaultName];
     
-    [dict writeToFile:filePath atomically:YES];
+    [dict writeToFile:self.filePath atomically:YES];
     
     pthread_rwlock_unlock(&_lock);
 }
@@ -95,13 +89,7 @@ static id sharedDataPList = nil;
 - (id)valueForKey:(NSString *)key {
     pthread_rwlock_rdlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
     NSData *data = dict[key];
     
     pthread_rwlock_unlock(&_lock);
@@ -112,18 +100,12 @@ static id sharedDataPList = nil;
 // 删除所有数据
 - (void)removeAllObjects {
     pthread_rwlock_wrlock(&_lock);
-    
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
     
     [dict removeAllObjects];
     
-    [dict writeToFile:filePath atomically:YES];
+    [dict writeToFile:self.filePath atomically:YES];
 
     pthread_rwlock_unlock(&_lock);
 }
