@@ -120,7 +120,6 @@
     NSError *error = nil;
     NSString *fullFilePath = [[PBSandBox path4Home] stringByAppendingString:directoryPath];
     
-    // 自动创建父目录,不会覆盖已有目录
     result = [[NSFileManager defaultManager] createDirectoryAtPath:fullFilePath withIntermediateDirectories:YES attributes:nil error:&error];
     return result;
 }
