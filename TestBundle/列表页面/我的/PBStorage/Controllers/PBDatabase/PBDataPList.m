@@ -17,7 +17,7 @@
 
 @end
 
-#define DATAPLISTFILENAME @"/myplist.plist"
+#define DATAPLISTFILENAME @"myplist.plist"
 
 static id sharedDataPList = nil;
 
@@ -54,7 +54,7 @@ static id sharedDataPList = nil;
     pthread_rwlock_wrlock(&_lock);
     
     // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATAPLISTFILENAME];
+    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
     if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
     }
@@ -77,7 +77,7 @@ static id sharedDataPList = nil;
     pthread_rwlock_wrlock(&_lock);
     
     // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATAPLISTFILENAME];
+    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
     if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
     }
@@ -96,7 +96,7 @@ static id sharedDataPList = nil;
     pthread_rwlock_rdlock(&_lock);
     
     // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATAPLISTFILENAME];
+    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
     if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
     }
@@ -114,7 +114,7 @@ static id sharedDataPList = nil;
     pthread_rwlock_wrlock(&_lock);
     
     // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATAPLISTFILENAME];
+    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:DATAPLISTFILENAME];
     if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
     }
