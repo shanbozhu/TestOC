@@ -19,26 +19,7 @@
 
 @implementation PBSandBox
 
-+ (NSString *)path4Home {
-    return NSHomeDirectory();
-}
-
-+ (NSString *)path4Documents {
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-}
-
-+ (NSString *)path4Library {
-    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)lastObject];
-}
-
-+ (NSString *)path4LibraryCaches {
-    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
-}
-
-+ (NSString *)path4Tmp {
-    return NSTemporaryDirectory();
-}
-
+#pragma mark - 沙盒文件操作
 + (NSArray *)fileOrDirectoryInfosAboutContentsOfDirectoryAtPath:(NSString *)directoryPath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -119,6 +100,50 @@
         return st.st_size;
     }
     return 0;
+}
+
++ (BOOL)createFileAtPath:(NSString *)filePath {
+    BOOL result = NO;
+    NSError *error = nil;
+    NSString *fullFilePath = [[PBSandBox path4Home] stringByAppendingString:filePath];
+    NSString *path = [fullFilePath stringByDeletingLastPathComponent];
+    
+    // 自动创建父目录,不会覆盖已有目录
+    result = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    // 无法自动创建父目录
+    result = [[NSFileManager defaultManager] createFileAtPath:fullFilePath contents:nil attributes:nil];
+    return result;
+}
+
++ (BOOL)createDirectoryAtPath:(NSString *)directoryPath {
+    BOOL result = NO;
+    NSError *error = nil;
+    NSString *fullFilePath = [[PBSandBox path4Home] stringByAppendingString:directoryPath];
+    
+    // 自动创建父目录,不会覆盖已有目录
+    result = [[NSFileManager defaultManager] createDirectoryAtPath:fullFilePath withIntermediateDirectories:YES attributes:nil error:&error];
+    return result;
+}
+
+#pragma mark - 沙盒目录
++ (NSString *)path4Home {
+    return NSHomeDirectory();
+}
+
++ (NSString *)path4Documents {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+}
+
++ (NSString *)path4Library {
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)lastObject];
+}
+
++ (NSString *)path4LibraryCaches {
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+}
+
++ (NSString *)path4Tmp {
+    return NSTemporaryDirectory();
 }
 
 @end

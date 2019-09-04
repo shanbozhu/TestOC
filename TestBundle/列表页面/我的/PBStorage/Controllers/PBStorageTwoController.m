@@ -24,24 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
-//    NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Library]);
-//    NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4LibraryCaches]);
-//    NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Documents]);
-//    NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Tmp]);
-    
-    // 获取指定路径下的所有文件路径,包括子目录中的文件路径
-    for (NSString *filePath in [[NSFileManager defaultManager] enumeratorAtPath:[PBSandBox path4Home]]) {
-        NSString *fullfilePath = [[PBSandBox path4Home] stringByAppendingPathComponent:filePath];
-        NSLog(@"fullfilePath = %@", [PBSandBox fileOrDirectoryInfosAboutContentsOfDirectoryAtPath:fullfilePath]);
-    }
-    
-//    // 获取指定路径下的所有文件路径
-//    for (NSString *fileName in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[PBSandBox path4Home] error:nil]) {
-//        NSString *filePath = [[PBSandBox path4Home] stringByAppendingPathComponent:fileName];
-//        NSLog(@"fileName = %lld", [PBSandBox fileSizeAtPath:filePath]);
-//    }
 }
 
 @end

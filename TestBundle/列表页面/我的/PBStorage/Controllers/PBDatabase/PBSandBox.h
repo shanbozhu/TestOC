@@ -105,4 +105,20 @@ typedef enum : NSUInteger {
  */
 + (long long)fileSizeAtPath:(NSString *)filePath;
 
+/**
+ 创建指定路径的[文件]
+ 
+ @param filePath 文件的路径,值为例如: @"/Library/Caches/default_zsb/zsb/zsb.plist"
+ @return 指定路径的文件创建成功返回YES,否则,返回NO
+ */
++ (BOOL)createFileAtPath:(NSString *)filePath;
+
+/**
+ 创建指定路径的[目录]
+ 
+ @param directoryPath 目录的路径,值为例如: @"/Library/Caches/default_zsb/zsb"
+ @return 指定路径的目录创建成功返回YES,否则,返回NO
+ */
++ (BOOL)createDirectoryAtPath:(NSString *)directoryPath;
+
 @end
