@@ -19,7 +19,7 @@
 
 @end
 
-#define DATAPLISTFILENAME @"/Documents/myplist.plist"
+#define DATAPLISTFILEPATH @"/Documents/myplist.plist"
 
 static id sharedDataPList = nil;
 
@@ -48,7 +48,7 @@ static id sharedDataPList = nil;
         pthread_rwlock_init(&_lock, NULL);
         
         // 文件路径
-        self.filePath = [PBSandBox absolutePathWithRelativePath:DATAPLISTFILENAME];
+        self.filePath = [PBSandBox absolutePathWithRelativePath:DATAPLISTFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
     }
     return self;
