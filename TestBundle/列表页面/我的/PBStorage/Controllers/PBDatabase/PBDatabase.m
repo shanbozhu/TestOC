@@ -75,7 +75,7 @@ static id sharedDatabase = nil;
         }
     }
     
-    if (![db executeUpdate:@"insert into myTable(key, value) values(?, ?)", key, [PBArchiver dataWithObject:value andKey:key]]) { //字段是二进制类型必须使用?占位
+    if (![db executeUpdate:@"insert into myTable(key, value) values(?, ?)", key, [PBArchiver dataWithObject:value key:key]]) { //字段是二进制类型必须使用?占位
         NSLog(@"增加表中的一条或多条记录失败");
     }
     
@@ -133,7 +133,7 @@ static id sharedDatabase = nil;
     
     pthread_rwlock_unlock(&_lock);
     
-    return [PBArchiver objectWithData:value andKey:key];
+    return [PBArchiver objectWithData:value key:key];
 }
 
 // 删除所有数据

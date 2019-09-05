@@ -47,13 +47,13 @@
     testText.name = @"helloworld";
     testText.age = 1000;
     
-    NSData *data = [PBArchiver dataWithObject:testText andKey:@"testText"];
+    NSData *data = [PBArchiver dataWithObject:testText key:@"testText"];
     [[NSUserDefaults standardUserDefaults]setValue:data forKey:@"testText"];
 }
 
 - (void)selectBtn:(UIButton *)btn {
     NSData *data = [[NSUserDefaults standardUserDefaults]valueForKey:@"testText"];
-    PBStorageText *testText = [PBArchiver objectWithData:data andKey:@"testText"];
+    PBStorageText *testText = [PBArchiver objectWithData:data key:@"testText"];
     NSLog(@"testText.name = %@, testText.age = %ld", testText.name, testText.age);
 }
 

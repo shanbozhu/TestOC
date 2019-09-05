@@ -53,8 +53,7 @@
 }
 
 #pragma mark - [归解档]操作
-// 归档:将任意类型对象归档为二进制数据
-+ (NSData *)dataWithObject:(id)obj andKey:(NSString *)key {
++ (NSData *)dataWithObject:(id)obj key:(NSString *)key {
     NSMutableData *data = [NSMutableData data];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
     [archiver encodeObject:obj forKey:key];
@@ -62,8 +61,7 @@
     return data;
 }
 
-// 解档:将二进制数据解档为任意类型对象
-+ (id)objectWithData:(NSData *)data andKey:(NSString *)key {
++ (id)objectWithData:(NSData *)data key:(NSString *)key {
     if (!data) {
         return nil;
     }
@@ -73,8 +71,7 @@
     return obj;
 }
 
-// 归档:将多个任意类型对象归档为二进制数据
-+ (NSData *)dataWithObjects:(NSArray *)objs andKeys:(NSArray *)keys {
++ (NSData *)dataWithObjects:(NSArray *)objs keys:(NSArray *)keys {
     if (keys.count != objs.count) {
         return nil;
     }
@@ -87,8 +84,7 @@
     return data;
 }
 
-// 解档:将二进制数据解档为多个任意类型对象
-+ (NSArray *)objectsWithData:(NSData *)data andKeys:(NSArray *)keys {
++ (NSArray *)objectsWithData:(NSData *)data keys:(NSArray *)keys {
     if (!data) {
         return nil;
     }

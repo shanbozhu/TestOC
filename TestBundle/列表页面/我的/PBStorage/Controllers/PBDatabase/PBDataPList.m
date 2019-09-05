@@ -61,7 +61,7 @@ static id sharedDataPList = nil;
     if (dict == nil) {
         dict = [NSMutableDictionary dictionary];
     }
-    NSData *data = [PBArchiver dataWithObject:value andKey:key];
+    NSData *data = [PBArchiver dataWithObject:value key:key];
     [dict setValue:data forKey:key];
     [dict writeToFile:self.filePath atomically:YES];
     pthread_rwlock_unlock(&_lock);
@@ -82,7 +82,7 @@ static id sharedDataPList = nil;
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
     NSData *data = dict[key];
     pthread_rwlock_unlock(&_lock);
-    return [PBArchiver objectWithData:data andKey:key];
+    return [PBArchiver objectWithData:data key:key];
 }
 
 // 删除所有数据

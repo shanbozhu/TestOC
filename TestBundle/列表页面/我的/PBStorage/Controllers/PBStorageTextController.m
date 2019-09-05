@@ -46,19 +46,8 @@
     NSArray *arr = @[testText, testText];
     NSDictionary *dic = @{@"testText":testText, @"name":@"helloworld", @"testTextArr":@[testText, testText]};
     
-//    NSMutableData *data = [NSMutableData data];
-//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
-//
-//    [archiver encodeObject:str forKey:@"str"];
-//    [archiver encodeObject:arr forKey:@"arr"];
-//    [archiver encodeObject:dic forKey:@"dic"];
-//
-//    [archiver finishEncoding];
+    NSData *data = [PBArchiver dataWithObjects:@[str, arr, dic] keys:@[@"str", @"arr", @"dic"]];
     
-    NSData *data = [PBArchiver dataWithObjects:@[str, arr, dic] andKeys:@[@"str", @"arr", @"dic"]];
-    
-    NSMutableDictionary *dict ;
-    [dict setValuesForKeysWithDictionary:@{}];
     // 文件路径
     NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:@"myar.ar"];
     self.filePath = filePath;
@@ -74,15 +63,7 @@
     // 从本地文件读取归档数据
     NSMutableData *data = [NSMutableData dataWithContentsOfFile:self.filePath];
     
-//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
-//
-//    NSString *str = [unarchiver decodeObjectForKey:@"str"];
-//    NSArray *arr = [unarchiver decodeObjectForKey:@"arr"];
-//    NSDictionary *dic = [unarchiver decodeObjectForKey:@"dic"];
-//
-//    [unarchiver finishDecoding];
-    
-    NSArray *objs = [PBArchiver objectsWithData:data andKeys:@[@"str", @"arr", @"dic"]];
+    NSArray *objs = [PBArchiver objectsWithData:data keys:@[@"str", @"arr", @"dic"]];
     NSString *str = objs[0];
     NSArray *arr = objs[1];
     NSDictionary *dic = objs[2];
