@@ -78,11 +78,8 @@
     
     {
         // 文件路径
-        NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:@"/test.db"];
-        self.filePath = filePath;
-        if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-            [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-        }
+        self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/test.db"];
+        [PBSandBox createFileAtPath:self.filePath];
         
         // 创建表
         [self createTable];
