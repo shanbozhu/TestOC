@@ -8,11 +8,6 @@
 
 #import "PBStorageText.h"
 
-
-@interface PBStorageText ()
-
-@end
-
 @implementation PBStorageText
 
 @end
