@@ -15,6 +15,8 @@
     pthread_rwlock_t _lock;
 }
 
+@property (nonatomic, copy) NSString *filePath;
+
 @end
 
 #define DATABASEFILENAME @"/mydb.db"
@@ -44,7 +46,9 @@ static id sharedDatabase = nil;
 - (id)init {
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
-        NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
+        // 文件路径
+        self.filePath = [PBSandBox absolutePathWithRelativePath:DATABASEFILENAME];
+        [PBSandBox createFileAtPath:self.filePath];
     }
     return self;
 }
@@ -53,14 +57,8 @@ static id sharedDatabase = nil;
 - (void)setValue:(id)value forKey:(NSString *)key {
     pthread_rwlock_wrlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATABASEFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
     // 连接数据库文件
-    FMDatabase *db = [FMDatabase databaseWithPath:filePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:self.filePath];
     
     if (![db open]) {
         NSLog(@"打开数据库文件失败");
@@ -92,14 +90,8 @@ static id sharedDatabase = nil;
 - (void)removeObjectForKey:(NSString *)defaultName {
     pthread_rwlock_wrlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATABASEFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
     // 连接数据库文件
-    FMDatabase *db = [FMDatabase databaseWithPath:filePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:self.filePath];
     
     if (![db open]) {
         NSLog(@"打开数据库文件失败");
@@ -120,14 +112,8 @@ static id sharedDatabase = nil;
 - (id)valueForKey:(NSString *)key {
     pthread_rwlock_rdlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATABASEFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
     // 连接数据库文件
-    FMDatabase *db = [FMDatabase databaseWithPath:filePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:self.filePath];
     
     if (![db open]) {
         NSLog(@"打开数据库文件失败");
@@ -154,14 +140,8 @@ static id sharedDatabase = nil;
 - (void)removeAllObjects {
     pthread_rwlock_wrlock(&_lock);
     
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingString:DATABASEFILENAME];
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
     // 连接数据库文件
-    FMDatabase *db = [FMDatabase databaseWithPath:filePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:self.filePath];
     
     if (![db open]) {
         NSLog(@"打开数据库文件失败");

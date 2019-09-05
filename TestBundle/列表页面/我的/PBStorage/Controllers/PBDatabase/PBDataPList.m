@@ -47,7 +47,6 @@ static id sharedDataPList = nil;
 - (id)init {
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
-        
         // 文件路径
         self.filePath = [PBSandBox absolutePathWithRelativePath:DATAPLISTFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
