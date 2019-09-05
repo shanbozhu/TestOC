@@ -19,7 +19,7 @@
 
 @end
 
-#define DATABASEFILENAME @"/mydb.db"
+#define DATABASEFILEPATH @"/Documents/mydb.db"
 
 static id sharedDatabase = nil;
 
@@ -47,7 +47,7 @@ static id sharedDatabase = nil;
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
         // 文件路径
-        self.filePath = [PBSandBox absolutePathWithRelativePath:DATABASEFILENAME];
+        self.filePath = [PBSandBox absolutePathWithRelativePath:DATABASEFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
     }
     return self;
