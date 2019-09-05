@@ -46,7 +46,7 @@ static id sharedDatabase = nil;
 - (id)init {
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
-        // 文件路径
+        // 指定路径创建文件
         self.filePath = [PBSandBox absolutePathWithRelativePath:DATABASEFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
     }

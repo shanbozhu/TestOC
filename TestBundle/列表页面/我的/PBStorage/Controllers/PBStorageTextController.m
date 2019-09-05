@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 文件路径
+    // 指定路径创建文件
     self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/myar.ar"];
     [PBSandBox createFileAtPath:self.filePath];
     
