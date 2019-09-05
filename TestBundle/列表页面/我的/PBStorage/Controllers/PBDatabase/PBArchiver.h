@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- 继承该类的子类都能够自动归档
+ 继承该类的子类都能够自动支持归解档操作
  */
 @interface PBArchiver : NSObject<NSCoding>
 
