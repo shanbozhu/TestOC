@@ -103,14 +103,16 @@
 }
 
 + (BOOL)createFileAtPath:(NSString *)filePath {
-    BOOL result = NO;
+    BOOL result = NO, isDirectory = NO;
     NSError *error = nil;
     NSString *directoryPath = [filePath stringByDeletingLastPathComponent];
     
-    // 自动创建父目录,不会覆盖已有目录
-    result = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
-    // 无法自动创建父目录
-    result = [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
+    // 自动创建父目录,不会覆盖已有目录,最后一个路径元素有同名文件会创建失败
+    [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
+    // 无法自动创建父目录,会覆盖已有文件,最后一个路径元素有同名目录会创建失败
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory]) {
+        result = [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
+    }
     return result;
 }
 
