@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 文件路径
+    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/mytext"];
+    
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:addBtn];
     addBtn.frame = CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width-40, 40);
@@ -36,15 +39,8 @@
 }
 
 - (void)addBtn:(UIButton *)btn {
-    // 文件路径
-    NSString *filePath = [[PBSandBox path4Documents]stringByAppendingPathComponent:@"mytext"];
-    self.filePath = filePath;
-    if (![[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        [[NSFileManager defaultManager]createFileAtPath:filePath contents:nil attributes:nil];
-    }
-    
     NSString *str = @"helloworldhelloworld";
-    [str writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil]; // 在文件中以二进制形式存储
+    [str writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil]; // 在文件中以二进制形式存储
 }
 
 - (void)selectBtn:(UIButton *)btn {
