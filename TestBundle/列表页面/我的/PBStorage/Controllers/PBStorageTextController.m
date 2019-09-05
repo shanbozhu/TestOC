@@ -23,7 +23,8 @@
     [super viewDidLoad];
     
     // 文件路径
-    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/myar.ar"];
+    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/myar.ar"];
+    [PBSandBox createFileAtPath:self.filePath];
     
     UIButton *archiverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:archiverBtn];

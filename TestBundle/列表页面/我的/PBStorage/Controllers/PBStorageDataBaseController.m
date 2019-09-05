@@ -78,7 +78,7 @@
     
     {
         // 文件路径
-        self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/test.db"];
+        self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/test.db"];
         [PBSandBox createFileAtPath:self.filePath];
         
         // 创建表

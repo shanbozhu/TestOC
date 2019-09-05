@@ -85,7 +85,7 @@
 }
 
 + (NSArray *)objectsWithData:(NSData *)data keys:(NSArray *)keys {
-    if (!data) {
+    if (!data || data.length == 0) {
         return nil;
     }
     NSMutableArray *objs = [NSMutableArray array];

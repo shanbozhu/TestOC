@@ -21,7 +21,8 @@
     [super viewDidLoad];
     
     // 文件路径
-    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/mytext"];
+    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/mytext"];
+    [PBSandBox createFileAtPath:self.filePath];
     
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:addBtn];

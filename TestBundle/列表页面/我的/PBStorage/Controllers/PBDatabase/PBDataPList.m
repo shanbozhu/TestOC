@@ -20,7 +20,7 @@
 @end
 
 // 属性列表文件的相对路径
-#define DATAPLISTFILEPATH @"/Documents/myplist.plist"
+#define DATAPLISTFILEPATH @"/Documents/PBStorage/myplist.plist"
 
 static id sharedDataPList = nil;
 
@@ -50,6 +50,7 @@ static id sharedDataPList = nil;
         pthread_rwlock_init(&_lock, NULL);
         // 文件路径
         self.filePath = [PBSandBox absolutePathWithRelativePath:DATAPLISTFILEPATH];
+        [PBSandBox createFileAtPath:self.filePath];
     }
     return self;
 }
@@ -63,7 +64,7 @@ static id sharedDataPList = nil;
     }
     NSData *data = [PBArchiver dataWithObject:value key:key];
     [dict setValue:data forKey:key];
-    [dict writeToFile:self.filePath atomically:YES]; // 自动创建父目录,不会覆盖已有目录
+    [dict writeToFile:self.filePath atomically:YES]; // 无法自动创建父目录
     pthread_rwlock_unlock(&_lock);
 }
 

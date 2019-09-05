@@ -19,7 +19,7 @@
 
 @end
 
-#define DATABASEFILEPATH @"/Documents/mydb.db"
+#define DATABASEFILEPATH @"/Documents/PBStorage/mydb.db"
 
 static id sharedDatabase = nil;
 
