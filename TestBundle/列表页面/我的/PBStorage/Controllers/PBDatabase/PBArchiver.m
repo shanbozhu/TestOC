@@ -73,4 +73,33 @@
     return obj;
 }
 
+// 归档:将多个任意类型对象归档为二进制数据
++ (NSData *)dataWithObjects:(NSArray *)objs andKeys:(NSArray *)keys {
+    if (keys.count != objs.count) {
+        return nil;
+    }
+    NSMutableData *data = [NSMutableData data];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+    for (int i = 0; i < keys.count; i++) {
+        [archiver encodeObject:objs[i] forKey:keys[i]];
+    }
+    [archiver finishEncoding];
+    return data;
+}
+
+// 解档:将二进制数据解档为多个任意类型对象
++ (NSArray *)objectsWithData:(NSData *)data andKeys:(NSArray *)keys {
+    if (!data) {
+        return nil;
+    }
+    NSMutableArray *objs = [NSMutableArray array];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+    for (int i = 0; i < keys.count; i++) {
+        id obj = [unarchiver decodeObjectForKey:keys[i]];
+        [objs addObject:obj];
+    }
+    [unarchiver finishDecoding];
+    return objs;
+}
+
 @end

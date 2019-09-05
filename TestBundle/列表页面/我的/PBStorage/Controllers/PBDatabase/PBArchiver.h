@@ -40,4 +40,7 @@
  */
 + (id)objectWithData:(NSData *)data andKey:(NSString *)key;
 
++ (NSData *)dataWithObjects:(NSArray *)objs andKeys:(NSArray *)keys;
++ (NSArray *)objectsWithData:(NSData *)data andKeys:(NSArray *)keys;
+
 @end
