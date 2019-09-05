@@ -77,7 +77,7 @@ static id sharedDatabase = nil;
         }
     }
     
-    if (![db executeUpdate:@"insert into myTable(key, value) values(?, ?)", key, [self.class dataWithObject:value andKey:key]]) { //字段是二进制类型必须使用?占位
+    if (![db executeUpdate:@"insert into myTable(key, value) values(?, ?)", key, [PBArchiver dataWithObject:value andKey:key]]) { //字段是二进制类型必须使用?占位
         NSLog(@"增加表中的一条或多条记录失败");
     }
     
@@ -147,7 +147,7 @@ static id sharedDatabase = nil;
     
     pthread_rwlock_unlock(&_lock);
     
-    return [self.class objectWithData:value andKey:key];
+    return [PBArchiver objectWithData:value andKey:key];
 }
 
 // 删除所有数据
@@ -176,27 +176,6 @@ static id sharedDatabase = nil;
     }
     
     pthread_rwlock_unlock(&_lock);
-}
-
-// 归档:将任意类型对象归档为二进制数据
-+ (NSData *)dataWithObject:(id)obj andKey:(NSString *)key {
-    NSMutableData *data = [NSMutableData data];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
-    [archiver encodeObject:obj forKey:key];
-    [archiver finishEncoding];
-    return data;
-}
-
-// 解档:将二进制数据解档为任意类型对象
-+ (id)objectWithData:(NSData *)data andKey:(NSString *)key {
-    if (data == nil) {
-        return nil;
-    }
-    
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
-    id obj = [unarchiver decodeObjectForKey:key];
-    [unarchiver finishDecoding];
-    return obj;
 }
 
 - (void)dealloc {

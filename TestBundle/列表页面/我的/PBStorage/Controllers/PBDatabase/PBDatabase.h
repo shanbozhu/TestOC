@@ -20,7 +20,4 @@
 - (id)valueForKey:(NSString *)key;
 - (void)removeAllObjects;
 
-+ (NSData *)dataWithObject:(id)obj andKey:(NSString *)key;
-+ (id)objectWithData:(NSData *)data andKey:(NSString *)key;
-
 @end

@@ -51,4 +51,25 @@
     return self;
 }
 
+// 归档:将任意类型对象归档为二进制数据
++ (NSData *)dataWithObject:(id)obj andKey:(NSString *)key {
+    NSMutableData *data = [NSMutableData data];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+    [archiver encodeObject:obj forKey:key];
+    [archiver finishEncoding];
+    return data;
+}
+
+// 解档:将二进制数据解档为任意类型对象
++ (id)objectWithData:(NSData *)data andKey:(NSString *)key {
+    if (data == nil) {
+        return nil;
+    }
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+    id obj = [unarchiver decodeObjectForKey:key];
+    [unarchiver finishDecoding];
+    return obj;
+}
+
 @end

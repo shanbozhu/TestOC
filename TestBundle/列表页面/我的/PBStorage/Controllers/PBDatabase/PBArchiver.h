@@ -8,6 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 继承该类的子类都能够自动归档
+ */
 @interface PBArchiver : NSObject<NSCoding>
+
+/**
+ 归档:将任意类型对象归档为二进制数据
+ 
+ @param obj 任意类型对象
+ @param key 任意类型对象对应的key值
+ @return 归档后的二进制数据
+ */
++ (NSData *)dataWithObject:(id)obj andKey:(NSString *)key;
+
+/**
+ 解档:将二进制数据解档为任意类型对象
+ 
+ @param data 二进制数据
+ @param key 任意类型对象对应的key值
+ @return 解档后的任意类型对象
+ */
++ (id)objectWithData:(NSData *)data andKey:(NSString *)key;
 
 @end
