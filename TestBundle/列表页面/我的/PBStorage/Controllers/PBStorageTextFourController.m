@@ -39,14 +39,13 @@
 }
 
 - (void)addBtn:(UIButton *)btn {
-    NSString *str = @"helloworldhelloworld";
-    [str writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil]; // 在文件中以二进制形式存储
+    NSString *str = @"helloworldhelloworld 字符串在文本文件中以二进制形式存储";
+    [str writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil]; // 字符串在文本文件中以二进制形式存储
 }
 
 - (void)selectBtn:(UIButton *)btn {
     NSData *data = [NSData dataWithContentsOfFile:self.filePath];
     NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    
     NSLog(@"str = %@", str);
 }
 
