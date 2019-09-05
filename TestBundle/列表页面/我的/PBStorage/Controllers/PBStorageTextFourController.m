@@ -17,15 +17,6 @@
 
 @implementation PBStorageTextFourController
 
-/**
-    归档
- *<=====>NSData
-    解档
-           NSUTF8StringEncoding          NSJSONSerialization
- NSString<======================>NSData<=====================>NSDictionary
-           NSUTF8StringEncoding          NSJSONSerialization
- */
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
