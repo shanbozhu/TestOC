@@ -59,7 +59,7 @@
 
 - (void)unArchiverBtn:(UIButton *)btn {
     // 从本地文件读取归档数据
-    NSMutableData *data = [NSMutableData dataWithContentsOfFile:self.filePath];
+    NSData *data = [NSData dataWithContentsOfFile:self.filePath];
     
     // 解档
     NSArray *objs = [PBArchiver objectsWithData:data keys:@[@"str", @"arr", @"dic"]];

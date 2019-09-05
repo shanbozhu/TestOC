@@ -33,7 +33,7 @@
     
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    self.objs = @[@"NSKeyedArchiver", @"NSUserDefaults", @"plist(向文本文件中存储数组或字典)", @"plist多线程", @"textfile(向文本文件中存储字符串)"];
+    self.objs = @[@"NSKeyedArchiver(向文本文件中存储二进制)", @"NSUserDefaults", @"plist(向文本文件中存储字典或数组)", @"plist多线程", @"textfile(向文本文件中存储字符串)"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -52,7 +52,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
     }
     cell.textLabel.text = self.objs[indexPath.row];
     
