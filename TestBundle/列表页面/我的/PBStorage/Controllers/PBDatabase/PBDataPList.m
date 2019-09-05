@@ -26,6 +26,7 @@ static id sharedDataPList = nil;
 
 @implementation PBDataPList
 
+#pragma mark - 单例
 + (id)sharedDataPList {
     if (sharedDataPList == nil) {
         static dispatch_once_t predicate;
@@ -54,7 +55,7 @@ static id sharedDataPList = nil;
     return self;
 }
 
-// 增加
+#pragma mark - 操作
 - (void)setValue:(id)value forKey:(NSString *)key {
     pthread_rwlock_wrlock(&_lock);
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
@@ -67,7 +68,6 @@ static id sharedDataPList = nil;
     pthread_rwlock_unlock(&_lock);
 }
 
-// 删除
 - (void)removeObjectForKey:(NSString *)defaultName {
     pthread_rwlock_wrlock(&_lock);
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
@@ -76,7 +76,6 @@ static id sharedDataPList = nil;
     pthread_rwlock_unlock(&_lock);
 }
 
-// 查找
 - (id)valueForKey:(NSString *)key {
     pthread_rwlock_rdlock(&_lock);
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
@@ -85,7 +84,6 @@ static id sharedDataPList = nil;
     return [PBArchiver objectWithData:data key:key];
 }
 
-// 删除所有数据
 - (void)removeAllObjects {
     pthread_rwlock_wrlock(&_lock);
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
