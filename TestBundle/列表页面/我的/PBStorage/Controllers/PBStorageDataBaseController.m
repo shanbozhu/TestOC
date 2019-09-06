@@ -25,19 +25,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
     
     UIScrollView *scrollView = [[UIScrollView alloc]init];
     [self.view addSubview:scrollView];
     scrollView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    
     for (int i = 0;  i < 8; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [scrollView addSubview:btn];
         btn.frame = CGRectMake(20, 20+(40+20)*i, [UIScreen mainScreen].bounds.size.width-40, 40);
         btn.backgroundColor = [UIColor lightGrayColor];
-        
         if (i == 0) {
             [btn setTitle:@"insert(增)" forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(insert:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,7 +61,6 @@
             [btn addTarget:self action:@selector(drop:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
-    
     if (CGRectGetMaxY([[scrollView.subviews lastObject] frame]) > [UIScreen mainScreen].bounds.size.height) {
         scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY([[scrollView.subviews lastObject] frame]));
     }
@@ -94,7 +90,7 @@
     }
     
     if ([db executeUpdate:@"create table if not exists students(sid TEXT, name TEXT)"]) {
-        NSLog(@"在数据库文件中创建表成功"); //表名为students,含有两个表字段分别为sid和name
+        NSLog(@"在数据库文件中创建表成功"); // 表名为students,含有两个表字段分别为sid和name
     }
     
     if (![db close]) {
