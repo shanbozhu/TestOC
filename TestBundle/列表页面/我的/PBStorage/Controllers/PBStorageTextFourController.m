@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     // 指定路径创建文件
-    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/mytext"];
+    self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageText.txt"];
     [PBSandBox createFileAtPath:self.filePath];
     
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -40,8 +40,8 @@
 }
 
 - (void)addBtn:(UIButton *)btn {
-    NSString *str = @"helloworldhelloworld 字符串在文本文件中以二进制形式存储";
-    [str writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil]; // 字符串在文本文件中以二进制形式存储
+    NSString *str = @"helloworldhelloworld";
+    [str writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (void)selectBtn:(UIButton *)btn {

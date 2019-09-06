@@ -20,7 +20,7 @@
 @end
 
 // 属性列表文件的相对路径
-#define DATAPLISTFILEPATH @"/Documents/PBStorage/myplist.plist"
+#define DATAPLISTFILEPATH @"/Documents/PBStorage/PBStoragePlist.plist"
 
 static id sharedDataPList = nil;
 
