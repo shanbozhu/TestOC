@@ -182,7 +182,8 @@
     }
     
     if (![db columnExists:self.testColumn inTableWithName:@"students"]) {
-        if ([db executeUpdate:@"alter table students add column '%@' TEXT", self.testColumn]) {
+        NSString *sql = [NSString stringWithFormat:@"alter table students add column %@ TEXT", self.testColumn];
+        if ([db executeUpdate:sql]) {
             NSLog(@"添加表字段成功");
         }
     } else {
