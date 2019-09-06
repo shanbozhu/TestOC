@@ -15,10 +15,8 @@
 // 获取类的所有属性
 - (NSArray *)propertyList {
     NSMutableArray *propertyList = [NSMutableArray array];
-    
     unsigned int count = 0;
     Ivar *ivarList = class_copyIvarList([self class], &count);
-    
     for (int i = 0; i < count; i++) {
         Ivar var = ivarList[i];
         
@@ -26,12 +24,9 @@
         NSString *name = [NSString stringWithUTF8String:varName];
         
         NSString *property = [name substringFromIndex:1];
-        
         [propertyList addObject:property];
     }
-    
     free(ivarList);
-    
     return propertyList;
 }
 
