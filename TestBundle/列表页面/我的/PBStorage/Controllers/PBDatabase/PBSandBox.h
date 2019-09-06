@@ -12,6 +12,14 @@
 // 目录也是一种文件
 // 下面为了符合常识,文件和目录区分处理
 
+/**
+ 沙盒目录结构如下:
+ Documents
+ Library
+ SystemData
+ tmp
+ */
+
 /// 文件或目录类型
 typedef enum : NSUInteger {
     PBSandBoxFileTypeNonDirectory = 0, //!< 非目录
