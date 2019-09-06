@@ -78,6 +78,7 @@
         // 指定路径创建文件
         self.filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/test.db"];
         [PBSandBox createFileAtPath:self.filePath];
+        self.db = [FMDatabase databaseWithPath:self.filePath];
         
         // 创建表
         [self createTable];
@@ -86,7 +87,6 @@
 
 // 创建表
 - (void)createTable {
-    self.db = [FMDatabase databaseWithPath:self.filePath];
     if (![self.db open]) {
         NSLog(@"打开数据库文件失败");
     }
