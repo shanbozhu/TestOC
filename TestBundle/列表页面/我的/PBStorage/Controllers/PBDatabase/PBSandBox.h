@@ -14,10 +14,25 @@
 
 /**
  沙盒目录结构如下:
- Documents
- Library
- SystemData
- tmp
+ /Documents
+ /Library
+ /SystemData
+ /tmp/
+ 
+ 沙盒文件存储包括[文本文件]和[数据库文件]
+ 一.文本文件:
+ 1.向文本文件中存储字符串(格式为.txt,字符串在文本文件中以二进制形式存储)
+ 2.向文本文件中存储字典或数组(格式为.plist)
+ 3.向文本文件中存储二进制(格式为.ar,将任意类型对象归档为二进制数据)
+ 操作步骤:
+ 1.调用 createFileAtPath: 指定路径创建文件
+ 2.调用 writeToFile:atomically: 添加内容
+ 
+ 二.数据库文件
+ 1.向数据库文件中存储任意类型(格式为.db)
+ 操作步骤:
+ 1.调用 createFileAtPath: 指定路径创建文件
+ 2.调用 databaseWithPath: 添加内容
  */
 
 /// 文件或目录类型
@@ -114,7 +129,7 @@ typedef enum : NSUInteger {
 + (long long)fileSizeAtPath:(NSString *)filePath;
 
 /**
- 创建指定路径的[文件]
+ 指定路径创建[文件]
  
  @param filePath 文件的路径
  @return 指定路径的文件创建成功返回YES,否则,返回NO
@@ -122,7 +137,7 @@ typedef enum : NSUInteger {
 + (BOOL)createFileAtPath:(NSString *)filePath;
 
 /**
- 创建指定路径的[目录]
+ 指定路径创建[目录]
  
  @param directoryPath 目录的路径
  @return 指定路径的目录创建成功返回YES,否则,返回NO
