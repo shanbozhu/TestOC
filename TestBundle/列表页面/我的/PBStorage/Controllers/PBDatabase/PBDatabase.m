@@ -51,7 +51,7 @@ static id sharedDatabase = nil;
         // 指定路径创建文件
         self.filePath = [PBSandBox absolutePathWithRelativePath:DATABASEFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
-        self.db = [FMDatabase databaseWithPath:self.filePath];
+        self.db = [FMDatabase databaseWithPath:self.filePath]; // 无法自动创建父目录
         
         // 创建表
         [self createTable];
