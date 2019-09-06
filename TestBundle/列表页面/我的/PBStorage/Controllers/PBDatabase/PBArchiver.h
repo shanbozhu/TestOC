@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- 继承该类的子类都能够自动支持归解档操作
- */
+// 继承该类的子类都能够自动支持归解档操作
 
 /**
     归档
@@ -20,6 +18,7 @@
  NSString<======================>NSData<=====================>NSDictionary
            NSUTF8StringEncoding          NSJSONSerialization
  */
+
 @interface PBArchiver : NSObject<NSCoding>
 
 /**
