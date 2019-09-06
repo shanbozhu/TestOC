@@ -57,7 +57,7 @@
 }
 
 + (id)objectWithData:(NSData *)data key:(NSString *)key {
-    if (!data) {
+    if (!data || data.length == 0) {
         return nil;
     }
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
