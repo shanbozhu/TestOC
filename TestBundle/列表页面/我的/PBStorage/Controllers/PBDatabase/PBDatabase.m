@@ -25,6 +25,7 @@ static id sharedDatabase = nil;
 
 @implementation PBDatabase
 
+#pragma mark - 单例
 + (id)sharedDatabase {
     if (sharedDatabase == nil) {
         static dispatch_once_t predicate;
@@ -53,7 +54,7 @@ static id sharedDatabase = nil;
     return self;
 }
 
-// 增加
+#pragma mark - 操作
 - (void)setValue:(id)value forKey:(NSString *)key {
     pthread_rwlock_wrlock(&_lock);
     
@@ -86,7 +87,6 @@ static id sharedDatabase = nil;
     pthread_rwlock_unlock(&_lock);
 }
 
-// 删除
 - (void)removeObjectForKey:(NSString *)defaultName {
     pthread_rwlock_wrlock(&_lock);
     
@@ -108,7 +108,6 @@ static id sharedDatabase = nil;
     pthread_rwlock_unlock(&_lock);
 }
 
-// 查找
 - (id)valueForKey:(NSString *)key {
     pthread_rwlock_rdlock(&_lock);
     
@@ -136,7 +135,6 @@ static id sharedDatabase = nil;
     return [PBArchiver objectWithData:value key:key];
 }
 
-// 删除所有数据
 - (void)removeAllObjects {
     pthread_rwlock_wrlock(&_lock);
     
