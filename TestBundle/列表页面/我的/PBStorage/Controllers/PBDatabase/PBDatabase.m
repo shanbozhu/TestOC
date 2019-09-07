@@ -7,7 +7,6 @@
 //
 
 #import "PBDatabase.h"
-#import <fmdb/FMDB.h>
 #import "PBSandBox.h"
 #import <pthread.h>
 
@@ -54,9 +53,13 @@ static id sharedDatabase = nil;
     return self;
 }
 
+- (void)excuteSQLInTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
+    [self.dbQueue inTransaction:block];
+}
+
 #pragma mark - 操作
 - (void)createTable {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+    [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         if (![db executeUpdate:@"create table if not exists myTable(key TEXT, value BLOB)"]) {
             NSLog(@"在数据库文件中创建表失败");
         }
@@ -64,7 +67,7 @@ static id sharedDatabase = nil;
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+    [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         FMResultSet *result = [db executeQuery:@"select * from myTable where key = ?", key];
         while ([result next]) {
             if (![db executeUpdate:@"delete from myTable where key = ?", key]) {
@@ -78,7 +81,7 @@ static id sharedDatabase = nil;
 }
 
 - (void)removeObjectForKey:(NSString *)defaultName {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+    [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         if (![db executeUpdate:@"delete from myTable where key = ?", defaultName]) {
             NSLog(@"删除表中的一条或多条记录失败");
         }
@@ -87,7 +90,7 @@ static id sharedDatabase = nil;
 
 - (id)valueForKey:(NSString *)key {
     __block NSData *value;
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+    [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         FMResultSet *result = [db executeQuery:@"select * from myTable where key = ?", key];
         while ([result next]) {
             value = [result dataForColumn:@"value"];
@@ -97,7 +100,7 @@ static id sharedDatabase = nil;
 }
 
 - (void)removeAllObjects {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+    [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         if (![db executeUpdate:@"delete from myTable"]) {
             NSLog(@"删除表中的一条或多条记录失败");
         }

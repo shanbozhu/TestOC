@@ -10,10 +10,13 @@
 #import "PBDataPList.h"
 #import "PBSandBox.h"
 #import "PBArchiver.h"
+#import <fmdb/FMDB.h>
 
 @interface PBDatabase : NSObject
 
 + (id)sharedDatabase;
+
+- (void)excuteSQLInTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block;
 
 /**
  增加任意类型对象到数据库(db)文件
