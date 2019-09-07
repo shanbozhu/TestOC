@@ -28,12 +28,10 @@ static id sharedDatabase = nil;
 
 #pragma mark - 单例
 + (id)sharedDatabase {
-    if (sharedDatabase == nil) {
-        static dispatch_once_t predicate;
-        dispatch_once(&predicate, ^{
-            sharedDatabase = [[self alloc]init];
-        });
-    }
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedDatabase = [[self alloc]init];
+    });
     return sharedDatabase;
 }
 
@@ -48,6 +46,9 @@ static id sharedDatabase = nil;
 - (id)init {
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        
         // 指定路径创建文件
         self.filePath = [PBSandBox absolutePathWithRelativePath:DATABASEFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
@@ -59,6 +60,12 @@ static id sharedDatabase = nil;
     return self;
 }
 
+- (void)applicationDidEnterBackground {
+    if (![self.db close]) {
+        NSLog(@"关闭数据库文件失败");
+    }
+}
+
 #pragma mark - 操作
 - (void)createTable {
     if (![self.db open]) {
@@ -67,17 +74,11 @@ static id sharedDatabase = nil;
     if (![self.db executeUpdate:@"create table if not exists myTable(key TEXT, value BLOB)"]) {
         NSLog(@"在数据库文件中创建表失败");
     }
-    if (![self.db close]) {
-        NSLog(@"关闭数据库文件失败");
-    }
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
     pthread_rwlock_wrlock(&_lock);
     
-    if (![self.db open]) {
-        NSLog(@"打开数据库文件失败");
-    }
     FMResultSet *result = [self.db executeQuery:@"select * from myTable where key = ?", key];
     while ([result next]) {
         if (![self.db executeUpdate:@"delete from myTable where key = ?", key]) {
@@ -87,9 +88,6 @@ static id sharedDatabase = nil;
     if (![self.db executeUpdate:@"insert into myTable(key, value) values(?, ?)", key, [PBArchiver dataWithObject:value key:key]]) {
         NSLog(@"增加表中的一条或多条记录失败");
     }
-    if (![self.db close]) {
-        NSLog(@"关闭数据库文件失败");
-    }
     
     pthread_rwlock_unlock(&_lock);
 }
@@ -97,14 +95,8 @@ static id sharedDatabase = nil;
 - (void)removeObjectForKey:(NSString *)defaultName {
     pthread_rwlock_wrlock(&_lock);
     
-    if (![self.db open]) {
-        NSLog(@"打开数据库文件失败");
-    }
     if (![self.db executeUpdate:@"delete from myTable where key = ?", defaultName]) {
         NSLog(@"删除表中的一条或多条记录失败");
-    }
-    if (![self.db close]) {
-        NSLog(@"关闭数据库文件失败");
     }
     
     pthread_rwlock_unlock(&_lock);
@@ -113,16 +105,10 @@ static id sharedDatabase = nil;
 - (id)valueForKey:(NSString *)key {
     pthread_rwlock_rdlock(&_lock);
     
-    if (![self.db open]) {
-        NSLog(@"打开数据库文件失败");
-    }
     NSData *value;
     FMResultSet *result = [self.db executeQuery:@"select * from myTable where key = ?", key];
     while ([result next]) {
         value = [result dataForColumn:@"value"];
-    }
-    if (![self.db close]) {
-        NSLog(@"关闭数据库文件失败");
     }
     
     pthread_rwlock_unlock(&_lock);
@@ -132,14 +118,8 @@ static id sharedDatabase = nil;
 - (void)removeAllObjects {
     pthread_rwlock_wrlock(&_lock);
     
-    if (![self.db open]) {
-        NSLog(@"打开数据库文件失败");
-    }
     if (![self.db executeUpdate:@"delete from myTable"]) {
         NSLog(@"删除表中的一条或多条记录失败");
-    }
-    if (![self.db close]) {
-        NSLog(@"关闭数据库文件失败");
     }
     
     pthread_rwlock_unlock(&_lock);
