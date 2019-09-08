@@ -47,6 +47,24 @@
     return self;
 }
 
+#pragma mark - [归解档]例子
+/**
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super init]) {
+        self.hasRequestedAsyncAd = [aDecoder decodeBoolForKey:@"hasRequestedAsyncAd"];
+        self.floor = [aDecoder decodeObjectForKey:@"floor"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeBool:self.hasRequestedAsyncAd forKey:@"hasRequestedAsyncAd"];
+    if (self.floor) {
+        [aCoder encodeObject:self.floor forKey:@"floor"];
+    }
+}
+ */
+
 #pragma mark - [归解档]操作
 + (NSData *)dataWithObject:(id)obj key:(NSString *)key {
     NSMutableData *data = [NSMutableData data];
