@@ -16,6 +16,11 @@
 
 + (id)sharedDatabase;
 
+/**
+ 执行SQL语句
+ 
+ @param block 执行SQL语句的代码块
+ */
 - (void)excuteSQLInTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block;
 
 /**
