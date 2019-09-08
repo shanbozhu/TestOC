@@ -9,7 +9,6 @@
 #import "PBStorageController.h"
 #import "PBStorageZeroController.h"
 #import "PBStorageOneController.h"
-#import "PBStorageTwoController.h"
 
 @interface PBStorageController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -36,7 +35,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,13 +59,6 @@
         PBStorageOneController *testListOneController = [[PBStorageOneController alloc]init];
         testListOneController.hidesBottomBarWhenPushed = YES;
                 
-        [self.navigationController pushViewController:testListOneController animated:YES];
-        testListOneController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 2) {
-        PBStorageTwoController *testListOneController = [[PBStorageTwoController alloc]init];
-        testListOneController.hidesBottomBarWhenPushed = YES;
-        
         [self.navigationController pushViewController:testListOneController animated:YES];
         testListOneController.view.backgroundColor = [UIColor whiteColor];
     }
