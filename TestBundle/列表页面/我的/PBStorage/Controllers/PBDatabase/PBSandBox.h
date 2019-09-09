@@ -113,6 +113,14 @@ typedef enum : NSUInteger {
 + (BOOL)deleteContentsOfDirectoryAtPath:(NSString *)directoryPath;
 
 /**
+ 删除指定路径的[文件]或[目录]
+ 
+ @param fileOrDirectoryPath 文件或目录的路径
+ @return 删除成功返回YES,否则,返回NO
+ */
++ (BOOL)deleteFileOrDirectoryAtPath:(NSString *)fileOrDirectoryPath;
+
+/**
  获取指定路径的[目录]大小
  
  @param directoryPath 目录的路径

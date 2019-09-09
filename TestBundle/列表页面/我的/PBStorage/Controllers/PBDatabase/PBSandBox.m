@@ -77,6 +77,18 @@
     return YES;
 }
 
++ (BOOL)deleteFileOrDirectoryAtPath:(NSString *)fileOrDirectoryPath {
+    @autoreleasepool {
+        BOOL isDirectory = NO;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if (![fileManager fileExistsAtPath:fileOrDirectoryPath isDirectory:&isDirectory]) {
+            return NO;
+        }
+        [fileManager removeItemAtPath:fileOrDirectoryPath error:nil];
+    }
+    return YES;
+}
+
 + (long long)directorySizeAtPath:(NSString *)directoryPath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];

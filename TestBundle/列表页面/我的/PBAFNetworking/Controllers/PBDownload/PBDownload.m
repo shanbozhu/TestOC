@@ -24,27 +24,21 @@
 @implementation PBDownload
 
 + (PBDownload *)download {
-    return [[self alloc] init];
-}
-
-- (PBDownload *)init {
-    if (self = [super init]) {
-        self.filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]stringByAppendingPathComponent:@"QQ_V5.4.0.dmg"];
-    }
-    return self;
+    return [[PBDownload alloc] init];
 }
 
 - (void)startDownloadWithURL:(NSString *)urlStr block:(void(^)(NSInteger currentLength, NSInteger fileLength))block {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:configuration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSString *lastPathComponent = [urlStr lastPathComponent];
+    self.filePath = [PBSandBox absolutePathWithRelativePath:[NSString stringWithFormat:@"/Documents/PBDownload/%@", lastPathComponent]];
     
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
-    NSInteger currentLength = [PBSandBox fileSizeAtPath:self.filePath];
-    if (currentLength > 0) {
-        self.currentLength = currentLength;
-    }
+    self.currentLength = [PBSandBox fileSizeAtPath:self.filePath];
+    
     // 设置http请求头中的range
     NSString *range = [NSString stringWithFormat:@"bytes=%zd-", self.currentLength];
     [request setValue:range forHTTPHeaderField:@"range"];
@@ -100,10 +94,7 @@
 }
 
 - (void)cancelDownload {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:self.filePath]) {
-        [manager removeItemAtPath:self.filePath error:nil];
-    }
+    [PBSandBox deleteFileOrDirectoryAtPath:self.filePath];
     
     [self.task cancel];
 }
