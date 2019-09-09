@@ -12,6 +12,7 @@
 #import "PBArchiver.h"
 #import <fmdb/FMDB.h>
 
+// 支持多线程操作
 @interface PBDatabase : NSObject
 
 + (id)sharedDatabase;
