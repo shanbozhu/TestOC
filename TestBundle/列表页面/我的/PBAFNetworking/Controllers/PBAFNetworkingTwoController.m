@@ -7,8 +7,7 @@
 //
 
 #import "PBAFNetworkingTwoController.h"
-#import <AFNetworking/AFNetworking.h>
-#import "PBSandBox.h"
+#import "PBDownload.h"
 
 @interface PBAFNetworkingTwoController ()
 
@@ -17,13 +16,8 @@
 @property (nonatomic, weak) UIButton *btn;
 @property (nonatomic, weak) UIButton *oneBtn;
 @property (nonatomic, weak) UIButton *twoBtn;
-@property (nonatomic, strong) NSURLSessionDataTask *task;
-@property (nonatomic, strong) NSProgress *progress;
 
-@property (nonatomic, assign) NSInteger currentLength;
-@property (nonatomic, assign) NSInteger fileLength;
-@property (nonatomic, strong) NSFileHandle *fileHandle;
-@property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, strong) PBDownload *download;
 
 @end
 
@@ -31,8 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]stringByAppendingPathComponent:@"QQ_V5.4.0.dmg"];
     
     //progressView
     UIProgressView *progressView = [[UIProgressView alloc]init];
@@ -81,31 +73,30 @@
     
     if (btn.tag == 0) {
         if (btn.selected == YES) {
-            NSInteger currentLength = [PBSandBox fileSizeAtPath:self.filePath];
-            if (currentLength > 0) {
-                self.currentLength = currentLength;
-            }
-            
             if ([btn.titleLabel.text isEqualToString:@"开始下载"]) {
-                [self downloadTask];
+                self.download = [PBDownload download];
+                __weak typeof(self)weakSelf = self;
+                [self.download startDownloadWithURL:@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V5.4.0.dmg" block:^(NSInteger currentLength, NSInteger fileLength) {
+                    weakSelf.progressView.progress = 1.0 * currentLength / fileLength;
+                    weakSelf.lab.text = [NSString stringWithFormat:@"%.2f%%", 100.0 * currentLength / fileLength];
+                    if (weakSelf.progressView.progress == 1) {
+                        [weakSelf.btn setTitle:@"开始下载" forState:UIControlStateNormal];
+                        weakSelf.btn.selected = NO;
+                    }
+                }];
             } else {
-                [self.task resume];
+                [self.download continueDownload];
             }
             
             [btn setTitle:@"暂停下载" forState:UIControlStateNormal];
         } else {
-            [self.task suspend];
+            [self.download suspendDownload];
             
-            [btn setTitle:@"恢复下载" forState:UIControlStateNormal];
+            [btn setTitle:@"继续下载" forState:UIControlStateNormal];
         }
     }
     if (btn.tag == 1) {
-        NSFileManager *manager = [NSFileManager defaultManager];
-        if ([manager fileExistsAtPath:self.filePath]) {
-            [manager removeItemAtPath:self.filePath error:nil];
-        }
-        
-        [self.task cancel];
+        [self.download cancelDownload];
         
         [self.btn setTitle:@"开始下载" forState:UIControlStateNormal];
         self.btn.selected = NO;
@@ -115,67 +106,7 @@
     }
 }
 
-- (void)downloadTask {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:configuration];
-    
-    NSURL *url = [NSURL URLWithString:@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V5.4.0.dmg"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    // 设置http请求头中的range
-    NSString *range = [NSString stringWithFormat:@"bytes=%zd-", self.currentLength];
-    [request setValue:range forHTTPHeaderField:@"range"];
-    
-    __weak typeof(self)weakSelf = self;
-    [manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
-        NSLog(@"开始下载1 = %@, response.expectedContentLength = %lf, weakSelf.currentLength = %lf", [NSThread currentThread], (response.expectedContentLength / 1024.0 / 1024.0), (weakSelf.currentLength / 1024.0 / 1024.0));
-        
-        // response.expectedContentLength表示还需要下载的内容长度
-        weakSelf.fileLength = response.expectedContentLength + weakSelf.currentLength;
-        NSLog(@"weakSelf.fileLength = %ld", weakSelf.fileLength);
-        
-        
-        [PBSandBox createFileAtPath:self.filePath];
-        weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
-        return NSURLSessionResponseAllow;
-    }];
-    
-    [manager setDataTaskDidReceiveDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSData * _Nonnull data) {
-        NSLog(@"正在下载2 = %@, data.length = %ld", [NSThread currentThread], data.length);
-        
-        [weakSelf.fileHandle seekToEndOfFile];
-        [weakSelf.fileHandle writeData:data];
-        
-        weakSelf.currentLength = weakSelf.currentLength + data.length;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            weakSelf.progressView.progress = 1.0 * weakSelf.currentLength / weakSelf.fileLength;
-            weakSelf.lab.text = [NSString stringWithFormat:@"%.2f%%", 100.0 * weakSelf.currentLength / weakSelf.fileLength];
-            if (weakSelf.progressView.progress == 1) {
-                [weakSelf.btn setTitle:@"开始下载" forState:UIControlStateNormal];
-                weakSelf.btn.selected = NO;
-            }
-        });
-    }];
-    
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSLog(@"下载完成3 = %@, filePath = %@", [NSThread currentThread], self.filePath);
-        
-        // 下载完成执行的操作
-        weakSelf.currentLength = 0;
-        weakSelf.fileLength = 0;
-        
-        [weakSelf.fileHandle closeFile];
-        weakSelf.fileHandle = nil;
-    }];
-    self.task = task;
-    
-    [task resume];
-}
-
 - (void)dealloc {
-    [self.task cancel];
-    
     NSLog(@"PBAFNetworkingTwoController对象被释放了");
 }
 
