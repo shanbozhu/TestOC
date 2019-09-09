@@ -8,6 +8,7 @@
 
 #import "PBAFNetworkingTwoController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "PBSandBox.h"
 
 @interface PBAFNetworkingTwoController ()
 
@@ -22,6 +23,7 @@
 @property (nonatomic, assign) NSInteger currentLength;
 @property (nonatomic, assign) NSInteger fileLength;
 @property (nonatomic, strong) NSFileHandle *fileHandle;
+@property (nonatomic, copy) NSString *filePath;
 
 @end
 
@@ -29,6 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]stringByAppendingPathComponent:@"QQ_V5.4.0.dmg"];
     
     //progressView
     UIProgressView *progressView = [[UIProgressView alloc]init];
@@ -77,9 +81,7 @@
     
     if (btn.tag == 0) {
         if (btn.selected == YES) {
-            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]stringByAppendingPathComponent:@"QQ_V5.4.0.dmg"];
-            
-            NSInteger currentLength = [self fileLengthForPath:filePath];
+            NSInteger currentLength = [PBSandBox fileSizeAtPath:self.filePath];
             if (currentLength > 0) {
                 self.currentLength = currentLength;
             }
@@ -98,10 +100,9 @@
         }
     }
     if (btn.tag == 1) {
-        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]stringByAppendingPathComponent:@"QQ_V5.4.0.dmg"];
         NSFileManager *manager = [NSFileManager defaultManager];
-        if ([manager fileExistsAtPath:filePath]) {
-            [manager removeItemAtPath:filePath error:nil];
+        if ([manager fileExistsAtPath:self.filePath]) {
+            [manager removeItemAtPath:self.filePath error:nil];
         }
         
         [self.task cancel];
@@ -127,29 +128,22 @@
     
     __weak typeof(self)weakSelf = self;
     [manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
-        NSLog(@"1 = %@", [NSThread currentThread]);
+        NSLog(@"开始下载1 = %@, response.expectedContentLength = %lf, weakSelf.currentLength = %lf", [NSThread currentThread], (response.expectedContentLength / 1024.0 / 1024.0), (weakSelf.currentLength / 1024.0 / 1024.0));
         
         // response.expectedContentLength表示还需要下载的内容长度
         weakSelf.fileLength = response.expectedContentLength + weakSelf.currentLength;
+        NSLog(@"weakSelf.fileLength = %ld", weakSelf.fileLength);
         
-        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]stringByAppendingPathComponent:@"QQ_V5.4.0.dmg"];
-        NSLog(@"filePath = %@", filePath);
         
-        NSFileManager *manager = [NSFileManager defaultManager];
-        if (![manager fileExistsAtPath:filePath]) {
-            [manager createFileAtPath:filePath contents:nil attributes:nil];
-        }
-        
-        weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-        
+        [PBSandBox createFileAtPath:self.filePath];
+        weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
         return NSURLSessionResponseAllow;
     }];
     
     [manager setDataTaskDidReceiveDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSData * _Nonnull data) {
-        NSLog(@"2 = %@", [NSThread currentThread]);
+        NSLog(@"正在下载2 = %@, data.length = %ld", [NSThread currentThread], data.length);
         
         [weakSelf.fileHandle seekToEndOfFile];
-        
         [weakSelf.fileHandle writeData:data];
         
         weakSelf.currentLength = weakSelf.currentLength + data.length;
@@ -157,7 +151,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.progressView.progress = 1.0 * weakSelf.currentLength / weakSelf.fileLength;
             weakSelf.lab.text = [NSString stringWithFormat:@"%.2f%%", 100.0 * weakSelf.currentLength / weakSelf.fileLength];
-            
             if (weakSelf.progressView.progress == 1) {
                 [weakSelf.btn setTitle:@"开始下载" forState:UIControlStateNormal];
                 weakSelf.btn.selected = NO;
@@ -166,7 +159,7 @@
     }];
     
     NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSLog(@"3 = %@", [NSThread currentThread]);
+        NSLog(@"下载完成3 = %@, filePath = %@", [NSThread currentThread], self.filePath);
         
         // 下载完成执行的操作
         weakSelf.currentLength = 0;
@@ -178,20 +171,6 @@
     self.task = task;
     
     [task resume];
-}
-
-// 获取本地文件大小
-- (NSInteger)fileLengthForPath:(NSString *)filePath {
-    NSInteger fileLength = 0;
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:filePath]) {
-        NSError *error = nil;
-        NSDictionary *fileDict = [manager attributesOfItemAtPath:filePath error:&error];
-        if (error == nil && fileDict != nil) {
-            fileLength = [fileDict fileSize];
-        }
-    }
-    return fileLength;
 }
 
 - (void)dealloc {
