@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// 支持多线程操作
 @interface PBDataPList : NSObject
 
 + (id)sharedDataPList;
