@@ -30,7 +30,7 @@
     
     UIButton *twoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:twoBtn];
-    twoBtn.frame = CGRectMake(20, 200, [UIScreen mainScreen].bounds.size.width-40, 40);
+    twoBtn.frame = CGRectMake(20, 150, [UIScreen mainScreen].bounds.size.width-40, 40);
     [twoBtn setTitle:@"点我下载文件,支持断点续传、离线下载" forState:UIControlStateNormal];
     [twoBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     twoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
