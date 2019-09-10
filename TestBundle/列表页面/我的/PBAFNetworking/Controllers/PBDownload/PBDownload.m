@@ -24,6 +24,7 @@
 
 @implementation PBDownload
 
+#pragma mark - 下载操作
 + (PBDownload *)download {
     return [[PBDownload alloc] init];
 }
@@ -32,8 +33,31 @@
     self.urlStr = urlStr;
     self.progress = progress;
     
+    // 创建空白下载文件
     [self createDownloadFileWithURL:urlStr];
     
+    // 向空白文件中填充数据
+    [self requestDataWithURL:urlStr progress:progress];
+}
+
+- (void)suspendDownload {
+    //[self.task suspend];
+    [self.task cancel];
+    self.task = nil;
+}
+
+- (void)continueDownload {
+    //[self.task resume];
+    [self startDownloadWithURL:self.urlStr progress:self.progress];
+}
+
+- (void)cancelDownload {
+    [self.task cancel];
+    [PBSandBox deleteFileOrDirectoryAtPath:self.filePath];
+}
+
+#pragma mark - 下载请求
+- (void)requestDataWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long))progress {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     __weak typeof(self)weakSelf = self;
@@ -58,8 +82,7 @@
         });
     }];
     
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     
     // 设置http请求头中的range,通知服务器下载文件的哪一段,从已经下载的大小到整个文件
     NSString *range = [NSString stringWithFormat:@"bytes=%lld-", self.downloadedSize];
@@ -73,23 +96,6 @@
     }];
     
     [self.task resume];
-}
-
-- (void)suspendDownload {
-//    [self.task suspend];
-    [self.task cancel];
-    self.task = nil;
-}
-
-- (void)continueDownload {
-//    [self.task resume];
-    
-    [self startDownloadWithURL:self.urlStr progress:self.progress];
-}
-
-- (void)cancelDownload {
-    [self.task cancel];
-    [PBSandBox deleteFileOrDirectoryAtPath:self.filePath];
 }
 
 - (void)createDownloadFileWithURL:(NSString *)urlStr {
