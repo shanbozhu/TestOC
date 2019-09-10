@@ -140,7 +140,6 @@
 		958378C222EAA50400AA39AF /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C022EAA50400AA39AF /* PBAFNetworkingController.m */; };
 		958378C922EAA52300AA39AF /* PBAFNetworkingZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */; };
 		958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */; };
-		958378CB22EAA52300AA39AF /* PBAFNetworkingOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C822EAA52300AA39AF /* PBAFNetworkingOneController.m */; };
 		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
@@ -507,11 +506,9 @@
 		958378C022EAA50400AA39AF /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
 		958378C122EAA50400AA39AF /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingZeroController.m; sourceTree = "<group>"; };
-		958378C422EAA52300AA39AF /* PBAFNetworkingOneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingOneController.h; sourceTree = "<group>"; };
 		958378C522EAA52300AA39AF /* PBAFNetworkingTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingTwoController.h; sourceTree = "<group>"; };
 		958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingTwoController.m; sourceTree = "<group>"; };
 		958378C722EAA52300AA39AF /* PBAFNetworkingZeroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingZeroController.h; sourceTree = "<group>"; };
-		958378C822EAA52300AA39AF /* PBAFNetworkingOneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingOneController.m; sourceTree = "<group>"; };
 		958378D122EACE2800AA39AF /* PBUIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUIWebViewController.m; sourceTree = "<group>"; };
 		958378D222EACE2800AA39AF /* PBWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWKWebViewController.m; sourceTree = "<group>"; };
 		958378D322EACE2800AA39AF /* PBWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWKWebViewController.h; sourceTree = "<group>"; };
@@ -1488,8 +1485,6 @@
 				958378C022EAA50400AA39AF /* PBAFNetworkingController.m */,
 				958378C722EAA52300AA39AF /* PBAFNetworkingZeroController.h */,
 				958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */,
-				958378C422EAA52300AA39AF /* PBAFNetworkingOneController.h */,
-				958378C822EAA52300AA39AF /* PBAFNetworkingOneController.m */,
 				958378C522EAA52300AA39AF /* PBAFNetworkingTwoController.h */,
 				958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */,
 				954E6C4A232643BE00541C11 /* PBDownload */,
@@ -2528,7 +2523,6 @@
 				9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */,
 				957593CE22F84F20009CA618 /* PBGCDListController.m in Sources */,
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
-				958378CB22EAA52300AA39AF /* PBAFNetworkingOneController.m in Sources */,
 				95C8764922E99281002795D0 /* PBYYText.m in Sources */,
 				95C872DF22E801DA002795D0 /* PBQRCodeScan.m in Sources */,
 				953341DD22F306EE00DC7251 /* PBCellHeightZeroCell.m in Sources */,
