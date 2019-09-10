@@ -61,7 +61,7 @@
     self.oneBtn = btn;
     [self.view addSubview:oneBtn];
     oneBtn.frame = CGRectMake(20, 210, [UIScreen mainScreen].bounds.size.width-40, 40);
-    [oneBtn setTitle:@"停止下载" forState:UIControlStateNormal];
+    [oneBtn setTitle:@"取消下载" forState:UIControlStateNormal];
     [oneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [oneBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     //oneBtn.backgroundColor = [UIColor redColor];
@@ -81,8 +81,9 @@
                     weakSelf.progressView.progress = 1.0 * currentLength / fileLength;
                     weakSelf.lab.text = [NSString stringWithFormat:@"%.2f%%", 100.0 * currentLength / fileLength];
                     if (weakSelf.progressView.progress == 1) {
-                        [weakSelf.btn setTitle:@"开始下载" forState:UIControlStateNormal];
+                        [weakSelf.btn setTitle:@"完成下载" forState:UIControlStateNormal];
                         weakSelf.btn.selected = NO;
+                        weakSelf.btn.enabled = NO;
                     }
                 }];
             } else {
@@ -101,6 +102,7 @@
         
         [self.btn setTitle:@"开始下载" forState:UIControlStateNormal];
         self.btn.selected = NO;
+        self.btn.enabled = YES;
         
         self.progressView.progress = 0;
         self.lab.text = @"0.00%";
