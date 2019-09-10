@@ -13,13 +13,14 @@
 @interface PBDownload ()
 
 @property (nonatomic, strong) NSURLSessionDataTask *task;
-@property (nonatomic, assign) NSInteger currentLength;
-@property (nonatomic, assign) NSInteger fileLength;
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 @property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, assign) long long downloadedSize;
+@property (nonatomic, assign) long long totalSize;
+@property (nonatomic, copy) NSString *urlStr;
+@property (nonatomic, copy) void(^progress)(long long currentLength, long long fileLength);
 
 @end
-
 
 @implementation PBDownload
 
@@ -27,80 +28,83 @@
     return [[PBDownload alloc] init];
 }
 
-- (void)startDownloadWithURL:(NSString *)urlStr block:(void(^)(NSInteger currentLength, NSInteger fileLength))block {
+- (void)startDownloadWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long))progress {
+    self.urlStr = urlStr;
+    self.progress = progress;
+    
+    [self createDownloadFileWithURL:urlStr];
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
-    NSString *lastPathComponent = [urlStr lastPathComponent];
-    self.filePath = [PBSandBox absolutePathWithRelativePath:[NSString stringWithFormat:@"/Documents/PBDownload/%@", lastPathComponent]];
-    
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    self.currentLength = [PBSandBox fileSizeAtPath:self.filePath];
-    
-    // 设置http请求头中的range
-    NSString *range = [NSString stringWithFormat:@"bytes=%zd-", self.currentLength];
-    [request setValue:range forHTTPHeaderField:@"range"];
-    
     __weak typeof(self)weakSelf = self;
     [manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
-        NSLog(@"开始下载1 = %@, response.expectedContentLength = %lf, weakSelf.currentLength = %lf", [NSThread currentThread], (response.expectedContentLength / 1024.0 / 1024.0), (weakSelf.currentLength / 1024.0 / 1024.0));
+        // 下载文件总大小
+        weakSelf.totalSize = response.expectedContentLength + weakSelf.downloadedSize;
+        NSLog(@"开始下载 = %@, expectedContentLength = %lld, downloadedSize = %lld, weakSelf.totalSize = %lld", [NSThread currentThread], response.expectedContentLength, weakSelf.downloadedSize, weakSelf.totalSize);
         
-        // response.expectedContentLength表示还需要下载的内容长度
-        weakSelf.fileLength = response.expectedContentLength + weakSelf.currentLength;
-        NSLog(@"weakSelf.fileLength = %ld", weakSelf.fileLength);
-        
-        
-        [PBSandBox createFileAtPath:self.filePath];
-        weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
+        weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:weakSelf.filePath];
         return NSURLSessionResponseAllow;
     }];
     
     [manager setDataTaskDidReceiveDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSData * _Nonnull data) {
-        NSLog(@"正在下载2 = %@, data.length = %ld", [NSThread currentThread], data.length);
+        NSLog(@"正在下载 = %@, data.length = %ld", [NSThread currentThread], data.length);
         
         [weakSelf.fileHandle seekToEndOfFile];
         [weakSelf.fileHandle writeData:data];
         
-        weakSelf.currentLength = weakSelf.currentLength + data.length;
-        
+        weakSelf.downloadedSize = weakSelf.downloadedSize + data.length;
         dispatch_async(dispatch_get_main_queue(), ^{
-            block(weakSelf.currentLength, weakSelf.fileLength);
+            progress(weakSelf.downloadedSize, weakSelf.totalSize);
         });
     }];
     
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSLog(@"下载完成3 = %@, filePath = %@", [NSThread currentThread], self.filePath);
-        
-        // 下载完成执行的操作
-        weakSelf.currentLength = 0;
-        weakSelf.fileLength = 0;
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    // 设置http请求头中的range,通知服务器下载文件的哪一段,从已经下载的大小到整个文件
+    NSString *range = [NSString stringWithFormat:@"bytes=%lld-", self.downloadedSize];
+    [request setValue:range forHTTPHeaderField:@"range"];
+    
+    self.task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSLog(@"下载完成 = %@, filePath = %@", [NSThread currentThread], weakSelf.filePath);
         
         [weakSelf.fileHandle closeFile];
         weakSelf.fileHandle = nil;
     }];
-    self.task = task;
     
-    [task resume];
-}
-
-- (void)suspendDownload {
-    [self.task suspend];
-}
-
-- (void)continueDownload {
     [self.task resume];
 }
 
-- (void)cancelDownload {
-    [PBSandBox deleteFileOrDirectoryAtPath:self.filePath];
-    
+- (void)suspendDownload {
+//    [self.task suspend];
     [self.task cancel];
+    self.task = nil;
+}
+
+- (void)continueDownload {
+//    [self.task resume];
+    
+    [self startDownloadWithURL:self.urlStr progress:self.progress];
+}
+
+- (void)cancelDownload {
+    [self.task cancel];
+    [PBSandBox deleteFileOrDirectoryAtPath:self.filePath];
+}
+
+- (void)createDownloadFileWithURL:(NSString *)urlStr {
+    NSString *lastPathComponent = [urlStr lastPathComponent];
+    // 指定路径创建文件
+    self.filePath = [PBSandBox absolutePathWithRelativePath:[NSString stringWithFormat:@"/Documents/PBDownload/%@", lastPathComponent]];
+    [PBSandBox createFileAtPath:self.filePath];
+    
+    // 本地已经下载的文件大小
+    self.downloadedSize = [PBSandBox fileSizeAtPath:self.filePath];
 }
 
 - (void)dealloc {
     [self.task cancel];
+    NSLog(@"PBDownload对象被释放了");
 }
 
 @end

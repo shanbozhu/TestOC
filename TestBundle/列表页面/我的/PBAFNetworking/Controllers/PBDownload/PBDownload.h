@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PBDownload : NSObject
 
 + (PBDownload *)download;
-- (void)startDownloadWithURL:(NSString *)urlStr block:(void(^)(NSInteger currentLength, NSInteger fileLength))block;
+- (void)startDownloadWithURL:(NSString *)urlStr progress:(void(^)(long long currentLength, long long fileLength))block;
 - (void)suspendDownload;
 - (void)continueDownload;
 - (void)cancelDownload;
