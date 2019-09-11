@@ -137,7 +137,7 @@ typedef enum : NSUInteger {
 + (long long)fileSizeAtPath:(NSString *)filePath;
 
 /**
- 指定路径创建[文件],新建空白文件
+ 指定路径创建[文件],新建空文件
  
  @param filePath 文件的路径
  @return 指定路径的文件创建成功返回YES,否则,返回NO

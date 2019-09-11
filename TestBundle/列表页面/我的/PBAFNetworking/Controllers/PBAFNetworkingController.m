@@ -22,7 +22,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:btn];
     btn.frame = CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width-40, 40);
-    [btn setTitle:@"点我" forState:UIControlStateNormal];
+    [btn setTitle:@"点我返回Json" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     btn.titleLabel.font = [UIFont systemFontOfSize:15];
     btn.backgroundColor = [UIColor grayColor];
@@ -31,7 +31,7 @@
     UIButton *twoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:twoBtn];
     twoBtn.frame = CGRectMake(20, 150, [UIScreen mainScreen].bounds.size.width-40, 40);
-    [twoBtn setTitle:@"点我下载文件,支持断点续传、离线下载" forState:UIControlStateNormal];
+    [twoBtn setTitle:@"点我下载文件,支持断点续传和离线下载" forState:UIControlStateNormal];
     [twoBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     twoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     twoBtn.backgroundColor = [UIColor grayColor];

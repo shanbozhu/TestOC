@@ -33,10 +33,10 @@
     self.urlStr = urlStr;
     self.progress = progress;
     
-    // 创建空白下载文件
+    // 创建空下载文件
     [self createDownloadFileWithURL:urlStr];
     
-    // 向空白文件中填充数据
+    // 向空下载文件中填充数据
     [self requestDataWithURL:urlStr progress:progress];
 }
 
@@ -62,6 +62,14 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     __weak typeof(self)weakSelf = self;
     [manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
+        NSDictionary *allHeaderFields = ((NSHTTPURLResponse *)response).allHeaderFields;
+        if (![allHeaderFields.allKeys containsObject:@"Content-Range"]) {
+            // 服务器不支持分段下载文件,每个下载任务只能从0开始至全部下载
+            [PBSandBox deleteFileOrDirectoryAtPath:weakSelf.filePath];
+            [PBSandBox createFileAtPath:weakSelf.filePath];
+            weakSelf.downloadedSize = 0;
+        }
+        
         // 下载文件总大小
         weakSelf.totalSize = response.expectedContentLength + weakSelf.downloadedSize;
         NSLog(@"开始下载 = %@, expectedContentLength = %lld, downloadedSize = %lld, weakSelf.totalSize = %lld", [NSThread currentThread], response.expectedContentLength, weakSelf.downloadedSize, weakSelf.totalSize);
@@ -84,9 +92,9 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     
-    // 设置http请求头中的range,通知服务器下载文件的哪一段,从已经下载的大小到整个文件
+    // 设置http请求头中的Range,通知服务器下载文件的哪一段,从已经下载的大小到整个文件
     NSString *range = [NSString stringWithFormat:@"bytes=%lld-", self.downloadedSize];
-    [request setValue:range forHTTPHeaderField:@"range"];
+    [request setValue:range forHTTPHeaderField:@"Range"];
     
     self.task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSLog(@"下载完成 = %@, filePath = %@", [NSThread currentThread], weakSelf.filePath);
