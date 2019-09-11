@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param urlStr 文件的下载地址
  @param progress 文件的下载进度
  */
-- (void)startDownloadWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long))progress;
+- (void)startDownloadWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long totalSize))progress;
 
 /**
  暂停下载

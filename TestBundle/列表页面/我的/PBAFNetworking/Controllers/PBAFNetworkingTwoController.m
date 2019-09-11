@@ -77,9 +77,9 @@
                 self.download = [PBDownload download];
                 __weak typeof(self)weakSelf = self;
                 // https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.11.2.dmg
-                [self.download startDownloadWithURL:@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V5.4.0.dmg" progress:^(long long currentLength, long long fileLength) {
-                    weakSelf.progressView.progress = 1.0 * currentLength / fileLength;
-                    weakSelf.lab.text = [NSString stringWithFormat:@"%.2f%%", 100.0 * currentLength / fileLength];
+                [self.download startDownloadWithURL:@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V5.4.0.dmg" progress:^(long long downloadedSize, long long totalSize) {
+                    weakSelf.progressView.progress = 1.0 * downloadedSize / totalSize;
+                    weakSelf.lab.text = [NSString stringWithFormat:@"%.2f%%", 100.0 * downloadedSize / totalSize];
                     if (weakSelf.progressView.progress == 1) {
                         [weakSelf.btn setTitle:@"完成下载" forState:UIControlStateNormal];
                         weakSelf.btn.selected = NO;

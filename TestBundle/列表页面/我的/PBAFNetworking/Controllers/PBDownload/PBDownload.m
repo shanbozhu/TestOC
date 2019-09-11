@@ -19,7 +19,7 @@
 @property (nonatomic, assign) long long downloadedSize;
 @property (nonatomic, assign) long long totalSize;
 @property (nonatomic, copy) NSString *urlStr;
-@property (nonatomic, copy) void(^progress)(long long currentLength, long long fileLength);
+@property (nonatomic, copy) void(^progress)(long long downloadedSize, long long totalSize);
 
 @end
 
@@ -30,7 +30,7 @@
     return [[PBDownload alloc] init];
 }
 
-- (void)startDownloadWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long))progress {
+- (void)startDownloadWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long totalSize))progress {
     self.urlStr = urlStr;
     self.progress = progress;
     
