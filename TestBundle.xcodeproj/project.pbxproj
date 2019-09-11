@@ -977,6 +977,45 @@
 			path = PBDownload;
 			sourceTree = "<group>";
 		};
+		955440F32328EB0B003A615C /* PBRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				955440F42328EB0B003A615C /* Res */,
+				955440F52328EB0B003A615C /* Models */,
+				955440F62328EB0B003A615C /* Controllers */,
+				955440F72328EB0B003A615C /* Views */,
+			);
+			path = PBRuntime;
+			sourceTree = "<group>";
+		};
+		955440F42328EB0B003A615C /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		955440F52328EB0B003A615C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		955440F62328EB0B003A615C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		955440F72328EB0B003A615C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		957592FE22F81E15009CA618 /* PBMemory */ = {
 			isa = PBXGroup;
 			children = (
@@ -2153,6 +2192,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				955440F32328EB0B003A615C /* PBRuntime */,
 				957597AB22F99318009CA618 /* PBUniversalLink */,
 				9575942222F950C9009CA618 /* PBAVPlayer */,
 				957593FC22F9274D009CA618 /* PBAlgorithm */,
