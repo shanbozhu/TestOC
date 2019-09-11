@@ -102,6 +102,10 @@
         
         [weakSelf.fileHandle closeFile];
         weakSelf.fileHandle = nil;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            progress(weakSelf.downloadedSize, weakSelf.totalSize);
+        });
     }];
     
     [self.task resume];
