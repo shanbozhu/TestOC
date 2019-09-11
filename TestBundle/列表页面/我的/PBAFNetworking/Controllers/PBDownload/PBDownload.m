@@ -62,8 +62,8 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     __weak typeof(self)weakSelf = self;
     [manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
-        NSDictionary *allHeaderFields = ((NSHTTPURLResponse *)response).allHeaderFields;
-        if (![allHeaderFields.allKeys containsObject:@"Content-Range"]) {
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        if (urlResponse.statusCode != 206) { // 状态码为206是服务器支持分段下载文件
             // 服务器不支持分段下载文件,每个下载任务只能从0开始至全部下载
             [PBSandBox deleteFileOrDirectoryAtPath:weakSelf.filePath];
             [PBSandBox createFileAtPath:weakSelf.filePath];
