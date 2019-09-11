@@ -53,7 +53,7 @@
     [btn setTitle:@"开始下载" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    //btn.backgroundColor = [UIColor redColor];
+    btn.backgroundColor = [UIColor lightGrayColor];
     btn.tag = 0;
     
     //btn
@@ -64,7 +64,7 @@
     [oneBtn setTitle:@"取消下载" forState:UIControlStateNormal];
     [oneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [oneBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    //oneBtn.backgroundColor = [UIColor redColor];
+    oneBtn.backgroundColor = [UIColor lightGrayColor];;
     oneBtn.tag = 1;
 }
 
