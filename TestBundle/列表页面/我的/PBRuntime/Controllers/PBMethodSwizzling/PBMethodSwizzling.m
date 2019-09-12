@@ -24,11 +24,11 @@
     if (!newMethod) {
         return NO;
     }
-//    if (class_addMethod(cls, origSel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-//        class_replaceMethod(cls, altSel, method_getImplementation(originMethod), method_getTypeEncoding(originMethod));
-//    } else {
+    if (class_addMethod(objc_getMetaClass(class_getName(cls)), origSel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+        class_replaceMethod(objc_getMetaClass(class_getName(cls)), altSel, method_getImplementation(originMethod), method_getTypeEncoding(originMethod));
+    } else {
         method_exchangeImplementations(originMethod, newMethod);
-//    }
+    }
     return YES;
 }
 
