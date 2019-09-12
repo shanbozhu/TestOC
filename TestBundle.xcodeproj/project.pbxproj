@@ -44,6 +44,9 @@
 		954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AC22E05B8D00F6BFA2 /* PBAllWelfareController.m */; };
 		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
 		954E6C4D232643DD00541C11 /* PBDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 954E6C4C232643DD00541C11 /* PBDownload.m */; };
+		955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955440F92328F1F9003A615C /* PBRuntimeController.m */; };
+		955440FE2328F3B6003A615C /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 955440FD2328F3B6003A615C /* PBMethodSwizzling.m */; };
+		955441012328F5AB003A615C /* PBRuntimeController+addTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 955441002328F5AB003A615C /* PBRuntimeController+addTest.m */; };
 		9575930522F81E55009CA618 /* PBMemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930422F81E55009CA618 /* PBMemoryController.m */; };
 		9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930622F81E65009CA618 /* PBMemoryListController.m */; };
 		9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930722F81E65009CA618 /* PBMemoryListMRCController.m */; };
@@ -328,6 +331,12 @@
 		954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
 		954E6C4B232643DD00541C11 /* PBDownload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDownload.h; sourceTree = "<group>"; };
 		954E6C4C232643DD00541C11 /* PBDownload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDownload.m; sourceTree = "<group>"; };
+		955440F82328F1F9003A615C /* PBRuntimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeController.h; sourceTree = "<group>"; };
+		955440F92328F1F9003A615C /* PBRuntimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeController.m; sourceTree = "<group>"; };
+		955440FC2328F3B6003A615C /* PBMethodSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
+		955440FD2328F3B6003A615C /* PBMethodSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
+		955440FF2328F5AB003A615C /* PBRuntimeController+addTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeController+addTest.h"; sourceTree = "<group>"; };
+		955441002328F5AB003A615C /* PBRuntimeController+addTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeController+addTest.m"; sourceTree = "<group>"; };
 		9575930322F81E55009CA618 /* PBMemoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryController.h; sourceTree = "<group>"; };
 		9575930422F81E55009CA618 /* PBMemoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryController.m; sourceTree = "<group>"; };
 		9575930622F81E65009CA618 /* PBMemoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListController.m; sourceTree = "<group>"; };
@@ -1005,6 +1014,11 @@
 		955440F62328EB0B003A615C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				955440F82328F1F9003A615C /* PBRuntimeController.h */,
+				955440F92328F1F9003A615C /* PBRuntimeController.m */,
+				955440FF2328F5AB003A615C /* PBRuntimeController+addTest.h */,
+				955441002328F5AB003A615C /* PBRuntimeController+addTest.m */,
+				955440FB2328F38B003A615C /* PBMethodSwizzling */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1014,6 +1028,15 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		955440FB2328F38B003A615C /* PBMethodSwizzling */ = {
+			isa = PBXGroup;
+			children = (
+				955440FC2328F3B6003A615C /* PBMethodSwizzling.h */,
+				955440FD2328F3B6003A615C /* PBMethodSwizzling.m */,
+			);
+			path = PBMethodSwizzling;
 			sourceTree = "<group>";
 		};
 		957592FE22F81E15009CA618 /* PBMemory */ = {
@@ -2455,6 +2478,7 @@
 				9575998622FC2415009CA618 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				957593F222F84F3B009CA618 /* PBGCDLockFiveController.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
+				955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */,
 				95C8764622E99260002795D0 /* PBRegex.m in Sources */,
 				95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */,
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
@@ -2473,6 +2497,7 @@
 				9575934A22F82A93009CA618 /* PBStorageList.m in Sources */,
 				95C873E322E84410002795D0 /* PBTestZeroEspressos.m in Sources */,
 				95C8740F22E84436002795D0 /* PBTestTwoEspressos.m in Sources */,
+				955440FE2328F3B6003A615C /* PBMethodSwizzling.m in Sources */,
 				957593D422F84F20009CA618 /* PBGCDListThreeController.m in Sources */,
 				958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */,
 				95C8741022E84436002795D0 /* PBActivityDetailContent.m in Sources */,
@@ -2515,6 +2540,7 @@
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				953341D622F306EE00DC7251 /* PBCellHeightOneView.m in Sources */,
 				9575998522FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				955441012328F5AB003A615C /* PBRuntimeController+addTest.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
 				9575934222F82A64009CA618 /* PBStorageTextFourController.m in Sources */,
 				957593AD22F84D8E009CA618 /* PBGCDController.m in Sources */,

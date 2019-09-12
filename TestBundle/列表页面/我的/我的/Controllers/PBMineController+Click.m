@@ -29,6 +29,7 @@
 #import "PBAlgorithmController.h"
 #import "PBAVPlayerListController.h"
 #import "PBUniversalLinkController.h"
+#import "PBRuntimeController.h"
 
 @implementation PBMineController (Click)
 
@@ -53,7 +54,8 @@
              @"PBGCDController",
              @"PBAlgorithmController",
              @"PBAVPlayerListController",
-             @"PBUniversalLinkController"];
+             @"PBUniversalLinkController",
+             @"PBRuntimeController"];
 }
 
 // delegate
