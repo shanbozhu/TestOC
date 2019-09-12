@@ -989,26 +989,9 @@
 		955440F32328EB0B003A615C /* PBRuntime */ = {
 			isa = PBXGroup;
 			children = (
-				955440F42328EB0B003A615C /* Res */,
-				955440F52328EB0B003A615C /* Models */,
 				955440F62328EB0B003A615C /* Controllers */,
-				955440F72328EB0B003A615C /* Views */,
 			);
 			path = PBRuntime;
-			sourceTree = "<group>";
-		};
-		955440F42328EB0B003A615C /* Res */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
-		955440F52328EB0B003A615C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		955440F62328EB0B003A615C /* Controllers */ = {
@@ -1021,13 +1004,6 @@
 				955440FB2328F38B003A615C /* PBMethodSwizzling */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		955440F72328EB0B003A615C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		955440FB2328F38B003A615C /* PBMethodSwizzling */ = {
