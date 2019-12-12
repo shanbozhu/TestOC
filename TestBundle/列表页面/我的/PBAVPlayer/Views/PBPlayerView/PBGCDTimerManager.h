@@ -18,9 +18,9 @@
 
 - (void)gcdTimerManagerWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action;
 
-- (void)startTimer:(NSString *)timerName; //开始定时器
-- (void)suspendTimer:(NSString *)timerName; //暂停定时器
-- (void)resumeTimer:(NSString *)timerName; //恢复定时器
-- (void)cancelTimerWithName:(NSString *)timerName; //停止(取消)定时器
+- (void)startTimer:(NSString *)timerName; // 开始定时器
+- (void)suspendTimer:(NSString *)timerName; // 暂停定时器
+- (void)resumeTimer:(NSString *)timerName; // 恢复定时器
+- (void)cancelTimerWithName:(NSString *)timerName; // 停止(取消)定时器
 
 @end
