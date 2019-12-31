@@ -28,9 +28,9 @@
  程序是符合[语法]的[数据结构]加[算法].本质是处理【变量】.
  
  1.数据类型:整型(short、int、long、long long)、浮点型(float、double、long double)、字符串、数组、字典、集合
- 2.变量定义
+ 2.变量定义、调用(getter、setter)
  3.数据运算:算术运算(+、-、*、/、%、**)、比较运算(>、>=、<、<=、==)、逻辑运算(!、&&、||)、赋值运算(=)
- 4.控制语句:判断(if语句、if/else语句、if/else if/else语句、case语句)、循环(for语句、while语句、do/while语句)
+ 4.控制语句:判断(if语句、if/else语句、if/else if/else语句、switch/case语句)、循环(for语句、while语句、do/while语句)
  5.函数定义、调用
  
  6.UI控件 + 网络 + 多线程 + 数据库
