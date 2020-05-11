@@ -2112,9 +2112,9 @@
 			isa = PBXGroup;
 			children = (
 				9575995B22FC2415009CA618 /* Lib */,
-				B0300E881F11DFC900624D91 /* 资源 */,
+				B0300E881F11DFC900624D91 /* Resources */,
 				B0300E871F11DF9A00624D91 /* 通用 */,
-				B0300E831F11DF9100624D91 /* 列表页面 */,
+				B0300E831F11DF9100624D91 /* Page */,
 				B0300E6C1F11DE5D00624D91 /* Supporting Files */,
 			);
 			path = TestOC;
@@ -2129,15 +2129,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B0300E831F11DF9100624D91 /* 列表页面 */ = {
+		B0300E831F11DF9100624D91 /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				B0F04AD11F9E030700F69AC3 /* 发现 */,
-				B0F04ABD1F9E02A600F69AC3 /* 详情 */,
-				B0F04A9A1F9E01BD00F69AC3 /* 首页 */,
-				B0F04AA61F9E01BD00F69AC3 /* 我的 */,
+				B0F04AD11F9E030700F69AC3 /* Find */,
+				B0F04ABD1F9E02A600F69AC3 /* Detail */,
+				B0F04A9A1F9E01BD00F69AC3 /* HomePage */,
+				B0F04AA61F9E01BD00F69AC3 /* Mine */,
 			);
-			path = "列表页面";
+			path = Page;
 			sourceTree = "<group>";
 		};
 		B0300E871F11DF9A00624D91 /* 通用 */ = {
@@ -2152,23 +2152,23 @@
 			name = "通用";
 			sourceTree = "<group>";
 		};
-		B0300E881F11DFC900624D91 /* 资源 */ = {
+		B0300E881F11DFC900624D91 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				B0300E781F11DE5D00624D91 /* Assets.xcassets */,
 				B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */,
 				957597B922F99808009CA618 /* TestBundle.entitlements */,
 			);
-			name = "资源";
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		B0F04A9A1F9E01BD00F69AC3 /* 首页 */ = {
+		B0F04A9A1F9E01BD00F69AC3 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
 				B0F04A9B1F9E01BD00F69AC3 /* Controllers */,
 				B0F04A9F1F9E01BD00F69AC3 /* Res */,
 			);
-			path = "首页";
+			path = HomePage;
 			sourceTree = "<group>";
 		};
 		B0F04A9B1F9E01BD00F69AC3 /* Controllers */ = {
@@ -2192,7 +2192,7 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
-		B0F04AA61F9E01BD00F69AC3 /* 我的 */ = {
+		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
 				955440F32328EB0B003A615C /* PBRuntime */,
@@ -2219,17 +2219,17 @@
 				954731A022E05B7400F6BFA2 /* PBAllWelfare */,
 				9547319222E059A000F6BFA2 /* 我的 */,
 			);
-			path = "我的";
+			path = Mine;
 			sourceTree = "<group>";
 		};
-		B0F04ABD1F9E02A600F69AC3 /* 详情 */ = {
+		B0F04ABD1F9E02A600F69AC3 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				B0F04ABE1F9E02A600F69AC3 /* Controllers */,
 				B0F04AC31F9E02A600F69AC3 /* Models */,
 				B0F04AC71F9E02A600F69AC3 /* Views */,
 			);
-			path = "详情";
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		B0F04ABE1F9E02A600F69AC3 /* Controllers */ = {
@@ -2267,12 +2267,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B0F04AD11F9E030700F69AC3 /* 发现 */ = {
+		B0F04AD11F9E030700F69AC3 /* Find */ = {
 			isa = PBXGroup;
 			children = (
 				B0F04AD21F9E030700F69AC3 /* Controllers */,
 			);
-			path = "发现";
+			path = Find;
 			sourceTree = "<group>";
 		};
 		B0F04AD21F9E030700F69AC3 /* Controllers */ = {
