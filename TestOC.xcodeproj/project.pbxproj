@@ -2745,12 +2745,7 @@
 				INFOPLIST_FILE = "$(PROJECT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/TestBundle/PBCellHeight",
-					"$(PROJECT_DIR)/TestBundle/TTTAttributedLabel",
-					"$(PROJECT_DIR)/TestBundle",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"$(inherited)",
@@ -2777,12 +2772,7 @@
 				INFOPLIST_FILE = "$(PROJECT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/TestBundle/PBCellHeight",
-					"$(PROJECT_DIR)/TestBundle/TTTAttributedLabel",
-					"$(PROJECT_DIR)/TestBundle",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"$(inherited)",
