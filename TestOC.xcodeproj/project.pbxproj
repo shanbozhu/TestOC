@@ -2113,7 +2113,7 @@
 			children = (
 				9575995B22FC2415009CA618 /* Lib */,
 				B0300E881F11DFC900624D91 /* Resources */,
-				B0300E871F11DF9A00624D91 /* 通用 */,
+				B0300E871F11DF9A00624D91 /* Common */,
 				B0300E831F11DF9100624D91 /* Page */,
 				B0300E6C1F11DE5D00624D91 /* Supporting Files */,
 			);
@@ -2140,7 +2140,7 @@
 			path = Page;
 			sourceTree = "<group>";
 		};
-		B0300E871F11DF9A00624D91 /* 通用 */ = {
+		B0300E871F11DF9A00624D91 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				B0300E6F1F11DE5D00624D91 /* AppDelegate.h */,
@@ -2149,7 +2149,7 @@
 				957597B622F99391009CA618 /* AppDelegate+UniversalLink.h */,
 				957597B722F99391009CA618 /* AppDelegate+UniversalLink.m */,
 			);
-			name = "通用";
+			name = Common;
 			sourceTree = "<group>";
 		};
 		B0300E881F11DFC900624D91 /* Resources */ = {
