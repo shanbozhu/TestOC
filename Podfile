@@ -4,7 +4,7 @@
 
 platform :ios, '8.0'
 
-target "TestBundle" do
+target "TestOC" do
 
   pod 'YYText', '1.0.7'
   pod 'YYModel', '1.0.4'

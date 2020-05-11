@@ -49,7 +49,7 @@ DEPENDENCIES:
   - YYWebImage (= 1.0.5)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AFNetworking
     - FMDB
     - Masonry
@@ -71,6 +71,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: ada95ebf79292dc2e12dd47c3c3298ce48d07769
+PODFILE CHECKSUM: b91f074258c6be166aee28af291ef37757c1878d
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.9.1
