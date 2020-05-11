@@ -2134,7 +2134,7 @@
 			children = (
 				B0F04AD11F9E030700F69AC3 /* Find */,
 				B0F04ABD1F9E02A600F69AC3 /* Detail */,
-				B0F04A9A1F9E01BD00F69AC3 /* HomePage */,
+				B0F04A9A1F9E01BD00F69AC3 /* Home */,
 				B0F04AA61F9E01BD00F69AC3 /* Mine */,
 			);
 			path = Page;
@@ -2162,13 +2162,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		B0F04A9A1F9E01BD00F69AC3 /* HomePage */ = {
+		B0F04A9A1F9E01BD00F69AC3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				B0F04A9B1F9E01BD00F69AC3 /* Controllers */,
 				B0F04A9F1F9E01BD00F69AC3 /* Res */,
 			);
-			path = HomePage;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		B0F04A9B1F9E01BD00F69AC3 /* Controllers */ = {
