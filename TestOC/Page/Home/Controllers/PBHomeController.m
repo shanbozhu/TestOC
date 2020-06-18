@@ -21,7 +21,7 @@
     self.tabBarController.navigationItem.title = @"首页";
     //self.navigationItem.title = @"首页";
     
-    NSLog(@"self.tabBarController = %@", self.tabBarController.navigationController);
+    //NSLog(@"self.tabBarController = %@", self.tabBarController.navigationController);
     
     self.tabBarController.navigationController.navigationBar.barTintColor = [UIColor redColor];
     //self.navigationController.navigationBar.barTintColor = [UIColor redColor];

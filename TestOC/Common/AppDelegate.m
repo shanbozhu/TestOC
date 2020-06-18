@@ -42,7 +42,7 @@
     tab.viewControllers = @[vc0, vc1, vc2];
     
     PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
-    NSLog(@"nav = %@", nav);
+    //NSLog(@"nav = %@", nav);
     
     nav.navigationBar.barTintColor = [UIColor redColor];
     
