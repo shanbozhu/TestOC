@@ -79,9 +79,22 @@
  总结:
  1.使用[非对称加密]加密[对称加密]的密钥,使用[对称加密]加密真正的数据
  2.加密的安全性不在于对加密算法的保护上,而在于对加密密钥的保密上
- 3.不可逆加密:只有加密算法,没有解密算法.主要有MD5加密
+ 3.不可逆加密:只有加密算法,没有解密算法.主要有MD5加密,用于获取数据特征值
  4.对称加密:加密与解密的密钥相同.主要有AES,DES加密
  5.非对称加密:加密与解密是一对公私钥,可以公钥加密,私钥解密,也可以私钥加密,公钥解密.主要有RSA,DSA加密
+ 6.签名:是对数据特征值进行非对称加密
+ */
+
+/**
+ 网络请求
+ 方式:GET、POST
+ 请求:路径、参数、请求头、请求体
+ 响应:响应头、响应体
+ 
+ https://mapi.damai.cn/proj/search/HotWord.aspx?a=hello&b=world
+ 路劲:https://mapi.damai.cn/proj/search/HotWord.aspx
+ 参数:a=hello&b=world
+ 请求头:
  */
 
 @interface PBAFNetworkingController ()
