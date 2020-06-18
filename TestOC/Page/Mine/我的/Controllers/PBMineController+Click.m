@@ -20,7 +20,6 @@
 #import "PBWebViewController.h"
 #import "PBCellHeightController.h"
 #import "PBTimerController.h"
-#import "PBHttpsController.h"
 #import "PBCopyController.h"
 #import "PBKVOController.h"
 #import "PBMemoryController.h"
@@ -46,7 +45,6 @@
              @"PBWebViewController",
              @"PBCellHeightController",
              @"PBTimerController",
-             @"PBHttpsController",
              @"PBCopyController",
              @"PBKVOController",
              @"PBMemoryController",

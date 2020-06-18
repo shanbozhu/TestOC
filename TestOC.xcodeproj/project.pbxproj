@@ -30,7 +30,6 @@
 		953341E622F3080200DC7251 /* PBCellHeightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341E422F3080200DC7251 /* PBCellHeightController.m */; };
 		953341E822F309CC00DC7251 /* PBCellHeightZero.json in Resources */ = {isa = PBXBuildFile; fileRef = 953341E722F309CC00DC7251 /* PBCellHeightZero.json */; };
 		953341F022F405DE00DC7251 /* PBTimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341EE22F405DE00DC7251 /* PBTimerController.m */; };
-		953341FC22F420A600DC7251 /* PBHttpsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341FB22F420A600DC7251 /* PBHttpsController.m */; };
 		9533420422F427C600DC7251 /* PBCopyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420322F427C600DC7251 /* PBCopyController.m */; };
 		9533420722F427D200DC7251 /* PBCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420622F427D200DC7251 /* PBCopy.m */; };
 		9533420F22F434C900DC7251 /* PBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420E22F434C900DC7251 /* PBKVOController.m */; };
@@ -141,12 +140,12 @@
 		9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575997922FC2415009CA618 /* YYFPSLabel.m */; };
 		9575998D22FC2415009CA618 /* PBBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575997D22FC2415009CA618 /* PBBaseController.m */; };
 		9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575997E22FC2415009CA618 /* PBNavigationController.m */; };
-		958378C222EAA50400AA39AF /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C022EAA50400AA39AF /* PBAFNetworkingController.m */; };
 		958378C922EAA52300AA39AF /* PBAFNetworkingZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */; };
 		958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */; };
 		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
+		95ACC83D249B4E0E00CA70B7 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */; };
 		95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716922E70680002795D0 /* PBGesturePasswordLab.m */; };
 		95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716A22E70680002795D0 /* PBGesturePasswordView.m */; };
 		95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */; };
@@ -306,8 +305,6 @@
 		953341E722F309CC00DC7251 /* PBCellHeightZero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBCellHeightZero.json; sourceTree = "<group>"; };
 		953341EE22F405DE00DC7251 /* PBTimerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTimerController.m; sourceTree = "<group>"; };
 		953341EF22F405DE00DC7251 /* PBTimerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTimerController.h; sourceTree = "<group>"; };
-		953341FA22F420A600DC7251 /* PBHttpsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBHttpsController.h; sourceTree = "<group>"; };
-		953341FB22F420A600DC7251 /* PBHttpsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBHttpsController.m; sourceTree = "<group>"; };
 		9533420222F427C600DC7251 /* PBCopyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCopyController.h; sourceTree = "<group>"; };
 		9533420322F427C600DC7251 /* PBCopyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCopyController.m; sourceTree = "<group>"; };
 		9533420522F427D200DC7251 /* PBCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCopy.h; sourceTree = "<group>"; };
@@ -515,8 +512,6 @@
 		9575997D22FC2415009CA618 /* PBBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBBaseController.m; sourceTree = "<group>"; };
 		9575997E22FC2415009CA618 /* PBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBNavigationController.m; sourceTree = "<group>"; };
 		9575997F22FC2415009CA618 /* PBBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBaseController.h; sourceTree = "<group>"; };
-		958378C022EAA50400AA39AF /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
-		958378C122EAA50400AA39AF /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingZeroController.m; sourceTree = "<group>"; };
 		958378C522EAA52300AA39AF /* PBAFNetworkingTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingTwoController.h; sourceTree = "<group>"; };
 		958378C622EAA52300AA39AF /* PBAFNetworkingTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingTwoController.m; sourceTree = "<group>"; };
@@ -527,6 +522,8 @@
 		958378D422EACE2800AA39AF /* PBUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUIWebViewController.h; sourceTree = "<group>"; };
 		958378D722EACE3C00AA39AF /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
+		95ACC83B249B4E0E00CA70B7 /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
+		95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
 		95C8716722E70680002795D0 /* PBGesturePasswordCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordCircleView.h; sourceTree = "<group>"; };
 		95C8716822E70680002795D0 /* PBGesturePasswordLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordLockView.h; sourceTree = "<group>"; };
 		95C8716922E70680002795D0 /* PBGesturePasswordLab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordLab.m; sourceTree = "<group>"; };
@@ -826,23 +823,6 @@
 			children = (
 				953341EF22F405DE00DC7251 /* PBTimerController.h */,
 				953341EE22F405DE00DC7251 /* PBTimerController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		953341F122F41E1800DC7251 /* PBHttps */ = {
-			isa = PBXGroup;
-			children = (
-				953341F922F4208500DC7251 /* Controllers */,
-			);
-			path = PBHttps;
-			sourceTree = "<group>";
-		};
-		953341F922F4208500DC7251 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				953341FA22F420A600DC7251 /* PBHttpsController.h */,
-				953341FB22F420A600DC7251 /* PBHttpsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1533,8 +1513,8 @@
 		958378BE22EAA4F000AA39AF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				958378C122EAA50400AA39AF /* PBAFNetworkingController.h */,
-				958378C022EAA50400AA39AF /* PBAFNetworkingController.m */,
+				95ACC83B249B4E0E00CA70B7 /* PBAFNetworkingController.h */,
+				95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */,
 				958378C722EAA52300AA39AF /* PBAFNetworkingZeroController.h */,
 				958378C322EAA52300AA39AF /* PBAFNetworkingZeroController.m */,
 				958378C522EAA52300AA39AF /* PBAFNetworkingTwoController.h */,
@@ -2204,7 +2184,6 @@
 				957592FE22F81E15009CA618 /* PBMemory */,
 				9533420822F434A800DC7251 /* PBKVO */,
 				953341FD22F427B200DC7251 /* PBCopy */,
-				953341F122F41E1800DC7251 /* PBHttps */,
 				953341E922F405BD00DC7251 /* PBTimer */,
 				953341A822F3067200DC7251 /* PBCellHeight */,
 				958378CC22EACE1400AA39AF /* PBWebView */,
@@ -2474,6 +2453,7 @@
 				9575933D22F82A64009CA618 /* PBStorageTextOneController.m in Sources */,
 				957593DA22F84F20009CA618 /* PBGCDListElevenController.m in Sources */,
 				95C871C422E71CBE002795D0 /* PBSeatSelectionView.m in Sources */,
+				95ACC83D249B4E0E00CA70B7 /* PBAFNetworkingController.m in Sources */,
 				953341BF22F306D400DC7251 /* PBCellHeightThreeController.m in Sources */,
 				9575934A22F82A93009CA618 /* PBStorageList.m in Sources */,
 				95C873E322E84410002795D0 /* PBTestZeroEspressos.m in Sources */,
@@ -2553,10 +2533,8 @@
 				958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */,
 				957593F122F84F3B009CA618 /* PBGCDLockTenController.m in Sources */,
 				95C8764222E99252002795D0 /* PBYYTextController.m in Sources */,
-				958378C222EAA50400AA39AF /* PBAFNetworkingController.m in Sources */,
 				957593D722F84F20009CA618 /* PBGCDListOneController.m in Sources */,
 				953341BE22F306D400DC7251 /* PBCellHeightOneController.m in Sources */,
-				953341FC22F420A600DC7251 /* PBHttpsController.m in Sources */,
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
 				953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */,
