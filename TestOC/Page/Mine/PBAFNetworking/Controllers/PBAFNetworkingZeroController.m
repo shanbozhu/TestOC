@@ -18,13 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *urlStr = @"https://mapi.damai.cn/proj/search/HotWord.aspx?a=hello&b=world";
+    
     {
-        NSString *str = @"https://www.piao.damai.cn:80/x/xx/xxx?a=hello&b=world";
-        NSURL *url = [NSURL URLWithString:str];
+        NSURL *url = [NSURL URLWithString:urlStr];
         NSLog(@"url.scheme = %@, url.host = %@, url.port = %@, url.path = %@, url.query = %@", url.scheme, url.host, url.port, url.path, url.query);
     }
-    
-    NSString *urlStr = @"https://mapi.damai.cn/proj/search/HotWord.aspx";
     
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
     [paras setValue:@"852" forKey:@"cityid"];
