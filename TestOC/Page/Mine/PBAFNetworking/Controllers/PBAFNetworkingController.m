@@ -90,11 +90,6 @@
  方式:GET、POST
  请求:路径、参数、请求头、请求体
  响应:响应头、响应体
- 
- https://mapi.damai.cn/proj/search/HotWord.aspx?a=hello&b=world
- 路劲:https://mapi.damai.cn/proj/search/HotWord.aspx
- 参数:a=hello&b=world
- 请求头:
  */
 
 @interface PBAFNetworkingController ()
