@@ -31,14 +31,21 @@
     webView.delegate = self;
     
     {
-        NSDictionary *dict = @{@"imei":@"653A4622-5438-46A5-9C9A-EFFEA2DB2DE5",@"userId":@"62",@"token":@"99a71b2b9cb39c8fcf84cf48c54b1abd",@"platform_id":@"100"};
+        //ocCalljs 原始UA
+        NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        NSLog(@"userAgent = %@", userAgent);
+        
+        NSDictionary *dict = @{@"imei" : @"653A4622-5438-46A5-9C9A-EFFEA2DB2DE5", @"userId" : @"62", @"token" : @"99a71b2b9cb39c8fcf84cf48c54b1abd", @"platform_id" : @"100"};
         NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
         NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"jsonStr = %@", jsonStr);
-        [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"UserAgent":jsonStr}];
+        jsonStr = [userAgent stringByAppendingFormat:@"%@", jsonStr];
         
-        //ocCalljs
-        NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        // 设置新UA
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : jsonStr}];
+        
+        //ocCalljs 新UA
+        userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
         NSLog(@"userAgent = %@", userAgent);
     }
     
