@@ -43,7 +43,7 @@
         [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable userAgent, NSError * _Nullable error) {
             NSLog(@"userAgent = %@", userAgent);
             
-            NSString *jsonStr = @"DamaiApp iOS v6.3.0";
+            NSString *jsonStr = @"DamaiApp WKWebView iOS v6.3.0";
             jsonStr = [userAgent stringByAppendingFormat:@" %@", jsonStr];
             
             // 设置新UA

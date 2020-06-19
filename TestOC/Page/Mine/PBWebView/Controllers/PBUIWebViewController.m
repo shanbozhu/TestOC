@@ -38,7 +38,7 @@
         NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
         NSLog(@"userAgent = %@", userAgent);
         
-        NSDictionary *dict = @{@"imei" : @"653A4622-5438-46A5-9C9A-EFFEA2DB2DE5", @"userId" : @"62", @"token" : @"99a71b2b9cb39c8fcf84cf48c54b1abd", @"platform_id" : @"100"};
+        NSDictionary *dict = @{@"imei" : @"653A4622-5438-46A5-9C9A-EFFEA2DB2DE5", @"WebView" : @"UIWebView", @"userId" : @"62", @"token" : @"99a71b2b9cb39c8fcf84cf48c54b1abd", @"platform_id" : @"100"};
         NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
         NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         jsonStr = [userAgent stringByAppendingFormat:@" %@", jsonStr];
