@@ -38,15 +38,11 @@
         NSDictionary *dict = @{@"imei" : @"653A4622-5438-46A5-9C9A-EFFEA2DB2DE5", @"userId" : @"62", @"token" : @"99a71b2b9cb39c8fcf84cf48c54b1abd", @"platform_id" : @"100"};
         NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
         NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"jsonStr = %@", jsonStr);
-        jsonStr = [userAgent stringByAppendingFormat:@"%@", jsonStr];
+        jsonStr = [userAgent stringByAppendingFormat:@" %@", jsonStr];
         
         // 设置新UA
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : jsonStr}];
-        
-        //ocCalljs 新UA
-        userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-        NSLog(@"userAgent = %@", userAgent);
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];

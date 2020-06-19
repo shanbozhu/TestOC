@@ -36,13 +36,16 @@
     webView.navigationDelegate = self;
     
     {
-        NSString *jsonStr = @"Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C107damai DamaiApp iOS v6.3.0";
-        NSLog(@"jsonStr = %@", jsonStr);
-        [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"UserAgent":jsonStr}];
-        
-        //ocCalljs
-        [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable data, NSError * _Nullable error) {
-            NSLog(@"data = %@, error = %@", data, error);
+        //ocCalljs 原始UA
+        [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable userAgent, NSError * _Nullable error) {
+            NSLog(@"userAgent = %@", userAgent);
+            
+            NSString *jsonStr = @"DamaiApp iOS v6.3.0";
+            jsonStr = [userAgent stringByAppendingFormat:@" %@", jsonStr];
+            
+            // 设置新UA
+            [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : jsonStr}];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }];
     }
     
