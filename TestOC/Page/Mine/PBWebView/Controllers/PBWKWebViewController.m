@@ -35,6 +35,9 @@
     [self.view addSubview:webView];
     webView.navigationDelegate = self;
     
+    // 请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:self.urlStr]];
+    
     {
         // ocCalljs 原始UA
         [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable userAgent, NSError * _Nullable error) {
@@ -49,7 +52,45 @@
         }];
     }
     
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.urlStr]];
+    {
+        //wkWebView 手动从NSHTTPCookieStorage获取cookie
+        
+        // 存储Cookie
+        // oneCookie
+        NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary];
+        oneCookieDict[NSHTTPCookieValue] = @"1";
+        oneCookieDict[NSHTTPCookieName] = @"ma_maitian_client";
+        oneCookieDict[NSHTTPCookiePath] = @"/";
+        oneCookieDict[NSHTTPCookieDomain] = @".damai.cn";
+        NSHTTPCookie *oneCookie = [NSHTTPCookie cookieWithProperties:oneCookieDict];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:oneCookie];
+        
+        // twoCookie
+        NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
+        twoCookieDict[NSHTTPCookieValue] = @"userCode";
+        twoCookieDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
+        twoCookieDict[NSHTTPCookiePath] = @"/";
+        twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
+        NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:twoCookie];
+        
+        // 拼接Cookie
+        NSMutableString *cookieString = [NSMutableString string];
+        for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies]) {
+            if ([cookie.domain isEqualToString:@".damai.cn"]) {
+                [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
+            }
+        }
+        if ([cookieString rangeOfString:@";"].location != NSNotFound) {
+            [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length-2, 2)];
+        }
+        
+        // 设置Cookie
+        [request addValue:cookieString forHTTPHeaderField:@"Cookie"];
+    }
+    
+    NSLog(@"webView: allHTTPHeaderFields = %@", request.allHTTPHeaderFields);
+    
     [webView loadRequest:request];
 }
 
