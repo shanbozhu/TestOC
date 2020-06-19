@@ -31,7 +31,7 @@
     webView.delegate = self;
     
     {
-        //ocCalljs 原始UA
+        // ocCalljs 原始UA
         NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
         NSLog(@"userAgent = %@", userAgent);
         
@@ -59,11 +59,11 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    //ocCalljs
+    // ocCalljs
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     NSLog(@"title = %@", title);
     
-    //jsCalloc
+    // jsCalloc
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
@@ -76,7 +76,7 @@
     context[@"htmlCallApp"] = ^() {
         NSLog(@"weakContext = %@", weakContext);
         
-        //args数组一般含有两个元素,第一个元素是方法名(字符串),第二个元素是参数(json字符串)
+        // args数组一般含有两个元素,第一个元素是方法名(字符串),第二个元素是参数(json字符串)
         NSArray *arguments = [JSContext currentArguments];
         
         NSMutableArray *objs = [NSMutableArray array];
@@ -103,7 +103,7 @@
         return ocReturn;
     };
     
-    //ocCalljs
+    // ocCalljs
     NSString *param0 = @"finishLoad";
     NSString *param1 = @"helloworld";
     NSString *jsStr = [NSString stringWithFormat:@"appCallHtml('%@', '%@')", param0, param1];

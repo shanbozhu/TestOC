@@ -36,7 +36,7 @@
     webView.navigationDelegate = self;
     
     {
-        //ocCalljs 原始UA
+        // ocCalljs 原始UA
         [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable userAgent, NSError * _Nullable error) {
             NSLog(@"userAgent = %@", userAgent);
             
@@ -69,7 +69,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //jsCalloc
+    // jsCalloc
     [self.configuration.userContentController addScriptMessageHandler:self name:@"openPage"];
 }
 
@@ -80,12 +80,12 @@
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    //ocCalljs
+    // ocCalljs
     [webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable data, NSError * _Nullable error) {
         NSLog(@"data = %@, error = %@", data, error);
     }];
     
-    //ocCalljs
+    // ocCalljs
     NSString *param0 = @"1";
     NSString *jsStr = [NSString stringWithFormat:@"realNameThenticate('%@')", param0];
     [webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable data, NSError * _Nullable error) {
