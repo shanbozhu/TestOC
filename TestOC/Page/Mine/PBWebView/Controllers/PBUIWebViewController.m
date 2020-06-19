@@ -48,7 +48,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    {        
+    {
         // 存储Cookie
         // oneCookie
         NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary];
@@ -76,7 +76,7 @@
             }
         }
         if ([cookieString rangeOfString:@";"].location != NSNotFound) {
-            [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length-2, 2)];
+            [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length - 2, 2)];
         }
         
         // 设置Cookie
