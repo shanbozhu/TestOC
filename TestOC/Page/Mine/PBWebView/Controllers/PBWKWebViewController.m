@@ -63,7 +63,7 @@
         oneCookieDict[NSHTTPCookiePath] = @"/";
         oneCookieDict[NSHTTPCookieDomain] = @".damai.cn";
         NSHTTPCookie *oneCookie = [NSHTTPCookie cookieWithProperties:oneCookieDict];
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:oneCookie];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:oneCookie];
         
         // twoCookie
         NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
@@ -72,11 +72,11 @@
         twoCookieDict[NSHTTPCookiePath] = @"/";
         twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
         NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:twoCookie];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:twoCookie];
         
         // 拼接Cookie
         NSMutableString *cookieString = [NSMutableString string];
-        for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies]) {
+        for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
             if ([cookie.domain isEqualToString:@".damai.cn"]) {
                 [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
             }
