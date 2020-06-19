@@ -52,13 +52,11 @@
         }];
     }
     
-    {
-        //wkWebView 手动从NSHTTPCookieStorage获取cookie
-        
+    {        
         // 存储Cookie
         // oneCookie
         NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary];
-        oneCookieDict[NSHTTPCookieValue] = @"1";
+        oneCookieDict[NSHTTPCookieValue] = @"11";
         oneCookieDict[NSHTTPCookieName] = @"ma_maitian_client";
         oneCookieDict[NSHTTPCookiePath] = @"/";
         oneCookieDict[NSHTTPCookieDomain] = @".damai.cn";
@@ -67,7 +65,7 @@
         
         // twoCookie
         NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
-        twoCookieDict[NSHTTPCookieValue] = @"userCode";
+        twoCookieDict[NSHTTPCookieValue] = @"userCodeuserCode";
         twoCookieDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
         twoCookieDict[NSHTTPCookiePath] = @"/";
         twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
@@ -86,10 +84,10 @@
         }
         
         // 设置Cookie
-        [request addValue:cookieString forHTTPHeaderField:@"Cookie"];
+        [request setValue:cookieString forHTTPHeaderField:@"Cookie"];
     }
     
-    NSLog(@"webView: allHTTPHeaderFields = %@", request.allHTTPHeaderFields);
+    NSLog(@"WKWebView: allHTTPHeaderFields = %@", request.allHTTPHeaderFields);
     
     [webView loadRequest:request];
 }

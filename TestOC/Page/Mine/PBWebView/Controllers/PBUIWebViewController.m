@@ -30,6 +30,9 @@
     webView.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
     webView.delegate = self;
     
+    // 请求
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
+    
     {
         // ocCalljs 原始UA
         NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
@@ -45,34 +48,43 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    {
-        //UIWebView 自动从NSHTTPCookieStorage获取cookie
+    {        
+        // 存储Cookie
+        // oneCookie
+        NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary];
+        oneCookieDict[NSHTTPCookieValue] = @"1";
+        oneCookieDict[NSHTTPCookieName] = @"ma_maitian_client";
+        oneCookieDict[NSHTTPCookiePath] = @"/";
+        oneCookieDict[NSHTTPCookieDomain] = @".damai.cn";
+        NSHTTPCookie *oneCookie = [NSHTTPCookie cookieWithProperties:oneCookieDict];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:oneCookie];
         
-        //oneCookie
-        NSMutableDictionary *oneCookieInfoDict = [NSMutableDictionary dictionary];
-        oneCookieInfoDict[NSHTTPCookieValue] = @"1";
-        oneCookieInfoDict[NSHTTPCookieName] = @"ma_maitian_client";
-        oneCookieInfoDict[NSHTTPCookiePath] = @"/";
-        oneCookieInfoDict[NSHTTPCookieDomain] = @".damai.cn";
+        // twoCookie
+        NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
+        twoCookieDict[NSHTTPCookieValue] = @"userCode";
+        twoCookieDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
+        twoCookieDict[NSHTTPCookiePath] = @"/";
+        twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
+        NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:twoCookie];
         
-        NSHTTPCookie *oneCookie = [NSHTTPCookie cookieWithProperties:oneCookieInfoDict];
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:oneCookie];
+        // 拼接Cookie
+        NSMutableString *cookieString = [NSMutableString string];
+        for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+            if ([cookie.domain isEqualToString:@".damai.cn"]) {
+                [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
+            }
+        }
+        if ([cookieString rangeOfString:@";"].location != NSNotFound) {
+            [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length-2, 2)];
+        }
         
-        //twoCookie
-        NSMutableDictionary *twoCookieInfoDict = [NSMutableDictionary dictionary];
-        twoCookieInfoDict[NSHTTPCookieValue] = [[NSUserDefaults standardUserDefaults]objectForKey:@"userCode"];
-        twoCookieInfoDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
-        twoCookieInfoDict[NSHTTPCookiePath] = @"/";
-        twoCookieInfoDict[NSHTTPCookieDomain] = @".damai.cn";
-        
-        NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieInfoDict];
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:twoCookie];
-        
-        //打印cookies
-        NSLog(@"cookies = %@", [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies]);
+        // 设置Cookie
+        [request setValue:cookieString forHTTPHeaderField:@"Cookie"];
     }
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
+    NSLog(@"UIWebView: allHTTPHeaderFields = %@", request.allHTTPHeaderFields);
+    
     [webView loadRequest:request];
 }
 
