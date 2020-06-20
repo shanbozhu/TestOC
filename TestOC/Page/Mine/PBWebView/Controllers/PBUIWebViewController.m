@@ -52,19 +52,19 @@
         // 存储Cookie
         // oneCookie
         NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary];
-        oneCookieDict[NSHTTPCookieValue] = @"1";
         oneCookieDict[NSHTTPCookieName] = @"ma_maitian_client";
-        oneCookieDict[NSHTTPCookiePath] = @"/";
+        oneCookieDict[NSHTTPCookieValue] = @"1";
         oneCookieDict[NSHTTPCookieDomain] = @".damai.cn";
+        oneCookieDict[NSHTTPCookiePath] = @"/";
         NSHTTPCookie *oneCookie = [NSHTTPCookie cookieWithProperties:oneCookieDict];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:oneCookie];
         
         // twoCookie
         NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
-        twoCookieDict[NSHTTPCookieValue] = @"userCode";
         twoCookieDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
-        twoCookieDict[NSHTTPCookiePath] = @"/";
+        twoCookieDict[NSHTTPCookieValue] = @"userCode";
         twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
+        twoCookieDict[NSHTTPCookiePath] = @"/";
         NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:twoCookie];
         
