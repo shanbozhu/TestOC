@@ -62,7 +62,7 @@
         // twoCookie
         NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
         twoCookieDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
-        twoCookieDict[NSHTTPCookieValue] = @"userCode";
+        twoCookieDict[NSHTTPCookieValue] = @"UIWebView";
         twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
         twoCookieDict[NSHTTPCookiePath] = @"/";
         NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
