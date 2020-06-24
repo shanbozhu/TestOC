@@ -16,6 +16,8 @@ target "TestOC" do
   #pod 'AFNetworking', '2.6.3'
   #pod 'AFNetworking', '~> 3.0'
   
+  pod 'SocketRocket'
+  
   pod 'SDWebImage', '~> 5.0.6'
   pod 'Masonry', '~> 1.1.0'
   pod 'FMDB', '~> 2.7.5'
