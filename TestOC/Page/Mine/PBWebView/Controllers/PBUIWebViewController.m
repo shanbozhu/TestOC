@@ -43,15 +43,14 @@
         NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         jsonStr = [userAgent stringByAppendingFormat:@" %@", jsonStr];
         
-        // 设置新UA
+        // 存储UA
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : jsonStr}];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     {
         // 存储Cookie
-        // oneCookie
-        NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary];
+        NSMutableDictionary *oneCookieDict = [NSMutableDictionary dictionary]; // oneCookie
         oneCookieDict[NSHTTPCookieDomain] = @".damai.cn";
         oneCookieDict[NSHTTPCookiePath] = @"/";
         oneCookieDict[NSHTTPCookieName] = @"ma_maitian_client";
@@ -59,8 +58,7 @@
         NSHTTPCookie *oneCookie = [NSHTTPCookie cookieWithProperties:oneCookieDict];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:oneCookie];
         
-        // twoCookie
-        NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary];
+        NSMutableDictionary *twoCookieDict = [NSMutableDictionary dictionary]; // twoCookie
         twoCookieDict[NSHTTPCookieDomain] = @".damai.cn";
         twoCookieDict[NSHTTPCookiePath] = @"/";
         twoCookieDict[NSHTTPCookieName] = @"damai.cn_maitian_user";
@@ -68,7 +66,7 @@
         NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:twoCookie];
         
-        // 拼接Cookie
+        // 拼接Cookie,然后设置Cookie
         NSMutableString *cookieString = [NSMutableString string];
         for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
             if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名,拼接特定cookie传输
@@ -79,7 +77,6 @@
             [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length - 2, 2)];
         }
         
-        // 设置Cookie
         [request setValue:cookieString forHTTPHeaderField:@"Cookie"];
     }
     
