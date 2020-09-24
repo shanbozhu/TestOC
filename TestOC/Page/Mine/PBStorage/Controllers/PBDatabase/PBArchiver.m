@@ -11,7 +11,7 @@
 
 @implementation PBArchiver
 
-#pragma mark - 支持[归解挡]操作的[模型对象]需要实现的方法
+#pragma mark - 获取类的所有属性
 // 获取类的所有属性
 - (NSArray *)propertyList {
     NSMutableArray *propertyList = [NSMutableArray array];
@@ -30,6 +30,7 @@
     return propertyList;
 }
 
+#pragma mark - 支持[归解挡]操作的[模型对象]需要实现的方法
 // 归档时当前对象需要实现的代理方法
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     for (NSString *property in [self propertyList]) {
