@@ -75,7 +75,7 @@
         // 拼接Cookie
         NSMutableString *cookieString = [NSMutableString string];
         for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-            if ([cookie.domain isEqualToString:@".damai.cn"]) {
+            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名,拼接特定cookie传输
                 [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
             }
         }
@@ -88,7 +88,6 @@
     }
     
     NSLog(@"WKWebView: allHTTPHeaderFields = %@", request.allHTTPHeaderFields);
-    
     [webView loadRequest:request];
 }
 
