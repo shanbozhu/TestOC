@@ -43,7 +43,7 @@ DEPENDENCIES:
   - FMDB (~> 2.7.5)
   - Masonry (~> 1.1.0)
   - SDWebImage (~> 5.0.6)
-  - SocketRocket
+  - SocketRocket (= 0.5.1)
   - YYCache (= 1.0.4)
   - YYImage (= 1.0.4)
   - YYModel (= 1.0.4)
@@ -75,6 +75,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 4cd4b4d12373307d44d26d33a845d2ce58ba9a6f
+PODFILE CHECKSUM: fbac623b9d1c95ee59e1d7b581558cbf82e5ed3b
 
 COCOAPODS: 1.9.1
