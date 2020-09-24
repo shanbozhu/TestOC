@@ -1,21 +1,22 @@
 //
-//  PBRuntimeController+addTest.m
+//  PBRuntimeController+Test.m
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/9/11.
 //  Copyright © 2019年 DaMaiIOS. All rights reserved.
 //
 
-#import "PBRuntimeController+addTest.h"
+#import "PBRuntimeController+Test.h"
 #import "PBMethodSwizzling.h"
 
 /**
  hook:
  一般用于hook一个不可修改的原方法,而又需要在原方法的基础上添加代码.
- 不同于单纯的category,因为单纯的category会覆盖原方法,在不需要原方法中的代码时可以的.如果我们需要原方法中的逻辑,然后在添加些自定义的逻辑,这种情况下就要使用hook了.
+ 不同于单纯的category,因为单纯的category会覆盖原方法,在不需要原方法中的代码是可以的.如果我们需要原方法中的逻辑,然后在添加些自定义的逻辑,这种情况下就要使用hook了.
  */
-@implementation PBRuntimeController (addTest)
+@implementation PBRuntimeController (Test)
 
+// +load方法在main函数之前执行
 + (void)load {
     [self doHook];
 }

@@ -47,7 +47,7 @@
 		954E6C4D232643DD00541C11 /* PBDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 954E6C4C232643DD00541C11 /* PBDownload.m */; };
 		955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955440F92328F1F9003A615C /* PBRuntimeController.m */; };
 		955440FE2328F3B6003A615C /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 955440FD2328F3B6003A615C /* PBMethodSwizzling.m */; };
-		955441012328F5AB003A615C /* PBRuntimeController+addTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 955441002328F5AB003A615C /* PBRuntimeController+addTest.m */; };
+		955441012328F5AB003A615C /* PBRuntimeController+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 955441002328F5AB003A615C /* PBRuntimeController+Test.m */; };
 		9575930522F81E55009CA618 /* PBMemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930422F81E55009CA618 /* PBMemoryController.m */; };
 		9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930622F81E65009CA618 /* PBMemoryListController.m */; };
 		9575930B22F81E65009CA618 /* PBMemoryListMRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930722F81E65009CA618 /* PBMemoryListMRCController.m */; };
@@ -337,8 +337,8 @@
 		955440F92328F1F9003A615C /* PBRuntimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeController.m; sourceTree = "<group>"; };
 		955440FC2328F3B6003A615C /* PBMethodSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
 		955440FD2328F3B6003A615C /* PBMethodSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
-		955440FF2328F5AB003A615C /* PBRuntimeController+addTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeController+addTest.h"; sourceTree = "<group>"; };
-		955441002328F5AB003A615C /* PBRuntimeController+addTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeController+addTest.m"; sourceTree = "<group>"; };
+		955440FF2328F5AB003A615C /* PBRuntimeController+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeController+Test.h"; sourceTree = "<group>"; };
+		955441002328F5AB003A615C /* PBRuntimeController+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeController+Test.m"; sourceTree = "<group>"; };
 		9575930322F81E55009CA618 /* PBMemoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryController.h; sourceTree = "<group>"; };
 		9575930422F81E55009CA618 /* PBMemoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryController.m; sourceTree = "<group>"; };
 		9575930622F81E65009CA618 /* PBMemoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMemoryListController.m; sourceTree = "<group>"; };
@@ -977,8 +977,8 @@
 			children = (
 				955440F82328F1F9003A615C /* PBRuntimeController.h */,
 				955440F92328F1F9003A615C /* PBRuntimeController.m */,
-				955440FF2328F5AB003A615C /* PBRuntimeController+addTest.h */,
-				955441002328F5AB003A615C /* PBRuntimeController+addTest.m */,
+				955440FF2328F5AB003A615C /* PBRuntimeController+Test.h */,
+				955441002328F5AB003A615C /* PBRuntimeController+Test.m */,
 				955440FB2328F38B003A615C /* PBMethodSwizzling */,
 			);
 			path = Controllers;
@@ -2367,7 +2367,7 @@
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				953341D622F306EE00DC7251 /* PBCellHeightOneView.m in Sources */,
 				9575998522FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
-				955441012328F5AB003A615C /* PBRuntimeController+addTest.m in Sources */,
+				955441012328F5AB003A615C /* PBRuntimeController+Test.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
 				9575934222F82A64009CA618 /* PBStorageTextFourController.m in Sources */,
 				957593AD22F84D8E009CA618 /* PBGCDController.m in Sources */,
