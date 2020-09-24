@@ -9,6 +9,24 @@
 #import "PBArchiver.h"
 #import <objc/runtime.h>
 
+#pragma mark - [归解档]例子
+/**
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeBool:self.hasRequestedAsyncAd forKey:@"hasRequestedAsyncAd"];
+    if (self.floor) {
+        [aCoder encodeObject:self.floor forKey:@"floor"];
+    }
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super init]) {
+        self.hasRequestedAsyncAd = [aDecoder decodeBoolForKey:@"hasRequestedAsyncAd"];
+        self.floor = [aDecoder decodeObjectForKey:@"floor"];
+    }
+    return self;
+}
+ */
+
 @implementation PBArchiver
 
 #pragma mark - 获取类的所有属性
@@ -47,24 +65,6 @@
     }
     return self;
 }
-
-#pragma mark - [归解档]例子
-/**
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super init]) {
-        self.hasRequestedAsyncAd = [aDecoder decodeBoolForKey:@"hasRequestedAsyncAd"];
-        self.floor = [aDecoder decodeObjectForKey:@"floor"];
-    }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeBool:self.hasRequestedAsyncAd forKey:@"hasRequestedAsyncAd"];
-    if (self.floor) {
-        [aCoder encodeObject:self.floor forKey:@"floor"];
-    }
-}
- */
 
 #pragma mark - [归解档]操作
 + (NSData *)dataWithObject:(id)obj key:(NSString *)key {

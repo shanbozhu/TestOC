@@ -19,7 +19,7 @@
            NSUTF8StringEncoding          NSJSONSerialization
  */
 
-@interface PBArchiver : NSObject<NSCoding>
+@interface PBArchiver : NSObject <NSCoding>
 
 /**
  归档:将任意类型对象归档为二进制数据
