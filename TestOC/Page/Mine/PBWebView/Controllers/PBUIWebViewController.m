@@ -46,6 +46,8 @@
         // 存储UA
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : jsonStr}];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        // 对于WebView而言,在发起网络请求时,系统会自动设置UA,无需手动调用 [request setValue:jsonStr forHTTPHeaderField:@"User-Agent"];
     }
     
     {
