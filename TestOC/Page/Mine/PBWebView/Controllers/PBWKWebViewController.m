@@ -73,7 +73,7 @@
         // 拼接Cookie,然后设置Cookie
         NSMutableString *cookieString = [NSMutableString string];
         for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名,拼接特定cookie传输
+            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名,拼接特定cookie
                 [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
             }
         }
