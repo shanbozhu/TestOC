@@ -83,11 +83,7 @@
     
     // 启动图片浏览器
     PBPhotoBrowserView *photoBrowserView = [PBPhotoBrowserView photoBrowserView];
-#ifdef USEYYLabel
     photoBrowserView.sourceImageFatherView = cell.lab; // 原图的父控件
-#else
-    photoBrowserView.sourceImageFatherView = cell.textView.inputView; // 原图的父控件
-#endif
     photoBrowserView.imageCount = contentModel.imageArr.count;
     photoBrowserView.currentImageIndex = [info[@"tag"] integerValue];
     photoBrowserView.sourceImageSlideView = nil;

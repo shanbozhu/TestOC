@@ -9,19 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PBContentModel.h"
 
-// 是否使用YYLabel
-#define USEYYLabel
-
 @interface PBTestListCell : UITableViewCell
 
 @property (nonatomic, strong) PBContentModel *contentModel;
 @property (nonatomic, weak) UIImageView *oneImageView;
 
-#ifdef USEYYLabel
 @property (nonatomic, weak) YYLabel *lab;
-#else
-@property (nonatomic, weak) YYTextView *textView;
-#endif
 
 + (id)testListCellWithTableView:(UITableView *)tableView;
 

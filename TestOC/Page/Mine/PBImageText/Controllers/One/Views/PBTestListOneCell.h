@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PBContentOneModel.h"
 
-// 是否使用YYLabel
-#define USEYYLabel
-
 @interface PBTestListOneCell : UITableViewCell
 
 @property (nonatomic, strong) PBContentOneModel *contentOneModel;

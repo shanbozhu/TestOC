@@ -12,15 +12,8 @@
 
 @interface PBTestListOneCell ()
 
-#ifdef USEYYLabel
 @property (nonatomic, weak) YYLabel *lab;
-#else
-@property (nonatomic, weak) YYTextView *textView;
-#endif
 @property (nonatomic, weak) UIView *separatorView;
-#ifndef USEYYLabel
-@property (nonatomic, weak) UITableView *tableView;
-#endif
 
 @end
 
@@ -33,16 +26,12 @@
     if (cell == nil) {
         cell = [[self alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-#ifndef USEYYLabel
-    cell.tableView = tableView;
-#endif
     return cell;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if ([reuseIdentifier isEqualToString:@"lab"]) {
-#ifdef USEYYLabel
             // lab
             YYLabel *lab = [[YYLabel alloc]init];
             self.lab = lab;
@@ -51,20 +40,6 @@
             
             //lab.layer.borderWidth = 1;
             //lab.layer.borderColor = [UIColor redColor].CGColor;
-#else
-            // textView
-            YYTextView *textView = [[YYTextView alloc]init];
-            self.textView = textView;
-            [self.contentView addSubview:textView];
-            textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            textView.editable = NO;
-            
-            //textView.layer.borderWidth = 1;
-            //textView.layer.borderColor = [UIColor redColor].CGColor;
-            
-            // 防止textView的选择复制与父视图的滚动手势冲突
-            [self.textView addObserver:self forKeyPath:@"panGestureRecognizer.enabled" options:NSKeyValueObservingOptionNew context:nil];
-#endif
         }
         
         if ([reuseIdentifier isEqualToString:@"imageView"]) {
@@ -85,12 +60,6 @@
     return self;
 }
 
-#ifndef USEYYLabel
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    self.tableView.panGestureRecognizer.enabled = self.textView.panGestureRecognizer.enabled;
-}
-#endif
-
 - (void)setContentOneModel:(PBContentOneModel *)contentOneModel {
     _contentOneModel = contentOneModel;
     
@@ -100,7 +69,6 @@
 - (void)fillTestListCell {
     if ([self.reuseIdentifier isEqualToString:@"lab"]) {
         //NSLog(@"self.contentOneModel.text = %@, self.contentOneModel.text.length = %ld", self.contentOneModel.text, self.contentOneModel.text.length);
-#ifdef USEYYLabel
         YYTextLayout *textLayout = [YYTextLayout layoutWithContainerSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, MAXFLOAT) text:self.contentOneModel.text];
         
         // lab
@@ -110,16 +78,6 @@
             self.lab.frame = CGRectMake(10, 10, textLayout.textBoundingSize.width, textLayout.textBoundingSize.height);
         }
         self.lab.textLayout = textLayout;
-#else
-        // textView
-        if (self.contentOneModel.text == nil || [self.contentOneModel.text isEqualToAttributedString:[[NSMutableAttributedString alloc] initWithString:@""]]) {
-            self.textView.frame = CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 0);
-        } else {
-            self.textView.frame = CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 10000);
-            self.textView.attributedText = self.contentOneModel.text;
-            [self.textView sizeToFit];
-        }
-#endif
     }
     
     if ([self.reuseIdentifier isEqualToString:@"imageView"]) {
@@ -131,11 +89,7 @@
 
 - (CGSize)sizeThatFits:(CGSize)size {
     if ([self.reuseIdentifier isEqualToString:@"lab"]) {
-#ifdef USEYYLabel
         return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame)==0?0.000001:CGRectGetMaxY(self.lab.frame));
-#else
-        return CGSizeMake(size.width, CGRectGetMaxY(self.textView.frame)==0?0.000001:CGRectGetMaxY(self.textView.frame));
-#endif
     }
     if ([self.reuseIdentifier isEqualToString:@"imageView"]) {
         return CGSizeMake(size.width, CGRectGetMaxY(self.oneImageView.frame));
