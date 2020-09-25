@@ -115,7 +115,7 @@
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(8, 5)];
     
-    // 图标
+    // (渐变色)生成的图标
     UIImageView *iconImageView = [[UIImageView alloc]init];
     iconImageView.frame = CGRectMake(0, 0, 40, 12);
     //iconImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 150); // 推荐此种宽度写法
@@ -126,7 +126,6 @@
     [iconImageView addGestureRecognizer:zeroTap];
     zeroTap.view.tag = 0;
     
-    // 图标(渐变色)
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = iconImageView.bounds;
     layer.startPoint = CGPointMake(0, 0);
@@ -141,36 +140,38 @@
     [attachStrZero yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrZero.yy_rangeOfAll];
     [attStr insertAttributedString:attachStrZero atIndex:1];
     
-    // 空心字
-    [attStr yy_setStrokeWidth:@(2) range:NSMakeRange(25, 5)];
-    [attStr yy_setStrokeColor:[UIColor blueColor] range:NSMakeRange(25, 5)];
+//    // 空心字
+//    [attStr yy_setStrokeWidth:@(2) range:NSMakeRange(25, 5)];
+//    [attStr yy_setStrokeColor:[UIColor blueColor] range:NSMakeRange(25, 5)];
     
-    // 下划线,删除线
-    YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(2) color:[UIColor redColor]];
-    [attStr yy_setTextStrikethrough:decoration range:NSMakeRange(35, 5)];
+    // 删除线
+    YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:[UIColor redColor]];
+    [attStr yy_setTextStrikethrough:decoration range:NSMakeRange(25, 5)];
+    
+    // 下划线
     [attStr yy_setTextUnderline:decoration range:NSMakeRange(35, 5)];
     
     // 边框
     YYTextBorder *border = [[YYTextBorder alloc]init];
     border.strokeColor = [UIColor blueColor];
-    border.strokeWidth = 2;
+    border.strokeWidth = 1;
     border.cornerRadius = 3;
     border.lineStyle = YYTextLineStyleSingle;
     [attStr yy_setTextBorder:border range:NSMakeRange(45, 5)];
     
-    // 阴影
-    YYTextShadow *shadow = [[YYTextShadow alloc]init];
-    shadow.color = [UIColor redColor];
-    shadow.radius = 1;
-    shadow.offset = CGSizeMake(2, 2);
-    [attStr yy_setTextShadow:shadow range:NSMakeRange(55, 5)];
+//    // 阴影
+//    YYTextShadow *shadow = [[YYTextShadow alloc]init];
+//    shadow.color = [UIColor redColor];
+//    shadow.radius = 1;
+//    shadow.offset = CGSizeMake(2, 2);
+//    [attStr yy_setTextShadow:shadow range:NSMakeRange(55, 5)];
     
-    // 文本内阴影
-    YYTextShadow *innerShadow = [[YYTextShadow alloc]init];
-    innerShadow.color = [UIColor redColor];
-    innerShadow.radius = 1;
-    innerShadow.offset = CGSizeMake(1, 1);
-    [attStr yy_setTextInnerShadow:innerShadow range:NSMakeRange(65, 5)];
+//    // 文本内阴影
+//    YYTextShadow *innerShadow = [[YYTextShadow alloc]init];
+//    innerShadow.color = [UIColor redColor];
+//    innerShadow.radius = 1;
+//    innerShadow.offset = CGSizeMake(1, 1);
+//    [attStr yy_setTextInnerShadow:innerShadow range:NSMakeRange(65, 5)];
     
     // 点击高亮
     [attStr yy_setTextHighlightRange:NSMakeRange(75, 5) color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
@@ -192,15 +193,17 @@
     YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
     highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
     highlightBorder.cornerRadius = 3;
-    highlightBorder.fillColor = [UIColor greenColor];
+    highlightBorder.fillColor = [UIColor grayColor];
     [highlight setBackgroundBorder:highlightBorder];
+    
     highlight.tapAction =  ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     };
+    
     [attStr yy_setTextHighlight:highlight range:NSMakeRange(85, 5)];
     
-    // 斜体
-    [attStr yy_setObliqueness:@(0.6) range:NSMakeRange(95, 5)];
+//    // 斜体
+//    [attStr yy_setObliqueness:@(0.6) range:NSMakeRange(95, 5)];
     
     // @用户名称
     NSArray *resultAt = [[PBRegex regexAt]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
