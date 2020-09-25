@@ -8,7 +8,6 @@
 
 #import "PBImageTextController.h"
 #import "PBTestListController.h"
-#import "PBTestListOneController.h"
 #import "PBTestListTwoController.h"
 
 @interface PBImageTextController ()<UITableViewDelegate, UITableViewDataSource>
@@ -36,7 +35,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,12 +55,6 @@
         testListController.view.backgroundColor = [UIColor whiteColor];
     }
     if (indexPath.row == 1) {
-        PBTestListOneController *testListOneController = [[PBTestListOneController alloc]init];
-        testListOneController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testListOneController animated:YES];
-        testListOneController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 2) {
         PBTestListTwoController *testListTwoController = [[PBTestListTwoController alloc]init];
         testListTwoController.hidesBottomBarWhenPushed = YES;
         
