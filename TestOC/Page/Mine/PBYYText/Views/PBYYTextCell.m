@@ -140,10 +140,6 @@
     [attachStrZero yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrZero.yy_rangeOfAll];
     [attStr insertAttributedString:attachStrZero atIndex:1];
     
-//    // 空心字
-//    [attStr yy_setStrokeWidth:@(2) range:NSMakeRange(25, 5)];
-//    [attStr yy_setStrokeColor:[UIColor blueColor] range:NSMakeRange(25, 5)];
-    
     // 删除线
     YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:[UIColor redColor]];
     [attStr yy_setTextStrikethrough:decoration range:NSMakeRange(25, 5)];
@@ -158,20 +154,6 @@
     border.cornerRadius = 3;
     border.lineStyle = YYTextLineStyleSingle;
     [attStr yy_setTextBorder:border range:NSMakeRange(45, 5)];
-    
-//    // 阴影
-//    YYTextShadow *shadow = [[YYTextShadow alloc]init];
-//    shadow.color = [UIColor redColor];
-//    shadow.radius = 1;
-//    shadow.offset = CGSizeMake(2, 2);
-//    [attStr yy_setTextShadow:shadow range:NSMakeRange(55, 5)];
-    
-//    // 文本内阴影
-//    YYTextShadow *innerShadow = [[YYTextShadow alloc]init];
-//    innerShadow.color = [UIColor redColor];
-//    innerShadow.radius = 1;
-//    innerShadow.offset = CGSizeMake(1, 1);
-//    [attStr yy_setTextInnerShadow:innerShadow range:NSMakeRange(65, 5)];
     
     // 点击高亮
     [attStr yy_setTextHighlightRange:NSMakeRange(75, 5) color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
@@ -201,9 +183,6 @@
     };
     
     [attStr yy_setTextHighlight:highlight range:NSMakeRange(85, 5)];
-    
-//    // 斜体
-//    [attStr yy_setObliqueness:@(0.6) range:NSMakeRange(95, 5)];
     
     // @用户名称
     NSArray *resultAt = [[PBRegex regexAt]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
