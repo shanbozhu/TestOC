@@ -14,6 +14,7 @@
 @interface PBYYTextCell ()
 
 @property (nonatomic, weak) YYLabel *fourLab;
+@property (nonatomic, weak) YYTextView *textView;
 @property (nonatomic, weak) UITableView *tableView;
 
 @end
@@ -39,7 +40,6 @@
     
     [self fillTestListCell];
 }
-
 
 - (void)fillTestListCell {
     // 移除自定义视图上的所有子视图
@@ -294,6 +294,26 @@
         fourLab.attributedText = attStr;
         [fourLab sizeToFit];
     }
+    
+    // textView
+    YYTextView *textView = [[YYTextView alloc]init];
+    self.textView = textView;
+    [self.contentView addSubview:textView];
+    textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0); // textView需要设置此属性
+    //textView.layer.borderColor = [UIColor redColor].CGColor;
+    //textView.layer.borderWidth = 1;
+    textView.editable = NO;
+    textView.frame = CGRectMake(20, CGRectGetMaxY(fourLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
+    textView.attributedText = attStr;
+    [textView sizeToFit];
+    
+    // 防止textView的选择复制与父视图的滚动手势冲突
+    [self.textView addObserver:self forKeyPath:@"panGestureRecognizer.enabled" options:NSKeyValueObservingOptionNew context:nil];
+
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    self.tableView.panGestureRecognizer.enabled = self.textView.panGestureRecognizer.enabled;
 }
 
 // 利用正则表达式匹配特定字符串
@@ -326,6 +346,9 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
+    if ([self.contentView.subviews containsObject:self.textView]) {
+        return CGSizeMake(size.width, CGRectGetMaxY(self.textView.frame)+20);
+    }
     return CGSizeMake(size.width, CGRectGetMaxY(self.fourLab.frame)+20);
 }
 
