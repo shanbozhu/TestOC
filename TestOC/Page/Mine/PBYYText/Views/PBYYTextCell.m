@@ -309,7 +309,6 @@
     
     // 防止textView的选择复制与父视图的滚动手势冲突
     [self.textView addObserver:self forKeyPath:@"panGestureRecognizer.enabled" options:NSKeyValueObservingOptionNew context:nil];
-
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
