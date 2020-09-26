@@ -47,7 +47,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天｜安｜门我爱北京天安门我爱北京天安门😀💙🚖我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天17600108786安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
+    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天｜安｜门我爱北京天安门我爱北京天安门😀💙🚖我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
     
     // threeLab
     YYLabel *threeLab = [[YYLabel alloc]init];
@@ -184,136 +184,20 @@
     
     [attStr yy_setTextHighlight:highlight range:NSMakeRange(85, 5)];
     
-    // 用户名称
-    NSArray *resultAt = [[PBRegex regexAt]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
-    for (NSTextCheckingResult *at in resultAt) {
-        if (at.range.location == NSNotFound && at.range.length <= 1) {
-            continue;
-        }
-        
-        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
-            [attStr yy_setColor:[UIColor blueColor] range:at.range];
-            
-            YYTextHighlight *highlight = [[YYTextHighlight alloc]init];
-            
-            YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
-            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
-            highlightBorder.cornerRadius = 3;
-            highlightBorder.fillColor = [UIColor greenColor];
-            [highlight setBackgroundBorder:highlightBorder];
-            
-            __weak typeof(highlight) weakHighlight = highlight;
-            highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                NSLog(@"%@, highlight = %@, yy_attribute = %@", [attStr.string substringWithRange:at.range], weakHighlight, [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
-            };
-            
-            [attStr yy_setTextHighlight:highlight range:at.range];
-        }
-    }
+    // 用户名
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
     
     // 话题
-    NSArray *resultTopic = [[PBRegex regexTopic]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
-    for (NSTextCheckingResult *at in resultTopic) {
-        if (at.range.location == NSNotFound && at.range.length <= 1) {
-            continue;
-        }
-        
-        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
-            [attStr yy_setColor:[UIColor blueColor] range:at.range];
-            
-            YYTextHighlight *highlight = [[YYTextHighlight alloc]init];
-            
-            YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
-            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
-            highlightBorder.cornerRadius = 3;
-            highlightBorder.fillColor = [UIColor greenColor];
-            [highlight setBackgroundBorder:highlightBorder];
-            
-            highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                NSLog(@"%@, yy_attribute = %@", [attStr.string substringWithRange:at.range], [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
-            };
-            
-            [attStr yy_setTextHighlight:highlight range:at.range];
-        }
-    }
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
     
     // 邮件
-    NSArray *resultEmail = [[PBRegex regexEmail]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
-    for (NSTextCheckingResult *at in resultEmail) {
-        if (at.range.location == NSNotFound && at.range.length <= 1) {
-            continue;
-        }
-        
-        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
-            [attStr yy_setColor:[UIColor blueColor] range:at.range];
-            
-            YYTextHighlight *highlight = [[YYTextHighlight alloc]init];
-            
-            YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
-            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
-            highlightBorder.cornerRadius = 3;
-            highlightBorder.fillColor = [UIColor greenColor];
-            [highlight setBackgroundBorder:highlightBorder];
-            
-            highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                NSLog(@"%@, yy_attribute = %@", [attStr.string substringWithRange:at.range], [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
-            };
-            
-            [attStr yy_setTextHighlight:highlight range:at.range];
-        }
-    }
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
     
     // 链接
-    NSArray *resultLink = [[PBRegex regexUrl]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
-    for (NSTextCheckingResult *at in resultLink) {
-        if (at.range.location == NSNotFound && at.range.length <= 1) {
-            continue;
-        }
-        
-        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
-            [attStr yy_setColor:[UIColor blueColor] range:at.range];
-            
-            YYTextHighlight *highlight = [[YYTextHighlight alloc]init];
-            
-            YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
-            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
-            highlightBorder.cornerRadius = 3;
-            highlightBorder.fillColor = [UIColor greenColor];
-            [highlight setBackgroundBorder:highlightBorder];
-            
-            highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                NSLog(@"%@, yy_attribute = %@", [attStr.string substringWithRange:at.range], [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
-            };
-            
-            [attStr yy_setTextHighlight:highlight range:at.range];
-        }
-    }
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
     
     // 手机号
-    NSArray *resultPhone = [[PBRegex regexPhone]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
-    for (NSTextCheckingResult *at in resultPhone) {
-        if (at.range.location == NSNotFound && at.range.length <= 1) {
-            continue;
-        }
-        
-        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
-            [attStr yy_setColor:[UIColor blueColor] range:at.range];
-            
-            YYTextHighlight *highlight = [[YYTextHighlight alloc]init];
-            
-            YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
-            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
-            highlightBorder.cornerRadius = 3;
-            highlightBorder.fillColor = [UIColor greenColor];
-            [highlight setBackgroundBorder:highlightBorder];
-            
-            highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                NSLog(@"%@, yy_attribute = %@", [attStr.string substringWithRange:at.range], [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
-            };
-            
-            [attStr yy_setTextHighlight:highlight range:at.range];
-        }
-    }
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
     // gif图
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
@@ -409,6 +293,35 @@
     {
         fourLab.attributedText = attStr;
         [fourLab sizeToFit];
+    }
+}
+
+// 利用正则表达式匹配特定字符串
+- (void)highlightWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
+    NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
+    for (NSTextCheckingResult *at in result) {
+        if (at.range.location == NSNotFound && at.range.length <= 1) {
+            continue;
+        }
+        
+        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
+            [attStr yy_setColor:[UIColor blueColor] range:at.range];
+            
+            YYTextHighlight *highlight = [[YYTextHighlight alloc]init];
+            
+            YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
+            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
+            highlightBorder.cornerRadius = 3;
+            highlightBorder.fillColor = [UIColor greenColor];
+            [highlight setBackgroundBorder:highlightBorder];
+            
+            __weak typeof(highlight) weakHighlight = highlight;
+            highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+                NSLog(@"%@, highlight = %@, yy_attribute = %@", [attStr.string substringWithRange:at.range], weakHighlight, [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
+            };
+            
+            [attStr yy_setTextHighlight:highlight range:at.range];
+        }
     }
 }
 
