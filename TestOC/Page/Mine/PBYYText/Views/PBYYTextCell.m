@@ -119,7 +119,7 @@
     
     // (渐变色)生成的图标
     UIImageView *iconImageView = [[UIImageView alloc]init];
-    iconImageView.frame = CGRectMake(0, 0, 40, 12);
+    iconImageView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
     //iconImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 150); // 推荐此种宽度写法
     iconImageView.layer.cornerRadius = 3;
     iconImageView.layer.masksToBounds = YES;
