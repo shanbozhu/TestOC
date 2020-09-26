@@ -66,10 +66,12 @@
         [self.delegate testListCell:self];
     };
     
-    // ...全文
-    NSMutableAttributedString *moreStr = [[NSMutableAttributedString alloc]initWithString:@"...全文"];
-    [moreStr yy_setFont:attStr.yy_font range:moreStr.yy_rangeOfAll];
-    [moreStr yy_setTextHighlightRange:moreStr.yy_rangeOfAll color:[UIColor blueColor] backgroundColor:[UIColor redColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+    // ... 全文
+    NSMutableAttributedString *moreStr = [[NSMutableAttributedString alloc]initWithString:@"... 全文"];
+    [moreStr yy_setFont:attStr.yy_font range:[moreStr.string rangeOfString:@"..."]];
+    [moreStr yy_setColor:attStr.yy_color range:[moreStr.string rangeOfString:@"..."]];
+    [moreStr yy_setFont:attStr.yy_font range:[moreStr.string rangeOfString:@"全文"]];
+    [moreStr yy_setTextHighlightRange:[moreStr.string rangeOfString:@"全文"] color:[UIColor blueColor] backgroundColor:[UIColor redColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
         NSLog(@"点击了更多,需要展开");
         self.testList.fold = NO;
         [self.delegate testListCell:self];
