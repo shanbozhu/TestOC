@@ -248,7 +248,8 @@
     // 图片表情
     UIImageView *threeImageView = [[UIImageView alloc]init];
     threeImageView.image = [UIImage imageNamed:@"0022"]; // 0055
-    threeImageView.frame = CGRectMake(0, 0, threeImageView.image.size.width, threeImageView.image.size.height);
+    //threeImageView.frame = CGRectMake(0, 0, threeImageView.image.size.width, threeImageView.image.size.height);
+    threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
     threeImageView.userInteractionEnabled = YES;
     threeImageView.layer.cornerRadius = 10;
     threeImageView.layer.masksToBounds = YES;
