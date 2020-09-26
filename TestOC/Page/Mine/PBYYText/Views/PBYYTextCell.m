@@ -175,7 +175,7 @@
     YYTextBorder *highlightBorder = [[YYTextBorder alloc]init];
     highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
     highlightBorder.cornerRadius = 3;
-    highlightBorder.fillColor = [UIColor grayColor];
+    highlightBorder.fillColor = [UIColor greenColor];
     [highlight setBackgroundBorder:highlightBorder];
     
     highlight.tapAction =  ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
