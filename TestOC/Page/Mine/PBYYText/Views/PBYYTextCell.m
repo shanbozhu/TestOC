@@ -66,8 +66,8 @@
         [self.delegate testListCell:self];
     };
     
-    // 展开全文
-    NSMutableAttributedString *moreStr = [[NSMutableAttributedString alloc]initWithString:@"...展开全文"];
+    // 全文
+    NSMutableAttributedString *moreStr = [[NSMutableAttributedString alloc]initWithString:@"...全文"];
     [moreStr yy_setFont:attStr.yy_font range:moreStr.yy_rangeOfAll];
     [moreStr yy_setTextHighlightRange:moreStr.yy_rangeOfAll color:[UIColor blueColor] backgroundColor:[UIColor redColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
         NSLog(@"点击了更多,需要展开");
