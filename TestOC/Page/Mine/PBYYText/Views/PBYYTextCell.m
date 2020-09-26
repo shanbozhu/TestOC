@@ -66,7 +66,7 @@
         [self.delegate testListCell:self];
     };
     
-    // 全文
+    // ...全文
     NSMutableAttributedString *moreStr = [[NSMutableAttributedString alloc]initWithString:@"...全文"];
     [moreStr yy_setFont:attStr.yy_font range:moreStr.yy_rangeOfAll];
     [moreStr yy_setTextHighlightRange:moreStr.yy_rangeOfAll color:[UIColor blueColor] backgroundColor:[UIColor redColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
@@ -155,12 +155,12 @@
     border.lineStyle = YYTextLineStyleSingle;
     [attStr yy_setTextBorder:border range:NSMakeRange(45, 5)];
     
-    // 点击高亮
+    // 高亮点击
     [attStr yy_setTextHighlightRange:NSMakeRange(75, 5) color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     }];
     
-    // 点击高亮自定义
+    // 高亮点击自定义
     UIColor *normalColor = [UIColor blueColor];
     [attStr yy_setColor:normalColor range:NSMakeRange(85, 5)];
     YYTextDecoration *normalDecoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:normalColor];
