@@ -184,7 +184,7 @@
     
     [attStr yy_setTextHighlight:highlight range:NSMakeRange(85, 5)];
     
-    // @用户名称
+    // 用户名称
     NSArray *resultAt = [[PBRegex regexAt]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
     for (NSTextCheckingResult *at in resultAt) {
         if (at.range.location == NSNotFound && at.range.length <= 1) {
@@ -211,7 +211,7 @@
         }
     }
     
-    // #话题
+    // 话题
     NSArray *resultTopic = [[PBRegex regexTopic]matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
     for (NSTextCheckingResult *at in resultTopic) {
         if (at.range.location == NSNotFound && at.range.length <= 1) {
@@ -353,7 +353,7 @@
     [attStr appendAttributedString:attachStrTwo];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北京天北京天安门我爱北京天安门我爱北京天安"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北京天北京天安门我爱北京天安门."];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
