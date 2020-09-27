@@ -60,4 +60,13 @@
     return regex;
 }
 
++ (NSRegularExpression *)regexString:(NSString *)string {
+    static NSRegularExpression *regex;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        regex = [NSRegularExpression regularExpressionWithPattern:string options:kNilOptions error:nil];
+    });
+    return regex;
+}
+
 @end
