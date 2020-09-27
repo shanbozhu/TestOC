@@ -213,7 +213,7 @@
     // 追加文字
     NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北京天安门天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
-    [attStrThree yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrThree.length)];
+    [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
     [attStr appendAttributedString:attStrThree];
     
@@ -233,7 +233,7 @@
     // 追加文字
     NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北"];
     [attStrTwo yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrTwo.length)];
-    [attStrTwo yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrTwo.length)];
+    [attStrTwo yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrTwo.length)];
     [attStrTwo yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrTwo.length)];
     [attStr appendAttributedString:attStrTwo];
     
@@ -255,7 +255,7 @@
     // 追加文字
     NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天安."];
     [attStrFour yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrFour.length)];
-    [attStrFour yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrFour.length)];
+    [attStrFour yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
     
     // 删除线
