@@ -301,7 +301,7 @@
     textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0); // textView需要设置此属性
     //textView.layer.borderColor = [UIColor redColor].CGColor;
     //textView.layer.borderWidth = 1;
-    textView.editable = NO;
+    //textView.editable = NO;
     textView.frame = CGRectMake(20, CGRectGetMaxY(fourLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     textView.attributedText = attStr;
     [textView sizeToFit];
