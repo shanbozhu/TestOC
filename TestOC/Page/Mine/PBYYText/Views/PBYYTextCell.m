@@ -244,7 +244,7 @@
     
     // 图片
     UIImageView *twoImageView = [[UIImageView alloc]init];
-    twoImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 300);
+    twoImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 150);
     twoImageView.image = [UIImage imageNamed:@"pbyytext_pic"];
     twoImageView.userInteractionEnabled = YES;
     twoImageView.layer.cornerRadius = 10;
