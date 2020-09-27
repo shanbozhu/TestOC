@@ -216,7 +216,27 @@
     [attStr appendAttributedString:attachStr];
     
     // 追加文字
-    NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天\\n\n安门我爱北京天北京天安门我爱北京天安门我爱北京天安"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北京天安门"];
+    [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
+    [attStrThree yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrThree.length)];
+    [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
+    [attStr appendAttributedString:attStrThree];
+    
+    // 图片表情
+    UIImageView *threeImageView = [[UIImageView alloc]init];
+    threeImageView.image = [UIImage imageNamed:@"0022"]; // 0055
+    threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
+    threeImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+    [threeImageView addGestureRecognizer:threeTap];
+    threeTap.view.tag = 3;
+    
+    NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
+    [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
+    [attStr appendAttributedString:attachStrThree];
+    
+    // 追加文字
+    NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北京天北京天安门我爱北京天安门我爱北京天安"];
     [attStrTwo yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrTwo.length)];
     [attStrTwo yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrTwo.length)];
     [attStrTwo yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrTwo.length)];
@@ -238,27 +258,7 @@
     [attStr appendAttributedString:attachStrTwo];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北京天北京天安门我爱北京天安门."];
-    [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
-    [attStrThree yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrThree.length)];
-    [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
-    [attStr appendAttributedString:attStrThree];
-    
-    // 图片表情
-    UIImageView *threeImageView = [[UIImageView alloc]init];
-    threeImageView.image = [UIImage imageNamed:@"0022"]; // 0055
-    threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
-    threeImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
-    [threeImageView addGestureRecognizer:threeTap];
-    threeTap.view.tag = 3;
-    
-    NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
-    [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
-    [attStr appendAttributedString:attachStrThree];
-    
-    // 追加文字
-    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北京天北京天安门我爱北京天安门我爱北京天安"];
+    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我爱北京天安门我爱."];
     [attStrFour yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
