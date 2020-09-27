@@ -94,7 +94,7 @@
     } else {
         container.maximumNumberOfRows = 0;
     }
-        
+    
     YYTextLayout *threeTextLayout = [YYTextLayout layoutWithContainer:container text:attStr];
     threeLab.frame = CGRectMake(20, 20, threeTextLayout.textBoundingSize.width, threeTextLayout.textBoundingSize.height);
     threeLab.textLayout = threeTextLayout;
