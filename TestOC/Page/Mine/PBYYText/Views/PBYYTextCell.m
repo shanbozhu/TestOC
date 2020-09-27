@@ -47,7 +47,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天｜安｜门我爱北京天安门我爱北京天安门😀💙🚖我爱北京天安门我爱北京天安门我爱北京天安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
+    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京天安爱北京天｜安｜门我爱北京天天安门😀💙🚖我爱北京天安门安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
     
     // threeLab
     YYLabel *threeLab = [[YYLabel alloc]init];
@@ -141,33 +141,19 @@
     [attStr insertAttributedString:attachStrZero atIndex:1];
     
     // 高亮
-    [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(8, 5)];
-    
-    // 删除线
-    YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:[UIColor redColor]];
-    [attStr yy_setTextStrikethrough:decoration range:NSMakeRange(25, 5)];
-    
-    // 下划线
-    [attStr yy_setTextUnderline:decoration range:NSMakeRange(35, 5)];
-    
-    // 边框
-    YYTextBorder *border = [[YYTextBorder alloc]init];
-    border.strokeColor = [UIColor blueColor];
-    border.strokeWidth = 1;
-    border.cornerRadius = 3;
-    border.lineStyle = YYTextLineStyleSingle;
-    [attStr yy_setTextBorder:border range:NSMakeRange(45, 5)];
+    [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(10, 5)];
     
     // 点击高亮
-    [attStr yy_setTextHighlightRange:NSMakeRange(75, 5) color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+    [attStr yy_setTextHighlightRange:NSMakeRange(50, 5) color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     }];
     
     // 点击高亮自定义
+    NSRange range = NSMakeRange(65, 5);
     UIColor *normalColor = [UIColor blueColor];
-    [attStr yy_setColor:normalColor range:NSMakeRange(85, 5)];
+    [attStr yy_setColor:normalColor range:range];
     YYTextDecoration *normalDecoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:normalColor];
-    [attStr yy_setTextUnderline:normalDecoration range:NSMakeRange(85, 5)];
+    [attStr yy_setTextUnderline:normalDecoration range:range];
     
     UIColor *highlightColor = [UIColor redColor];
     YYTextDecoration *highlightDecoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:highlightColor];
@@ -185,7 +171,7 @@
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     };
     
-    [attStr yy_setTextHighlight:highlight range:NSMakeRange(85, 5)];
+    [attStr yy_setTextHighlight:highlight range:range];
     
     // 用户名
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
@@ -216,7 +202,7 @@
     [attStr appendAttributedString:attachStr];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北京天安门"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北京天安门天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
@@ -236,7 +222,7 @@
     [attStr appendAttributedString:attachStrThree];
     
     // 追加文字
-    NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北京天北京天安门我爱北京天安门我爱北京天安"];
+    NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北"];
     [attStrTwo yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrTwo.length)];
     [attStrTwo yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrTwo.length)];
     [attStrTwo yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrTwo.length)];
@@ -258,10 +244,25 @@
     [attStr appendAttributedString:attachStrTwo];
     
     // 追加文字
-    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我爱北京天安门我爱."];
+    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天安."];
     [attStrFour yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
+    
+    // 删除线
+    YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:[UIColor redColor]];
+    [attStrFour yy_setTextStrikethrough:decoration range:NSMakeRange(20, 5)];
+    
+    // 下划线
+    [attStrFour yy_setTextUnderline:decoration range:NSMakeRange(35, 5)];
+    
+    // 边框
+    YYTextBorder *border = [[YYTextBorder alloc]init];
+    border.strokeColor = [UIColor blueColor];
+    border.strokeWidth = 1;
+    border.cornerRadius = 3;
+    border.lineStyle = YYTextLineStyleSingle;
+    [attStrFour yy_setTextBorder:border range:NSMakeRange(45, 5)];
     [attStr appendAttributedString:attStrFour];
     
     // 下面四种方法计算lab高度
