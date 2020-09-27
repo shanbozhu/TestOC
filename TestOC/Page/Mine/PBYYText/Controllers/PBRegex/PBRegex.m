@@ -20,7 +20,7 @@
     return regex;
 }
 
-// 匹配#话题
+// 匹配#话题#
 + (NSRegularExpression *)regexTopic {
     static NSRegularExpression *regex;
     static dispatch_once_t onceToken;
@@ -60,6 +60,7 @@
     return regex;
 }
 
+// 精准匹配字符串
 + (NSRegularExpression *)regexString:(NSString *)string {
     static NSRegularExpression *regex;
     static dispatch_once_t onceToken;
