@@ -115,12 +115,10 @@
     [attStr yy_setFont:[UIFont systemFontOfSize:15] range:NSMakeRange(0, attStr.length)];
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
-    [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(8, 5)];
     
     // (渐变色)生成的图标
     UIImageView *iconImageView = [[UIImageView alloc]init];
     iconImageView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
-    //iconImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 150); // 推荐此种宽度写法
     iconImageView.layer.cornerRadius = 3;
     iconImageView.layer.masksToBounds = YES;
     iconImageView.userInteractionEnabled = YES;
@@ -141,6 +139,9 @@
     NSMutableAttributedString *attachStrZero = [NSMutableAttributedString yy_attachmentStringWithContent:iconImageView contentMode:UIViewContentModeCenter attachmentSize:iconImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
     [attachStrZero yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrZero.yy_rangeOfAll];
     [attStr insertAttributedString:attachStrZero atIndex:1];
+    
+    // 高亮
+    [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(8, 5)];
     
     // 删除线
     YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:[UIColor redColor]];
