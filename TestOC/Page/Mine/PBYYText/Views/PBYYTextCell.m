@@ -204,11 +204,9 @@
     
     // gif图
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
-    imageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 200);
-    imageView.image = [YYImage imageNamed:@"pbyytext_tiqiu"];
+    imageView.image = [YYImage imageNamed:@"002"]; // 005
+    imageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
     imageView.userInteractionEnabled = YES;
-    imageView.layer.cornerRadius = 8;
-    imageView.layer.masksToBounds = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [imageView addGestureRecognizer:tap];
     tap.view.tag = 1;
@@ -249,11 +247,8 @@
     // 图片表情
     UIImageView *threeImageView = [[UIImageView alloc]init];
     threeImageView.image = [UIImage imageNamed:@"0022"]; // 0055
-    //threeImageView.frame = CGRectMake(0, 0, threeImageView.image.size.width, threeImageView.image.size.height);
     threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
     threeImageView.userInteractionEnabled = YES;
-    threeImageView.layer.cornerRadius = 10;
-    threeImageView.layer.masksToBounds = YES;
     UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [threeImageView addGestureRecognizer:threeTap];
     threeTap.view.tag = 3;
