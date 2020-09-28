@@ -180,7 +180,6 @@
     highlight.tapAction =  ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     };
-    
     [attStr yy_setTextHighlight:highlight range:range];
     
     // 用户名
@@ -348,7 +347,6 @@
             highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
                 NSLog(@"%@, highlight = %@, yy_attribute = %@", [attStr.string substringWithRange:at.range], weakHighlight, [attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]);
             };
-            
             [attStr yy_setTextHighlight:highlight range:at.range];
         }
     }
