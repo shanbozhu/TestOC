@@ -55,6 +55,7 @@
     //threeLab.layer.borderColor = [UIColor redColor].CGColor;
     //threeLab.layer.borderWidth = 1;
     
+    // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
     [attStr yy_setFont:[UIFont systemFontOfSize:15] range:NSMakeRange(0, attStr.length)];
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
