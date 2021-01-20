@@ -232,7 +232,6 @@
 		95E5320525B45FA700BE9535 /* header in Resources */ = {isa = PBXBuildFile; fileRef = 95E531FE25B45FA700BE9535 /* header */; };
 		95E5320625B45FA700BE9535 /* request.sh in Resources */ = {isa = PBXBuildFile; fileRef = 95E531FF25B45FA700BE9535 /* request.sh */; };
 		95E5320725B45FA700BE9535 /* curl_0 in Resources */ = {isa = PBXBuildFile; fileRef = 95E5320025B45FA700BE9535 /* curl_0 */; };
-		95F7DCD225B58E7E0078CC63 /* form_2 in Resources */ = {isa = PBXBuildFile; fileRef = 95F7DCD125B58E7E0078CC63 /* form_2 */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
 		B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */; };
@@ -657,7 +656,6 @@
 		95E531FE25B45FA700BE9535 /* header */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = header; sourceTree = "<group>"; };
 		95E531FF25B45FA700BE9535 /* request.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = request.sh; sourceTree = "<group>"; };
 		95E5320025B45FA700BE9535 /* curl_0 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = curl_0; sourceTree = "<group>"; };
-		95F7DCD125B58E7E0078CC63 /* form_2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = form_2; sourceTree = "<group>"; };
 		A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.debug.xcconfig"; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1887,7 +1885,6 @@
 			isa = PBXGroup;
 			children = (
 				95E531FD25B45FA700BE9535 /* form */,
-				95F7DCD125B58E7E0078CC63 /* form_2 */,
 				95E531FE25B45FA700BE9535 /* header */,
 				95E531FF25B45FA700BE9535 /* request.sh */,
 			);
@@ -2157,7 +2154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				95C8765522E9A60E002795D0 /* pbyytext_pic.png in Resources */,
-				95F7DCD225B58E7E0078CC63 /* form_2 in Resources */,
 				95C8741122E84436002795D0 /* PBActivityDetail.js in Resources */,
 				95C8765D22E9A61B002795D0 /* 002@2x.gif in Resources */,
 				95C872D222E801DA002795D0 /* pbqrcode_logo.png in Resources */,
