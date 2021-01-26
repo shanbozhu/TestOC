@@ -64,6 +64,7 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         // 默认添加请求头: "Content-Type": "application/x-www-form-urlencoded"
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        // 直接返回jsonStr, 以二进制形式
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
         // 请求头
@@ -98,6 +99,7 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         // 默认添加请求头: "Content-Type": "application/json"
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        // 直接返回jsonDict
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
         
         // 请求头
@@ -129,13 +131,26 @@
 }
 
 - (void)processDataWithResponseObject:(id)responseObject {
-    // jsonDict
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"jsonDict = %@", jsonDict);
-    
-    // jsonStr
-    NSString *jsonStr = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"jsonStr = %@", jsonStr);
+    if ([responseObject isKindOfClass:[NSData class]]) {
+        // jsonDict
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"jsonDict = %@", jsonDict);
+        
+        // jsonStr
+        NSString *jsonStr = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"jsonStr = %@", jsonStr);
+    }
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+        // jsonDict
+        NSDictionary *jsonDict = responseObject;
+        NSLog(@"jsonDict = %@", jsonDict);
+        
+        NSData *data = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:nil];
+        
+        // jsonStr
+        NSString *jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"jsonStr = %@", jsonStr);
+    }
 }
 
 @end
