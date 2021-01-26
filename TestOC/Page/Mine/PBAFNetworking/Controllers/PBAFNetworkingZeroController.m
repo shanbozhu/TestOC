@@ -96,7 +96,7 @@
     {
         // AFNetworking 3.x
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        // 默认添加请求头: "Content-Type": "application/x-www-form-urlencoded"
+        // 默认添加请求头: "Content-Type": "application/json"
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
         
