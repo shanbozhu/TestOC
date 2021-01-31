@@ -11,6 +11,10 @@
 #import "PBMemoryListMRCController.h"
 
 /**
+ 语言:
+ 1.编译型语言:c、c++、oc等
+ 2.解释型语言:shell、python等
+ 
  编辑 --> 编译/解释 --> 执行
 
  编译包括:
