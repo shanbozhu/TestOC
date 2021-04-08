@@ -52,8 +52,6 @@
     // threeLab
     YYLabel *threeLab = [[YYLabel alloc]init];
     [self.contentView addSubview:threeLab];
-    //threeLab.layer.borderColor = [UIColor redColor].CGColor;
-    //threeLab.layer.borderWidth = 1;
     
     // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
@@ -105,8 +103,6 @@
     self.fourLab = fourLab;
     [self.contentView addSubview:fourLab];
     fourLab.frame = CGRectMake(20, CGRectGetMaxY(threeLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
-    //fourLab.layer.borderColor = [UIColor redColor].CGColor;
-    //fourLab.layer.borderWidth = 1;
     fourLab.numberOfLines = 0;
     fourLab.textAlignment = NSTextAlignmentCenter;
     fourLab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
@@ -309,8 +305,6 @@
     self.textView = textView;
     [self.contentView addSubview:textView];
     textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0); // textView需要设置此属性
-    //textView.layer.borderColor = [UIColor redColor].CGColor;
-    //textView.layer.borderWidth = 1;
     //textView.editable = NO;
     textView.frame = CGRectMake(20, CGRectGetMaxY(fourLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     textView.attributedText = attStr;
