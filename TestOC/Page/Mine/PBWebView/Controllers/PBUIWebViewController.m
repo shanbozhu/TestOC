@@ -27,7 +27,7 @@
     
     UIWebView *webView = [[UIWebView alloc]init];
     [self.view addSubview:webView];
-    webView.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
+    webView.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT);
     webView.delegate = self;
     
     // 请求

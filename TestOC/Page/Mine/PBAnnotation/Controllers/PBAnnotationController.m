@@ -75,7 +75,7 @@
     MKMapView *mapView = [[MKMapView alloc]init];
     self.mapView = mapView;
     [self.view addSubview:mapView];
-    mapView.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
+    mapView.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT);
     
     mapView.showsUserLocation = YES;
     mapView.showsScale = YES;

@@ -30,7 +30,7 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
     self.configuration = configuration;
     
-    WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64) configuration:configuration];
+    WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT) configuration:configuration];
     self.webView = webView;
     [self.view addSubview:webView];
     webView.navigationDelegate = self;
