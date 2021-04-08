@@ -26,7 +26,7 @@
     // imageView
     UIImageView *imageView = [[UIImageView alloc]init];
     [self.view addSubview:imageView];
-    imageView.frame = CGRectMake((self.view.frame.size.width-150)/2, 80, 150, 150);
+    imageView.frame = CGRectMake((self.view.frame.size.width-150)/2, APPLICATION_NAVIGATIONBAR_HEIGHT + 10, 150, 150);
     
     imageView.image = [PBQRCodeGenerate qrCodeGenerateWithQRCodeStr:@"http://www.baidu.com" andQRCodeWidth:imageView.frame.size.width];
 }
@@ -35,7 +35,7 @@
     // imageView
     UIImageView *imageView = [[UIImageView alloc]init];
     [self.view addSubview:imageView];
-    imageView.frame = CGRectMake((self.view.frame.size.width-150)/2, 240, 150, 150);
+    imageView.frame = CGRectMake((self.view.frame.size.width-150)/2, 300, 150, 150);
     
     imageView.image = [PBQRCodeGenerate qrCodeGenerateWithQRCodeStr:@"http://www.baidu.com" andIconImage:[UIImage imageNamed:@"pbqrcode_logo"] andIconScale:0.2];
 }
