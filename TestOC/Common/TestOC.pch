@@ -36,5 +36,6 @@
 
 
 #import "PBBaseController.h"
+#import "PBCommonUIParams.h"
 
 #endif /* TestOC_pch */

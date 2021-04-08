@@ -29,7 +29,7 @@
     PBChannelHeaderView *channelHeaderView = [PBChannelHeaderView channelView];
     self.channelHeaderView = channelHeaderView;
     [self.view addSubview:channelHeaderView];
-    channelHeaderView.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 40);
+    channelHeaderView.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, 40);
     
     channelHeaderView.channelArr = @[@"哈哈", @"哈哈哈哈哈哈", @"哈哈哈哈", @"哈哈", @"哈哈哈哈", @"哈哈", @"哈哈", @"哈哈哈哈哈哈哈哈哈哈哈", @"哈哈哈哈", @"哈哈", @"哈哈哈哈", @"哈哈"];
     
