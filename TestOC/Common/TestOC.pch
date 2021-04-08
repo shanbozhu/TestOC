@@ -22,7 +22,6 @@
 #define kPBDebug
 
 #ifdef kPBDebug
-//#define NSLog(...) printf("------------[%s.m:%d] %s\n", [NSStringFromClass([self class])UTF8String], __LINE__, [[NSString stringWithFormat:__VA_ARGS__]UTF8String])
 #define NSLog(...) printf("------------ %s\n", [[NSString stringWithFormat:__VA_ARGS__]UTF8String])
 #else
 #define NSLog(...)
@@ -34,8 +33,7 @@
 //#define NSLog(...)
 //#endif
 
-
-#import "PBBaseController.h"
 #import "PBCommonUIParams.h"
+#import "PBBaseController.h"
 
 #endif /* TestOC_pch */

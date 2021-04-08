@@ -63,7 +63,7 @@
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
 
-    PBSeatSelectionView *seatSelectionView = [PBSeatSelectionView seatSelectionViewWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 100 - 36)];
+    PBSeatSelectionView *seatSelectionView = [PBSeatSelectionView seatSelectionViewWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT - APPLICATION_SAFE_AREA_BOTTOM_MARGIN)];
     self.seatSelectionView = seatSelectionView;
     [self.view addSubview:seatSelectionView];
     

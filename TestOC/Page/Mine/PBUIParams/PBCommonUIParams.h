@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 屏幕高度
 #define APPLICATION_FRAME_HEIGHT ([PBCommonUIParams applicationFrameHeight])
 
-#define APPLICATION_SAFE_AREA_TOP_MARGIN ([BBACommonUIParams safeTopMargin])
-#define APPLICATION_SAFE_AREA_BOTTOM_MARGIN ([BBACommonUIParams safeBottomMargin])
-#define APPLICATION_SAFE_AREA_LEFT_MARGIN ([BBACommonUIParams safeLeftMargin])
-#define APPLICATION_SAFE_AREA_RIGHT_MARGIN ([BBACommonUIParams safeRightMargin])
+#define APPLICATION_SAFE_AREA_TOP_MARGIN ([PBCommonUIParams safeTopMargin])
+#define APPLICATION_SAFE_AREA_BOTTOM_MARGIN ([PBCommonUIParams safeBottomMargin])
+#define APPLICATION_SAFE_AREA_LEFT_MARGIN ([PBCommonUIParams safeLeftMargin])
+#define APPLICATION_SAFE_AREA_RIGHT_MARGIN ([PBCommonUIParams safeRightMargin])
 
 @interface PBCommonUIParams : NSObject
 
