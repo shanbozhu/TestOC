@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
@@ -253,6 +254,8 @@
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
 		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
+		9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
+		9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
 		9516BDC224696A390070C282 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9516BDC324696A390070C282 /* AppDelegate+UniversalLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UniversalLink.h"; sourceTree = "<group>"; };
 		9516BDC424696A390070C282 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -701,6 +704,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9516858B261EEB8D0047D1B2 /* PBUIParams */ = {
+			isa = PBXGroup;
+			children = (
+				9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */,
+				9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */,
+			);
+			path = PBUIParams;
+			sourceTree = "<group>";
+		};
 		9516BDC124696A390070C282 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -2015,6 +2027,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				9516858B261EEB8D0047D1B2 /* PBUIParams */,
 				955440F32328EB0B003A615C /* PBRuntime */,
 				957597AB22F99318009CA618 /* PBUniversalLink */,
 				9575942222F950C9009CA618 /* PBAVPlayer */,
@@ -2276,6 +2289,7 @@
 				95C8718322E708CC002795D0 /* PBCalendarController.m in Sources */,
 				9575998622FC2415009CA618 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				957593F222F84F3B009CA618 /* PBGCDLockFiveController.m in Sources */,
+				9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */,
 				95C8764622E99260002795D0 /* PBRegex.m in Sources */,
