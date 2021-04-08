@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */; };
+		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
@@ -256,6 +257,8 @@
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
 		9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
+		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
+		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
 		9516BDC224696A390070C282 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9516BDC324696A390070C282 /* AppDelegate+UniversalLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UniversalLink.h"; sourceTree = "<group>"; };
 		9516BDC424696A390070C282 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -711,6 +714,15 @@
 				9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */,
 			);
 			path = PBUIParams;
+			sourceTree = "<group>";
+		};
+		95168891261F19620047D1B2 /* PBTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				95168892261F19C60047D1B2 /* PBTabBarController.h */,
+				95168893261F19C60047D1B2 /* PBTabBarController.m */,
+			);
+			path = PBTabBarController;
 			sourceTree = "<group>";
 		};
 		9516BDC124696A390070C282 /* Common */ = {
@@ -1309,6 +1321,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				95168891261F19620047D1B2 /* PBTabBarController */,
 				9575995C22FC2415009CA618 /* TFHpple */,
 				9575996322FC2415009CA618 /* FDTemplateLayoutCell */,
 				9575996C22FC2415009CA618 /* ImageEffect */,
@@ -2370,6 +2383,7 @@
 				9575945322F95120009CA618 /* PBPlayerView.m in Sources */,
 				95C871C522E71CBE002795D0 /* PBAppLogoView.m in Sources */,
 				9575945222F95120009CA618 /* PBGCDTimerManager.m in Sources */,
+				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,
 				9575998722FC2415009CA618 /* UIImage+ImageEffects.m in Sources */,
 				957593D022F84F20009CA618 /* PBGCDListTwoController.m in Sources */,
 				95C8764F22E99291002795D0 /* PBYYTextView.m in Sources */,

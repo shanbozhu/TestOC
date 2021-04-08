@@ -35,5 +35,7 @@
 
 #import "PBCommonUIParams.h"
 #import "PBBaseController.h"
+#import "PBNavigationController.h"
+#import "PBTabBarController.h"
 
 #endif /* TestOC_pch */
