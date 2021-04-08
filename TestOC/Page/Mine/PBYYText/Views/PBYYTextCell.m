@@ -270,30 +270,24 @@
     [attStrFour yy_setTextBorder:border range:NSMakeRange(45, 5)];
     [attStr appendAttributedString:attStrFour];
     
-    // 下面四种方法计算lab高度
-    /**
+    // 下面四种方法均可以计算lab高度
     {
         YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(fourLab.frame), MAXFLOAT) text:attStr];
         fourLab.frame = CGRectMake(CGRectGetMinX(threeLab.frame), CGRectGetMaxY(threeLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
         fourLab.textLayout = layout;
     }
-     */
     
-    /**
     {
         fourLab.attributedText = attStr;
         YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(fourLab.frame), MAXFLOAT) text:attStr];
         fourLab.frame = CGRectMake(CGRectGetMinX(threeLab.frame), CGRectGetMaxY(threeLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
     }
-     */
     
-    /**
     {
         fourLab.attributedText = attStr;
         CGSize size = [fourLab sizeThatFits:CGSizeMake(CGRectGetWidth(fourLab.frame), MAXFLOAT)];
         fourLab.frame = CGRectMake(CGRectGetMinX(threeLab.frame), CGRectGetMaxY(threeLab.frame)+50, size.width, size.height);
     }
-     */
     
     {
         fourLab.attributedText = attStr;
