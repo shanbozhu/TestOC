@@ -66,13 +66,13 @@
     UIView *barView = [[UIView alloc]init];
     self.barView = barView;
     [listView addSubview:barView];
-    barView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64);
+    barView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, APPLICATION_NAVIGATIONBAR_HEIGHT);
     barView.backgroundColor = [UIColor blueColor];
     barView.alpha = 0.0;
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [barView.superview addSubview:backBtn];
-    backBtn.frame = CGRectMake(20, 25, 40, 44-10);
+    backBtn.frame = CGRectMake(20, APPLICATION_STATUSBAR_HEIGHT + (APPLICATION_NAVIGATIONBAR_CONTENT_HEIGHT - 35) / 2.0, 35, 35);
     backBtn.backgroundColor = [UIColor redColor];
     backBtn.alpha = 1;
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
