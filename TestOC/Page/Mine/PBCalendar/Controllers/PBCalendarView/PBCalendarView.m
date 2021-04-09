@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSMutableDictionary *mutDict;
 @property (nonatomic, strong) PBCalendar *calendar;
 @property (nonatomic, weak) UICollectionView *collectionView;
-@property (nonatomic, strong) NSString *nowYearMonth;
+@property (nonatomic, copy) NSString *nowYearMonth;
 
 @end
 

@@ -11,7 +11,7 @@
 
 @interface PBStorageTextFourController ()
 
-@property (nonatomic, strong) NSString *filePath;
+@property (nonatomic, copy) NSString *filePath;
 
 @end
 
