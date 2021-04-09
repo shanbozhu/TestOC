@@ -32,4 +32,38 @@
     return self;
 }
 
+- (void)setViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers {
+    _viewControllers = viewControllers;
+    
+    CGFloat buttonWidth = APPLICATION_FRAME_WIDTH / self.viewControllers.count;
+    for (UIViewController *controller in self.viewControllers) {
+        if ([controller isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *nav = (UINavigationController *)controller;
+            if (nav.viewControllers.count > 0) {
+                UIViewController *vc = nav.viewControllers.firstObject;
+                PBTabBarButton *tabBarButton = [[PBTabBarButton alloc] init];
+                [self addSubview:tabBarButton];
+                
+                NSInteger i = 0;
+                i = [self.viewControllers indexOfObject:controller];
+                tabBarButton.frame = CGRectMake(i * buttonWidth, 0, buttonWidth, APPLICATION_TABBAR_CONTENT_HEIGHT);
+                
+                PBTabBarButtonItem *buttonItem = [[PBTabBarButtonItem alloc] init];
+                buttonItem.title = vc.title;
+                buttonItem.icon = nil;
+                tabBarButton.buttonItem = buttonItem;
+                
+                tabBarButton.tag = i;
+                [tabBarButton addTarget:self action:@selector(tabBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            }
+        }
+    }
+}
+
+- (void)tabBarButtonClick:(UIButton *)btn {
+    if (self.tabBarButtonClickBlock) {
+        self.tabBarButtonClickBlock(btn.tag);
+    }
+}
+
 @end

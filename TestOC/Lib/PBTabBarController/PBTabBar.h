@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PBTabBarButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PBTabBar : UIView
+
+@property(nullable, nonatomic,copy) NSArray<__kindof UIViewController *> *viewControllers;
+
+@property (nonatomic, copy) void(^tabBarButtonClickBlock)(NSInteger index);
 
 @end
 
