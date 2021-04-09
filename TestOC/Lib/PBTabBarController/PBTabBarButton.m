@@ -31,12 +31,12 @@
         self.titleLab = titleLab;
         [self addSubview:titleLab];
         titleLab.textAlignment = NSTextAlignmentCenter;
-        titleLab.font = [UIFont systemFontOfSize:14];
+        titleLab.font = [UIFont systemFontOfSize:12];
         
         UIImageView *iconImageView = [[UIImageView alloc] init];
         self.iconImageView = iconImageView;
         [self addSubview:iconImageView];
-        iconImageView.backgroundColor = [UIColor redColor];
+        iconImageView.contentMode = UIViewContentModeScaleAspectFill;
         
         // 红点
         UILabel *hintLab = [[UILabel alloc] init];
@@ -55,17 +55,19 @@
 }
 
 - (void)fillTabBarButton {
-    self.iconImageView.image = [UIImage imageNamed:self.buttonItem.icon];
-    self.iconImageView.frame = CGRectMake((self.frame.size.width - 20) / 2.0, 5, 20, 20);
+    self.buttonItem.icon = @"shouye";
     
-    self.hintLab.frame = CGRectMake(CGRectGetWidth(self.iconImageView.frame) + 5, 0, 20, 10);
+    self.iconImageView.image = [UIImage imageNamed:self.buttonItem.icon];
+    self.iconImageView.frame = CGRectMake((self.frame.size.width - 28) / 2.0, 5, 28, 28);
+    
+    self.hintLab.frame = CGRectMake(CGRectGetWidth(self.iconImageView.frame) + 2, 0, 20, 10);
     self.hintLab.layer.cornerRadius = 5;
     self.hintLab.layer.masksToBounds = YES;
-    self.hintLab.text = @"10+";
+    self.hintLab.text = @"10";
     self.hintLab.backgroundColor = [UIColor redColor];
     
     self.titleLab.text = self.buttonItem.title;
-    self.titleLab.frame = CGRectMake(0, CGRectGetMaxY(self.iconImageView.frame) + 5, self.frame.size.width, 0);
+    self.titleLab.frame = CGRectMake(0, CGRectGetMaxY(self.iconImageView.frame) + 2, self.frame.size.width, 0);
     [self.titleLab sizeToFit];
     CGRect rect = self.titleLab.frame;
     rect.origin.x = (self.frame.size.width - self.titleLab.frame.size.width) / 2.0;
