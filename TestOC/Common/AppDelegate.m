@@ -24,41 +24,41 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     
+//    //Controller
+//    PBHomeController *vc0 = [[PBHomeController alloc]init];
+//    vc0.view.backgroundColor = [UIColor whiteColor];
+//    vc0.title = @"首页";
+//
+//    PBMineController *vc1 = [[PBMineController alloc]init];
+//    vc1.view.backgroundColor = [UIColor whiteColor];
+//    vc1.title = @"我的";
+//
+//    UITabBarController *tab = [[UITabBarController alloc]init];
+//    tab.viewControllers = @[vc0, vc1];
+//
+//    PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
+//    nav.navigationBar.barTintColor = [UIColor redColor];
+//
+//    //window.rootViewController
+//    self.window.rootViewController = nav;
+    
+
     //Controller
-    PBHomeController *vc0 = [[PBHomeController alloc]init];
-    vc0.view.backgroundColor = [UIColor whiteColor];
-    vc0.title = @"首页";
-    
-    PBMineController *vc1 = [[PBMineController alloc]init];
+    PBHomeController *vc1 = [[PBHomeController alloc]init];
+    UINavigationController *nav1 = [[PBNavigationController alloc]initWithRootViewController:vc1];
     vc1.view.backgroundColor = [UIColor whiteColor];
-    vc1.title = @"我的";
+    vc1.title = @"首页";
     
-    UITabBarController *tab = [[UITabBarController alloc]init];
-    tab.viewControllers = @[vc0, vc1];
+    PBMineController *vc2 = [[PBMineController alloc]init];
+    UINavigationController *nav2 = [[PBNavigationController alloc]initWithRootViewController:vc2];
+    vc2.view.backgroundColor = [UIColor whiteColor];
+    vc2.title = @"我的";
     
-    PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
-    nav.navigationBar.barTintColor = [UIColor redColor];
+    PBTabBarController *tab = [[PBTabBarController alloc]init];
+    tab.viewControllers = @[nav1, nav2];
     
     //window.rootViewController
-    self.window.rootViewController = nav;
-    
-    /**
-     //Controller
-     PBHomeController *vc1 = [[PBHomeController alloc]init];
-     UINavigationController *nav1 = [[PBNavigationController alloc]initWithRootViewController:vc1];
-     vc1.view.backgroundColor = [UIColor whiteColor];
-     vc1.title = @"首页";
-     
-     PBMineController *vc2 = [[PBMineController alloc]init];
-     UINavigationController *nav2 = [[PBNavigationController alloc]initWithRootViewController:vc2];
-     vc2.view.backgroundColor = [UIColor whiteColor];
-     vc2.title = @"我的";
-     
-     UITabBarController *tab = [[UITabBarController alloc]init];
-     tab.viewControllers = @[nav1, nav2];
-     
-     //window.rootViewController
-     self.window.rootViewController = tab;*/
+    self.window.rootViewController = tab;
     
     return YES;
 }
