@@ -51,6 +51,9 @@
     
     __weak typeof(self) weakSelf = self;
     self.tabBar.tabBarButtonClickBlock = ^(NSInteger index) {
+        if (weakSelf.selectedIndex == index) {
+            return;
+        }
         
         [weakSelf.tabBar removeFromSuperview];
         UIViewController *selectedController = [weakSelf.viewControllers objectAtIndex:weakSelf.selectedIndex];

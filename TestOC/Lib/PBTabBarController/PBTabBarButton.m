@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) UILabel *titleLab;
 @property (nonatomic, weak) UIImageView *iconImageView;
+@property (nonatomic, weak) UILabel *hintLab;
 
 @end
 
@@ -35,6 +36,15 @@
         UIImageView *iconImageView = [[UIImageView alloc] init];
         self.iconImageView = iconImageView;
         [self addSubview:iconImageView];
+        iconImageView.backgroundColor = [UIColor redColor];
+        
+        // 红点
+        UILabel *hintLab = [[UILabel alloc] init];
+        self.hintLab = hintLab;
+        [iconImageView addSubview:hintLab];
+        hintLab.textAlignment = NSTextAlignmentCenter;
+        hintLab.font = [UIFont systemFontOfSize:10];
+        hintLab.textColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -47,6 +57,12 @@
 - (void)fillTabBarButton {
     self.iconImageView.image = [UIImage imageNamed:self.buttonItem.icon];
     self.iconImageView.frame = CGRectMake((self.frame.size.width - 20) / 2.0, 5, 20, 20);
+    
+    self.hintLab.frame = CGRectMake(CGRectGetWidth(self.iconImageView.frame) + 5, 0, 20, 10);
+    self.hintLab.layer.cornerRadius = 5;
+    self.hintLab.layer.masksToBounds = YES;
+    self.hintLab.text = @"10+";
+    self.hintLab.backgroundColor = [UIColor redColor];
     
     self.titleLab.text = self.buttonItem.title;
     self.titleLab.frame = CGRectMake(0, CGRectGetMaxY(self.iconImageView.frame) + 5, self.frame.size.width, 0);
