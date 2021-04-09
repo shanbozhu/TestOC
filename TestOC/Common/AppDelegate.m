@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "PBHomeController.h"
-#import "PBFindController.h"
 #import "PBMineController.h"
 
 
@@ -30,20 +29,14 @@
     vc0.view.backgroundColor = [UIColor whiteColor];
     vc0.title = @"首页";
     
-    PBFindController *vc1 = [[PBFindController alloc]init];
+    PBMineController *vc1 = [[PBMineController alloc]init];
     vc1.view.backgroundColor = [UIColor whiteColor];
-    vc1.title = @"发现";
-    
-    PBMineController *vc2 = [[PBMineController alloc]init];
-    vc2.view.backgroundColor = [UIColor whiteColor];
-    vc2.title = @"我的";
+    vc1.title = @"我的";
     
     UITabBarController *tab = [[UITabBarController alloc]init];
-    tab.viewControllers = @[vc0, vc1, vc2];
+    tab.viewControllers = @[vc0, vc1];
     
     PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
-    //NSLog(@"nav = %@", nav);
-    
     nav.navigationBar.barTintColor = [UIColor redColor];
     
     //window.rootViewController
@@ -52,12 +45,12 @@
     /**
      //Controller
      PBHomeController *vc1 = [[PBHomeController alloc]init];
-     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:vc1];
+     UINavigationController *nav1 = [[PBNavigationController alloc]initWithRootViewController:vc1];
      vc1.view.backgroundColor = [UIColor whiteColor];
      vc1.title = @"首页";
      
      PBMineController *vc2 = [[PBMineController alloc]init];
-     UINavigationController *nav2 = [[UINavigationController alloc]initWithRootViewController:vc2];
+     UINavigationController *nav2 = [[PBNavigationController alloc]initWithRootViewController:vc2];
      vc2.view.backgroundColor = [UIColor whiteColor];
      vc2.title = @"我的";
      
