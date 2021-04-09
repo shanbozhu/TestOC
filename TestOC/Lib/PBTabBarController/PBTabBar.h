@@ -1,5 +1,5 @@
 //
-//  PBTabBarController.h
+//  PBTabBar.h
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2021/4/8.
@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PBTabBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBTabBarController : UIViewController
-
-@property(nullable, nonatomic,copy) NSArray<__kindof UIViewController *> *viewControllers;
-
+@interface PBTabBar : UIView
 
 @end
 
