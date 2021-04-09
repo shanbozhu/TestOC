@@ -84,7 +84,7 @@
                 
                 if ([ele.tagName isEqualToString:@"text"]) {
                     NSMutableAttributedString *tmpStr = [[NSMutableAttributedString alloc]initWithString:[ele.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-                    [tmpStr yy_setFont:[UIFont systemFontOfSize:13] range:NSMakeRange(0, tmpStr.length)];
+                    [tmpStr yy_setFont:[UIFont systemFontOfSize:17] range:NSMakeRange(0, tmpStr.length)];
                     [tmpStr yy_setColor:UIColorFromRGB(0x666666) range:NSMakeRange(0, tmpStr.length)];
                     [tmpStr yy_setLineSpacing:10 range:NSMakeRange(0, tmpStr.length)];
                     
@@ -98,7 +98,7 @@
                         
                         if ([elee.tagName isEqualToString:@"text"]) {
                             NSMutableAttributedString *tmpStr = [[NSMutableAttributedString alloc]initWithString:[elee.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-                            [tmpStr yy_setFont:[UIFont boldSystemFontOfSize:13] range:NSMakeRange(0, tmpStr.length)];
+                            [tmpStr yy_setFont:[UIFont boldSystemFontOfSize:17] range:NSMakeRange(0, tmpStr.length)];
                             [tmpStr yy_setColor:[UIColor redColor] range:NSMakeRange(0, tmpStr.length)];
                             [tmpStr yy_setLineSpacing:10 range:NSMakeRange(0, tmpStr.length)];
                             
@@ -140,7 +140,7 @@
                                 [imageView addGestureRecognizer:tap];
                                 tap.view.tag = imageArr.count-1;
                                 
-                                NSMutableAttributedString *tmpStr = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.frame.size alignToFont:[UIFont boldSystemFontOfSize:13] alignment:YYTextVerticalAlignmentCenter];
+                                NSMutableAttributedString *tmpStr = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.frame.size alignToFont:[UIFont boldSystemFontOfSize:17] alignment:YYTextVerticalAlignmentCenter];
                                 [tmpStr yy_setLineSpacing:10 range:tmpStr.yy_rangeOfAll];
                                 
                                 [attributedString appendAttributedString:tmpStr];
@@ -149,7 +149,7 @@
                         
                         if ([elee.tagName isEqualToString:@"a"]) {
                             NSMutableAttributedString *tmpStr = [[NSMutableAttributedString alloc]initWithString:[elee.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-                            [tmpStr yy_setFont:[UIFont boldSystemFontOfSize:13] range:NSMakeRange(0, tmpStr.length)];
+                            [tmpStr yy_setFont:[UIFont boldSystemFontOfSize:17] range:NSMakeRange(0, tmpStr.length)];
                             [tmpStr yy_setColor:[UIColor blueColor] range:NSMakeRange(0, tmpStr.length)];
                             [tmpStr yy_setLineSpacing:10 range:NSMakeRange(0, tmpStr.length)];
                             
@@ -193,7 +193,7 @@
                         [imageView addGestureRecognizer:tap];
                         tap.view.tag = imageArr.count-1;
                         
-                        NSMutableAttributedString *tmpStr = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.frame.size alignToFont:[UIFont boldSystemFontOfSize:13] alignment:YYTextVerticalAlignmentCenter];
+                        NSMutableAttributedString *tmpStr = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.frame.size alignToFont:[UIFont boldSystemFontOfSize:17] alignment:YYTextVerticalAlignmentCenter];
                         [tmpStr yy_setLineSpacing:10 range:tmpStr.yy_rangeOfAll];
                         
                         [attributedString appendAttributedString:tmpStr];
@@ -202,7 +202,7 @@
                 
                 if ([ele.tagName isEqualToString:@"a"]) {
                     NSMutableAttributedString *tmpStr = [[NSMutableAttributedString alloc]initWithString:[ele.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-                    [tmpStr yy_setFont:[UIFont systemFontOfSize:13] range:NSMakeRange(0, tmpStr.length)];
+                    [tmpStr yy_setFont:[UIFont systemFontOfSize:17] range:NSMakeRange(0, tmpStr.length)];
                     [tmpStr yy_setColor:[UIColor blueColor] range:NSMakeRange(0, tmpStr.length)];
                     [tmpStr yy_setLineSpacing:10 range:NSMakeRange(0, tmpStr.length)];
                     

@@ -55,7 +55,7 @@
     
     // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [attStr yy_setFont:[UIFont systemFontOfSize:20] range:NSMakeRange(0, attStr.length)];
+    [attStr yy_setFont:[UIFont systemFontOfSize:17] range:NSMakeRange(0, attStr.length)];
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
@@ -109,7 +109,7 @@
     //fourLab.displaysAsynchronously = YES;
     
     attStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [attStr yy_setFont:[UIFont systemFontOfSize:20] range:NSMakeRange(0, attStr.length)];
+    [attStr yy_setFont:[UIFont systemFontOfSize:17] range:NSMakeRange(0, attStr.length)];
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
