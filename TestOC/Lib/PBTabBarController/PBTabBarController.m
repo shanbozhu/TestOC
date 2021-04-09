@@ -63,7 +63,6 @@
             [selectedNav.view removeFromSuperview];
         }
         
-        NSLog(@"index = %ld", index);
         UIViewController *controller = [weakSelf.viewControllers objectAtIndex:index];
         if ([controller isKindOfClass:[UINavigationController class]]) {
             UINavigationController *nav = (UINavigationController *)controller;
