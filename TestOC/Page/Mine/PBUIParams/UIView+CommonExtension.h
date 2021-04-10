@@ -16,65 +16,65 @@
  *
  * Sets frame.origin.x = left
  */
-@property (nonatomic, setter=bba_setLeft:) CGFloat bba_left;
+@property (nonatomic, setter=pb_setLeft:) CGFloat pb_left;
 
 /**
  * Shortcut for frame.origin.y
  *
  * Sets frame.origin.y = top
  */
-@property (nonatomic, setter=bba_setTop:) CGFloat bba_top;
+@property (nonatomic, setter=pb_setTop:) CGFloat pb_top;
 
 /**
  * Shortcut for frame.origin.x + frame.size.width
  *
  * Sets frame.origin.x = right - frame.size.width
  */
-@property (nonatomic, setter=bba_setRight:) CGFloat bba_right;
+@property (nonatomic, setter=pb_setRight:) CGFloat pb_right;
 
 /**
  * Shortcut for frame.origin.y + frame.size.height
  *
  * Sets frame.origin.y = bottom - frame.size.height
  */
-@property (nonatomic, setter=bba_setBottom:) CGFloat bba_bottom;
+@property (nonatomic, setter=pb_setBottom:) CGFloat pb_bottom;
 
 /**
  * Shortcut for frame.size.width
  *
  * Sets frame.size.width = width
  */
-@property (nonatomic, setter=bba_setWidth:) CGFloat bba_width;
+@property (nonatomic, setter=pb_setWidth:) CGFloat pb_width;
 
 /**
  * Shortcut for frame.size.height
  *
  * Sets frame.size.height = height
  */
-@property (nonatomic, setter=bba_setHeight:) CGFloat bba_height;
+@property (nonatomic, setter=pb_setHeight:) CGFloat pb_height;
 
 /**
  * Shortcut for center.x
  *
  * Sets center.x = centerX
  */
-@property (nonatomic, setter=bba_setCenterX:) CGFloat bba_centerX;
+@property (nonatomic, setter=pb_setCenterX:) CGFloat pb_centerX;
 
 /**
  * Shortcut for center.y
  *
  * Sets center.y = centerY
  */
-@property (nonatomic, setter=bba_setCenterY:) CGFloat bba_centerY;
+@property (nonatomic, setter=pb_setCenterY:) CGFloat pb_centerY;
 
 /**
  * Shortcut for frame.origin
  */
-@property (nonatomic, setter=bba_setOrigin:) CGPoint bba_origin;
+@property (nonatomic, setter=pb_setOrigin:) CGPoint pb_origin;
 
 /**
  * Shortcut for frame.size
  */
-@property (nonatomic, setter=bba_setSize:) CGSize bba_size;
+@property (nonatomic, setter=pb_setSize:) CGSize pb_size;
 
 @end
