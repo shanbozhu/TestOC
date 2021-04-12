@@ -9,6 +9,8 @@
 #import "PBSyntax.h"
 
 /**
+ interface类声明
+ implementation类定义
  protocol协议方法声明
  category分类方法定义
  @property声明私有成员变量,定义getter、setter方法
@@ -16,7 +18,7 @@
  @dynamic使用子类成员变量
  */
 
-
+#pragma mark - implementation
 @implementation PBSyntax
 @synthesize name=_name;
 @dynamic height;

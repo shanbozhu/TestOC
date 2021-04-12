@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+#pragma mark - protocol
 @protocol PBSyntaxProtocol <NSObject>
 
 @property (nonatomic, copy) NSString *name;
@@ -19,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma mark - interface
 @interface PBSyntax : PBSyntaxBase <PBSyntaxProtocol>
 
 @property (nonatomic, copy) NSString *age;
@@ -26,5 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *height;
 
 @end
+
+#pragma mark - category
+@interface PBSyntax (ability)
+
+@end
+
+
+
+
 
 NS_ASSUME_NONNULL_END
