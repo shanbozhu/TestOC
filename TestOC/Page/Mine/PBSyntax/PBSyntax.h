@@ -33,9 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - category
 @interface PBSyntax (ability)
 
+@property (nonatomic, copy) NSString *sing;
+
 @end
-
-
 
 
 

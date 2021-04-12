@@ -7,6 +7,7 @@
 //
 
 #import "PBSyntax.h"
+#import <objc/runtime.h>
 
 /**
  interface类声明
@@ -15,7 +16,7 @@
  category分类方法定义
  @property声明私有成员变量,定义getter、setter方法
  @synthesize声明私有成员变量
- @dynamic使用子类成员变量
+ @dynamic使用子类成员变量xxxxxxxxxx
  */
 
 #pragma mark - implementation
@@ -55,5 +56,20 @@
     return @"Male";
 }
 
+@end
+
+#pragma mark - category
+@implementation PBSyntax (ability)
+
+- (void)setSing:(NSString *)sing {
+    // 全局存储
+    // 设置self的关联对象key/value
+    objc_setAssociatedObject(self, @selector(sing), sing, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSString *)sing {
+    // 获取self的关联对象key/value
+    return objc_getAssociatedObject(self, @selector(sing));
+}
 
 @end
