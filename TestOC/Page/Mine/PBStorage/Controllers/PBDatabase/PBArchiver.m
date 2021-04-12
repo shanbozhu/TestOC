@@ -7,7 +7,7 @@
 //
 
 #import "PBArchiver.h"
-#import <objc/runtime.h>
+#import "NSObject+PBRuntime.h"
 
 #pragma mark - [归解档]例子
 /**
@@ -29,29 +29,10 @@
 
 @implementation PBArchiver
 
-#pragma mark - 获取类的所有属性
-// 获取类的所有属性
-- (NSArray *)propertyList {
-    NSMutableArray *propertyList = [NSMutableArray array];
-    unsigned int count = 0;
-    Ivar *ivarList = class_copyIvarList([self class], &count);
-    for (int i = 0; i < count; i++) {
-        Ivar var = ivarList[i];
-        
-        const char *varName = ivar_getName(var);
-        NSString *name = [NSString stringWithUTF8String:varName];
-        
-        NSString *property = [name substringFromIndex:1];
-        [propertyList addObject:property];
-    }
-    free(ivarList);
-    return propertyList;
-}
-
 #pragma mark - 支持[归解挡]操作的[模型对象]需要实现的方法
 // 归档时当前对象需要实现的代理方法
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    for (NSString *property in [self propertyList]) {
+    for (NSString *property in [self pb_propertyList]) {
         [aCoder encodeObject:[self valueForKey:property] forKey:property];
     }
 }
@@ -59,7 +40,7 @@
 // 解档时当前对象需要实现的代理方法
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
-        for (NSString *property in [self propertyList]) {
+        for (NSString *property in [self pb_propertyList]) {
             [self setValue:[aDecoder decodeObjectForKey:property] forKey:property];
         }
     }

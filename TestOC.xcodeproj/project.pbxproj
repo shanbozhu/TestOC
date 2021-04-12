@@ -152,6 +152,7 @@
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19216262436440008FD14 /* PBMethodSwizzling.m */; };
+		95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19221262447A00008FD14 /* NSObject+PBRuntime.m */; };
 		95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716922E70680002795D0 /* PBGesturePasswordLab.m */; };
 		95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716A22E70680002795D0 /* PBGesturePasswordView.m */; };
 		95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */; };
@@ -535,6 +536,8 @@
 		95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButtonItem.m; sourceTree = "<group>"; };
 		95C19215262436440008FD14 /* PBMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
 		95C19216262436440008FD14 /* PBMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
+		95C19220262447A00008FD14 /* NSObject+PBRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+PBRuntime.h"; sourceTree = "<group>"; };
+		95C19221262447A00008FD14 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
 		95C8716722E70680002795D0 /* PBGesturePasswordCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordCircleView.h; sourceTree = "<group>"; };
 		95C8716822E70680002795D0 /* PBGesturePasswordLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordLockView.h; sourceTree = "<group>"; };
 		95C8716922E70680002795D0 /* PBGesturePasswordLab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordLab.m; sourceTree = "<group>"; };
@@ -725,6 +728,8 @@
 				952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */,
 				95C19215262436440008FD14 /* PBMethodSwizzling.h */,
 				95C19216262436440008FD14 /* PBMethodSwizzling.m */,
+				95C19220262447A00008FD14 /* NSObject+PBRuntime.h */,
+				95C19221262447A00008FD14 /* NSObject+PBRuntime.m */,
 			);
 			path = PBFoundation;
 			sourceTree = "<group>";
@@ -2352,6 +2357,7 @@
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
 				953341F022F405DE00DC7251 /* PBTimerController.m in Sources */,
 				95C871AE22E71CAC002795D0 /* PBTestEspressosSCSeatList.m in Sources */,
+				95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */,
 				953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */,
 				95C8717522E70697002795D0 /* PBGesturePasswordController.m in Sources */,
 				957593F622F84F3B009CA618 /* PBGCDLockThreeController.m in Sources */,
