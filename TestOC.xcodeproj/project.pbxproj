@@ -716,7 +716,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9516858B261EEB8D0047D1B2 /* PBUIParams */ = {
+		9516858B261EEB8D0047D1B2 /* PBFoundation */ = {
 			isa = PBXGroup;
 			children = (
 				9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */,
@@ -726,7 +726,7 @@
 				95C19215262436440008FD14 /* PBMethodSwizzling.h */,
 				95C19216262436440008FD14 /* PBMethodSwizzling.m */,
 			);
-			path = PBUIParams;
+			path = PBFoundation;
 			sourceTree = "<group>";
 		};
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
@@ -2048,7 +2048,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				9516858B261EEB8D0047D1B2 /* PBUIParams */,
+				9516858B261EEB8D0047D1B2 /* PBFoundation */,
 				955440F32328EB0B003A615C /* PBRuntime */,
 				957597AB22F99318009CA618 /* PBUniversalLink */,
 				9575942222F950C9009CA618 /* PBAVPlayer */,
