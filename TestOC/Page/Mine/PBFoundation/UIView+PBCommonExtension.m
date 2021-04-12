@@ -1,15 +1,14 @@
 //
-//  UIView+CommonExtension.m
+//  UIView+PBCommonExtension.m
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/3/25.
 //  Copyright © 2019年 Baidu. All rights reserved.
 //
 
-#import "UIView+CommonExtension.h"
+#import "UIView+PBCommonExtension.h"
 
-
-@implementation UIView (CommonExtension)
+@implementation UIView (PBCommonExtension)
 
 - (CGFloat)pb_left {
   return self.frame.origin.x;

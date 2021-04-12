@@ -12,7 +12,7 @@
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
-		952C2BA02621C5BF0077272C /* UIView+CommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+CommonExtension.m */; };
+		952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
 		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
 		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
@@ -269,8 +269,8 @@
 		9516BDC424696A390070C282 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9516BDC524696A390070C282 /* TestOC.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestOC.pch; sourceTree = "<group>"; };
 		9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
-		952C2B9E2621C5BF0077272C /* UIView+CommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CommonExtension.h"; sourceTree = "<group>"; };
-		952C2B9F2621C5BF0077272C /* UIView+CommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CommonExtension.m"; sourceTree = "<group>"; };
+		952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
+		952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
 		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
 		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
@@ -721,8 +721,8 @@
 			children = (
 				9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */,
 				9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */,
-				952C2B9E2621C5BF0077272C /* UIView+CommonExtension.h */,
-				952C2B9F2621C5BF0077272C /* UIView+CommonExtension.m */,
+				952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */,
+				952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */,
 				95C19215262436440008FD14 /* PBMethodSwizzling.h */,
 				95C19216262436440008FD14 /* PBMethodSwizzling.m */,
 			);
@@ -2368,7 +2368,7 @@
 				958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */,
 				95C8764E22E99291002795D0 /* PBYYTextCell.m in Sources */,
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
-				952C2BA02621C5BF0077272C /* UIView+CommonExtension.m in Sources */,
+				952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */,
 				95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */,
 				95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */,
 				953341DA22F306EE00DC7251 /* PBCellHeightThreeView.m in Sources */,

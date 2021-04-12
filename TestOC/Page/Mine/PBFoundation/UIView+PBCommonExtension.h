@@ -1,5 +1,5 @@
 //
-//  UIView+CommonExtension.h
+//  UIView+PBCommonExtension.h
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/3/25.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UIView (CommonExtension)
+@interface UIView (PBCommonExtension)
 
 @property (nonatomic, setter=pb_setLeft:) CGFloat pb_left;
 
