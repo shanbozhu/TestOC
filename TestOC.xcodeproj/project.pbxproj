@@ -50,7 +50,6 @@
 		954731B322E05B8D00F6BFA2 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 954731AD22E05B8D00F6BFA2 /* PBWelfareController.m */; };
 		954E6C4D232643DD00541C11 /* PBDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 954E6C4C232643DD00541C11 /* PBDownload.m */; };
 		955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955440F92328F1F9003A615C /* PBRuntimeController.m */; };
-		955440FE2328F3B6003A615C /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 955440FD2328F3B6003A615C /* PBMethodSwizzling.m */; };
 		955441012328F5AB003A615C /* PBRuntimeController+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 955441002328F5AB003A615C /* PBRuntimeController+Test.m */; };
 		9575930522F81E55009CA618 /* PBMemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930422F81E55009CA618 /* PBMemoryController.m */; };
 		9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575930622F81E65009CA618 /* PBMemoryListController.m */; };
@@ -152,6 +151,7 @@
 		95ACC83D249B4E0E00CA70B7 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
+		95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19216262436440008FD14 /* PBMethodSwizzling.m */; };
 		95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716922E70680002795D0 /* PBGesturePasswordLab.m */; };
 		95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716A22E70680002795D0 /* PBGesturePasswordView.m */; };
 		95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */; };
@@ -342,8 +342,6 @@
 		954E6C4C232643DD00541C11 /* PBDownload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDownload.m; sourceTree = "<group>"; };
 		955440F82328F1F9003A615C /* PBRuntimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeController.h; sourceTree = "<group>"; };
 		955440F92328F1F9003A615C /* PBRuntimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeController.m; sourceTree = "<group>"; };
-		955440FC2328F3B6003A615C /* PBMethodSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
-		955440FD2328F3B6003A615C /* PBMethodSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
 		955440FF2328F5AB003A615C /* PBRuntimeController+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeController+Test.h"; sourceTree = "<group>"; };
 		955441002328F5AB003A615C /* PBRuntimeController+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeController+Test.m"; sourceTree = "<group>"; };
 		9575930322F81E55009CA618 /* PBMemoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMemoryController.h; sourceTree = "<group>"; };
@@ -535,6 +533,8 @@
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
 		95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButtonItem.m; sourceTree = "<group>"; };
+		95C19215262436440008FD14 /* PBMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
+		95C19216262436440008FD14 /* PBMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
 		95C8716722E70680002795D0 /* PBGesturePasswordCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordCircleView.h; sourceTree = "<group>"; };
 		95C8716822E70680002795D0 /* PBGesturePasswordLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordLockView.h; sourceTree = "<group>"; };
 		95C8716922E70680002795D0 /* PBGesturePasswordLab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordLab.m; sourceTree = "<group>"; };
@@ -723,6 +723,8 @@
 				9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */,
 				952C2B9E2621C5BF0077272C /* UIView+CommonExtension.h */,
 				952C2B9F2621C5BF0077272C /* UIView+CommonExtension.m */,
+				95C19215262436440008FD14 /* PBMethodSwizzling.h */,
+				95C19216262436440008FD14 /* PBMethodSwizzling.m */,
 			);
 			path = PBUIParams;
 			sourceTree = "<group>";
@@ -1009,18 +1011,8 @@
 				955440F92328F1F9003A615C /* PBRuntimeController.m */,
 				955440FF2328F5AB003A615C /* PBRuntimeController+Test.h */,
 				955441002328F5AB003A615C /* PBRuntimeController+Test.m */,
-				955440FB2328F38B003A615C /* PBMethodSwizzling */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		955440FB2328F38B003A615C /* PBMethodSwizzling */ = {
-			isa = PBXGroup;
-			children = (
-				955440FC2328F3B6003A615C /* PBMethodSwizzling.h */,
-				955440FD2328F3B6003A615C /* PBMethodSwizzling.m */,
-			);
-			path = PBMethodSwizzling;
 			sourceTree = "<group>";
 		};
 		957592FE22F81E15009CA618 /* PBMemory */ = {
@@ -2321,9 +2313,9 @@
 				953341BF22F306D400DC7251 /* PBCellHeightThreeController.m in Sources */,
 				9575934A22F82A93009CA618 /* PBStorageList.m in Sources */,
 				95C873E322E84410002795D0 /* PBTestZeroEspressos.m in Sources */,
+				95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */,
 				9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */,
 				95C8740F22E84436002795D0 /* PBTestTwoEspressos.m in Sources */,
-				955440FE2328F3B6003A615C /* PBMethodSwizzling.m in Sources */,
 				957593D422F84F20009CA618 /* PBGCDListThreeController.m in Sources */,
 				958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */,
 				95C8741022E84436002795D0 /* PBActivityDetailContent.m in Sources */,
