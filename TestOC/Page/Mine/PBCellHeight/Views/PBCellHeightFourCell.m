@@ -30,7 +30,7 @@
         self.lab = lab;
         [self.contentView addSubview:lab];
         
-        [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.lab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(20);
             make.top.mas_equalTo(20);
             make.right.mas_equalTo(-20);
