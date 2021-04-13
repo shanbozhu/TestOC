@@ -19,7 +19,7 @@
     [super viewDidLoad];
 
     PBSyntax *syntax = [[PBSyntax alloc] init];
-    NSLog(@"syntax.height = %@, syntax.nationality = %@", syntax.height, syntax.nationality);
+    NSLog(@"syntax.height = %@", syntax.height);
 }
 
 

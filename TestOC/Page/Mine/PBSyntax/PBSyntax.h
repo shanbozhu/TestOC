@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PBSyntaxBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
 
 #pragma mark - protocol
 @protocol PBSyntaxProtocol <NSObject>
@@ -22,15 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #pragma mark - interface
-@interface PBSyntax : PBSyntaxBase <PBSyntaxProtocol> {
-    NSString *_nationality;
+@interface PBSyntax : NSObject <PBSyntaxProtocol> {
+    NSString *_height;
 }
 
 @property (nonatomic, copy) NSString *age;
 
 @property (nonatomic, copy) NSString *height;
-
-@property (nonatomic, copy) NSString *nationality;
 
 @end
 

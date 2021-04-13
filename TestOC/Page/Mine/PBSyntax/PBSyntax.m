@@ -25,12 +25,9 @@
 @synthesize name=_name;
 @dynamic height;
 
-@dynamic nationality;
-
 - (instancetype)init {
     if (self = [super init]) {
         self.height = @"180";
-        self.nationality = @"汉";
     }
     return self;
 }
@@ -49,19 +46,17 @@
     _age = age;
 }
 
-/**
-- (NSString *)age {
-    return _age;
-}
- */
+//- (NSString *)age {
+//    return _age;
+//}
 
 #pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法,私有成员变量如果需要使用也要自己声明
-- (void)setNationality:(NSString *)nationality {
-    _nationality = nationality;
+- (void)setHeight:(NSString *)height {
+    _height = height;
 }
 
-- (NSString *)nationality {
-    return _nationality;
+- (NSString *)height {
+    return _height;
 }
 
 #pragma mark - protocol
