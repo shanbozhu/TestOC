@@ -15,7 +15,7 @@
  protocol协议方法声明.遵循协议,实现协议方法的定义
  category分类方法定义
  @property声明私有成员变量,定义getter、setter方法
- @synthesize(合成)声明私有成员变量
+ @synthesize声明私有成员变量
  @dynamic必须手动声明私有成员变量,定义getter、setter方法
  */
 
