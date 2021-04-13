@@ -61,7 +61,7 @@
 
 #pragma mark - protocol
 - (NSString *)sex {
-    return @"Male";
+    return @"male";
 }
 
 #pragma mark - extension
