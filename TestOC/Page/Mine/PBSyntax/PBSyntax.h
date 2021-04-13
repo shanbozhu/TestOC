@@ -22,11 +22,24 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #pragma mark - interface
-@interface PBSyntax : PBSyntaxBase <PBSyntaxProtocol>
+@interface PBSyntax : PBSyntaxBase <PBSyntaxProtocol> {
+    NSString *_nationality;
+}
 
 @property (nonatomic, copy) NSString *age;
 
 @property (nonatomic, copy) NSString *height;
+
+@property (nonatomic, copy) NSString *nationality;
+
+@end
+
+#pragma mark - extension
+@interface PBSyntax ()
+
+@property (nonatomic, copy) NSString *weight;
+
+- (NSString *)hobby;
 
 @end
 

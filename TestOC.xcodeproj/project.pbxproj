@@ -155,6 +155,7 @@
 		95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19221262447A00008FD14 /* NSObject+PBRuntime.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
 		95C1922C262476BC0008FD14 /* PBSyntaxBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922B262476BC0008FD14 /* PBSyntaxBase.m */; };
+		95C19230262548400008FD14 /* PBSyntaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922F262548400008FD14 /* PBSyntaxController.m */; };
 		95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716922E70680002795D0 /* PBGesturePasswordLab.m */; };
 		95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716A22E70680002795D0 /* PBGesturePasswordView.m */; };
 		95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716B22E70680002795D0 /* PBGesturePasswordLockView.m */; };
@@ -544,6 +545,8 @@
 		95C1922626246FE30008FD14 /* PBSyntax.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntax.m; sourceTree = "<group>"; };
 		95C1922A262476BC0008FD14 /* PBSyntaxBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxBase.h; sourceTree = "<group>"; };
 		95C1922B262476BC0008FD14 /* PBSyntaxBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxBase.m; sourceTree = "<group>"; };
+		95C1922E262548400008FD14 /* PBSyntaxController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxController.h; sourceTree = "<group>"; };
+		95C1922F262548400008FD14 /* PBSyntaxController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxController.m; sourceTree = "<group>"; };
 		95C8716722E70680002795D0 /* PBGesturePasswordCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordCircleView.h; sourceTree = "<group>"; };
 		95C8716822E70680002795D0 /* PBGesturePasswordLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGesturePasswordLockView.h; sourceTree = "<group>"; };
 		95C8716922E70680002795D0 /* PBGesturePasswordLab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGesturePasswordLab.m; sourceTree = "<group>"; };
@@ -1475,6 +1478,8 @@
 				95C1922626246FE30008FD14 /* PBSyntax.m */,
 				95C1922A262476BC0008FD14 /* PBSyntaxBase.h */,
 				95C1922B262476BC0008FD14 /* PBSyntaxBase.m */,
+				95C1922E262548400008FD14 /* PBSyntaxController.h */,
+				95C1922F262548400008FD14 /* PBSyntaxController.m */,
 			);
 			path = PBSyntax;
 			sourceTree = "<group>";
@@ -2462,6 +2467,7 @@
 				95C872E422E801DA002795D0 /* PBQRCodeController.m in Sources */,
 				954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
+				95C19230262548400008FD14 /* PBSyntaxController.m in Sources */,
 				95C872E122E801DA002795D0 /* PBQRCodeScanView.m in Sources */,
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,

@@ -33,7 +33,8 @@
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBAllWelfareController",
+    return @[@"PBSyntaxController",
+             @"PBAllWelfareController",
              @"PBCalendarController",
              @"PBGesturePasswordController",
              @"PBSeatSelectionController",

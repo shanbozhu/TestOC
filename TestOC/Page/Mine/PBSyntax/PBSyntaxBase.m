@@ -10,4 +10,11 @@
 
 @implementation PBSyntaxBase
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.height = @"190";
+    }
+    return self;
+}
+
 @end

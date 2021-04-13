@@ -12,21 +12,25 @@
 /**
  interface类声明
  implementation类定义
- protocol协议方法声明
+ protocol协议方法声明.遵循协议,实现协议方法的定义
  category分类方法定义
  @property声明私有成员变量,定义getter、setter方法
- @synthesize声明私有成员变量
- @dynamic使用子类成员变量xxxxxxxxxx
+ @synthesize(合成)声明私有成员变量
+ @dynamic必须手动声明私有成员变量,定义getter、setter方法
  */
 
 #pragma mark - implementation
 @implementation PBSyntax
+
 @synthesize name=_name;
 @dynamic height;
 
+@dynamic nationality;
+
 - (instancetype)init {
     if (self = [super init]) {
-        
+        self.height = @"180";
+        self.nationality = @"汉";
     }
     return self;
 }
@@ -51,9 +55,23 @@
 }
  */
 
-#pragma mark - 遵循协议,实现协议方法的定义
+#pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法,私有成员变量如果需要使用也要自己声明
+- (void)setNationality:(NSString *)nationality {
+    _nationality = nationality;
+}
+
+- (NSString *)nationality {
+    return _nationality;
+}
+
+#pragma mark - protocol
 - (NSString *)sex {
     return @"Male";
+}
+
+#pragma mark - extension
+- (NSString *)hobby {
+    return @"dance";
 }
 
 @end
