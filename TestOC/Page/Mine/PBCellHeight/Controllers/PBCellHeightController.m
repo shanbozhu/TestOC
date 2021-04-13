@@ -13,6 +13,12 @@
 #import "PBCellHeightThreeController.h"
 #import "PBCellHeightFourController.h"
 
+/**
+ 1.根据宽度内容设置高度
+ 2.根据子视图高度设置父视图高度
+ 3.紧贴上一控件
+ */
+
 @interface PBCellHeightController ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
