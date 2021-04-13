@@ -30,7 +30,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.delegate = target;
     
-    //计算用cell,用完即释放
+    // 计算用cell,用完即释放
     UITableViewCell *cell = [cellHeight.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell removeFromSuperview];
     
@@ -41,7 +41,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.delegate = target;
     
-    //计算用cell,用完即释放
+    // 计算用cell,用完即释放
     UITableViewCell *cell = [cellHeight.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell removeFromSuperview];
     
@@ -61,7 +61,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.block = block;
     
-    //计算用cell,只有一个.tableView被释放,计算用cell则被释放
+    // 计算用cell,只有一个.tableView被释放,计算用cell则被释放
     NSMutableDictionary *cellList = objc_getAssociatedObject(tableView, _cmd);
     if (cellList == nil) {
         cellList = @{}.mutableCopy;
@@ -85,7 +85,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.block = block;
     
-    //计算用cell,只有一个.tableView被释放,计算用cell则被释放
+    // 计算用cell,只有一个.tableView被释放,计算用cell则被释放
     NSMutableDictionary *cellList = objc_getAssociatedObject(tableView, _cmd);
     if (cellList == nil) {
         cellList = @{}.mutableCopy;
@@ -181,7 +181,7 @@
     rect.size.width = lab.frame.size.width;
     rect.size.height = lab.frame.size.height;
     
-    //系统字体显示一行且含有中文的时候会显示行间距
+    // 系统字体显示一行且含有中文的时候会显示行间距
     if (([font.fontName isEqualToString:@".SFUIText"] || [font.fontName isEqualToString:@".SFUIDisplay"]) && rect.size.height < (font.lineHeight * 2 + lineSpacing) && [self pb_containChinese:self]) {
         return CGSizeMake(rect.size.width, rect.size.height - lineSpacing);
     }
@@ -196,7 +196,7 @@
         return CGSizeMake(size.width, ceilf(size.height));
     }
     
-    //最大高度
+    // 最大高度
     CGFloat maxHeight = numberOfLines * font.lineHeight + (numberOfLines - 1) * lineSpacing;
     
     CGSize size = [self pb_boundingSizeWithWidth:width andFont:font andLineSpacing:lineSpacing];
