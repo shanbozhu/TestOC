@@ -54,8 +54,8 @@
     [self fillTabBarButton];
 }
 
-- (void)fillTabBarButton {    
-    self.iconImageView.image = [UIImage imageNamed:self.buttonItem.icon];
+- (void)fillTabBarButton {
+    self.iconImageView.image = [UIImage imageNamed:self.buttonItem.unselectedIcon];
     self.iconImageView.frame = CGRectMake((self.frame.size.width - 28) / 2.0, 5, 28, 28);
     
     self.hintLab.frame = CGRectMake(CGRectGetWidth(self.iconImageView.frame) + 2, 0, 20, 10);
