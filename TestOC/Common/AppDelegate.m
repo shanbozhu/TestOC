@@ -49,7 +49,7 @@
     vc1.view.backgroundColor = [UIColor whiteColor];
     PBTabBarButtonItem *buttonItem1 = [[PBTabBarButtonItem alloc] init];
     buttonItem1.title = @"首页";
-    buttonItem1.icon = @"shouye";
+    buttonItem1.icon = @"unselected_shouye";
     vc1.pb_tabBarButtonItem = buttonItem1;
     
     PBMineController *vc2 = [[PBMineController alloc]init];
@@ -57,7 +57,7 @@
     vc2.view.backgroundColor = [UIColor whiteColor];
     PBTabBarButtonItem *buttonItem2 = [[PBTabBarButtonItem alloc] init];
     buttonItem2.title = @"我的";
-    buttonItem2.icon = @"wode";
+    buttonItem2.icon = @"unselected_wode";
     vc2.pb_tabBarButtonItem = buttonItem2;
     
     PBTabBarController *tab = [[PBTabBarController alloc]init];
