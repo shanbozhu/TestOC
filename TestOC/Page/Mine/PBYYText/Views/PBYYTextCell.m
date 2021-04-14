@@ -260,14 +260,6 @@
     
     // 下划线
     [attStrFour yy_setTextUnderline:decoration range:NSMakeRange(35, 5)];
-    
-    // 边框
-    YYTextBorder *border = [[YYTextBorder alloc]init];
-    border.strokeColor = [UIColor blueColor];
-    border.strokeWidth = 1;
-    border.cornerRadius = 3;
-    border.lineStyle = YYTextLineStyleSingle;
-    [attStrFour yy_setTextBorder:border range:NSMakeRange(45, 5)];
     [attStr appendAttributedString:attStrFour];
     
     // 下面四种方法均可以计算lab高度
