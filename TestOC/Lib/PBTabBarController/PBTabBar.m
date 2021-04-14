@@ -48,10 +48,7 @@
                 i = [self.viewControllers indexOfObject:controller];
                 tabBarButton.frame = CGRectMake(i * buttonWidth, 0, buttonWidth, APPLICATION_TABBAR_CONTENT_HEIGHT);
                 
-                PBTabBarButtonItem *buttonItem = [[PBTabBarButtonItem alloc] init];
-                buttonItem.title = vc.title;
-                buttonItem.icon = nil;
-                tabBarButton.buttonItem = buttonItem;
+                tabBarButton.buttonItem = vc.pb_tabBarButtonItem;
                 
                 tabBarButton.tag = i;
                 [tabBarButton addTarget:self action:@selector(tabBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];

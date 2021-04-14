@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "PBTabBar.h"
+#import "PBTabBarButtonItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@interface UIViewController (PBTabBarButton)
+
+@property (nonatomic, strong, setter=pb_setTabBarButtonItem:) PBTabBarButtonItem *pb_tabBarButtonItem;
+
+@end
 
 @interface PBTabBarController : UIViewController
 

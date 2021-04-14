@@ -7,6 +7,19 @@
 //
 
 #import "PBTabBarController.h"
+#import <objc/runtime.h>
+
+@implementation UIViewController (PBTabBarButton)
+
+- (PBTabBarButtonItem *)pb_tabBarButtonItem {
+    return objc_getAssociatedObject(self, @selector(pb_tabBarButtonItem));
+}
+
+- (void)pb_setTabBarButtonItem:(PBTabBarButtonItem *)pb_tabBarButtonItem {
+    objc_setAssociatedObject(self, @selector(pb_tabBarButtonItem), pb_tabBarButtonItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end
 
 @interface PBTabBarController ()
 

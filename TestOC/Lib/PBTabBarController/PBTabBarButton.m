@@ -54,9 +54,7 @@
     [self fillTabBarButton];
 }
 
-- (void)fillTabBarButton {
-    self.buttonItem.icon = @"shouye";
-    
+- (void)fillTabBarButton {    
     self.iconImageView.image = [UIImage imageNamed:self.buttonItem.icon];
     self.iconImageView.frame = CGRectMake((self.frame.size.width - 28) / 2.0, 5, 28, 28);
     

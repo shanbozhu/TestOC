@@ -47,12 +47,18 @@
     PBHomeController *vc1 = [[PBHomeController alloc]init];
     UINavigationController *nav1 = [[PBNavigationController alloc]initWithRootViewController:vc1];
     vc1.view.backgroundColor = [UIColor whiteColor];
-    vc1.title = @"首页";
+    PBTabBarButtonItem *buttonItem1 = [[PBTabBarButtonItem alloc] init];
+    buttonItem1.title = @"首页";
+    buttonItem1.icon = @"shouye";
+    vc1.pb_tabBarButtonItem = buttonItem1;
     
     PBMineController *vc2 = [[PBMineController alloc]init];
     UINavigationController *nav2 = [[PBNavigationController alloc]initWithRootViewController:vc2];
     vc2.view.backgroundColor = [UIColor whiteColor];
-    vc2.title = @"我的";
+    PBTabBarButtonItem *buttonItem2 = [[PBTabBarButtonItem alloc] init];
+    buttonItem2.title = @"我的";
+    buttonItem2.icon = @"wode";
+    vc2.pb_tabBarButtonItem = buttonItem2;
     
     PBTabBarController *tab = [[PBTabBarController alloc]init];
     tab.viewControllers = @[nav1, nav2];
