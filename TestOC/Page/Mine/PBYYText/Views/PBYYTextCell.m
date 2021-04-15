@@ -47,7 +47,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京漂亮京天｜安｜门我漂亮爱北京天天安门😀💙🚖我爱北京天安门安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
+    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京好漂亮京天｜安｜门我好漂亮爱北京天天安门😀💙🚖我爱北京天安门安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
     
     // threeLab
     YYLabel *threeLab = [[YYLabel alloc]init];
@@ -60,7 +60,6 @@
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
     threeLab.textTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-        NSLog(@"点击了文本,需要折叠");
         self.testList.fold = YES;
         [self.delegate testListCell:self];
     };
@@ -71,7 +70,6 @@
     [moreStr yy_setColor:attStr.yy_color range:[moreStr.string rangeOfString:@"..."]];
     [moreStr yy_setFont:attStr.yy_font range:[moreStr.string rangeOfString:@"全文"]];
     [moreStr yy_setTextHighlightRange:[moreStr.string rangeOfString:@"全文"] color:[UIColor blueColor] backgroundColor:[UIColor redColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-        NSLog(@"点击了更多,需要展开");
         self.testList.fold = NO;
         [self.delegate testListCell:self];
     }];
@@ -140,7 +138,7 @@
     // 高亮
     [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(5, 5)];
     
-    NSRegularExpression *regularExpression = [PBRegex regexString:@"漂亮"];
+    NSRegularExpression *regularExpression = [PBRegex regexString:@"好漂亮"];
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
     for (NSTextCheckingResult *at in result) {
         if (at.range.location == NSNotFound && at.range.length <= 1) {
