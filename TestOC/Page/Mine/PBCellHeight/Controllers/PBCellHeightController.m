@@ -23,7 +23,7 @@
  调用layoutIfNeeded方法,会立即触发调用layoutSubviews方法
  调用setNeedsLayout方法,会在下一个刷新周期触发调用layoutSubviews方法
  
- 调用setNeedsDisplay方法,会立即触发调用drawRect:方法
+ 调用setNeedsDisplay方法,会在下一个刷新周期触发调用drawRect:方法
  */
 
 @interface PBCellHeightController ()<UITableViewDelegate, UITableViewDataSource>
