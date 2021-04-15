@@ -13,7 +13,7 @@
 
 @interface PBYYTextCell ()
 
-@property (nonatomic, weak) YYLabel *fourLab;
+@property (nonatomic, weak) YYLabel *twoLab;
 @property (nonatomic, weak) YYTextView *textView;
 @property (nonatomic, weak) UITableView *tableView;
 
@@ -49,9 +49,9 @@
     
     NSString *str = @"我爱北京天安门我爱北京天安门我爱北京好漂亮京天｜安｜门我好漂亮爱北京天天安门😀💙🚖我爱北京天安门安门我爱北京天安门我爱北京北京天安门我爱北京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
     
-    // threeLab
-    YYLabel *threeLab = [[YYLabel alloc]init];
-    [self.contentView addSubview:threeLab];
+    // oneLab
+    YYLabel *oneLab = [[YYLabel alloc]init];
+    [self.contentView addSubview:oneLab];
     
     // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
@@ -59,7 +59,7 @@
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
-    threeLab.textTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+    oneLab.textTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
         self.testList.fold = YES;
         [self.delegate testListCell:self];
     };
@@ -93,18 +93,18 @@
     }
     
     YYTextLayout *threeTextLayout = [YYTextLayout layoutWithContainer:container text:attStr];
-    threeLab.frame = CGRectMake(20, 20, threeTextLayout.textBoundingSize.width, threeTextLayout.textBoundingSize.height);
-    threeLab.textLayout = threeTextLayout;
+    oneLab.frame = CGRectMake(20, 20, threeTextLayout.textBoundingSize.width, threeTextLayout.textBoundingSize.height);
+    oneLab.textLayout = threeTextLayout;
     
-    // fourLab
-    YYLabel *fourLab = [[YYLabel alloc]init];
-    self.fourLab = fourLab;
-    [self.contentView addSubview:fourLab];
-    fourLab.frame = CGRectMake(20, CGRectGetMaxY(threeLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
-    fourLab.numberOfLines = 0;
-    fourLab.textAlignment = NSTextAlignmentCenter;
-    fourLab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
-    //fourLab.displaysAsynchronously = YES;
+    // twoLab
+    YYLabel *twoLab = [[YYLabel alloc]init];
+    self.twoLab = twoLab;
+    [self.contentView addSubview:twoLab];
+    twoLab.frame = CGRectMake(20, CGRectGetMaxY(oneLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
+    twoLab.numberOfLines = 0;
+    twoLab.textAlignment = NSTextAlignmentCenter;
+    twoLab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
+    //twoLab.displaysAsynchronously = YES;
     
     attStr = [[NSMutableAttributedString alloc]initWithString:str];
     [attStr yy_setFont:[UIFont systemFontOfSize:17] range:NSMakeRange(0, attStr.length)];
@@ -233,7 +233,7 @@
     
     // 图片
     UIImageView *twoImageView = [[UIImageView alloc]init];
-    twoImageView.frame = CGRectMake(0, 0, CGRectGetWidth(fourLab.frame), 150);
+    twoImageView.frame = CGRectMake(0, 0, CGRectGetWidth(twoLab.frame), 150);
     twoImageView.image = [UIImage imageNamed:@"pbyytext_pic"];
     twoImageView.userInteractionEnabled = YES;
     twoImageView.layer.cornerRadius = 10;
@@ -262,26 +262,26 @@
     
     // 下面四种方法均可以计算lab高度
     {
-        YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(fourLab.frame), MAXFLOAT) text:attStr];
-        fourLab.frame = CGRectMake(CGRectGetMinX(threeLab.frame), CGRectGetMaxY(threeLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
-        fourLab.textLayout = layout;
+        YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT) text:attStr];
+        twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
+        twoLab.textLayout = layout;
     }
     
     {
-        fourLab.attributedText = attStr;
-        YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(fourLab.frame), MAXFLOAT) text:attStr];
-        fourLab.frame = CGRectMake(CGRectGetMinX(threeLab.frame), CGRectGetMaxY(threeLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
+        twoLab.attributedText = attStr;
+        YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT) text:attStr];
+        twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
     }
     
     {
-        fourLab.attributedText = attStr;
-        CGSize size = [fourLab sizeThatFits:CGSizeMake(CGRectGetWidth(fourLab.frame), MAXFLOAT)];
-        fourLab.frame = CGRectMake(CGRectGetMinX(threeLab.frame), CGRectGetMaxY(threeLab.frame)+50, size.width, size.height);
+        twoLab.attributedText = attStr;
+        CGSize size = [twoLab sizeThatFits:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT)];
+        twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, size.width, size.height);
     }
     
     {
-        fourLab.attributedText = attStr;
-        [fourLab sizeToFit];
+        twoLab.attributedText = attStr;
+        [twoLab sizeToFit];
     }
     
     // textView
@@ -290,7 +290,7 @@
     [self.contentView addSubview:textView];
     textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0); // textView需要设置此属性
     //textView.editable = NO;
-    textView.frame = CGRectMake(20, CGRectGetMaxY(fourLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
+    textView.frame = CGRectMake(20, CGRectGetMaxY(twoLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     textView.attributedText = attStr;
     [textView sizeToFit];
     
@@ -334,7 +334,7 @@
     if ([self.contentView.subviews containsObject:self.textView]) {
         return CGSizeMake(size.width, CGRectGetMaxY(self.textView.frame)+20);
     }
-    return CGSizeMake(size.width, CGRectGetMaxY(self.fourLab.frame)+20);
+    return CGSizeMake(size.width, CGRectGetMaxY(self.twoLab.frame)+20);
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {
