@@ -111,7 +111,7 @@
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
-    // (渐变色)生成的图标
+    // (渐变色)生成的图片
     UIImageView *iconImageView = [[UIImageView alloc]init];
     iconImageView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
     iconImageView.layer.cornerRadius = 3;
@@ -253,7 +253,7 @@
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
     
     // 删除线
-    YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:[UIColor redColor]];
+    YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(2) color:[UIColor blueColor]];
     [attStrFour yy_setTextStrikethrough:decoration range:NSMakeRange(20, 5)];
     
     // 下划线
