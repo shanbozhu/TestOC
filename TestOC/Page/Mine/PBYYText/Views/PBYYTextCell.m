@@ -195,7 +195,7 @@
     
     // gif图
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
-    imageView.image = [YYImage imageNamed:@"002"]; // 005
+    imageView.image = [YYImage imageNamed:@"002"];
     imageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
     imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
@@ -215,7 +215,7 @@
     
     // 图片表情
     UIImageView *threeImageView = [[UIImageView alloc]init];
-    threeImageView.image = [UIImage imageNamed:@"0022"]; // 0055
+    threeImageView.image = [UIImage imageNamed:@"0022"];
     threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
     threeImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
@@ -249,7 +249,7 @@
     [attStr appendAttributedString:attachStrTwo];
     
     // 追加文字
-    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天安."];
+    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天."];
     [attStrFour yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
