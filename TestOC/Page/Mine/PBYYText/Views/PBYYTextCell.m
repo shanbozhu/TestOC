@@ -193,7 +193,7 @@
     // 手机号
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
-    // gif图
+    // 图片表情,gif图
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
     imageView.image = [YYImage imageNamed:@"002"];
     imageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
@@ -213,7 +213,7 @@
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
     [attStr appendAttributedString:attStrThree];
     
-    // 图片表情
+    // 图片表情,png图
     UIImageView *threeImageView = [[UIImageView alloc]init];
     threeImageView.image = [UIImage imageNamed:@"0022"];
     threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
