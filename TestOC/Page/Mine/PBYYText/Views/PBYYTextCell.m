@@ -261,7 +261,7 @@
     [attStrFour yy_setTextUnderline:decoration range:NSMakeRange(35, 5)];
     [attStr appendAttributedString:attStrFour];
     
-    // 下面四种方法均可以计算lab高度
+    // 下面方法均可以计算lab高度
     {
         YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT) text:attStr];
         twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
@@ -272,12 +272,6 @@
         twoLab.attributedText = attStr;
         YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT) text:attStr];
         twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
-    }
-    
-    {
-        twoLab.attributedText = attStr;
-        CGSize size = [twoLab sizeThatFits:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT)];
-        twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, size.width, size.height);
     }
     
     {
