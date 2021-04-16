@@ -206,24 +206,37 @@
     [attStr appendAttributedString:attachStr];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北京天安门天安门"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北[调皮][调皮]京天安门[调皮]天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
     [attStr appendAttributedString:attStrThree];
     
     // 图片表情,png图
-    UIImageView *threeImageView = [[UIImageView alloc]init];
-    threeImageView.image = [UIImage imageNamed:@"0022"];
-    threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
-    threeImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
-    [threeImageView addGestureRecognizer:threeTap];
-    threeTap.view.tag = 3;
-    
-    NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
-    [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
-    [attStr appendAttributedString:attachStrThree];
+    regularExpression = [PBRegex regexString:@"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]"];
+    result = [regularExpression matchesInString:attStr.string options:NSMatchingReportCompletion range:attStr.yy_rangeOfAll];
+    for (NSInteger i = result.count - 1; i >= 0; i--) {
+        NSTextCheckingResult *at = [result objectAtIndex:i];
+        if (at.range.location == NSNotFound && at.range.length <= 1) {
+            continue;
+        }
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"0022@2x" ofType:@"png"];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        
+        UIImageView *threeImageView = [[UIImageView alloc]init];
+        threeImageView.image = image;
+        threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
+        threeImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+        [threeImageView addGestureRecognizer:threeTap];
+        threeTap.view.tag = 3;
+
+        NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
+        [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
+        
+        [attStr replaceCharactersInRange:at.range withAttributedString:attachStrThree];
+    }
     
     // 追加文字
     NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北"];
