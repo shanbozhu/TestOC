@@ -62,12 +62,7 @@
 
 // 精准匹配字符串
 + (NSRegularExpression *)regexString:(NSString *)string {
-    static NSRegularExpression *regex;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        regex = [NSRegularExpression regularExpressionWithPattern:string options:kNilOptions error:nil];
-    });
-    return regex;
+    return [NSRegularExpression regularExpressionWithPattern:string options:kNilOptions error:nil];
 }
 
 @end
