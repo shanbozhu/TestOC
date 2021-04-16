@@ -136,8 +136,6 @@
     [attStr insertAttributedString:attachStrZero atIndex:1];
     
     // 高亮
-    [attStr yy_setColor:[UIColor redColor] range:NSMakeRange(5, 5)];
-    
     NSRegularExpression *regularExpression = [PBRegex regexString:@"好漂亮"];
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
     for (NSTextCheckingResult *at in result) {
