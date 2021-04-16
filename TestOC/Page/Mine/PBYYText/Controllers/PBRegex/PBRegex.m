@@ -60,6 +60,16 @@
     return regex;
 }
 
+// 匹配表情
++ (NSRegularExpression *)regexEmoticon {
+    static NSRegularExpression *regex;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        regex = [NSRegularExpression regularExpressionWithPattern:@"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]" options:kNilOptions error:nil];
+    });
+    return regex;
+}
+
 // 精准匹配字符串
 + (NSRegularExpression *)regexString:(NSString *)string {
     return [NSRegularExpression regularExpressionWithPattern:string options:kNilOptions error:nil];

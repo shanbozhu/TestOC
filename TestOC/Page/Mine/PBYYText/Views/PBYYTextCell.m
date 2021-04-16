@@ -191,49 +191,15 @@
     // 手机号
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
-    // 图片表情,gif图
-    CGFloat emoticonWidth = attStr.yy_font.lineHeight + 15;
-    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
-    imageView.image = [YYImage imageNamed:@"002"];
-    imageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
-    imageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
-    [imageView addGestureRecognizer:tap];
-    tap.view.tag = 1;
-    
-    NSMutableAttributedString *attachStr = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
-    [attachStr yy_setLineSpacing:attStr.yy_lineSpacing range:attachStr.yy_rangeOfAll];
-    [attStr appendAttributedString:attachStr];
-    
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北[调皮][调皮]京天安门[调皮]天安门"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"[大调皮]我爱北京安门我爱北[调皮][调皮]京天安门[调皮]天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
     [attStr appendAttributedString:attStrThree];
     
-    // 图片表情,png图
-    regularExpression = [PBRegex regexString:@"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]"];
-    result = [regularExpression matchesInString:attStr.string options:NSMatchingReportCompletion range:attStr.yy_rangeOfAll];
-    for (NSInteger i = result.count - 1; i >= 0; i--) {
-        NSTextCheckingResult *at = [result objectAtIndex:i];
-        if (at.range.location == NSNotFound && at.range.length <= 1) {
-            continue;
-        }
-        
-        UIImageView *threeImageView = [[UIImageView alloc]init];
-        threeImageView.image = [UIImage imageNamed:@"0022"];
-        threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
-        threeImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
-        [threeImageView addGestureRecognizer:threeTap];
-        threeTap.view.tag = 3;
-
-        NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
-        [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
-        
-        [attStr replaceCharactersInRange:at.range withAttributedString:attachStrThree];
-    }
+    // 图片表情,png图、gif图
+    [self emoticonWithAttributedString:attStr regularExpression:[PBRegex regexEmoticon]];
     
     // 追加文字
     NSMutableAttributedString *attStrTwo = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安门我爱北"];
@@ -305,6 +271,46 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     self.tableView.panGestureRecognizer.enabled = self.textView.panGestureRecognizer.enabled;
+}
+
+- (void)emoticonWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
+    CGFloat emoticonWidth = attStr.yy_font.lineHeight + 15;
+    NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
+    for (NSInteger i = result.count - 1; i >= 0; i--) {
+        NSTextCheckingResult *at = [result objectAtIndex:i];
+        if (at.range.location == NSNotFound && at.range.length <= 1) {
+            continue;
+        }
+        NSString *rangeString = [attStr.string substringWithRange:at.range];
+        NSLog(@"rangeString = %@", rangeString);
+        NSString *imageName = [self imageNameWithRangeString:rangeString];
+        if (!imageName) {
+            continue;
+        }
+        
+        UIImageView *threeImageView = [[YYAnimatedImageView alloc]init];
+        threeImageView.image = [YYImage imageNamed:imageName];
+        threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
+        threeImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+        [threeImageView addGestureRecognizer:threeTap];
+        threeTap.view.tag = 3;
+
+        NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
+        [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
+        
+        // 替换子串后改变了原字符串的长度,会改变其他子串的初始位置,此时替换会越界.从右往左替换则不会出现此问题,因为其他子串的位置不会因为后面子串的改变而改变.
+        [attStr replaceCharactersInRange:at.range withAttributedString:attachStrThree];
+    }
+}
+
+- (NSString *)imageNameWithRangeString:(NSString *)rangeString {
+    if ([rangeString isEqualToString:@"[调皮]"]) {
+        return @"0022";
+    } else if ([rangeString isEqualToString:@"[大调皮]"]) {
+        return @"002";
+    }
+    return nil;
 }
 
 // 利用正则表达式匹配特定字符串

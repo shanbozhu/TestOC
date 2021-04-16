@@ -15,6 +15,7 @@
 + (NSRegularExpression *)regexEmail;
 + (NSRegularExpression *)regexUrl;
 + (NSRegularExpression *)regexPhone;
++ (NSRegularExpression *)regexEmoticon;
 + (NSRegularExpression *)regexString:(NSString *)string;
 
 @end
