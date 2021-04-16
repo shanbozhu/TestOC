@@ -111,7 +111,7 @@
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
-    // (渐变色)生成的图片
+    // 渐变色生成的图片
     UIImageView *iconImageView = [[UIImageView alloc]init];
     iconImageView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
     iconImageView.layer.cornerRadius = 3;
@@ -152,7 +152,7 @@
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     }];
     
-    // 点击高亮自定义
+    // 点击高亮,自定义
     NSRange range = NSMakeRange(65, 5);
     UIColor *normalColor = [UIColor blueColor];
     [attStr yy_setColor:normalColor range:range];
@@ -192,9 +192,10 @@
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
     // 图片表情,gif图
+    CGFloat emoticonWidth = attStr.yy_font.lineHeight + 15;
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc]init];
     imageView.image = [YYImage imageNamed:@"002"];
-    imageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
+    imageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
     imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [imageView addGestureRecognizer:tap];
@@ -214,7 +215,7 @@
     // 图片表情,png图
     UIImageView *threeImageView = [[UIImageView alloc]init];
     threeImageView.image = [UIImage imageNamed:@"0022"];
-    threeImageView.frame = CGRectMake(0, 0, attStr.yy_font.lineHeight, attStr.yy_font.lineHeight);
+    threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
     threeImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [threeImageView addGestureRecognizer:threeTap];
