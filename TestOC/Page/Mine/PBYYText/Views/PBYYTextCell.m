@@ -260,7 +260,7 @@
     self.textView = textView;
     [self.contentView addSubview:textView];
     textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0); // textView需要设置此属性
-    //textView.editable = NO;
+    textView.editable = NO;
     textView.frame = CGRectMake(20, CGRectGetMaxY(twoLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     textView.attributedText = attStr;
     [textView sizeToFit];
