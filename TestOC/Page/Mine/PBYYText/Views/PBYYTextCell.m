@@ -221,11 +221,8 @@
             continue;
         }
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"0022@2x" ofType:@"png"];
-        UIImage *image = [UIImage imageWithContentsOfFile:path];
-        
         UIImageView *threeImageView = [[UIImageView alloc]init];
-        threeImageView.image = image;
+        threeImageView.image = [UIImage imageNamed:@"0022"];
         threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
         threeImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
