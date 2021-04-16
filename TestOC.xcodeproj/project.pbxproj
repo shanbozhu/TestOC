@@ -239,6 +239,8 @@
 		95EACF012626CDFB006F1A6B /* PBContentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EACF002626CDFB006F1A6B /* PBContentLabel.m */; };
 		95EACF052626CE88006F1A6B /* PBContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EACF042626CE88006F1A6B /* PBContentController.m */; };
 		95EAD0BC26270D6B006F1A6B /* PBContentLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EAD0BB26270D6B006F1A6B /* PBContentLabelItem.m */; };
+		95EADC782629A967006F1A6B /* iOS_render.png in Resources */ = {isa = PBXBuildFile; fileRef = 95EADC772629A967006F1A6B /* iOS_render.png */; };
+		95EADC7B2629A99F006F1A6B /* iOS_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 95EADC7A2629A99F006F1A6B /* iOS_origin.png */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
 		B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */; };
@@ -687,6 +689,8 @@
 		95EACF042626CE88006F1A6B /* PBContentController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBContentController.m; sourceTree = "<group>"; };
 		95EAD0BA26270D6B006F1A6B /* PBContentLabelItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBContentLabelItem.h; sourceTree = "<group>"; };
 		95EAD0BB26270D6B006F1A6B /* PBContentLabelItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBContentLabelItem.m; sourceTree = "<group>"; };
+		95EADC772629A967006F1A6B /* iOS_render.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_render.png; sourceTree = "<group>"; };
+		95EADC7A2629A99F006F1A6B /* iOS_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_origin.png; sourceTree = "<group>"; };
 		A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.debug.xcconfig"; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1964,6 +1968,8 @@
 		95EACEFE2626CDE4006F1A6B /* PBContentLabel */ = {
 			isa = PBXGroup;
 			children = (
+				95EADC7A2629A99F006F1A6B /* iOS_origin.png */,
+				95EADC772629A967006F1A6B /* iOS_render.png */,
 				95EACEFF2626CDFB006F1A6B /* PBContentLabel.h */,
 				95EACF002626CDFB006F1A6B /* PBContentLabel.m */,
 				95EAD0BA26270D6B006F1A6B /* PBContentLabelItem.h */,
@@ -2264,8 +2270,10 @@
 				9575943822F9510C009CA618 /* PBAVPlayerListView.xib in Resources */,
 				9575944E22F95120009CA618 /* PBPlayBtn.png in Resources */,
 				95C8723522E72022002795D0 /* pbseatselection_maoyan_logo.png in Resources */,
+				95EADC782629A967006F1A6B /* iOS_render.png in Resources */,
 				95C8763A22E87A42002795D0 /* pbseat_selection.json in Resources */,
 				9575944F22F95120009CA618 /* PBBackBtn.png in Resources */,
+				95EADC7B2629A99F006F1A6B /* iOS_origin.png in Resources */,
 				95C872D522E801DA002795D0 /* qrcode_rightbottom@2x.png in Resources */,
 				95C8723722E72022002795D0 /* pbseatselection_yishou.png in Resources */,
 				B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */,
