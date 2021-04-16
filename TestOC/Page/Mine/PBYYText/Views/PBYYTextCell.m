@@ -222,17 +222,17 @@
     [attStr appendAttributedString:attachStrTwo];
     
     // 追加文字
-    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北京天安门我北京天北京天安门我北京天北京天安门我北京天北京天."];
+    NSMutableAttributedString *attStrFour = [[NSMutableAttributedString alloc]initWithString:@"我爱北京天安门京天安\\n\n门我爱北京天北删除线北京天北京天安门我北京天下划线我北京天北京天."];
     [attStrFour yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrFour.length)];
     [attStrFour yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrFour.length)];
     
     // 删除线
     YYTextDecoration *decoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(2) color:[UIColor blueColor]];
-    [attStrFour yy_setTextStrikethrough:decoration range:NSMakeRange(20, 5)];
+    [attStrFour yy_setTextStrikethrough:decoration range:[attStrFour.string rangeOfString:@"删除线"]];
     
     // 下划线
-    [attStrFour yy_setTextUnderline:decoration range:NSMakeRange(35, 5)];
+    [attStrFour yy_setTextUnderline:decoration range:[attStrFour.string rangeOfString:@"下划线"]];
     [attStr appendAttributedString:attStrFour];
     
     // 下面方法均可以计算lab高度
