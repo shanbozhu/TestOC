@@ -192,7 +192,7 @@
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"[大调皮]我爱北京安门我爱北[调皮][调皮]京天安门[调皮]天安门"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"[大调皮]我爱北京安门我爱北[调皮][调皮]京天安门[大调皮]天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
