@@ -47,7 +47,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京高亮京天｜安｜门我高亮爱北京天天安门😀💙🚖我爱北京天安门点击高亮京天安门我爱北京北京天点击高亮自定义京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
+    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京高亮京天｜安｜门我高亮爱北京天天安门😀💙🚖我爱北京天安门高亮点击京天安门我爱北京北京天高亮点击自定义京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
     
     // oneLab
     YYLabel *oneLab = [[YYLabel alloc]init];
@@ -145,13 +145,13 @@
         [attStr yy_setColor:[UIColor orangeColor] range:at.range];
     }
     
-    // 点击高亮
-    [attStr yy_setTextHighlightRange:[attStr.string rangeOfString:@"点击高亮"] color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+    // 高亮点击
+    [attStr yy_setTextHighlightRange:[attStr.string rangeOfString:@"高亮点击"] color:[UIColor blueColor] backgroundColor:[UIColor lightGrayColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     }];
     
-    // 点击高亮自定义
-    NSRange range = [attStr.string rangeOfString:@"点击高亮自定义"];
+    // 高亮点击自定义
+    NSRange range = [attStr.string rangeOfString:@"高亮点击自定义"];
     UIColor *normalColor = [UIColor blueColor];
     [attStr yy_setColor:normalColor range:range];
     YYTextDecoration *normalDecoration = [YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@(1) color:normalColor];
