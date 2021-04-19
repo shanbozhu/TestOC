@@ -63,7 +63,7 @@
     vc2.pb_tabBarButtonItem = buttonItem2;
     
     PBTabBarController *tab = [[PBTabBarController alloc]init];
-    tab.viewControllers = @[nav1, nav2];
+    tab.viewControllers = @[nav2, nav1];
     
     //window.rootViewController
     self.window.rootViewController = tab;
