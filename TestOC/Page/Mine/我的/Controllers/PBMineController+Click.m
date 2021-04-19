@@ -35,6 +35,7 @@
 
 - (NSArray *)pageArr {
     return @[@"PBSyntaxController",
+             @"PBContentController",
              @"PBAllWelfareController",
              @"PBCalendarController",
              @"PBGesturePasswordController",
@@ -55,8 +56,7 @@
              @"PBAlgorithmController",
              @"PBAVPlayerListController",
              @"PBUniversalLinkController",
-             @"PBRuntimeController",
-             @"PBContentController"];
+             @"PBRuntimeController"];
 }
 
 // delegate
