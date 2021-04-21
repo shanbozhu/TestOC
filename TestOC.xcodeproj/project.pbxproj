@@ -149,6 +149,15 @@
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
 		95ACC83D249B4E0E00CA70B7 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */; };
+		95AF9DFA263002610040022F /* BBACommentContentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF2263002610040022F /* BBACommentContentLabel.m */; };
+		95AF9DFB263002620040022F /* BBACommentContentLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */; };
+		95AF9DFC263002620040022F /* BBACommentContentText.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF4263002610040022F /* BBACommentContentText.m */; };
+		95AF9DFD263002620040022F /* BBACommentContentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF5263002610040022F /* BBACommentContentLink.m */; };
+		95AF9DFE263002620040022F /* BBACommentContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF6263002610040022F /* BBACommentContent.m */; };
+		95AF9E0826300CD60040022F /* BBAEmoticonTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E0626300CD60040022F /* BBAEmoticonTextAttachment.m */; };
+		95AF9E11263012690040022F /* PBContentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E0B263012690040022F /* PBContentLabel.m */; };
+		95AF9E12263012690040022F /* PBContentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E0F263012690040022F /* PBContentLink.m */; };
+		95AF9E13263012690040022F /* PBContentLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E10263012690040022F /* PBContentLabelItem.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19216262436440008FD14 /* PBMethodSwizzling.m */; };
@@ -533,6 +542,24 @@
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
 		95ACC83B249B4E0E00CA70B7 /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
+		95AF9DF0263002610040022F /* BBACommentContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContent.h; sourceTree = "<group>"; };
+		95AF9DF1263002610040022F /* BBACommentContentLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLink.h; sourceTree = "<group>"; };
+		95AF9DF2263002610040022F /* BBACommentContentLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentLabel.m; sourceTree = "<group>"; };
+		95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentLabelItem.m; sourceTree = "<group>"; };
+		95AF9DF4263002610040022F /* BBACommentContentText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentText.m; sourceTree = "<group>"; };
+		95AF9DF5263002610040022F /* BBACommentContentLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentLink.m; sourceTree = "<group>"; };
+		95AF9DF6263002610040022F /* BBACommentContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContent.m; sourceTree = "<group>"; };
+		95AF9DF7263002610040022F /* BBACommentContentLabelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLabelItem.h; sourceTree = "<group>"; };
+		95AF9DF8263002610040022F /* BBACommentContentLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLabel.h; sourceTree = "<group>"; };
+		95AF9DF9263002610040022F /* BBACommentContentText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentText.h; sourceTree = "<group>"; };
+		95AF9E0626300CD60040022F /* BBAEmoticonTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAEmoticonTextAttachment.m; sourceTree = "<group>"; };
+		95AF9E0726300CD60040022F /* BBAEmoticonTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAEmoticonTextAttachment.h; sourceTree = "<group>"; };
+		95AF9E0B263012690040022F /* PBContentLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBContentLabel.m; sourceTree = "<group>"; };
+		95AF9E0C263012690040022F /* PBContentLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBContentLink.h; sourceTree = "<group>"; };
+		95AF9E0D263012690040022F /* PBContentLabelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBContentLabelItem.h; sourceTree = "<group>"; };
+		95AF9E0E263012690040022F /* PBContentLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBContentLabel.h; sourceTree = "<group>"; };
+		95AF9E0F263012690040022F /* PBContentLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBContentLink.m; sourceTree = "<group>"; };
+		95AF9E10263012690040022F /* PBContentLabelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBContentLabelItem.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -1480,6 +1507,38 @@
 			path = Res;
 			sourceTree = "<group>";
 		};
+		95AF9DEF263002610040022F /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				95AF9DF0263002610040022F /* BBACommentContent.h */,
+				95AF9DF6263002610040022F /* BBACommentContent.m */,
+				95AF9DF8263002610040022F /* BBACommentContentLabel.h */,
+				95AF9DF2263002610040022F /* BBACommentContentLabel.m */,
+				95AF9DF7263002610040022F /* BBACommentContentLabelItem.h */,
+				95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */,
+				95AF9DF9263002610040022F /* BBACommentContentText.h */,
+				95AF9DF4263002610040022F /* BBACommentContentText.m */,
+				95AF9DF1263002610040022F /* BBACommentContentLink.h */,
+				95AF9DF5263002610040022F /* BBACommentContentLink.m */,
+				95AF9E0726300CD60040022F /* BBAEmoticonTextAttachment.h */,
+				95AF9E0626300CD60040022F /* BBAEmoticonTextAttachment.m */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		95AF9E0A263012690040022F /* Content0 */ = {
+			isa = PBXGroup;
+			children = (
+				95AF9E0B263012690040022F /* PBContentLabel.m */,
+				95AF9E0C263012690040022F /* PBContentLink.h */,
+				95AF9E0D263012690040022F /* PBContentLabelItem.h */,
+				95AF9E0E263012690040022F /* PBContentLabel.h */,
+				95AF9E0F263012690040022F /* PBContentLink.m */,
+				95AF9E10263012690040022F /* PBContentLabelItem.m */,
+			);
+			path = Content0;
+			sourceTree = "<group>";
+		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,6 +2030,8 @@
 		95EACEFE2626CDE4006F1A6B /* PBContentLabel */ = {
 			isa = PBXGroup;
 			children = (
+				95AF9E0A263012690040022F /* Content0 */,
+				95AF9DEF263002610040022F /* Content */,
 				95AF9DDB263000C60040022F /* Res */,
 				95EACF032626CE88006F1A6B /* PBContentController.h */,
 				95EACF042626CE88006F1A6B /* PBContentController.m */,
@@ -2316,6 +2377,8 @@
 				953341C022F306D400DC7251 /* PBCellHeightFourController.m in Sources */,
 				9575998022FC2415009CA618 /* TFHpple.m in Sources */,
 				9575930522F81E55009CA618 /* PBMemoryController.m in Sources */,
+				95AF9E12263012690040022F /* PBContentLink.m in Sources */,
+				95AF9E0826300CD60040022F /* BBAEmoticonTextAttachment.m in Sources */,
 				9575945422F95120009CA618 /* PBPlayerSlider.m in Sources */,
 				958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */,
 				957593D122F84F20009CA618 /* PBGCDListFiveController.m in Sources */,
@@ -2408,6 +2471,7 @@
 				9575934222F82A64009CA618 /* PBStorageTextFourController.m in Sources */,
 				957593AD22F84D8E009CA618 /* PBGCDController.m in Sources */,
 				9575934022F82A64009CA618 /* PBStorageDataBaseController.m in Sources */,
+				95AF9DFE263002620040022F /* BBACommentContent.m in Sources */,
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				953341D722F306EE00DC7251 /* PBCellHeightTwoCell.m in Sources */,
 				958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */,
@@ -2444,6 +2508,7 @@
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,
+				95AF9E13263012690040022F /* PBContentLabelItem.m in Sources */,
 				95C873C322E83B39002795D0 /* PBAnnotation.m in Sources */,
 				953341DE22F306EE00DC7251 /* PBCellHeightThreeCell.m in Sources */,
 				95C871C122E71CBE002795D0 /* PBHallLogoView.m in Sources */,
@@ -2468,10 +2533,12 @@
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				954E6C4D232643DD00541C11 /* PBDownload.m in Sources */,
 				953341E622F3080200DC7251 /* PBCellHeightController.m in Sources */,
+				95AF9DFB263002620040022F /* BBACommentContentLabelItem.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
+				95AF9DFA263002610040022F /* BBACommentContentLabel.m in Sources */,
 				953341DB22F306EE00DC7251 /* PBCellHeightZeroView.m in Sources */,
 				95C871AC22E71CAC002795D0 /* PBTestEspressosSeatCon.m in Sources */,
 				95C1922726246FE40008FD14 /* PBSyntax.m in Sources */,
@@ -2480,6 +2547,7 @@
 				957593F722F84F3B009CA618 /* PBGCDLockTwoController.m in Sources */,
 				9575945522F95120009CA618 /* PBPlayerMaskView.m in Sources */,
 				954731B222E05B8D00F6BFA2 /* PBAllWelfareController.m in Sources */,
+				95AF9DFD263002620040022F /* BBACommentContentLink.m in Sources */,
 				95C872E422E801DA002795D0 /* PBQRCodeController.m in Sources */,
 				954731B122E05B8D00F6BFA2 /* PBChannelContentCell.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
@@ -2497,7 +2565,9 @@
 				9533421522F434E700DC7251 /* PBKVOList.m in Sources */,
 				957593D922F84F20009CA618 /* PBGCDListTenController.m in Sources */,
 				9575998122FC2415009CA618 /* TFHppleElement.m in Sources */,
+				95AF9E11263012690040022F /* PBContentLabel.m in Sources */,
 				9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */,
+				95AF9DFC263002620040022F /* BBACommentContentText.m in Sources */,
 				953341D922F306EE00DC7251 /* PBCellHeightOneCell.m in Sources */,
 				95C872E622E801DA002795D0 /* PBQRCodeGenerateController.m in Sources */,
 				9575931F22F82A37009CA618 /* PBstorageZeroController.m in Sources */,
