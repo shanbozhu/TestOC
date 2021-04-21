@@ -24,60 +24,15 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 
 @implementation PBContentController
 
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//
-//    CGFloat width = 250;
-//    NSInteger maximumNumberOfLines = 0;
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈"];
-//    [attributedString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontsize]} range:NSMakeRange(0, attributedString.string.length)];
-//
-//    NSTextAttachment*attch = [[NSTextAttachment alloc]init];
-//      attch.image= [UIImage imageNamed:@"0022"];
-//
-//
-//
-//      attch.bounds=CGRectMake(0,[UIFont systemFontOfSize:fontsize].descender +0, [UIFont systemFontOfSize:fontsize].lineHeight,[UIFont systemFontOfSize:fontsize].lineHeight);//设置图片大小
-//
-////    UIFont *font = [UIFont systemFontOfSize:fontsize];
-////        CGFloat height = font.lineHeight * 1;
-////        CGSize imageSize = attch.image.size;
-////        CGFloat width1 = (imageSize.height > 0 ? (imageSize.width * height / imageSize.height) : 0);
-////        attch.bounds = CGRectMake(0, font.descender, width1, height);
-//
-//    NSMutableAttributedString *at = [[NSAttributedString attributedStringWithAttachment:attch] mutableCopy];
-//    [at addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontsize]} range:NSMakeRange(0, at.length)];
-//      [attributedString appendAttributedString:at];
-//
-//
-//    PBContentLabelItem *contentLabelItem = [[PBContentLabelItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines attributedString:attributedString];
-//
-//    //
-//    PBContentLabel *lab = [[PBContentLabel alloc] init];
-//    [self.view addSubview:lab];
-//    lab.layer.borderColor = [UIColor redColor].CGColor;
-//    lab.layer.borderWidth = 1;
-//
-//    lab.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 50, width, 0);
-//    lab.contentLabelItem = contentLabelItem;
-//    lab.pb_height = contentLabelItem.size.height;
-//
-//
-//}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGFloat width = 250;
-    NSInteger maximumNumberOfLines = 0;
-
+    //
+    NSMutableAttributedString *attributedString = [self responseString];
     
+    //
+    BBACommentContentLabelItem *contentItem = [BBACommentContentLabelItem itemWithAttributedString:attributedString width:250 maximumNumberOfLines:0];
     
-    NSMutableAttributedString *attributedString = [self responseStringWithCommentInfo:nil withMaxWidth:0];
-    BBACommentContentLabelItem *contentItem = [BBACommentContentLabelItem itemWithAttributedString:attributedString width:width maximumNumberOfLines:maximumNumberOfLines];
-    
-
     //
     BBACommentContentLabel *lab = [[BBACommentContentLabel alloc] init];
     [self.view addSubview:lab];
@@ -88,10 +43,9 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     lab.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 50, contentItem.currrentLayoutItem.size.width, 0);
     lab.contentLabelItem = contentItem;
     lab.pb_height = contentItem.currrentLayoutItem.size.height;
-
 }
 
-- (NSAttributedString *)responseStringWithCommentInfo:(id)info withMaxWidth:(float)maxWidth {
+- (NSMutableAttributedString *)responseString {
 
     NSMutableAttributedString *responseString = [NSMutableAttributedString new];
 
@@ -116,12 +70,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     return responseString;
 }
 
-/**
- 将字符串中所有的转义字符转换成含表情的富文本；（句子）
- 
- @param anAttributedString 待转换的富文本串
- @return NSAttributedString * 包含表情的富文本
- */
 - (NSAttributedString *_Nullable)translateAllPlainTextToEmoticonWithAttributedString:(NSAttributedString *_Nonnull)anAttributedString {
     if (![anAttributedString isKindOfClass:[NSAttributedString class]]) {
         return nil;
@@ -187,11 +135,9 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 {
     NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] init];
     NSAttributedString *pureNameString = [self pureUserName];
-    if (pureNameString.length) {
-        [nameString appendAttributedString:pureNameString];
-    }
+    [nameString appendAttributedString:pureNameString];
     
-    
+    //
     BBACommentContentLink *link = [[BBACommentContentLink alloc] initWithIdentifer:@"repliedUserLinkString" text:nameString userInfo:nil];
     link.linkType = BBACommentContentLinkTypeAt;
     link.linkAttribute = [[BBACommentContentLinkAttribute alloc] init];
@@ -212,9 +158,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
                                        NSFontAttributeName:nameFont};
     NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:userName attributes:nameStrAttribute];
     return nameString;
-    
 }
-
-
 
 @end
