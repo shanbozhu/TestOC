@@ -15,7 +15,7 @@
 #define fontsize 19
 
 #define kBBACommentReplyFontSize 19
-#define kBBACommentReplyLineSpace 5
+#define kBBACommentReplyLineSpace 10
 NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\]";
 
 @interface PBContentController ()
@@ -49,22 +49,20 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 
     NSMutableAttributedString *responseString = [NSMutableAttributedString new];
 
-    
-    UIFont *respontFont = [UIFont systemFontOfSize:kBBACommentReplyFontSize];
+    // test9527波波
     [responseString appendAttributedString:[self userNameWithUserInfo]];
-    NSMutableDictionary *responseStrAttribute = @{}.mutableCopy;
-    [responseStrAttribute setObject:respontFont forKey:NSFontAttributeName];
-
-    NSMutableAttributedString *responseContent = [[NSMutableAttributedString alloc] initWithString:@"：哈哈[0022]😇" attributes:responseStrAttribute];
-
     
-    // 替换评论内容中的表情标签
+    // ：哈哈[0022]😇
+    NSMutableAttributedString *responseContent = [[NSMutableAttributedString alloc] initWithString:@"：哈哈[0022]😇" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kBBACommentReplyFontSize], NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
+    // 替换评论内容中的表情标签[0022]为富文本
     responseContent = [self translateAllPlainTextToEmoticonWithAttributedString:responseContent].mutableCopy;
     [responseString appendAttributedString:responseContent];
     
     //行间距
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.lineSpacing = kBBACommentReplyLineSpace;
+    paragraphStyle.alignment = NSTextAlignmentJustified;
     [responseString addAttributes:@{NSParagraphStyleAttributeName:paragraphStyle} range:NSMakeRange(0, responseString.length)];
     
     return responseString;
@@ -133,31 +131,22 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 
 - (NSAttributedString *)userNameWithUserInfo
 {
-    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] init];
-    NSAttributedString *pureNameString = [self pureUserName];
-    [nameString appendAttributedString:pureNameString];
+    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波test9527波波test9527波波test9527波波test9527波波"];
+//    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波"];
     
     //
     BBACommentContentLink *link = [[BBACommentContentLink alloc] initWithIdentifer:@"repliedUserLinkString" text:nameString userInfo:nil];
     link.linkType = BBACommentContentLinkTypeAt;
     link.linkAttribute = [[BBACommentContentLinkAttribute alloc] init];
-    
     link.highlightedTextColor = [UIColor redColor];
     link.highlightedBackgourndColor = [UIColor lightGrayColor];
+    
     [nameString addAttribute:BBACommentContentLinkTextAttributeName value:link range:NSMakeRange(0, nameString.length)];
+    [nameString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, nameString.length)];
+    [nameString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:kBBACommentReplyFontSize] range:NSMakeRange(0, nameString.length)];
 
-    return [[NSAttributedString alloc] initWithAttributedString:nameString];
-}
-
-- (NSAttributedString *)pureUserName {
-    
-    NSString *userName = @"test9527波波test9527波波test9527波波test9527波波test9527波波";
-    
-    UIFont *nameFont = [UIFont systemFontOfSize:kBBACommentReplyFontSize];
-    NSDictionary *nameStrAttribute = @{NSForegroundColorAttributeName:[UIColor blueColor],
-                                       NSFontAttributeName:nameFont};
-    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:userName attributes:nameStrAttribute];
     return nameString;
 }
+
 
 @end
