@@ -7,7 +7,6 @@
 //
 
 #import "PBContentController.h"
-#import "BBACommentContent.h"
 #import "BBAEmoticonTextAttachment.h"
 #import "BBACommentContentLabel.h"
 #import "PBContentLabel.h"
@@ -72,21 +71,12 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     
     CGFloat width = 250;
     NSInteger maximumNumberOfLines = 0;
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈哈哈哈😄哈哈哈哈"];
-//    [attributedString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attributedString.string.length)];
-//
-//    NSTextAttachment*attch = [[NSTextAttachment alloc]init];
-//      attch.image= [UIImage imageNamed:@"0022"];
-////      attch.bounds=CGRectMake(0,0,32,32);//设置图片大小
-//    NSMutableAttributedString *at = [[NSAttributedString attributedStringWithAttachment:attch] mutableCopy];
-//    [at addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} range:NSMakeRange(0, at.length)];
-//      [attributedString appendAttributedString:at];
+
     
     
     NSMutableAttributedString *attributedString = [self responseStringWithCommentInfo:nil withMaxWidth:0];
     BBACommentContentLabelItem *contentItem = [BBACommentContentLabelItem itemWithAttributedString:attributedString width:width maximumNumberOfLines:maximumNumberOfLines];
     
-//    PBContentLabelItem *contentLabelItem = [[PBContentLabelItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines attributedString:attributedString];
 
     //
     BBACommentContentLabel *lab = [[BBACommentContentLabel alloc] init];
@@ -101,7 +91,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 
 }
 
-- (NSAttributedString *)responseStringWithCommentInfo:(BBACommentContent *)info withMaxWidth:(float)maxWidth {
+- (NSAttributedString *)responseStringWithCommentInfo:(id)info withMaxWidth:(float)maxWidth {
 
     NSMutableAttributedString *responseString = [NSMutableAttributedString new];
 
@@ -121,7 +111,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     //行间距
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.lineSpacing = kBBACommentReplyLineSpace;
-//    paragraphStyle.alignment = NSTextAlignmentJustified;
     [responseString addAttributes:@{NSParagraphStyleAttributeName:paragraphStyle} range:NSMakeRange(0, responseString.length)];
     
     return responseString;
@@ -187,10 +176,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 }
 
 - (BBAEmoticonTextAttachment *__nullable)emoticonAttachmentWithFont:(UIFont *__nullable)font  plainText:(NSString *)plainText {
-//    UIImage *image = self.emoticonImage;
-//    if (BBAEMOTICON_CHECK_STRING_INVALID(self.plainText) || !image || ![image isKindOfClass:[UIImage class]]) {
-//        return nil;
-//    }
     BBAEmoticonTextAttachment *attachment = [[BBAEmoticonTextAttachment alloc] init];
     attachment.plainText = plainText;
     attachment.image = [UIImage imageNamed:@"0022"];

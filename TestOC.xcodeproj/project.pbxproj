@@ -153,7 +153,6 @@
 		95AF9DFB263002620040022F /* BBACommentContentLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */; };
 		95AF9DFC263002620040022F /* BBACommentContentText.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF4263002610040022F /* BBACommentContentText.m */; };
 		95AF9DFD263002620040022F /* BBACommentContentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF5263002610040022F /* BBACommentContentLink.m */; };
-		95AF9DFE263002620040022F /* BBACommentContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF6263002610040022F /* BBACommentContent.m */; };
 		95AF9E0826300CD60040022F /* BBAEmoticonTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E0626300CD60040022F /* BBAEmoticonTextAttachment.m */; };
 		95AF9E11263012690040022F /* PBContentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E0B263012690040022F /* PBContentLabel.m */; };
 		95AF9E12263012690040022F /* PBContentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9E0F263012690040022F /* PBContentLink.m */; };
@@ -542,13 +541,11 @@
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
 		95ACC83B249B4E0E00CA70B7 /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
-		95AF9DF0263002610040022F /* BBACommentContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContent.h; sourceTree = "<group>"; };
 		95AF9DF1263002610040022F /* BBACommentContentLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLink.h; sourceTree = "<group>"; };
 		95AF9DF2263002610040022F /* BBACommentContentLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentLabel.m; sourceTree = "<group>"; };
 		95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentLabelItem.m; sourceTree = "<group>"; };
 		95AF9DF4263002610040022F /* BBACommentContentText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentText.m; sourceTree = "<group>"; };
 		95AF9DF5263002610040022F /* BBACommentContentLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContentLink.m; sourceTree = "<group>"; };
-		95AF9DF6263002610040022F /* BBACommentContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBACommentContent.m; sourceTree = "<group>"; };
 		95AF9DF7263002610040022F /* BBACommentContentLabelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLabelItem.h; sourceTree = "<group>"; };
 		95AF9DF8263002610040022F /* BBACommentContentLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLabel.h; sourceTree = "<group>"; };
 		95AF9DF9263002610040022F /* BBACommentContentText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentText.h; sourceTree = "<group>"; };
@@ -1510,8 +1507,6 @@
 		95AF9DEF263002610040022F /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				95AF9DF0263002610040022F /* BBACommentContent.h */,
-				95AF9DF6263002610040022F /* BBACommentContent.m */,
 				95AF9DF8263002610040022F /* BBACommentContentLabel.h */,
 				95AF9DF2263002610040022F /* BBACommentContentLabel.m */,
 				95AF9DF7263002610040022F /* BBACommentContentLabelItem.h */,
@@ -2471,7 +2466,6 @@
 				9575934222F82A64009CA618 /* PBStorageTextFourController.m in Sources */,
 				957593AD22F84D8E009CA618 /* PBGCDController.m in Sources */,
 				9575934022F82A64009CA618 /* PBStorageDataBaseController.m in Sources */,
-				95AF9DFE263002620040022F /* BBACommentContent.m in Sources */,
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				953341D722F306EE00DC7251 /* PBCellHeightTwoCell.m in Sources */,
 				958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */,
