@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, BBACommentContentLinkType) {
-    BBACommentContentLinkTypeAt = 1,  // 用户
-    BBACommentContentLinkTypeTopic = 2,  // 话题
-    BBACommentContentLinkTypeLink = 3,  // 网页链接
-    BBACommentContentLinkTypeLookImage = 4 // 查看图片
+    BBACommentContentLinkTypeAt = 1,          // 用户
+    BBACommentContentLinkTypeTopic = 2,       // 话题
+    BBACommentContentLinkTypeLink = 3,        // 网页链接
+    BBACommentContentLinkTypeLookImage = 4    // 查看图片
 };
 
 FOUNDATION_EXPORT  NSString *const BBACommentContentLinkTextAttributeName;
@@ -22,7 +22,7 @@ FOUNDATION_EXPORT  NSString *const BBACommentContentLinkTextAttributeName;
 
 @end
 
-@interface BBACommentContentLink : NSObject <NSCopying>
+@interface BBACommentContentLink : NSObject
 
 /**
  链接类型：话题 2：链接 3：用户

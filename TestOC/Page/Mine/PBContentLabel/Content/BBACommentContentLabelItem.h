@@ -82,6 +82,4 @@
 
 - (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines forTextStorage:(NSTextStorage *)textStorage;
 
-- (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString;
-
 @end

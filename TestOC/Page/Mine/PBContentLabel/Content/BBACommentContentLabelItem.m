@@ -76,9 +76,4 @@
     return self;
 }
 
-- (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
-    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
-    return [self initWithWidth:width maximumNumberOfLines:maximumNumberOfLines forTextStorage:textStorage];
-}
-
 @end
