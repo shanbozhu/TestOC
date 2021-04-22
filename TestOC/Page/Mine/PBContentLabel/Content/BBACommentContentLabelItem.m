@@ -7,7 +7,6 @@
 //
 
 #import "BBACommentContentLabelItem.h"
-//#import "BBACommentLabelLineSpaceFixer.h"
 
 @interface BBACommentContentLabelItem ()
 
@@ -59,7 +58,6 @@
         _maximumNumberOfLines = maximumNumberOfLines;
         
         NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
-//        layoutManager.delegate = [BBACommentLabelLineSpaceFixer sharedInstance];
         [textStorage addLayoutManager:layoutManager];
         
         NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(width, CGFLOAT_MAX)];

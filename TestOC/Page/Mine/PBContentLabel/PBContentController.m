@@ -120,7 +120,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 
 - (BBAEmoticonTextAttachment *__nullable)emoticonAttachmentWithFont:(UIFont *__nullable)font  plainText:(NSString *)plainText {
     BBAEmoticonTextAttachment *attachment = [[BBAEmoticonTextAttachment alloc] init];
-    attachment.plainText = plainText;
     attachment.image = [UIImage imageNamed:@"0022"];
     attachment.font = font;
     return attachment;
@@ -131,7 +130,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波test9527波波test9527波波test9527波波test9527波波"];
     
     //
-    BBACommentContentLink *link = [[BBACommentContentLink alloc] initWithIdentifer:@"repliedUserLinkString" text:nameString userInfo:nil];
+    BBACommentContentLink *link = [[BBACommentContentLink alloc] init];
     link.linkType = BBACommentContentLinkTypeAt;
     link.linkAttribute = [[BBACommentContentLinkAttribute alloc] init];
     link.highlightedTextColor = [UIColor redColor];

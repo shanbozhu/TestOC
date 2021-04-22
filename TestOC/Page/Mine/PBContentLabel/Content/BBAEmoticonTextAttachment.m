@@ -45,48 +45,4 @@
     }
 }
 
-- (CGRect)attachmentBoundsForTextContainer:(NSTextContainer *)textContainer
-                      proposedLineFragment:(CGRect)lineFrag
-                             glyphPosition:(CGPoint)position
-                            characterIndex:(NSUInteger)charIndex {
-    if (_font) {
-        return self.bounds;
-    }
-    NSLayoutManager *layoutManager = textContainer.layoutManager;
-    NSTextStorage *textStorage = layoutManager.textStorage;
-    NSDictionary *attrbutes = [textStorage attributesAtIndex:charIndex effectiveRange:NULL];
-    UIFont *font = attrbutes[NSFontAttributeName];
-    if (font && font != _font) {
-        self.font = font;
-        return self.bounds;
-    }
-    
-    CGFloat height = CGRectGetHeight(lineFrag);
-    CGSize imageSize = self.image.size;
-    CGFloat width = (imageSize.height > 0 ? (imageSize.width * height / imageSize.height) : height);
-    self.bounds = CGRectMake(self.bounds.origin.x, font ? font.descender: -height/5.f, width, height);
-    return self.bounds;
-}
-//此类新加属性务必修改此方法
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-    if (self.font) {
-        [aCoder encodeObject:self.font forKey:@"font"];
-    }
-    if (self.plainText) {
-        [aCoder encodeObject:self.plainText forKey:@"plainText"];
-    }
-    
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.font = [aDecoder decodeObjectForKey:@"font"];
-        self.plainText = [aDecoder decodeObjectForKey:@"plainText"];
-    }
-    return self;
-}
-
-
 @end

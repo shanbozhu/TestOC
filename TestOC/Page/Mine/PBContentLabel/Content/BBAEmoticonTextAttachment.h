@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBAEmoticonTextAttachment : NSTextAttachment<NSCoding>
-
-@property (nonatomic, copy) NSString *plainText;
+@interface BBAEmoticonTextAttachment : NSTextAttachment
 
 @property (nonatomic, strong) UIFont *font;
 
