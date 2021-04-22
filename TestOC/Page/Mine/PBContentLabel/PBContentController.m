@@ -53,7 +53,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     [responseString appendAttributedString:[self userNameWithUserInfo]];
     
     // ：哈哈[0022]😇
-    NSMutableAttributedString *responseContent = [[NSMutableAttributedString alloc] initWithString:@"：哈哈[0022]😇" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kBBACommentReplyFontSize], NSForegroundColorAttributeName:[UIColor blackColor]}];
+    NSMutableAttributedString *responseContent = [[NSMutableAttributedString alloc] initWithString:@"：哈哈[0022][0022]😇" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kBBACommentReplyFontSize], NSForegroundColorAttributeName:[UIColor blackColor]}];
     
     // 替换评论内容中的表情标签[0022]为富文本
     responseContent = [self translateAllPlainTextToEmoticonWithAttributedString:responseContent].mutableCopy;
@@ -68,10 +68,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     return responseString;
 }
 
-- (NSAttributedString *_Nullable)translateAllPlainTextToEmoticonWithAttributedString:(NSAttributedString *_Nonnull)anAttributedString {
-    if (![anAttributedString isKindOfClass:[NSAttributedString class]]) {
-        return nil;
-    }
+- (NSAttributedString *)translateAllPlainTextToEmoticonWithAttributedString:(NSAttributedString *)anAttributedString {
     NSString *sourceStr = anAttributedString.string;
     // 先复制待转换富文本，然后只是把其中的转义字符替换掉。
     NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:anAttributedString];
@@ -132,7 +129,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 - (NSAttributedString *)userNameWithUserInfo
 {
     NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波test9527波波test9527波波test9527波波test9527波波"];
-//    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波"];
     
     //
     BBACommentContentLink *link = [[BBACommentContentLink alloc] initWithIdentifer:@"repliedUserLinkString" text:nameString userInfo:nil];
@@ -142,8 +138,8 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     link.highlightedBackgourndColor = [UIColor lightGrayColor];
     
     [nameString addAttribute:BBACommentContentLinkTextAttributeName value:link range:NSMakeRange(0, nameString.length)];
-    [nameString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, nameString.length)];
     [nameString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:kBBACommentReplyFontSize] range:NSMakeRange(0, nameString.length)];
+    [nameString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, nameString.length)];
 
     return nameString;
 }
