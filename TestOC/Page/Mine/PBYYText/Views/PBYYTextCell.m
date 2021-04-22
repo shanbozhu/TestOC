@@ -47,7 +47,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京高亮京天｜安｜门我高亮爱北京天天安门😀💙🚖我爱北京天安门高亮点击京天安门我爱北京北京天高亮点击自定义京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
+    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京高亮京天｜安｜门我高亮爱北京天天安门emoji（😀💙🚖）我爱北京天安门高亮点击京天安门我爱北京北京天高亮点击自定义京天安门我爱北京https://www.baidu.com/我爱北京天安门#爱北京天安#安门我爱北京天shanbo.zsb@alibaba-inc.com安门我爱北京天安门我爱北京天0176001087860安门我爱北京天安@门我爱北京天安:爱北京天安门我爱我爱";
     
     // oneLab
     YYLabel *oneLab = [[YYLabel alloc]init];
@@ -190,7 +190,7 @@
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"[大调皮]我爱北京安门我爱北[调皮][调皮]京天安门[大调皮]天安门"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北emoticon（[调皮][大调皮]）京天安门天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
