@@ -128,6 +128,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
 - (NSAttributedString *)userNameWithUserInfo
 {
     NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波test9527波波test9527波波test9527波波test9527波波"];
+//    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:@"test9527波波"];
     
     //
     BBACommentContentLink *link = [[BBACommentContentLink alloc] init];

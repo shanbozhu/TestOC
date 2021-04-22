@@ -128,7 +128,7 @@
                                                             NSDictionary *attrs = [textStorage attributesAtIndex:glyphRange.location effectiveRange:NULL];
                                                             NSParagraphStyle *parag = attrs[NSParagraphStyleAttributeName];
                                                             if (parag) {
-//                                                                rect.size.height -= parag.lineSpacing;
+                                                                rect.size.height -= parag.lineSpacing;
                                                             }
                                                             [rects addObject:[NSValue valueWithCGRect:rect]];
                                                         }
