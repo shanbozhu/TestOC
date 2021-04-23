@@ -27,13 +27,6 @@
 @end
 
 #pragma mark -
-
-@interface BBACommentContentTextLayoutItem ()
-
-
-
-@end
-
 @implementation BBACommentContentTextLayoutItem
 
 - (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
