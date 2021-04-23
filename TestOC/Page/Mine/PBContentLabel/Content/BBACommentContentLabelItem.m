@@ -19,8 +19,7 @@
 + (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines {
     BBACommentContentLabelItem *item = [[self alloc] init];
     
-    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
-    BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines forTextStorage:textStorage];
+    BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines attributedString:attributedString];
     item.layoutItem = layoutItem;
     return item;
 }
@@ -31,28 +30,31 @@
 
 @interface BBACommentContentTextLayoutItem ()
 
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, strong) NSTextStorage *textStorage;
-@property (nonatomic, strong) NSLayoutManager *layoutManager;
-@property (nonatomic, strong) NSTextContainer *textContainer;
-@property (nonatomic, assign) CGSize size;
+
 
 @end
 
 @implementation BBACommentContentTextLayoutItem
 
-- (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines forTextStorage:(NSTextStorage *)textStorage {
+- (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
     if (self = [super init]) {
         _width = width;
         
+        // textStorage
+        NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
+        
+        // layoutManager
         NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
         [textStorage addLayoutManager:layoutManager];
         
+        // textContainer
         NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(width, CGFLOAT_MAX)];
-        textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
-        textContainer.lineFragmentPadding = 0.f;
-        textContainer.maximumNumberOfLines = maximumNumberOfLines;
         [layoutManager addTextContainer:textContainer];
+        
+        textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+        textContainer.lineFragmentPadding = 0;
+        textContainer.maximumNumberOfLines = maximumNumberOfLines;
+        
         [layoutManager glyphRangeForTextContainer:textContainer];
         CGSize allSize =  [layoutManager usedRectForTextContainer:textContainer].size;
         
