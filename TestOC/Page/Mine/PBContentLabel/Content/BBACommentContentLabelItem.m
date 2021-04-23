@@ -51,8 +51,7 @@
 @implementation BBACommentContentTextLayoutItem
 
 - (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines forTextStorage:(NSTextStorage *)textStorage {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         _width = width;
         
         NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
