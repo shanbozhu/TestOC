@@ -40,9 +40,9 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     lab.layer.borderWidth = 1;
     lab.backgroundColor = [UIColor whiteColor];
     
-    lab.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 50, contentItem.currrentLayoutItem.size.width, 0);
+    lab.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 50, contentItem.layoutItem.size.width, 0);
     lab.contentLabelItem = contentItem;
-    lab.pb_height = contentItem.currrentLayoutItem.size.height;
+    lab.pb_height = contentItem.layoutItem.size.height;
 }
 
 - (NSMutableAttributedString *)responseString {

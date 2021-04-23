@@ -37,8 +37,8 @@
 
     // 字符串
     if (_currentItem) {
-        NSLayoutManager *layoutManager = _currentItem.currrentLayoutItem.layoutManager;
-        NSRange range = [layoutManager glyphRangeForTextContainer:_currentItem.currrentLayoutItem.textContainer];
+        NSLayoutManager *layoutManager = _currentItem.layoutItem.layoutManager;
+        NSRange range = [layoutManager glyphRangeForTextContainer:_currentItem.layoutItem.textContainer];
         if (range.location != NSNotFound) {
             [layoutManager drawBackgroundForGlyphRange:range atPoint:CGPointMake(0, 0)];
             [layoutManager drawGlyphsForGlyphRange:range atPoint:CGPointZero];
@@ -215,7 +215,7 @@
  */
 - (void)showLinkHighlightedState:(BBACommentContentLink *)link {
     if (link.highlightedTextColor) {
-        BBACommentContentTextLayoutItem *layoutItem = _contentLabelItem.currrentLayoutItem;
+        BBACommentContentTextLayoutItem *layoutItem = _contentLabelItem.layoutItem;
         BBACommentContentLabelItem *item = [BBACommentContentLabelItem itemWithAttributedString:_contentLabelItem.textStorage
                                                                                           width:layoutItem.width
                                                                            maximumNumberOfLines:layoutItem.textContainer.maximumNumberOfLines];
