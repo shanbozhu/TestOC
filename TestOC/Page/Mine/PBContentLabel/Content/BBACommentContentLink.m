@@ -13,20 +13,15 @@ NSString *const BBACommentContentLinkTextAttributeName = @"BBACommentContentLink
 
 @interface BBACommentContentLink ()
 
-@property (nonatomic, strong) NSString *identiferString;
-@property (nonatomic, strong) NSAttributedString *text;
-@property (nonatomic, copy) NSDictionary *userInfo;
 
 @end
 
 @implementation BBACommentContentLink
 
 
-
 @end
 
 @implementation BBACommentContentLinkAttribute
-
 
 
 @end

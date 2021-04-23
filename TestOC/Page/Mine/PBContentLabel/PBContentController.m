@@ -132,7 +132,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     
     //
     BBACommentContentLink *link = [[BBACommentContentLink alloc] init];
-    link.linkType = BBACommentContentLinkTypeAt;
     link.linkAttribute = [[BBACommentContentLinkAttribute alloc] init];
     link.highlightedTextColor = [UIColor redColor];
     link.highlightedBackgourndColor = [UIColor lightGrayColor];
