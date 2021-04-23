@@ -29,9 +29,9 @@
 #pragma mark -
 @implementation BBACommentContentTextLayoutItem
 
-- (instancetype)initWithMaxWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
+- (instancetype)initWithMaxWidth:(CGFloat)maxWidth maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
     if (self = [super init]) {
-        _width = width;
+        _maxWidth = maxWidth;
         
         // textStorage
         NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
@@ -41,7 +41,7 @@
         [textStorage addLayoutManager:layoutManager];
         
         // textContainer
-        NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(width, CGFLOAT_MAX)];
+        NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)];
         [layoutManager addTextContainer:textContainer];
         
         textContainer.lineBreakMode = NSLineBreakByTruncatingTail;

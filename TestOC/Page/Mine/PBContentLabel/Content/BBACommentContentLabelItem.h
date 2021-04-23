@@ -26,7 +26,7 @@
 // 富文本对应约束计算及储存对象
 @interface BBACommentContentTextLayoutItem : NSObject
 
-@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, strong) NSTextStorage *textStorage;
 @property (nonatomic, strong) NSLayoutManager *layoutManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
