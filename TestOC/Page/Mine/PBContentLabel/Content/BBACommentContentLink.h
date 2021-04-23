@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-
 FOUNDATION_EXPORT  NSString *const BBACommentContentLinkTextAttributeName;
 
 @interface BBACommentContentLinkAttribute : NSObject

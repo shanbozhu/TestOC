@@ -10,7 +10,6 @@
  
 @implementation BBAEmoticonTextAttachment
 
-
 - (void)setFont:(UIFont *)font {
     _font = font;
     if (_font) {

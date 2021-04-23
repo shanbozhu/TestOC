@@ -18,7 +18,6 @@
 
 + (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString maxWidth:(CGFloat)maxWidth maximumNumberOfLines:(NSInteger)maximumNumberOfLines {
     BBACommentContentLabelItem *item = [[self alloc] init];
-    
     BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithMaxWidth:maxWidth maximumNumberOfLines:maximumNumberOfLines attributedString:attributedString];
     item.layoutItem = layoutItem;
     return item;
@@ -26,13 +25,10 @@
 
 @end
 
-#pragma mark -
 @implementation BBACommentContentTextLayoutItem
 
 - (instancetype)initWithMaxWidth:(CGFloat)maxWidth maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
     if (self = [super init]) {
-        _maxWidth = maxWidth;
-        
         // textStorage
         NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
         
@@ -51,6 +47,7 @@
         [layoutManager glyphRangeForTextContainer:textContainer];
         CGSize allSize =  [layoutManager usedRectForTextContainer:textContainer].size;
         
+        self.maxWidth = maxWidth;
         self.textStorage = textStorage;
         self.layoutManager = layoutManager;
         self.textContainer = textContainer;
