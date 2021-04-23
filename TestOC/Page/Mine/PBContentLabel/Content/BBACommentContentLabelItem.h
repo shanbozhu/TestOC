@@ -23,7 +23,6 @@
 @end
 
 
-// 富文本对应约束计算及储存对象
 @interface BBACommentContentTextLayoutItem : NSObject
 
 @property (nonatomic, assign) CGFloat maxWidth;

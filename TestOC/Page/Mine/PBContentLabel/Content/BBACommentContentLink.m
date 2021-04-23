@@ -12,10 +12,8 @@ NSString *const BBACommentContentLinkTextAttributeName = @"BBACommentContentLink
 
 @implementation BBACommentContentLink
 
-
 @end
 
 @implementation BBACommentContentLinkAttribute
-
 
 @end
