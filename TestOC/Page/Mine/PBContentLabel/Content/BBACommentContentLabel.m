@@ -84,7 +84,7 @@
  */
 - (NSMutableArray *)links {
     if (!_links) {
-        NSTextStorage *textStorage = _contentLabelItem.textStorage;
+        NSTextStorage *textStorage = _contentLabelItem.layoutItem.textStorage;
         NSLayoutManager *layoutManager = [textStorage.layoutManagers firstObject];
         NSTextContainer *textContainer = [layoutManager.textContainers firstObject];
         
@@ -216,13 +216,13 @@
 - (void)showLinkHighlightedState:(BBACommentContentLink *)link {
     if (link.highlightedTextColor) {
         BBACommentContentTextLayoutItem *layoutItem = _contentLabelItem.layoutItem;
-        BBACommentContentLabelItem *item = [BBACommentContentLabelItem itemWithAttributedString:_contentLabelItem.textStorage
+        BBACommentContentLabelItem *item = [BBACommentContentLabelItem itemWithAttributedString:_contentLabelItem.layoutItem.textStorage
                                                                                           width:layoutItem.width
                                                                            maximumNumberOfLines:layoutItem.textContainer.maximumNumberOfLines];
         
         NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
         [attributes setValue:link.highlightedTextColor forKey:NSForegroundColorAttributeName];
-        [item.textStorage addAttributes:attributes range:link.range];
+        [item.layoutItem.textStorage addAttributes:attributes range:link.range];
         _currentItem = item;
         [self setNeedsDisplay];
     }

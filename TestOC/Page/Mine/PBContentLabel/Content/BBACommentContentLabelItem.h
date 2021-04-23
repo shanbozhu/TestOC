@@ -12,9 +12,6 @@
 
 @protocol BBACommentContentLabelTextProtocol <NSObject>
 
-/// 富文本对应的textStorage
-@property (nonatomic, strong, readonly) NSTextStorage *textStorage;
-
 /// 当前要展示的约束对象 @see BBACommentContentTextLayoutItem
 @property (nonatomic, strong, readonly) BBACommentContentTextLayoutItem *layoutItem;
 
