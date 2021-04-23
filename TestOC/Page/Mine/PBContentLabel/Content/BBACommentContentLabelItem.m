@@ -35,7 +35,7 @@
 @interface BBACommentContentTextLayoutItem ()
 
 @property (nonatomic, assign) CGFloat width;
-@property (nonatomic, strong) NSTextStorage *textStroage;
+@property (nonatomic, strong) NSTextStorage *textStorage;
 @property (nonatomic, strong) NSLayoutManager *layoutManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
 @property (nonatomic, assign) CGSize size;
@@ -59,7 +59,7 @@
         [layoutManager glyphRangeForTextContainer:textContainer];
         CGSize allSize =  [layoutManager usedRectForTextContainer:textContainer].size;
         
-        self.textStroage = textStorage;
+        self.textStorage = textStorage;
         self.layoutManager = layoutManager;
         self.textContainer = textContainer;
         self.size = CGSizeMake(ceil(allSize.width), ceil(allSize.height));

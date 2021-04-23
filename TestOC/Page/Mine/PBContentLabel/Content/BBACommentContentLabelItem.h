@@ -34,7 +34,7 @@
 @property (nonatomic, assign, readonly) CGFloat width;
 
 /// 文本对应的NSTextStorage对象,继承NSMutableAttributedString
-@property (nonatomic, strong, readonly) NSTextStorage *textStroage;
+@property (nonatomic, strong, readonly) NSTextStorage *textStorage;
 
 /// 文本对应的NSLayoutManager对象,内部创建并add到textStorage
 @property (nonatomic, strong, readonly) NSLayoutManager *layoutManager;
