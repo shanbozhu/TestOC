@@ -41,20 +41,15 @@
 @end
 
 
-/**
- 富文本对应约束计算及储存对象；
- */
+// 富文本对应约束计算及储存对象
 @interface BBACommentContentTextLayoutItem : NSObject
 
 /**
- 文本要展示的宽度，由初始化时传入；
- */
+// 文本要展示的宽度，由初始化时传入；
+// */
 @property (nonatomic, assign, readonly) CGFloat width;
+//
 
-/**
- 文本展示最大行数，在初始化时传入；
- */
-@property (nonatomic, assign, readonly) NSInteger maximumNumberOfLines;
 
 /**
  文本对应的NSTextStorage对象,在初始化时传入；

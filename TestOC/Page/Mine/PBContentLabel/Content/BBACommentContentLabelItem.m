@@ -41,7 +41,6 @@
 @interface BBACommentContentTextLayoutItem ()
 
 @property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) NSInteger maximumNumberOfLines;
 @property (nonatomic, strong) NSTextStorage *textStroage;
 @property (nonatomic, strong) NSLayoutManager *layoutManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
@@ -55,7 +54,6 @@
     self = [super init];
     if (self) {
         _width = width;
-        _maximumNumberOfLines = maximumNumberOfLines;
         
         NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
         [textStorage addLayoutManager:layoutManager];
