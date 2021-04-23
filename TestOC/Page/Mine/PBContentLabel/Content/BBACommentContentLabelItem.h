@@ -18,7 +18,7 @@
 
 @interface BBACommentContentLabelItem : NSObject <BBACommentContentLabelTextProtocol>
 
-+ (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines;
++ (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString maxWidth:(CGFloat)maxWidth maximumNumberOfLines:(NSInteger)maximumNumberOfLines;
 
 @end
 
@@ -32,6 +32,6 @@
 @property (nonatomic, strong) NSTextContainer *textContainer;
 @property (nonatomic, assign) CGSize size;
 
-- (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString;
+- (instancetype)initWithMaxWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString;
 
 @end

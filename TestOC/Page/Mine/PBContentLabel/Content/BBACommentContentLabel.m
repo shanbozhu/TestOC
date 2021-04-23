@@ -217,7 +217,7 @@
     if (link.highlightedTextColor) {
         BBACommentContentTextLayoutItem *layoutItem = _contentLabelItem.layoutItem;
         BBACommentContentLabelItem *item = [BBACommentContentLabelItem itemWithAttributedString:_contentLabelItem.layoutItem.textStorage
-                                                                                          width:layoutItem.width
+                                                                                       maxWidth:layoutItem.width
                                                                            maximumNumberOfLines:layoutItem.textContainer.maximumNumberOfLines];
         
         NSMutableDictionary *attributes = [NSMutableDictionary dictionary];

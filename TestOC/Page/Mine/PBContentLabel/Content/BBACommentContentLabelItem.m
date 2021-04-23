@@ -16,10 +16,10 @@
 
 @implementation BBACommentContentLabelItem
 
-+ (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines {
++ (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString maxWidth:(CGFloat)maxWidth maximumNumberOfLines:(NSInteger)maximumNumberOfLines {
     BBACommentContentLabelItem *item = [[self alloc] init];
     
-    BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines attributedString:attributedString];
+    BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithMaxWidth:maxWidth maximumNumberOfLines:maximumNumberOfLines attributedString:attributedString];
     item.layoutItem = layoutItem;
     return item;
 }
@@ -29,7 +29,7 @@
 #pragma mark -
 @implementation BBACommentContentTextLayoutItem
 
-- (instancetype)initWithWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
+- (instancetype)initWithMaxWidth:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines attributedString:(NSAttributedString *)attributedString {
     if (self = [super init]) {
         _width = width;
         

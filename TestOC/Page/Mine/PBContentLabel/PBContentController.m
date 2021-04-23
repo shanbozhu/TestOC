@@ -31,7 +31,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     NSMutableAttributedString *attributedString = [self responseString];
 
     //
-    BBACommentContentLabelItem *contentItem = [BBACommentContentLabelItem itemWithAttributedString:attributedString width:250 maximumNumberOfLines:0];
+    BBACommentContentLabelItem *contentItem = [BBACommentContentLabelItem itemWithAttributedString:attributedString maxWidth:250 maximumNumberOfLines:0];
 
     //
     BBACommentContentLabel *lab = [[BBACommentContentLabel alloc] init];
