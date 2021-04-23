@@ -23,7 +23,7 @@
 @implementation BBACommentContentLabelItem
 
 + (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines {
-    BBACommentContentLabelItem *item = [[BBACommentContentLabelItem alloc] init];
+    BBACommentContentLabelItem *item = [[self alloc] init];
     item.attributedString = attributedString;
     
     NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
