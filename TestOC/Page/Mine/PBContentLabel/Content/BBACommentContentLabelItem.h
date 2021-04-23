@@ -19,7 +19,7 @@
 @property (nonatomic, strong, readonly) NSTextStorage *textStorage;
 
 /// 当前要展示的约束对象 @see BBACommentContentTextLayoutItem
-@property (nonatomic, weak, readonly) BBACommentContentTextLayoutItem *currrentLayoutItem;
+@property (nonatomic, strong, readonly) BBACommentContentTextLayoutItem *currrentLayoutItem;
 
 @end
 

@@ -14,9 +14,7 @@
 
 @property (nonatomic, strong) NSTextStorage *textStorage;
 
-@property (nonatomic, strong) BBACommentContentTextLayoutItem *layoutItem;
-
-@property (nonatomic, weak) BBACommentContentTextLayoutItem *currrentLayoutItem;
+@property (nonatomic, strong) BBACommentContentTextLayoutItem *currrentLayoutItem;
 
 @end
 
@@ -30,7 +28,6 @@
     BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines forTextStorage:textStorage];
     item.textStorage = textStorage;
     item.currrentLayoutItem = layoutItem;
-    item.layoutItem = layoutItem;
     return item;
 }
 
