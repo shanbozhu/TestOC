@@ -12,9 +12,6 @@
 
 @protocol BBACommentContentLabelTextProtocol <NSObject>
 
-/// 要展示的富文本
-@property (nonatomic, strong, readonly) NSAttributedString *attributedString;
-
 /// 富文本对应的textStorage
 @property (nonatomic, strong, readonly) NSTextStorage *textStorage;
 

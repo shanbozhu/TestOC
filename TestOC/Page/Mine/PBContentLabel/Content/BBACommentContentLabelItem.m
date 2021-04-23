@@ -10,8 +10,6 @@
 
 @interface BBACommentContentLabelItem ()
 
-@property (nonatomic, strong) NSAttributedString *attributedString;
-
 @property (nonatomic, strong) NSTextStorage *textStorage;
 
 @property (nonatomic, strong) BBACommentContentTextLayoutItem *layoutItem;
@@ -22,7 +20,6 @@
 
 + (instancetype)itemWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSInteger)maximumNumberOfLines {
     BBACommentContentLabelItem *item = [[self alloc] init];
-    item.attributedString = attributedString;
     
     NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
     BBACommentContentTextLayoutItem *layoutItem = [[BBACommentContentTextLayoutItem alloc] initWithWidth:width maximumNumberOfLines:maximumNumberOfLines forTextStorage:textStorage];
