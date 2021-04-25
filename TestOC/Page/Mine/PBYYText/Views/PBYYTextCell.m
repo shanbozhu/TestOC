@@ -273,12 +273,14 @@
             continue;
         }
         NSString *rangeString = [attStr.string substringWithRange:at.range];
-        NSLog(@"rangeString = %@", rangeString);
+        
+        // 将转义字符替换为对应的图片名称
         NSString *imageName = [self imageNameWithRangeString:rangeString];
         if (!imageName) {
             continue;
         }
         
+        // 将图片生成富文本
         UIImageView *threeImageView = [[YYAnimatedImageView alloc]init];
         threeImageView.image = [YYImage imageNamed:imageName];
         threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
