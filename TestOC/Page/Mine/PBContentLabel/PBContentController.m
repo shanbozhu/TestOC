@@ -18,7 +18,7 @@
 #define kBBACommentReplyLineSpace 10
 NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\]";
 
-@interface PBContentController ()
+@interface PBContentController ()<BBACommentContentLabelDelegate>
 
 @end
 
@@ -39,10 +39,15 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     lab.layer.borderColor = [UIColor redColor].CGColor;
     lab.layer.borderWidth = 1;
     lab.backgroundColor = [UIColor whiteColor];
+    lab.delegate = self;
 
     lab.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 50, contentItem.layoutItem.size.width, 0);
     lab.contentLabelItem = contentItem;
     lab.pb_height = contentItem.layoutItem.size.height;
+}
+
+- (void)contentLabel:(BBACommentContentLabel *)label linkDidClicked:(BBACommentContentLink *)link {
+    NSLog(@"link.range = %@", NSStringFromRange(link.range));
 }
 
 - (NSMutableAttributedString *)responseString {
