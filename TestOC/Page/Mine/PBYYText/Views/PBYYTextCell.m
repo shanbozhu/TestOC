@@ -265,7 +265,7 @@
 }
 
 - (void)emoticonWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
-    CGFloat emoticonWidth = attStr.yy_font.lineHeight + 15;
+    CGFloat emoticonWidth = attStr.yy_font.lineHeight;
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
     for (NSInteger i = result.count - 1; i >= 0; i--) {
         NSTextCheckingResult *at = [result objectAtIndex:i];
