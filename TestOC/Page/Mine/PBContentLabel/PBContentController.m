@@ -62,8 +62,7 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     NSMutableAttributedString *responseContent = [[NSMutableAttributedString alloc] initWithString:@"：哈哈[调皮][调皮][调皮]😇" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kBBACommentReplyFontSize], NSForegroundColorAttributeName:[UIColor blackColor]}];
     
     // 替换评论内容中的表情标签[0022]为富文本
-//    responseContent = [self translateAllPlainTextToEmoticonWithAttributedString:responseContent].mutableCopy;
-    responseContent = [[BBAEmoticonManager alloc] translateAllPlainTextToEmoticonWithAttributedString:responseContent].mutableCopy;
+    [[BBAEmoticonManager alloc] translateAllPlainTextToEmoticonWithAttributedString:responseContent];
     [responseString appendAttributedString:responseContent];
     
     //行间距
@@ -74,49 +73,6 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     
     return responseString;
 }
-
-//- (NSAttributedString *)translateAllPlainTextToEmoticonWithAttributedString:(NSAttributedString *)anAttributedString {
-//    NSString *sourceStr = anAttributedString.string;
-//    // 先复制待转换富文本，然后只是把其中的转义字符替换掉。
-//    NSMutableAttributedString *resultAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:anAttributedString];
-//    NSError *error = nil;
-//    NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:kBBAEmoticonPlainTextPttern options:NSRegularExpressionCaseInsensitive error:&error];
-//    __block NSInteger offset = 0;
-//    [regExp enumerateMatchesInString:sourceStr
-//                             options:0
-//                               range:NSMakeRange(0, [sourceStr length])
-//                          usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-//                              @autoreleasepool {
-//                                  NSRange range = result.range;
-//                                  NSDictionary *attributes = [anAttributedString attributesAtIndex:range.location effectiveRange:NULL];
-//                                  UIFont *font = [attributes objectForKey:NSFontAttributeName];
-//                                  ///当前匹配到的字符串处理
-//                                  NSString *curString = [sourceStr substringWithRange:result.range];
-//                                  // 获取表情的富文本
-//                                  NSAttributedString *emoticonAttr = [self emoticonAttributedStringWithFont:font plainText:curString];
-//                                  if (emoticonAttr) {
-//                                      NSAttributedString *result1 = emoticonAttr;
-//                                      if (attributes) {
-//                                          NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithAttributedString:emoticonAttr];
-//                                          [str addAttributes:attributes range:NSMakeRange(0, str.length)];
-//                                          result1 = [[NSAttributedString alloc] initWithAttributedString:str];
-//                                      }
-//                                      NSRange newRange = NSMakeRange(range.location-offset, range.length);
-//                                      [resultAttributedString replaceCharactersInRange:newRange withAttributedString:result1];
-//                                      offset += (range.length - result1.length);
-//                                  }
-//                              }
-//                          }];
-//    return resultAttributedString;
-//}
-//
-//- (NSAttributedString *__nullable)emoticonAttributedStringWithFont:(UIFont *__nullable)font plainText:(NSString *)plainText {
-//    BBAEmoticonTextAttachment *attachment = [[BBAEmoticonTextAttachment alloc] init];
-//    attachment.image = [UIImage imageNamed:@"0022"];
-//    attachment.font = font;
-//    NSAttributedString *resutlt = [NSAttributedString attributedStringWithAttachment:attachment];
-//    return resutlt;
-//}
 
 - (NSAttributedString *)userNameWithUserInfo
 {

@@ -10,9 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BBAEmoticonTextAttachment : NSTextAttachment
+
++ (instancetype)emoticonTextAttachmentWithImage:(NSString *)imageName font:(UIFont *)font;
+
+@end
+
 @interface BBAEmoticonManager : NSObject
 
-- (NSAttributedString *)translateAllPlainTextToEmoticonWithAttributedString:(NSMutableAttributedString *)attStr;
+- (void)translateAllPlainTextToEmoticonWithAttributedString:(NSMutableAttributedString *)attStr;
 
 @end
 
