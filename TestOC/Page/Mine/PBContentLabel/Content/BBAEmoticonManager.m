@@ -73,7 +73,8 @@
             continue;
         }
         
-        NSDictionary *attributes = [attributedString attributesAtIndex:at.range.location effectiveRange:NULL];
+        NSRange range = at.range;
+        NSDictionary *attributes = [attributedString attributesAtIndex:range.location effectiveRange:&range];
         UIFont *font = [attributes objectForKey:NSFontAttributeName];
         
         // 将图片生成富文本
@@ -89,7 +90,7 @@
     }
 }
 
-
+#pragma mark - 表情扩展
 - (NSString *)imageNameWithRangeString:(NSString *)rangeString {
     if ([rangeString isEqualToString:@"[调皮]"]) {
         return @"0022";
