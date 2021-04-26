@@ -110,24 +110,12 @@ NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\
     return resultAttributedString;
 }
 
-- (NSMutableAttributedString *__nullable)emoticonAttributedStringWithFont:(UIFont *__nullable)font plainText:(NSString *)plainText {
-    BBAEmoticonTextAttachment *attachment = [self emoticonAttachmentWithFont:font plainText:plainText];
-    if (!attachment) {
-        return nil;
-    }
-    NSMutableAttributedString *resutlt = [[NSAttributedString attributedStringWithAttachment:attachment] mutableCopy];
-    if (font) {
-        NSDictionary *attributes = @{NSFontAttributeName : font};
-        [resutlt addAttributes:attributes range:NSMakeRange(0, resutlt.length)];
-    }
-    return resutlt;
-}
-
-- (BBAEmoticonTextAttachment *__nullable)emoticonAttachmentWithFont:(UIFont *__nullable)font  plainText:(NSString *)plainText {
+- (NSAttributedString *__nullable)emoticonAttributedStringWithFont:(UIFont *__nullable)font plainText:(NSString *)plainText {
     BBAEmoticonTextAttachment *attachment = [[BBAEmoticonTextAttachment alloc] init];
     attachment.image = [UIImage imageNamed:@"0022"];
     attachment.font = font;
-    return attachment;
+    NSAttributedString *resutlt = [NSAttributedString attributedStringWithAttachment:attachment];
+    return resutlt;
 }
 
 - (NSAttributedString *)userNameWithUserInfo
