@@ -148,7 +148,6 @@
 		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
-		95858C3F2631681600DB31AB /* BBAEmoticonTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 95858C3D2631681600DB31AB /* BBAEmoticonTextAttachment.m */; };
 		9585A7CB2636674700DB31AB /* BBAEmoticonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9585A7CA2636674600DB31AB /* BBAEmoticonManager.m */; };
 		95ACC83D249B4E0E00CA70B7 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */; };
 		95AF9DFA263002610040022F /* BBACommentContentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF2263002610040022F /* BBACommentContentLabel.m */; };
@@ -539,8 +538,6 @@
 		958378D422EACE2800AA39AF /* PBUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUIWebViewController.h; sourceTree = "<group>"; };
 		958378D722EACE3C00AA39AF /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
-		95858C3D2631681600DB31AB /* BBAEmoticonTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAEmoticonTextAttachment.m; sourceTree = "<group>"; };
-		95858C3E2631681600DB31AB /* BBAEmoticonTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAEmoticonTextAttachment.h; sourceTree = "<group>"; };
 		9585A7C92636674600DB31AB /* BBAEmoticonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBAEmoticonManager.h; sourceTree = "<group>"; };
 		9585A7CA2636674600DB31AB /* BBAEmoticonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBAEmoticonManager.m; sourceTree = "<group>"; };
 		95ACC83B249B4E0E00CA70B7 /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
@@ -1513,8 +1510,6 @@
 				95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */,
 				95AF9DF1263002610040022F /* BBACommentContentLink.h */,
 				95AF9DF5263002610040022F /* BBACommentContentLink.m */,
-				95858C3E2631681600DB31AB /* BBAEmoticonTextAttachment.h */,
-				95858C3D2631681600DB31AB /* BBAEmoticonTextAttachment.m */,
 				9585A7C92636674600DB31AB /* BBAEmoticonManager.h */,
 				9585A7CA2636674600DB31AB /* BBAEmoticonManager.m */,
 			);
@@ -2479,7 +2474,6 @@
 				9575945322F95120009CA618 /* PBPlayerView.m in Sources */,
 				95C871C522E71CBE002795D0 /* PBAppLogoView.m in Sources */,
 				9575945222F95120009CA618 /* PBGCDTimerManager.m in Sources */,
-				95858C3F2631681600DB31AB /* BBAEmoticonTextAttachment.m in Sources */,
 				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,
 				9575998722FC2415009CA618 /* UIImage+ImageEffects.m in Sources */,
 				957593D022F84F20009CA618 /* PBGCDListTwoController.m in Sources */,

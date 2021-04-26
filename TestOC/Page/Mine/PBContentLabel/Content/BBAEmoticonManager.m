@@ -8,7 +8,6 @@
 
 #import "BBAEmoticonManager.h"
 #import "PBRegex.h"
-#import "BBAEmoticonTextAttachment.h"
 
 @implementation BBAEmoticonTextAttachment
 
@@ -79,7 +78,6 @@
         
         // 将图片生成富文本
         BBAEmoticonTextAttachment *attachment = [BBAEmoticonTextAttachment emoticonTextAttachmentWithImage:imageName font:font];
-
         
         NSAttributedString *resutlt = [NSAttributedString attributedStringWithAttachment:attachment];
         

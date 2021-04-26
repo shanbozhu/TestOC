@@ -7,7 +7,6 @@
 //
 
 #import "PBContentController.h"
-#import "BBAEmoticonTextAttachment.h"
 #import "BBACommentContentLabel.h"
 #import "PBContentLabel.h"
 #import "PBContentLabelItem.h"
