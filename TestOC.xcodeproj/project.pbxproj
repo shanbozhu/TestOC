@@ -149,6 +149,8 @@
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
 		9585A7CB2636674700DB31AB /* BBAEmoticonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9585A7CA2636674600DB31AB /* BBAEmoticonManager.m */; };
+		9585A7DA2636E8BE00DB31AB /* PBYYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764B22E99291002795D0 /* PBYYTextView.m */; };
+		9585A7DC2636E8C200DB31AB /* PBYYTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9585A7D62636E6EA00DB31AB /* PBYYTextTableView.m */; };
 		95ACC83D249B4E0E00CA70B7 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */; };
 		95AF9DFA263002610040022F /* BBACommentContentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF2263002610040022F /* BBACommentContentLabel.m */; };
 		95AF9DFB263002620040022F /* BBACommentContentLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF3263002610040022F /* BBACommentContentLabelItem.m */; };
@@ -234,7 +236,6 @@
 		95C8764622E99260002795D0 /* PBRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764522E99260002795D0 /* PBRegex.m */; };
 		95C8764922E99281002795D0 /* PBYYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764822E99281002795D0 /* PBYYText.m */; };
 		95C8764E22E99291002795D0 /* PBYYTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764A22E99291002795D0 /* PBYYTextCell.m */; };
-		95C8764F22E99291002795D0 /* PBYYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8764B22E99291002795D0 /* PBYYTextView.m */; };
 		95C8765422E9A60E002795D0 /* pbyytext_flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C8765122E9A60E002795D0 /* pbyytext_flag@2x.png */; };
 		95C8765522E9A60E002795D0 /* pbyytext_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C8765222E9A60E002795D0 /* pbyytext_pic.png */; };
 		95C8765D22E9A61B002795D0 /* 002@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95C8765922E9A61B002795D0 /* 002@2x.gif */; };
@@ -537,6 +538,8 @@
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
 		9585A7C92636674600DB31AB /* BBAEmoticonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBAEmoticonManager.h; sourceTree = "<group>"; };
 		9585A7CA2636674600DB31AB /* BBAEmoticonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBAEmoticonManager.m; sourceTree = "<group>"; };
+		9585A7D52636E6EA00DB31AB /* PBYYTextTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBYYTextTableView.h; sourceTree = "<group>"; };
+		9585A7D62636E6EA00DB31AB /* PBYYTextTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBYYTextTableView.m; sourceTree = "<group>"; };
 		95ACC83B249B4E0E00CA70B7 /* PBAFNetworkingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingController.h; sourceTree = "<group>"; };
 		95ACC83C249B4E0E00CA70B7 /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
 		95AF9DF1263002610040022F /* BBACommentContentLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLink.h; sourceTree = "<group>"; };
@@ -1943,6 +1946,8 @@
 				95C8764A22E99291002795D0 /* PBYYTextCell.m */,
 				95C8764D22E99291002795D0 /* PBYYTextView.h */,
 				95C8764B22E99291002795D0 /* PBYYTextView.m */,
+				9585A7D52636E6EA00DB31AB /* PBYYTextTableView.h */,
+				9585A7D62636E6EA00DB31AB /* PBYYTextTableView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2348,6 +2353,7 @@
 				958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */,
 				957593D122F84F20009CA618 /* PBGCDListFiveController.m in Sources */,
 				95C871C222E71CBE002795D0 /* PBSeatsView.m in Sources */,
+				9585A7DA2636E8BE00DB31AB /* PBYYTextView.m in Sources */,
 				9575998A22FC2415009CA618 /* PBPhotoBrowserPageView.m in Sources */,
 				958378C922EAA52300AA39AF /* PBAFNetworkingZeroController.m in Sources */,
 				957593D522F84F20009CA618 /* PBGCDListTwelveController.m in Sources */,
@@ -2453,7 +2459,6 @@
 				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,
 				9575998722FC2415009CA618 /* UIImage+ImageEffects.m in Sources */,
 				957593D022F84F20009CA618 /* PBGCDListTwoController.m in Sources */,
-				95C8764F22E99291002795D0 /* PBYYTextView.m in Sources */,
 				953341D822F306EE00DC7251 /* PBCellHeightTwoView.m in Sources */,
 				9575940922F92785009CA618 /* NSArray+PBSort.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
@@ -2520,6 +2525,7 @@
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,
 				953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */,
+				9585A7DC2636E8C200DB31AB /* PBYYTextTableView.m in Sources */,
 				9575931E22F82A37009CA618 /* PBStorageOneController.m in Sources */,
 				9575935722F84D28009CA618 /* PBGCDOneController.m in Sources */,
 				95C871A322E71C9D002795D0 /* PBSeatSelectionController.m in Sources */,
