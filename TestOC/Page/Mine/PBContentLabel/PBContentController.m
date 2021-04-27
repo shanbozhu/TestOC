@@ -14,7 +14,6 @@
 
 #define kBBACommentReplyFontSize 19
 #define kBBACommentReplyLineSpace 10
-NSString *const kBBAEmoticonPlainTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\]";
 
 @interface PBContentController ()<BBACommentContentLabelDelegate>
 
