@@ -46,7 +46,7 @@
     animationView.frame = CGRectMake(50, 50, 29, 48);
     animationView.loopAnimation = YES;
     [animationView play];
-    animationView.backgroundColor = [UIColor blackColor];
+    animationView.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
     
     // image array
     UIButton *TTSButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -61,10 +61,10 @@
     TTSButton.layer.masksToBounds = YES;
     TTSButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
     TTSButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
-    TTSButton.backgroundColor = [UIColor blackColor];
+    TTSButton.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
     
     TTSButton.imageView.animationDuration = 2;
-    TTSButton.imageView.animationImages = [self animateImageArray];;
+    TTSButton.imageView.animationImages = [self animateImageArray];
     TTSButton.imageView.animationRepeatCount = 0;
     [TTSButton.imageView startAnimating];
     
