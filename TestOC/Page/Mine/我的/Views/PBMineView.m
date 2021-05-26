@@ -27,11 +27,8 @@
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
-        
         if (@available(iOS 11.0, *)) {
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            
         }
         
         tableView.tableFooterView = [UIView new];

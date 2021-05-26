@@ -22,4 +22,5 @@ target "TestOC" do
   pod 'Masonry', '~> 1.1.0'
   pod 'FMDB', '~> 2.7.5'
   
+  pod 'lottie-ios', '2.5.3'
 end

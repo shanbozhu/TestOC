@@ -13,6 +13,8 @@
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
 		952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */; };
+		952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF349265E42F300B0D7DA /* PBAnimationController.m */; };
+		952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
 		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
 		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
@@ -280,6 +282,9 @@
 		9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
 		952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
 		952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
+		952FF348265E42F300B0D7DA /* PBAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationController.h; sourceTree = "<group>"; };
+		952FF349265E42F300B0D7DA /* PBAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationController.m; sourceTree = "<group>"; };
+		952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bubble_voicesearch.json; sourceTree = "<group>"; };
 		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
 		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
@@ -783,6 +788,24 @@
 				9516BDC524696A390070C282 /* TestOC.pch */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		952FF347265E42CA00B0D7DA /* PBAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				952FF34C265E492F00B0D7DA /* Res */,
+				952FF348265E42F300B0D7DA /* PBAnimationController.h */,
+				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
+			);
+			path = PBAnimation;
+			sourceTree = "<group>";
+		};
+		952FF34C265E492F00B0D7DA /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */,
+			);
+			path = Res;
 			sourceTree = "<group>";
 		};
 		953341A822F3067200DC7251 /* PBCellHeight */ = {
@@ -2123,6 +2146,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				952FF347265E42CA00B0D7DA /* PBAnimation */,
 				95EACEFE2626CDE4006F1A6B /* PBContentLabel */,
 				95C1922426246FA00008FD14 /* PBSyntax */,
 				9516858B261EEB8D0047D1B2 /* PBFoundation */,
@@ -2272,6 +2296,7 @@
 				9575943122F950FB009CA618 /* PBAVPlayerList.json in Resources */,
 				95C872D322E801DA002795D0 /* qrcode_righttop@2x.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
+				952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */,
 				95C872DA22E801DA002795D0 /* qrcode_flashlightcloseimage@2x.png in Resources */,
 				9575945022F95120009CA618 /* PBRound1.png in Resources */,
 				B0F04AB71F9E01BD00F69AC3 /* pbhome_icon@3x.png in Resources */,
@@ -2376,6 +2401,7 @@
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */,
+				952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */,
 				95C8764622E99260002795D0 /* PBRegex.m in Sources */,
 				95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */,
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,

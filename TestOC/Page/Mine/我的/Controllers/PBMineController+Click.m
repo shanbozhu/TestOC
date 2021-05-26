@@ -56,7 +56,8 @@
              @"PBAlgorithmController",
              @"PBAVPlayerListController",
              @"PBUniversalLinkController",
-             @"PBRuntimeController"];
+             @"PBRuntimeController",
+             @"PBAnimationController"];
 }
 
 // delegate
