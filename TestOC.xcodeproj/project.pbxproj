@@ -15,6 +15,13 @@
 		952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */; };
 		952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF349265E42F300B0D7DA /* PBAnimationController.m */; };
 		952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */; };
+		952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */; };
+		952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */; };
+		952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */; };
+		952FF51E265E731F00B0D7DA /* search_weather_voice_2_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */; };
+		952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */; };
+		952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */; };
+		952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
 		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
 		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
@@ -285,6 +292,14 @@
 		952FF348265E42F300B0D7DA /* PBAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationController.h; sourceTree = "<group>"; };
 		952FF349265E42F300B0D7DA /* PBAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationController.m; sourceTree = "<group>"; };
 		952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bubble_voicesearch.json; sourceTree = "<group>"; };
+		952FF512265E6E1800B0D7DA /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
+		952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PBHexStr.m"; sourceTree = "<group>"; };
+		952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_weather_voice_big@3x.png"; sourceTree = "<group>"; };
+		952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_1_big.png; sourceTree = "<group>"; };
+		952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_2_big.png; sourceTree = "<group>"; };
+		952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_3_big.png; sourceTree = "<group>"; };
+		952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_4_big.png; sourceTree = "<group>"; };
+		952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_5_big.png; sourceTree = "<group>"; };
 		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
 		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
@@ -759,6 +774,8 @@
 				95C19216262436440008FD14 /* PBMethodSwizzling.m */,
 				95C19220262447A00008FD14 /* NSObject+PBRuntime.h */,
 				95C19221262447A00008FD14 /* NSObject+PBRuntime.m */,
+				952FF512265E6E1800B0D7DA /* UIColor+PBHexStr.h */,
+				952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */,
 			);
 			path = PBFoundation;
 			sourceTree = "<group>";
@@ -803,6 +820,12 @@
 		952FF34C265E492F00B0D7DA /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */,
+				952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */,
+				952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */,
+				952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */,
+				952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */,
+				952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */,
 				952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */,
 			);
 			path = Res;
@@ -2287,6 +2310,7 @@
 				95C8765D22E9A61B002795D0 /* 002@2x.gif in Resources */,
 				95C872D222E801DA002795D0 /* pbqrcode_logo.png in Resources */,
 				9575940D22F92790009CA618 /* 选择排序.gif in Resources */,
+				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
 				95C8723A22E72022002795D0 /* pbseatselection_xuanzhong.png in Resources */,
 				95C872D722E801DA002795D0 /* qrcode_lefttop@3x.png in Resources */,
 				95C8723622E72022002795D0 /* pbseatselection_kexuan.png in Resources */,
@@ -2295,6 +2319,7 @@
 				B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */,
 				9575943122F950FB009CA618 /* PBAVPlayerList.json in Resources */,
 				95C872D322E801DA002795D0 /* qrcode_righttop@2x.png in Resources */,
+				952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
 				952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */,
 				95C872DA22E801DA002795D0 /* qrcode_flashlightcloseimage@2x.png in Resources */,
@@ -2302,14 +2327,17 @@
 				B0F04AB71F9E01BD00F69AC3 /* pbhome_icon@3x.png in Resources */,
 				95C872DB22E801DA002795D0 /* qrcode_leftbottom@3x.png in Resources */,
 				B0F04AB91F9E01BD00F69AC3 /* pbhome_sport_headerline@3x.png in Resources */,
+				952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */,
 				95C872D922E801DA002795D0 /* qrcode_flashlightopenimage@2x.png in Resources */,
 				95C872DD22E801DA002795D0 /* qrcode_scanningline@2x.png in Resources */,
 				B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */,
 				95C8741222E84436002795D0 /* PBActivityDetail.css in Resources */,
 				95C872DE22E801DA002795D0 /* qrcode_leftbottom@2x.png in Resources */,
+				952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */,
 				95C8742E22E84E8A002795D0 /* pbimage_text.html in Resources */,
 				9575940E22F92790009CA618 /* 插入排序.gif in Resources */,
 				9575945122F95120009CA618 /* PBPauseBtn.png in Resources */,
+				952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */,
 				95C8723922E72022002795D0 /* pbseatselection_screenBg@3x.png in Resources */,
 				9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */,
 				9575944C22F95120009CA618 /* PBMinBtn.png in Resources */,
@@ -2319,6 +2347,7 @@
 				95C8765E22E9A61B002795D0 /* 0022@2x.png in Resources */,
 				B0F04AB61F9E01BD00F69AC3 /* pbhome_icon@2x.png in Resources */,
 				9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */,
+				952FF51E265E731F00B0D7DA /* search_weather_voice_2_big.png in Resources */,
 				95E5320725B45FA700BE9535 /* curl in Resources */,
 				95C872D422E801DA002795D0 /* qrcode_lefttop@2x.png in Resources */,
 				9575944D22F95120009CA618 /* PBMaxBtn.png in Resources */,
@@ -2453,6 +2482,7 @@
 				95C8741522E84436002795D0 /* PBTestListTwoView.m in Sources */,
 				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
 				957593F822F84F3B009CA618 /* PBGCDLockFourController.m in Sources */,
+				952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */,
 				9516BDC724696A390070C282 /* AppDelegate.m in Sources */,
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
 				953341F022F405DE00DC7251 /* PBTimerController.m in Sources */,

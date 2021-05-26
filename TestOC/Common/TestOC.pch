@@ -33,10 +33,12 @@
 //#define NSLog(...)
 //#endif
 
+
 #import "PBCommonUIParams.h"
 #import "PBBaseController.h"
 #import "PBNavigationController.h"
 #import "PBTabBarController.h"
 #import "UIView+PBCommonExtension.h"
+#import "UIColor+PBHexStr.h"
 
 #endif /* TestOC_pch */
