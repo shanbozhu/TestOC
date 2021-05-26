@@ -49,24 +49,47 @@
     animationView.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
     
     // image array
-    UIButton *TTSButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.scrollView addSubview:TTSButton];
-    TTSButton.frame = CGRectMake(animationView.pb_left, animationView.pb_bottom + 20, 90, 30);
-    [TTSButton setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
-    [TTSButton setTitle:@"听天气" forState:UIControlStateNormal];
-    TTSButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    TTSButton.layer.borderColor = [UIColor bba_RGBColorFromHexString:@"#ffffff" alpha:0.6].CGColor;
-    TTSButton.layer.borderWidth = 1.0;
-    TTSButton.layer.cornerRadius = 15;
-    TTSButton.layer.masksToBounds = YES;
-    TTSButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-    TTSButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
-    TTSButton.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
+    UIButton *ttsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.scrollView addSubview:ttsButton];
+    ttsButton.frame = CGRectMake(animationView.pb_left, animationView.pb_bottom + 20, 90, 30);
+    ttsButton.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
+    [ttsButton setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
+    [ttsButton setTitle:@"听天气" forState:UIControlStateNormal];
+    ttsButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    ttsButton.layer.borderColor = [UIColor bba_RGBColorFromHexString:@"#ffffff" alpha:0.6].CGColor;
+    ttsButton.layer.borderWidth = 1.0;
+    ttsButton.layer.cornerRadius = 15;
+    ttsButton.layer.masksToBounds = YES;
+    ttsButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
+    ttsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
     
-    TTSButton.imageView.animationDuration = 2;
-    TTSButton.imageView.animationImages = [self animateImageArray];
-    TTSButton.imageView.animationRepeatCount = 0;
-    [TTSButton.imageView startAnimating];
+    ttsButton.imageView.animationDuration = 2;
+    ttsButton.imageView.animationImages = [self animateImageArray];
+    ttsButton.imageView.animationRepeatCount = 0;
+    [ttsButton.imageView startAnimating];
+    
+    // image array
+    UIButton *ttsButtonOne = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.scrollView addSubview:ttsButtonOne];
+    ttsButtonOne.frame = CGRectMake(animationView.pb_left, ttsButton.pb_bottom + 20, 90, 30);
+    ttsButtonOne.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
+    [ttsButtonOne setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
+    [ttsButtonOne setTitle:@"听天气" forState:UIControlStateNormal];
+    ttsButtonOne.titleLabel.font = [UIFont systemFontOfSize:16];
+    ttsButtonOne.layer.borderColor = [UIColor bba_RGBColorFromHexString:@"#ffffff" alpha:0.6].CGColor;
+    ttsButtonOne.layer.borderWidth = 1.0;
+    ttsButtonOne.layer.cornerRadius = 15;
+    ttsButtonOne.layer.masksToBounds = YES;
+    if (@available(iOS 9.0, *)) {
+        ttsButtonOne.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+    }
+    ttsButtonOne.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
+    ttsButtonOne.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
+    
+    ttsButtonOne.imageView.animationDuration = 2;
+    ttsButtonOne.imageView.animationImages = [self animateImageArray];
+    ttsButtonOne.imageView.animationRepeatCount = 0;
+    [ttsButtonOne.imageView startAnimating];
     
     // gif
     
