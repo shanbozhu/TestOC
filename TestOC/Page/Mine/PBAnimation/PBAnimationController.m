@@ -8,6 +8,7 @@
 
 #import "PBAnimationController.h"
 #import <Lottie/LOTAnimationView.h>
+#import <SDWebImage/>
 
 #define __BAIDUTOMAS
 
@@ -92,7 +93,7 @@
     [ttsButtonOne.imageView startAnimating];
     
     // gif
-    
+    FLAnimatedImageView *animationImageView
     
     // video
 }

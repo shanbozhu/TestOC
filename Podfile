@@ -5,7 +5,6 @@
 platform :ios, '8.0'
 
 target "TestOC" do
-
   pod 'YYText', '1.0.7'
   pod 'YYModel', '1.0.4'
   pod 'YYImage', '1.0.4'
@@ -19,6 +18,9 @@ target "TestOC" do
   pod 'SocketRocket', '0.5.1'
   
   pod 'SDWebImage', '~> 5.0.6'
+  pod 'SDWebImage/GIF'
+  pod 'SDWebImage/WebP'
+  
   pod 'Masonry', '~> 1.1.0'
   pod 'FMDB', '~> 2.7.5'
   
