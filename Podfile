@@ -17,12 +17,10 @@ target "TestOC" do
   
   pod 'SocketRocket', '0.5.1'
   
-  pod 'SDWebImage', '~> 5.0.6'
-  pod 'SDWebImage/GIF'
-  pod 'SDWebImage/WebP'
+  pod 'SDWebImage', '5.9.5'
+  pod 'SDWebImageFLPlugin', '0.4.0'
+  pod 'SDWebImageLottiePlugin', '0.2.0'
   
   pod 'Masonry', '~> 1.1.0'
   pod 'FMDB', '~> 2.7.5'
-  
-  pod 'lottie-ios', '2.5.3'
 end
