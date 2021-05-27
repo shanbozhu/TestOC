@@ -11,10 +11,13 @@
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import <YYImage/YYImage.h>
+#import "PBAnimationButton.h"
 
-@interface PBAnimationController ()
+@interface PBAnimationController () <PBAnimationButtonDelegate>
 
 @property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, weak) UIImageView *stepRightImageView;
+@property (nonatomic, weak) UILabel *stepRightLab;
 
 @end
 
@@ -34,9 +37,14 @@
     if (@available(iOS 11.0, *)) {
         scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
+    scrollView.delaysContentTouches = NO;
+    scrollView.canCancelContentTouches = YES;
     
     //
     [self addAnimationViews];
+    
+    //
+    [self addClickStatusViews];
 }
 
 - (void)addAnimationViews {
@@ -107,7 +115,6 @@
     [self.scrollView addSubview:animationImageViewOne];
     animationImageViewOne.frame = CGRectMake(animationView.pb_left, animationImageView.pb_bottom + 20, 50, 50);
     animationImageViewOne.image = animatedImageOne;
-    //animationImageViewOne.image = [YYImage imageNamed:@"commentgif_liked"];
     
     // video
 }
@@ -117,29 +124,72 @@
     for (int i = 0; i < 6; i++) {
         [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_1_big"]];
     }
-    
     for (int i = 0; i < 2; i++) {
         [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_2_big"]];
     }
-    
     [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_3_big"]];
     [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_4_big"]];
-    
     for (int i = 0; i < 6; i++) {
         [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_5_big"]];
     }
-    
     [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_4_big"]];
     [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_3_big"]];
-    
     for (int i = 0; i < 2; i++) {
         [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_2_big"]];
     }
-    
     for (int i = 0; i < 5; i++) {
         [animateImageArray addObject:[UIImage imageNamed:@"search_weather_voice_1_big"]];
     }
     return animateImageArray;
+}
+
+- (void)addClickStatusViews {
+    PBAnimationButton *stepRightBtn = [PBAnimationButton buttonWithType:UIButtonTypeCustom];
+    [self.scrollView addSubview:stepRightBtn];
+    stepRightBtn.frame = CGRectMake(100, 400, 100, 0);
+    [stepRightBtn addTarget:self
+                     action:@selector(shareBtnClick:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [stepRightBtn addTarget:self
+                     action:@selector(changeToAssignAlpha:)
+           forControlEvents:UIControlEventTouchDown];
+    stepRightBtn.delegate = self;
+    
+    UIImageView *stepRightImageView = [[UIImageView alloc] init];
+    self.stepRightImageView = stepRightImageView;
+    [stepRightBtn addSubview:stepRightImageView];
+    stepRightImageView.frame = CGRectMake((stepRightBtn.pb_width - 58) / 2.0, 0, 58, 58);
+    stepRightImageView.layer.cornerRadius = 29;
+    stepRightImageView.layer.masksToBounds = YES;
+    stepRightImageView.image = [UIImage imageNamed:@"tomas_tts_invite_share_haoyou"];
+    
+    UILabel *stepRightLab = [[UILabel alloc] init];
+    self.stepRightLab = stepRightLab;
+    [stepRightBtn addSubview:stepRightLab];
+    stepRightLab.frame = CGRectMake(0, stepRightImageView.pb_bottom + 16, stepRightBtn.pb_width, 20);
+    stepRightLab.numberOfLines = 0;
+    stepRightLab.textAlignment = NSTextAlignmentCenter;
+    stepRightLab.font = [UIFont boldSystemFontOfSize:20];
+    stepRightLab.textColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F"];
+    stepRightLab.text = @"微信好友";
+    
+    stepRightBtn.pb_height = stepRightLab.pb_bottom;
+}
+
+- (void)changeToAssignAlpha:(UIButton *)btn {
+    self.stepRightImageView.alpha = 0.3;
+    self.stepRightLab.alpha = 0.3;
+    NSLog(@"haha");
+}
+
+- (void)shareBtnClick:(UIButton *)btn {
+    NSLog(@"share");
+}
+
+- (void)animationButtonDidTouchEndedOrCancelled:(PBAnimationButton *)btn {
+    self.stepRightImageView.alpha = 1;
+    self.stepRightLab.alpha = 1;
+    NSLog(@"gaga");
 }
 
 @end

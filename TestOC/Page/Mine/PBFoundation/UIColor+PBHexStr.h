@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (PBHexStr)
 
++ (UIColor *)bba_RGBColorFromHexString:(NSString *)aHexStr;
 + (UIColor *)bba_RGBColorFromHexString:(NSString *)aHexStr alpha:(float)aAlpha;
 
 @end

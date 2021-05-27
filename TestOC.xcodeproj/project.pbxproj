@@ -23,6 +23,9 @@
 		952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */; };
 		952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */; };
 		952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */ = {isa = PBXBuildFile; fileRef = 952FF539265F3FC600B0D7DA /* commentgif_liked.gif */; };
+		952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */; };
+		952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */; };
+		952FF6F6265F7C0C00B0D7DA /* PBAnimationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
 		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
 		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
@@ -302,6 +305,10 @@
 		952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_4_big.png; sourceTree = "<group>"; };
 		952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_5_big.png; sourceTree = "<group>"; };
 		952FF539265F3FC600B0D7DA /* commentgif_liked.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = commentgif_liked.gif; sourceTree = "<group>"; };
+		952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@2x.png"; sourceTree = "<group>"; };
+		952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@3x.png"; sourceTree = "<group>"; };
+		952FF6F4265F7C0C00B0D7DA /* PBAnimationButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationButton.h; sourceTree = "<group>"; };
+		952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationButton.m; sourceTree = "<group>"; };
 		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
 		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
@@ -815,6 +822,8 @@
 				952FF34C265E492F00B0D7DA /* Res */,
 				952FF348265E42F300B0D7DA /* PBAnimationController.h */,
 				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
+				952FF6F4265F7C0C00B0D7DA /* PBAnimationButton.h */,
+				952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */,
 			);
 			path = PBAnimation;
 			sourceTree = "<group>";
@@ -822,6 +831,8 @@
 		952FF34C265E492F00B0D7DA /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */,
+				952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */,
 				952FF539265F3FC600B0D7DA /* commentgif_liked.gif */,
 				952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */,
 				952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */,
@@ -2313,6 +2324,7 @@
 				95C8765D22E9A61B002795D0 /* 002@2x.gif in Resources */,
 				95C872D222E801DA002795D0 /* pbqrcode_logo.png in Resources */,
 				9575940D22F92790009CA618 /* 选择排序.gif in Resources */,
+				952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
 				95C8723A22E72022002795D0 /* pbseatselection_xuanzhong.png in Resources */,
 				95C872D722E801DA002795D0 /* qrcode_lefttop@3x.png in Resources */,
@@ -2343,6 +2355,7 @@
 				952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */,
 				95C8723922E72022002795D0 /* pbseatselection_screenBg@3x.png in Resources */,
 				9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */,
+				952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */,
 				9575944C22F95120009CA618 /* PBMinBtn.png in Resources */,
 				95C873C822E83B61002795D0 /* pbaddress_location@2x.png in Resources */,
 				95C872DC22E801DA002795D0 /* qrcode_scanningline@3x.png in Resources */,
@@ -2534,6 +2547,7 @@
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
 				95EACF052626CE88006F1A6B /* PBContentController.m in Sources */,
+				952FF6F6265F7C0C00B0D7DA /* PBAnimationButton.m in Sources */,
 				953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */,

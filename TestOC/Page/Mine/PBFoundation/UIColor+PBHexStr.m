@@ -51,4 +51,9 @@
     return [UIColor blackColor]; // 默认黑色
 }
 
++ (UIColor *)bba_RGBColorFromHexString:(NSString *)aHexStr {
+    return [UIColor bba_RGBColorFromHexString:aHexStr
+                                        alpha:1.0f];
+}
+
 @end

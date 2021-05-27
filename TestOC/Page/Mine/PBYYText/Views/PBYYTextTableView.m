@@ -11,7 +11,7 @@
 @implementation PBYYTextTableView
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-    if ([super initWithFrame:frame style:style]) {
+    if (self = [super initWithFrame:frame style:style]) {
         self.delaysContentTouches = NO;
         self.canCancelContentTouches = YES;
     }
