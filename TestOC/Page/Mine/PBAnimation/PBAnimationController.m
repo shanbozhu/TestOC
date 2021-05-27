@@ -166,7 +166,7 @@
     UILabel *stepRightLab = [[UILabel alloc] init];
     self.stepRightLab = stepRightLab;
     [stepRightBtn addSubview:stepRightLab];
-    stepRightLab.frame = CGRectMake(0, stepRightImageView.pb_bottom + 16, stepRightBtn.pb_width, 20);
+    stepRightLab.frame = CGRectMake(0, stepRightImageView.pb_bottom + 10, stepRightBtn.pb_width, 20);
     stepRightLab.numberOfLines = 0;
     stepRightLab.textAlignment = NSTextAlignmentCenter;
     stepRightLab.font = [UIFont boldSystemFontOfSize:20];
