@@ -22,6 +22,7 @@
 		952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */; };
 		952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */; };
 		952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */; };
+		952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */ = {isa = PBXBuildFile; fileRef = 952FF539265F3FC600B0D7DA /* commentgif_liked.gif */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
 		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
 		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
@@ -300,6 +301,7 @@
 		952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_3_big.png; sourceTree = "<group>"; };
 		952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_4_big.png; sourceTree = "<group>"; };
 		952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_5_big.png; sourceTree = "<group>"; };
+		952FF539265F3FC600B0D7DA /* commentgif_liked.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = commentgif_liked.gif; sourceTree = "<group>"; };
 		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
 		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 		952FF34C265E492F00B0D7DA /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				952FF539265F3FC600B0D7DA /* commentgif_liked.gif */,
 				952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */,
 				952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */,
 				952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */,
@@ -2367,6 +2370,7 @@
 				95C872D622E801DA002795D0 /* qrcode_rightbottom@3x.png in Resources */,
 				9575944B22F95120009CA618 /* PBRound.png in Resources */,
 				95C873E622E84410002795D0 /* PBTestListView.xib in Resources */,
+				952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

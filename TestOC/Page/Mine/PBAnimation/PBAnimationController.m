@@ -9,6 +9,8 @@
 #import "PBAnimationController.h"
 #import <Lottie/LOTAnimationView.h>
 #import <FLAnimatedImage/FLAnimatedImageView.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
+#import <YYImage/YYImage.h>
 
 @interface PBAnimationController ()
 
@@ -80,7 +82,7 @@
     ttsButtonOne.layer.cornerRadius = 15;
     ttsButtonOne.layer.masksToBounds = YES;
     if (@available(iOS 9.0, *)) {
-        ttsButtonOne.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+        ttsButtonOne.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft; // 左文右图
     }
     ttsButtonOne.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
     ttsButtonOne.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
@@ -91,7 +93,21 @@
     [ttsButtonOne.imageView startAnimating];
     
     // gif
-    FLAnimatedImageView *animationImageView;
+    NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"commentgif_liked" ofType:@"gif"];
+    NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
+    FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
+    FLAnimatedImageView *animationImageView = [[FLAnimatedImageView alloc] init];
+    [self.scrollView addSubview:animationImageView];
+    animationImageView.frame = CGRectMake(animationView.pb_left, ttsButtonOne.pb_bottom + 20, 50, 50);
+    animationImageView.animatedImage = animatedImage;
+    
+    // gif
+    YYImage *animatedImageOne = [YYImage imageWithData:gifData];
+    YYAnimatedImageView *animationImageViewOne = [[YYAnimatedImageView alloc] init];
+    [self.scrollView addSubview:animationImageViewOne];
+    animationImageViewOne.frame = CGRectMake(animationView.pb_left, animationImageView.pb_bottom + 20, 50, 50);
+    animationImageViewOne.image = animatedImageOne;
+    //animationImageViewOne.image = [YYImage imageNamed:@"commentgif_liked"];
     
     // video
 }
