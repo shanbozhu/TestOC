@@ -13,6 +13,7 @@
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
 		952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */; };
+		952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */; };
 		952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF349265E42F300B0D7DA /* PBAnimationController.m */; };
 		952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */; };
 		952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */; };
@@ -293,6 +294,8 @@
 		9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
 		952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
 		952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
+		952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationBubbleView.h; sourceTree = "<group>"; };
+		952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationBubbleView.m; sourceTree = "<group>"; };
 		952FF348265E42F300B0D7DA /* PBAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationController.h; sourceTree = "<group>"; };
 		952FF349265E42F300B0D7DA /* PBAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationController.m; sourceTree = "<group>"; };
 		952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bubble_voicesearch.json; sourceTree = "<group>"; };
@@ -824,6 +827,8 @@
 				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
 				952FF6F4265F7C0C00B0D7DA /* PBAnimationButton.h */,
 				952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */,
+				952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */,
+				952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */,
 			);
 			path = PBAnimation;
 			sourceTree = "<group>";
@@ -2549,6 +2554,7 @@
 				95EACF052626CE88006F1A6B /* PBContentController.m in Sources */,
 				952FF6F6265F7C0C00B0D7DA /* PBAnimationButton.m in Sources */,
 				953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */,
+				952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,

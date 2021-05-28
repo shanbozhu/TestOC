@@ -12,6 +12,9 @@
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import <YYImage/YYImage.h>
 #import "PBAnimationButton.h"
+#import "PBAnimationBubbleView.h"
+
+#define kPBBackgroundColor [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95]
 
 @interface PBAnimationController () <PBAnimationButtonDelegate>
 
@@ -45,6 +48,9 @@
     
     //
     [self addClickStatusViews];
+    
+    //
+    [self addBubbleViews];
 }
 
 - (void)addAnimationViews {
@@ -55,13 +61,13 @@
     animationView.frame = CGRectMake(50, 50, 29, 48);
     animationView.loopAnimation = YES;
     [animationView play];
-    animationView.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
+    animationView.backgroundColor = kPBBackgroundColor;
     
     // image array
     UIButton *ttsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.scrollView addSubview:ttsButton];
     ttsButton.frame = CGRectMake(animationView.pb_left, animationView.pb_bottom + 20, 90, 30);
-    ttsButton.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
+    ttsButton.backgroundColor = kPBBackgroundColor;
     [ttsButton setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
     [ttsButton setTitle:@"听天气" forState:UIControlStateNormal];
     ttsButton.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -81,7 +87,7 @@
     UIButton *ttsButtonOne = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.scrollView addSubview:ttsButtonOne];
     ttsButtonOne.frame = CGRectMake(animationView.pb_left, ttsButton.pb_bottom + 20, 90, 30);
-    ttsButtonOne.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95];
+    ttsButtonOne.backgroundColor = kPBBackgroundColor;
     [ttsButtonOne setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
     [ttsButtonOne setTitle:@"听天气" forState:UIControlStateNormal];
     ttsButtonOne.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -108,6 +114,7 @@
     [self.scrollView addSubview:animationImageView];
     animationImageView.frame = CGRectMake(animationView.pb_left, ttsButtonOne.pb_bottom + 20, 50, 50);
     animationImageView.animatedImage = animatedImage;
+    animationImageView.backgroundColor = kPBBackgroundColor;
     
     // gif
     YYImage *animatedImageOne = [YYImage imageWithData:gifData];
@@ -115,6 +122,7 @@
     [self.scrollView addSubview:animationImageViewOne];
     animationImageViewOne.frame = CGRectMake(animationView.pb_left, animationImageView.pb_bottom + 20, 50, 50);
     animationImageViewOne.image = animatedImageOne;
+    animationImageViewOne.backgroundColor = kPBBackgroundColor;
     
     // video
 }
@@ -146,7 +154,7 @@
 - (void)addClickStatusViews {
     PBAnimationButton *stepRightBtn = [PBAnimationButton buttonWithType:UIButtonTypeCustom];
     [self.scrollView addSubview:stepRightBtn];
-    stepRightBtn.frame = CGRectMake(100, 400, 100, 0);
+    stepRightBtn.frame = CGRectMake(200, 50, 100, 0);
     [stepRightBtn addTarget:self
                      action:@selector(shareBtnClick:)
            forControlEvents:UIControlEventTouchUpInside];
@@ -154,6 +162,7 @@
                      action:@selector(changeToAssignAlpha:)
            forControlEvents:UIControlEventTouchDown];
     stepRightBtn.delegate = self;
+    stepRightBtn.backgroundColor = kPBBackgroundColor;
     
     UIImageView *stepRightImageView = [[UIImageView alloc] init];
     self.stepRightImageView = stepRightImageView;
@@ -170,7 +179,7 @@
     stepRightLab.numberOfLines = 0;
     stepRightLab.textAlignment = NSTextAlignmentCenter;
     stepRightLab.font = [UIFont boldSystemFontOfSize:20];
-    stepRightLab.textColor = [UIColor bba_RGBColorFromHexString:@"#1F1F1F"];
+    stepRightLab.textColor = [UIColor whiteColor];
     stepRightLab.text = @"微信好友";
     
     stepRightBtn.pb_height = stepRightLab.pb_bottom;
@@ -190,6 +199,13 @@
     self.stepRightImageView.alpha = 1;
     self.stepRightLab.alpha = 1;
     NSLog(@"gaga");
+}
+
+- (void)addBubbleViews {
+    PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
+    [self.scrollView addSubview:bubbleView];
+    bubbleView.frame = CGRectMake(200, 200, 160, 58);
+    bubbleView.backgroundColor = kPBBackgroundColor;
 }
 
 @end
