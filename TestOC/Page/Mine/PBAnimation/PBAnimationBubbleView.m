@@ -26,6 +26,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -57,9 +58,8 @@
 
 /// 绘制带有圆角的矩形
 - (UIBezierPath *)bubbleRectBezierPath {
-    UIBezierPath *rectPath = nil;
     CGRect contentFrame = CGRectMake(0, self.animationBubble.arrowHeight, self.pb_width, self.pb_height - self.animationBubble.arrowHeight);
-    rectPath = [UIBezierPath bezierPathWithRoundedRect:contentFrame cornerRadius:self.animationBubble.contentRadius];
+    UIBezierPath *rectPath = [UIBezierPath bezierPathWithRoundedRect:contentFrame cornerRadius:self.animationBubble.contentRadius];
     return rectPath;
 }
 
