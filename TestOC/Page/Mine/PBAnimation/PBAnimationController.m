@@ -11,12 +11,12 @@
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import <YYImage/YYImage.h>
-#import "PBAnimationButton.h"
+#import "PBAnimationStateButton.h"
 #import "PBAnimationBubbleView.h"
 
 #define kPBBackgroundColor [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95]
 
-@interface PBAnimationController () <PBAnimationButtonDelegate>
+@interface PBAnimationController () <PBAnimationStateButtonDelegate>
 
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIImageView *stepRightImageView;
@@ -152,7 +152,7 @@
 }
 
 - (void)addClickStatusViews {
-    PBAnimationButton *stepRightBtn = [PBAnimationButton buttonWithType:UIButtonTypeCustom];
+    PBAnimationStateButton *stepRightBtn = [PBAnimationStateButton buttonWithType:UIButtonTypeCustom];
     [self.scrollView addSubview:stepRightBtn];
     stepRightBtn.frame = CGRectMake(200, 50, 100, 0);
     [stepRightBtn addTarget:self
@@ -195,7 +195,7 @@
     NSLog(@"share");
 }
 
-- (void)animationButtonDidTouchEndedOrCancelled:(PBAnimationButton *)btn {
+- (void)animationStateButtonDidTouchEndedOrCancelled:(PBAnimationStateButton *)btn {
     self.stepRightImageView.alpha = 1;
     self.stepRightLab.alpha = 1;
     NSLog(@"gaga");

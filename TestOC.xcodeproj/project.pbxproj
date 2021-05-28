@@ -26,7 +26,7 @@
 		952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */ = {isa = PBXBuildFile; fileRef = 952FF539265F3FC600B0D7DA /* commentgif_liked.gif */; };
 		952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */; };
 		952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */; };
-		952FF6F6265F7C0C00B0D7DA /* PBAnimationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */; };
+		952FF6F6265F7C0C00B0D7DA /* PBAnimationStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */; };
 		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
 		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
 		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
@@ -310,8 +310,8 @@
 		952FF539265F3FC600B0D7DA /* commentgif_liked.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = commentgif_liked.gif; sourceTree = "<group>"; };
 		952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@2x.png"; sourceTree = "<group>"; };
 		952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@3x.png"; sourceTree = "<group>"; };
-		952FF6F4265F7C0C00B0D7DA /* PBAnimationButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationButton.h; sourceTree = "<group>"; };
-		952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationButton.m; sourceTree = "<group>"; };
+		952FF6F4265F7C0C00B0D7DA /* PBAnimationStateButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationStateButton.h; sourceTree = "<group>"; };
+		952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationStateButton.m; sourceTree = "<group>"; };
 		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
 		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
@@ -825,8 +825,8 @@
 				952FF34C265E492F00B0D7DA /* Res */,
 				952FF348265E42F300B0D7DA /* PBAnimationController.h */,
 				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
-				952FF6F4265F7C0C00B0D7DA /* PBAnimationButton.h */,
-				952FF6F5265F7C0C00B0D7DA /* PBAnimationButton.m */,
+				952FF6F4265F7C0C00B0D7DA /* PBAnimationStateButton.h */,
+				952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */,
 				952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */,
 				952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */,
 			);
@@ -2552,7 +2552,7 @@
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
 				95EACF052626CE88006F1A6B /* PBContentController.m in Sources */,
-				952FF6F6265F7C0C00B0D7DA /* PBAnimationButton.m in Sources */,
+				952FF6F6265F7C0C00B0D7DA /* PBAnimationStateButton.m in Sources */,
 				953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */,
 				952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
