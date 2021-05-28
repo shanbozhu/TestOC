@@ -202,9 +202,11 @@
 }
 
 - (void)addBubbleViews {
+    PBAnimationBubble *animationBubble = [[PBAnimationBubble alloc] init];
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
     [self.scrollView addSubview:bubbleView];
-    bubbleView.frame = CGRectMake(200, 200, 160, 58);
+    bubbleView.frame = CGRectMake(200, 160, 160, 58);
+    bubbleView.animationBubble = animationBubble;
     bubbleView.backgroundColor = kPBBackgroundColor;
 }
 
