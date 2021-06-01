@@ -10,27 +10,14 @@
 
 @interface PBAnimationBubbleView () {
     UITextView *_textLabel;
-    UIView *_maskView;
-    UIView * _hostView;
-    UIImageView *_accessoryView;    // 附加视图
-    UIBezierPath *_bubbleArrowPath;
-    UIColor *_hyperLinkTextColor;
-    UIColor *_hightLightHyperLinkTextColor;
-    NSDictionary *_hyperLinkDictionary; //key:NSRange, value: block
-    NSDictionary *_hyperLinkRespondRectsDict; //key:NSRange, value: NSArray<NSString *>, (NSStringFromCGRect)
     UIWindow *_superWindow; //指定的父window
     CGPoint _arrowStartPointInSelf; //箭头转换后位置
     UIEdgeInsets _paddingInsets; // 文本内边距
-    // 外部设置的几个颜色色号
-    BOOL _textColorCustom;
-    BOOL _bubbleBGColorCustom;
-    
     NSString *_text; // 气泡显示文字
     NSAttributedString *_attributeText; // 气泡属性字符串
     CGPoint _arrowStartPoint; // 箭头的指向的位置，相对于window的坐标系，否则计算出的箭头在气泡中位置不对
     CGFloat _arrowWidth; // 箭头宽度，默认为11.67
     CGFloat _arrowHeight; // 箭头高度，默认为7
-    
 }
 
 @end
@@ -43,7 +30,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         
-        
         _textLabel = [[UITextView alloc] init];
         _textLabel.editable = NO;
         _textLabel.scrollEnabled = NO;
@@ -53,8 +39,9 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
         _textLabel.textAlignment = NSTextAlignmentJustified;
         _textLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_textLabel];
-        _bubbleEdgeToScreenDistance = 8.0f;
-        _textFont = [UIFont systemFontOfSize:14.0f];
+        
+        _bubbleEdgeToScreenDistance = 10;
+        _textFont = [UIFont systemFontOfSize:20];
         _paddingInsets = UIEdgeInsetsMake(10.f, 13.5f, 10.5f, 13.5f);
         _cornerRadius = 12.0f;
         _arrowWidth = 12.67f; //M4
@@ -148,10 +135,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
         _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         _arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
-    }
-    // 附加视图坐标
-    if (_accessoryView) {
-        _accessoryView.center = CGPointMake(_textLabel.center.x + CGRectGetWidth(_textLabel.frame)/2, _textLabel.center.y); // 文本框中心点+1/2文本宽度 + 间隔 + 1/2附加视图宽度
     }
 }
 
@@ -251,11 +234,10 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
 }
 
 - (UIEdgeInsets)contentPaddingInsets {
-    CGFloat rightDValue = 0;
     return UIEdgeInsetsMake(_paddingInsets.top + _edgeInsets.top,
                             _paddingInsets.left + _edgeInsets.left,
                             _paddingInsets.bottom + _edgeInsets.bottom,
-                            _paddingInsets.right + _edgeInsets.right + rightDValue);
+                            _paddingInsets.right + _edgeInsets.right);
 }
 
 -(CGFloat)getXDirectionExtraWidth {
@@ -311,7 +293,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     attributes[NSForegroundColorAttributeName] = _textColor;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentJustified;
-    //    paragraphStyle.lineSpacing = 8.0f;
     attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     return attributes;
 }
