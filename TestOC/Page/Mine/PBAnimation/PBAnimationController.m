@@ -205,7 +205,7 @@
     UIColor *color = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
     UIView *hostView = [[UIView alloc] init];
     [self.scrollView addSubview:hostView];
-    hostView.frame = CGRectMake(200, 160, 50, 50);
+    hostView.frame = CGRectMake(APPLICATION_FRAME_WIDTH - 20 - 50, 160, 50, 50);
     hostView.backgroundColor = color;
     
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];

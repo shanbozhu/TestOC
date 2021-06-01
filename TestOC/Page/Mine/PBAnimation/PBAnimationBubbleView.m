@@ -104,7 +104,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     [self setTextLabelWithHightLightLinkKeys:@[]];
     [superView addSubview:self]; // 添加视图
     [self ba_adjustViewFrame]; // 添加视图后调整坐标（坐标转换）
-
 }
 
 - (CGRect)ba_adjustViewFrame {
@@ -127,7 +126,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     }
     frame = [self adjustFrame:frame]; // 调整自身frame位置
     [self adjustSubViewFrame]; // 调整子视图坐标
-//    [self initHyperLinkRespondRectsDict]; // 初始响应区数据字典
     self.frame = [_superWindow convertRect:frame toView:self.superview];
     _arrowStartPointInSelf = [self convertPoint:_arrowStartPoint fromView:_superWindow];
     
@@ -209,32 +207,17 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
 }
 
 - (UIBezierPath *)bubbleRectBezierPath {
-//#ifdef __BAIDUTOMAS
     UIBezierPath *rectPath = nil;
-//    if (_bubbleModel && !CGRectIsEmpty(_contentFrame)) {
-//        //绘制矩形
-//        rectPath = [UIBezierPath bezierPathWithRoundedRect:_contentFrame cornerRadius:_cornerRadius];
-//    } else {
-        CGRect realBubbleRect = CGRectMake(_textLabel.frame.origin.x - [self contentPaddingInsets].left,
-                                           _textLabel.frame.origin.y - [self contentPaddingInsets].top,
-                                           _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right + [self accessoryViewWidth] + [self accessoryViewLeftPadding],
-                                           _textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
-        rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:_cornerRadius];
-//    }
-//#else
-//    CGRect realBubbleRect = CGRectMake(_textLabel.frame.origin.x - [self contentPaddingInsets].left,
-//                                       _textLabel.frame.origin.y - [self contentPaddingInsets].top,
-//                                       _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right + [self accessoryViewWidth] + [self accessoryViewLeftPadding],
-//                                       _textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
-//    UIBezierPath *rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:_cornerRadius];
-//#endif
+    CGRect realBubbleRect = CGRectMake(_textLabel.frame.origin.x - [self contentPaddingInsets].left,
+                                       _textLabel.frame.origin.y - [self contentPaddingInsets].top,
+                                       _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right + [self accessoryViewWidth] + [self accessoryViewLeftPadding],
+                                       _textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
+    rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:_cornerRadius];
     return rectPath;
 }
 
 -(CGRect)adjustFrame:(CGRect)frame {
-//    if (!_autoAdjustFrameKeepInScreen) {
-//        return frame;
-//    }
+
     CGRect screen = [UIScreen mainScreen].bounds;
     if (_arrowDirection == BBABubbleViewArrowDirectionUp
         || _arrowDirection == BBABubbleViewArrowDirectionDown) { //左右调整位置
@@ -335,13 +318,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
 
 - (void)setTextLabelWithHightLightLinkKeys:(NSArray *)linkKeys {
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:_text attributes:[self attributesOfText]];
-    for (NSString *rangeStr in _hyperLinkDictionary.allKeys) {
-        if ([linkKeys containsObject:rangeStr]) {
-            [attributeStr addAttribute:NSForegroundColorAttributeName value:_hightLightHyperLinkTextColor range:NSRangeFromString(rangeStr)];
-        } else {
-            [attributeStr addAttribute:NSForegroundColorAttributeName value:_hyperLinkTextColor range:NSRangeFromString(rangeStr)];
-        }
-    }
     _textLabel.attributedText = attributeStr;
 }
 
