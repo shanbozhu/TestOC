@@ -10,15 +10,15 @@
 
 @interface PBAnimationBubbleView () {
     UITextView *_textLabel;
-    UIWindow *_superWindow; //指定的父window
     CGPoint _arrowStartPointInSelf; //箭头转换后位置
     UIEdgeInsets _paddingInsets; // 文本内边距
-    NSString *_text; // 气泡显示文字
     NSAttributedString *_attributeText; // 气泡属性字符串
     CGPoint _arrowStartPoint; // 箭头的指向的位置，相对于window的坐标系，否则计算出的箭头在气泡中位置不对
     CGFloat _arrowWidth; // 箭头宽度，默认为11.67
     CGFloat _arrowHeight; // 箭头高度，默认为7
 }
+
+@property (nonatomic, copy) NSString *text;
 
 @end
 
@@ -51,44 +51,16 @@
 }
 
 - (void)showBubbleWithText:(NSString *)text inView:(UIView *)view {
-    // 获取window
-    UIWindow *window = (view.window == nil ? [UIApplication sharedApplication].keyWindow : view.window);
-    // 坐标转换
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
     CGRect winFrame = [view.superview convertRect:view.frame toView:window];
-    // 获取箭头相对window坐标
     CGPoint arrowStartPoint = [self arrowStartPointWithRect:winFrame];
-    // 转化成相对view的箭头点
-    arrowStartPoint = [window convertPoint:arrowStartPoint toView:view];
-    [self ba_showBubbleWithText:text attributeText:nil inView:view atPoint:arrowStartPoint hyperLinkDictionary:@{}];
-}
+    
+    self.text = text;
+    _arrowStartPoint = arrowStartPoint;
 
-- (void)ba_showBubbleWithText:(NSString *)text attributeText:(NSAttributedString *)attributeText inView:(UIView *)view atPoint:(CGPoint)point hyperLinkDictionary:(NSDictionary *)hyperLinkDictionary {
-    // 获取window
-    UIWindow *window = (view.window == nil ? [UIApplication sharedApplication].delegate.window : view.window);
-    // 气泡箭头坐标
-    CGPoint arrowStartPoint = [view convertPoint:point toView:window];
-    // 展示、组装气泡信息
-    [self ba_showBubbleWithText:text attirbuteText:attributeText superView:view window:window atPoint:arrowStartPoint hyperLinkDictionary:hyperLinkDictionary];
-}
-
-- (void)ba_showBubbleWithText:(NSString *)text
-                attirbuteText:(NSAttributedString *)attributeText
-                    superView:(UIView *)superView
-                       window:(UIWindow *)window
-                      atPoint:(CGPoint)point
-          hyperLinkDictionary:(NSDictionary *)hyperLinkDictionary {
-    _superWindow = window;
-    // window不存在
-    if (!_superWindow) {
-        _superWindow = [UIApplication sharedApplication].delegate.window;
-    }
-    _text = text;
-    _arrowStartPoint = point;
-
-    // 设置文案
     [self setTextLabelWithHightLightLinkKeys:@[]];
-    [superView addSubview:self]; // 添加视图
-    [self ba_adjustViewFrame]; // 添加视图后调整坐标（坐标转换）
+    [view addSubview:self];
+    [self ba_adjustViewFrame];
 }
 
 - (CGRect)ba_adjustViewFrame {
@@ -111,8 +83,10 @@
     }
     frame = [self adjustFrame:frame]; // 调整自身frame位置
     [self adjustSubViewFrame]; // 调整子视图坐标
-    self.frame = [_superWindow convertRect:frame toView:self.superview];
-    _arrowStartPointInSelf = [self convertPoint:_arrowStartPoint fromView:_superWindow];
+    
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    self.frame = [window convertRect:frame toView:self.superview];
+    _arrowStartPointInSelf = [self convertPoint:_arrowStartPoint fromView:window];
     
     return frame;
 }
@@ -280,7 +254,7 @@
 
 
 - (void)setTextLabelWithHightLightLinkKeys:(NSArray *)linkKeys {
-    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:_text attributes:[self attributesOfText]];
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:[self attributesOfText]];
     _textLabel.attributedText = attributeStr;
 }
 
@@ -295,18 +269,16 @@
     return attributes;
 }
 
-/// 根据箭头方向以及给定rect，决定箭头的起始点
-/// @param rect 将头指向的矩形
 - (CGPoint)arrowStartPointWithRect:(CGRect)rect {
     CGFloat distoView = 3.0f;
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp) {
-        return CGPointMake(CGRectGetMinX(rect) + rect.size.width/2, CGRectGetMaxY(rect) + distoView);
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionDown){
-        return CGPointMake(CGRectGetMinX(rect) + rect.size.width/2, CGRectGetMinY(rect) - distoView);
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft){
-        return CGPointMake(CGRectGetMaxX(rect) + distoView, CGRectGetMinY(rect) + rect.size.height/2);
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionRight){
-        return CGPointMake(CGRectGetMinX(rect) - distoView, CGRectGetMinY(rect) + rect.size.height/2);
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
+        return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMaxY(rect) + distoView);
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
+        return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMinY(rect) - distoView);
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
+        return CGPointMake(CGRectGetMaxX(rect) + distoView, CGRectGetMinY(rect) + rect.size.height / 2);
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
+        return CGPointMake(CGRectGetMinX(rect) - distoView, CGRectGetMinY(rect) + rect.size.height / 2);
     }
     return CGPointZero;
 }
