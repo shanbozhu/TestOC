@@ -28,11 +28,6 @@ typedef NS_ENUM(NSUInteger, BBABubbleViewArrowDirection) {
 
 @property (nonatomic, assign) BBABubbleViewArrowDirection arrowDirection;
 @property (nonatomic, strong) UIColor *bubbleBackgroundColor;
-@property (nonatomic, assign) CGFloat cornerRadius;
-@property (nonatomic, assign) CGFloat bubbleEdgeToScreenDistance;
-@property (nonatomic, assign) UIEdgeInsets edgeInsets;
-@property (nonatomic, strong) UIFont *textFont;
-@property (nonatomic, strong) UIColor *textColor;
 
 - (void)showBubbleWithText:(NSString *)text
                     inView:(UIView *)view;

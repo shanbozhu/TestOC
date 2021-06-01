@@ -19,6 +19,9 @@
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
 @property (nonatomic, assign) UIEdgeInsets paddingInsets;
+@property (nonatomic, assign) CGFloat cornerRadius;
+@property (nonatomic, strong) UIFont *textFont;
+@property (nonatomic, strong) UIColor *textColor;
 
 @end
 
@@ -38,13 +41,12 @@
         _textLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_textLabel];
         
-        _textFont = [UIFont systemFontOfSize:20];
         self.paddingInsets = UIEdgeInsetsMake(10.f, 13.5f, 10.5f, 13.5f);
-        _cornerRadius = 12.0f;
+        self.cornerRadius = 12.0f;
         self.arrowWidth = 12.67f;
         self.arrowHeight = 7.0f;
-        _textColor = [UIColor whiteColor];
-        
+        self.textFont = [UIFont systemFontOfSize:20];
+        self.textColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -67,16 +69,16 @@
     CGRect frame = CGRectZero;
     frame.size.width = labelBounds.size.width + [self getXDirectionExtraWidth];
     frame.size.height = labelBounds.size.height + [self getYDirectionExtraHeight];
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
         frame.origin.x = self.arrowStartPoint.x - frame.size.width/2;
         frame.origin.y = self.arrowStartPoint.y;
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionDown) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         frame.origin.x = self.arrowStartPoint.x - frame.size.width/2;
         frame.origin.y = self.arrowStartPoint.y - frame.size.height;
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         frame.origin.x = self.arrowStartPoint.x;
         frame.origin.y = self.arrowStartPoint.y - frame.size.height/2;
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         frame.origin.x = self.arrowStartPoint.x - frame.size.width;
         frame.origin.y = self.arrowStartPoint.y - frame.size.height/2;
     }
@@ -94,16 +96,16 @@
     CGRect labelBounds = [self getTextlabelBounds];
     UIEdgeInsets contentPadding = [self contentPaddingInsets];
     CGPoint startPoint = self.arrowStartPoint;
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
         _textLabel.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionDown) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         _textLabel.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     }
@@ -148,13 +150,13 @@
 
 /// 根据箭头方向返回箭头旋转的角度
 - (CGFloat)rotateAngleOfArrow {
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
         return 0.0f;
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionDown) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         return M_PI;
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         return M_PI_2;
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         return 1.5*M_PI;
     }
     return 0.0f;
@@ -166,21 +168,21 @@
                                        _textLabel.frame.origin.y - [self contentPaddingInsets].top,
                                        _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
                                        _textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
-    rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:_cornerRadius];
+    rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:self.cornerRadius];
     return rectPath;
 }
 
 -(CGRect)adjustFrame:(CGRect)frame {
     CGRect screen = [UIScreen mainScreen].bounds;
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp
-        || _arrowDirection == BBABubbleViewArrowDirectionDown) { //左右调整位置
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp
+        || self.arrowDirection == BBABubbleViewArrowDirectionDown) { //左右调整位置
         if (frame.size.width <= screen.size.width) {
             if (frame.origin.x + frame.size.width > screen.size.width) {
                 frame.origin.x = screen.size.width - frame.size.width;
             }
         }
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft
-               || _arrowDirection == BBABubbleViewArrowDirectionRight) { // 上下调整位置
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft
+               || self.arrowDirection == BBABubbleViewArrowDirectionRight) { // 上下调整位置
         if (frame.size.height <= screen.size.height) {
             if (frame.origin.y + frame.size.height > screen.size.height) {
                 frame.origin.y = screen.size.height - frame.size.height;
@@ -191,23 +193,23 @@
 }
 
 - (CGFloat)getYDirectionExtraHeight {
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp
-        || _arrowDirection == BBABubbleViewArrowDirectionDown) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp
+        || self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         return self.arrowHeight + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
     }
     return [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
 }
 
 - (UIEdgeInsets)contentPaddingInsets {
-    return UIEdgeInsetsMake(self.paddingInsets.top + _edgeInsets.top,
-                            self.paddingInsets.left + _edgeInsets.left,
-                            self.paddingInsets.bottom + _edgeInsets.bottom,
-                            self.paddingInsets.right + _edgeInsets.right);
+    return UIEdgeInsetsMake(self.paddingInsets.top,
+                            self.paddingInsets.left,
+                            self.paddingInsets.bottom,
+                            self.paddingInsets.right);
 }
 
 -(CGFloat)getXDirectionExtraWidth {
-    if (_arrowDirection == BBABubbleViewArrowDirectionLeft
-        || _arrowDirection == BBABubbleViewArrowDirectionRight) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionLeft
+        || self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         return self.arrowHeight + [self contentPaddingInsets].left + [self contentPaddingInsets].right;
     }
     return [self contentPaddingInsets].left + [self contentPaddingInsets].right;
@@ -235,11 +237,11 @@
 - (CGFloat)capableMaxWidthOfText {
     CGFloat capable = 0.0f;
     CGRect screen = [UIScreen mainScreen].bounds;
-    if (_arrowDirection == BBABubbleViewArrowDirectionUp || _arrowDirection == BBABubbleViewArrowDirectionDown) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp || self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         capable = screen.size.width - [self getXDirectionExtraWidth]; // 屏幕尺寸-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         capable = screen.size.width - self.arrowStartPoint.x - [self getXDirectionExtraWidth]; // 屏幕尺寸- 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
-    } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
+    } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         capable = self.arrowStartPoint.x - [self getXDirectionExtraWidth]; // 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     }
     return MAX(capable, 0.0f);
@@ -254,8 +256,8 @@
 /// 字体的属性字典，用于计算label的大小
 - (NSMutableDictionary *)attributesOfText {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSFontAttributeName] = _textFont;
-    attributes[NSForegroundColorAttributeName] = _textColor;
+    attributes[NSFontAttributeName] = self.textFont;
+    attributes[NSForegroundColorAttributeName] = self.textColor;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentJustified;
     attributes[NSParagraphStyleAttributeName] = paragraphStyle;
