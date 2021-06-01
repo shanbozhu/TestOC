@@ -74,21 +74,10 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     CGPoint arrowStartPoint = [self arrowStartPointWithRect:winFrame];
     // 转化成相对view的箭头点
     arrowStartPoint = [window convertPoint:arrowStartPoint toView:view];
-    [self showBubbleWithText:text inView:view atPoint:arrowStartPoint];
-}
-
-- (void)showBubbleWithText:(NSString *)text inView:(UIView *)view atPoint:(CGPoint)point {
-    [self showBubbleWithText:text inView:view atPoint:point hyperLinkDictionary:@{}];
-}
-
-- (void)showBubbleWithText:(NSString *)text inView:(UIView *)view atPoint:(CGPoint)point hyperLinkDictionary:(NSDictionary *)hyperLinkDictionary {
-    [self ba_showBubbleWithText:text attributeText:nil inView:view atPoint:point hyperLinkDictionary:hyperLinkDictionary];
+    [self ba_showBubbleWithText:text attributeText:nil inView:view atPoint:arrowStartPoint hyperLinkDictionary:@{}];
 }
 
 - (void)ba_showBubbleWithText:(NSString *)text attributeText:(NSAttributedString *)attributeText inView:(UIView *)view atPoint:(CGPoint)point hyperLinkDictionary:(NSDictionary *)hyperLinkDictionary {
-    if (!text && !attributeText) { // 文本无效返回
-        return;
-    }
     // 获取window
     UIWindow *window = (view.window == nil ? [UIApplication sharedApplication].delegate.window : view.window);
     // 气泡箭头坐标
@@ -103,32 +92,19 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
                        window:(UIWindow *)window
                       atPoint:(CGPoint)point
           hyperLinkDictionary:(NSDictionary *)hyperLinkDictionary {
-    if (!text && !attributeText) { // 文本无效返回
-        return;
-    }
     _superWindow = window;
     // window不存在
     if (!_superWindow) {
         _superWindow = [UIApplication sharedApplication].delegate.window;
     }
-    if (attributeText) { // 富文本气泡
-        _attributeText = attributeText;
-    } else { // 普通文本气泡
-        _text = text;
-    }
+    _text = text;
     _arrowStartPoint = point;
-//    _hyperLinkDictionary = hyperLinkDictionary;
-//    if (_arrowDirection == BBABubbleViewArrowDirectionAuto) {
-//        _arrowDirection = [self autoCaculateBubbleArrowDirectionWithHostViewCenterPoint:_arrowStartPoint];
-//    }
+
     // 设置文案
     [self setTextLabelWithHightLightLinkKeys:@[]];
-//    [self ba_checkAccessoryView];
     [superView addSubview:self]; // 添加视图
     [self ba_adjustViewFrame]; // 添加视图后调整坐标（坐标转换）
-//    [self ba_addShadow]; // 添加阴影
-//    [self ba_addDefaultAnimation]; // 展示动画
-//    [self ba_startTimer]; // 开启计时器，自动隐藏
+
 }
 
 - (CGRect)ba_adjustViewFrame {
@@ -358,19 +334,15 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
 
 
 - (void)setTextLabelWithHightLightLinkKeys:(NSArray *)linkKeys {
-    if (_attributeText) { // 属性字符直接应用
-        _textLabel.attributedText = _attributeText;
-    } else { //普通字符模式
-        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:_text attributes:[self attributesOfText]];
-        for (NSString *rangeStr in _hyperLinkDictionary.allKeys) {
-            if ([linkKeys containsObject:rangeStr]) {
-                [attributeStr addAttribute:NSForegroundColorAttributeName value:_hightLightHyperLinkTextColor range:NSRangeFromString(rangeStr)];
-            } else {
-                [attributeStr addAttribute:NSForegroundColorAttributeName value:_hyperLinkTextColor range:NSRangeFromString(rangeStr)];
-            }
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:_text attributes:[self attributesOfText]];
+    for (NSString *rangeStr in _hyperLinkDictionary.allKeys) {
+        if ([linkKeys containsObject:rangeStr]) {
+            [attributeStr addAttribute:NSForegroundColorAttributeName value:_hightLightHyperLinkTextColor range:NSRangeFromString(rangeStr)];
+        } else {
+            [attributeStr addAttribute:NSForegroundColorAttributeName value:_hyperLinkTextColor range:NSRangeFromString(rangeStr)];
         }
-        _textLabel.attributedText = attributeStr;
     }
+    _textLabel.attributedText = attributeStr;
 }
 
 /// 字体的属性字典，用于计算label的大小

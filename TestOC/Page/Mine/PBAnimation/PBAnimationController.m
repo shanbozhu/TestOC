@@ -202,14 +202,15 @@
 }
 
 - (void)addBubbleViews {
+    UIColor *color = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
     UIView *hostView = [[UIView alloc] init];
     [self.scrollView addSubview:hostView];
     hostView.frame = CGRectMake(200, 160, 50, 50);
-    hostView.backgroundColor = [UIColor redColor];
+    hostView.backgroundColor = color;
     
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
-    bubbleView.bubbleBackgroundColor = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
+    bubbleView.bubbleBackgroundColor = color;
     [bubbleView showBubbleWithText:@"自拍测福气"
                             inView:hostView];
     bubbleView.backgroundColor = kPBBackgroundColor;
