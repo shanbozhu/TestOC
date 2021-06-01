@@ -229,7 +229,7 @@
         sourceImageView = self.sourceImageFatherView.subviews[0];
     }
     
-    // 将父视图(sourceImageFatherView)上的子视图(sourceImageView)坐标转换到相对于self的坐标
+    // 父视图(sourceImageFatherView)转换子视图(sourceImageView)坐标到self
     CGRect rect = [self.sourceImageFatherView convertRect:sourceImageView.frame toView:self];
     
     if (self.isCarousel == YES) {
@@ -308,7 +308,7 @@
         sourceImageView = self.sourceImageFatherView.subviews[0];
     }
     
-    // 将父视图(sourceImageFatherView)上的子视图(sourceImageView)坐标转换到相对于self的坐标
+    // 父视图(sourceImageFatherView)转换子视图(sourceImageView)坐标到self
     CGRect rect = [self.sourceImageFatherView convertRect:sourceImageView.frame toView:self];
     
     // 临时动画图片视图
