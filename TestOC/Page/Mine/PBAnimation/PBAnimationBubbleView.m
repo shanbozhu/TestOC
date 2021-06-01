@@ -38,7 +38,6 @@
         _textLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_textLabel];
         
-        _bubbleEdgeToScreenDistance = 0;
         _textFont = [UIFont systemFontOfSize:20];
         _paddingInsets = UIEdgeInsetsMake(10.f, 13.5f, 10.5f, 13.5f);
         _cornerRadius = 12.0f;
@@ -175,22 +174,16 @@
     CGRect screen = [UIScreen mainScreen].bounds;
     if (_arrowDirection == BBABubbleViewArrowDirectionUp
         || _arrowDirection == BBABubbleViewArrowDirectionDown) { //左右调整位置
-        if (frame.size.width <= screen.size.width - 2*_bubbleEdgeToScreenDistance) {
-            if (frame.origin.x < _bubbleEdgeToScreenDistance) {
-                frame.origin.x = _bubbleEdgeToScreenDistance;
-            }
-            if (frame.origin.x + frame.size.width > screen.size.width - _bubbleEdgeToScreenDistance) {
-                frame.origin.x = screen.size.width - _bubbleEdgeToScreenDistance - frame.size.width;
+        if (frame.size.width <= screen.size.width) {
+            if (frame.origin.x + frame.size.width > screen.size.width) {
+                frame.origin.x = screen.size.width - frame.size.width;
             }
         }
     } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft
                || _arrowDirection == BBABubbleViewArrowDirectionRight) { // 上下调整位置
-        if (frame.size.height <= screen.size.height - 2*_bubbleEdgeToScreenDistance) {
-            if (frame.origin.y < _bubbleEdgeToScreenDistance) {
-                frame.origin.y = _bubbleEdgeToScreenDistance;
-            }
-            if (frame.origin.y + frame.size.height > screen.size.height - _bubbleEdgeToScreenDistance) {
-                frame.origin.y = screen.size.height - _bubbleEdgeToScreenDistance - frame.size.height;
+        if (frame.size.height <= screen.size.height) {
+            if (frame.origin.y + frame.size.height > screen.size.height) {
+                frame.origin.y = screen.size.height - frame.size.height;
             }
         }
     }
@@ -243,11 +236,11 @@
     CGFloat capable = 0.0f;
     CGRect screen = [UIScreen mainScreen].bounds;
     if (_arrowDirection == BBABubbleViewArrowDirectionUp || _arrowDirection == BBABubbleViewArrowDirectionDown) {
-        capable = screen.size.width - [self getXDirectionExtraWidth] - 2*_bubbleEdgeToScreenDistance; // 屏幕尺寸-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = screen.size.width - [self getXDirectionExtraWidth]; // 屏幕尺寸-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        capable = screen.size.width - self.arrowStartPoint.x - [self getXDirectionExtraWidth] - _bubbleEdgeToScreenDistance; // 屏幕尺寸- 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = screen.size.width - self.arrowStartPoint.x - [self getXDirectionExtraWidth]; // 屏幕尺寸- 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
-        capable = self.arrowStartPoint.x - [self getXDirectionExtraWidth] - _bubbleEdgeToScreenDistance; // 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = self.arrowStartPoint.x - [self getXDirectionExtraWidth]; // 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     }
     return MAX(capable, 0.0f);
 }
