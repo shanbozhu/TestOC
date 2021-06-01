@@ -10,15 +10,15 @@
 
 @interface PBAnimationBubbleView () {
     UITextView *_textLabel;
-    CGPoint _arrowStartPointInSelf; //箭头转换后位置
-    UIEdgeInsets _paddingInsets; // 文本内边距
     NSAttributedString *_attributeText; // 气泡属性字符串
-    CGFloat _arrowWidth; // 箭头宽度，默认为11.67
-    CGFloat _arrowHeight; // 箭头高度，默认为7
 }
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) CGPoint arrowStartPoint;
+@property (nonatomic, assign) CGPoint arrowStartPointInSelf;
+@property (nonatomic, assign) CGFloat arrowWidth;
+@property (nonatomic, assign) CGFloat arrowHeight;
+@property (nonatomic, assign) UIEdgeInsets paddingInsets;
 
 @end
 
@@ -39,10 +39,10 @@
         [self addSubview:_textLabel];
         
         _textFont = [UIFont systemFontOfSize:20];
-        _paddingInsets = UIEdgeInsetsMake(10.f, 13.5f, 10.5f, 13.5f);
+        self.paddingInsets = UIEdgeInsetsMake(10.f, 13.5f, 10.5f, 13.5f);
         _cornerRadius = 12.0f;
-        _arrowWidth = 12.67f; //M4
-        _arrowHeight = 7.0f; //M2
+        self.arrowWidth = 12.67f;
+        self.arrowHeight = 7.0f;
         _textColor = [UIColor whiteColor];
         
     }
@@ -85,7 +85,7 @@
     
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     self.frame = [window convertRect:frame toView:self.superview];
-    _arrowStartPointInSelf = [self convertPoint:self.arrowStartPoint fromView:window];
+    self.arrowStartPointInSelf = [self convertPoint:self.arrowStartPoint fromView:window];
     
     return frame;
 }
@@ -95,13 +95,13 @@
     UIEdgeInsets contentPadding = [self contentPaddingInsets];
     CGPoint startPoint = self.arrowStartPoint;
     if (_arrowDirection == BBABubbleViewArrowDirectionUp) {
-        _textLabel.frame = CGRectMake(contentPadding.left, _arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        _textLabel.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (_arrowDirection == BBABubbleViewArrowDirectionDown) {
         _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        _textLabel.frame = CGRectMake(_arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        _textLabel.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
         _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
@@ -119,7 +119,7 @@
     [rectPath fill];
     
     //修改坐标系原点，旋转坐标系，方便箭头绘制
-    CGPoint point = _arrowStartPointInSelf;
+    CGPoint point = self.arrowStartPointInSelf;
     CGContextSaveGState(contextRef);
     CGContextTranslateCTM(contextRef, point.x, point.y);
     CGContextRotateCTM(contextRef, -[self rotateAngleOfArrow]);
@@ -138,8 +138,8 @@
     [arrowPath moveToPoint:CGPointMake(-arc, arc)];
     [arrowPath addCurveToPoint:CGPointMake(arc, arc) controlPoint1:CGPointZero controlPoint2:CGPointZero];
     // 三角(高度多0.5f,解决箭头朝上有间隙case)
-    [arrowPath addLineToPoint:CGPointMake(_arrowWidth/2, _arrowHeight + .5f)];
-    [arrowPath addLineToPoint:CGPointMake(_arrowWidth/-2.0, _arrowHeight + .5f)];
+    [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / 2, self.arrowHeight + .5f)];
+    [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / -2.0, self.arrowHeight + .5f)];
     [arrowPath addLineToPoint:CGPointMake(-arc, arc)];
     [arrowPath closePath];
     
@@ -193,22 +193,22 @@
 - (CGFloat)getYDirectionExtraHeight {
     if (_arrowDirection == BBABubbleViewArrowDirectionUp
         || _arrowDirection == BBABubbleViewArrowDirectionDown) {
-        return _arrowHeight + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
+        return self.arrowHeight + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
     }
     return [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
 }
 
 - (UIEdgeInsets)contentPaddingInsets {
-    return UIEdgeInsetsMake(_paddingInsets.top + _edgeInsets.top,
-                            _paddingInsets.left + _edgeInsets.left,
-                            _paddingInsets.bottom + _edgeInsets.bottom,
-                            _paddingInsets.right + _edgeInsets.right);
+    return UIEdgeInsetsMake(self.paddingInsets.top + _edgeInsets.top,
+                            self.paddingInsets.left + _edgeInsets.left,
+                            self.paddingInsets.bottom + _edgeInsets.bottom,
+                            self.paddingInsets.right + _edgeInsets.right);
 }
 
 -(CGFloat)getXDirectionExtraWidth {
     if (_arrowDirection == BBABubbleViewArrowDirectionLeft
         || _arrowDirection == BBABubbleViewArrowDirectionRight) {
-        return _arrowHeight + [self contentPaddingInsets].left + [self contentPaddingInsets].right;
+        return self.arrowHeight + [self contentPaddingInsets].left + [self contentPaddingInsets].right;
     }
     return [self contentPaddingInsets].left + [self contentPaddingInsets].right;
 }
