@@ -109,7 +109,7 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
 - (CGRect)ba_adjustViewFrame {
     CGRect labelBounds = [self getTextlabelBounds];
     CGRect frame = CGRectZero;
-    frame.size.width = labelBounds.size.width + [self getXDirectionExtraWidth] + [self accessoryViewLeftPadding] + [self accessoryViewWidth];
+    frame.size.width = labelBounds.size.width + [self getXDirectionExtraWidth];
     frame.size.height = labelBounds.size.height + [self getYDirectionExtraHeight];
     if (_arrowDirection == BBABubbleViewArrowDirectionUp) {
         frame.origin.x = _arrowStartPoint.x - frame.size.width/2;
@@ -151,7 +151,7 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     }
     // 附加视图坐标
     if (_accessoryView) {
-        _accessoryView.center = CGPointMake(_textLabel.center.x + CGRectGetWidth(_textLabel.frame)/2 + [self accessoryViewLeftPadding] + [self accessoryViewWidth]/2, _textLabel.center.y); // 文本框中心点+1/2文本宽度 + 间隔 + 1/2附加视图宽度
+        _accessoryView.center = CGPointMake(_textLabel.center.x + CGRectGetWidth(_textLabel.frame)/2, _textLabel.center.y); // 文本框中心点+1/2文本宽度 + 间隔 + 1/2附加视图宽度
     }
 }
 
@@ -210,14 +210,13 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     UIBezierPath *rectPath = nil;
     CGRect realBubbleRect = CGRectMake(_textLabel.frame.origin.x - [self contentPaddingInsets].left,
                                        _textLabel.frame.origin.y - [self contentPaddingInsets].top,
-                                       _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right + [self accessoryViewWidth] + [self accessoryViewLeftPadding],
+                                       _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
                                        _textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
     rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:_cornerRadius];
     return rectPath;
 }
 
 -(CGRect)adjustFrame:(CGRect)frame {
-
     CGRect screen = [UIScreen mainScreen].bounds;
     if (_arrowDirection == BBABubbleViewArrowDirectionUp
         || _arrowDirection == BBABubbleViewArrowDirectionDown) { //左右调整位置
@@ -252,27 +251,11 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
 }
 
 - (UIEdgeInsets)contentPaddingInsets {
-    CGFloat rightDValue = 10;
+    CGFloat rightDValue = 0;
     return UIEdgeInsetsMake(_paddingInsets.top + _edgeInsets.top,
                             _paddingInsets.left + _edgeInsets.left,
                             _paddingInsets.bottom + _edgeInsets.bottom,
                             _paddingInsets.right + _edgeInsets.right + rightDValue);
-}
-
-/// 附加视图左边距
-- (CGFloat)accessoryViewLeftPadding {
-//    if (_accessoryType == BBABubbleAccessoryDisclosureIndicator) {
-//        return 3.0f * (_textFont.pointSize/14.0f);
-//    }
-    return 0.0f;
-}
-
-/// 附加视图宽度
-- (CGFloat)accessoryViewWidth {
-//    if (_accessoryType == BBABubbleAccessoryDisclosureIndicator) {
-//        return _textFont.pointSize * (18.0/14.0f);
-//    }
-    return 0.0f;
 }
 
 -(CGFloat)getXDirectionExtraWidth {
@@ -306,11 +289,11 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     CGFloat capable = 0.0f;
     CGRect screen = [UIScreen mainScreen].bounds;
     if (_arrowDirection == BBABubbleViewArrowDirectionUp || _arrowDirection == BBABubbleViewArrowDirectionDown) {
-        capable = screen.size.width - [self getXDirectionExtraWidth] - [self accessoryViewWidth] - [self accessoryViewLeftPadding] - 2*_bubbleEdgeToScreenDistance; // 屏幕尺寸-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = screen.size.width - [self getXDirectionExtraWidth] - 2*_bubbleEdgeToScreenDistance; // 屏幕尺寸-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        capable = screen.size.width - _arrowStartPoint.x - [self getXDirectionExtraWidth] - [self accessoryViewWidth] - [self accessoryViewLeftPadding] - _bubbleEdgeToScreenDistance; // 屏幕尺寸- 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = screen.size.width - _arrowStartPoint.x - [self getXDirectionExtraWidth] - _bubbleEdgeToScreenDistance; // 屏幕尺寸- 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     } else if (_arrowDirection == BBABubbleViewArrowDirectionRight) {
-        capable = _arrowStartPoint.x - [self getXDirectionExtraWidth] - [self accessoryViewWidth] - [self accessoryViewLeftPadding] - _bubbleEdgeToScreenDistance; // 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = _arrowStartPoint.x - [self getXDirectionExtraWidth] - _bubbleEdgeToScreenDistance; // 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
     }
     return MAX(capable, 0.0f);
 }
