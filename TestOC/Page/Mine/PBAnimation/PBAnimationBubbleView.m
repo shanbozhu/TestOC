@@ -22,8 +22,6 @@
 
 @end
 
-static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
-
 @implementation PBAnimationBubbleView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -213,9 +211,9 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
         }
     } else if (_arrowDirection == BBABubbleViewArrowDirectionLeft
                || _arrowDirection == BBABubbleViewArrowDirectionRight) { // 上下调整位置
-        if (frame.size.height <= screen.size.height - kBBABubbleGuideViewToolBarheight - 2*_bubbleEdgeToScreenDistance) {
-            if (frame.origin.y < kBBABubbleGuideViewToolBarheight + _bubbleEdgeToScreenDistance) {
-                frame.origin.y = kBBABubbleGuideViewToolBarheight + _bubbleEdgeToScreenDistance;
+        if (frame.size.height <= screen.size.height - 2*_bubbleEdgeToScreenDistance) {
+            if (frame.origin.y < _bubbleEdgeToScreenDistance) {
+                frame.origin.y = _bubbleEdgeToScreenDistance;
             }
             if (frame.origin.y + frame.size.height > screen.size.height - _bubbleEdgeToScreenDistance) {
                 frame.origin.y = screen.size.height - _bubbleEdgeToScreenDistance - frame.size.height;
