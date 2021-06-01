@@ -70,10 +70,6 @@ static const CGFloat kBBABubbleGuideViewToolBarheight = 20.f;
     UIWindow *window = (view.window == nil ? [UIApplication sharedApplication].keyWindow : view.window);
     // 坐标转换
     CGRect winFrame = [view.superview convertRect:view.frame toView:window];
-//    // 自动修正箭头指向
-//    if (_arrowDirection == BBABubbleViewArrowDirectionAuto) {
-//        _arrowDirection = [self autoCaculateBubbleArrowDirectionWithHostViewCenterPoint:[self centerWithRect:winFrame]];
-//    }
     // 获取箭头相对window坐标
     CGPoint arrowStartPoint = [self arrowStartPointWithRect:winFrame];
     // 转化成相对view的箭头点
