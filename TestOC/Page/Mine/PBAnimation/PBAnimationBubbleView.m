@@ -13,12 +13,12 @@
     CGPoint _arrowStartPointInSelf; //箭头转换后位置
     UIEdgeInsets _paddingInsets; // 文本内边距
     NSAttributedString *_attributeText; // 气泡属性字符串
-    CGPoint _arrowStartPoint; // 箭头的指向的位置，相对于window的坐标系，否则计算出的箭头在气泡中位置不对
     CGFloat _arrowWidth; // 箭头宽度，默认为11.67
     CGFloat _arrowHeight; // 箭头高度，默认为7
 }
 
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, assign) CGPoint arrowStartPoint;
 
 @end
 
@@ -56,7 +56,7 @@
     CGPoint arrowStartPoint = [self arrowStartPointWithRect:winFrame];
     
     self.text = text;
-    _arrowStartPoint = arrowStartPoint;
+    self.arrowStartPoint = arrowStartPoint;
 
     [self setTextLabelWithHightLightLinkKeys:@[]];
     [view addSubview:self];
