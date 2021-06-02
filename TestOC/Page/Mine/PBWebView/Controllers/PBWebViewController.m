@@ -45,7 +45,7 @@
     }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"UIWebView";
-    } else {
+    } else if (indexPath.row == 1) {
         cell.textLabel.text = @"WKWebView";
     }
     return cell;
