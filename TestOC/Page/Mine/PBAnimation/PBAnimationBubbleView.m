@@ -44,14 +44,11 @@
 }
 
 - (void)showBubbleWithText:(NSString *)text inView:(UIView *)view {
-    UIWindow *window = [UIApplication sharedApplication].delegate.window;
-    CGRect winFrame = [view.superview convertRect:view.frame toView:window];
-    CGPoint arrowStartPoint = [self arrowStartPointWithRect:winFrame];
+    CGRect winFrame = [view.superview convertRect:view.frame toView:[UIApplication sharedApplication].delegate.window];
+    self.arrowStartPoint = [self arrowStartPointWithRect:winFrame];
     
-    self.arrowStartPoint = arrowStartPoint;
-
-    [self fillTextViewWithText:text];
     [view addSubview:self];
+    [self fillTextViewWithText:text];
     [self ba_adjustViewFrame];
 }
 
@@ -194,15 +191,14 @@
 }
 
 - (CGPoint)arrowStartPointWithRect:(CGRect)rect {
-    CGFloat distoView = 3.0f;
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
-        return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMaxY(rect) + distoView);
+        return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMaxY(rect));
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMinY(rect) - distoView);
+        return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMinY(rect));
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        return CGPointMake(CGRectGetMaxX(rect) + distoView, CGRectGetMinY(rect) + rect.size.height / 2);
+        return CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect) + rect.size.height / 2);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        return CGPointMake(CGRectGetMinX(rect) - distoView, CGRectGetMinY(rect) + rect.size.height / 2);
+        return CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect) + rect.size.height / 2);
     }
     return CGPointZero;
 }
