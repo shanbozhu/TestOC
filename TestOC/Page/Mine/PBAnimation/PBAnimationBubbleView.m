@@ -119,12 +119,11 @@
     // 顶部加小弧度
     [arrowPath moveToPoint:CGPointMake(-arc, arc)];
     [arrowPath addCurveToPoint:CGPointMake(arc, arc) controlPoint1:CGPointZero controlPoint2:CGPointZero];
-    // 三角(高度多0.5f,解决箭头朝上有间隙case)
+    // 三角
     [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / 2, self.arrowHeight)];
     [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / -2.0, self.arrowHeight)];
     [arrowPath addLineToPoint:CGPointMake(-arc, arc)];
     [arrowPath closePath];
-    
     return arrowPath;
 }
 
