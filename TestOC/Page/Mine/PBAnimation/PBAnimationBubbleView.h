@@ -10,18 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 气泡箭头指向的方向
 typedef NS_ENUM(NSUInteger, BBABubbleViewArrowDirection) {
-    /// 箭头向上
     BBABubbleViewArrowDirectionUp,
-    /// 箭头向下
     BBABubbleViewArrowDirectionDown,
-    /// 箭头向左
     BBABubbleViewArrowDirectionLeft,
-    /// 箭头向右
     BBABubbleViewArrowDirectionRight,
-    /// 上下左右自动选择, 默认
-    BBABubbleViewArrowDirectionAuto,
 };
 
 @interface PBAnimationBubbleView : UIView

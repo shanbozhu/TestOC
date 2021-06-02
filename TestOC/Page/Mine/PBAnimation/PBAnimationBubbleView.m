@@ -8,20 +8,17 @@
 
 #import "PBAnimationBubbleView.h"
 
-@interface PBAnimationBubbleView () {
-    UITextView *_textLabel;
-    NSAttributedString *_attributeText; // 气泡属性字符串
-}
+@interface PBAnimationBubbleView ()
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) CGPoint arrowStartPoint;
 @property (nonatomic, assign) CGPoint arrowStartPointInSelf;
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
-@property (nonatomic, assign) UIEdgeInsets paddingInsets;
 @property (nonatomic, assign) CGFloat cornerRadius;
 @property (nonatomic, strong) UIFont *textFont;
 @property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, weak) UITextView *textLabel;
 
 @end
 
@@ -31,17 +28,17 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         
-        _textLabel = [[UITextView alloc] init];
-        _textLabel.editable = NO;
-        _textLabel.scrollEnabled = NO;
-        _textLabel.selectable = NO;
-        _textLabel.textContainerInset = UIEdgeInsetsZero; //上下间距为0
-        _textLabel.textContainer.lineFragmentPadding = 0; //左右间距为0
-        _textLabel.textAlignment = NSTextAlignmentJustified;
-        _textLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:_textLabel];
+        UITextView *textLabel = [[UITextView alloc] init];
+        self.textLabel = textLabel;
+        textLabel.editable = NO;
+        textLabel.scrollEnabled = NO;
+        textLabel.selectable = NO;
+        textLabel.textContainerInset = UIEdgeInsetsZero; // 上下间距为0
+        textLabel.textContainer.lineFragmentPadding = 0; // 左右间距为0
+        textLabel.textAlignment = NSTextAlignmentJustified;
+        textLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:textLabel];
         
-        self.paddingInsets = UIEdgeInsetsMake(10.f, 13.5f, 10.5f, 13.5f);
         self.cornerRadius = 12.0f;
         self.arrowWidth = 12.67f;
         self.arrowHeight = 7.0f;
@@ -96,16 +93,16 @@
     UIEdgeInsets contentPadding = [self contentPaddingInsets];
     CGPoint startPoint = self.arrowStartPoint;
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
-        _textLabel.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textLabel.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        _textLabel.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textLabel.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        _textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     }
 }
@@ -163,15 +160,13 @@
 
 - (UIBezierPath *)bubbleRectBezierPath {
     UIBezierPath *rectPath = nil;
-    CGRect realBubbleRect = CGRectMake(_textLabel.frame.origin.x - [self contentPaddingInsets].left,
-                                       _textLabel.frame.origin.y - [self contentPaddingInsets].top,
-                                       _textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
-                                       _textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
+    CGRect realBubbleRect = CGRectMake(self.textLabel.frame.origin.x - [self contentPaddingInsets].left,
+                                       self.textLabel.frame.origin.y - [self contentPaddingInsets].top,
+                                       self.textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
+                                       self.textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
     rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:self.cornerRadius];
     return rectPath;
 }
-
-
 
 - (CGFloat)getYDirectionExtraHeight {
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp
@@ -182,13 +177,10 @@
 }
 
 - (UIEdgeInsets)contentPaddingInsets {
-    return UIEdgeInsetsMake(self.paddingInsets.top,
-                            self.paddingInsets.left,
-                            self.paddingInsets.bottom,
-                            self.paddingInsets.right);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
--(CGFloat)getXDirectionExtraWidth {
+- (CGFloat)getXDirectionExtraWidth {
     if (self.arrowDirection == BBABubbleViewArrowDirectionLeft
         || self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         return self.arrowHeight + [self contentPaddingInsets].left + [self contentPaddingInsets].right;
@@ -196,7 +188,6 @@
     return [self contentPaddingInsets].left + [self contentPaddingInsets].right;
 }
 
-/// 显示文字的_textLabel的bounds
 - (CGRect)getTextlabelBounds {
     CGSize textSize = CGSizeMake([self textLabelWidth], CGFLOAT_MAX);
     CGFloat textHeight = [self textSizeWithEstimateSize:textSize].height;
@@ -205,7 +196,7 @@
 }
 
 - (CGSize)textSizeWithEstimateSize:(CGSize)size {
-    return [_textLabel.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+    return [self.textLabel.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
 }
 
 - (CGFloat)textLabelWidth {
@@ -219,30 +210,23 @@
     CGFloat capable = 0.0f;
     CGRect screen = [UIScreen mainScreen].bounds;
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp || self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        capable = screen.size.width - [self getXDirectionExtraWidth]; // 屏幕尺寸-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = screen.size.width - [self getXDirectionExtraWidth];
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        capable = screen.size.width - self.arrowStartPoint.x - [self getXDirectionExtraWidth]; // 屏幕尺寸- 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = screen.size.width - self.arrowStartPoint.x - [self getXDirectionExtraWidth];
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        capable = self.arrowStartPoint.x - [self getXDirectionExtraWidth]; // 剪头X坐标-额外宽度-附加视图宽度-附加视图左边距-屏幕边距
+        capable = self.arrowStartPoint.x - [self getXDirectionExtraWidth];
     }
     return MAX(capable, 0.0f);
 }
 
 
 - (void)setTextLabelWithHightLightLinkKeys:(NSArray *)linkKeys {
-    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:[self attributesOfText]];
-    _textLabel.attributedText = attributeStr;
-}
-
-/// 字体的属性字典，用于计算label的大小
-- (NSMutableDictionary *)attributesOfText {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     attributes[NSFontAttributeName] = self.textFont;
     attributes[NSForegroundColorAttributeName] = self.textColor;
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = NSTextAlignmentJustified;
-    attributes[NSParagraphStyleAttributeName] = paragraphStyle;
-    return attributes;
+    
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:attributes];
+    self.textLabel.attributedText = attributeStr;
 }
 
 - (CGPoint)arrowStartPointWithRect:(CGRect)rect {
