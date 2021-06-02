@@ -25,6 +25,7 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         
+        // textView
         UITextView *textView = [[UITextView alloc] init];
         self.textView = textView;
         [self addSubview:textView];
@@ -95,9 +96,9 @@
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     
     // 绘制矩形
-    UIBezierPath *rectPath = [self bubbleRectBezierPath];
+    UIBezierPath *bubblePath = [self bubbleRectBezierPath];
     [self.bubbleBackgroundColor setFill];
-    [rectPath fill];
+    [bubblePath fill];
     
     // 修改坐标系原点，旋转坐标系，方便箭头绘制
     CGPoint point = [self convertPoint:self.arrowTopPoint fromView:[UIApplication sharedApplication].delegate.window];
@@ -111,7 +112,7 @@
     [arrowPath fill];
 }
 
-/// 绘制气泡箭头
+// 绘制气泡箭头
 - (UIBezierPath *)bubbleArrowBezierPathAfterContextRefCTM {
     UIBezierPath *arrowPath = [UIBezierPath bezierPath];
     CGFloat arc = 2.0f;
@@ -119,15 +120,15 @@
     [arrowPath moveToPoint:CGPointMake(-arc, arc)];
     [arrowPath addCurveToPoint:CGPointMake(arc, arc) controlPoint1:CGPointZero controlPoint2:CGPointZero];
     // 三角(高度多0.5f,解决箭头朝上有间隙case)
-    [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / 2, self.arrowHeight + .5f)];
-    [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / -2.0, self.arrowHeight + .5f)];
+    [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / 2, self.arrowHeight)];
+    [arrowPath addLineToPoint:CGPointMake(self.arrowWidth / -2.0, self.arrowHeight)];
     [arrowPath addLineToPoint:CGPointMake(-arc, arc)];
     [arrowPath closePath];
     
     return arrowPath;
 }
 
-/// 根据箭头方向返回箭头旋转的角度
+// 返回箭头旋转的角度
 - (CGFloat)rotateAngleOfArrow {
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
         return 0.0f;
@@ -136,19 +137,15 @@
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         return M_PI_2;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        return 1.5*M_PI;
+        return 1.5 * M_PI;
     }
     return 0.0f;
 }
 
 - (UIBezierPath *)bubbleRectBezierPath {
-    UIBezierPath *rectPath = nil;
-    CGRect realBubbleRect = CGRectMake(self.textView.frame.origin.x - [self contentPaddingInsets].left,
-                                       self.textView.frame.origin.y - [self contentPaddingInsets].top,
-                                       self.textView.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
-                                       self.textView.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
-    rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:self.cornerRadius];
-    return rectPath;
+    CGRect realBubbleRect = CGRectMake(self.textView.frame.origin.x - [self contentPaddingInsets].left, self.textView.frame.origin.y - [self contentPaddingInsets].top, self.textView.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right, self.textView.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
+    UIBezierPath *realBubblePath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:self.cornerRadius];
+    return realBubblePath;
 }
 
 - (CGFloat)getYDirectionExtraHeight {
@@ -174,10 +171,6 @@
     [self.textView sizeToFit];
     return CGRectMake(0, 0, self.textView.frame.size.width, self.textView.frame.size.height);
 }
-
-//- (CGSize)textSizeWithEstimateSize:(CGSize)size {
-//    return [self.textView.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-//}
 
 - (void)fillTextViewWithText:(NSString *)text {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
