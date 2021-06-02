@@ -210,6 +210,7 @@
     
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
+//    bubbleView.arrowDirection = BBABubbleViewArrowDirectionRight;
     bubbleView.bubbleBackgroundColor = color;
     [bubbleView showBubbleWithText:@"自拍测福气"
                             inView:hostView];

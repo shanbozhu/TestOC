@@ -11,7 +11,6 @@
 @interface PBAnimationBubbleView ()
 
 @property (nonatomic, assign) CGPoint arrowStartPoint;
-@property (nonatomic, assign) CGPoint arrowStartPointInSelf;
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
 @property (nonatomic, assign) CGFloat cornerRadius;
@@ -74,11 +73,10 @@
         frame.origin.x = self.arrowStartPoint.x - frame.size.width;
         frame.origin.y = self.arrowStartPoint.y - frame.size.height / 2;
     }
-    [self adjustSubViewFrame];
-    
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     self.frame = [window convertRect:frame toView:self.superview];
-    self.arrowStartPointInSelf = [self convertPoint:self.arrowStartPoint fromView:window];
+    
+    [self adjustSubViewFrame];
     
     return frame;
 }
@@ -86,19 +84,14 @@
 - (void)adjustSubViewFrame {
     CGRect labelBounds = [self getTextViewBounds];
     UIEdgeInsets contentPadding = [self contentPaddingInsets];
-    CGPoint startPoint = self.arrowStartPoint;
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
         self.textView.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
-        self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         self.textView.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
-        self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         self.textView.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
-        self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         self.textView.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
-        self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     }
 }
 
@@ -112,7 +105,7 @@
     [rectPath fill];
     
     //修改坐标系原点，旋转坐标系，方便箭头绘制
-    CGPoint point = self.arrowStartPointInSelf;
+    CGPoint point = [self convertPoint:self.arrowStartPoint fromView:[UIApplication sharedApplication].delegate.window];
     CGContextSaveGState(contextRef);
     CGContextTranslateCTM(contextRef, point.x, point.y);
     CGContextRotateCTM(contextRef, -[self rotateAngleOfArrow]);
