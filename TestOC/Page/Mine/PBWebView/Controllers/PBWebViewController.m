@@ -43,7 +43,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"UIWebView";
+    } else {
+        cell.textLabel.text = @"WKWebView";
+    }
     return cell;
 }
 
