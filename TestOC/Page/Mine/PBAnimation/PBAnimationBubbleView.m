@@ -18,7 +18,7 @@
 @property (nonatomic, assign) CGFloat cornerRadius;
 @property (nonatomic, strong) UIFont *textFont;
 @property (nonatomic, strong) UIColor *textColor;
-@property (nonatomic, weak) UITextView *textLabel;
+@property (nonatomic, weak) UITextView *textView;
 
 @end
 
@@ -28,16 +28,16 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         
-        UITextView *textLabel = [[UITextView alloc] init];
-        self.textLabel = textLabel;
-        textLabel.editable = NO;
-        textLabel.scrollEnabled = NO;
-        textLabel.selectable = NO;
-        textLabel.textContainerInset = UIEdgeInsetsZero; // 上下间距为0
-        textLabel.textContainer.lineFragmentPadding = 0; // 左右间距为0
-        textLabel.textAlignment = NSTextAlignmentJustified;
-        textLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:textLabel];
+        UITextView *textView = [[UITextView alloc] init];
+        self.textView = textView;
+        textView.editable = NO;
+        textView.scrollEnabled = NO;
+        textView.selectable = NO;
+        textView.textContainerInset = UIEdgeInsetsZero; // 上下间距为0
+        textView.textContainer.lineFragmentPadding = 0; // 左右间距为0
+        textView.textAlignment = NSTextAlignmentJustified;
+        textView.backgroundColor = [UIColor clearColor];
+        [self addSubview:textView];
         
         self.cornerRadius = 12.0f;
         self.arrowWidth = 12.67f;
@@ -93,16 +93,16 @@
     UIEdgeInsets contentPadding = [self contentPaddingInsets];
     CGPoint startPoint = self.arrowStartPoint;
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
-        self.textLabel.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textView.frame = CGRectMake(contentPadding.left, self.arrowHeight + contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        self.textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textView.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        self.textLabel.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textView.frame = CGRectMake(self.arrowHeight + contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        self.textLabel.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
+        self.textView.frame = CGRectMake(contentPadding.left, contentPadding.top, labelBounds.size.width, labelBounds.size.height);
         self.arrowStartPoint = CGPointMake(startPoint.x, startPoint.y);
     }
 }
@@ -160,10 +160,10 @@
 
 - (UIBezierPath *)bubbleRectBezierPath {
     UIBezierPath *rectPath = nil;
-    CGRect realBubbleRect = CGRectMake(self.textLabel.frame.origin.x - [self contentPaddingInsets].left,
-                                       self.textLabel.frame.origin.y - [self contentPaddingInsets].top,
-                                       self.textLabel.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
-                                       self.textLabel.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
+    CGRect realBubbleRect = CGRectMake(self.textView.frame.origin.x - [self contentPaddingInsets].left,
+                                       self.textView.frame.origin.y - [self contentPaddingInsets].top,
+                                       self.textView.frame.size.width + [self contentPaddingInsets].left + [self contentPaddingInsets].right,
+                                       self.textView.frame.size.height + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom);
     rectPath = [UIBezierPath bezierPathWithRoundedRect:realBubbleRect cornerRadius:self.cornerRadius];
     return rectPath;
 }
@@ -196,7 +196,7 @@
 }
 
 - (CGSize)textSizeWithEstimateSize:(CGSize)size {
-    return [self.textLabel.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+    return [self.textView.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
 }
 
 - (CGFloat)textLabelWidth {
@@ -226,7 +226,7 @@
     attributes[NSForegroundColorAttributeName] = self.textColor;
     
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:attributes];
-    self.textLabel.attributedText = attributeStr;
+    self.textView.attributedText = attributeStr;
 }
 
 - (CGPoint)arrowStartPointWithRect:(CGRect)rect {
