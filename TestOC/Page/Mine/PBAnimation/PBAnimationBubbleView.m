@@ -10,7 +10,7 @@
 
 @interface PBAnimationBubbleView ()
 
-@property (nonatomic, assign) CGPoint arrowStartPoint;
+@property (nonatomic, assign) CGPoint arrowTopPoint;
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
 @property (nonatomic, assign) CGFloat cornerRadius;
@@ -27,26 +27,26 @@
         
         UITextView *textView = [[UITextView alloc] init];
         self.textView = textView;
+        [self addSubview:textView];
+        textView.textContainerInset = UIEdgeInsetsZero; // UITextView上下间距为0
+        textView.textContainer.lineFragmentPadding = 0; // UITextView左右间距为0
         textView.editable = NO;
         textView.scrollEnabled = NO;
         textView.selectable = NO;
-        textView.textContainerInset = UIEdgeInsetsZero; // 上下间距为0
-        textView.textContainer.lineFragmentPadding = 0; // 左右间距为0
         textView.backgroundColor = [UIColor clearColor];
-        [self addSubview:textView];
         textView.layer.borderColor = [UIColor blueColor].CGColor;
         textView.layer.borderWidth = 1;
         
-        self.cornerRadius = 12.0f;
-        self.arrowWidth = 12.67f;
-        self.arrowHeight = 7.0f;
+        self.cornerRadius = 12;
+        self.arrowWidth = 12;
+        self.arrowHeight = 7;
     }
     return self;
 }
 
 - (void)showBubbleWithText:(NSString *)text inView:(UIView *)view {
     CGRect winFrame = [view.superview convertRect:view.frame toView:[UIApplication sharedApplication].delegate.window];
-    self.arrowStartPoint = [self arrowStartPointWithRect:winFrame];
+    self.arrowTopPoint = [self arrowTopPointWithRect:winFrame];
     
     [view addSubview:self];
     [self fillTextViewWithText:text];
@@ -59,17 +59,17 @@
     frame.size.width = labelBounds.size.width + [self getXDirectionExtraWidth];
     frame.size.height = labelBounds.size.height + [self getYDirectionExtraHeight];
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
-        frame.origin.x = self.arrowStartPoint.x - frame.size.width / 2;
-        frame.origin.y = self.arrowStartPoint.y;
+        frame.origin.x = self.arrowTopPoint.x - frame.size.width / 2;
+        frame.origin.y = self.arrowTopPoint.y;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        frame.origin.x = self.arrowStartPoint.x - frame.size.width / 2;
-        frame.origin.y = self.arrowStartPoint.y - frame.size.height;
+        frame.origin.x = self.arrowTopPoint.x - frame.size.width / 2;
+        frame.origin.y = self.arrowTopPoint.y - frame.size.height;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        frame.origin.x = self.arrowStartPoint.x;
-        frame.origin.y = self.arrowStartPoint.y - frame.size.height / 2;
+        frame.origin.x = self.arrowTopPoint.x;
+        frame.origin.y = self.arrowTopPoint.y - frame.size.height / 2;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        frame.origin.x = self.arrowStartPoint.x - frame.size.width;
-        frame.origin.y = self.arrowStartPoint.y - frame.size.height / 2;
+        frame.origin.x = self.arrowTopPoint.x - frame.size.width;
+        frame.origin.y = self.arrowTopPoint.y - frame.size.height / 2;
     }
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     self.frame = [window convertRect:frame toView:self.superview];
@@ -92,21 +92,20 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     
-    //绘制矩形
+    // 绘制矩形
     UIBezierPath *rectPath = [self bubbleRectBezierPath];
     [self.bubbleBackgroundColor setFill];
     [rectPath fill];
     
-    //修改坐标系原点，旋转坐标系，方便箭头绘制
-    CGPoint point = [self convertPoint:self.arrowStartPoint fromView:[UIApplication sharedApplication].delegate.window];
+    // 修改坐标系原点，旋转坐标系，方便箭头绘制
+    CGPoint point = [self convertPoint:self.arrowTopPoint fromView:[UIApplication sharedApplication].delegate.window];
     CGContextSaveGState(contextRef);
     CGContextTranslateCTM(contextRef, point.x, point.y);
     CGContextRotateCTM(contextRef, -[self rotateAngleOfArrow]);
     
-    //绘制箭头
+    // 绘制箭头
     UIBezierPath *arrowPath = [self bubbleArrowBezierPathAfterContextRefCTM];
     [self.bubbleBackgroundColor setFill];
     [arrowPath fill];
@@ -176,9 +175,9 @@
     return CGRectMake(0, 0, self.textView.frame.size.width, self.textView.frame.size.height);
 }
 
-- (CGSize)textSizeWithEstimateSize:(CGSize)size {
-    return [self.textView.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-}
+//- (CGSize)textSizeWithEstimateSize:(CGSize)size {
+//    return [self.textView.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+//}
 
 - (void)fillTextViewWithText:(NSString *)text {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
@@ -189,7 +188,7 @@
     self.textView.attributedText = attributeStr;
 }
 
-- (CGPoint)arrowStartPointWithRect:(CGRect)rect {
+- (CGPoint)arrowTopPointWithRect:(CGRect)rect {
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
         return CGPointMake(CGRectGetMinX(rect) + rect.size.width / 2, CGRectGetMaxY(rect));
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
