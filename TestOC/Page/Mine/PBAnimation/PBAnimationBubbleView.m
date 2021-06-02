@@ -10,14 +10,12 @@
 
 @interface PBAnimationBubbleView ()
 
-@property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) CGPoint arrowStartPoint;
 @property (nonatomic, assign) CGPoint arrowStartPointInSelf;
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
 @property (nonatomic, assign) CGFloat cornerRadius;
-@property (nonatomic, strong) UIFont *textFont;
-@property (nonatomic, strong) UIColor *textColor;
+
 @property (nonatomic, weak) UITextView *textView;
 
 @end
@@ -42,8 +40,6 @@
         self.cornerRadius = 12.0f;
         self.arrowWidth = 12.67f;
         self.arrowHeight = 7.0f;
-        self.textFont = [UIFont systemFontOfSize:20];
-        self.textColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -53,31 +49,30 @@
     CGRect winFrame = [view.superview convertRect:view.frame toView:window];
     CGPoint arrowStartPoint = [self arrowStartPointWithRect:winFrame];
     
-    self.text = text;
     self.arrowStartPoint = arrowStartPoint;
 
-    [self setTextLabelWithHightLightLinkKeys:@[]];
+    [self fillTextViewWithText:text];
     [view addSubview:self];
     [self ba_adjustViewFrame];
 }
 
 - (CGRect)ba_adjustViewFrame {
-    CGRect labelBounds = [self getTextlabelBounds];
+    CGRect labelBounds = [self getTextViewBounds];
     CGRect frame = CGRectZero;
     frame.size.width = labelBounds.size.width + [self getXDirectionExtraWidth];
     frame.size.height = labelBounds.size.height + [self getYDirectionExtraHeight];
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
-        frame.origin.x = self.arrowStartPoint.x - frame.size.width/2;
+        frame.origin.x = self.arrowStartPoint.x - frame.size.width / 2;
         frame.origin.y = self.arrowStartPoint.y;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        frame.origin.x = self.arrowStartPoint.x - frame.size.width/2;
+        frame.origin.x = self.arrowStartPoint.x - frame.size.width / 2;
         frame.origin.y = self.arrowStartPoint.y - frame.size.height;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
         frame.origin.x = self.arrowStartPoint.x;
-        frame.origin.y = self.arrowStartPoint.y - frame.size.height/2;
+        frame.origin.y = self.arrowStartPoint.y - frame.size.height / 2;
     } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         frame.origin.x = self.arrowStartPoint.x - frame.size.width;
-        frame.origin.y = self.arrowStartPoint.y - frame.size.height/2;
+        frame.origin.y = self.arrowStartPoint.y - frame.size.height / 2;
     }
     [self adjustSubViewFrame];
     
@@ -89,7 +84,7 @@
 }
 
 - (void)adjustSubViewFrame {
-    CGRect labelBounds = [self getTextlabelBounds];
+    CGRect labelBounds = [self getTextViewBounds];
     UIEdgeInsets contentPadding = [self contentPaddingInsets];
     CGPoint startPoint = self.arrowStartPoint;
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp) {
@@ -169,8 +164,7 @@
 }
 
 - (CGFloat)getYDirectionExtraHeight {
-    if (self.arrowDirection == BBABubbleViewArrowDirectionUp
-        || self.arrowDirection == BBABubbleViewArrowDirectionDown) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionUp || self.arrowDirection == BBABubbleViewArrowDirectionDown) {
         return self.arrowHeight + [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
     }
     return [self contentPaddingInsets].top + [self contentPaddingInsets].bottom;
@@ -181,51 +175,28 @@
 }
 
 - (CGFloat)getXDirectionExtraWidth {
-    if (self.arrowDirection == BBABubbleViewArrowDirectionLeft
-        || self.arrowDirection == BBABubbleViewArrowDirectionRight) {
+    if (self.arrowDirection == BBABubbleViewArrowDirectionLeft || self.arrowDirection == BBABubbleViewArrowDirectionRight) {
         return self.arrowHeight + [self contentPaddingInsets].left + [self contentPaddingInsets].right;
     }
     return [self contentPaddingInsets].left + [self contentPaddingInsets].right;
 }
 
-- (CGRect)getTextlabelBounds {
-    CGSize textSize = CGSizeMake([self textLabelWidth], CGFLOAT_MAX);
-    CGFloat textHeight = [self textSizeWithEstimateSize:textSize].height;
-    textHeight = ceil(textHeight);
-    return CGRectMake(0, 0, textSize.width, textHeight);
+- (CGRect)getTextViewBounds {
+    self.textView.frame = CGRectMake(0, 0, 100, CGFLOAT_MAX);
+    [self.textView sizeToFit];
+    return CGRectMake(0, 0, self.textView.frame.size.width, self.textView.frame.size.height);
 }
 
 - (CGSize)textSizeWithEstimateSize:(CGSize)size {
     return [self.textView.attributedText boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
 }
 
-- (CGFloat)textLabelWidth {
-    // 单行显示时的大小
-    CGSize size = [self textSizeWithEstimateSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, CGFLOAT_MAX)];
-    CGFloat maxBubbleWidth = [self capableMaxWidthOfText];
-    return MIN(ceil(size.width), ceil(maxBubbleWidth));
-}
-
-- (CGFloat)capableMaxWidthOfText {
-    CGFloat capable = 0.0f;
-    CGRect screen = [UIScreen mainScreen].bounds;
-    if (self.arrowDirection == BBABubbleViewArrowDirectionUp || self.arrowDirection == BBABubbleViewArrowDirectionDown) {
-        capable = screen.size.width - [self getXDirectionExtraWidth];
-    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft) {
-        capable = screen.size.width - self.arrowStartPoint.x - [self getXDirectionExtraWidth];
-    } else if (self.arrowDirection == BBABubbleViewArrowDirectionRight) {
-        capable = self.arrowStartPoint.x - [self getXDirectionExtraWidth];
-    }
-    return MAX(capable, 0.0f);
-}
-
-
-- (void)setTextLabelWithHightLightLinkKeys:(NSArray *)linkKeys {
+- (void)fillTextViewWithText:(NSString *)text {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSFontAttributeName] = self.textFont;
-    attributes[NSForegroundColorAttributeName] = self.textColor;
+    attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
+    attributes[NSForegroundColorAttributeName] = [UIColor whiteColor];
     
-    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:attributes];
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
     self.textView.attributedText = attributeStr;
 }
 
