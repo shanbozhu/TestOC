@@ -82,8 +82,7 @@
         frame.origin.x = self.arrowStartPoint.x - frame.size.width;
         frame.origin.y = self.arrowStartPoint.y - frame.size.height/2;
     }
-    frame = [self adjustFrame:frame]; // 调整自身frame位置
-    [self adjustSubViewFrame]; // 调整子视图坐标
+    [self adjustSubViewFrame];
     
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     self.frame = [window convertRect:frame toView:self.superview];
@@ -172,25 +171,7 @@
     return rectPath;
 }
 
--(CGRect)adjustFrame:(CGRect)frame {
-    CGRect screen = [UIScreen mainScreen].bounds;
-    if (self.arrowDirection == BBABubbleViewArrowDirectionUp
-        || self.arrowDirection == BBABubbleViewArrowDirectionDown) { //左右调整位置
-        if (frame.size.width <= screen.size.width) {
-            if (frame.origin.x + frame.size.width > screen.size.width) {
-                frame.origin.x = screen.size.width - frame.size.width;
-            }
-        }
-    } else if (self.arrowDirection == BBABubbleViewArrowDirectionLeft
-               || self.arrowDirection == BBABubbleViewArrowDirectionRight) { // 上下调整位置
-        if (frame.size.height <= screen.size.height) {
-            if (frame.origin.y + frame.size.height > screen.size.height) {
-                frame.origin.y = screen.size.height - frame.size.height;
-            }
-        }
-    }
-    return frame;
-}
+
 
 - (CGFloat)getYDirectionExtraHeight {
     if (self.arrowDirection == BBABubbleViewArrowDirectionUp
