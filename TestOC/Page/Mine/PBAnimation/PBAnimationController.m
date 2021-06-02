@@ -203,10 +203,10 @@
 
 - (void)addBubbleViews {
     UIColor *color = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
-    UIView *hostView = [[UIView alloc] init];
+    UIImageView *hostView = [[UIImageView alloc] init];
     [self.scrollView addSubview:hostView];
     hostView.frame = CGRectMake(200, 160, 50, 50);
-    hostView.backgroundColor = color;
+    hostView.image = [UIImage imageNamed:@"tomas_tts_invite_share_haoyou"];
     
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
