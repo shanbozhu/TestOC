@@ -35,8 +35,8 @@
         textView.scrollEnabled = NO;
         textView.selectable = NO;
         textView.backgroundColor = [UIColor clearColor];
-        textView.layer.borderColor = [UIColor blueColor].CGColor;
-        textView.layer.borderWidth = 1;
+        //textView.layer.borderColor = [UIColor redColor].CGColor;
+        //textView.layer.borderWidth = 1;
         
         self.cornerRadius = 12;
         self.arrowWidth = 12;
@@ -112,7 +112,6 @@
     [arrowPath fill];
 }
 
-// 绘制气泡箭头
 - (UIBezierPath *)bubbleArrowBezierPathAfterContextRefCTM {
     UIBezierPath *arrowPath = [UIBezierPath bezierPath];
     CGFloat arc = 2.0f;
