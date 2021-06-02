@@ -32,9 +32,10 @@
         textView.selectable = NO;
         textView.textContainerInset = UIEdgeInsetsZero; // 上下间距为0
         textView.textContainer.lineFragmentPadding = 0; // 左右间距为0
-        textView.textAlignment = NSTextAlignmentJustified;
         textView.backgroundColor = [UIColor clearColor];
         [self addSubview:textView];
+        textView.layer.borderColor = [UIColor blueColor].CGColor;
+        textView.layer.borderWidth = 1;
         
         self.cornerRadius = 12.0f;
         self.arrowWidth = 12.67f;
@@ -52,7 +53,7 @@
     [self ba_adjustViewFrame];
 }
 
-- (CGRect)ba_adjustViewFrame {
+- (void)ba_adjustViewFrame {
     CGRect labelBounds = [self getTextViewBounds];
     CGRect frame = CGRectZero;
     frame.size.width = labelBounds.size.width + [self getXDirectionExtraWidth];
@@ -74,8 +75,6 @@
     self.frame = [window convertRect:frame toView:self.superview];
     
     [self adjustSubViewFrame];
-    
-    return frame;
 }
 
 - (void)adjustSubViewFrame {
