@@ -14,7 +14,6 @@
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
 @property (nonatomic, assign) CGFloat cornerRadius;
-
 @property (nonatomic, weak) UITextView *textView;
 
 @end
