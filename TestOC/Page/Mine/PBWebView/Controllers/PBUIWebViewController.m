@@ -10,7 +10,6 @@
 #import "YYFPSLabel.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
-
 /**
  jsCalloc js端语句如下:
  htmlCallApp("updatePerformApp", JSON.stringify(ps));
