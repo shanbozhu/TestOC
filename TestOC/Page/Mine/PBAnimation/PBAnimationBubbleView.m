@@ -164,7 +164,7 @@
 }
 
 - (CGRect)getTextViewBounds {
-    self.textView.frame = CGRectMake(0, 0, 100, CGFLOAT_MAX);
+    self.textView.frame = CGRectMake(0, 0, 150, CGFLOAT_MAX);
     [self.textView sizeToFit];
     return CGRectMake(0, 0, self.textView.frame.size.width, self.textView.frame.size.height);
 }

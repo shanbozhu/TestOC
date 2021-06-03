@@ -211,7 +211,7 @@
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
     //bubbleView.arrowDirection = BBABubbleViewArrowDirectionRight;
     bubbleView.bubbleBackgroundColor = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
-    [bubbleView showBubbleWithText:@"自拍测福气"
+    [bubbleView showBubbleWithText:@"自拍测福气自拍测福气"
                             inView:hostView];
     bubbleView.backgroundColor = kPBBackgroundColor;
 }
