@@ -99,20 +99,13 @@
     
     // jsCalloc
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    
+    __weak typeof(self) weakSelf = self;
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         context.exception = exception;
     };
-    
-    __weak JSContext *weakContext = context;
-    
-    __weak typeof(self)weakSelf = self;
     context[@"htmlCallApp"] = ^() {
-        NSLog(@"weakContext = %@", weakContext);
-        
         // args数组一般含有两个元素,第一个元素是方法名(字符串),第二个元素是参数(json字符串)
         NSArray *arguments = [JSContext currentArguments];
-        
         NSMutableArray *objs = [NSMutableArray array];
         for (int i = 0; i < arguments.count; i++) {
             JSValue *value = [arguments objectAtIndex:i];
@@ -133,7 +126,6 @@
             ocReturn = [weakSelf performSelector:selector withObject:jsonDict];
         }
         NSLog(@"ocReturn = %@", ocReturn);
-        
         return ocReturn;
     };
     
