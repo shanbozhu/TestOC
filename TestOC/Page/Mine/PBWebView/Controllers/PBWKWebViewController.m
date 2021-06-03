@@ -17,10 +17,35 @@
 
 @interface PBWKWebViewController ()<WKNavigationDelegate, WKScriptMessageHandler>
 
-@property (nonatomic, strong) WKWebViewConfiguration *configuration;
 @property (nonatomic, weak) WKWebView *webView;
 
 @end
+
+NSString * const BBAIframeBridgeDocStartPostMsgScript = @"\
+function postDocState(state) {\
+    var msg = {\
+        docState : state,\
+        ismainDoc : window.top == window ? '1' : '0',\
+        url : window.location.href \
+    };\
+    var msgJson = JSON.stringify(msg);\
+    window.webkit && window.webkit.messageHandlers.bd_doc_state_change && window.webkit.messageHandlers.bd_doc_state_change.postMessage(msgJson);\
+};\
+postDocState('docStart');\
+";
+
+NSString * const BBAIframeBridgeDocEndPostMsgScript = @"\
+function postDocState(state) {\
+    var msg = {\
+        docState : state,\
+        ismainDoc : window.top == window ? '1' : '0',\
+        url : window.location.href \
+    };\
+    var msgJson = JSON.stringify(msg);\
+    window.webkit && window.webkit.messageHandlers.bd_doc_state_change && window.webkit.messageHandlers.bd_doc_state_change.postMessage(msgJson);\
+};\
+postDocState('docEnd');\
+";
 
 @implementation PBWKWebViewController
 
@@ -28,7 +53,6 @@
     [super viewDidLoad];
     
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
-    self.configuration = configuration;
     
     WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT) configuration:configuration];
     self.webView = webView;
@@ -88,6 +112,18 @@
     
     NSLog(@"WKWebView: allHTTPHeaderFields = %@", request.allHTTPHeaderFields);
     [webView loadRequest:request];
+    
+    // wk document start/end
+    [self addJSForWKDocument];
+}
+
+- (void)addJSForWKDocument {
+    // ocCalljs
+    WKUserScript *userScriptDocStart = [[WKUserScript alloc] initWithSource:BBAIframeBridgeDocStartPostMsgScript injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    [self.webView.configuration.userContentController addUserScript:userScriptDocStart];
+    
+    WKUserScript *userScriptDocEnd = [[WKUserScript alloc] initWithSource:BBAIframeBridgeDocEndPostMsgScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    [self.webView.configuration.userContentController addUserScript:userScriptDocEnd];
 }
 
 // 实现jsCalloc的方法定义
@@ -107,13 +143,15 @@
     [super viewWillAppear:animated];
     
     // jsCalloc
-    [self.configuration.userContentController addScriptMessageHandler:self name:@"openPage"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"openPage"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"bd_doc_state_change"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openPage"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"bd_doc_state_change"];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
