@@ -109,7 +109,6 @@
         NSMutableArray *objs = [NSMutableArray array];
         for (int i = 0; i < arguments.count; i++) {
             JSValue *value = [arguments objectAtIndex:i];
-            
             [objs addObject:[value toString]];
         }
         NSLog(@"objs = %@", objs);
