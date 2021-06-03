@@ -126,7 +126,7 @@ postDocState('docEnd');\
     [self.webView.configuration.userContentController addUserScript:userScriptDocEnd];
 }
 
-// 实现jsCalloc的方法定义
+// jsCalloc
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     NSLog(@"message.name = %@, message.body = %@", message.name, message.body);
     
@@ -142,7 +142,7 @@ postDocState('docEnd');\
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // jsCalloc
+    // 注册监听
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"openPage"];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"bd_doc_state_change"];
 }
@@ -150,6 +150,7 @@ postDocState('docEnd');\
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
+    // 移除监听
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openPage"];
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"bd_doc_state_change"];
 }
