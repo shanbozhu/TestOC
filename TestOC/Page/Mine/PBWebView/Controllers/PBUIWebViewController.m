@@ -137,7 +137,6 @@
     NSLog(@"jsReturn = %@", jsReturn);
 }
 
-// 实现jsCalloc的方法定义
 - (NSString *)setAppGobackBar:(NSDictionary *)param {
     NSLog(@"param = %@", param);
     return param[@"native_code"];
