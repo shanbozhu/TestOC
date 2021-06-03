@@ -169,6 +169,12 @@ postDocState('docEnd');\
     }];
 }
 
+// jsCalloc
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+
 - (void)dealloc {
     NSLog(@"PBWKWebViewController对象被释放了");
 }

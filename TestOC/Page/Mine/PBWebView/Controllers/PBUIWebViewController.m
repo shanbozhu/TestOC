@@ -86,13 +86,10 @@
     [webView loadRequest:request];
 }
 
+// jsCalloc
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     return YES;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -146,10 +143,6 @@
     NSString *jsStr = [NSString stringWithFormat:@"appCallHtml('%@', '%@')", param0, param1];
     NSString *jsReturn = [webView stringByEvaluatingJavaScriptFromString:jsStr];
     NSLog(@"jsReturn = %@", jsReturn);
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
 }
 
 // 实现jsCalloc的方法定义
