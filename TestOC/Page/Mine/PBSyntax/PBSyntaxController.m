@@ -20,6 +20,10 @@
 
     PBSyntax *syntax = [[PBSyntax alloc] init];
     NSLog(@"syntax.height = %@", syntax.height);
+    
+    // class property
+    PBSyntax.someString = @"class property";
+    NSLog(@"PBSyntax.someString = %@", PBSyntax.someString);
 }
 
 

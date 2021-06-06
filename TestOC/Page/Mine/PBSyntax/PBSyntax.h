@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *height;
 
+// class property
+@property (class) NSString *someString;
+
 @end
 
 #pragma mark - extension

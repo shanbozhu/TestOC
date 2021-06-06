@@ -19,6 +19,9 @@
  @dynamic:必须手动声明私有成员变量,定义getter、setter方法
  */
 
+// class property
+static NSString *_someString;
+
 #pragma mark - implementation
 @implementation PBSyntax
 
@@ -83,6 +86,15 @@
 - (NSString *)sing {
     // 获取self的关联对象key/value
     return objc_getAssociatedObject(self, @selector(sing));
+}
+
+#pragma mark - class property
++ (void)setSomeString:(NSString *)someString {
+    _someString = someString;
+}
+
++ (NSString *)someString {
+    return _someString;
 }
 
 @end
