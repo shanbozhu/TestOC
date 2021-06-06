@@ -10,13 +10,13 @@
 #import <objc/runtime.h>
 
 /**
- interface类声明
- implementation类定义
- protocol协议方法声明.遵循协议,实现协议方法的定义
- category分类方法定义
- @property声明私有成员变量,定义getter、setter方法
- @synthesize声明私有成员变量
- @dynamic必须手动声明私有成员变量,定义getter、setter方法
+ interface:类声明
+ implementation:类定义
+ protocol:协议方法声明.遵循协议,实现协议方法的定义
+ category:分类方法定义
+ @property:声明私有成员变量,定义getter、setter方法
+ @synthesize:声明私有成员变量
+ @dynamic:必须手动声明私有成员变量,定义getter、setter方法
  */
 
 #pragma mark - implementation
