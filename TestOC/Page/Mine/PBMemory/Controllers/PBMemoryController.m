@@ -84,7 +84,7 @@
  static修饰函数限制函数作用域
  inline修饰内联函数,相当于宏替换函数体.一般与static结合使用,如static inline
  
- const修饰后面只读变量.只读变量:一旦赋值不可修改
+ const修饰后面只读变量.只读变量:一旦赋值不可修改.只读变量又叫常量
  extern导入外部变量、函数声明
  break跳出当前循环,跳出switch判断体
  continue继续下次循环
