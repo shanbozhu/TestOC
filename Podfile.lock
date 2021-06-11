@@ -26,6 +26,7 @@ PODS:
   - FMDB/standard (2.7.5)
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
+  - MJRefresh (3.5.0)
   - SDWebImage (5.9.5):
     - SDWebImage/Core (= 5.9.5)
   - SDWebImage/Core (5.9.5)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
   - FMDB (~> 2.7.5)
   - Masonry (~> 1.1.0)
+  - MJRefresh
   - SDWebImage (= 5.9.5)
   - SDWebImageFLPlugin (= 0.4.0)
   - SDWebImageLottiePlugin (= 0.2.0)
@@ -67,6 +69,7 @@ SPEC REPOS:
     - FMDB
     - lottie-ios
     - Masonry
+    - MJRefresh
     - SDWebImage
     - SDWebImageFLPlugin
     - SDWebImageLottiePlugin
@@ -83,6 +86,7 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
   SDWebImageFLPlugin: 6c2295fb1242d44467c6c87dc5db6b0a13228fd8
   SDWebImageLottiePlugin: 9b47486a293b7191bb96e28bc04edf53739d66d4
@@ -93,6 +97,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 5817ac81598a85b06de13c6538e7100c2a04feca
+PODFILE CHECKSUM: e14e0e8af04ec613da75d7ddebc8b2d765a29eb9
 
 COCOAPODS: 1.9.1
