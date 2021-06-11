@@ -57,7 +57,8 @@
              @"PBAVPlayerListController",
              @"PBUniversalLinkController",
              @"PBRuntimeController",
-             @"PBAnimationController"];
+             @"PBAnimationController",
+             @"PBSwiftController"];
 }
 
 // delegate
