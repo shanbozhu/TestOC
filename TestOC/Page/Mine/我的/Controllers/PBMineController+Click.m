@@ -66,6 +66,9 @@
     NSString *page = self.pageArr[indexPath.row];
     Class class = NSClassFromString(page);
     UIViewController *vc = [[class alloc] init];
+    if ([page isEqualToString:@"PBSwiftController"] && !vc) {
+        vc = [[PBSwiftController alloc] init];
+    }
     vc.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:vc animated:YES];

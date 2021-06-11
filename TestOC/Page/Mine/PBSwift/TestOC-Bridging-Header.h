@@ -5,3 +5,4 @@
 // 桥接头文件,swift调用oc
 
 #import "MJRefresh.h"
+#import <AFNetworking/AFNetworking.h>
