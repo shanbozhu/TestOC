@@ -35,6 +35,15 @@ class PBSwiftController: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
+        let lab: UILabel = UILabel()
+        self.view.addSubview(lab)
+        lab.frame = CGRect(x: 80, y: 100, width: 200, height: 0)
+        lab.numberOfLines = 0
+        lab.text = "我是用swift写的页面,发送了一个网络请求"
+        lab.sizeToFit()
+        lab.layer.borderColor = UIColor.red.cgColor
+        lab.layer.borderWidth = 1
+        
         self.requestData(0, status: 0)
     }
     
