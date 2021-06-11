@@ -254,6 +254,7 @@
 		95C8765522E9A60E002795D0 /* pbyytext_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C8765222E9A60E002795D0 /* pbyytext_pic.png */; };
 		95C8765D22E9A61B002795D0 /* 002@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95C8765922E9A61B002795D0 /* 002@2x.gif */; };
 		95C8765E22E9A61B002795D0 /* 0022@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C8765A22E9A61B002795D0 /* 0022@2x.png */; };
+		95D34B9326734E1A0007A67D /* PBSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D34B9226734E1A0007A67D /* PBSwiftTest.swift */; };
 		95E5320725B45FA700BE9535 /* curl in Resources */ = {isa = PBXBuildFile; fileRef = 95E5320025B45FA700BE9535 /* curl */; };
 		95EACF052626CE88006F1A6B /* PBContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EACF042626CE88006F1A6B /* PBContentController.m */; };
 		95EADC782629A967006F1A6B /* iOS_render.png in Resources */ = {isa = PBXBuildFile; fileRef = 95EADC772629A967006F1A6B /* iOS_render.png */; };
@@ -721,6 +722,8 @@
 		95C8765222E9A60E002795D0 /* pbyytext_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbyytext_pic.png; sourceTree = "<group>"; };
 		95C8765922E9A61B002795D0 /* 002@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "002@2x.gif"; sourceTree = "<group>"; };
 		95C8765A22E9A61B002795D0 /* 0022@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0022@2x.png"; sourceTree = "<group>"; };
+		95D34B9126734E190007A67D /* TestOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestOC-Bridging-Header.h"; sourceTree = "<group>"; };
+		95D34B9226734E1A0007A67D /* PBSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBSwiftTest.swift; sourceTree = "<group>"; };
 		95D48C6F25C10FC600414D7C /* json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json; sourceTree = "<group>"; };
 		95D48C7025C10FC600414D7C /* header */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = header; sourceTree = "<group>"; };
 		95D48C7125C10FC600414D7C /* request.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = request.sh; sourceTree = "<group>"; };
@@ -2035,6 +2038,15 @@
 			path = emoticon;
 			sourceTree = "<group>";
 		};
+		95D34B9026734DE90007A67D /* PBSwift */ = {
+			isa = PBXGroup;
+			children = (
+				95D34B9226734E1A0007A67D /* PBSwiftTest.swift */,
+				95D34B9126734E190007A67D /* TestOC-Bridging-Header.h */,
+			);
+			path = PBSwift;
+			sourceTree = "<group>";
+		};
 		95D48C6E25C10FC600414D7C /* json */ = {
 			isa = PBXGroup;
 			children = (
@@ -2188,6 +2200,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				95D34B9026734DE90007A67D /* PBSwift */,
 				952FF347265E42CA00B0D7DA /* PBAnimation */,
 				95EACEFE2626CDE4006F1A6B /* PBContentLabel */,
 				95C1922426246FA00008FD14 /* PBSyntax */,
@@ -2296,6 +2309,7 @@
 					B0300E681F11DE5D00624D91 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = W4TDPYH3Z3;
+						LastSwiftMigration = 1210;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2573,6 +2587,7 @@
 				95C871C322E71CBE002795D0 /* PBSeatButton.m in Sources */,
 				9533420F22F434C900DC7251 /* PBKVOController.m in Sources */,
 				957593D322F84F20009CA618 /* PBGCDListThirteenController.m in Sources */,
+				95D34B9326734E1A0007A67D /* PBSwiftTest.swift in Sources */,
 				9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */,
 				9575935822F84D28009CA618 /* PBGCDZeroController.m in Sources */,
 				953341E322F3070800DC7251 /* PBCellHeight.m in Sources */,
@@ -2733,6 +2748,7 @@
 			baseConfigurationReference = A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = W4TDPYH3Z3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/Common/TestOC.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2752,6 +2768,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsb.TestOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TestOC/Page/Mine/PBSwift/TestOC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2760,6 +2779,7 @@
 			baseConfigurationReference = 0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = W4TDPYH3Z3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/Common/TestOC.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2779,6 +2799,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsb.TestOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TestOC/Page/Mine/PBSwift/TestOC-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
