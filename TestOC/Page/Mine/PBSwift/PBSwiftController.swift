@@ -12,6 +12,6 @@ class PBSwiftController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let xx: MJRefreshFooter
     }
 }
