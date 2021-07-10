@@ -5,6 +5,7 @@
 Cache.db
 workspace.xml
 
-#Pods/
+#CocoaPods
+Pods/
 
 .update

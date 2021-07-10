@@ -1,1 +1,0 @@
-../../../SDWebImageLottiePlugin/SDWebImageLottiePlugin/Classes/LOTAnimatedImage.h
