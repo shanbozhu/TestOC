@@ -4,8 +4,10 @@
 *.xcactivitylog
 Cache.db
 workspace.xml
+xcschememanagement.plist
 
 #CocoaPods
 Pods/
 
 .update
+Podfile.lock
