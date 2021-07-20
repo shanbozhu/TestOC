@@ -41,5 +41,6 @@
 #import "PBTabBarController.h"
 #import "UIView+PBCommonExtension.h"
 #import "UIColor+PBHexStr.h"
+#import "GHConsole.h"
 
 #endif /* TestOC_pch */
