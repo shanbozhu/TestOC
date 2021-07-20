@@ -14,41 +14,7 @@
 
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)) : NO)
 
-#pragma mark- GHConsoleRootViewController
 
-@interface GHTextViewController : UIViewController
-
-@property (nonatomic, copy) NSString *text;
-
-@end
-
-@implementation GHTextViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.view addSubview:backBtn];
-    backBtn.frame = CGRectMake(0, 0, self.view.bounds.size.width, APPLICATION_NAVIGATIONBAR_HEIGHT);
-    [backBtn setBackgroundColor:[UIColor redColor]];
-    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
-    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT)];
-    [self.view addSubview:textView];
-    textView.editable = NO;
-    textView.backgroundColor = [UIColor blackColor];
-    textView.textColor = [UIColor whiteColor];
-    textView.text = self.text;
-}
-
-- (void)backBtnAction {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-@end
 
 @interface GHConsoleRootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 @public
@@ -66,43 +32,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self configTextField];
     [self configMinimizeBtn];
     [self createImgV];
 }
 
 - (void)configTextField {
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.view addSubview:_tableView];
+    _tableView.frame = CGRectMake(0, 88, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 44);
     _tableView.tableFooterView = [UIView new];
     _tableView.separatorColor = [UIColor whiteColor];
     _tableView.estimatedRowHeight = 44;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     _tableView.backgroundColor = [UIColor blackColor];
     if (@available(iOS 11.0, *)) {
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        // Fallback on earlier versions
     }
-    [self.view addSubview:_tableView];
-    [_tableView reloadData];
     
-    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(h)-[_tableView]-0-|" options:0 metrics:@{@"h":@((KIsiPhoneX?44:0) + 44)} views:NSDictionaryOfVariableBindings(_tableView)]];
+//    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(h)-[_tableView]-0-|" options:0 metrics:@{@"h":@((KIsiPhoneX?44:0) + 44)} views:NSDictionaryOfVariableBindings(_tableView)]];
 }
 
 - (void)configMinimizeBtn {
-    _minimize = [[UIButton alloc]initWithFrame:CGRectMake(20, KIsiPhoneX ? 44 : 0, 80, 44)];
+    _minimize = [[UIButton alloc] initWithFrame:CGRectMake(20, 44, 80, 44)];
+    [self.view addSubview:_minimize];
     [_minimize addTarget:self action:@selector(minimizeAction:) forControlEvents:UIControlEventTouchUpInside];
     [_minimize setTitle:@"最小化" forState:UIControlStateNormal];
     [_minimize setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
-    _minimize.layer.borderWidth = 2;
+    _minimize.layer.borderWidth = 1;
     _minimize.layer.borderColor = [[UIColor cyanColor] CGColor];
-    [self.view addSubview:_minimize];
 }
 
 - (void)createImgV {
@@ -183,15 +146,8 @@
             NSString *str = self.dataSource[indexPath.row];
             [UIPasteboard generalPasteboard].string = str;
         }];
-        UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"单独查看选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            GHTextViewController *vc = [[GHTextViewController alloc] init];
-            NSString *str = self.dataSource[indexPath.row];
-            vc.text = str;
-            [self presentViewController:vc animated:YES completion:nil];
-        }];
         UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertVC addAction:action1];
-        [alertVC addAction:action2];
         [alertVC addAction:action3];
         [self presentViewController:alertVC animated:YES completion:nil];
     });
