@@ -52,10 +52,6 @@
     if (@available(iOS 11.0, *)) {
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    
-//    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(h)-[_tableView]-0-|" options:0 metrics:@{@"h":@((KIsiPhoneX?44:0) + 44)} views:NSDictionaryOfVariableBindings(_tableView)]];
 }
 
 - (void)configMinimizeBtn {
@@ -71,13 +67,13 @@
 - (void)createImgV {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"GHConsole.bundle" ofType:nil];
     path = [path stringByAppendingPathComponent:@"icon.png"];
-    _imgV = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:path]];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    _imgV = [[UIImageView alloc] initWithImage:image];
+    [self.view addSubview:_imgV];
+    _imgV.frame = CGRectMake(0, 0, image.size.width, image.size.height);
     _imgV.userInteractionEnabled = YES;
-    _imgV.frame = self.view.bounds;
-    _imgV.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _imgV.layer.shadowOpacity = 0.5;
     _imgV.layer.shadowOffset = CGSizeZero;
-    [self.view addSubview:_imgV];
 }
 
 - (void)minimizeAction:(UIButton *)sender {
@@ -95,10 +91,6 @@
     _tableView.scrollEnabled = scrollEnable;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
@@ -106,12 +98,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *Cell = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Cell];
-    if(!cell){
+    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Cell];
-        cell.contentView.backgroundColor = [UIColor blackColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.separatorInset = UIEdgeInsetsZero;
         
         UITextView *textView = [[UITextView alloc] init];
+        [cell.contentView addSubview:textView];
         textView.scrollEnabled = NO;
         textView.textContainer.lineFragmentPadding = 0;
         textView.textContainerInset = UIEdgeInsetsZero;
@@ -120,37 +113,37 @@
         textView.font = [UIFont systemFontOfSize:13];
         textView.tag = 100;
         textView.userInteractionEnabled = NO;
-        [cell.contentView addSubview:textView];
-        textView.translatesAutoresizingMaskIntoConstraints = NO;
-        
-        [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[textView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(textView)]];
-        [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[textView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(textView)]];
     }
     NSString *str = self.dataSource[indexPath.row];
     UITextView *textView = [cell.contentView viewWithTag:100];
+    textView.frame = CGRectMake(0, 0, tableView.frame.size.width, [self heigthForContent:str]);
     textView.text = str;
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *str = self.dataSource[indexPath.row];
-    CGRect rect = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 10, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
-    return ceil(rect.size.height);
+    return [self heigthForContent:str];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"复制选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSString *str = self.dataSource[indexPath.row];
-            [UIPasteboard generalPasteboard].string = str;
-        }];
-        UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alertVC addAction:action1];
-        [alertVC addAction:action3];
-        [self presentViewController:alertVC animated:YES completion:nil];
+        
     });
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"复制选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *str = self.dataSource[indexPath.row];
+        [UIPasteboard generalPasteboard].string = str;
+    }];
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertVC addAction:action1];
+    [alertVC addAction:action3];
+    [self presentViewController:alertVC animated:YES completion:nil];
+}
+
+- (CGFloat)heigthForContent:(NSString *)content {
+    CGRect rect = [content boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 10, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
+    return ceil(rect.size.height);
 }
 
 @end
@@ -161,13 +154,10 @@
 
 + (instancetype)consoleWindow;
 
-// to make the GHConsole full-screen.
 - (void)maxmize;
 
-// to make the GHConsole at the right side in your app
 - (void)minimize;
 
-// the point of origin X-axis and Y-axis
 @property (nonatomic, assign) CGPoint axisXY;
 
 @property (nonatomic, strong) GHConsoleRootViewController *consoleRootViewController;
