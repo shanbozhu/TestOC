@@ -250,7 +250,7 @@
 
 - (GHConsoleWindow *)consoleWindow {
     if (!_consoleWindow) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceiveMemoryWarningNotification) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceiveMemoryWarningNotification) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         _consoleWindow = [GHConsoleWindow consoleWindow];
         _consoleWindow.rootViewController = [GHConsoleRootViewController new];
         _consoleWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
@@ -274,7 +274,6 @@
     return _consoleWindow;
 }
 
-// start printing
 - (void)startPrintLog {
     _isFullScreen = NO;
     _isShowConsole = YES;
@@ -284,13 +283,11 @@
     _lock = [NSLock new];
     GGLog(@"GHConsole start working!");
     
-    // if you want to see GHConsole at the release mode you will annotating the stopPrinting func below here.
 #ifndef DEBUG
     [self stopPrinting];
 #endif
 }
 
-// stop printing
 - (void)stopPrinting {
     self.consoleWindow.hidden = YES;
     _isShowConsole = NO;
@@ -337,10 +334,7 @@
     }
 }
 
-- (void)clearAllText {
-    [self.logStingArray removeAllObjects];
-    self.consoleWindow.consoleRootViewController.dataSource = self.logStingArray;
-}
+
 
 
 
@@ -351,11 +345,11 @@
     return _logStingArray;
 }
 
-- (void)handleReceiveMemoryWarningNotification {
-    [self.logStingArray removeAllObjects];
-    [self.logStingArray addObject:@"收到了系统内存警告!所有日志被清空!"];
-    self.consoleWindow.consoleRootViewController.dataSource = self.logStingArray;
-}
+//- (void)handleReceiveMemoryWarningNotification {
+//    [self.logStingArray removeAllObjects];
+//    [self.logStingArray addObject:@"收到了系统内存警告!所有日志被清空!"];
+//    self.consoleWindow.consoleRootViewController.dataSource = self.logStingArray;
+//}
 
 #pragma mark- gesture function
 - (void)panGesture:(UIPanGestureRecognizer *)gesture {
