@@ -22,24 +22,24 @@
     // GHConsole显示打印控制台
     [[GHConsole sharedConsole] startPrintLog];
     
-    UIWindow *window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window = window;
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     
 //    //Controller
-//    PBHomeController *vc0 = [[PBHomeController alloc]init];
+//    PBHomeController *vc0 = [[PBHomeController alloc] init];
 //    vc0.view.backgroundColor = [UIColor whiteColor];
 //    vc0.title = @"首页";
 //
-//    PBMineController *vc1 = [[PBMineController alloc]init];
+//    PBMineController *vc1 = [[PBMineController alloc] init];
 //    vc1.view.backgroundColor = [UIColor whiteColor];
 //    vc1.title = @"我的";
 //
-//    UITabBarController *tab = [[UITabBarController alloc]init];
+//    UITabBarController *tab = [[UITabBarController alloc] init];
 //    tab.viewControllers = @[vc0, vc1];
 //
-//    PBNavigationController *nav = [[PBNavigationController alloc]initWithRootViewController:tab];
+//    PBNavigationController *nav = [[PBNavigationController alloc] initWithRootViewController:tab];
 //    nav.navigationBar.barTintColor = [UIColor redColor];
 //
 //    //window.rootViewController
@@ -47,8 +47,8 @@
     
 
     //Controller
-    PBHomeController *vc1 = [[PBHomeController alloc]init];
-    UINavigationController *nav1 = [[PBNavigationController alloc]initWithRootViewController:vc1];
+    PBHomeController *vc1 = [[PBHomeController alloc] init];
+    UINavigationController *nav1 = [[PBNavigationController alloc] initWithRootViewController:vc1];
     vc1.view.backgroundColor = [UIColor whiteColor];
     PBTabBarButtonItem *buttonItem1 = [[PBTabBarButtonItem alloc] init];
     buttonItem1.title = @"首页";
@@ -56,8 +56,8 @@
     buttonItem1.selectedIcon = @"selected_shouye";
     vc1.pb_tabBarButtonItem = buttonItem1;
     
-    PBMineController *vc2 = [[PBMineController alloc]init];
-    UINavigationController *nav2 = [[PBNavigationController alloc]initWithRootViewController:vc2];
+    PBMineController *vc2 = [[PBMineController alloc] init];
+    UINavigationController *nav2 = [[PBNavigationController alloc] initWithRootViewController:vc2];
     vc2.view.backgroundColor = [UIColor whiteColor];
     PBTabBarButtonItem *buttonItem2 = [[PBTabBarButtonItem alloc] init];
     buttonItem2.title = @"我的";
@@ -65,7 +65,7 @@
     buttonItem2.selectedIcon = @"selected_wode";
     vc2.pb_tabBarButtonItem = buttonItem2;
     
-    PBTabBarController *tab = [[PBTabBarController alloc]init];
+    PBTabBarController *tab = [[PBTabBarController alloc] init];
     tab.viewControllers = @[nav2, nav1];
     
     //window.rootViewController
