@@ -42,6 +42,8 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [self.view addGestureRecognizer:tap];
+    
+    GGLog(@"PBHomeController");
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {

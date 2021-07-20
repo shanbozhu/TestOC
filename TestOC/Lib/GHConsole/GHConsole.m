@@ -8,16 +8,13 @@
 //
 
 #import "GHConsole.h"
-#define k_WIDTH [UIScreen mainScreen].bounds.size.width
 #import <unistd.h>
 #import <sys/uio.h>
 #import <pthread/pthread.h>
-#define USE_PTHREAD_THREADID_NP                (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0)
+
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)) : NO)
 
 #pragma mark- GHConsoleRootViewController
-typedef void (^clearTextBlock)(void);
-typedef void (^readTextBlock)(void);
 
 @interface GHTextViewController : UIViewController
 
@@ -30,20 +27,21 @@ typedef void (^readTextBlock)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height)];
-    textView.editable = NO;
-    textView.backgroundColor = [UIColor blackColor];
-    textView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    textView.textColor = [UIColor whiteColor];
-    textView.text = self.text;
+    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.view addSubview:backBtn];
+    backBtn.frame = CGRectMake(0, 0, self.view.bounds.size.width, APPLICATION_NAVIGATIONBAR_HEIGHT);
     [backBtn setBackgroundColor:[UIColor redColor]];
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
     [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    backBtn.frame = CGRectMake(0, 0, self.view.bounds.size.width, 20);
-    [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT)];
     [self.view addSubview:textView];
+    textView.editable = NO;
+    textView.backgroundColor = [UIColor blackColor];
+    textView.textColor = [UIColor whiteColor];
+    textView.text = self.text;
 }
 
 - (void)backBtnAction {
@@ -55,15 +53,10 @@ typedef void (^readTextBlock)(void);
 @interface GHConsoleRootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     @public
     UITableView *_tableView;
-    UIButton *_clearBtn;
-    UIButton *_saveBtn;
-    UIButton *_readLogBtn;
     UIButton *_minimize;
     UIImageView *_imgV;
 }
 @property (nonatomic) BOOL scrollEnable;
-@property (nonatomic, copy) clearTextBlock clearLogText;
-@property (nonatomic, copy) readTextBlock readLog;
 @property (nonatomic, strong) void(^minimizeActionBlock)(void);
 @property (nonatomic, copy) NSArray *dataSource;
 
@@ -74,9 +67,6 @@ typedef void (^readTextBlock)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTextField];
-    [self configClearBtn];
-    [self configSaveBtn];
-    [self configReadBtn];
     [self configMinimizeBtn];
     [self createImgV];
 }
@@ -104,36 +94,6 @@ typedef void (^readTextBlock)(void);
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(h)-[_tableView]-0-|" options:0 metrics:@{@"h":@((KIsiPhoneX?44:0) + 44)} views:NSDictionaryOfVariableBindings(_tableView)]];
-}
-
-- (void)configClearBtn {
-  _clearBtn = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, KIsiPhoneX?44:0, 60, 44)];
-    [_clearBtn addTarget:self action:@selector(clearText) forControlEvents:UIControlEventTouchUpInside];
-    [_clearBtn setTitle:@"清空" forState:UIControlStateNormal];
-    [_clearBtn setTitleColor:[UIColor colorWithRed:0/255.0 green:212/255.0 blue:59/255.0 alpha:1] forState:UIControlStateNormal];
-    _clearBtn.layer.borderWidth = 2;
-    _clearBtn.layer.borderColor = [UIColor colorWithRed:0/255.0 green:212/255.0 blue:59/255.0 alpha:1].CGColor;
-    [self.view addSubview:_clearBtn];
-}
-
-- (void)configSaveBtn {
-    _saveBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(_clearBtn.frame) - 70, KIsiPhoneX?44:0, 60, 44)];
-    [_saveBtn addTarget:self action:@selector(saveText) forControlEvents:UIControlEventTouchUpInside];
-    [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
-    [_saveBtn setTitleColor:[UIColor colorWithRed:251/255.0 green:187/255.0 blue:0/255.0 alpha:1] forState:UIControlStateNormal];
-    _saveBtn.layer.borderWidth = 2;
-    _saveBtn.layer.borderColor = [[UIColor colorWithRed:251/255.0 green:187/255.0 blue:0/255.0 alpha:1] CGColor];
-    [self.view addSubview:_saveBtn];
-}
-
-- (void)configReadBtn {
-    _readLogBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(_saveBtn.frame) - 70, KIsiPhoneX?44:0, 60, 44)];
-    [_readLogBtn addTarget:self action:@selector(readSavedText) forControlEvents:UIControlEventTouchUpInside];
-    [_readLogBtn setTitle:@"加载" forState:UIControlStateNormal];
-    [_readLogBtn setTitleColor:[UIColor colorWithRed:247/255.0 green:59/255.0 blue:59/255.0 alpha:1] forState:UIControlStateNormal];
-    _readLogBtn.layer.borderWidth = 2;
-    _readLogBtn.layer.borderColor = [[UIColor colorWithRed:247/255.0 green:59/255.0 blue:59/255.0 alpha:1] CGColor];
-    [self.view addSubview:_readLogBtn];
 }
 
 - (void)configMinimizeBtn {
@@ -167,27 +127,6 @@ typedef void (^readTextBlock)(void);
 - (void)setDataSource:(NSArray *)dataSource {
     _dataSource = [dataSource copy];
     [_tableView reloadData];
-}
-
-- (void)clearText {
-    if (self.clearLogText) {
-        self.clearLogText();
-    }
-}
-
-- (void)saveText {
-    if (self.dataSource.count < 1) {
-        return;
-    } else {
-        NSData *data = [NSJSONSerialization dataWithJSONObject:self.dataSource options:NSJSONWritingPrettyPrinted error:nil];
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"textSaveKey"];
-    }
-}
-
-- (void)readSavedText {
-    if (self.readLog) {
-        self.readLog();
-    }
 }
 
 - (void)setScrollEnable:(BOOL)scrollEnable {
@@ -303,9 +242,6 @@ typedef void (^readTextBlock)(void);
     self.backgroundColor = [UIColor blackColor];
     self.consoleRootViewController->_imgV.alpha = 0;
     self.consoleRootViewController->_minimize.alpha = 1.0;
-    self.consoleRootViewController->_readLogBtn.alpha = 1.0;
-    self.consoleRootViewController->_clearBtn.alpha = 1.0;
-    self.consoleRootViewController->_saveBtn.alpha = 1.0;
     self.consoleRootViewController->_tableView.alpha = 1.0;
 }
 
@@ -317,9 +253,6 @@ typedef void (^readTextBlock)(void);
     self.consoleRootViewController.scrollEnable = NO;
     self.consoleRootViewController->_imgV.alpha = 1.0;
     self.consoleRootViewController->_minimize.alpha = 0;
-    self.consoleRootViewController->_readLogBtn.alpha = 0;
-    self.consoleRootViewController->_clearBtn.alpha = 0;
-    self.consoleRootViewController->_saveBtn.alpha = 0;
     self.consoleRootViewController->_tableView.alpha = 0;
     self.backgroundColor = [UIColor clearColor];
     [[UIApplication sharedApplication].delegate.window.rootViewController setNeedsStatusBarAppearanceUpdate];
@@ -378,14 +311,8 @@ typedef void (^readTextBlock)(void);
         _consoleWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
         _consoleWindow.axisXY = _consoleWindow.frame.origin;
         __weak __typeof__(self) weakSelf = self;
-        _consoleWindow.consoleRootViewController.clearLogText = ^{
-            __strong __typeof(weakSelf)strongSelf = weakSelf;
-            [strongSelf clearAllText];
-        };
-        _consoleWindow.consoleRootViewController.readLog = ^{
-            __strong __typeof(weakSelf)strongSelf = weakSelf;
-            [strongSelf readSavedText];
-        };
+
+
         UITapGestureRecognizer *tappGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
         
         [_consoleWindow.rootViewController.view addGestureRecognizer:self.panOutGesture];
@@ -396,9 +323,6 @@ typedef void (^readTextBlock)(void);
         };
         _consoleWindow.backgroundColor = [UIColor clearColor];
         self.consoleWindow.consoleRootViewController->_imgV.alpha = 1.0;
-        self.consoleWindow.consoleRootViewController->_saveBtn.alpha = 0;
-        self.consoleWindow.consoleRootViewController->_readLogBtn.alpha = 0;
-        self.consoleWindow.consoleRootViewController->_clearBtn.alpha = 0;
         self.consoleWindow.consoleRootViewController->_minimize.alpha = 0;
         self.consoleWindow.consoleRootViewController->_tableView.alpha = 0;
     }
@@ -473,16 +397,7 @@ typedef void (^readTextBlock)(void);
     self.consoleWindow.consoleRootViewController.dataSource = self.logStingArray;
 }
 
-- (void)readSavedText {
-   NSData *savedString = [[NSUserDefaults standardUserDefaults] objectForKey:@"textSaveKey"];
-    if (!savedString) {
-        return;
-    }
-    NSArray *array = [NSJSONSerialization JSONObjectWithData:savedString options:NSJSONReadingAllowFragments error:nil];
-    self.logStingArray = [NSMutableArray arrayWithArray:array];
-    [self.logStingArray addObject:@"\n-----------------RECORD-----------------\n\n"];
-    self.consoleWindow.consoleRootViewController.dataSource = self.logStingArray;
-}
+
 
 - (NSMutableArray *)logStingArray {
     if (!_logStingArray) {
