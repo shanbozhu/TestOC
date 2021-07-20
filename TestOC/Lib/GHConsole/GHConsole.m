@@ -14,8 +14,6 @@
 
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)) : NO)
 
-
-
 @interface GHConsoleRootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 @public
     UITableView *_tableView;
@@ -334,22 +332,12 @@
     }
 }
 
-
-
-
-
 - (NSMutableArray *)logStingArray {
     if (!_logStingArray) {
         _logStingArray = [NSMutableArray arrayWithCapacity:0];
     }
     return _logStingArray;
 }
-
-//- (void)handleReceiveMemoryWarningNotification {
-//    [self.logStingArray removeAllObjects];
-//    [self.logStingArray addObject:@"收到了系统内存警告!所有日志被清空!"];
-//    self.consoleWindow.consoleRootViewController.dataSource = self.logStingArray;
-//}
 
 #pragma mark- gesture function
 - (void)panGesture:(UIPanGestureRecognizer *)gesture {
