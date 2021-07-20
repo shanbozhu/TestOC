@@ -51,7 +51,7 @@
 @end
 
 @interface GHConsoleRootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    @public
+@public
     UITableView *_tableView;
     UIButton *_minimize;
     UIImageView *_imgV;
@@ -72,9 +72,8 @@
 }
 
 - (void)configTextField {
-    self.view.clipsToBounds = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.tableFooterView = [UIView new];
     _tableView.separatorColor = [UIColor whiteColor];
@@ -179,22 +178,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     dispatch_async(dispatch_get_main_queue(), ^{
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"复制选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSString *str = self.dataSource[indexPath.row];
-        [UIPasteboard generalPasteboard].string = str;
-    }];
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"单独查看选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        GHTextViewController *vc = [[GHTextViewController alloc] init];
-        NSString *str = self.dataSource[indexPath.row];
-        vc.text = str;
-        [self presentViewController:vc animated:YES completion:nil];
-    }];
-    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alertVC addAction:action1];
-    [alertVC addAction:action2];
-    [alertVC addAction:action3];
-    [self presentViewController:alertVC animated:YES completion:nil];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"复制选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *str = self.dataSource[indexPath.row];
+            [UIPasteboard generalPasteboard].string = str;
+        }];
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"单独查看选中的log" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            GHTextViewController *vc = [[GHTextViewController alloc] init];
+            NSString *str = self.dataSource[indexPath.row];
+            vc.text = str;
+            [self presentViewController:vc animated:YES completion:nil];
+        }];
+        UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertVC addAction:action1];
+        [alertVC addAction:action2];
+        [alertVC addAction:action3];
+        [self presentViewController:alertVC animated:YES completion:nil];
     });
 }
 
@@ -311,8 +310,8 @@
         _consoleWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
         _consoleWindow.axisXY = _consoleWindow.frame.origin;
         __weak __typeof__(self) weakSelf = self;
-
-
+        
+        
         UITapGestureRecognizer *tappGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
         
         [_consoleWindow.rootViewController.view addGestureRecognizer:self.panOutGesture];
