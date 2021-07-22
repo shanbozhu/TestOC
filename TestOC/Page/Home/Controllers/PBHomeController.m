@@ -44,6 +44,9 @@
     [self.view addGestureRecognizer:tap];
     
     GGLog(@"PBHomeController");
+    GGLog(@"PBHomeController");
+    GGLog(@"PBHomeController");
+    GGLog(@"PBHomeController");
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {
