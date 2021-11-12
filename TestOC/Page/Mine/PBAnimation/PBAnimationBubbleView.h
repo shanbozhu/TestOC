@@ -17,10 +17,11 @@ typedef NS_ENUM(NSUInteger, BBABubbleViewArrowDirection) {
     BBABubbleViewArrowDirectionRight,
 };
 
-@interface PBAnimationBubbleView : UIView
+@interface PBAnimationBubbleView : UIButton
 
 @property (nonatomic, assign) BBABubbleViewArrowDirection arrowDirection;
 @property (nonatomic, strong) UIColor *bubbleBackgroundColor;
+@property (nonatomic, copy) void(^bubbleClickBlock)(void);
 
 - (void)showBubbleWithText:(NSString *)text
                     inView:(UIView *)view;

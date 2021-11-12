@@ -23,6 +23,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
+        [self addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         // textView
         UITextView *textView = [[UITextView alloc] init];
@@ -42,6 +43,12 @@
         self.arrowHeight = 7;
     }
     return self;
+}
+
+- (void)btnClick:(UIButton *)btn {
+    if (self.bubbleClickBlock) {
+        self.bubbleClickBlock();
+    }
 }
 
 - (void)showBubbleWithText:(NSString *)text inView:(UIView *)view {

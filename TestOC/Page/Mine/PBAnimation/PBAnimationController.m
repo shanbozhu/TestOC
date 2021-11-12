@@ -21,6 +21,7 @@
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIImageView *stepRightImageView;
 @property (nonatomic, weak) UILabel *stepRightLab;
+@property (nonatomic, weak) PBAnimationBubbleView *bubbleView;
 
 @end
 
@@ -208,8 +209,11 @@
     hostView.image = [UIImage imageNamed:@"tomas_tts_invite_share_haoyou"];
     
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
+    self.bubbleView = bubbleView;
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
-    //bubbleView.arrowDirection = BBABubbleViewArrowDirectionRight;
+    bubbleView.bubbleClickBlock = ^{
+        NSLog(@"气泡被点击了");
+    };
     bubbleView.bubbleBackgroundColor = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
     [bubbleView showBubbleWithText:@"自拍测福气自拍测福气"
                             inView:hostView];
