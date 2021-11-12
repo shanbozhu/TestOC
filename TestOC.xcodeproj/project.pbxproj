@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */; };
 		9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
@@ -282,6 +283,8 @@
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
 		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
+		5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBubbleImageView.h; sourceTree = "<group>"; };
+		5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBubbleImageView.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
 		9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
@@ -834,6 +837,8 @@
 				952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */,
 				952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */,
 				952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */,
+				5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */,
+				5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */,
 			);
 			path = PBAnimation;
 			sourceTree = "<group>";
@@ -2642,6 +2647,7 @@
 				95C872E122E801DA002795D0 /* PBQRCodeScanView.m in Sources */,
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,
+				5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */,
 				953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */,
 				9585A7DC2636E8C200DB31AB /* PBYYTextTableView.m in Sources */,
 				9575931E22F82A37009CA618 /* PBStorageOneController.m in Sources */,

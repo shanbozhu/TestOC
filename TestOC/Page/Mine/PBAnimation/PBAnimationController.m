@@ -13,6 +13,7 @@
 #import <YYImage/YYImage.h>
 #import "PBAnimationStateButton.h"
 #import "PBAnimationBubbleView.h"
+#import "PBBubbleImageView.h"
 
 #define kPBBackgroundColor [UIColor bba_RGBColorFromHexString:@"#1F1F1F" alpha:0.95]
 
@@ -21,7 +22,6 @@
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIImageView *stepRightImageView;
 @property (nonatomic, weak) UILabel *stepRightLab;
-@property (nonatomic, weak) PBAnimationBubbleView *bubbleView;
 
 @end
 
@@ -203,13 +203,12 @@
 }
 
 - (void)addBubbleViews {
-    UIImageView *hostView = [[UIImageView alloc] init];
+    PBBubbleImageView *hostView = [[PBBubbleImageView alloc] init];
     [self.scrollView addSubview:hostView];
     hostView.frame = CGRectMake(200, 160, 50, 50);
     hostView.image = [UIImage imageNamed:@"tomas_tts_invite_share_haoyou"];
     
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
-    self.bubbleView = bubbleView;
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
     bubbleView.bubbleClickBlock = ^{
         NSLog(@"气泡被点击了");
@@ -218,6 +217,8 @@
     [bubbleView showBubbleWithText:@"自拍测福气自拍测福气"
                             inView:hostView];
     bubbleView.backgroundColor = kPBBackgroundColor;
+    
+    hostView.bubbleView = bubbleView;
 }
 
 @end
