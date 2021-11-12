@@ -19,9 +19,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // GHConsole显示打印控制台
-    [[GHConsole sharedConsole] startPrintLog];
-    
     UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window = window;
     [self.window makeKeyAndVisible];
@@ -45,7 +42,7 @@
 //    //window.rootViewController
 //    self.window.rootViewController = nav;
     
-
+    
     //Controller
     PBHomeController *vc1 = [[PBHomeController alloc] init];
     UINavigationController *nav1 = [[PBNavigationController alloc] initWithRootViewController:vc1];

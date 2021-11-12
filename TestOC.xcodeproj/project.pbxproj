@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5CF022AA26A6B3390055B4D1 /* GHConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF022A726A6B3390055B4D1 /* GHConsole.m */; };
-		5CF022AB26A6B3390055B4D1 /* GHConsole.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5CF022A926A6B3390055B4D1 /* GHConsole.bundle */; };
 		9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
@@ -284,9 +282,6 @@
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
 		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
-		5CF022A726A6B3390055B4D1 /* GHConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHConsole.m; sourceTree = "<group>"; };
-		5CF022A826A6B3390055B4D1 /* GHConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHConsole.h; sourceTree = "<group>"; };
-		5CF022A926A6B3390055B4D1 /* GHConsole.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GHConsole.bundle; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
 		9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
@@ -785,16 +780,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5CF022A626A6B3390055B4D1 /* GHConsole */ = {
-			isa = PBXGroup;
-			children = (
-				5CF022A826A6B3390055B4D1 /* GHConsole.h */,
-				5CF022A726A6B3390055B4D1 /* GHConsole.m */,
-				5CF022A926A6B3390055B4D1 /* GHConsole.bundle */,
-			);
-			path = GHConsole;
-			sourceTree = "<group>";
-		};
 		9516858B261EEB8D0047D1B2 /* PBFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1444,7 +1429,6 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5CF022A626A6B3390055B4D1 /* GHConsole */,
 				95168891261F19620047D1B2 /* PBTabBarController */,
 				9575995C22FC2415009CA618 /* TFHpple */,
 				9575996322FC2415009CA618 /* FDTemplateLayoutCell */,
@@ -2362,7 +2346,6 @@
 				95C8741122E84436002795D0 /* PBActivityDetail.js in Resources */,
 				95C8765D22E9A61B002795D0 /* 002@2x.gif in Resources */,
 				95C872D222E801DA002795D0 /* pbqrcode_logo.png in Resources */,
-				5CF022AB26A6B3390055B4D1 /* GHConsole.bundle in Resources */,
 				9575940D22F92790009CA618 /* 选择排序.gif in Resources */,
 				952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
@@ -2509,7 +2492,6 @@
 				95C8764622E99260002795D0 /* PBRegex.m in Sources */,
 				95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */,
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
-				5CF022AA26A6B3390055B4D1 /* GHConsole.m in Sources */,
 				95C871C022E71CBE002795D0 /* PBCenterLineView.m in Sources */,
 				95C8717222E70680002795D0 /* PBGesturePasswordCircleView.m in Sources */,
 				957593F922F84F3B009CA618 /* PBGCDLockSevenController.m in Sources */,
