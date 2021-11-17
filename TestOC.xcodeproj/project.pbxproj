@@ -177,14 +177,14 @@
 			isa = PBXGroup;
 			children = (
 				5C33FD652744DD6E00F6DDF0 /* PBCommonUIParams.h */,
+				5C33FD6B2744DD6E00F6DDF0 /* PBCommonUIParams.m */,
+				5C33FD6A2744DD6E00F6DDF0 /* PBMethodSwizzling.h */,
 				5C33FD662744DD6E00F6DDF0 /* PBMethodSwizzling.m */,
+				5C33FD6D2744DD6E00F6DDF0 /* UIView+PBCommonExtension.h */,
 				5C33FD672744DD6E00F6DDF0 /* UIView+PBCommonExtension.m */,
+				5C33FD6C2744DD6E00F6DDF0 /* UIColor+PBHexStr.h */,
 				5C33FD682744DD6E00F6DDF0 /* UIColor+PBHexStr.m */,
 				5C33FD692744DD6E00F6DDF0 /* NSObject+PBRuntime.h */,
-				5C33FD6A2744DD6E00F6DDF0 /* PBMethodSwizzling.h */,
-				5C33FD6B2744DD6E00F6DDF0 /* PBCommonUIParams.m */,
-				5C33FD6C2744DD6E00F6DDF0 /* UIColor+PBHexStr.h */,
-				5C33FD6D2744DD6E00F6DDF0 /* UIView+PBCommonExtension.h */,
 				5C33FD6E2744DD6E00F6DDF0 /* NSObject+PBRuntime.m */,
 			);
 			path = PBFoundation;
