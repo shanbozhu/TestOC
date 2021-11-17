@@ -8,16 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */; };
-		9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */; };
+		5C33FD7F2744DE9B00F6DDF0 /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD762744DE9B00F6DDF0 /* PBMethodSwizzling.m */; };
+		5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */; };
+		5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */; };
+		5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */; };
+		5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
-		952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */; };
 		952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */; };
 		952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF349265E42F300B0D7DA /* PBAnimationController.m */; };
 		952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */; };
-		952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */; };
 		952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */; };
 		952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */; };
 		952FF51E265E731F00B0D7DA /* search_weather_voice_2_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */; };
@@ -172,8 +174,6 @@
 		95AF9DFD263002620040022F /* BBACommentContentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AF9DF5263002610040022F /* BBACommentContentLink.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
-		95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19216262436440008FD14 /* PBMethodSwizzling.m */; };
-		95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19221262447A00008FD14 /* NSObject+PBRuntime.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
 		95C19230262548400008FD14 /* PBSyntaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922F262548400008FD14 /* PBSyntaxController.m */; };
 		95C8716F22E70680002795D0 /* PBGesturePasswordLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8716922E70680002795D0 /* PBGesturePasswordLab.m */; };
@@ -285,9 +285,17 @@
 		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
 		5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBubbleImageView.h; sourceTree = "<group>"; };
 		5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBubbleImageView.m; sourceTree = "<group>"; };
+		5C33FD752744DE9B00F6DDF0 /* PBCommonUIParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
+		5C33FD762744DE9B00F6DDF0 /* PBMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
+		5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
+		5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PBHexStr.m"; sourceTree = "<group>"; };
+		5C33FD792744DE9B00F6DDF0 /* NSObject+PBRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PBRuntime.h"; sourceTree = "<group>"; };
+		5C33FD7A2744DE9B00F6DDF0 /* PBMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
+		5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
+		5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
+		5C33FD7D2744DE9B00F6DDF0 /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
+		5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
-		9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
-		9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
 		95168A01261F1FE70047D1B2 /* PBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBar.h; sourceTree = "<group>"; };
@@ -297,15 +305,11 @@
 		9516BDC424696A390070C282 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9516BDC524696A390070C282 /* TestOC.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestOC.pch; sourceTree = "<group>"; };
 		9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
-		952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
-		952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
 		952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationBubbleView.h; sourceTree = "<group>"; };
 		952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationBubbleView.m; sourceTree = "<group>"; };
 		952FF348265E42F300B0D7DA /* PBAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationController.h; sourceTree = "<group>"; };
 		952FF349265E42F300B0D7DA /* PBAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationController.m; sourceTree = "<group>"; };
 		952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bubble_voicesearch.json; sourceTree = "<group>"; };
-		952FF512265E6E1800B0D7DA /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
-		952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PBHexStr.m"; sourceTree = "<group>"; };
 		952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_weather_voice_big@3x.png"; sourceTree = "<group>"; };
 		952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_1_big.png; sourceTree = "<group>"; };
 		952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_2_big.png; sourceTree = "<group>"; };
@@ -589,10 +593,6 @@
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
 		95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButtonItem.m; sourceTree = "<group>"; };
-		95C19215262436440008FD14 /* PBMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
-		95C19216262436440008FD14 /* PBMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
-		95C19220262447A00008FD14 /* NSObject+PBRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+PBRuntime.h"; sourceTree = "<group>"; };
-		95C19221262447A00008FD14 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
 		95C1922526246FE30008FD14 /* PBSyntax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntax.h; sourceTree = "<group>"; };
 		95C1922626246FE30008FD14 /* PBSyntax.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntax.m; sourceTree = "<group>"; };
 		95C1922E262548400008FD14 /* PBSyntaxController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxController.h; sourceTree = "<group>"; };
@@ -783,19 +783,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9516858B261EEB8D0047D1B2 /* PBFoundation */ = {
+		5C33FD742744DE9B00F6DDF0 /* PBFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */,
-				9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */,
-				952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */,
-				952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */,
-				95C19215262436440008FD14 /* PBMethodSwizzling.h */,
-				95C19216262436440008FD14 /* PBMethodSwizzling.m */,
-				95C19220262447A00008FD14 /* NSObject+PBRuntime.h */,
-				95C19221262447A00008FD14 /* NSObject+PBRuntime.m */,
-				952FF512265E6E1800B0D7DA /* UIColor+PBHexStr.h */,
-				952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */,
+				5C33FD752744DE9B00F6DDF0 /* PBCommonUIParams.h */,
+				5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */,
+				5C33FD7A2744DE9B00F6DDF0 /* PBMethodSwizzling.h */,
+				5C33FD762744DE9B00F6DDF0 /* PBMethodSwizzling.m */,
+				5C33FD7D2744DE9B00F6DDF0 /* UIView+PBCommonExtension.h */,
+				5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */,
+				5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */,
+				5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */,
+				5C33FD792744DE9B00F6DDF0 /* NSObject+PBRuntime.h */,
+				5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */,
 			);
 			path = PBFoundation;
 			sourceTree = "<group>";
@@ -1434,6 +1434,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5C33FD742744DE9B00F6DDF0 /* PBFoundation */,
 				95168891261F19620047D1B2 /* PBTabBarController */,
 				9575995C22FC2415009CA618 /* TFHpple */,
 				9575996322FC2415009CA618 /* FDTemplateLayoutCell */,
@@ -2212,7 +2213,6 @@
 				952FF347265E42CA00B0D7DA /* PBAnimation */,
 				95EACEFE2626CDE4006F1A6B /* PBContentLabel */,
 				95C1922426246FA00008FD14 /* PBSyntax */,
-				9516858B261EEB8D0047D1B2 /* PBFoundation */,
 				955440F32328EB0B003A615C /* PBRuntime */,
 				957597AB22F99318009CA618 /* PBUniversalLink */,
 				9575942222F950C9009CA618 /* PBAVPlayer */,
@@ -2489,7 +2489,6 @@
 				95C8718322E708CC002795D0 /* PBCalendarController.m in Sources */,
 				9575998622FC2415009CA618 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				957593F222F84F3B009CA618 /* PBGCDLockFiveController.m in Sources */,
-				9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */,
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */,
@@ -2510,7 +2509,6 @@
 				953341BF22F306D400DC7251 /* PBCellHeightThreeController.m in Sources */,
 				9575934A22F82A93009CA618 /* PBStorageList.m in Sources */,
 				95C873E322E84410002795D0 /* PBTestZeroEspressos.m in Sources */,
-				95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */,
 				9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */,
 				95C8740F22E84436002795D0 /* PBTestTwoEspressos.m in Sources */,
 				957593D422F84F20009CA618 /* PBGCDListThreeController.m in Sources */,
@@ -2545,13 +2543,11 @@
 				95C8741522E84436002795D0 /* PBTestListTwoView.m in Sources */,
 				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
 				957593F822F84F3B009CA618 /* PBGCDLockFourController.m in Sources */,
-				952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */,
 				9516BDC724696A390070C282 /* AppDelegate.m in Sources */,
 				95D34C97267357250007A67D /* PBSwiftController.swift in Sources */,
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
 				953341F022F405DE00DC7251 /* PBTimerController.m in Sources */,
 				95C871AE22E71CAC002795D0 /* PBTestEspressosSCSeatList.m in Sources */,
-				95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */,
 				953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */,
 				95C8717522E70697002795D0 /* PBGesturePasswordController.m in Sources */,
 				957593F622F84F3B009CA618 /* PBGCDLockThreeController.m in Sources */,
@@ -2565,10 +2561,10 @@
 				9575934022F82A64009CA618 /* PBStorageDataBaseController.m in Sources */,
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				953341D722F306EE00DC7251 /* PBCellHeightTwoCell.m in Sources */,
+				5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */,
 				958378CA22EAA52300AA39AF /* PBAFNetworkingTwoController.m in Sources */,
 				95C8764E22E99291002795D0 /* PBYYTextCell.m in Sources */,
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
-				952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */,
 				95C8717122E70680002795D0 /* PBGesturePasswordLockView.m in Sources */,
 				95C8717022E70680002795D0 /* PBGesturePasswordView.m in Sources */,
 				953341DA22F306EE00DC7251 /* PBCellHeightThreeView.m in Sources */,
@@ -2600,6 +2596,7 @@
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */,
 				95D34CAF2673714E0007A67D /* PBSwiftLabel.swift in Sources */,
+				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,
 				95C873C322E83B39002795D0 /* PBAnnotation.m in Sources */,
 				953341DE22F306EE00DC7251 /* PBCellHeightThreeCell.m in Sources */,
@@ -2611,6 +2608,7 @@
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
 				95C8764922E99281002795D0 /* PBYYText.m in Sources */,
 				95C872DF22E801DA002795D0 /* PBQRCodeScan.m in Sources */,
+				5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */,
 				953341DD22F306EE00DC7251 /* PBCellHeightZeroCell.m in Sources */,
 				95C873E422E84410002795D0 /* PBContentModel.m in Sources */,
 				95C871C322E71CBE002795D0 /* PBSeatButton.m in Sources */,
@@ -2622,12 +2620,14 @@
 				95C872E222E801DA002795D0 /* PBQRCodeAlbum.m in Sources */,
 				9575934922F82A93009CA618 /* PBStorageText.m in Sources */,
 				954731AF22E05B8D00F6BFA2 /* PBChannelHeaderView.m in Sources */,
+				5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				954E6C4D232643DD00541C11 /* PBDownload.m in Sources */,
 				953341E622F3080200DC7251 /* PBCellHeightController.m in Sources */,
 				95AF9DFB263002620040022F /* BBACommentContentLabelItem.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
+				5C33FD7F2744DE9B00F6DDF0 /* PBMethodSwizzling.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
 				95AF9DFA263002610040022F /* BBACommentContentLabel.m in Sources */,
