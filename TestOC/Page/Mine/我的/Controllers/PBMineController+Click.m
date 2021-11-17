@@ -8,37 +8,11 @@
 
 #import "PBMineController+Click.h"
 #import "PBMineView.h"
-#import "PBWebViewController.h"
-#import "PBCellHeightController.h"
 
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBSyntaxController",
-             @"PBContentController",
-             @"PBAllWelfareController",
-             @"PBCalendarController",
-             @"PBGesturePasswordController",
-             @"PBSeatSelectionController",
-             @"PBQRCodeController",
-             @"PBAnnotationController",
-             @"PBImageTextController",
-             @"PBYYTextController",
-             @"PBAFNetworkingController",
-             @"PBWebViewController",
-             @"PBCellHeightController",
-             @"PBTimerController",
-             @"PBCopyController",
-             @"PBKVOController",
-             @"PBMemoryController",
-             @"PBStorageController",
-             @"PBGCDController",
-             @"PBAlgorithmController",
-             @"PBAVPlayerListController",
-             @"PBUniversalLinkController",
-             @"PBRuntimeController",
-             @"PBAnimationController",
-             @"PBSwiftController"];
+    return @[@"PBSwiftController"];
 }
 
 // delegate

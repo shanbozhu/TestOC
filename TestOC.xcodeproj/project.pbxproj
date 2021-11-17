@@ -7,47 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */; };
 		9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
 		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
 		952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */; };
-		952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */; };
-		952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF349265E42F300B0D7DA /* PBAnimationController.m */; };
-		952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */; };
 		952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */; };
-		952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */; };
-		952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */; };
-		952FF51E265E731F00B0D7DA /* search_weather_voice_2_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */; };
-		952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */; };
-		952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */; };
-		952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */; };
-		952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */ = {isa = PBXBuildFile; fileRef = 952FF539265F3FC600B0D7DA /* commentgif_liked.gif */; };
-		952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */; };
-		952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */; };
-		952FF6F6265F7C0C00B0D7DA /* PBAnimationStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */; };
-		953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */; };
-		953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B022F306AD00DC7251 /* PBCellHeightZero.m */; };
-		953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B322F306D400DC7251 /* PBCellHeightZeroController.m */; };
-		953341BE22F306D400DC7251 /* PBCellHeightOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B622F306D400DC7251 /* PBCellHeightOneController.m */; };
-		953341BF22F306D400DC7251 /* PBCellHeightThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B722F306D400DC7251 /* PBCellHeightThreeController.m */; };
-		953341C022F306D400DC7251 /* PBCellHeightFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341B822F306D400DC7251 /* PBCellHeightFourController.m */; };
-		953341C122F306D400DC7251 /* PBCellHeightTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341BC22F306D400DC7251 /* PBCellHeightTwoController.m */; };
-		953341D622F306EE00DC7251 /* PBCellHeightOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341C222F306EE00DC7251 /* PBCellHeightOneView.m */; };
-		953341D722F306EE00DC7251 /* PBCellHeightTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341C422F306EE00DC7251 /* PBCellHeightTwoCell.m */; };
-		953341D822F306EE00DC7251 /* PBCellHeightTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341C922F306EE00DC7251 /* PBCellHeightTwoView.m */; };
-		953341D922F306EE00DC7251 /* PBCellHeightOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341CD22F306EE00DC7251 /* PBCellHeightOneCell.m */; };
-		953341DA22F306EE00DC7251 /* PBCellHeightThreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341CE22F306EE00DC7251 /* PBCellHeightThreeView.m */; };
-		953341DB22F306EE00DC7251 /* PBCellHeightZeroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341CF22F306EE00DC7251 /* PBCellHeightZeroView.m */; };
-		953341DC22F306EE00DC7251 /* PBCellHeightFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341D222F306EE00DC7251 /* PBCellHeightFourCell.m */; };
-		953341DD22F306EE00DC7251 /* PBCellHeightZeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341D322F306EE00DC7251 /* PBCellHeightZeroCell.m */; };
-		953341DE22F306EE00DC7251 /* PBCellHeightThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341D422F306EE00DC7251 /* PBCellHeightThreeCell.m */; };
-		953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341D522F306EE00DC7251 /* PBCellHeightFourView.m */; };
-		953341E322F3070800DC7251 /* PBCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341E222F3070800DC7251 /* PBCellHeight.m */; };
-		953341E622F3080200DC7251 /* PBCellHeightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341E422F3080200DC7251 /* PBCellHeightController.m */; };
-		953341E822F309CC00DC7251 /* PBCellHeightZero.json in Resources */ = {isa = PBXBuildFile; fileRef = 953341E722F309CC00DC7251 /* PBCellHeightZero.json */; };
 		9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */; };
 		9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */; };
 		9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319722E059A000F6BFA2 /* PBMineController.m */; };
@@ -67,15 +33,10 @@
 		9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575997922FC2415009CA618 /* YYFPSLabel.m */; };
 		9575998D22FC2415009CA618 /* PBBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575997D22FC2415009CA618 /* PBBaseController.m */; };
 		9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575997E22FC2415009CA618 /* PBNavigationController.m */; };
-		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
-		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
-		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19216262436440008FD14 /* PBMethodSwizzling.m */; };
 		95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C19221262447A00008FD14 /* NSObject+PBRuntime.m */; };
-		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
-		95C19230262548400008FD14 /* PBSyntaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922F262548400008FD14 /* PBSyntaxController.m */; };
 		95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873CA22E83D93002795D0 /* PBMineController+Click.m */; };
 		95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8742A22E844CA002795D0 /* libxml2.2.tbd */; };
 		95D34C97267357250007A67D /* PBSwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D34C96267357250007A67D /* PBSwiftController.swift */; };
@@ -102,8 +63,6 @@
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
 		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
-		5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBubbleImageView.h; sourceTree = "<group>"; };
-		5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBubbleImageView.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		9516858C261EEBE00047D1B2 /* PBCommonUIParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCommonUIParams.h; sourceTree = "<group>"; };
 		9516858D261EEBE00047D1B2 /* PBCommonUIParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
@@ -118,63 +77,8 @@
 		9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
 		952C2B9E2621C5BF0077272C /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
 		952C2B9F2621C5BF0077272C /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
-		952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationBubbleView.h; sourceTree = "<group>"; };
-		952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationBubbleView.m; sourceTree = "<group>"; };
-		952FF348265E42F300B0D7DA /* PBAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationController.h; sourceTree = "<group>"; };
-		952FF349265E42F300B0D7DA /* PBAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationController.m; sourceTree = "<group>"; };
-		952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bubble_voicesearch.json; sourceTree = "<group>"; };
 		952FF512265E6E1800B0D7DA /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
 		952FF513265E6E1800B0D7DA /* UIColor+PBHexStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PBHexStr.m"; sourceTree = "<group>"; };
-		952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_weather_voice_big@3x.png"; sourceTree = "<group>"; };
-		952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_1_big.png; sourceTree = "<group>"; };
-		952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_2_big.png; sourceTree = "<group>"; };
-		952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_3_big.png; sourceTree = "<group>"; };
-		952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_4_big.png; sourceTree = "<group>"; };
-		952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_weather_voice_5_big.png; sourceTree = "<group>"; };
-		952FF539265F3FC600B0D7DA /* commentgif_liked.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = commentgif_liked.gif; sourceTree = "<group>"; };
-		952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@2x.png"; sourceTree = "<group>"; };
-		952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@3x.png"; sourceTree = "<group>"; };
-		952FF6F4265F7C0C00B0D7DA /* PBAnimationStateButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationStateButton.h; sourceTree = "<group>"; };
-		952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationStateButton.m; sourceTree = "<group>"; };
-		953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
-		953341AE22F306AD00DC7251 /* PBCellHeightZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZero.h; sourceTree = "<group>"; };
-		953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
-		953341B022F306AD00DC7251 /* PBCellHeightZero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZero.m; sourceTree = "<group>"; };
-		953341B322F306D400DC7251 /* PBCellHeightZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroController.m; sourceTree = "<group>"; };
-		953341B422F306D400DC7251 /* PBCellHeightTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoController.h; sourceTree = "<group>"; };
-		953341B522F306D400DC7251 /* PBCellHeightOneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightOneController.h; sourceTree = "<group>"; };
-		953341B622F306D400DC7251 /* PBCellHeightOneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightOneController.m; sourceTree = "<group>"; };
-		953341B722F306D400DC7251 /* PBCellHeightThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightThreeController.m; sourceTree = "<group>"; };
-		953341B822F306D400DC7251 /* PBCellHeightFourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFourController.m; sourceTree = "<group>"; };
-		953341B922F306D400DC7251 /* PBCellHeightFourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFourController.h; sourceTree = "<group>"; };
-		953341BA22F306D400DC7251 /* PBCellHeightZeroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroController.h; sourceTree = "<group>"; };
-		953341BB22F306D400DC7251 /* PBCellHeightThreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightThreeController.h; sourceTree = "<group>"; };
-		953341BC22F306D400DC7251 /* PBCellHeightTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightTwoController.m; sourceTree = "<group>"; };
-		953341C222F306EE00DC7251 /* PBCellHeightOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightOneView.m; sourceTree = "<group>"; };
-		953341C322F306EE00DC7251 /* PBCellHeightOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightOneView.h; sourceTree = "<group>"; };
-		953341C422F306EE00DC7251 /* PBCellHeightTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightTwoCell.m; sourceTree = "<group>"; };
-		953341C522F306EE00DC7251 /* PBCellHeightThreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightThreeCell.h; sourceTree = "<group>"; };
-		953341C622F306EE00DC7251 /* PBCellHeightFourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFourCell.h; sourceTree = "<group>"; };
-		953341C722F306EE00DC7251 /* PBCellHeightFourView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFourView.h; sourceTree = "<group>"; };
-		953341C822F306EE00DC7251 /* PBCellHeightTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoCell.h; sourceTree = "<group>"; };
-		953341C922F306EE00DC7251 /* PBCellHeightTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightTwoView.m; sourceTree = "<group>"; };
-		953341CA22F306EE00DC7251 /* PBCellHeightZeroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroCell.h; sourceTree = "<group>"; };
-		953341CB22F306EE00DC7251 /* PBCellHeightZeroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroView.h; sourceTree = "<group>"; };
-		953341CC22F306EE00DC7251 /* PBCellHeightOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightOneCell.h; sourceTree = "<group>"; };
-		953341CD22F306EE00DC7251 /* PBCellHeightOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightOneCell.m; sourceTree = "<group>"; };
-		953341CE22F306EE00DC7251 /* PBCellHeightThreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightThreeView.m; sourceTree = "<group>"; };
-		953341CF22F306EE00DC7251 /* PBCellHeightZeroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroView.m; sourceTree = "<group>"; };
-		953341D022F306EE00DC7251 /* PBCellHeightThreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightThreeView.h; sourceTree = "<group>"; };
-		953341D122F306EE00DC7251 /* PBCellHeightTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoView.h; sourceTree = "<group>"; };
-		953341D222F306EE00DC7251 /* PBCellHeightFourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFourCell.m; sourceTree = "<group>"; };
-		953341D322F306EE00DC7251 /* PBCellHeightZeroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroCell.m; sourceTree = "<group>"; };
-		953341D422F306EE00DC7251 /* PBCellHeightThreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightThreeCell.m; sourceTree = "<group>"; };
-		953341D522F306EE00DC7251 /* PBCellHeightFourView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFourView.m; sourceTree = "<group>"; };
-		953341E122F3070800DC7251 /* PBCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeight.h; sourceTree = "<group>"; };
-		953341E222F3070800DC7251 /* PBCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeight.m; sourceTree = "<group>"; };
-		953341E422F3080200DC7251 /* PBCellHeightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightController.m; sourceTree = "<group>"; };
-		953341E522F3080200DC7251 /* PBCellHeightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightController.h; sourceTree = "<group>"; };
-		953341E722F309CC00DC7251 /* PBCellHeightZero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBCellHeightZero.json; sourceTree = "<group>"; };
 		9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@2x.png"; sourceTree = "<group>"; };
 		9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@3x.png"; sourceTree = "<group>"; };
 		9547319722E059A000F6BFA2 /* PBMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMineController.m; sourceTree = "<group>"; };
@@ -212,12 +116,6 @@
 		9575997D22FC2415009CA618 /* PBBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBBaseController.m; sourceTree = "<group>"; };
 		9575997E22FC2415009CA618 /* PBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBNavigationController.m; sourceTree = "<group>"; };
 		9575997F22FC2415009CA618 /* PBBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBaseController.h; sourceTree = "<group>"; };
-		958378D122EACE2800AA39AF /* PBUIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUIWebViewController.m; sourceTree = "<group>"; };
-		958378D222EACE2800AA39AF /* PBWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWKWebViewController.m; sourceTree = "<group>"; };
-		958378D322EACE2800AA39AF /* PBWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWKWebViewController.h; sourceTree = "<group>"; };
-		958378D422EACE2800AA39AF /* PBUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUIWebViewController.h; sourceTree = "<group>"; };
-		958378D722EACE3C00AA39AF /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
-		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -226,10 +124,6 @@
 		95C19216262436440008FD14 /* PBMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
 		95C19220262447A00008FD14 /* NSObject+PBRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+PBRuntime.h"; sourceTree = "<group>"; };
 		95C19221262447A00008FD14 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
-		95C1922526246FE30008FD14 /* PBSyntax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntax.h; sourceTree = "<group>"; };
-		95C1922626246FE30008FD14 /* PBSyntax.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntax.m; sourceTree = "<group>"; };
-		95C1922E262548400008FD14 /* PBSyntaxController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxController.h; sourceTree = "<group>"; };
-		95C1922F262548400008FD14 /* PBSyntaxController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxController.m; sourceTree = "<group>"; };
 		95C873C922E83D93002795D0 /* PBMineController+Click.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBMineController+Click.h"; sourceTree = "<group>"; };
 		95C873CA22E83D93002795D0 /* PBMineController+Click.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBMineController+Click.m"; sourceTree = "<group>"; };
 		95C8742A22E844CA002795D0 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
@@ -321,125 +215,6 @@
 				9516BDC524696A390070C282 /* TestOC.pch */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		952FF347265E42CA00B0D7DA /* PBAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				952FF34C265E492F00B0D7DA /* Res */,
-				952FF348265E42F300B0D7DA /* PBAnimationController.h */,
-				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
-				952FF6F4265F7C0C00B0D7DA /* PBAnimationStateButton.h */,
-				952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */,
-				952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */,
-				952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */,
-				5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */,
-				5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */,
-			);
-			path = PBAnimation;
-			sourceTree = "<group>";
-		};
-		952FF34C265E492F00B0D7DA /* Res */ = {
-			isa = PBXGroup;
-			children = (
-				952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */,
-				952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */,
-				952FF539265F3FC600B0D7DA /* commentgif_liked.gif */,
-				952FF51A265E731100B0D7DA /* search_weather_voice_1_big.png */,
-				952FF51D265E731F00B0D7DA /* search_weather_voice_2_big.png */,
-				952FF520265E732D00B0D7DA /* search_weather_voice_3_big.png */,
-				952FF523265E733A00B0D7DA /* search_weather_voice_4_big.png */,
-				952FF526265E734A00B0D7DA /* search_weather_voice_5_big.png */,
-				952FF516265E709D00B0D7DA /* search_weather_voice_big@3x.png */,
-				952FF35E265E64A700B0D7DA /* bubble_voicesearch.json */,
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
-		953341A822F3067200DC7251 /* PBCellHeight */ = {
-			isa = PBXGroup;
-			children = (
-				953341A922F3067200DC7251 /* Res */,
-				953341AA22F3067200DC7251 /* Models */,
-				953341AB22F3067200DC7251 /* Controllers */,
-				953341AC22F3067200DC7251 /* Views */,
-			);
-			path = PBCellHeight;
-			sourceTree = "<group>";
-		};
-		953341A922F3067200DC7251 /* Res */ = {
-			isa = PBXGroup;
-			children = (
-				953341E722F309CC00DC7251 /* PBCellHeightZero.json */,
-			);
-			path = Res;
-			sourceTree = "<group>";
-		};
-		953341AA22F3067200DC7251 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				953341AE22F306AD00DC7251 /* PBCellHeightZero.h */,
-				953341B022F306AD00DC7251 /* PBCellHeightZero.m */,
-				953341AD22F306AD00DC7251 /* PBCellHeightZeroData.h */,
-				953341AF22F306AD00DC7251 /* PBCellHeightZeroData.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		953341AB22F3067200DC7251 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				953341E522F3080200DC7251 /* PBCellHeightController.h */,
-				953341E422F3080200DC7251 /* PBCellHeightController.m */,
-				953341B922F306D400DC7251 /* PBCellHeightFourController.h */,
-				953341B822F306D400DC7251 /* PBCellHeightFourController.m */,
-				953341B522F306D400DC7251 /* PBCellHeightOneController.h */,
-				953341B622F306D400DC7251 /* PBCellHeightOneController.m */,
-				953341BB22F306D400DC7251 /* PBCellHeightThreeController.h */,
-				953341B722F306D400DC7251 /* PBCellHeightThreeController.m */,
-				953341B422F306D400DC7251 /* PBCellHeightTwoController.h */,
-				953341BC22F306D400DC7251 /* PBCellHeightTwoController.m */,
-				953341BA22F306D400DC7251 /* PBCellHeightZeroController.h */,
-				953341B322F306D400DC7251 /* PBCellHeightZeroController.m */,
-				953341E022F3070800DC7251 /* PBCellHeight */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		953341AC22F3067200DC7251 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				953341CB22F306EE00DC7251 /* PBCellHeightZeroView.h */,
-				953341CF22F306EE00DC7251 /* PBCellHeightZeroView.m */,
-				953341CA22F306EE00DC7251 /* PBCellHeightZeroCell.h */,
-				953341D322F306EE00DC7251 /* PBCellHeightZeroCell.m */,
-				953341C322F306EE00DC7251 /* PBCellHeightOneView.h */,
-				953341C222F306EE00DC7251 /* PBCellHeightOneView.m */,
-				953341CC22F306EE00DC7251 /* PBCellHeightOneCell.h */,
-				953341CD22F306EE00DC7251 /* PBCellHeightOneCell.m */,
-				953341D122F306EE00DC7251 /* PBCellHeightTwoView.h */,
-				953341C922F306EE00DC7251 /* PBCellHeightTwoView.m */,
-				953341C822F306EE00DC7251 /* PBCellHeightTwoCell.h */,
-				953341C422F306EE00DC7251 /* PBCellHeightTwoCell.m */,
-				953341D022F306EE00DC7251 /* PBCellHeightThreeView.h */,
-				953341CE22F306EE00DC7251 /* PBCellHeightThreeView.m */,
-				953341C522F306EE00DC7251 /* PBCellHeightThreeCell.h */,
-				953341D422F306EE00DC7251 /* PBCellHeightThreeCell.m */,
-				953341C722F306EE00DC7251 /* PBCellHeightFourView.h */,
-				953341D522F306EE00DC7251 /* PBCellHeightFourView.m */,
-				953341C622F306EE00DC7251 /* PBCellHeightFourCell.h */,
-				953341D222F306EE00DC7251 /* PBCellHeightFourCell.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		953341E022F3070800DC7251 /* PBCellHeight */ = {
-			isa = PBXGroup;
-			children = (
-				953341E122F3070800DC7251 /* PBCellHeight.h */,
-				953341E222F3070800DC7251 /* PBCellHeight.m */,
-			);
-			path = PBCellHeight;
 			sourceTree = "<group>";
 		};
 		9547319222E059A000F6BFA2 /* 我的 */ = {
@@ -567,38 +342,6 @@
 			path = PBNavigationController;
 			sourceTree = "<group>";
 		};
-		958378CC22EACE1400AA39AF /* PBWebView */ = {
-			isa = PBXGroup;
-			children = (
-				958378CF22EACE1400AA39AF /* Controllers */,
-			);
-			path = PBWebView;
-			sourceTree = "<group>";
-		};
-		958378CF22EACE1400AA39AF /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				958378D722EACE3C00AA39AF /* PBWebViewController.h */,
-				958378D822EACE3C00AA39AF /* PBWebViewController.m */,
-				958378D422EACE2800AA39AF /* PBUIWebViewController.h */,
-				958378D122EACE2800AA39AF /* PBUIWebViewController.m */,
-				958378D322EACE2800AA39AF /* PBWKWebViewController.h */,
-				958378D222EACE2800AA39AF /* PBWKWebViewController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		95C1922426246FA00008FD14 /* PBSyntax */ = {
-			isa = PBXGroup;
-			children = (
-				95C1922526246FE30008FD14 /* PBSyntax.h */,
-				95C1922626246FE30008FD14 /* PBSyntax.m */,
-				95C1922E262548400008FD14 /* PBSyntaxController.h */,
-				95C1922F262548400008FD14 /* PBSyntaxController.m */,
-			);
-			path = PBSyntax;
-			sourceTree = "<group>";
-		};
 		95D34B9026734DE90007A67D /* PBSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,11 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				95D34B9026734DE90007A67D /* PBSwift */,
-				952FF347265E42CA00B0D7DA /* PBAnimation */,
-				95C1922426246FA00008FD14 /* PBSyntax */,
 				9516858B261EEB8D0047D1B2 /* PBFoundation */,
-				953341A822F3067200DC7251 /* PBCellHeight */,
-				958378CC22EACE1400AA39AF /* PBWebView */,
 				9547319222E059A000F6BFA2 /* 我的 */,
 			);
 			path = Mine;
@@ -840,26 +579,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */,
-				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
 				B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */,
-				952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
-				952FF35F265E64A700B0D7DA /* bubble_voicesearch.json in Resources */,
 				B0F04AB71F9E01BD00F69AC3 /* pbhome_icon@3x.png in Resources */,
 				B0F04AB91F9E01BD00F69AC3 /* pbhome_sport_headerline@3x.png in Resources */,
-				952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */,
 				B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */,
-				952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */,
-				952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */,
 				9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */,
-				952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */,
-				953341E822F309CC00DC7251 /* PBCellHeightZero.json in Resources */,
 				B0F04AB61F9E01BD00F69AC3 /* pbhome_icon@2x.png in Resources */,
 				9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */,
-				952FF51E265E731F00B0D7DA /* search_weather_voice_2_big.png in Resources */,
 				B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */,
-				952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,9 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				953341C022F306D400DC7251 /* PBCellHeightFourController.m in Sources */,
 				9575998022FC2415009CA618 /* TFHpple.m in Sources */,
-				958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */,
 				9575998A22FC2415009CA618 /* PBPhotoBrowserPageView.m in Sources */,
 				B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */,
 				9575998222FC2415009CA618 /* XPathQuery.m in Sources */,
@@ -919,63 +645,37 @@
 				9516858E261EEBE00047D1B2 /* PBCommonUIParams.m in Sources */,
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
-				952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */,
 				9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */,
-				953341BF22F306D400DC7251 /* PBCellHeightThreeController.m in Sources */,
 				95C19217262436440008FD14 /* PBMethodSwizzling.m in Sources */,
 				9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */,
-				958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */,
 				9575998822FC2415009CA618 /* PBPhotoBrowserView.m in Sources */,
 				9575998B22FC2415009CA618 /* YYWeakProxy.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
-				953341DC22F306EE00DC7251 /* PBCellHeightFourCell.m in Sources */,
 				9575998322FC2415009CA618 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */,
-				953341C122F306D400DC7251 /* PBCellHeightTwoController.m in Sources */,
 				952FF514265E6E1800B0D7DA /* UIColor+PBHexStr.m in Sources */,
 				9516BDC724696A390070C282 /* AppDelegate.m in Sources */,
 				95D34C97267357250007A67D /* PBSwiftController.swift in Sources */,
 				95C19222262447A00008FD14 /* NSObject+PBRuntime.m in Sources */,
-				953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
-				953341D622F306EE00DC7251 /* PBCellHeightOneView.m in Sources */,
 				9575998522FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
-				953341D722F306EE00DC7251 /* PBCellHeightTwoCell.m in Sources */,
 				952C2BA02621C5BF0077272C /* UIView+PBCommonExtension.m in Sources */,
-				953341DA22F306EE00DC7251 /* PBCellHeightThreeView.m in Sources */,
 				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,
 				9575998722FC2415009CA618 /* UIImage+ImageEffects.m in Sources */,
-				953341D822F306EE00DC7251 /* PBCellHeightTwoView.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
-				958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */,
 				95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */,
-				953341BE22F306D400DC7251 /* PBCellHeightOneController.m in Sources */,
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
-				952FF6F6265F7C0C00B0D7DA /* PBAnimationStateButton.m in Sources */,
-				953341B222F306AD00DC7251 /* PBCellHeightZero.m in Sources */,
-				952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */,
-				953341DF22F306EE00DC7251 /* PBCellHeightFourView.m in Sources */,
 				95D34CAF2673714E0007A67D /* PBSwiftLabel.swift in Sources */,
-				953341DE22F306EE00DC7251 /* PBCellHeightThreeCell.m in Sources */,
-				953341DD22F306EE00DC7251 /* PBCellHeightZeroCell.m in Sources */,
 				9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */,
-				953341E322F3070800DC7251 /* PBCellHeight.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
-				953341E622F3080200DC7251 /* PBCellHeightController.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
-				953341DB22F306EE00DC7251 /* PBCellHeightZeroView.m in Sources */,
-				95C1922726246FE40008FD14 /* PBSyntax.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
-				95C19230262548400008FD14 /* PBSyntaxController.m in Sources */,
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
-				5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */,
-				953341B122F306AD00DC7251 /* PBCellHeightZeroData.m in Sources */,
 				9575998122FC2415009CA618 /* TFHppleElement.m in Sources */,
 				9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */,
-				953341D922F306EE00DC7251 /* PBCellHeightOneCell.m in Sources */,
 				95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
