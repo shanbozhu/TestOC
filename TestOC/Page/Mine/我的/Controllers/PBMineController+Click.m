@@ -8,11 +8,8 @@
 
 #import "PBMineController+Click.h"
 #import "PBMineView.h"
-#import "PBImageTextController.h"
-#import "PBYYTextController.h"
 #import "PBWebViewController.h"
 #import "PBCellHeightController.h"
-#import "PBContentController.h"
 
 @implementation PBMineController (Click)
 
