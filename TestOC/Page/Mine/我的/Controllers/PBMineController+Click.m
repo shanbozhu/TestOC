@@ -12,7 +12,7 @@
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBSwiftController"];
+    return @[@"123"];
 }
 
 // delegate
@@ -20,9 +20,6 @@
     NSString *page = self.pageArr[indexPath.row];
     Class class = NSClassFromString(page);
     UIViewController *vc = [[class alloc] init];
-    if ([page isEqualToString:@"PBSwiftController"] && !vc) {
-        vc = [[PBSwiftController alloc] init];
-    }
     vc.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:vc animated:YES];
