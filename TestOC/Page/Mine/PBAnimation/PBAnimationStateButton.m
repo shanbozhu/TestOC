@@ -26,4 +26,17 @@
     }
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    // 设置部分圆角
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                     byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight
+                                                           cornerRadii:CGSizeMake(10, 10)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = bezierPath.CGPath;
+    self.layer.mask = maskLayer;
+}
+
 @end
