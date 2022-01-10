@@ -211,7 +211,7 @@
     PBAnimationBubbleView *bubbleView = [[PBAnimationBubbleView alloc] init];
     bubbleView.arrowDirection = BBABubbleViewArrowDirectionUp;
     bubbleView.bubbleClickBlock = ^{
-        NSLog(@"气泡被点击了");
+        NSLog(@"超出父视图frame的气泡被点击了");
     };
     bubbleView.bubbleBackgroundColor = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
     [bubbleView showBubbleWithText:@"自拍测福气自拍测福气"
