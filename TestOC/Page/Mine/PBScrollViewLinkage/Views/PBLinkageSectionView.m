@@ -10,6 +10,19 @@
 
 @implementation PBLinkageSectionView
 
++ (instancetype)linkageSectionViewWithTableView:(UITableView *)tableView {
+    [tableView registerClass:[self class] forHeaderFooterViewReuseIdentifier:@"PBLinkageSectionView"];
+    PBLinkageSectionView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"PBLinkageSectionView"];
+    return headerView;
+}
+
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        [self addSubview:self.segmentControl];
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.segmentControl];

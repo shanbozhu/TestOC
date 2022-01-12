@@ -58,8 +58,6 @@
         if (@available(iOS 15, *)) {
             _tableView.sectionHeaderTopPadding = 0;
         }
-        _tableView.layer.borderColor = [UIColor blueColor].CGColor;
-        _tableView.layer.borderWidth = 1;
     }
     return _tableView;
 }
@@ -104,6 +102,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    // 选择header
     return self.sectionView;
 }
 
@@ -120,14 +119,13 @@
 
 - (PBLinkageSectionView *)sectionView {
     if (!_sectionView) {
-        _sectionView = [[PBLinkageSectionView alloc] initWithFrame:CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 60)];
+        _sectionView = [PBLinkageSectionView linkageSectionViewWithTableView:self.tableView];
+        _sectionView.frame = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 60);
         __weak typeof(self) weakSelf = self;
         [_sectionView.segmentControl setIndexChangeBlock:^(NSInteger index) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf.containerCell.scrollView setContentOffset:CGPointMake(index * APPLICATION_FRAME_WIDTH, 0) animated:YES];
         }];
-        _sectionView.layer.borderColor = [UIColor redColor].CGColor;
-        _sectionView.layer.borderWidth = 1;
     }
     return _sectionView;
 }
