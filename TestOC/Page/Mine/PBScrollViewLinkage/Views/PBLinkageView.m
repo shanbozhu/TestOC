@@ -124,7 +124,6 @@
         __weak typeof(self) weakSelf = self;
         [_sectionView.segmentControl setIndexChangeBlock:^(NSInteger index) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
-            strongSelf.containerCell.isSelectIndex = YES;
             [strongSelf.containerCell.scrollView setContentOffset:CGPointMake(index * APPLICATION_FRAME_WIDTH, 0) animated:YES];
         }];
         _sectionView.layer.borderColor = [UIColor redColor].CGColor;
@@ -145,7 +144,7 @@
                 self.containerCell.objectCanScroll = YES;
             }
         } else {
-            // 下面内部的子视图还没滚动到顶部
+            // 内部的ScrollView还没滑动到顶部时,外部的ScrollView不可动
             if (!self.canScroll) {
                 scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
             }

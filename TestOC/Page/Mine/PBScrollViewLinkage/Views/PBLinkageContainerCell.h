@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 
 @property (nonatomic, assign) BOOL objectCanScroll;
-@property (nonatomic, assign) BOOL isSelectIndex;
 @property (nonatomic, weak) id <PBLinkageContainerCellDelegate> delegate;
 
 + (instancetype)linkageContainerCellWithTableView:(UITableView *)tableView;
