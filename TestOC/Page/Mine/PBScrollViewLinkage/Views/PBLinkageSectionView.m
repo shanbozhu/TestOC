@@ -24,7 +24,7 @@
         _segmentControl.frame = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 60);
         _segmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         _segmentControl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-        _segmentControl.selectionIndicatorHeight = 2.5f;
+        _segmentControl.selectionIndicatorHeight = 5;
         _segmentControl.selectionIndicatorColor = [UIColor redColor];
         
         NSDictionary *attributesNormal = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"PingFangSC-Regular" size:14],NSFontAttributeName, [UIColor blackColor], NSForegroundColorAttributeName,nil];
