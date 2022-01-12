@@ -10,9 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol PBLinkageContainerCellDelegate <NSObject>
+
+@optional
+- (void)linkageContainerCellScrollViewDidScroll:(UIScrollView *)scrollView;
+
+- (void)linkageContainerCellScrollViewDidEndDecelerating:(UIScrollView *)scrollView;
+
+@end
+
 @interface PBLinkageContainerCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) UIScrollView *scrollView;
+
 @property (nonatomic, assign) BOOL objectCanScroll;
+@property (nonatomic, assign) BOOL isSelectIndex;
+@property (nonatomic, weak) id <PBLinkageContainerCellDelegate> delegate;
 
 + (instancetype)linkageContainerCellWithTableView:(UITableView *)tableView;
 

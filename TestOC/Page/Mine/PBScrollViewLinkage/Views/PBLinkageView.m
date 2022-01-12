@@ -12,7 +12,7 @@
 #import "PBLinkageContainerCell.h"
 #import "PBLinkageSectionView.h"
 
-@interface PBLinkageView () <UITableViewDelegate, UITableViewDataSource>
+@interface PBLinkageView () <UITableViewDelegate, UITableViewDataSource, PBLinkageContainerCellDelegate>
 
 @property (nonatomic, strong) PBLinkageTableView *tableView;
 @property (nonatomic, strong) PBLinkageSectionView *sectionView;
@@ -99,7 +99,7 @@
     // 滑动cell
     PBLinkageContainerCell *cell = [PBLinkageContainerCell linkageContainerCellWithTableView:tableView];
     self.containerCell = cell;
-//    cell.delegate = self;
+    cell.delegate = self;
     return cell;
 }
 
@@ -123,8 +123,9 @@
         _sectionView = [[PBLinkageSectionView alloc] initWithFrame:CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 60)];
         __weak typeof(self) weakSelf = self;
         [_sectionView.segmentControl setIndexChangeBlock:^(NSInteger index) {
-//            weakSelf.containerCell.isSelectIndex = YES;
-//            [weakSelf.containerCell.scrollView setContentOffset:CGPointMake(index*[UIScreen mainScreen].bounds.size.width, 0) animated:YES];
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf.containerCell.isSelectIndex = YES;
+            [strongSelf.containerCell.scrollView setContentOffset:CGPointMake(index * APPLICATION_FRAME_WIDTH, 0) animated:YES];
         }];
         _sectionView.layer.borderColor = [UIColor redColor].CGColor;
         _sectionView.layer.borderWidth = 1;
@@ -150,6 +151,17 @@
             }
         }
     }
+}
+
+- (void)linkageContainerCellScrollViewDidScroll:(UIScrollView *)scrollView {
+    self.tableView.scrollEnabled = NO;
+}
+
+- (void)linkageContainerCellScrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSUInteger page = scrollView.contentOffset.x / APPLICATION_FRAME_WIDTH;
+    [self.sectionView.segmentControl setSelectedSegmentIndex:page animated:YES];
+    
+    self.tableView.scrollEnabled = YES;
 }
 
 @end

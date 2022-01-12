@@ -78,4 +78,27 @@
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 1.手动横向滑动的时候,外层的tableView不能滑动
+    // 2.屏蔽点击tab滑动的时候
+    if (!self.isSelectIndex) {
+        if (scrollView == self.scrollView) {
+            if (self.delegate &&
+                [self.delegate respondsToSelector:@selector(linkageContainerCellScrollViewDidScroll:)]) {
+                [self.delegate linkageContainerCellScrollViewDidScroll:scrollView];
+            }
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // 为了横向滑动结束的时候,外层的tableView可动
+    if (scrollView == self.scrollView) {
+        if (self.delegate &&
+            [self.delegate respondsToSelector:@selector(linkageContainerCellScrollViewDidEndDecelerating:)]) {
+            [self.delegate linkageContainerCellScrollViewDidEndDecelerating:scrollView];
+        }
+    }
+}
+
 @end
