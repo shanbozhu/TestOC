@@ -21,6 +21,9 @@
 		5CC80A17278ED657002BA319 /* PBLinkageContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A16278ED657002BA319 /* PBLinkageContainerCell.m */; };
 		5CC80A1A278EE44D002BA319 /* PBLinkageSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A19278EE44D002BA319 /* PBLinkageSectionView.m */; };
 		5CC80A1E278EE4BC002BA319 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A1D278EE4BC002BA319 /* HMSegmentedControl.m */; };
+		5CC80A21278EEB9D002BA319 /* PBLinkageOneListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A20278EEB9C002BA319 /* PBLinkageOneListController.m */; };
+		5CC80A24278EEBAE002BA319 /* PBLinkageTwoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A23278EEBAE002BA319 /* PBLinkageTwoListController.m */; };
+		5CC80A27278EEBBC002BA319 /* PBLinkageThreeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A26278EEBBC002BA319 /* PBLinkageThreeListController.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -319,6 +322,12 @@
 		5CC80A19278EE44D002BA319 /* PBLinkageSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageSectionView.m; sourceTree = "<group>"; };
 		5CC80A1C278EE4BC002BA319 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		5CC80A1D278EE4BC002BA319 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		5CC80A1F278EEB9C002BA319 /* PBLinkageOneListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBLinkageOneListController.h; sourceTree = "<group>"; };
+		5CC80A20278EEB9C002BA319 /* PBLinkageOneListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageOneListController.m; sourceTree = "<group>"; };
+		5CC80A22278EEBAE002BA319 /* PBLinkageTwoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBLinkageTwoListController.h; sourceTree = "<group>"; };
+		5CC80A23278EEBAE002BA319 /* PBLinkageTwoListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageTwoListController.m; sourceTree = "<group>"; };
+		5CC80A25278EEBBC002BA319 /* PBLinkageThreeListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBLinkageThreeListController.h; sourceTree = "<group>"; };
+		5CC80A26278EEBBC002BA319 /* PBLinkageThreeListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageThreeListController.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -858,6 +867,12 @@
 			children = (
 				5CC80A06278EC96E002BA319 /* PBLinkageController.h */,
 				5CC80A07278EC96E002BA319 /* PBLinkageController.m */,
+				5CC80A1F278EEB9C002BA319 /* PBLinkageOneListController.h */,
+				5CC80A20278EEB9C002BA319 /* PBLinkageOneListController.m */,
+				5CC80A22278EEBAE002BA319 /* PBLinkageTwoListController.h */,
+				5CC80A23278EEBAE002BA319 /* PBLinkageTwoListController.m */,
+				5CC80A25278EEBBC002BA319 /* PBLinkageThreeListController.h */,
+				5CC80A26278EEBBC002BA319 /* PBLinkageThreeListController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2614,6 +2629,7 @@
 				9575943922F9510C009CA618 /* PBAVPlayerListCell.m in Sources */,
 				9575932C22F82A46009CA618 /* PBDataPList.m in Sources */,
 				9575931222F81E7E009CA618 /* PBMemoryListMRCOne.m in Sources */,
+				5CC80A27278EEBBC002BA319 /* PBLinkageThreeListController.m in Sources */,
 				9575942C22F950EB009CA618 /* PBAVPlayerListController.m in Sources */,
 				953341DC22F306EE00DC7251 /* PBCellHeightFourCell.m in Sources */,
 				9575998322FC2415009CA618 /* UITableView+FDTemplateLayoutCell.m in Sources */,
@@ -2627,6 +2643,7 @@
 				957593F822F84F3B009CA618 /* PBGCDLockFourController.m in Sources */,
 				9516BDC724696A390070C282 /* AppDelegate.m in Sources */,
 				95D34C97267357250007A67D /* PBSwiftController.swift in Sources */,
+				5CC80A24278EEBAE002BA319 /* PBLinkageTwoListController.m in Sources */,
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
 				953341F022F405DE00DC7251 /* PBTimerController.m in Sources */,
 				95C871AE22E71CAC002795D0 /* PBTestEspressosSCSeatList.m in Sources */,
@@ -2704,6 +2721,7 @@
 				9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */,
 				9575935822F84D28009CA618 /* PBGCDZeroController.m in Sources */,
 				953341E322F3070800DC7251 /* PBCellHeight.m in Sources */,
+				5CC80A21278EEB9D002BA319 /* PBLinkageOneListController.m in Sources */,
 				95C872E222E801DA002795D0 /* PBQRCodeAlbum.m in Sources */,
 				9575934922F82A93009CA618 /* PBStorageText.m in Sources */,
 				954731AF22E05B8D00F6BFA2 /* PBChannelHeaderView.m in Sources */,

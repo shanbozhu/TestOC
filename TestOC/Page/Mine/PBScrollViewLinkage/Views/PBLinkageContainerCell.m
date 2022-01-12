@@ -7,6 +7,21 @@
 //
 
 #import "PBLinkageContainerCell.h"
+#import "PBLinkageOneListController.h"
+#import "PBLinkageTwoListController.h"
+#import "PBLinkageThreeListController.h"
+
+#define kHeight APPLICATION_FRAME_HEIGHT - APPLICATION_NAVIGATIONBAR_HEIGHT - 60
+
+@interface PBLinkageContainerCell () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, strong) PBLinkageOneListController *oneVC;
+@property (nonatomic, strong) PBLinkageTwoListController *twoVC;
+@property (nonatomic, strong) PBLinkageThreeListController *threeVC;
+
+@end
 
 @implementation PBLinkageContainerCell
 
@@ -18,9 +33,49 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        [self.contentView addSubview:self.scrollView];
+        [self configScrollView];
     }
     return self;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, kHeight)];
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * 3, _scrollView.frame.size.height);
+    }
+    return _scrollView;
+}
+
+- (void)configScrollView {
+    self.oneVC = [[PBLinkageOneListController alloc] init];
+    self.twoVC = [[PBLinkageTwoListController alloc] init];
+    self.threeVC = [[PBLinkageThreeListController alloc] init];
+    
+    [self.scrollView addSubview:self.oneVC.view];
+    [self.scrollView addSubview:self.twoVC.view];
+    [self.scrollView addSubview:self.threeVC.view];
+    
+    self.oneVC.view.frame = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, kHeight);
+    self.twoVC.view.frame = CGRectMake(APPLICATION_FRAME_WIDTH, 0, APPLICATION_FRAME_WIDTH, kHeight);
+    self.threeVC.view.frame = CGRectMake(APPLICATION_FRAME_WIDTH * 2, 0, APPLICATION_FRAME_WIDTH, kHeight);
+}
+
+- (void)setObjectCanScroll:(BOOL)objectCanScroll {
+    _objectCanScroll = objectCanScroll;
+    
+    self.oneVC.vcCanScroll = objectCanScroll;
+    self.twoVC.vcCanScroll = objectCanScroll;
+    self.threeVC.vcCanScroll = objectCanScroll;
+    
+    if (!objectCanScroll) {
+        [self.oneVC.tableView setContentOffset:CGPointZero animated:NO];
+        [self.twoVC.tableView setContentOffset:CGPointZero animated:NO];
+        [self.threeVC.tableView setContentOffset:CGPointZero animated:NO];
+    }
 }
 
 @end

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBLinkageContainerCell : UITableViewCell
 
+@property (nonatomic, assign) BOOL objectCanScroll;
+
 + (instancetype)linkageContainerCellWithTableView:(UITableView *)tableView;
 
 @end

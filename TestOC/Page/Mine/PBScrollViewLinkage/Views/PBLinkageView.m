@@ -17,6 +17,10 @@
 @property (nonatomic, strong) PBLinkageTableView *tableView;
 @property (nonatomic, strong) PBLinkageSectionView *sectionView;
 
+@property (nonatomic, assign) BOOL canScroll;
+
+@property (nonatomic, strong) PBLinkageContainerCell *containerCell;
+
 @end
 
 @implementation PBLinkageView
@@ -31,8 +35,16 @@
         
         // self.tableView
         [self addSubview:self.tableView];
+        
+        self.canScroll = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeScrollStatus) name:@"leaveTop" object:nil];
     }
     return self;
+}
+
+- (void)changeScrollStatus {
+    self.canScroll = YES;
+    self.containerCell.objectCanScroll = NO;
 }
 
 - (PBLinkageTableView *)tableView {
@@ -76,17 +88,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            // 海报
+            // 海报cell
             PBLinkagePosterCell *cell = [PBLinkagePosterCell linkagePosterCellWithTableView:tableView];
             return cell;
         }
-        // 简介
+        // 简介cell
         PBLinkageDescCell *cell = [PBLinkageDescCell linkageDescCellWithTableView:tableView];
         return cell;
     }
-    // 重点！横向滑动cell
+    // 滑动cell
     PBLinkageContainerCell *cell = [PBLinkageContainerCell linkageContainerCellWithTableView:tableView];
-//    self.containerCell = cell;
+    self.containerCell = cell;
 //    cell.delegate = self;
     return cell;
 }
@@ -118,6 +130,26 @@
         _sectionView.layer.borderWidth = 1;
     }
     return _sectionView;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.tableView) {
+        CGFloat bottomCellOffset = [self.tableView rectForSection:1].origin.y;
+        bottomCellOffset = floorf(bottomCellOffset);
+        
+        if (scrollView.contentOffset.y >= bottomCellOffset) {
+            scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+            if (self.canScroll) {
+                self.canScroll = NO;
+                self.containerCell.objectCanScroll = YES;
+            }
+        } else {
+            // 下面内部的子视图还没滚动到顶部
+            if (!self.canScroll) {
+                scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+            }
+        }
+    }
 }
 
 @end

@@ -15,6 +15,10 @@
 
 @implementation PBLinkageController
 
+- (BOOL)pb_panGestureRecognizerEnabled {
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 

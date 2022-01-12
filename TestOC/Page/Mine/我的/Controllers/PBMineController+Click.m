@@ -35,7 +35,8 @@
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBSyntaxController",
+    return @[@"PBLinkageController",
+             @"PBSyntaxController",
              @"PBContentController",
              @"PBAllWelfareController",
              @"PBCalendarController",
@@ -59,8 +60,7 @@
              @"PBUniversalLinkController",
              @"PBRuntimeController",
              @"PBAnimationController",
-             @"PBSwiftController",
-             @"PBLinkageController"];
+             @"PBSwiftController"];
 }
 
 // delegate
