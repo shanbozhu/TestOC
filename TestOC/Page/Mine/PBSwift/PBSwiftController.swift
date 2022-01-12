@@ -33,7 +33,7 @@ class PBSwiftController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = false // 取消自动调节ScrollView内边距
         
         // lab
         let lab: PBSwiftLabel = PBSwiftLabel()

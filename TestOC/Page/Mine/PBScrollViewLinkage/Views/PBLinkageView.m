@@ -1,0 +1,123 @@
+//
+//  PBLinkageView.m
+//  TestOC
+//
+//  Created by shanbo on 2022/1/12.
+//  Copyright © 2022 DaMaiIOS. All rights reserved.
+//
+
+#import "PBLinkageView.h"
+#import "PBLinkagePosterCell.h"
+#import "PBLinkageDescCell.h"
+#import "PBLinkageContainerCell.h"
+#import "PBLinkageSectionView.h"
+
+@interface PBLinkageView () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) PBLinkageTableView *tableView;
+@property (nonatomic, strong) PBLinkageSectionView *sectionView;
+
+@end
+
+@implementation PBLinkageView
+
++ (instancetype)linkageView {
+    return [[self alloc] initWithFrame:CGRectZero];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, APPLICATION_FRAME_WIDTH, APPLICATION_FRAME_HEIGHT - APPLICATION_NAVIGATIONBAR_HEIGHT);
+        
+        // self.tableView
+        [self addSubview:self.tableView];
+    }
+    return self;
+}
+
+- (PBLinkageTableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[PBLinkageTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        if (@available(iOS 11.0, *)) {
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever; // 取消自动调节ScrollView内边距
+        }
+        if (@available(iOS 15, *)) {
+            _tableView.sectionHeaderTopPadding = 0;
+        }
+        _tableView.layer.borderColor = [UIColor blueColor].CGColor;
+        _tableView.layer.borderWidth = 1;
+    }
+    return _tableView;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 2;
+    }
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 300;
+        }
+        return 60;
+    }
+    return self.frame.size.height - 60;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            // 海报
+            PBLinkagePosterCell *cell = [PBLinkagePosterCell linkagePosterCellWithTableView:tableView];
+            return cell;
+        }
+        // 简介
+        PBLinkageDescCell *cell = [PBLinkageDescCell linkageDescCellWithTableView:tableView];
+        return cell;
+    }
+    // 重点！横向滑动cell
+    PBLinkageContainerCell *cell = [PBLinkageContainerCell linkageContainerCellWithTableView:tableView];
+//    self.containerCell = cell;
+//    cell.delegate = self;
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.sectionView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0.01;
+    }
+    return 60;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
+
+- (PBLinkageSectionView *)sectionView {
+    if (!_sectionView) {
+        _sectionView = [[PBLinkageSectionView alloc] initWithFrame:CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 60)];
+        __weak typeof(self) weakSelf = self;
+        [_sectionView.segmentControl setIndexChangeBlock:^(NSInteger index) {
+//            weakSelf.containerCell.isSelectIndex = YES;
+//            [weakSelf.containerCell.scrollView setContentOffset:CGPointMake(index*[UIScreen mainScreen].bounds.size.width, 0) animated:YES];
+        }];
+        _sectionView.layer.borderColor = [UIColor redColor].CGColor;
+        _sectionView.layer.borderWidth = 1;
+    }
+    return _sectionView;
+}
+
+@end

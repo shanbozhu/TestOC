@@ -18,13 +18,13 @@
 
 @implementation PBCellHeightThreeCell
 
-+ (id)testListThreeCellWithTableView:(UITableView *)tableView {
++ (instancetype)testListThreeCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBCellHeightThreeCell"];
     PBCellHeightThreeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBCellHeightThreeCell"];
     return cell;
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         YYLabel *lab = [[YYLabel alloc]init];
         self.lab = lab;

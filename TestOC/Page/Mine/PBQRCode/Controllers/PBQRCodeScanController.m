@@ -35,9 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor clearColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
     
     self.navigationItem.title = @"扫一扫";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"相册" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClick:)];

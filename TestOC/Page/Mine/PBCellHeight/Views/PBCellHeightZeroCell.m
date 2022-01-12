@@ -17,13 +17,13 @@
 
 @implementation PBCellHeightZeroCell
 
-+ (id)testListCellWithTableView:(UITableView *)tableView {
++ (instancetype)testListCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBCellHeightZeroCell"];
     PBCellHeightZeroCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBCellHeightZeroCell"];
     return cell;
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         YYLabel *lab = [[YYLabel alloc]init];
         self.lab = lab;

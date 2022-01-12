@@ -23,7 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的福利";
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
     
     // 头部
     PBChannelHeaderView *channelHeaderView = [PBChannelHeaderView channelView];

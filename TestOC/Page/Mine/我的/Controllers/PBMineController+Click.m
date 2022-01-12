@@ -30,6 +30,7 @@
 #import "PBUniversalLinkController.h"
 #import "PBRuntimeController.h"
 #import "PBContentController.h"
+#import "PBLinkageController.h"
 
 @implementation PBMineController (Click)
 
@@ -58,7 +59,8 @@
              @"PBUniversalLinkController",
              @"PBRuntimeController",
              @"PBAnimationController",
-             @"PBSwiftController"];
+             @"PBSwiftController",
+             @"PBLinkageController"];
 }
 
 // delegate

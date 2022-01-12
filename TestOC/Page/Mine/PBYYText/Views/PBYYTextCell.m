@@ -21,14 +21,14 @@
 
 @implementation PBYYTextCell
 
-+ (id)testListCellWithTableView:(UITableView *)tableView {
++ (instancetype)testListCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBYYTextCell"];
     PBYYTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBYYTextCell"];
     cell.tableView = tableView;
     return cell;
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
     }

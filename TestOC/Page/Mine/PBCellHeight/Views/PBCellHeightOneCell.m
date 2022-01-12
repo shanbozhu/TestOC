@@ -21,13 +21,13 @@
     return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame) +20);
 }
 
-+ (id)testListOneCellWithTableView:(UITableView *)tableView {
++ (instancetype)testListOneCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBCellHeightOneCell"];
     PBCellHeightOneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBCellHeightOneCell"];
     return cell;
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         YYLabel *lab = [[YYLabel alloc]init];
         self.lab = lab;

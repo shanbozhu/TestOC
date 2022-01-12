@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
     
     // mineView
     PBMineView *mineView = [PBMineView mineView];

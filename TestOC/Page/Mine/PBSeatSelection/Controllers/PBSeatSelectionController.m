@@ -59,7 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.automaticallyAdjustsScrollViewInsets = NO; //取消默认自动将scrollView的内边距设为64
+    //self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
 
