@@ -80,7 +80,7 @@
         }
         return 100;
     }
-    return self.frame.size.height - 60;
+    return self.frame.size.height - kSectionViewHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,7 +110,7 @@
     if (section == 0) {
         return 0.01;
     }
-    return 60;
+    return kSectionViewHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -120,7 +120,9 @@
 - (PBLinkageSectionView *)sectionView {
     if (!_sectionView) {
         _sectionView = [PBLinkageSectionView linkageSectionViewWithTableView:self.tableView];
-        _sectionView.frame = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 60);
+        _sectionView.frame = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, kSectionViewHeight);
+        
+        _sectionView.segmentControl.frame = _sectionView.bounds;
         __weak typeof(self) weakSelf = self;
         [_sectionView.segmentControl setIndexChangeBlock:^(NSInteger index) {
             __strong typeof(weakSelf) strongSelf = weakSelf;

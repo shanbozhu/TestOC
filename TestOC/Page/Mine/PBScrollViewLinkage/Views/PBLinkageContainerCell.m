@@ -11,8 +11,6 @@
 #import "PBLinkageTwoListController.h"
 #import "PBLinkageThreeListController.h"
 
-#define kHeight APPLICATION_FRAME_HEIGHT - APPLICATION_NAVIGATIONBAR_HEIGHT - 60
-
 @interface PBLinkageContainerCell () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;

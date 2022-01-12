@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBLinkageSectionView : UITableViewHeaderFooterView
 
-@property (nonatomic, strong) HMSegmentedControl *segmentControl;
+@property (nonatomic, strong, readonly) HMSegmentedControl *segmentControl;
 
 + (instancetype)linkageSectionViewWithTableView:(UITableView *)tableView;
 
