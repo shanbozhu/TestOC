@@ -135,7 +135,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView == self.tableView) {
         CGFloat bottomCellOffset = [self.tableView rectForSection:1].origin.y;
-        bottomCellOffset = floorf(bottomCellOffset);
         
         if (scrollView.contentOffset.y >= bottomCellOffset) {
             scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
