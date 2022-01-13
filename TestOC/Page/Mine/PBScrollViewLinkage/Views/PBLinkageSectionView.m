@@ -31,7 +31,7 @@
 
 - (HMSegmentedControl *)segmentControl {
     if (!_segmentControl) {
-        NSArray *titles = @[@"page 1",@"page 2",@"page 3"];
+        NSArray *titles = @[@"page1",@"page2",@"page3"];
         _segmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:titles];
         _segmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         _segmentControl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
