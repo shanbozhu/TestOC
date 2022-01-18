@@ -8,6 +8,10 @@
 
 #import "PBLinkageTableView.h"
 
+@interface PBLinkageTableView () <UIGestureRecognizerDelegate>
+
+@end
+
 @implementation PBLinkageTableView
 
 /*
