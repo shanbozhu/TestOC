@@ -25,5 +25,5 @@ target "TestOC" do
   pod 'FMDB', '~> 2.7.5'
   pod 'MJRefresh', '3.5.0'
   pod 'CocoaLumberjack', '3.6.2'
-  pod 'HMSegmentedControl'
+  pod 'HMSegmentedControl', '1.5.6'
 end
