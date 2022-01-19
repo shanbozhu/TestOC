@@ -124,7 +124,7 @@
         
         _sectionView.segmentControl.frame = _sectionView.bounds;
         __weak typeof(self) weakSelf = self;
-        [_sectionView.segmentControl setIndexChangeBlock:^(NSInteger index) {
+        [_sectionView.segmentControl setIndexChangeBlock:^(NSUInteger index) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf.containerCell.scrollView setContentOffset:CGPointMake(index * APPLICATION_FRAME_WIDTH, 0) animated:YES];
         }];

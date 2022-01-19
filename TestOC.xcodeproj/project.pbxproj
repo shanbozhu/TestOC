@@ -20,7 +20,6 @@
 		5CC80A14278ED5CE002BA319 /* PBLinkageDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A13278ED5CE002BA319 /* PBLinkageDescCell.m */; };
 		5CC80A17278ED657002BA319 /* PBLinkageContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A16278ED657002BA319 /* PBLinkageContainerCell.m */; };
 		5CC80A1A278EE44D002BA319 /* PBLinkageSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A19278EE44D002BA319 /* PBLinkageSectionView.m */; };
-		5CC80A1E278EE4BC002BA319 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A1D278EE4BC002BA319 /* HMSegmentedControl.m */; };
 		5CC80A21278EEB9D002BA319 /* PBLinkageOneListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A20278EEB9C002BA319 /* PBLinkageOneListController.m */; };
 		5CC80A24278EEBAE002BA319 /* PBLinkageTwoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A23278EEBAE002BA319 /* PBLinkageTwoListController.m */; };
 		5CC80A27278EEBBC002BA319 /* PBLinkageThreeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC80A26278EEBBC002BA319 /* PBLinkageThreeListController.m */; };
@@ -320,8 +319,6 @@
 		5CC80A16278ED657002BA319 /* PBLinkageContainerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageContainerCell.m; sourceTree = "<group>"; };
 		5CC80A18278EE44D002BA319 /* PBLinkageSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBLinkageSectionView.h; sourceTree = "<group>"; };
 		5CC80A19278EE44D002BA319 /* PBLinkageSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageSectionView.m; sourceTree = "<group>"; };
-		5CC80A1C278EE4BC002BA319 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
-		5CC80A1D278EE4BC002BA319 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		5CC80A1F278EEB9C002BA319 /* PBLinkageOneListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBLinkageOneListController.h; sourceTree = "<group>"; };
 		5CC80A20278EEB9C002BA319 /* PBLinkageOneListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBLinkageOneListController.m; sourceTree = "<group>"; };
 		5CC80A22278EEBAE002BA319 /* PBLinkageTwoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBLinkageTwoListController.h; sourceTree = "<group>"; };
@@ -882,15 +879,6 @@
 			children = (
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		5CC80A1B278EE4BC002BA319 /* HMSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				5CC80A1C278EE4BC002BA319 /* HMSegmentedControl.h */,
-				5CC80A1D278EE4BC002BA319 /* HMSegmentedControl.m */,
-			);
-			path = HMSegmentedControl;
 			sourceTree = "<group>";
 		};
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
@@ -1527,7 +1515,6 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5CC80A1B278EE4BC002BA319 /* HMSegmentedControl */,
 				5C33FD742744DE9B00F6DDF0 /* PBFoundation */,
 				95168891261F19620047D1B2 /* PBTabBarController */,
 				9575995C22FC2415009CA618 /* TFHpple */,
@@ -2647,7 +2634,6 @@
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
 				953341F022F405DE00DC7251 /* PBTimerController.m in Sources */,
 				95C871AE22E71CAC002795D0 /* PBTestEspressosSCSeatList.m in Sources */,
-				5CC80A1E278EE4BC002BA319 /* HMSegmentedControl.m in Sources */,
 				953341BD22F306D400DC7251 /* PBCellHeightZeroController.m in Sources */,
 				95C8717522E70697002795D0 /* PBGesturePasswordController.m in Sources */,
 				957593F622F84F3B009CA618 /* PBGCDLockThreeController.m in Sources */,
