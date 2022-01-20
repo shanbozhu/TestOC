@@ -34,8 +34,7 @@
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:backBtn];
     backBtn.frame = CGRectMake(0, APPLICATION_STATUSBAR_HEIGHT, 80, APPLICATION_NAVIGATIONBAR_CONTENT_HEIGHT);
-    backBtn.layer.borderColor = [UIColor blueColor].CGColor;
-    backBtn.layer.borderWidth = 1;
+    backBtn.backgroundColor = [UIColor lightGrayColor];
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
     [backBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
