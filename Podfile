@@ -26,4 +26,5 @@ target "TestOC" do
   pod 'MJRefresh', '3.5.0'
   pod 'CocoaLumberjack', '3.6.2'
   pod 'HMSegmentedControl', '1.5.6'
+  pod 'SDCycleScrollView', '1.82'
 end
