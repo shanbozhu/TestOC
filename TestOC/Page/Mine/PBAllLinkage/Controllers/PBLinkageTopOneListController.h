@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBLinkageTopOneListController : UIViewController
+@interface PBLinkageTopOneListController : PBBaseController
 
 @property (nonatomic, strong) UITableView *tableView;
 

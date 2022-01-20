@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #define kSectionViewHeight 70
-#define kHeight APPLICATION_FRAME_HEIGHT - APPLICATION_NAVIGATIONBAR_HEIGHT - kSectionViewHeight
+#define kHeight (APPLICATION_FRAME_HEIGHT - APPLICATION_NAVIGATIONBAR_HEIGHT - kSectionViewHeight)
 
 @protocol PBLinkageContainerCellDelegate <NSObject>
 

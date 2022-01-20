@@ -16,6 +16,14 @@
 
 @implementation PBLinkageTopController
 
+- (BOOL)pb_navigationBarHidden {
+    return YES;
+}
+
+- (BOOL)pb_panGestureRecognizerEnabled {
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
