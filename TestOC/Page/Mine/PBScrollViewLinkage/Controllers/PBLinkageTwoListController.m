@@ -18,6 +18,7 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
+    
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever; // 取消自动调节ScrollView内边距
     }
