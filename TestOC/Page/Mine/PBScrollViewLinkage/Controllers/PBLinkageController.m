@@ -21,13 +21,32 @@
     return NO;
 }
 
+- (BOOL)pb_navigationBarHidden {
+    return YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
     
+    // backBtn
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:backBtn];
+    backBtn.frame = CGRectMake(0, APPLICATION_STATUSBAR_HEIGHT, 80, APPLICATION_NAVIGATIONBAR_CONTENT_HEIGHT);
+    backBtn.layer.borderColor = [UIColor blueColor].CGColor;
+    backBtn.layer.borderWidth = 1;
+    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // linkageView
     PBLinkageView *linkageView = [PBLinkageView linkageView]; // 整个页面就是一个视图
     [self.view addSubview:linkageView];
+}
+
+- (void)backBtnClick:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
