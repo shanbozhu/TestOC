@@ -15,6 +15,10 @@
 
 @implementation PBLinkageTopTwoListController
 
+- (BOOL)pb_navigationBarHidden {
+    return YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
