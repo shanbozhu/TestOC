@@ -15,9 +15,9 @@
 
 @implementation PBLinkageTopOneListController
 
-- (BOOL)pb_navigationBarHidden {
-    return YES;
-}
+//- (BOOL)pb_navigationBarHidden {
+//    return YES;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

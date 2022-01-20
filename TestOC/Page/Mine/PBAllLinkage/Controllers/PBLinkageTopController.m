@@ -25,7 +25,7 @@
     configration.pageStyle = YNPageStyleSuspensionTop;
     configration.headerViewCouldScale = YES;
     configration.showTabbar = NO;
-    configration.showNavigation = NO;
+    configration.showNavigation = YES;
     configration.scrollMenu = NO;
     configration.aligmentModeCenter = NO;
     configration.lineWidthEqualFontWidth = NO;
@@ -39,10 +39,6 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 210)];
     vc.headerView = headerView;
-    
-    vc.bgScrollView.layer.borderColor = [UIColor redColor].CGColor;
-    vc.bgScrollView.layer.borderWidth = 1;
-    
     return vc;
 }
 
