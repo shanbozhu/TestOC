@@ -19,6 +19,10 @@
     return NO;
 }
 
+- (BOOL)pb_panGestureRecognizerEnabled {
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,8 +38,6 @@
     if (@available(iOS 15, *)) {
         tableView.sectionHeaderTopPadding = 0;
     }
-    tableView.layer.borderColor = [UIColor redColor].CGColor;
-    tableView.layer.borderWidth = 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -43,7 +45,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 50;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -7,6 +7,7 @@
 //
 
 #import "PBLinkageTopTwoListController.h"
+#import "YNPageTableView.h"
 
 @interface PBLinkageTopTwoListController () <UITableViewDataSource, UITableViewDelegate>
 
