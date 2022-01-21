@@ -22,7 +22,6 @@
         return YES;
     }
     return NO;
-    return YES;
 }
 
 - (BOOL)panBack:(UIGestureRecognizer *)gestureRecognizer {
