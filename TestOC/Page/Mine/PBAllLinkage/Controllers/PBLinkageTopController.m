@@ -27,13 +27,10 @@
 + (instancetype)linkageTopController {
     YNPageConfigration *configration = [YNPageConfigration defaultConfig];
     configration.pageStyle = YNPageStyleSuspensionTop;
-    configration.headerViewCouldScale = YES;
     configration.showTabbar = NO;
     configration.showNavigation = YES;
     configration.scrollMenu = NO;
     configration.aligmentModeCenter = NO;
-    configration.lineWidthEqualFontWidth = NO;
-    configration.showBottomLine = YES;
     
     PBLinkageTopController *vc = [PBLinkageTopController pageViewControllerWithControllers:[self getArrayVCs]
                                                                                     titles:[self getArrayTitles]
@@ -43,6 +40,7 @@
     
     // 轮播图
     SDCycleScrollView *autoScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 210) imageURLStringsGroup:vc.imagesURLs];
+    autoScrollView.autoScroll = NO;
     vc.headerView = autoScrollView;
     return vc;
 }
