@@ -26,17 +26,17 @@
     [self.testList addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)btnClick:(UIButton *)btn {
-    // 修改对象的属性值
-    self.testList.name = @"worldhello";
-    NSLog(@"self.testList.name = %@", self.testList.name);
-}
-
 // kvo响应方法
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     // 此处不能调用super方法,否则会崩溃
     //[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     NSLog(@"change = %@", change[@"new"]);
+}
+
+- (void)btnClick:(UIButton *)btn {
+    // 修改对象的属性值
+    self.testList.name = @"worldhello";
+    NSLog(@"self.testList.name = %@", self.testList.name);
 }
 
 - (void)dealloc {
