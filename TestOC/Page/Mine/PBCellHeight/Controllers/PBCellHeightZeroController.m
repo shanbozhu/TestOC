@@ -26,19 +26,24 @@
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
+    // 2、把字典封装成模型
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
+    
+    // 4、把模型填充到视图
     self.testListView.testList = testList;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
-
+    
+    // 3、把视图加载到控制器
     PBCellHeightZeroView *testListView = [PBCellHeightZeroView testListView];
     self.testListView = testListView;
     [self.view addSubview:testListView];
     testListView.frame = self.view.bounds;
     
+    // 1、把字典加载到控制器
     [self requestData];
 }
 
