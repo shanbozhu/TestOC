@@ -181,7 +181,7 @@
     // 话题
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
     
-    // 邮件
+    // 邮箱
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
     
     // 手机号
@@ -191,13 +191,13 @@
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
     
     // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北（emoticon[调皮][大调皮]）京天安门天安门"];
+    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北（emoticon[调皮][大调皮]）京天安门天安门"];
     [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
     [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
     [attStr appendAttributedString:attStrThree];
     
-    // 图片表情,png图、gif图
+    // 图片表情(png图、gif图)
     [self emoticonWithAttributedString:attStr regularExpression:[PBRegex regexEmoticon]];
     
     // 追加文字
