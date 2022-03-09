@@ -175,8 +175,8 @@
     };
     [attStr yy_setTextHighlight:highlight range:range];
     
-    // 用户名
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
+    // 链接
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
     
     // 话题
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
@@ -184,11 +184,11 @@
     // 邮件
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
     
-    // 链接
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
-    
     // 手机号
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
+    
+    // 用户名
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
     
     // 追加文字
     NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北京安门我爱北emoticon（[调皮][大调皮]）京天安门天安门"];
