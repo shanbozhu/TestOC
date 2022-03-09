@@ -47,7 +47,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京高亮京天｜安｜门我高亮爱北京天天安门（emoji😀）我爱北京天安门高亮点击京天安门我爱北京北京天高亮点击自定义京天安门我爱北京（链接https://www.baidu.com/）我爱北京天安门（话题#爱北京天安#）安门我爱北京天（邮箱shanbo.zsb@alibaba-inc.com）安门我爱北京天安门我爱北京天（手机号0176001087860）安门我爱北京天安（用户名@门我爱北京天安）:爱北京天安门我爱我爱";
+    NSString *str = @"我爱北京天安门我爱北京天安门我爱北京高亮京天｜安｜门我高亮爱北京天天安门（emoji😀）我爱北京天安门高亮点击京天安门我爱北京北京天高亮点击自定义京天安门我爱北京（链接https://www.baidu.com/）我爱北京天安门（话题#爱北京天安#）安门我爱北京天（邮箱shanbo.zsb@alibaba-inc.com）安门我爱北京天安门我爱北京天（手机号0176001087860）安门我爱北京天安（用户名@门我爱北京天安）:爱北京天安门我爱我爱我爱北（emoticon[调皮][大调皮]）京天安门天安门我爱北";
     
     /// oneLab
     YYLabel *oneLab = [[YYLabel alloc]init];
@@ -189,13 +189,6 @@
     
     // 用户名
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
-    
-    // 追加文字
-    NSMutableAttributedString *attStrThree = [[NSMutableAttributedString alloc]initWithString:@"我爱北（emoticon[调皮][大调皮]）京天安门天安门我爱北"];
-    [attStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:NSMakeRange(0, attStrThree.length)];
-    [attStrThree yy_setColor:attStr.yy_color range:NSMakeRange(0, attStrThree.length)];
-    [attStrThree yy_setFont:attStr.yy_font range:NSMakeRange(0, attStrThree.length)];
-    [attStr appendAttributedString:attStrThree];
     
     // 图片表情(png图、gif图)
     [self emoticonWithAttributedString:attStr regularExpression:[PBRegex regexEmoticon]];
