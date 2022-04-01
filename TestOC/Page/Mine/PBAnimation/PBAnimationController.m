@@ -55,7 +55,7 @@
 
 - (void)addAnimationViews {
     // Lottie
-    NSString *lottiePath = [[NSBundle mainBundle] pathForResource:@"bubble_voicesearch" ofType:@"json"];
+    NSString *lottiePath = [[NSBundle mainBundle] pathForResource:@"bubble_voicesearch_lottie" ofType:@"json"];
     LOTAnimationView *animationView = [LOTAnimationView animationWithFilePath:lottiePath];
     [self.scrollView addSubview:animationView];
     animationView.frame = CGRectMake(50, 50, 29, 48);
