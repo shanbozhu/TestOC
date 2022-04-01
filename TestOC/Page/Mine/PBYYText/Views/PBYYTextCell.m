@@ -112,27 +112,26 @@
     [attStr yy_setLineSpacing:18 range:NSMakeRange(0, attStr.length)];
     [attStr yy_setColor:[UIColor darkGrayColor] range:NSMakeRange(0, attStr.length)];
     
-    // 渐变色生成的图片
-    UIImageView *iconImageView = [[UIImageView alloc]init];
-    iconImageView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
-    iconImageView.layer.cornerRadius = 3;
-    iconImageView.layer.masksToBounds = YES;
-    iconImageView.userInteractionEnabled = YES;
+    // 给视图添加渐变色层
+    UIView *iconView = [[UIView alloc] init];
+    iconView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
+    iconView.layer.cornerRadius = 3;
+    iconView.layer.masksToBounds = YES;
     UITapGestureRecognizer *zeroTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
-    [iconImageView addGestureRecognizer:zeroTap];
+    [iconView addGestureRecognizer:zeroTap];
     zeroTap.view.tag = 0;
     
     CAGradientLayer *layer = [CAGradientLayer layer];
-    layer.frame = iconImageView.bounds;
+    layer.frame = iconView.bounds;
     layer.startPoint = CGPointMake(0, 0);
     layer.endPoint = CGPointMake(2, 0);
-    for (CALayer *sublayer in iconImageView.layer.sublayers) {
+    for (CALayer *sublayer in iconView.layer.sublayers) {
         [sublayer removeFromSuperlayer];
     }
-    [iconImageView.layer insertSublayer:layer atIndex:0];
+    [iconView.layer insertSublayer:layer atIndex:0];
     layer.colors = [NSArray arrayWithObjects:(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor, nil];
     
-    NSMutableAttributedString *attachStrZero = [NSMutableAttributedString yy_attachmentStringWithContent:iconImageView contentMode:UIViewContentModeCenter attachmentSize:iconImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
+    NSMutableAttributedString *attachStrZero = [NSMutableAttributedString yy_attachmentStringWithContent:iconView contentMode:UIViewContentModeCenter attachmentSize:iconView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
     [attachStrZero yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrZero.yy_rangeOfAll];
     [attStr insertAttributedString:attachStrZero atIndex:1];
     
