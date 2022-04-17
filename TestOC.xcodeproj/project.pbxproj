@@ -64,9 +64,6 @@
 		5C2D0631280BFBFC00C775B3 /* PBAFNetworkingTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05DB280BFBFC00C775B3 /* PBAFNetworkingTwoController.m */; };
 		5C2D0632280BFBFC00C775B3 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05DC280BFBFC00C775B3 /* PBAFNetworkingController.m */; };
 		5C2D0633280BFBFC00C775B3 /* PBDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05DE280BFBFC00C775B3 /* PBDownload.m */; };
-		5C2D0638280BFBFC00C775B3 /* form_urlencoded in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05E7280BFBFC00C775B3 /* form_urlencoded */; };
-		5C2D0639280BFBFC00C775B3 /* header in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05E8280BFBFC00C775B3 /* header */; };
-		5C2D063A280BFBFC00C775B3 /* request.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05E9280BFBFC00C775B3 /* request.sh */; };
 		5C2D063B280BFBFC00C775B3 /* PBAFNetworkingZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05EA280BFBFC00C775B3 /* PBAFNetworkingZeroController.m */; };
 		5C2D063C280BFBFC00C775B3 /* iOS_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05EF280BFBFC00C775B3 /* iOS_origin.png */; };
 		5C2D063D280BFBFC00C775B3 /* iOS_render.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05F0280BFBFC00C775B3 /* iOS_render.png */; };
@@ -959,14 +956,14 @@
 		5C2D057E280BFBFB00C775B3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D057F280BFBFB00C775B3 /* PBLinkageTwoListController.h */,
 				5C2D0580280BFBFB00C775B3 /* PBLinkageController.h */,
-				5C2D0581280BFBFB00C775B3 /* PBLinkageOneListController.h */,
-				5C2D0582280BFBFB00C775B3 /* PBLinkageThreeListController.m */,
 				5C2D0583280BFBFB00C775B3 /* PBLinkageController.m */,
-				5C2D0584280BFBFB00C775B3 /* PBLinkageTwoListController.m */,
+				5C2D0581280BFBFB00C775B3 /* PBLinkageOneListController.h */,
 				5C2D0585280BFBFB00C775B3 /* PBLinkageOneListController.m */,
+				5C2D057F280BFBFB00C775B3 /* PBLinkageTwoListController.h */,
+				5C2D0584280BFBFB00C775B3 /* PBLinkageTwoListController.m */,
 				5C2D0586280BFBFB00C775B3 /* PBLinkageThreeListController.h */,
+				5C2D0582280BFBFB00C775B3 /* PBLinkageThreeListController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -974,18 +971,18 @@
 		5C2D0587280BFBFB00C775B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D0588280BFBFB00C775B3 /* PBLinkageContainerCell.h */,
-				5C2D0589280BFBFB00C775B3 /* PBLinkageSectionView.m */,
+				5C2D0592280BFBFB00C775B3 /* PBLinkageView.h */,
 				5C2D058A280BFBFB00C775B3 /* PBLinkageView.m */,
+				5C2D058E280BFBFB00C775B3 /* PBLinkageSectionView.h */,
+				5C2D0589280BFBFB00C775B3 /* PBLinkageSectionView.m */,
 				5C2D058B280BFBFB00C775B3 /* PBLinkagePosterCell.h */,
+				5C2D0591280BFBFB00C775B3 /* PBLinkagePosterCell.m */,
+				5C2D0590280BFBFB00C775B3 /* PBLinkageTableView.h */,
 				5C2D058C280BFBFB00C775B3 /* PBLinkageTableView.m */,
 				5C2D058D280BFBFB00C775B3 /* PBLinkageDescCell.h */,
-				5C2D058E280BFBFB00C775B3 /* PBLinkageSectionView.h */,
-				5C2D058F280BFBFB00C775B3 /* PBLinkageContainerCell.m */,
-				5C2D0590280BFBFB00C775B3 /* PBLinkageTableView.h */,
-				5C2D0591280BFBFB00C775B3 /* PBLinkagePosterCell.m */,
-				5C2D0592280BFBFB00C775B3 /* PBLinkageView.h */,
 				5C2D0593280BFBFB00C775B3 /* PBLinkageDescCell.m */,
+				5C2D0588280BFBFB00C775B3 /* PBLinkageContainerCell.h */,
+				5C2D058F280BFBFB00C775B3 /* PBLinkageContainerCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1013,8 +1010,8 @@
 			isa = PBXGroup;
 			children = (
 				5C2D0598280BFBFB00C775B3 /* PBCellHeightZero.h */,
-				5C2D0599280BFBFB00C775B3 /* PBCellHeightZeroData.h */,
 				5C2D059A280BFBFB00C775B3 /* PBCellHeightZero.m */,
+				5C2D0599280BFBFB00C775B3 /* PBCellHeightZeroData.h */,
 				5C2D059B280BFBFB00C775B3 /* PBCellHeightZeroData.m */,
 			);
 			path = Models;
@@ -1023,19 +1020,19 @@
 		5C2D059C280BFBFB00C775B3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D059D280BFBFB00C775B3 /* PBCellHeightTwoController.h */,
-				5C2D059E280BFBFB00C775B3 /* PBCellHeightFourController.h */,
-				5C2D059F280BFBFB00C775B3 /* PBCellHeight */,
-				5C2D05A2280BFBFB00C775B3 /* PBCellHeightOneController.h */,
-				5C2D05A3280BFBFB00C775B3 /* PBCellHeightZeroController.h */,
-				5C2D05A4280BFBFB00C775B3 /* PBCellHeightThreeController.h */,
-				5C2D05A5280BFBFC00C775B3 /* PBCellHeightController.m */,
-				5C2D05A6280BFBFC00C775B3 /* PBCellHeightFourController.m */,
-				5C2D05A7280BFBFC00C775B3 /* PBCellHeightTwoController.m */,
-				5C2D05A8280BFBFC00C775B3 /* PBCellHeightOneController.m */,
-				5C2D05A9280BFBFC00C775B3 /* PBCellHeightZeroController.m */,
 				5C2D05AA280BFBFC00C775B3 /* PBCellHeightController.h */,
+				5C2D05A5280BFBFC00C775B3 /* PBCellHeightController.m */,
+				5C2D05A3280BFBFB00C775B3 /* PBCellHeightZeroController.h */,
+				5C2D05A9280BFBFC00C775B3 /* PBCellHeightZeroController.m */,
+				5C2D05A2280BFBFB00C775B3 /* PBCellHeightOneController.h */,
+				5C2D05A8280BFBFC00C775B3 /* PBCellHeightOneController.m */,
+				5C2D059D280BFBFB00C775B3 /* PBCellHeightTwoController.h */,
+				5C2D05A7280BFBFC00C775B3 /* PBCellHeightTwoController.m */,
+				5C2D05A4280BFBFB00C775B3 /* PBCellHeightThreeController.h */,
 				5C2D05AB280BFBFC00C775B3 /* PBCellHeightThreeController.m */,
+				5C2D059E280BFBFB00C775B3 /* PBCellHeightFourController.h */,
+				5C2D05A6280BFBFC00C775B3 /* PBCellHeightFourController.m */,
+				5C2D059F280BFBFB00C775B3 /* PBCellHeight */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1052,25 +1049,25 @@
 		5C2D05AC280BFBFC00C775B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05AD280BFBFC00C775B3 /* PBCellHeightOneView.h */,
-				5C2D05AE280BFBFC00C775B3 /* PBCellHeightOneCell.h */,
-				5C2D05AF280BFBFC00C775B3 /* PBCellHeightTwoView.m */,
-				5C2D05B0280BFBFC00C775B3 /* PBCellHeightZeroCell.h */,
-				5C2D05B1280BFBFC00C775B3 /* PBCellHeightThreeView.h */,
-				5C2D05B2280BFBFC00C775B3 /* PBCellHeightFourView.h */,
-				5C2D05B3280BFBFC00C775B3 /* PBCellHeightFourCell.h */,
-				5C2D05B4280BFBFC00C775B3 /* PBCellHeightThreeCell.h */,
 				5C2D05B5280BFBFC00C775B3 /* PBCellHeightZeroView.h */,
-				5C2D05B6280BFBFC00C775B3 /* PBCellHeightTwoCell.m */,
-				5C2D05B7280BFBFC00C775B3 /* PBCellHeightOneView.m */,
-				5C2D05B8280BFBFC00C775B3 /* PBCellHeightOneCell.m */,
-				5C2D05B9280BFBFC00C775B3 /* PBCellHeightFourView.m */,
-				5C2D05BA280BFBFC00C775B3 /* PBCellHeightZeroCell.m */,
-				5C2D05BB280BFBFC00C775B3 /* PBCellHeightThreeView.m */,
-				5C2D05BC280BFBFC00C775B3 /* PBCellHeightTwoView.h */,
-				5C2D05BD280BFBFC00C775B3 /* PBCellHeightTwoCell.h */,
-				5C2D05BE280BFBFC00C775B3 /* PBCellHeightThreeCell.m */,
 				5C2D05BF280BFBFC00C775B3 /* PBCellHeightZeroView.m */,
+				5C2D05B0280BFBFC00C775B3 /* PBCellHeightZeroCell.h */,
+				5C2D05BA280BFBFC00C775B3 /* PBCellHeightZeroCell.m */,
+				5C2D05AD280BFBFC00C775B3 /* PBCellHeightOneView.h */,
+				5C2D05B7280BFBFC00C775B3 /* PBCellHeightOneView.m */,
+				5C2D05AE280BFBFC00C775B3 /* PBCellHeightOneCell.h */,
+				5C2D05B8280BFBFC00C775B3 /* PBCellHeightOneCell.m */,
+				5C2D05BC280BFBFC00C775B3 /* PBCellHeightTwoView.h */,
+				5C2D05AF280BFBFC00C775B3 /* PBCellHeightTwoView.m */,
+				5C2D05BD280BFBFC00C775B3 /* PBCellHeightTwoCell.h */,
+				5C2D05B6280BFBFC00C775B3 /* PBCellHeightTwoCell.m */,
+				5C2D05B1280BFBFC00C775B3 /* PBCellHeightThreeView.h */,
+				5C2D05BB280BFBFC00C775B3 /* PBCellHeightThreeView.m */,
+				5C2D05B4280BFBFC00C775B3 /* PBCellHeightThreeCell.h */,
+				5C2D05BE280BFBFC00C775B3 /* PBCellHeightThreeCell.m */,
+				5C2D05B2280BFBFC00C775B3 /* PBCellHeightFourView.h */,
+				5C2D05B9280BFBFC00C775B3 /* PBCellHeightFourView.m */,
+				5C2D05B3280BFBFC00C775B3 /* PBCellHeightFourCell.h */,
 				5C2D05C0280BFBFC00C775B3 /* PBCellHeightFourCell.m */,
 			);
 			path = Views;
@@ -1090,9 +1087,9 @@
 		5C2D05C2280BFBFC00C775B3 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				5C2D05C7280BFBFC00C775B3 /* pbyytext_flag@2x.png */,
 				5C2D05C3280BFBFC00C775B3 /* pbyytext_pic.png */,
 				5C2D05C4280BFBFC00C775B3 /* emoticon */,
-				5C2D05C7280BFBFC00C775B3 /* pbyytext_flag@2x.png */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -1109,8 +1106,8 @@
 		5C2D05C8280BFBFC00C775B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05C9280BFBFC00C775B3 /* PBYYText.m */,
 				5C2D05CA280BFBFC00C775B3 /* PBYYText.h */,
+				5C2D05C9280BFBFC00C775B3 /* PBYYText.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1119,8 +1116,8 @@
 			isa = PBXGroup;
 			children = (
 				5C2D05CC280BFBFC00C775B3 /* PBRegex */,
-				5C2D05CF280BFBFC00C775B3 /* PBYYTextController.m */,
 				5C2D05D0280BFBFC00C775B3 /* PBYYTextController.h */,
+				5C2D05CF280BFBFC00C775B3 /* PBYYTextController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1137,12 +1134,12 @@
 		5C2D05D1280BFBFC00C775B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05D2280BFBFC00C775B3 /* PBYYTextTableView.m */,
-				5C2D05D3280BFBFC00C775B3 /* PBYYTextView.m */,
-				5C2D05D4280BFBFC00C775B3 /* PBYYTextCell.m */,
 				5C2D05D5280BFBFC00C775B3 /* PBYYTextTableView.h */,
+				5C2D05D2280BFBFC00C775B3 /* PBYYTextTableView.m */,
 				5C2D05D6280BFBFC00C775B3 /* PBYYTextView.h */,
+				5C2D05D3280BFBFC00C775B3 /* PBYYTextView.m */,
 				5C2D05D7280BFBFC00C775B3 /* PBYYTextCell.h */,
+				5C2D05D4280BFBFC00C775B3 /* PBYYTextCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1159,13 +1156,13 @@
 			isa = PBXGroup;
 			children = (
 				5C2D05DA280BFBFC00C775B3 /* PBAFNetworkingZeroController.h */,
+				5C2D05EA280BFBFC00C775B3 /* PBAFNetworkingZeroController.m */,
+				5C2D05EB280BFBFC00C775B3 /* PBAFNetworkingTwoController.h */,
 				5C2D05DB280BFBFC00C775B3 /* PBAFNetworkingTwoController.m */,
+				5C2D05EC280BFBFC00C775B3 /* PBAFNetworkingController.h */,
 				5C2D05DC280BFBFC00C775B3 /* PBAFNetworkingController.m */,
 				5C2D05DD280BFBFC00C775B3 /* PBDownload */,
 				5C2D05E0280BFBFC00C775B3 /* curl */,
-				5C2D05EA280BFBFC00C775B3 /* PBAFNetworkingZeroController.m */,
-				5C2D05EB280BFBFC00C775B3 /* PBAFNetworkingTwoController.h */,
-				5C2D05EC280BFBFC00C775B3 /* PBAFNetworkingController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1173,8 +1170,8 @@
 		5C2D05DD280BFBFC00C775B3 /* PBDownload */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05DE280BFBFC00C775B3 /* PBDownload.m */,
 				5C2D05DF280BFBFC00C775B3 /* PBDownload.h */,
+				5C2D05DE280BFBFC00C775B3 /* PBDownload.m */,
 			);
 			path = PBDownload;
 			sourceTree = "<group>";
@@ -1213,9 +1210,9 @@
 			isa = PBXGroup;
 			children = (
 				5C2D05EE280BFBFC00C775B3 /* Res */,
+				5C2D05FB280BFBFC00C775B3 /* PBContentController.h */,
 				5C2D05F1280BFBFC00C775B3 /* PBContentController.m */,
 				5C2D05F2280BFBFC00C775B3 /* Content */,
-				5C2D05FB280BFBFC00C775B3 /* PBContentController.h */,
 			);
 			path = PBContentLabel;
 			sourceTree = "<group>";
@@ -1233,13 +1230,13 @@
 			isa = PBXGroup;
 			children = (
 				5C2D05F3280BFBFC00C775B3 /* BBACommentContentLink.h */,
-				5C2D05F4280BFBFC00C775B3 /* BBAEmoticonManager.m */,
-				5C2D05F5280BFBFC00C775B3 /* BBACommentContentLabel.m */,
-				5C2D05F6280BFBFC00C775B3 /* BBACommentContentLabelItem.m */,
 				5C2D05F7280BFBFC00C775B3 /* BBACommentContentLink.m */,
 				5C2D05F8280BFBFC00C775B3 /* BBAEmoticonManager.h */,
-				5C2D05F9280BFBFC00C775B3 /* BBACommentContentLabelItem.h */,
+				5C2D05F4280BFBFC00C775B3 /* BBAEmoticonManager.m */,
 				5C2D05FA280BFBFC00C775B3 /* BBACommentContentLabel.h */,
+				5C2D05F5280BFBFC00C775B3 /* BBACommentContentLabel.m */,
+				5C2D05F9280BFBFC00C775B3 /* BBACommentContentLabelItem.h */,
+				5C2D05F6280BFBFC00C775B3 /* BBACommentContentLabelItem.m */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -1256,10 +1253,10 @@
 			isa = PBXGroup;
 			children = (
 				5C2D05FE280BFBFC00C775B3 /* PBWelfareController.h */,
-				5C2D05FF280BFBFC00C775B3 /* PBAllWelfareController.h */,
-				5C2D0600280BFBFC00C775B3 /* PBChannelView */,
-				5C2D0607280BFBFC00C775B3 /* PBAllWelfareController.m */,
 				5C2D0608280BFBFC00C775B3 /* PBWelfareController.m */,
+				5C2D05FF280BFBFC00C775B3 /* PBAllWelfareController.h */,
+				5C2D0607280BFBFC00C775B3 /* PBAllWelfareController.m */,
+				5C2D0600280BFBFC00C775B3 /* PBChannelView */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1267,12 +1264,12 @@
 		5C2D0600280BFBFC00C775B3 /* PBChannelView */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D0601280BFBFC00C775B3 /* PBChannelHeaderView.m */,
-				5C2D0602280BFBFC00C775B3 /* PBChannelContentView.m */,
-				5C2D0603280BFBFC00C775B3 /* PBChannelContentCell.m */,
-				5C2D0604280BFBFC00C775B3 /* PBChannelContentView.h */,
 				5C2D0605280BFBFC00C775B3 /* PBChannelHeaderView.h */,
+				5C2D0601280BFBFC00C775B3 /* PBChannelHeaderView.m */,
+				5C2D0604280BFBFC00C775B3 /* PBChannelContentView.h */,
+				5C2D0602280BFBFC00C775B3 /* PBChannelContentView.m */,
 				5C2D0606280BFBFC00C775B3 /* PBChannelContentCell.h */,
+				5C2D0603280BFBFC00C775B3 /* PBChannelContentCell.m */,
 			);
 			path = PBChannelView;
 			sourceTree = "<group>";
@@ -2542,7 +2539,6 @@
 				B0F04AB71F9E01BD00F69AC3 /* pbhome_icon@3x.png in Resources */,
 				95C872DB22E801DA002795D0 /* qrcode_leftbottom@3x.png in Resources */,
 				B0F04AB91F9E01BD00F69AC3 /* pbhome_sport_headerline@3x.png in Resources */,
-				5C2D0638280BFBFC00C775B3 /* form_urlencoded in Resources */,
 				952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */,
 				95C872D922E801DA002795D0 /* qrcode_flashlightopenimage@2x.png in Resources */,
 				95C872DD22E801DA002795D0 /* qrcode_scanningline@2x.png in Resources */,
@@ -2561,7 +2557,6 @@
 				95C8723922E72022002795D0 /* pbseatselection_screenBg@3x.png in Resources */,
 				9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */,
 				952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */,
-				5C2D063A280BFBFC00C775B3 /* request.sh in Resources */,
 				9575944C22F95120009CA618 /* PBMinBtn.png in Resources */,
 				95C873C822E83B61002795D0 /* pbaddress_location@2x.png in Resources */,
 				95C872DC22E801DA002795D0 /* qrcode_scanningline@3x.png in Resources */,
@@ -2582,7 +2577,6 @@
 				5C2D062A280BFBFC00C775B3 /* pbyytext_flag@2x.png in Resources */,
 				95C873C222E83B39002795D0 /* pbannotation_info.json in Resources */,
 				9575940F22F92790009CA618 /* 冒泡排序.gif in Resources */,
-				5C2D0639280BFBFC00C775B3 /* header in Resources */,
 				95C872D622E801DA002795D0 /* qrcode_rightbottom@3x.png in Resources */,
 				9575944B22F95120009CA618 /* PBRound.png in Resources */,
 				95C873E622E84410002795D0 /* PBTestListView.xib in Resources */,
