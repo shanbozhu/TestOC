@@ -40,7 +40,6 @@
              @"PBContentController",
              @"PBAllWelfareController",
              @"PBCalendarController",
-             @"PBGesturePasswordController",
              @"PBSeatSelectionController",
              @"PBQRCodeController",
              @"PBAnnotationController",
