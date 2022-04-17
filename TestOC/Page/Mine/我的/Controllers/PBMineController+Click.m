@@ -10,7 +10,6 @@
 #import "PBMineView.h"
 #import "PBAllWelfareController.h"
 #import "PBCalendarController.h"
-#import "PBGesturePasswordController.h"
 #import "PBSeatSelectionController.h"
 #import "PBQRCodeController.h"
 #import "PBAnnotationController.h"
