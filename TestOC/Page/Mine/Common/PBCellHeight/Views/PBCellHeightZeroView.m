@@ -32,6 +32,8 @@
         if (@available(iOS 15, *)) {
             tableView.sectionHeaderTopPadding = 0;
         }
+        tableView.tableHeaderView = [UIView new];
+        tableView.tableFooterView = [UIView new];
     }
     return self;
 }
