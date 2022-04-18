@@ -26,7 +26,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        YYLabel *lab = [[YYLabel alloc]init];
+        YYLabel *lab = [[YYLabel alloc] init];
         self.lab = lab;
         [self.contentView addSubview:lab];
         
@@ -49,7 +49,7 @@
 }
 
 - (void)fillTestListCell {
-    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width -40, 10000)];
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, 10000)];
     container.maximumNumberOfRows = 0;
     container.truncationType = YYTextTruncationTypeEnd;
     

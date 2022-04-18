@@ -9,14 +9,14 @@
 #import "PBCellHeightZeroView.h"
 #import "PBCellHeightZeroCell.h"
 
-@interface PBCellHeightZeroView ()<UITableViewDelegate, UITableViewDataSource>
+@interface PBCellHeightZeroView () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
 @implementation PBCellHeightZeroView
 
 + (id)testListView {
-    return [[self alloc]initWithFrame:CGRectZero];
+    return [[self alloc] initWithFrame:CGRectZero];
 }
 
 - (id)initWithFrame:(CGRect)frame {

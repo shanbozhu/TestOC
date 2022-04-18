@@ -49,7 +49,7 @@
 }
 
 - (void)fillTestListCell {
-    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width -40, 10000)];
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, 10000)];
     container.maximumNumberOfRows = 0;
     container.truncationType = YYTextTruncationTypeEnd;
     

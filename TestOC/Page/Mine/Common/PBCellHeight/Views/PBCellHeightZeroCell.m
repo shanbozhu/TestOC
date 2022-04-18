@@ -25,7 +25,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        YYLabel *lab = [[YYLabel alloc]init];
+        YYLabel *lab = [[YYLabel alloc] init];
         self.lab = lab;
         [self.contentView addSubview:lab];
         lab.numberOfLines = 0;
@@ -41,12 +41,12 @@
 }
 
 - (void)fillTestListCell {
-    self.lab.frame = CGRectMake(20, 20, [UIScreen mainScreen].bounds.size.width-40, 10000);
+    self.lab.frame = CGRectMake(20, 20, [UIScreen mainScreen].bounds.size.width - 40, 10000);
     self.lab.text = self.testListData.content;
     [self.lab sizeToFit];
     
     CGRect rect = self.frame;
-    rect.size.height = CGRectGetMaxY(self.lab.frame) +20;
+    rect.size.height = CGRectGetMaxY(self.lab.frame) + 20;
     self.frame = rect;
 }
 
