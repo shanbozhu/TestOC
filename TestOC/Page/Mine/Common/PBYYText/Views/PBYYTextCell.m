@@ -123,8 +123,8 @@
     
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = iconView.bounds;
-    layer.startPoint = CGPointMake(0, 0);
-    layer.endPoint = CGPointMake(2, 0);
+    layer.startPoint = CGPointMake(0, 0.5);
+    layer.endPoint = CGPointMake(1, 0.5); // 从左往右
     for (CALayer *sublayer in iconView.layer.sublayers) {
         [sublayer removeFromSuperlayer];
     }
