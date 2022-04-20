@@ -84,6 +84,9 @@
 		5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */; };
 		5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */; };
 		5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */; };
+		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
+		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
+		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -454,6 +457,12 @@
 		5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
 		5C33FD7D2744DE9B00F6DDF0 /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
 		5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
+		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
+		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
+		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
+		5CEFE1B2280FB43E0073BC47 /* PBCommonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCommonController.h; sourceTree = "<group>"; };
+		5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonView.m; sourceTree = "<group>"; };
+		5CEFE1B5280FB43E0073BC47 /* PBCommonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCommonView.h; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -1289,6 +1298,35 @@
 			path = PBFoundation;
 			sourceTree = "<group>";
 		};
+		5CEFE1AD280FB43E0073BC47 /* PBCommon */ = {
+			isa = PBXGroup;
+			children = (
+				5CEFE1AE280FB43E0073BC47 /* Controllers */,
+				5CEFE1B3280FB43E0073BC47 /* Views */,
+			);
+			path = PBCommon;
+			sourceTree = "<group>";
+		};
+		5CEFE1AE280FB43E0073BC47 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CEFE1B2280FB43E0073BC47 /* PBCommonController.h */,
+				5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */,
+				5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */,
+				5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5CEFE1B3280FB43E0073BC47 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5CEFE1B5280FB43E0073BC47 /* PBCommonView.h */,
+				5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1444,6 +1482,7 @@
 		9547319622E059A000F6BFA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CEFE1AD280FB43E0073BC47 /* PBCommon */,
 				9547319822E059A000F6BFA2 /* PBMineController.h */,
 				9547319722E059A000F6BFA2 /* PBMineController.m */,
 				95C873C922E83D93002795D0 /* PBMineController+Click.h */,
@@ -2667,6 +2706,7 @@
 				9575998622FC2415009CA618 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				5C2D0640280BFBFC00C775B3 /* BBACommentContentLabel.m in Sources */,
 				957593F222F84F3B009CA618 /* PBGCDLockFiveController.m in Sources */,
+				5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */,
 				5C2D0646280BFBFC00C775B3 /* PBAllWelfareController.m in Sources */,
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
@@ -2682,6 +2722,7 @@
 				5C2D0647280BFBFC00C775B3 /* PBWelfareController.m in Sources */,
 				9575933D22F82A64009CA618 /* PBStorageTextOneController.m in Sources */,
 				5C2D060E280BFBFC00C775B3 /* PBLinkageView.m in Sources */,
+				5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */,
 				5C0D2E3A2798275900C9274E /* PBLinkageTopController.m in Sources */,
 				957593DA22F84F20009CA618 /* PBGCDListElevenController.m in Sources */,
 				95C871C422E71CBE002795D0 /* PBSeatSelectionView.m in Sources */,
@@ -2704,6 +2745,7 @@
 				9575998822FC2415009CA618 /* PBPhotoBrowserView.m in Sources */,
 				9575933E22F82A64009CA618 /* PBStorageDataBaseOneController.m in Sources */,
 				957593F422F84F3B009CA618 /* PBGCDLockSixController.m in Sources */,
+				5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */,
 				9575934D22F82B5E009CA618 /* PBStorageController.m in Sources */,
 				9575932B22F82A46009CA618 /* PBArchiver.m in Sources */,
 				9575998B22FC2415009CA618 /* YYWeakProxy.m in Sources */,

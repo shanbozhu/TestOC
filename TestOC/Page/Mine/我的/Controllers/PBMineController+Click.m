@@ -8,16 +8,14 @@
 
 #import "PBMineController+Click.h"
 #import "PBMineView.h"
-#import "PBAllWelfareController.h"
+#import "PBCommonController.h"
 #import "PBCalendarController.h"
 #import "PBSeatSelectionController.h"
 #import "PBQRCodeController.h"
 #import "PBAnnotationController.h"
 #import "PBImageTextController.h"
-#import "PBYYTextController.h"
 #import "PBAFNetworkingController.h"
 #import "PBWebViewController.h"
-#import "PBCellHeightController.h"
 #import "PBTimerController.h"
 #import "PBCopyController.h"
 #import "PBKVOController.h"
@@ -28,26 +26,20 @@
 #import "PBAVPlayerListController.h"
 #import "PBUniversalLinkController.h"
 #import "PBRuntimeController.h"
-#import "PBContentController.h"
-#import "PBLinkageController.h"
 
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBLinkageController",
+    return @[@"PBCommonController",
              @"PBAllLinkageController",
              @"PBSyntaxController",
-             @"PBContentController",
-             @"PBAllWelfareController",
              @"PBCalendarController",
              @"PBSeatSelectionController",
              @"PBQRCodeController",
              @"PBAnnotationController",
              @"PBImageTextController",
-             @"PBYYTextController",
              @"PBAFNetworkingController",
              @"PBWebViewController",
-             @"PBCellHeightController",
              @"PBTimerController",
              @"PBCopyController",
              @"PBKVOController",

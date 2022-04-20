@@ -1,0 +1,29 @@
+//
+//  PBCommonView.h
+//  TestOC
+//
+//  Created by Zhu,Shanbo on 2019/7/17.
+//  Copyright © 2019年 DaMaiIOS. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class PBCommonView;
+@protocol PBCommonViewDelegate <NSObject>
+
+- (void)CommonView:(PBCommonView *)CommonView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+@interface PBCommonView : UIView
+
+@property (nonatomic, strong) id<PBCommonViewDelegate> delegate;
+@property (nonatomic, strong) NSArray *pageArr;
+
++ (id)CommonView;
+
+@end
+
+NS_ASSUME_NONNULL_END
