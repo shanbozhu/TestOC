@@ -87,6 +87,7 @@
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
+		5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE46B281031170073BC47 /* PBArrayDeleteController.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -463,6 +464,8 @@
 		5CEFE1B2280FB43E0073BC47 /* PBCommonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCommonController.h; sourceTree = "<group>"; };
 		5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonView.m; sourceTree = "<group>"; };
 		5CEFE1B5280FB43E0073BC47 /* PBCommonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCommonView.h; sourceTree = "<group>"; };
+		5CEFE46A281031170073BC47 /* PBArrayDeleteController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayDeleteController.h; sourceTree = "<group>"; };
+		5CEFE46B281031170073BC47 /* PBArrayDeleteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBArrayDeleteController.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -1323,6 +1326,31 @@
 			children = (
 				5CEFE1B5280FB43E0073BC47 /* PBCommonView.h */,
 				5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5CEFE467281030FE0073BC47 /* PBArrayDelete */ = {
+			isa = PBXGroup;
+			children = (
+				5CEFE468281030FE0073BC47 /* Controllers */,
+				5CEFE469281030FE0073BC47 /* Views */,
+			);
+			path = PBArrayDelete;
+			sourceTree = "<group>";
+		};
+		5CEFE468281030FE0073BC47 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CEFE46A281031170073BC47 /* PBArrayDeleteController.h */,
+				5CEFE46B281031170073BC47 /* PBArrayDeleteController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5CEFE469281030FE0073BC47 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2418,6 +2446,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5CEFE467281030FE0073BC47 /* PBArrayDelete */,
 				5C2D064C280C032A00C775B3 /* PBAFNetworking */,
 				5C2D057B280BFBFB00C775B3 /* Common */,
 				5C0D2E31279823F100C9274E /* PBAllLinkage */,
@@ -2788,6 +2817,7 @@
 				5C2D060F280BFBFC00C775B3 /* PBLinkageTableView.m in Sources */,
 				9575934022F82A64009CA618 /* PBStorageDataBaseController.m in Sources */,
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
+				5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */,
 				5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */,
 				5C2D0616280BFBFC00C775B3 /* PBCellHeight.m in Sources */,
 				5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */,

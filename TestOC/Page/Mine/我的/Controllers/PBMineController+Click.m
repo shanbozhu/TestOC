@@ -31,6 +31,7 @@
 
 - (NSArray *)pageArr {
     return @[@"PBCommonController",
+             @"PBArrayDeleteController",
              @"PBAllLinkageController",
              @"PBSyntaxController",
              @"PBCalendarController",
