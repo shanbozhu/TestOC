@@ -22,7 +22,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, APPLICATION_STATUSBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_TABBAR_HEIGHT - APPLICATION_STATUSBAR_HEIGHT) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT) style:UITableViewStylePlain];
         self.tableView = tableView;
         [self addSubview:tableView];
         tableView.delegate = self;

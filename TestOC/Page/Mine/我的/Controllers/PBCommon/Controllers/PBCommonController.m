@@ -18,7 +18,7 @@
 @implementation PBCommonController
 
 - (BOOL)pb_navigationBarHidden {
-    return YES;
+    return NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

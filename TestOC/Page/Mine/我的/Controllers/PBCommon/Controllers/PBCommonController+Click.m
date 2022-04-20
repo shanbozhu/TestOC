@@ -33,6 +33,7 @@
         vc = [[PBSwiftController alloc] init];
     }
     vc.hidesBottomBarWhenPushed = YES;
+    vc.title = page;
     
     [self.navigationController pushViewController:vc animated:YES];
     vc.view.backgroundColor = [UIColor whiteColor];
