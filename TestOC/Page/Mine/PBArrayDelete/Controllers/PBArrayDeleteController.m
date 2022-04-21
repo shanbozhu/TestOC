@@ -42,7 +42,7 @@
         }
         NSLog(@"0 arr1 = %@", arr1);
         
-        // 临时数组
+        // 临时数组【推荐】
         NSMutableArray *arr2 = [NSMutableArray arrayWithArray:ARRAY];
         NSMutableArray *tmpArr = [arr2 mutableCopy];
         for (int i = 0; i < tmpArr.count; i++) {
@@ -78,7 +78,7 @@
         }];
         NSLog(@"1 arr1 = %@", arr1);
         
-        // 临时数组
+        // 临时数组【推荐】
         NSMutableArray *arr2 = [NSMutableArray arrayWithArray:ARRAY];
         NSMutableArray *tmpArr = arr2.mutableCopy;
         [tmpArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -112,7 +112,7 @@
         }
         NSLog(@"2 arr1 = %@", arr1);
         
-        // 临时数组
+        // 临时数组【推荐】
         NSMutableArray *arr2 = [NSMutableArray arrayWithArray:ARRAY];
         NSMutableArray *tmpArr = arr2.mutableCopy;
         for (NSString *str in tmpArr) {
@@ -124,13 +124,13 @@
         NSLog(@"2 arr2 = %@", arr2);
     }
 
-    //【推荐】
+    //【强烈推荐】
     NSMutableArray *arr = [NSMutableArray arrayWithArray:ARRAY];
     NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
     for (int i = 0; i < arr.count; i++) {
         NSString *str = arr[i];
         if (![str isEqualToString:@"1"]) {
-            [indexSet addIndex:i];
+            [indexSet addIndex:i]; // 支持
         }
     }
     [arr removeObjectsAtIndexes:indexSet];
