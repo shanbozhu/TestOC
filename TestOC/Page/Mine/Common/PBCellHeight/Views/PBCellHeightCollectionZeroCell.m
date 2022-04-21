@@ -46,12 +46,14 @@
 }
 
 - (void)fillTestListCell {
-    self.lab.frame = CGRectMake(20, 20, [UIScreen mainScreen].bounds.size.width - 40, 10000);
+    CGFloat imageWidth = ([UIScreen mainScreen].bounds.size.width - 13 * 2 - 10) / 2.0;
+    self.lab.frame = CGRectMake(0, 0, imageWidth, 10000);
     self.lab.text = self.testListData.content;
     [self.lab sizeToFit];
     
     CGRect rect = self.frame;
-    rect.size.height = CGRectGetMaxY(self.lab.frame) + 20;
+    rect.size.width = imageWidth;
+    rect.size.height = CGRectGetMaxY(self.lab.frame);
     self.frame = rect;
 }
 
