@@ -88,6 +88,9 @@
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
 		5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE46B281031170073BC47 /* PBArrayDeleteController.m */; };
+		5CEFEBA328117B660073BC47 /* PBCellHeightCollectionZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFEBA228117B660073BC47 /* PBCellHeightCollectionZeroController.m */; };
+		5CEFEBA628117E760073BC47 /* PBCellHeightCollectionZeroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFEBA528117E760073BC47 /* PBCellHeightCollectionZeroView.m */; };
+		5CEFEBA928117E950073BC47 /* PBCellHeightCollectionZeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFEBA828117E950073BC47 /* PBCellHeightCollectionZeroCell.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -466,6 +469,12 @@
 		5CEFE1B5280FB43E0073BC47 /* PBCommonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCommonView.h; sourceTree = "<group>"; };
 		5CEFE46A281031170073BC47 /* PBArrayDeleteController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayDeleteController.h; sourceTree = "<group>"; };
 		5CEFE46B281031170073BC47 /* PBArrayDeleteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBArrayDeleteController.m; sourceTree = "<group>"; };
+		5CEFEBA128117B660073BC47 /* PBCellHeightCollectionZeroController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionZeroController.h; sourceTree = "<group>"; };
+		5CEFEBA228117B660073BC47 /* PBCellHeightCollectionZeroController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionZeroController.m; sourceTree = "<group>"; };
+		5CEFEBA428117E760073BC47 /* PBCellHeightCollectionZeroView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionZeroView.h; sourceTree = "<group>"; };
+		5CEFEBA528117E760073BC47 /* PBCellHeightCollectionZeroView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionZeroView.m; sourceTree = "<group>"; };
+		5CEFEBA728117E950073BC47 /* PBCellHeightCollectionZeroCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionZeroCell.h; sourceTree = "<group>"; };
+		5CEFEBA828117E950073BC47 /* PBCellHeightCollectionZeroCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionZeroCell.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -1043,6 +1052,8 @@
 				5C2D059E280BFBFB00C775B3 /* PBCellHeightFourController.h */,
 				5C2D05A6280BFBFC00C775B3 /* PBCellHeightFourController.m */,
 				5C2D059F280BFBFB00C775B3 /* PBCellHeight */,
+				5CEFEBA128117B660073BC47 /* PBCellHeightCollectionZeroController.h */,
+				5CEFEBA228117B660073BC47 /* PBCellHeightCollectionZeroController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1079,6 +1090,10 @@
 				5C2D05B9280BFBFC00C775B3 /* PBCellHeightFourView.m */,
 				5C2D05B3280BFBFC00C775B3 /* PBCellHeightFourCell.h */,
 				5C2D05C0280BFBFC00C775B3 /* PBCellHeightFourCell.m */,
+				5CEFEBA428117E760073BC47 /* PBCellHeightCollectionZeroView.h */,
+				5CEFEBA528117E760073BC47 /* PBCellHeightCollectionZeroView.m */,
+				5CEFEBA728117E950073BC47 /* PBCellHeightCollectionZeroCell.h */,
+				5CEFEBA828117E950073BC47 /* PBCellHeightCollectionZeroCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2748,6 +2763,7 @@
 				5C2D062D280BFBFC00C775B3 /* PBYYTextController.m in Sources */,
 				9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */,
 				95C871AF22E71CAC002795D0 /* PBTestEspressosSCSLSeatInfo.m in Sources */,
+				5CEFEBA328117B660073BC47 /* PBCellHeightCollectionZeroController.m in Sources */,
 				5C2D0647280BFBFC00C775B3 /* PBWelfareController.m in Sources */,
 				9575933D22F82A64009CA618 /* PBStorageTextOneController.m in Sources */,
 				5C2D060E280BFBFC00C775B3 /* PBLinkageView.m in Sources */,
@@ -2825,6 +2841,7 @@
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
 				9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */,
 				9575945322F95120009CA618 /* PBPlayerView.m in Sources */,
+				5CEFEBA928117E950073BC47 /* PBCellHeightCollectionZeroCell.m in Sources */,
 				95C871C522E71CBE002795D0 /* PBAppLogoView.m in Sources */,
 				9575945222F95120009CA618 /* PBGCDTimerManager.m in Sources */,
 				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,
@@ -2869,6 +2886,7 @@
 				95C871C322E71CBE002795D0 /* PBSeatButton.m in Sources */,
 				9533420F22F434C900DC7251 /* PBKVOController.m in Sources */,
 				5C2D062F280BFBFC00C775B3 /* PBYYTextView.m in Sources */,
+				5CEFEBA628117E760073BC47 /* PBCellHeightCollectionZeroView.m in Sources */,
 				5C2D0609280BFBFC00C775B3 /* PBLinkageThreeListController.m in Sources */,
 				957593D322F84F20009CA618 /* PBGCDListThirteenController.m in Sources */,
 				5C2D0624280BFBFC00C775B3 /* PBCellHeightThreeCell.m in Sources */,
