@@ -49,19 +49,6 @@
     CGFloat imageWidth = ([UIScreen mainScreen].bounds.size.width - 13 * 2 - 10) / 2.0;
     CGFloat scale = 4 / 3.0; // 高宽比例4:3
     CGSize size = CGSizeZero;
-    CGSize sizeAdjacent = CGSizeZero;
-//    TKMMSDKLiveListItem *liveListItem = [self.liveList bdp_safeObjectAtIndex:indexPath.item];
-//    TKMMSDKLiveListItem *liveListItemAdjacent = [self.liveList bdp_safeObjectAtIndex:indexPath.item + 1];
-//    if (indexPath.item % 2 == 0) {
-//        liveListItemAdjacent = [self.liveList bdp_safeObjectAtIndex:indexPath.item + 1];
-//    } else {
-//        liveListItemAdjacent = [self.liveList bdp_safeObjectAtIndex:indexPath.item - 1];
-//    }
-//    size = [liveListItem.live.title boundingRectWithSize:CGSizeMake(imageWidth, [BBAUIMeasureHelper getScaledSize:39 type:EUIMeasureTypeContent]) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:[BBAUIMeasureHelper getScaledSize:16 type:EUIMeasureTypeContent]]} context:nil].size;
-//    sizeAdjacent = [liveListItemAdjacent.live.title boundingRectWithSize:CGSizeMake(imageWidth, [BBAUIMeasureHelper getScaledSize:39 type:EUIMeasureTypeContent]) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:[BBAUIMeasureHelper getScaledSize:16 type:EUIMeasureTypeContent]]} context:nil].size;
-//    if (size.height > 26 || sizeAdjacent.height > 26) {
-//        return CGSizeMake(imageWidth, imageWidth * scale + 10 + [BBAUIMeasureHelper getScaledSize:39 type:EUIMeasureTypeContent]);
-//    }
     return CGSizeMake(imageWidth, imageWidth * scale + 10 + size.height);
 }
 
