@@ -37,6 +37,11 @@
     return self;
 }
 
+- (void)setTestList:(PBCellHeightZero *)testList {
+    _testList = testList;
+    [self.collectionView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
