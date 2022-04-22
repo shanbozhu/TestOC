@@ -51,9 +51,12 @@
     self.lab.text = self.testListData.content;
     [self.lab sizeToFit];
     
+    CGFloat scale = 4 / 3.0; // 高宽比例4:3
+    CGSize size = CGSizeZero;
+    
     CGRect rect = self.frame;
     rect.size.width = imageWidth;
-    rect.size.height = CGRectGetMaxY(self.lab.frame);
+    rect.size.height = imageWidth * scale + 10 + size.height;
     self.frame = rect;
 }
 
