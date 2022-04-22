@@ -17,11 +17,11 @@
 @implementation PBCommonController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBLinkageController",
+    return @[@"PBYYTextController",
              @"PBContentController",
-             @"PBAllWelfareController",
-             @"PBYYTextController",
-             @"PBCellHeightController"];
+             @"PBCellHeightController",
+             @"PBLinkageController",
+             @"PBAllWelfareController"];
 }
 
 // delegate
