@@ -77,7 +77,7 @@
     } else if (indexPath.row == 4) {
         cell.textLabel.text = @"autolayout布局,自动算高";
     } else if (indexPath.row == 5) {
-        cell.textLabel.text = @"UICollectionView,frame布局,通用手动算高";
+        cell.textLabel.text = @"frame布局,通用手动算高_UICollectionView";
     }
     return cell;
 }

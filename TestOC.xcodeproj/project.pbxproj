@@ -19,6 +19,7 @@
 		5C09497D2812C679002CEBC2 /* PBCellHeightThreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949732812C679002CEBC2 /* PBCellHeightThreeView.m */; };
 		5C09497E2812C679002CEBC2 /* PBCellHeightThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949762812C679002CEBC2 /* PBCellHeightThreeCell.m */; };
 		5C09497F2812C679002CEBC2 /* PBCellHeightFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949772812C679002CEBC2 /* PBCellHeightFourCell.m */; };
+		5C0949832812C7A8002CEBC2 /* PBCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949822812C7A8002CEBC2 /* PBCellHeight.m */; };
 		5C0D2E272798118B00C9274E /* UIViewController+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */; };
 		5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */; };
 		5C0D2E292798118B00C9274E /* UIScrollView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E172798118B00C9274E /* UIScrollView+YNPageExtend.m */; };
@@ -46,7 +47,6 @@
 		5C2D0613280BFBFC00C775B3 /* PBCellHeightZero.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D0596280BFBFB00C775B3 /* PBCellHeightZero.json */; };
 		5C2D0614280BFBFC00C775B3 /* PBCellHeightZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D059A280BFBFB00C775B3 /* PBCellHeightZero.m */; };
 		5C2D0615280BFBFC00C775B3 /* PBCellHeightZeroData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D059B280BFBFB00C775B3 /* PBCellHeightZeroData.m */; };
-		5C2D0616280BFBFC00C775B3 /* PBCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05A1280BFBFB00C775B3 /* PBCellHeight.m */; };
 		5C2D0617280BFBFC00C775B3 /* PBCellHeightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05A5280BFBFC00C775B3 /* PBCellHeightController.m */; };
 		5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05A9280BFBFC00C775B3 /* PBCellHeightZeroController.m */; };
 		5C2D0622280BFBFC00C775B3 /* PBCellHeightZeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05BA280BFBFC00C775B3 /* PBCellHeightZeroCell.m */; };
@@ -333,6 +333,8 @@
 		5C0949752812C679002CEBC2 /* PBCellHeightTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoCell.h; sourceTree = "<group>"; };
 		5C0949762812C679002CEBC2 /* PBCellHeightThreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightThreeCell.m; sourceTree = "<group>"; };
 		5C0949772812C679002CEBC2 /* PBCellHeightFourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFourCell.m; sourceTree = "<group>"; };
+		5C0949812812C7A8002CEBC2 /* PBCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeight.h; sourceTree = "<group>"; };
+		5C0949822812C7A8002CEBC2 /* PBCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeight.m; sourceTree = "<group>"; };
 		5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YNPageExtend.m"; sourceTree = "<group>"; };
 		5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YNPageExtend.m"; sourceTree = "<group>"; };
 		5C0D2E142798118B00C9274E /* UIScrollView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YNPageExtend.h"; sourceTree = "<group>"; };
@@ -386,8 +388,6 @@
 		5C2D0599280BFBFB00C775B3 /* PBCellHeightZeroData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroData.h; sourceTree = "<group>"; };
 		5C2D059A280BFBFB00C775B3 /* PBCellHeightZero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZero.m; sourceTree = "<group>"; };
 		5C2D059B280BFBFB00C775B3 /* PBCellHeightZeroData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroData.m; sourceTree = "<group>"; };
-		5C2D05A0280BFBFB00C775B3 /* PBCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeight.h; sourceTree = "<group>"; };
-		5C2D05A1280BFBFB00C775B3 /* PBCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeight.m; sourceTree = "<group>"; };
 		5C2D05A3280BFBFB00C775B3 /* PBCellHeightZeroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightZeroController.h; sourceTree = "<group>"; };
 		5C2D05A5280BFBFC00C775B3 /* PBCellHeightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightController.m; sourceTree = "<group>"; };
 		5C2D05A9280BFBFC00C775B3 /* PBCellHeightZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightZeroController.m; sourceTree = "<group>"; };
@@ -899,6 +899,15 @@
 			path = Others;
 			sourceTree = "<group>";
 		};
+		5C0949802812C7A8002CEBC2 /* PBCellHeight */ = {
+			isa = PBXGroup;
+			children = (
+				5C0949812812C7A8002CEBC2 /* PBCellHeight.h */,
+				5C0949822812C7A8002CEBC2 /* PBCellHeight.m */,
+			);
+			path = PBCellHeight;
+			sourceTree = "<group>";
+		};
 		5C0D2E102798118A00C9274E /* YNPageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1047,6 +1056,7 @@
 		5C2D0594280BFBFB00C775B3 /* PBCellHeight */ = {
 			isa = PBXGroup;
 			children = (
+				5C0949802812C7A8002CEBC2 /* PBCellHeight */,
 				5C2D0595280BFBFB00C775B3 /* Res */,
 				5C2D0597280BFBFB00C775B3 /* Models */,
 				5C2D059C280BFBFB00C775B3 /* Controllers */,
@@ -1082,20 +1092,10 @@
 				5C2D05A5280BFBFC00C775B3 /* PBCellHeightController.m */,
 				5C2D05A3280BFBFB00C775B3 /* PBCellHeightZeroController.h */,
 				5C2D05A9280BFBFC00C775B3 /* PBCellHeightZeroController.m */,
-				5C2D059F280BFBFB00C775B3 /* PBCellHeight */,
 				5CEFEBA128117B660073BC47 /* PBCellHeightCollectionZeroController.h */,
 				5CEFEBA228117B660073BC47 /* PBCellHeightCollectionZeroController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		5C2D059F280BFBFB00C775B3 /* PBCellHeight */ = {
-			isa = PBXGroup;
-			children = (
-				5C2D05A0280BFBFB00C775B3 /* PBCellHeight.h */,
-				5C2D05A1280BFBFB00C775B3 /* PBCellHeight.m */,
-			);
-			path = PBCellHeight;
 			sourceTree = "<group>";
 		};
 		5C2D05AC280BFBFC00C775B3 /* Views */ = {
@@ -2851,7 +2851,6 @@
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */,
 				5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */,
-				5C2D0616280BFBFC00C775B3 /* PBCellHeight.m in Sources */,
 				5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */,
 				5C0D2E2A2798118B00C9274E /* YNPageViewController.m in Sources */,
 				5C0949662812C5C3002CEBC2 /* PBCellHeightThreeController.m in Sources */,
@@ -2914,6 +2913,7 @@
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
+				5C0949832812C7A8002CEBC2 /* PBCellHeight.m in Sources */,
 				5C33FD7F2744DE9B00F6DDF0 /* PBMethodSwizzling.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
