@@ -81,16 +81,4 @@
     return UIEdgeInsetsMake(15, 13, 15, 13);
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if ([self.delegate respondsToSelector:@selector(hongSongLiveListView:listItem:)]) {
-//        [self.delegate hongSongLiveListView:self listItem:[self.liveList bdp_safeObjectAtIndex:indexPath.item]];
-//    }
-//}
-
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    if ([self.delegate respondsToSelector:@selector(hongSongLiveListView:didEndDragging:)]) {
-//        [self.delegate hongSongLiveListView:self didEndDragging:scrollView];
-//    }
-//}
-
 @end
