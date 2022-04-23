@@ -13,6 +13,7 @@
 #import "PBCellHeightThreeController.h"
 #import "PBCellHeightFourController.h"
 #import "PBCellHeightCollectionZeroController.h"
+#import "PBCellHeightCollectionOneController.h"
 
 /**
  1.根据宽度内容设置高度,内容包括文本、字体、行间距
@@ -54,7 +55,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,6 +79,8 @@
         cell.textLabel.text = @"autolayout布局,自动算高";
     } else if (indexPath.row == 5) {
         cell.textLabel.text = @"frame布局,通用手动算高_UICollectionView";
+    } else if (indexPath.row == 6) {
+        cell.textLabel.text = @"frame_UICollectionView";
     }
     return cell;
 }
@@ -110,6 +113,11 @@
         testListFourController.view.backgroundColor = [UIColor whiteColor];
     } else if (indexPath.row == 5) {
         PBCellHeightCollectionZeroController *testListController = [[PBCellHeightCollectionZeroController alloc]init];
+        
+        [self.navigationController pushViewController:testListController animated:YES];
+        testListController.view.backgroundColor = [UIColor whiteColor];
+    } else if (indexPath.row == 6) {
+        PBCellHeightCollectionOneController *testListController = [[PBCellHeightCollectionOneController alloc]init];
         
         [self.navigationController pushViewController:testListController animated:YES];
         testListController.view.backgroundColor = [UIColor whiteColor];
