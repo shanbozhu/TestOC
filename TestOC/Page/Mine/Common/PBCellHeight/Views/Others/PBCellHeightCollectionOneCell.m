@@ -25,11 +25,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        YYLabel *lab = [[YYLabel alloc] init];
-        self.lab = lab;
-        [self.contentView addSubview:lab];
-        lab.numberOfLines = 0;
-        lab.font = [UIFont systemFontOfSize:15];
+//        YYLabel *lab = [[YYLabel alloc] init];
+//        self.lab = lab;
+//        [self.contentView addSubview:lab];
+//        lab.numberOfLines = 0;
+//        lab.font = [UIFont systemFontOfSize:15];
         
         self.layer.borderColor = [UIColor redColor].CGColor;
         self.layer.borderWidth = 1.1;
