@@ -53,12 +53,20 @@
     UICollectionViewLayoutAttributes *layoutAttr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     
     // 设置每个frame
-    CGFloat width = [UIScreen mainScreen].bounds.size.width / self.colCount;
+    CGFloat width = ([UIScreen mainScreen].bounds.size.width - 10 * 2 - 20 * 2) / self.colCount; // 10:左右间距,20:item之间的间距
     CGFloat height = 50 + arc4random_uniform(20);
-    CGFloat x = width * (indexPath.row % self.colCount);
+    NSInteger surplus = indexPath.row % self.colCount;
+    CGFloat x = width * surplus;
+    if (surplus == 0) {
+        x = x + 10;
+    } else if (surplus == 1) {
+        x = x + 10 + 20;
+    } else if (surplus == 2) {
+        x = x + 10 + 20 + 20;
+    }
     
-    CGFloat y = [self.originYArr[indexPath.row % self.colCount] floatValue];
-    self.originYArr[indexPath.row % self.colCount] = @(height + y + 10);
+    CGFloat y = [self.originYArr[surplus] floatValue];
+    self.originYArr[surplus] = @(height + y + 10);
     layoutAttr.frame = CGRectMake(x, y, width, height);
     return layoutAttr;
 }
