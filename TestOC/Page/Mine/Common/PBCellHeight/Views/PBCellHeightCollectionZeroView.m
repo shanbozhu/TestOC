@@ -65,7 +65,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightCollectionZeroCell *cell = [PBCellHeightCollectionZeroCell testListCellWithCollectionView:collectionView indexPath:indexPath];
-    cell.testListData = self.testList.data[indexPath.row];
+    cell.testListData = self.testList.data[indexPath.item];
     return cell;
 }
 

@@ -25,11 +25,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-//        YYLabel *lab = [[YYLabel alloc] init];
-//        self.lab = lab;
-//        [self.contentView addSubview:lab];
-//        lab.numberOfLines = 0;
-//        lab.font = [UIFont systemFontOfSize:15];
+        YYLabel *lab = [[YYLabel alloc] init];
+        self.lab = lab;
+        [self.contentView addSubview:lab];
+        lab.numberOfLines = 0;
+        lab.font = [UIFont systemFontOfSize:15];
         
         self.layer.borderColor = [UIColor redColor].CGColor;
         self.layer.borderWidth = 1.1;
@@ -46,7 +46,8 @@
 - (void)fillTestListCell {
     CGFloat imageWidth = ([UIScreen mainScreen].bounds.size.width - 13 * 2 - 10) / 2.0;
     self.lab.frame = CGRectMake(0, 0, imageWidth, 10000);
-    self.lab.text = self.testListData.content;
+    //self.lab.text = self.testListData.content;
+    self.lab.text = [NSString stringWithFormat:@"%ld", self.index];
     [self.lab sizeToFit];
 }
 

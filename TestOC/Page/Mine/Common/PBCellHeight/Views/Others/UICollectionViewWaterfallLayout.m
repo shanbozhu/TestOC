@@ -54,7 +54,7 @@
     
     // 设置每个frame
     CGFloat width = ([UIScreen mainScreen].bounds.size.width - 10 * 2 - 20 * 2) / self.colCount; // 10:左右间距,20:item之间的间距
-    CGFloat height = 50 + arc4random_uniform(20);
+    CGFloat height = 100 + arc4random_uniform(60);
     NSInteger surplus = indexPath.row % self.colCount;
     CGFloat x = width * surplus;
     if (surplus == 0) {

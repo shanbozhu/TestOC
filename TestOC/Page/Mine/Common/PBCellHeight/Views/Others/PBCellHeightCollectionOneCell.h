@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PBCellHeightCollectionOneCell : UICollectionViewCell
 
 @property (nonatomic, strong) PBCellHeightZeroData *testListData;
+@property (nonatomic, assign) NSInteger index;
 
 + (id)testListCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 
