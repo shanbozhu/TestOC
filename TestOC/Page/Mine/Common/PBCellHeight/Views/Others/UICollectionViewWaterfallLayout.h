@@ -1,5 +1,5 @@
 //
-//  CustomLayout.h
+//  UICollectionViewWaterfallLayout.h
 //  TestOC
 //
 //  Created by shanbo on 2022/4/23.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CustomLayout : UICollectionViewLayout
+@interface UICollectionViewWaterfallLayout : UICollectionViewLayout
 
 @end
 

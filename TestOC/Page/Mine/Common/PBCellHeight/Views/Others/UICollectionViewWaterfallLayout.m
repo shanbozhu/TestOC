@@ -1,15 +1,15 @@
 //
-//  CustomLayout.m
+//  UICollectionViewWaterfallLayout.m
 //  TestOC
 //
 //  Created by shanbo on 2022/4/23.
 //  Copyright © 2022 DaMaiIOS. All rights reserved.
 //
 
-#import "CustomLayout.h"
+#import "UICollectionViewWaterfallLayout.h"
 
 
-@implementation CustomLayout{
+@implementation UICollectionViewWaterfallLayout{
     NSMutableArray * attributeArray; // frame 数组
     NSInteger _collectViewRowCount;  // 列数
     NSMutableArray * _originYAry;    //记录每一列的Y点坐标

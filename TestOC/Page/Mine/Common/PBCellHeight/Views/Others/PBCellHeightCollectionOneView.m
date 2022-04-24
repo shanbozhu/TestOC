@@ -8,7 +8,7 @@
 
 #import "PBCellHeightCollectionOneView.h"
 #import "PBCellHeightCollectionOneCell.h"
-#import "CustomLayout.h"
+#import "UICollectionViewWaterfallLayout.h"
 
 @interface PBCellHeightCollectionOneView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -24,7 +24,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        CustomLayout *layout = [[CustomLayout alloc] init];
+        UICollectionViewWaterfallLayout *layout = [[UICollectionViewWaterfallLayout alloc] init];
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT - APPLICATION_SAFE_AREA_BOTTOM_MARGIN) collectionViewLayout:layout];
         self.collectionView = collectionView;
         [self addSubview:collectionView];
