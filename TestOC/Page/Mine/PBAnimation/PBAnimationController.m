@@ -44,13 +44,13 @@
     scrollView.delaysContentTouches = NO;
     scrollView.canCancelContentTouches = YES;
     
-    //
+    // 动画
     [self addAnimationViews];
     
-    //
+    // 点击状态
     [self addClickStatusViews];
     
-    //
+    // 气泡
     [self addBubbleViews];
 }
 
