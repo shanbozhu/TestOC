@@ -8,6 +8,7 @@
 
 #import "PBAnimationController.h"
 #import <Lottie/LOTAnimationView.h>
+#import <SDWebImage/SDAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import <YYImage/YYImage.h>
@@ -117,10 +118,20 @@
     animationImageView.backgroundColor = kPBBackgroundColor;
     
     // gif
+    SDAnimatedImageView *animationImageViewTwo = [SDAnimatedImageView new];
+    [self.scrollView addSubview:animationImageViewTwo];
+    animationImageViewTwo.frame = CGRectMake(animationView.pb_left, animationImageView.pb_bottom + 20, 50, 50);
+    SDAnimatedImage *animatedImageTwo = [SDAnimatedImage imageNamed:@"commentgif_liked.gif"];
+    animationImageViewTwo.image = animatedImageTwo;
+    animationImageViewTwo.shouldCustomLoopCount = YES;
+    animationImageViewTwo.animationRepeatCount = CGFLOAT_MAX;
+    animationImageViewTwo.backgroundColor = kPBBackgroundColor;
+    
+    // gif
     YYImage *animatedImageOne = [YYImage imageWithData:gifData];
     YYAnimatedImageView *animationImageViewOne = [[YYAnimatedImageView alloc] init];
     [self.scrollView addSubview:animationImageViewOne];
-    animationImageViewOne.frame = CGRectMake(animationView.pb_left, animationImageView.pb_bottom + 20, 50, 50);
+    animationImageViewOne.frame = CGRectMake(animationView.pb_left, animationImageViewTwo.pb_bottom + 20, 50, 50);
     animationImageViewOne.image = animatedImageOne;
     animationImageViewOne.backgroundColor = kPBBackgroundColor;
     
