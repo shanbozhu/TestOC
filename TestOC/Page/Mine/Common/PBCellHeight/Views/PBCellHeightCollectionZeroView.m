@@ -51,11 +51,6 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CGFloat imageWidth = ([UIScreen mainScreen].bounds.size.width - 13 * 2 - 10) / 2.0;
-//    CGFloat scale = 4 / 3.0; // 高宽比例4:3
-//    CGSize size = CGSizeZero;
-//    return CGSizeMake(imageWidth, imageWidth * scale + 10 + size.height);
-    
     {
         UICollectionViewCell *cell = [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
         [cell removeFromSuperview];
