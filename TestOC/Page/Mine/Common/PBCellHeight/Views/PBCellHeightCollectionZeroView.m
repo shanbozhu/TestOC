@@ -52,10 +52,39 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     {
-        UICollectionViewCell *cell = [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
-        [cell removeFromSuperview];
-        return CGSizeMake(CGRectGetWidth(cell.frame), CGRectGetHeight(cell.frame));
+        PBCellHeightZeroData *testListData = self.testList.data[indexPath.item];
+        PBCellHeightZeroData *testListDataAdjacent = nil;
+        if (indexPath.item % 2 == 0) {
+            testListDataAdjacent = self.testList.data[indexPath.item + 1];
+        } else {
+            testListDataAdjacent = self.testList.data[indexPath.item - 1];
+        }
     }
+    
+    // 当前cell高度
+    UICollectionViewCell *cell = [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    [cell removeFromSuperview];
+    CGSize size = CGSizeMake(CGRectGetWidth(cell.frame), CGRectGetHeight(cell.frame));
+    
+    // 相邻cell高度
+    CGSize sizeAdjacent = CGSizeZero;
+    if (indexPath.item % 2 == 0) { // 偶数
+        NSIndexPath *indexPathAdjacent = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:0];
+        UICollectionViewCell *cellAdjacent = [self collectionView:collectionView cellForItemAtIndexPath:indexPathAdjacent];
+        [cellAdjacent removeFromSuperview];
+        sizeAdjacent = CGSizeMake(CGRectGetWidth(cellAdjacent.frame), CGRectGetHeight(cellAdjacent.frame));
+    } else { // 奇数
+        NSIndexPath *indexPathAdjacent = [NSIndexPath indexPathForItem:indexPath.item - 1 inSection:0];
+        UICollectionViewCell *cellAdjacent = [self collectionView:collectionView cellForItemAtIndexPath:indexPathAdjacent];
+        [cellAdjacent removeFromSuperview];
+        sizeAdjacent = CGSizeMake(CGRectGetWidth(cellAdjacent.frame), CGRectGetHeight(cellAdjacent.frame));
+    }
+    
+    CGFloat cellHeightForPerRow = size.height; // 同一行取最大cell的高度
+    if (size.height < sizeAdjacent.height) {
+        cellHeightForPerRow = sizeAdjacent.height;
+    }
+    return CGSizeMake(size.width, cellHeightForPerRow);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

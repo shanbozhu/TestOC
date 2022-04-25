@@ -12,6 +12,8 @@
 @interface PBCellHeightZeroData : NSObject
 
 @property (nonatomic, copy) NSString *content;
+@property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, assign) CGSize cellSize;
 
 + (id)testListDataWithDict:(NSDictionary *)dict;
 
