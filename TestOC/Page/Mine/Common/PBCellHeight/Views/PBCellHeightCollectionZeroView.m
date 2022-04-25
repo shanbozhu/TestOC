@@ -55,7 +55,9 @@
         PBCellHeightZeroData *testListData = self.testList.data[indexPath.item];
         PBCellHeightZeroData *testListDataAdjacent = nil;
         if (indexPath.item % 2 == 0) {
-            testListDataAdjacent = self.testList.data[indexPath.item + 1];
+            if (indexPath.item + 1 <= self.testList.data.count - 1) {
+                testListDataAdjacent = self.testList.data[indexPath.item + 1];
+            }
         } else {
             testListDataAdjacent = self.testList.data[indexPath.item - 1];
         }
@@ -69,7 +71,10 @@
     // 相邻cell高度
     CGSize sizeAdjacent = CGSizeZero;
     if (indexPath.item % 2 == 0) { // 偶数
-        NSIndexPath *indexPathAdjacent = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:0];
+        NSIndexPath *indexPathAdjacent = indexPath;
+        if (indexPath.item + 1 <= self.testList.data.count - 1) {
+            indexPathAdjacent = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:0];
+        }
         UICollectionViewCell *cellAdjacent = [self collectionView:collectionView cellForItemAtIndexPath:indexPathAdjacent];
         [cellAdjacent removeFromSuperview];
         sizeAdjacent = CGSizeMake(CGRectGetWidth(cellAdjacent.frame), CGRectGetHeight(cellAdjacent.frame));
