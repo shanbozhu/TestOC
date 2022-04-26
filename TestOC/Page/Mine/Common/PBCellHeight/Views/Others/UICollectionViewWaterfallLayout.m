@@ -29,6 +29,8 @@
 
 // 1.告诉当前layout对象，更新当前布局
 - (void)prepareLayout {
+    [super prepareLayout];
+    
     [self.attributeArr removeAllObjects];
     [self.originYArr removeAllObjects];
     
