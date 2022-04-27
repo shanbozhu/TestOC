@@ -23,7 +23,7 @@
 		5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498528142C60002CEBC2 /* PBCellHeightCollectionOneController.m */; };
 		5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */; };
 		5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */; };
-		5C09498F28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498E28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.m */; };
+		5C09498F28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498E28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m */; };
 		5C0D2E272798118B00C9274E /* UIViewController+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */; };
 		5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */; };
 		5C0D2E292798118B00C9274E /* UIScrollView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E172798118B00C9274E /* UIScrollView+YNPageExtend.m */; };
@@ -345,8 +345,8 @@
 		5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionOneView.m; sourceTree = "<group>"; };
 		5C09498928142D03002CEBC2 /* PBCellHeightCollectionOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionOneView.h; sourceTree = "<group>"; };
 		5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionOneCell.m; sourceTree = "<group>"; };
-		5C09498D28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
-		5C09498E28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
+		5C09498D28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		5C09498E28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YNPageExtend.m"; sourceTree = "<group>"; };
 		5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YNPageExtend.m"; sourceTree = "<group>"; };
 		5C0D2E142798118B00C9274E /* UIScrollView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YNPageExtend.h"; sourceTree = "<group>"; };
@@ -913,8 +913,8 @@
 				5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */,
 				5C09498928142D03002CEBC2 /* PBCellHeightCollectionOneView.h */,
 				5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */,
-				5C09498D28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.h */,
-				5C09498E28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.m */,
+				5C09498D28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.h */,
+				5C09498E28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -2765,7 +2765,7 @@
 				5C2D0662280C032A00C775B3 /* PBAFNetworkingController.m in Sources */,
 				957593D522F84F20009CA618 /* PBGCDListTwelveController.m in Sources */,
 				9575943022F950FB009CA618 /* PBAVPlayerList.m in Sources */,
-				5C09498F28142ED9002CEBC2 /* UICollectionViewWaterfallLayout.m in Sources */,
+				5C09498F28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m in Sources */,
 				5C2D0611280BFBFC00C775B3 /* PBLinkagePosterCell.m in Sources */,
 				957593FA22F84F3B009CA618 /* PBGCDLockNineController.m in Sources */,
 				5C09497B2812C679002CEBC2 /* PBCellHeightOneCell.m in Sources */,

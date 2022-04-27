@@ -8,9 +8,9 @@
 
 #import "PBCellHeightCollectionOneView.h"
 #import "PBCellHeightCollectionOneCell.h"
-#import "UICollectionViewWaterfallLayout.h"
+#import "PBCollectionViewWaterfallLayout.h"
 
-@interface PBCellHeightCollectionOneView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface PBCellHeightCollectionOneView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PBCollectionViewWaterfallLayoutDelegate>
 
 @property (nonatomic, weak) UICollectionView *collectionView;
 
@@ -24,7 +24,9 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        UICollectionViewWaterfallLayout *layout = [[UICollectionViewWaterfallLayout alloc] init];
+        PBCollectionViewWaterfallLayout *layout = [[PBCollectionViewWaterfallLayout alloc] init];
+        layout.delegate = self;
+        
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT - APPLICATION_SAFE_AREA_BOTTOM_MARGIN) collectionViewLayout:layout];
         self.collectionView = collectionView;
         [self addSubview:collectionView];
@@ -59,6 +61,12 @@
     cell.index = indexPath.item;
     cell.testListData = self.testList.data[indexPath.item];
     return cell;
+}
+
+
+- (CGFloat)PBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout heightForRowAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth {
+    return itemWidth * (1 + arc4random_uniform(3));
+;
 }
 
 @end
