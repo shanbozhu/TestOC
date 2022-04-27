@@ -8,23 +8,23 @@
 
 #import "PBCollectionViewWaterfallLayout.h"
 
-//默认的列数
+// 默认的列数
 static const NSInteger DefaultColumnCpunt = 3;
 
-//每一列之间的间距
-static const CGFloat DefaultColumnMargin = 10;
+// 每一列之间的间距
+static const CGFloat DefaultColumnMargin = 15;
 
-//没一行之间的间距
+// 每一行之间的间距
 static const CGFloat DefaultRowMargin = 10;
 
-//边缘间距
-static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
+// 边缘间距
+static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
 
 @interface PBCollectionViewWaterfallLayout ()
 
-//c存放所有cell的布局属性
+// 存放所有cell的布局属性
 @property (nonatomic, strong) NSMutableArray *attrsArray;
-//存放所有列的当前高度
+// 存放所有列的当前高度
 @property (nonatomic, strong) NSMutableArray *columnHeights;
 /** 内容的高度 */
 @property (nonatomic, assign) CGFloat contentHeight;
@@ -38,8 +38,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
 
 @implementation PBCollectionViewWaterfallLayout
 
-- (CGFloat)rowMargin
-{
+- (CGFloat)rowMargin {
     if ([self.delegate respondsToSelector:@selector(rowMarginInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate rowMarginInPBCollectionViewWaterfallLayout:self];
     } else {
@@ -47,8 +46,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
     }
 }
 
-- (CGFloat)columnMargin
-{
+- (CGFloat)columnMargin {
     if ([self.delegate respondsToSelector:@selector(columnMarginInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate columnMarginInPBCollectionViewWaterfallLayout:self];
     } else {
@@ -56,8 +54,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
     }
 }
 
-- (NSInteger)columnCount
-{
+- (NSInteger)columnCount {
     if ([self.delegate respondsToSelector:@selector(columnCountInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate columnCountInPBCollectionViewWaterfallLayout:self];
     } else {
@@ -65,8 +62,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
     }
 }
 
-- (UIEdgeInsets)edgeInsets
-{
+- (UIEdgeInsets)edgeInsets {
     if ([self.delegate respondsToSelector:@selector(edgeInsetsInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate edgeInsetsInPBCollectionViewWaterfallLayout:self];
     } else {
@@ -74,24 +70,21 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
     }
 }
 
-- (NSMutableArray *)attrsArray
-{
+- (NSMutableArray *)attrsArray {
     if (!_attrsArray) {
         _attrsArray = [NSMutableArray array];
     }
     return _attrsArray;
 }
 
-- (NSMutableArray *)columnHeights
-{
+- (NSMutableArray *)columnHeights {
     if (!_columnHeights) {
         _columnHeights = [NSMutableArray array];
     }
     return _columnHeights;
 }
 
-- (void)prepareLayout
-{
+- (void)prepareLayout {
     [super prepareLayout];
     
     self.contentHeight = 0;
@@ -116,13 +109,11 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
     }
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     return self.attrsArray;
 }
 
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     
     CGFloat collectionViewW = self.collectionView.frame.size.width;
@@ -161,8 +152,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {10,10,10,10};
     
 }
 
-- (CGSize)collectionViewContentSize
-{
+- (CGSize)collectionViewContentSize {
 //    CGFloat maxColumnHeight = [self.columnHeights[0] doubleValue];
 //
 //    for (NSInteger i = 1; i < DefaultColumnCpunt; i++) {
