@@ -48,7 +48,8 @@
         [self addSubview:self.pageControl];
         self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
         self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-        pageControl.layer.borderColor = [UIColor redColor].CGColor;
+        
+        pageControl.layer.borderColor = [UIColor grayColor].CGColor;
         pageControl.layer.borderWidth = 1.1;
     }
     return self;
