@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) PBCellHeightZero *testList;
 
-+ (id)testListView;
+//+ (id)testListView;
 
 @end
 

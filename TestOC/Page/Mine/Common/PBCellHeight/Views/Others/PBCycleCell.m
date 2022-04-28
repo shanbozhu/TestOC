@@ -29,7 +29,8 @@
         self.lab = lab;
         [self.contentView addSubview:lab];
         lab.numberOfLines = 0;
-        lab.font = [UIFont systemFontOfSize:15];
+        lab.font = [UIFont boldSystemFontOfSize:15];
+        lab.textAlignment = NSTextAlignmentCenter;
         
         self.layer.borderColor = [UIColor redColor].CGColor;
         self.layer.borderWidth = 1.1;
@@ -39,16 +40,12 @@
 
 - (void)setTestListData:(PBCellHeightZeroData *)testListData {
     _testListData = testListData;
-    
     [self fillTestListCell];
 }
 
 - (void)fillTestListCell {
-    CGFloat imageWidth = ([UIScreen mainScreen].bounds.size.width - 13 * 2 - 10) / 2.0;
-    self.lab.frame = CGRectMake(0, 0, imageWidth, 10000);
-    //self.lab.text = self.testListData.content;
-    self.lab.text = [NSString stringWithFormat:@"%ld", self.index];
-    [self.lab sizeToFit];
+    self.lab.frame = self.bounds;
+    self.lab.text = [NSString stringWithFormat:@"%@", self.testListData.content];
 }
 
 - (void)dealloc {

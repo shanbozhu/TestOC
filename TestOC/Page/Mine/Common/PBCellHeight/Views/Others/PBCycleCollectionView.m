@@ -8,9 +8,8 @@
 
 #import "PBCycleCollectionView.h"
 #import "PBCycleCell.h"
-#import "PBCollectionViewWaterfallLayout.h"
 
-@interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PBCollectionViewWaterfallLayoutDelegate>
+@interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) UICollectionView *collectionView;
 
@@ -24,10 +23,9 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        PBCollectionViewWaterfallLayout *layout = [[PBCollectionViewWaterfallLayout alloc] init];
-        layout.delegate = self;
-        
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT - APPLICATION_SAFE_AREA_BOTTOM_MARGIN) collectionViewLayout:layout];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
         self.collectionView = collectionView;
         [self addSubview:collectionView];
         collectionView.backgroundColor = [UIColor whiteColor];
@@ -36,6 +34,8 @@
         if (@available(iOS 11.0, *)) {
             collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+        collectionView.pagingEnabled = true;
+        collectionView.showsHorizontalScrollIndicator = false;
         
         collectionView.layer.borderColor = [UIColor blueColor].CGColor;
         collectionView.layer.borderWidth = 1.1;
@@ -45,6 +45,13 @@
 
 - (void)setTestList:(PBCellHeightZero *)testList {
     _testList = testList;
+    
+    NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:testList.data];
+    [tmpArr addObject:testList.data.firstObject];
+    [tmpArr insertObject:testList.data.lastObject atIndex:0];
+    testList.data = tmpArr;
+    
+    [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width, 0)];
     [self.collectionView reloadData];
 }
 
@@ -56,6 +63,10 @@
     return self.testList.data.count;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.bounds.size.width, self.bounds.size.height);
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PBCycleCell *cell = [PBCycleCell testListCellWithCollectionView:collectionView indexPath:indexPath];
     cell.index = indexPath.item;
@@ -63,25 +74,33 @@
     return cell;
 }
 
-#pragma mark - PBCollectionViewWaterfallLayoutDelegate
-- (CGFloat)collectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout heightForRowAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth {
-    return itemWidth * (1 + arc4random_uniform(3));
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
 }
 
-- (CGFloat)colCountInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
-    return 4;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
 }
 
-- (CGFloat)colMarginInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
-    return 15;
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsZero;
 }
 
-- (CGFloat)rowMarginInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
-    return 20;
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self cycleScroll];
 }
 
-- (UIEdgeInsets)edgeInsetsInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
-    return UIEdgeInsetsMake(30, 15, 30, 15);
+- (void)cycleScroll {
+    NSInteger page = self.collectionView.contentOffset.x/self.collectionView.bounds.size.width;
+    if (page == 0) {//滚动到左边
+        self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width * (self.testList.data.count - 2), 0);
+//        self.pageControl.currentPage = self.titles.count - 2;
+    }else if (page == self.testList.data.count - 1){//滚动到右边
+        self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width, 0);
+//        self.pageControl.currentPage = 0;
+    }else{
+//        self.pageControl.currentPage = page - 1;
+    }
 }
 
 @end

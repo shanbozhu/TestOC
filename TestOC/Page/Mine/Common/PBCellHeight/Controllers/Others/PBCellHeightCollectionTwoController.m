@@ -26,7 +26,10 @@
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
+    // testList
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
+    NSArray *tmpArr = [testList.data subarrayWithRange:NSMakeRange(0, 3)]; // 只取前3个
+    testList.data = tmpArr;
     self.testListView.testList = testList;
 }
 
@@ -36,10 +39,10 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
     
-    PBCycleCollectionView *testListView = [PBCycleCollectionView testListView];
+    // PBCycleCollectionView
+    PBCycleCollectionView *testListView = [[PBCycleCollectionView alloc] initWithFrame:CGRectMake(50, 200, self.view.bounds.size.width - 100, 200)];
     self.testListView = testListView;
     [self.view addSubview:testListView];
-    testListView.frame = self.view.bounds;
     
     [self requestData];
 }
