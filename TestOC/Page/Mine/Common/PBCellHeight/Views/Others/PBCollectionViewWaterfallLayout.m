@@ -101,28 +101,27 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
     CGFloat collectionViewW = self.collectionView.frame.size.width;
     CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right - (self.colCount - 1) * self.colMargin) / self.colCount;
     CGFloat h = [self.delegate PBCollectionViewWaterfallLayout:self heightForRowAtIndexPath:indexPath.item itemWidth:w];
-    NSInteger destcol = 0;
+    NSInteger destCol = 0;
     
-    CGFloat mincolHeight = [self.colHeights[0] doubleValue];
+    CGFloat minColHeight = [self.colHeights[0] doubleValue]; // 每次默认从第0列开始,默认第0列最短
     for (NSInteger i = 0; i < self.colCount; i++) {
         CGFloat colHeight = [self.colHeights[i] doubleValue];
-        if (colHeight < mincolHeight) {
-            mincolHeight = colHeight;
-            destcol = i;
+        if (colHeight < minColHeight) {
+            minColHeight = colHeight;
+            destCol = i;
         }
     }
     
-    CGFloat x = self.edgeInsets.left + destcol * (w + self.colMargin);
-    CGFloat y = mincolHeight;
+    CGFloat x = self.edgeInsets.left + destCol * (w + self.colMargin);
+    CGFloat y = minColHeight;
     if (y != self.edgeInsets.top) {
         y += self.rowMargin;
     }
     attrs.frame = CGRectMake(x, y, w, h); // 设置布局属性的frame
     
-    self.colHeights[destcol] = @(CGRectGetMaxY(attrs.frame));
+    self.colHeights[destCol] = @(CGRectGetMaxY(attrs.frame));
     
     return attrs;
-    
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -130,14 +129,14 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 }
 
 - (CGSize)collectionViewContentSize {
-    CGFloat maxcolHeight = [self.colHeights[0] doubleValue];
+    CGFloat maxColHeight = [self.colHeights[0] doubleValue];
     for (NSInteger i = 1; i < defaultColCount; i++) {
         CGFloat colHeight = [self.colHeights[i] doubleValue];
-        if (colHeight > maxcolHeight) {
-            maxcolHeight = colHeight;
+        if (colHeight > maxColHeight) {
+            maxColHeight = colHeight;
         }
     }
-    return CGSizeMake(0, maxcolHeight + self.edgeInsets.bottom);
+    return CGSizeMake(0, maxColHeight + self.edgeInsets.bottom);
 }
 
 @end
