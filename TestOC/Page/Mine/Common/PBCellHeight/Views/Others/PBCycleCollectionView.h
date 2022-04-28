@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) PBCellHeightZero *testList;
 
-//+ (id)testListView;
+// 自动翻页 默认 NO
+@property (nonatomic, assign) BOOL autoPage;
 
 @end
 

@@ -9,18 +9,22 @@
 #import "PBCycleCollectionView.h"
 #import "PBCycleCell.h"
 
+// 轮播间隔
+static CGFloat ScrollInterval = 3.0f;
+
 @interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, weak) UIPageControl *pageControl;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
 @implementation PBCycleCollectionView
 
-+ (id)testListView {
-    return [[self alloc] initWithFrame:CGRectZero];
-}
+//+ (id)testListView {
+//    return [[self alloc] initWithFrame:CGRectZero];
+//}
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -51,8 +55,19 @@
         
         pageControl.layer.borderColor = [UIColor grayColor].CGColor;
         pageControl.layer.borderWidth = 1.1;
+        
+        //
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:ScrollInterval target:self selector:@selector(showNext) userInfo:nil repeats:true];
+        self.timer.fireDate = [NSDate distantFuture];
+        self.autoPage = NO;
     }
     return self;
+}
+
+- (void)setAutoPage:(BOOL)autoPage {
+    _autoPage = autoPage;
+    NSDate *fireDate = autoPage ? [NSDate dateWithTimeIntervalSinceNow:ScrollInterval] : [NSDate distantFuture];
+    self.timer.fireDate = fireDate;
 }
 
 - (void)setTestList:(PBCellHeightZero *)testList {
@@ -101,6 +116,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self cycleScroll];
+    
+    // 拖拽动作后间隔3s继续轮播
+    if (self.autoPage) {
+        self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:ScrollInterval];
+    }
 }
 
 - (void)cycleScroll {
@@ -116,6 +136,26 @@
     } else {
         self.pageControl.currentPage = page - 1;
     }
+}
+
+- (void)showNext {
+    // 手指拖拽时如果计时器没有停止,禁止自动轮播
+    if (self.collectionView.isDragging) {
+        return;
+    }
+    CGFloat targetX = self.collectionView.contentOffset.x + self.collectionView.bounds.size.width;
+    [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:true];
+}
+
+// 自动轮播结束
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self cycleScroll];
+}
+
+- (void)dealloc {
+    [self.timer invalidate];
+    self.timer = nil;
+    NSLog(@"PBCycleCollectionView对象被释放了");
 }
 
 @end

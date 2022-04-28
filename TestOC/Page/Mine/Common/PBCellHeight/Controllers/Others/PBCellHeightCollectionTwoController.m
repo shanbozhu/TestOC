@@ -43,7 +43,9 @@
     PBCycleCollectionView *testListView = [[PBCycleCollectionView alloc] initWithFrame:CGRectMake(50, 200, self.view.bounds.size.width - 100, 200)];
     self.testListView = testListView;
     [self.view addSubview:testListView];
+    testListView.autoPage = YES;
     
+    //
     [self requestData];
 }
 
