@@ -9,16 +9,16 @@
 #import "PBCollectionViewWaterfallLayout.h"
 
 // 默认的列数
-static const NSInteger DefaultColumnCpunt = 3;
+static const NSInteger defaultColCount = 3;
 
 // 每一列之间的间距
-static const CGFloat DefaultColumnMargin = 15;
+static const CGFloat defaultColMargin = 15;
 
 // 每一行之间的间距
-static const CGFloat DefaultRowMargin = 10;
+static const CGFloat defaultRowMargin = 10;
 
 // 边缘间距
-static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
+static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
 
 @interface PBCollectionViewWaterfallLayout ()
 
@@ -30,8 +30,8 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
 @property (nonatomic, assign) CGFloat contentHeight;
 
 - (CGFloat)rowMargin;
-- (CGFloat)columnMargin;
-- (NSInteger)columnCount;
+- (CGFloat)colMargin;
+- (NSInteger)colCount;
 - (UIEdgeInsets)edgeInsets;
 
 @end
@@ -42,23 +42,23 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
     if ([self.delegate respondsToSelector:@selector(rowMarginInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate rowMarginInPBCollectionViewWaterfallLayout:self];
     } else {
-        return DefaultRowMargin;
+        return defaultRowMargin;
     }
 }
 
-- (CGFloat)columnMargin {
+- (CGFloat)colMargin {
     if ([self.delegate respondsToSelector:@selector(columnMarginInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate columnMarginInPBCollectionViewWaterfallLayout:self];
     } else {
-        return DefaultColumnMargin;
+        return defaultColMargin;
     }
 }
 
-- (NSInteger)columnCount {
+- (NSInteger)colCount {
     if ([self.delegate respondsToSelector:@selector(columnCountInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate columnCountInPBCollectionViewWaterfallLayout:self];
     } else {
-        return DefaultColumnCpunt;
+        return defaultColCount;
     }
 }
 
@@ -66,7 +66,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
     if ([self.delegate respondsToSelector:@selector(edgeInsetsInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate edgeInsetsInPBCollectionViewWaterfallLayout:self];
     } else {
-        return DefaultEdgeInsets;
+        return defaultEdgeInsets;
     }
 }
 
@@ -91,7 +91,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
     
     //清除之前计算的所有高度，因为刷新的时候回调用这个方法
     [self.columnHeights removeAllObjects];
-    for (NSInteger i = 0; i < DefaultColumnCpunt; i++) {
+    for (NSInteger i = 0; i < self.colCount; i++) {
         [self.columnHeights addObject:@(self.edgeInsets.top)];
     }
     
@@ -118,14 +118,14 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
     
     CGFloat collectionViewW = self.collectionView.frame.size.width;
     
-    CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right -(self.columnCount - 1) * self.columnMargin) / self.columnCount;
+    CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right -(self.colCount - 1) * self.colMargin) / self.colCount;
     
     CGFloat h = [self.delegate PBCollectionViewWaterfallLayout:self heightForRowAtIndexPath:indexPath.item itemWidth:w];
     
     NSInteger destColumn = 0;
     
     CGFloat minColumnHeight = [self.columnHeights[0] doubleValue];
-    for (NSInteger i = 0; i < self.columnCount; i++) {
+    for (NSInteger i = 0; i < self.colCount; i++) {
         CGFloat columnHeight = [self.columnHeights[i] doubleValue];
         
         if (minColumnHeight > columnHeight) {
@@ -134,7 +134,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
         }
     }
     
-    CGFloat x = self.edgeInsets.left + destColumn * (w + self.columnMargin);
+    CGFloat x = self.edgeInsets.left + destColumn * (w + self.colMargin);
     CGFloat y = minColumnHeight;
     if (y != self.edgeInsets.top) {
         y += self.rowMargin;
@@ -155,7 +155,7 @@ static const UIEdgeInsets DefaultEdgeInsets = {20, 10, 20, 10};
 - (CGSize)collectionViewContentSize {
 //    CGFloat maxColumnHeight = [self.columnHeights[0] doubleValue];
 //
-//    for (NSInteger i = 1; i < DefaultColumnCpunt; i++) {
+//    for (NSInteger i = 1; i < defaultColCount; i++) {
 //        // 取得第i列的高度
 //        CGFloat columnHeight = [self.columnHeights[i] doubleValue];
 //
