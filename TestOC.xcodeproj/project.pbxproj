@@ -99,6 +99,7 @@
 		5CF05324281A92230024B752 /* PBCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */; };
 		5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05322281A92230024B752 /* PBCycleCollectionView.m */; };
 		5CF055D8281AA1440024B752 /* PBCycleTimerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */; };
+		5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0588B281ABA7F0024B752 /* PBRefresh.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -499,6 +500,8 @@
 		5CF05322281A92230024B752 /* PBCycleCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCycleCollectionView.m; sourceTree = "<group>"; };
 		5CF055D6281AA1440024B752 /* PBCycleTimerProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCycleTimerProxy.h; sourceTree = "<group>"; };
 		5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCycleTimerProxy.m; sourceTree = "<group>"; };
+		5CF0588A281ABA7F0024B752 /* PBRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRefresh.h; sourceTree = "<group>"; };
+		5CF0588B281ABA7F0024B752 /* PBRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRefresh.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -1433,6 +1436,15 @@
 			path = PBCollectionViewWaterfallLayout;
 			sourceTree = "<group>";
 		};
+		5CF05889281ABA7F0024B752 /* PBRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				5CF0588A281ABA7F0024B752 /* PBRefresh.h */,
+				5CF0588B281ABA7F0024B752 /* PBRefresh.m */,
+			);
+			path = PBRefresh;
+			sourceTree = "<group>";
+		};
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1940,6 +1952,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5CF05889281ABA7F0024B752 /* PBRefresh */,
 				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
 				5C0D2E102798118A00C9274E /* YNPageViewController */,
 				5C33FD742744DE9B00F6DDF0 /* PBFoundation */,
@@ -2845,6 +2858,7 @@
 				957593D422F84F20009CA618 /* PBGCDListThreeController.m in Sources */,
 				958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */,
 				95C8741022E84436002795D0 /* PBActivityDetailContent.m in Sources */,
+				5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */,
 				5C0949652812C5C3002CEBC2 /* PBCellHeightOneController.m in Sources */,
 				95C8741422E84436002795D0 /* PBTestListTwoCell.m in Sources */,
 				95C871AD22E71CAC002795D0 /* PBTestEspressos.m in Sources */,
