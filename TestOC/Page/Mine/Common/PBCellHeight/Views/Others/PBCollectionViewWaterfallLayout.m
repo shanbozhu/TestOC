@@ -29,32 +29,32 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 
 #pragma mark -
 - (CGFloat)rowMargin {
-    if ([self.delegate respondsToSelector:@selector(rowMarginInPBCollectionViewWaterfallLayout:)]) {
-        return [self.delegate rowMarginInPBCollectionViewWaterfallLayout:self];
+    if ([self.delegate respondsToSelector:@selector(rowMarginInCollectionViewWaterfallLayout:)]) {
+        return [self.delegate rowMarginInCollectionViewWaterfallLayout:self];
     } else {
         return defaultRowMargin;
     }
 }
 
 - (CGFloat)colMargin {
-    if ([self.delegate respondsToSelector:@selector(colMarginInPBCollectionViewWaterfallLayout:)]) {
-        return [self.delegate colMarginInPBCollectionViewWaterfallLayout:self];
+    if ([self.delegate respondsToSelector:@selector(colMarginInCollectionViewWaterfallLayout:)]) {
+        return [self.delegate colMarginInCollectionViewWaterfallLayout:self];
     } else {
         return defaultColMargin;
     }
 }
 
 - (NSInteger)colCount {
-    if ([self.delegate respondsToSelector:@selector(colCountInPBCollectionViewWaterfallLayout:)]) {
-        return [self.delegate colCountInPBCollectionViewWaterfallLayout:self];
+    if ([self.delegate respondsToSelector:@selector(colCountInCollectionViewWaterfallLayout:)]) {
+        return [self.delegate colCountInCollectionViewWaterfallLayout:self];
     } else {
         return defaultColCount;
     }
 }
 
 - (UIEdgeInsets)edgeInsets {
-    if ([self.delegate respondsToSelector:@selector(edgeInsetsInPBCollectionViewWaterfallLayout:)]) {
-        return [self.delegate edgeInsetsInPBCollectionViewWaterfallLayout:self];
+    if ([self.delegate respondsToSelector:@selector(edgeInsetsInCollectionViewWaterfallLayout:)]) {
+        return [self.delegate edgeInsetsInCollectionViewWaterfallLayout:self];
     } else {
         return defaultEdgeInsets;
     }
@@ -100,7 +100,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
     
     CGFloat collectionViewW = self.collectionView.frame.size.width;
     CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right - (self.colCount - 1) * self.colMargin) / self.colCount;
-    CGFloat h = [self.delegate PBCollectionViewWaterfallLayout:self heightForRowAtIndexPath:indexPath.item itemWidth:w];
+    CGFloat h = [self.delegate collectionViewWaterfallLayout:self heightForRowAtIndexPath:indexPath.item itemWidth:w];
     
     NSInteger destCol = 0;
     CGFloat minColHeight = [self.colHeights[0] doubleValue]; // 每次默认从第0列开始,默认第0列最短
