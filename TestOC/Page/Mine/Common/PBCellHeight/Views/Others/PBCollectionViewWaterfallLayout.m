@@ -130,7 +130,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 
 - (CGSize)collectionViewContentSize {
     CGFloat maxColHeight = [self.colHeights[0] doubleValue];
-    for (NSInteger i = 1; i < defaultColCount; i++) {
+    for (NSInteger i = 0; i < self.colCount; i++) {
         CGFloat colHeight = [self.colHeights[i] doubleValue];
         if (colHeight > maxColHeight) {
             maxColHeight = colHeight;
