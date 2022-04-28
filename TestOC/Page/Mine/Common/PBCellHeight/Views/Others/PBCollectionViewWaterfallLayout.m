@@ -101,8 +101,8 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
     CGFloat collectionViewW = self.collectionView.frame.size.width;
     CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right - (self.colCount - 1) * self.colMargin) / self.colCount;
     CGFloat h = [self.delegate PBCollectionViewWaterfallLayout:self heightForRowAtIndexPath:indexPath.item itemWidth:w];
-    NSInteger destCol = 0;
     
+    NSInteger destCol = 0;
     CGFloat minColHeight = [self.colHeights[0] doubleValue]; // 每次默认从第0列开始,默认第0列最短
     for (NSInteger i = 0; i < self.colCount; i++) {
         CGFloat colHeight = [self.colHeights[i] doubleValue];
