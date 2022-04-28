@@ -38,6 +38,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
 
 @implementation PBCollectionViewWaterfallLayout
 
+#pragma mark -
 - (CGFloat)rowMargin {
     if ([self.delegate respondsToSelector:@selector(rowMarginInPBCollectionViewWaterfallLayout:)]) {
         return [self.delegate rowMarginInPBCollectionViewWaterfallLayout:self];
@@ -70,6 +71,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
     }
 }
 
+#pragma mark -
 - (NSMutableArray *)attrsArray {
     if (!_attrsArray) {
         _attrsArray = [NSMutableArray array];
@@ -84,6 +86,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
     return _colHeights;
 }
 
+#pragma mark -
 - (void)prepareLayout {
     [super prepareLayout];
     
@@ -163,6 +166,9 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
 //            maxcolHeight = colHeight;
 //        }
 //    }
+//    return CGSizeMake(0, maxcolHeight + self.edgeInsets.bottom);
+    
+    
     return CGSizeMake(0, self.contentHeight + self.edgeInsets.bottom);
 }
 
