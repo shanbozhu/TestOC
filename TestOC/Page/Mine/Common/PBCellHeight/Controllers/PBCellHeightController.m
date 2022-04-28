@@ -81,9 +81,9 @@
     } else if (indexPath.row == 5) {
         cell.textLabel.text = @"frame布局,通用手动算高_UICollectionView";
     } else if (indexPath.row == 6) {
-        cell.textLabel.text = @"WaterfallLayout_UICollectionView";
+        cell.textLabel.text = @"WaterfallLayout瀑布流_UICollectionView";
     } else if (indexPath.row == 7) {
-        cell.textLabel.text = @"Cycle_UICollectionView";
+        cell.textLabel.text = @"Cycle无限轮播_UICollectionView";
     }
     return cell;
 }
