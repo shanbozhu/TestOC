@@ -9,9 +9,9 @@
 #import "PBCollectionViewWaterfallLayout.h"
 
 static const NSInteger defaultColCount = 3; // 列数
-static const CGFloat defaultColMargin = 15; // 每一列之间的间距
+static const CGFloat defaultColMargin = 10; // 每一列之间的间距
 static const CGFloat defaultRowMargin = 10; // 每一行之间的间距
-static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
+static const UIEdgeInsets defaultEdgeInsets = {10, 10, 10, 10}; // 内边距
 
 @interface PBCollectionViewWaterfallLayout ()
 
