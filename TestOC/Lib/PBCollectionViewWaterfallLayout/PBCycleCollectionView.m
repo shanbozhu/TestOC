@@ -13,7 +13,7 @@
 // 轮播时间间隔
 static CGFloat scrollInterval = 3.0f;
 
-@interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PBCycleTimerProxyDelegate>
 
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, weak) UIPageControl *pageControl;
@@ -58,7 +58,9 @@ static CGFloat scrollInterval = 3.0f;
         pageControl.layer.borderWidth = 1.1;
         
         //
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:scrollInterval target:self selector:@selector(showNext) userInfo:nil repeats:true];
+        PBCycleTimerProxy *cycleTimerProxy = [[PBCycleTimerProxy alloc] init];
+        cycleTimerProxy.delegate = self;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:scrollInterval target:cycleTimerProxy selector:@selector(showNext) userInfo:nil repeats:true];
         self.timer.fireDate = [NSDate distantFuture];
         self.autoPage = NO;
     }
@@ -139,7 +141,7 @@ static CGFloat scrollInterval = 3.0f;
     }
 }
 
-- (void)showNext {
+- (void)cycleTimerProxy:(PBCycleTimerProxy *)timerProxy {
     // 手指拖拽时如果计时器没有停止,禁止自动轮播
     if (self.collectionView.isDragging) {
         return;

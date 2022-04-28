@@ -10,4 +10,14 @@
 
 @implementation PBCycleTimerProxy
 
+- (void)showNext {
+    if ([self.delegate respondsToSelector:@selector(cycleTimerProxy:)]) {
+        [self.delegate cycleTimerProxy:self];
+    }
+}
+
+- (void)dealloc {
+    NSLog(@"PBCycleTimerProxy对象被释放了");
+}
+
 @end

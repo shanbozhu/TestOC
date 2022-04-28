@@ -10,7 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PBCycleTimerProxy;
+@protocol PBCycleTimerProxyDelegate <NSObject>
+
+- (void)cycleTimerProxy:(PBCycleTimerProxy *)timerProxy;
+
+@end
+
 @interface PBCycleTimerProxy : NSObject
+
+@property (nonatomic, weak) id<PBCycleTimerProxyDelegate> delegate;
 
 @end
 
