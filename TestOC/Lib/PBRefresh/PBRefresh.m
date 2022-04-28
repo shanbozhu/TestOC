@@ -10,28 +10,18 @@
 
 @interface PBRefresh ()
 
+@property (nonatomic, weak) MJRefreshHeader *header;
+@property (nonatomic, weak) MJRefreshFooter *footer;
+
 @end
 
 @implementation PBRefresh
 
-+ (id)refreshHeaderWithRefreshingTarget:(id)target {
-    PBRefresh *refresh = [[self alloc] init];
-    [refresh refreshHeader];
-    return refresh.header;
-}
-
-+ (id)refreshFooterWithRefreshingTarget:(id)target {
-    PBRefresh *refresh = [[self alloc] init];
-    [refresh refreshFooter];
-    return refresh.footer;
-}
-
 - (void)refreshHeader {
     MJRefreshNormalHeader *refreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        if (self.headerBlock != nil) {
+        if (self.headerBlock) {
             self.headerBlock(self);
         }
-        [self.delegate refreshHeader:self];
     }];
     refreshNormalHeader.lastUpdatedTimeLabel.hidden = YES;
     [refreshNormalHeader setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
@@ -41,7 +31,20 @@
     self.header = refreshNormalHeader;
 }
 
--(void)refreshFooter {
+- (void)refreshFooter {
+    MJRefreshAutoNormalFooter *refreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.footerBlock) {
+            self.footerBlock(self);
+        }
+    }];
+    refreshAutoNormalFooter.refreshingTitleHidden = YES;
+    [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateIdle];
+    [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStatePulling];
+    [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateRefreshing];
+    [refreshAutoNormalFooter setTitle:@"暂无更多内容" forState:MJRefreshStateNoMoreData];
+    refreshAutoNormalFooter.stateLabel.textColor = [UIColor redColor];
+    self.footer = refreshAutoNormalFooter;
+    
     /**
     MJRefreshBackNormalFooter *refreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         if (self.footerBlock != nil) {
@@ -57,39 +60,22 @@
     [refreshBackNormalFooter setTitle:@"暂无更多内容" forState:MJRefreshStateNoMoreData];
     refreshBackNormalFooter.stateLabel.textColor = kPBColorWithHexAndAlpha(0x949494, 1);
     self.footer = refreshBackNormalFooter;*/
-    
-    MJRefreshAutoNormalFooter *refreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        if (self.footerBlock != nil) {
-            self.footerBlock(self);
-        }
-        [self.delegate refreshFooter:self];
-    }];
-    refreshAutoNormalFooter.refreshingTitleHidden = YES;
-    [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateIdle];
-    [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStatePulling];
-    [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateRefreshing];
-    [refreshAutoNormalFooter setTitle:@"暂无更多内容" forState:MJRefreshStateNoMoreData];
-    refreshAutoNormalFooter.stateLabel.textColor = [UIColor redColor];
-    self.footer = refreshAutoNormalFooter;
 }
 
-+ (id)refreshHeaderWithRefreshingTarget:(id)target andRefreshingBlock:(PBRefreshHeaderBlock)headerBlock {
-    PBRefresh *refresh = [[self alloc]init];
++ (MJRefreshHeader *)refreshHeaderWithTarget:(id)target refreshingBlock:(PBRefreshHeaderBlock)headerBlock {
+    PBRefresh *refresh = [[self alloc] init];
     refresh.headerBlock = headerBlock;
     [refresh refreshHeader];
-    // 统一修改不同样式的公共属性
     refresh.header.automaticallyChangeAlpha = YES;
     //[refresh.header beginRefreshing];
     return refresh.header;
 }
 
-+ (id)refreshFooterWithRefreshingTarget:(id)target andRefreshingBlock:(PBRefreshFooterBlock)footerBlock {
-    PBRefresh *refresh = [[self alloc]init];
++ (MJRefreshFooter *)refreshFooterWithTarget:(id)target refreshingBlock:(PBRefreshFooterBlock)footerBlock {
+    PBRefresh *refresh = [[self alloc] init];
     refresh.footerBlock = footerBlock;
     [refresh refreshFooter];
-    // 统一修改不同样式的公共属性
     refresh.footer.automaticallyChangeAlpha = YES;
-    refresh.footer.automaticallyHidden = YES;
     //[refresh.footer beginRefreshing];
     return refresh.footer;
 }
@@ -98,6 +84,4 @@
     NSLog(@"PBRefresh对象被释放了");
 }
 
-
 @end
-

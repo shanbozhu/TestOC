@@ -15,12 +15,7 @@
 typedef void(^PBRefreshHeaderBlock)(PBRefresh *refresh);
 typedef void(^PBRefreshFooterBlock)(PBRefresh *refresh);
 
-@protocol PBRefreshDelegate <NSObject>
 
-- (void)refreshHeader:(PBRefresh *)refresh;
-- (void)refreshFooter:(PBRefresh *)refresh;
-
-@end
 
 //刷新状态
 enum RefreshStatus {
@@ -32,17 +27,13 @@ typedef enum RefreshStatus kPBRefreshStatus;
 
 @interface PBRefresh : NSObject
 
-@property (nonatomic, weak) id<PBRefreshDelegate> delegate;
+
 @property (nonatomic, strong) PBRefreshHeaderBlock headerBlock;
 @property (nonatomic, strong) PBRefreshFooterBlock footerBlock;
 
-@property (nonatomic, weak) MJRefreshHeader *header;
-@property (nonatomic, weak) MJRefreshFooter *footer;
 
-+ (id)refreshHeaderWithRefreshingTarget:(id)target;
-+ (id)refreshFooterWithRefreshingTarget:(id)target;
 
-+ (id)refreshHeaderWithRefreshingTarget:(id)target andRefreshingBlock:(PBRefreshHeaderBlock)headerBlock;
-+ (id)refreshFooterWithRefreshingTarget:(id)target andRefreshingBlock:(PBRefreshFooterBlock)footerBlock;
++ (MJRefreshHeader *)refreshHeaderWithTarget:(id)target refreshingBlock:(PBRefreshHeaderBlock)headerBlock;
++ (MJRefreshFooter *)refreshFooterWithTarget:(id)target refreshingBlock:(PBRefreshFooterBlock)footerBlock;
 
 @end
