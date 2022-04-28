@@ -23,7 +23,6 @@
 		5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498528142C60002CEBC2 /* PBCellHeightCollectionOneController.m */; };
 		5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */; };
 		5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */; };
-		5C09498F28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498E28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m */; };
 		5C0D2E272798118B00C9274E /* UIViewController+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */; };
 		5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */; };
 		5C0D2E292798118B00C9274E /* UIScrollView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E172798118B00C9274E /* UIScrollView+YNPageExtend.m */; };
@@ -96,8 +95,9 @@
 		5CEFEBA628117E760073BC47 /* PBCellHeightCollectionZeroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFEBA528117E760073BC47 /* PBCellHeightCollectionZeroView.m */; };
 		5CEFEBA928117E950073BC47 /* PBCellHeightCollectionZeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFEBA828117E950073BC47 /* PBCellHeightCollectionZeroCell.m */; };
 		5CF04DB5281A64310024B752 /* PBCellHeightCollectionTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF04DB3281A64300024B752 /* PBCellHeightCollectionTwoController.m */; };
-		5CF04DB8281A64A40024B752 /* PBCycleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF04DB7281A64A30024B752 /* PBCycleCollectionView.m */; };
-		5CF04DBB281A65130024B752 /* PBCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF04DB9281A65130024B752 /* PBCycleCell.m */; };
+		5CF05323281A92230024B752 /* PBCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0531D281A92230024B752 /* PBCycleCell.m */; };
+		5CF05324281A92230024B752 /* PBCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */; };
+		5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05322281A92230024B752 /* PBCycleCollectionView.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -348,8 +348,6 @@
 		5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionOneView.m; sourceTree = "<group>"; };
 		5C09498928142D03002CEBC2 /* PBCellHeightCollectionOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionOneView.h; sourceTree = "<group>"; };
 		5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionOneCell.m; sourceTree = "<group>"; };
-		5C09498D28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
-		5C09498E28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YNPageExtend.m"; sourceTree = "<group>"; };
 		5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YNPageExtend.m"; sourceTree = "<group>"; };
 		5C0D2E142798118B00C9274E /* UIScrollView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YNPageExtend.h"; sourceTree = "<group>"; };
@@ -492,10 +490,12 @@
 		5CEFEBA828117E950073BC47 /* PBCellHeightCollectionZeroCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionZeroCell.m; sourceTree = "<group>"; };
 		5CF04DB3281A64300024B752 /* PBCellHeightCollectionTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionTwoController.m; sourceTree = "<group>"; };
 		5CF04DB4281A64310024B752 /* PBCellHeightCollectionTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionTwoController.h; sourceTree = "<group>"; };
-		5CF04DB6281A64A30024B752 /* PBCycleCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCycleCollectionView.h; sourceTree = "<group>"; };
-		5CF04DB7281A64A30024B752 /* PBCycleCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCycleCollectionView.m; sourceTree = "<group>"; };
-		5CF04DB9281A65130024B752 /* PBCycleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCycleCell.m; sourceTree = "<group>"; };
-		5CF04DBA281A65130024B752 /* PBCycleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCycleCell.h; sourceTree = "<group>"; };
+		5CF0531D281A92230024B752 /* PBCycleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCycleCell.m; sourceTree = "<group>"; };
+		5CF0531E281A92230024B752 /* PBCycleCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCycleCollectionView.h; sourceTree = "<group>"; };
+		5CF0531F281A92230024B752 /* PBCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		5CF05320281A92230024B752 /* PBCycleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCycleCell.h; sourceTree = "<group>"; };
+		5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
+		5CF05322281A92230024B752 /* PBCycleCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCycleCollectionView.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -924,12 +924,6 @@
 				5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */,
 				5C09498928142D03002CEBC2 /* PBCellHeightCollectionOneView.h */,
 				5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */,
-				5C09498D28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.h */,
-				5C09498E28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m */,
-				5CF04DBA281A65130024B752 /* PBCycleCell.h */,
-				5CF04DB9281A65130024B752 /* PBCycleCell.m */,
-				5CF04DB6281A64A30024B752 /* PBCycleCollectionView.h */,
-				5CF04DB7281A64A30024B752 /* PBCycleCollectionView.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1419,6 +1413,19 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */ = {
+			isa = PBXGroup;
+			children = (
+				5CF05320281A92230024B752 /* PBCycleCell.h */,
+				5CF0531D281A92230024B752 /* PBCycleCell.m */,
+				5CF0531E281A92230024B752 /* PBCycleCollectionView.h */,
+				5CF05322281A92230024B752 /* PBCycleCollectionView.m */,
+				5CF0531F281A92230024B752 /* PBCollectionViewWaterfallLayout.h */,
+				5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */,
+			);
+			path = PBCollectionViewWaterfallLayout;
 			sourceTree = "<group>";
 		};
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
@@ -1928,6 +1935,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
 				5C0D2E102798118A00C9274E /* YNPageViewController */,
 				5C33FD742744DE9B00F6DDF0 /* PBFoundation */,
 				95168891261F19620047D1B2 /* PBTabBarController */,
@@ -2780,7 +2788,6 @@
 				5C2D0662280C032A00C775B3 /* PBAFNetworkingController.m in Sources */,
 				957593D522F84F20009CA618 /* PBGCDListTwelveController.m in Sources */,
 				9575943022F950FB009CA618 /* PBAVPlayerList.m in Sources */,
-				5C09498F28142ED9002CEBC2 /* PBCollectionViewWaterfallLayout.m in Sources */,
 				5CF04DB5281A64310024B752 /* PBCellHeightCollectionTwoController.m in Sources */,
 				5C2D0611280BFBFC00C775B3 /* PBLinkagePosterCell.m in Sources */,
 				957593FA22F84F3B009CA618 /* PBGCDLockNineController.m in Sources */,
@@ -2812,7 +2819,6 @@
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
 				95C871C022E71CBE002795D0 /* PBCenterLineView.m in Sources */,
 				957593F922F84F3B009CA618 /* PBGCDLockSevenController.m in Sources */,
-				5CF04DB8281A64A40024B752 /* PBCycleCollectionView.m in Sources */,
 				5C2D062D280BFBFC00C775B3 /* PBYYTextController.m in Sources */,
 				9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */,
 				95C871AF22E71CAC002795D0 /* PBTestEspressosSCSLSeatInfo.m in Sources */,
@@ -2823,6 +2829,7 @@
 				5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */,
 				5C0D2E3A2798275900C9274E /* PBLinkageTopController.m in Sources */,
 				957593DA22F84F20009CA618 /* PBGCDListElevenController.m in Sources */,
+				5CF05324281A92230024B752 /* PBCollectionViewWaterfallLayout.m in Sources */,
 				95C871C422E71CBE002795D0 /* PBSeatSelectionView.m in Sources */,
 				9575934A22F82A93009CA618 /* PBStorageList.m in Sources */,
 				5C0949782812C679002CEBC2 /* PBCellHeightTwoView.m in Sources */,
@@ -2859,6 +2866,7 @@
 				9575931222F81E7E009CA618 /* PBMemoryListMRCOne.m in Sources */,
 				9575942C22F950EB009CA618 /* PBAVPlayerListController.m in Sources */,
 				9575998322FC2415009CA618 /* UITableView+FDTemplateLayoutCell.m in Sources */,
+				5CF05323281A92230024B752 /* PBCycleCell.m in Sources */,
 				95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */,
 				5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */,
 				9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */,
@@ -2870,7 +2878,6 @@
 				5C09497D2812C679002CEBC2 /* PBCellHeightThreeView.m in Sources */,
 				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
 				957593F822F84F3B009CA618 /* PBGCDLockFourController.m in Sources */,
-				5CF04DBB281A65130024B752 /* PBCycleCell.m in Sources */,
 				9516BDC724696A390070C282 /* AppDelegate.m in Sources */,
 				95D34C97267357250007A67D /* PBSwiftController.swift in Sources */,
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
@@ -2879,6 +2886,7 @@
 				957593F622F84F3B009CA618 /* PBGCDLockThreeController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				9575998522FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */,
 				955441012328F5AB003A615C /* PBRuntimeController+Test.m in Sources */,
 				5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */,
 				5C0D2E4627982EEC00C9274E /* PBLinkageTopTwoListController.m in Sources */,
