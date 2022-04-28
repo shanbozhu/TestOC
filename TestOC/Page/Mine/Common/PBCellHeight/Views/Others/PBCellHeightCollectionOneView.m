@@ -66,7 +66,22 @@
 #pragma mark - PBCollectionViewWaterfallLayoutDelegate
 - (CGFloat)collectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout heightForRowAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth {
     return itemWidth * (1 + arc4random_uniform(3));
-;
+}
+
+- (CGFloat)colCountInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
+    return 4;
+}
+
+- (CGFloat)colMarginInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
+    return 15;
+}
+
+- (CGFloat)rowMarginInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
+    return 20;
+}
+
+- (UIEdgeInsets)edgeInsetsInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
+    return UIEdgeInsetsMake(30, 15, 30, 15);
 }
 
 @end
