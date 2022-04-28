@@ -12,6 +12,7 @@
 @interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) UICollectionView *collectionView;
+@property (nonatomic, weak) UIPageControl *pageControl;
 
 @end
 
@@ -39,6 +40,16 @@
         
         collectionView.layer.borderColor = [UIColor blueColor].CGColor;
         collectionView.layer.borderWidth = 1.1;
+        
+        //
+        CGFloat controlHeight = 35.0f;
+        UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - controlHeight, self.bounds.size.width, controlHeight)];
+        self.pageControl = pageControl;
+        [self addSubview:self.pageControl];
+        self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+        pageControl.layer.borderColor = [UIColor redColor].CGColor;
+        pageControl.layer.borderWidth = 1.1;
     }
     return self;
 }
@@ -51,6 +62,7 @@
     [tmpArr insertObject:testList.data.lastObject atIndex:0];
     testList.data = tmpArr;
     
+    self.pageControl.numberOfPages = testList.data.count - 2;
     [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width, 0)];
     [self.collectionView reloadData];
 }
@@ -91,15 +103,17 @@
 }
 
 - (void)cycleScroll {
-    NSInteger page = self.collectionView.contentOffset.x/self.collectionView.bounds.size.width;
-    if (page == 0) {//滚动到左边
+    NSInteger page = self.collectionView.contentOffset.x / self.collectionView.bounds.size.width;
+    if (page == 0) {
+        // 滚动到左边
         self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width * (self.testList.data.count - 2), 0);
-//        self.pageControl.currentPage = self.titles.count - 2;
-    }else if (page == self.testList.data.count - 1){//滚动到右边
+        self.pageControl.currentPage = self.testList.data.count - 2;
+    } else if (page == self.testList.data.count - 1) {
+        // 滚动到右边
         self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width, 0);
-//        self.pageControl.currentPage = 0;
-    }else{
-//        self.pageControl.currentPage = page - 1;
+        self.pageControl.currentPage = 0;
+    } else {
+        self.pageControl.currentPage = page - 1;
     }
 }
 
