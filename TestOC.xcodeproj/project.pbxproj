@@ -98,6 +98,7 @@
 		5CF05323281A92230024B752 /* PBCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0531D281A92230024B752 /* PBCycleCell.m */; };
 		5CF05324281A92230024B752 /* PBCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */; };
 		5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05322281A92230024B752 /* PBCycleCollectionView.m */; };
+		5CF055D8281AA1440024B752 /* PBCycleTimerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -496,6 +497,8 @@
 		5CF05320281A92230024B752 /* PBCycleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCycleCell.h; sourceTree = "<group>"; };
 		5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		5CF05322281A92230024B752 /* PBCycleCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCycleCollectionView.m; sourceTree = "<group>"; };
+		5CF055D6281AA1440024B752 /* PBCycleTimerProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCycleTimerProxy.h; sourceTree = "<group>"; };
+		5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCycleTimerProxy.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -1424,6 +1427,8 @@
 				5CF05322281A92230024B752 /* PBCycleCollectionView.m */,
 				5CF0531F281A92230024B752 /* PBCollectionViewWaterfallLayout.h */,
 				5CF05321281A92230024B752 /* PBCollectionViewWaterfallLayout.m */,
+				5CF055D6281AA1440024B752 /* PBCycleTimerProxy.h */,
+				5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */,
 			);
 			path = PBCollectionViewWaterfallLayout;
 			sourceTree = "<group>";
@@ -2845,6 +2850,7 @@
 				95C871AD22E71CAC002795D0 /* PBTestEspressos.m in Sources */,
 				5C0949642812C5C3002CEBC2 /* PBCellHeightTwoController.m in Sources */,
 				5C2D0630280BFBFC00C775B3 /* PBYYTextCell.m in Sources */,
+				5CF055D8281AA1440024B752 /* PBCycleTimerProxy.m in Sources */,
 				5C2D062C280BFBFC00C775B3 /* PBRegex.m in Sources */,
 				5C0D2E372798240B00C9274E /* PBAllLinkageController.m in Sources */,
 				95C873E522E84410002795D0 /* PBTestListController.m in Sources */,

@@ -8,9 +8,10 @@
 
 #import "PBCycleCollectionView.h"
 #import "PBCycleCell.h"
+#import "PBCycleTimerProxy.h"
 
-// 轮播间隔
-static CGFloat ScrollInterval = 3.0f;
+// 轮播时间间隔
+static CGFloat scrollInterval = 3.0f;
 
 @interface PBCycleCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -57,7 +58,7 @@ static CGFloat ScrollInterval = 3.0f;
         pageControl.layer.borderWidth = 1.1;
         
         //
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:ScrollInterval target:self selector:@selector(showNext) userInfo:nil repeats:true];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:scrollInterval target:self selector:@selector(showNext) userInfo:nil repeats:true];
         self.timer.fireDate = [NSDate distantFuture];
         self.autoPage = NO;
     }
@@ -66,7 +67,7 @@ static CGFloat ScrollInterval = 3.0f;
 
 - (void)setAutoPage:(BOOL)autoPage {
     _autoPage = autoPage;
-    NSDate *fireDate = autoPage ? [NSDate dateWithTimeIntervalSinceNow:ScrollInterval] : [NSDate distantFuture];
+    NSDate *fireDate = autoPage ? [NSDate dateWithTimeIntervalSinceNow:scrollInterval] : [NSDate distantFuture];
     self.timer.fireDate = fireDate;
 }
 
@@ -119,7 +120,7 @@ static CGFloat ScrollInterval = 3.0f;
     
     // 拖拽动作后间隔3s继续轮播
     if (self.autoPage) {
-        self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:ScrollInterval];
+        self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:scrollInterval];
     }
 }
 
