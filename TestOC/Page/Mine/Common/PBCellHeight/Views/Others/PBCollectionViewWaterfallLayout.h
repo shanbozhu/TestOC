@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)PBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout heightForRowAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth;
 
 @optional
-- (CGFloat)columnCountInPBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout;
-- (CGFloat)columnMarginInPBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout;
+- (CGFloat)colCountInPBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout;
+- (CGFloat)colMarginInPBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout;
 - (CGFloat)rowMarginInPBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout;
 - (UIEdgeInsets)edgeInsetsInPBCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout;
 
