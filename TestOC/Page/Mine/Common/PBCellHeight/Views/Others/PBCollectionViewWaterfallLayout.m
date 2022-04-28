@@ -17,7 +17,6 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 
 @property (nonatomic, strong) NSMutableArray *attrsArr; // 所有cell的布局属性
 @property (nonatomic, strong) NSMutableArray *colHeights; // 所有列的当前高度
-@property (nonatomic, assign) CGFloat contentHeight; // 内容的高度
 
 - (CGFloat)rowMargin;
 - (CGFloat)colMargin;
@@ -76,13 +75,10 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
     return _colHeights;
 }
 
-#pragma mark -
 // 刷新的时候回调用这个方法
 - (void)prepareLayout {
     [super prepareLayout];
-    
-    self.contentHeight = 0;
-    
+        
     [self.colHeights removeAllObjects];
     for (NSInteger i = 0; i < self.colCount; i++) {
         [self.colHeights addObject:@(self.edgeInsets.top)];
@@ -99,6 +95,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // 根据indexPath创建每一个cell的布局属性
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     
     CGFloat collectionViewW = self.collectionView.frame.size.width;
@@ -109,8 +106,7 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
     CGFloat mincolHeight = [self.colHeights[0] doubleValue];
     for (NSInteger i = 0; i < self.colCount; i++) {
         CGFloat colHeight = [self.colHeights[i] doubleValue];
-        
-        if (mincolHeight > colHeight) {
+        if (colHeight < mincolHeight) {
             mincolHeight = colHeight;
             destcol = i;
         }
@@ -121,15 +117,10 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
     if (y != self.edgeInsets.top) {
         y += self.rowMargin;
     }
-    
-    attrs.frame = CGRectMake(x, y, w, h);
+    attrs.frame = CGRectMake(x, y, w, h); // 设置布局属性的frame
     
     self.colHeights[destcol] = @(CGRectGetMaxY(attrs.frame));
     
-    CGFloat colHeight = [self.colHeights[destcol] doubleValue];
-    if (self.contentHeight < colHeight) {
-        self.contentHeight = colHeight;
-    }
     return attrs;
     
 }
@@ -139,20 +130,14 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 }
 
 - (CGSize)collectionViewContentSize {
-//    CGFloat maxcolHeight = [self.colHeights[0] doubleValue];
-//
-//    for (NSInteger i = 1; i < defaultColCount; i++) {
-//        // 取得第i列的高度
-//        CGFloat colHeight = [self.colHeights[i] doubleValue];
-//
-//        if (maxcolHeight < colHeight) {
-//            maxcolHeight = colHeight;
-//        }
-//    }
-//    return CGSizeMake(0, maxcolHeight + self.edgeInsets.bottom);
-    
-    
-    return CGSizeMake(0, self.contentHeight + self.edgeInsets.bottom);
+    CGFloat maxcolHeight = [self.colHeights[0] doubleValue];
+    for (NSInteger i = 1; i < defaultColCount; i++) {
+        CGFloat colHeight = [self.colHeights[i] doubleValue];
+        if (colHeight > maxcolHeight) {
+            maxcolHeight = colHeight;
+        }
+    }
+    return CGSizeMake(0, maxcolHeight + self.edgeInsets.bottom);
 }
 
 @end
