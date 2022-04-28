@@ -8,26 +8,16 @@
 
 #import "PBCollectionViewWaterfallLayout.h"
 
-// 默认的列数
-static const NSInteger defaultColCount = 3;
-
-// 每一列之间的间距
-static const CGFloat defaultColMargin = 15;
-
-// 每一行之间的间距
-static const CGFloat defaultRowMargin = 10;
-
-// 边缘间距
-static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
+static const NSInteger defaultColCount = 3; // 列数
+static const CGFloat defaultColMargin = 15; // 每一列之间的间距
+static const CGFloat defaultRowMargin = 10; // 每一行之间的间距
+static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10}; // 内边距
 
 @interface PBCollectionViewWaterfallLayout ()
 
-// 存放所有cell的布局属性
-@property (nonatomic, strong) NSMutableArray *attrsArray;
-// 存放所有列的当前高度
-@property (nonatomic, strong) NSMutableArray *colHeights;
-/** 内容的高度 */
-@property (nonatomic, assign) CGFloat contentHeight;
+@property (nonatomic, strong) NSMutableArray *attrsArr; // 所有cell的布局属性
+@property (nonatomic, strong) NSMutableArray *colHeights; // 所有列的当前高度
+@property (nonatomic, assign) CGFloat contentHeight; // 内容的高度
 
 - (CGFloat)rowMargin;
 - (CGFloat)colMargin;
@@ -72,11 +62,11 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
 }
 
 #pragma mark -
-- (NSMutableArray *)attrsArray {
-    if (!_attrsArray) {
-        _attrsArray = [NSMutableArray array];
+- (NSMutableArray *)attrsArr {
+    if (!_attrsArr) {
+        _attrsArr = [NSMutableArray array];
     }
-    return _attrsArray;
+    return _attrsArr;
 }
 
 - (NSMutableArray *)colHeights {
@@ -87,44 +77,33 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
 }
 
 #pragma mark -
+// 刷新的时候回调用这个方法
 - (void)prepareLayout {
     [super prepareLayout];
     
     self.contentHeight = 0;
     
-    //清除之前计算的所有高度，因为刷新的时候回调用这个方法
     [self.colHeights removeAllObjects];
     for (NSInteger i = 0; i < self.colCount; i++) {
         [self.colHeights addObject:@(self.edgeInsets.top)];
     }
+    [self.attrsArr removeAllObjects];
     
-    //把初始化的操作都放到这里
-    [self.attrsArray removeAllObjects];
-    
-    //开始创建每一个cell对应的布局属性
+    // 开始创建每一个cell对应的布局属性
     NSInteger count = [self.collectionView numberOfItemsInSection:0];
     for (NSInteger i = 0; i < count; i++) {
-        // 创建位置
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-        // 获取indexPath位置cell对应的布局属性
         UICollectionViewLayoutAttributes *attrs = [self layoutAttributesForItemAtIndexPath:indexPath];
-        [self.attrsArray addObject:attrs];
+        [self.attrsArr addObject:attrs];
     }
-}
-
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    return self.attrsArray;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     
     CGFloat collectionViewW = self.collectionView.frame.size.width;
-    
-    CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right -(self.colCount - 1) * self.colMargin) / self.colCount;
-    
+    CGFloat w = (collectionViewW - self.edgeInsets.left - self.edgeInsets.right - (self.colCount - 1) * self.colMargin) / self.colCount;
     CGFloat h = [self.delegate PBCollectionViewWaterfallLayout:self heightForRowAtIndexPath:indexPath.item itemWidth:w];
-    
     NSInteger destcol = 0;
     
     CGFloat mincolHeight = [self.colHeights[0] doubleValue];
@@ -153,6 +132,10 @@ static const UIEdgeInsets defaultEdgeInsets = {20, 10, 20, 10};
     }
     return attrs;
     
+}
+
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    return self.attrsArr;
 }
 
 - (CGSize)collectionViewContentSize {
