@@ -12,6 +12,6 @@
 
 @property (nonatomic, weak) UIViewController *vc;
 
-+ (id)channelContentCellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath;
++ (id)channelContentCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 
 @end

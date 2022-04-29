@@ -55,7 +55,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PBChannelContentCell *cell = [PBChannelContentCell channelContentCellWithCollectionView:collectionView andIndexPath:indexPath];
+    PBChannelContentCell *cell = [PBChannelContentCell channelContentCellWithCollectionView:collectionView indexPath:indexPath];
     
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];

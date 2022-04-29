@@ -10,7 +10,7 @@
 
 @implementation PBChannelContentCell
 
-+ (id)channelContentCellWithCollectionView:(UICollectionView *)collectionView andIndexPath:(NSIndexPath *)indexPath {
++ (id)channelContentCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath {
     [collectionView registerClass:[self class] forCellWithReuseIdentifier:@"PBChannelContentCell"];
     PBChannelContentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PBChannelContentCell" forIndexPath:indexPath];
     return cell;
