@@ -1,5 +1,5 @@
 //
-//  PBAllWelfareController.h
+//  PBAllChannelController.h
 //  TestOC
 //
 //  Created by DaMaiIOS on 2017/6/2.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBAllWelfareController : PBBaseController
+@interface PBAllChannelController : PBBaseController
 
 @end

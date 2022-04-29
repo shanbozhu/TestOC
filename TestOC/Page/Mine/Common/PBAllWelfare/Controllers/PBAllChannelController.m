@@ -1,24 +1,24 @@
 //
-//  PBAllWelfareController.m
+//  PBAllChannelController.m
 //  TestOC
 //
 //  Created by DaMaiIOS on 2017/6/2.
 //  Copyright © 2017年 朱善波. All rights reserved.
 //
 
-#import "PBAllWelfareController.h"
+#import "PBAllChannelController.h"
 #import "PBChannelHeaderView.h"
 #import "PBChannelContentView.h"
-#import "PBWelfareController.h"
+#import "PBChannelController.h"
 
-@interface PBAllWelfareController ()<PBChannelContentViewDelegate, PBChannelHeaderViewDelegate>
+@interface PBAllChannelController ()<PBChannelContentViewDelegate, PBChannelHeaderViewDelegate>
 
 @property (nonatomic, weak) PBChannelHeaderView *channelHeaderView;
 @property (nonatomic, weak) PBChannelContentView *channelContentView;
 
 @end
 
-@implementation PBAllWelfareController
+@implementation PBAllChannelController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,14 +56,14 @@
 // dataSource
 - (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index {
     if (index % 2 == 0) {
-        PBWelfareController *welfareController = [[PBWelfareController alloc] init];
+        PBChannelController *welfareController = [[PBChannelController alloc] init];
         
         [self addChildViewController:welfareController];
         [pageView addSubview:welfareController.view];
         welfareController.view.backgroundColor = [UIColor lightGrayColor];
         return welfareController;
     } else {
-        PBWelfareController *welfareController = [[PBWelfareController alloc] init];
+        PBChannelController *welfareController = [[PBChannelController alloc] init];
         
         [self addChildViewController:welfareController];
         [pageView addSubview:welfareController.view];

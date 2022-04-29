@@ -8,7 +8,7 @@
 
 #import "PBCommonController+Click.h"
 #import "PBCommonView.h"
-#import "PBAllWelfareController.h"
+#import "PBAllChannelController.h"
 #import "PBYYTextController.h"
 #import "PBCellHeightController.h"
 #import "PBContentController.h"
@@ -21,7 +21,7 @@
              @"PBContentController",
              @"PBCellHeightController",
              @"PBLinkageController",
-             @"PBAllWelfareController"];
+             @"PBAllChannelController"];
 }
 
 // delegate

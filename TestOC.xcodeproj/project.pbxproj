@@ -74,8 +74,8 @@
 		5C2D0643280BFBFC00C775B3 /* PBChannelHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0601280BFBFC00C775B3 /* PBChannelHeaderView.m */; };
 		5C2D0644280BFBFC00C775B3 /* PBChannelContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0602280BFBFC00C775B3 /* PBChannelContentView.m */; };
 		5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0603280BFBFC00C775B3 /* PBChannelContentCell.m */; };
-		5C2D0646280BFBFC00C775B3 /* PBAllWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0607280BFBFC00C775B3 /* PBAllWelfareController.m */; };
-		5C2D0647280BFBFC00C775B3 /* PBWelfareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0608280BFBFC00C775B3 /* PBWelfareController.m */; };
+		5C2D0646280BFBFC00C775B3 /* PBAllChannelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0607280BFBFC00C775B3 /* PBAllChannelController.m */; };
+		5C2D0647280BFBFC00C775B3 /* PBChannelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0608280BFBFC00C775B3 /* PBChannelController.m */; };
 		5C2D0661280C032A00C775B3 /* PBAFNetworkingTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D064F280C032A00C775B3 /* PBAFNetworkingTwoController.m */; };
 		5C2D0662280C032A00C775B3 /* PBAFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0650280C032A00C775B3 /* PBAFNetworkingController.m */; };
 		5C2D0663280C032A00C775B3 /* PBDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0652280C032A00C775B3 /* PBDownload.m */; };
@@ -439,16 +439,16 @@
 		5C2D05F9280BFBFC00C775B3 /* BBACommentContentLabelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLabelItem.h; sourceTree = "<group>"; };
 		5C2D05FA280BFBFC00C775B3 /* BBACommentContentLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBACommentContentLabel.h; sourceTree = "<group>"; };
 		5C2D05FB280BFBFC00C775B3 /* PBContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBContentController.h; sourceTree = "<group>"; };
-		5C2D05FE280BFBFC00C775B3 /* PBWelfareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWelfareController.h; sourceTree = "<group>"; };
-		5C2D05FF280BFBFC00C775B3 /* PBAllWelfareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAllWelfareController.h; sourceTree = "<group>"; };
+		5C2D05FE280BFBFC00C775B3 /* PBChannelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelController.h; sourceTree = "<group>"; };
+		5C2D05FF280BFBFC00C775B3 /* PBAllChannelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAllChannelController.h; sourceTree = "<group>"; };
 		5C2D0601280BFBFC00C775B3 /* PBChannelHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelHeaderView.m; sourceTree = "<group>"; };
 		5C2D0602280BFBFC00C775B3 /* PBChannelContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelContentView.m; sourceTree = "<group>"; };
 		5C2D0603280BFBFC00C775B3 /* PBChannelContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelContentCell.m; sourceTree = "<group>"; };
 		5C2D0604280BFBFC00C775B3 /* PBChannelContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentView.h; sourceTree = "<group>"; };
 		5C2D0605280BFBFC00C775B3 /* PBChannelHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelHeaderView.h; sourceTree = "<group>"; };
 		5C2D0606280BFBFC00C775B3 /* PBChannelContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBChannelContentCell.h; sourceTree = "<group>"; };
-		5C2D0607280BFBFC00C775B3 /* PBAllWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllWelfareController.m; sourceTree = "<group>"; };
-		5C2D0608280BFBFC00C775B3 /* PBWelfareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWelfareController.m; sourceTree = "<group>"; };
+		5C2D0607280BFBFC00C775B3 /* PBAllChannelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllChannelController.m; sourceTree = "<group>"; };
+		5C2D0608280BFBFC00C775B3 /* PBChannelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBChannelController.m; sourceTree = "<group>"; };
 		5C2D064E280C032A00C775B3 /* PBAFNetworkingZeroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingZeroController.h; sourceTree = "<group>"; };
 		5C2D064F280C032A00C775B3 /* PBAFNetworkingTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingTwoController.m; sourceTree = "<group>"; };
 		5C2D0650280C032A00C775B3 /* PBAFNetworkingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingController.m; sourceTree = "<group>"; };
@@ -1266,10 +1266,10 @@
 		5C2D05FD280BFBFC00C775B3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05FE280BFBFC00C775B3 /* PBWelfareController.h */,
-				5C2D0608280BFBFC00C775B3 /* PBWelfareController.m */,
-				5C2D05FF280BFBFC00C775B3 /* PBAllWelfareController.h */,
-				5C2D0607280BFBFC00C775B3 /* PBAllWelfareController.m */,
+				5C2D05FE280BFBFC00C775B3 /* PBChannelController.h */,
+				5C2D0608280BFBFC00C775B3 /* PBChannelController.m */,
+				5C2D05FF280BFBFC00C775B3 /* PBAllChannelController.h */,
+				5C2D0607280BFBFC00C775B3 /* PBAllChannelController.m */,
 				5C2D0600280BFBFC00C775B3 /* PBChannelView */,
 			);
 			path = Controllers;
@@ -2828,7 +2828,7 @@
 				5C2D0640280BFBFC00C775B3 /* BBACommentContentLabel.m in Sources */,
 				957593F222F84F3B009CA618 /* PBGCDLockFiveController.m in Sources */,
 				5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */,
-				5C2D0646280BFBFC00C775B3 /* PBAllWelfareController.m in Sources */,
+				5C2D0646280BFBFC00C775B3 /* PBAllChannelController.m in Sources */,
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */,
@@ -2841,7 +2841,7 @@
 				9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */,
 				95C871AF22E71CAC002795D0 /* PBTestEspressosSCSLSeatInfo.m in Sources */,
 				5CEFEBA328117B660073BC47 /* PBCellHeightCollectionZeroController.m in Sources */,
-				5C2D0647280BFBFC00C775B3 /* PBWelfareController.m in Sources */,
+				5C2D0647280BFBFC00C775B3 /* PBChannelController.m in Sources */,
 				9575933D22F82A64009CA618 /* PBStorageTextOneController.m in Sources */,
 				5C2D060E280BFBFC00C775B3 /* PBLinkageView.m in Sources */,
 				5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */,

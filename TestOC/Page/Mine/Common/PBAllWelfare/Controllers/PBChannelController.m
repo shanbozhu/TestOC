@@ -1,25 +1,25 @@
 //
-//  PBWelfareController.m
+//  PBChannelController.m
 //  TestOC
 //
 //  Created by DaMaiIOS on 16/9/20.
 //  Copyright © 2016年 朱善波. All rights reserved.
 //
 
-#import "PBWelfareController.h"
+#import "PBChannelController.h"
 
-@interface PBWelfareController ()
+@interface PBChannelController ()
 
 @end
 
-@implementation PBWelfareController
+@implementation PBChannelController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UIViewController *vc = [[UIViewController alloc]init];
+    UIViewController *vc = [[UIViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:vc animated:YES];
