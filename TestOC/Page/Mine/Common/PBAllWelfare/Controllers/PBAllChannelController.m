@@ -35,7 +35,7 @@
     channelHeaderView.delegate = self;
     
     // 内容
-    PBChannelContentView *channelContentView = [PBChannelContentView channelContentViewWithFrame:CGRectMake(0, CGRectGetMaxY(channelHeaderView.frame), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-CGRectGetHeight(channelHeaderView.frame) - 64)];
+    PBChannelContentView *channelContentView = [PBChannelContentView channelContentViewWithFrame:CGRectMake(0, CGRectGetMaxY(channelHeaderView.frame), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - CGRectGetHeight(channelHeaderView.frame) - APPLICATION_NAVIGATIONBAR_HEIGHT)];
     self.channelContentView = channelContentView;
     [self.view addSubview:channelContentView];
     channelContentView.channelArr = channelHeaderView.channelArr;
