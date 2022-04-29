@@ -46,7 +46,7 @@
             [collectionView.mj_header endRefreshing];
         }];
         collectionView.mj_footer = [PBRefresh refreshFooterWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
-//            [collectionView.mj_footer endRefreshing];
+            //[collectionView.mj_footer endRefreshing];
         }];
     }
     return self;
