@@ -37,7 +37,7 @@
     channelHeaderView.delegate = self;
     
     // 内容
-    PBChannelContentView *channelContentView = [PBChannelContentView channelContentViewWithFrame:CGRectMake(0, CGRectGetMaxY(channelHeaderView.frame), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-CGRectGetHeight(channelHeaderView.frame)-64)];
+    PBChannelContentView *channelContentView = [PBChannelContentView channelContentViewWithFrame:CGRectMake(0, CGRectGetMaxY(channelHeaderView.frame), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-CGRectGetHeight(channelHeaderView.frame) - 64)];
     self.channelContentView = channelContentView;
     [self.view addSubview:channelContentView];
     channelContentView.channelArr = channelHeaderView.channelArr;
@@ -58,14 +58,14 @@
 // DataSource
 - (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index {
     if (index % 2 == 0) {
-        PBWelfareController *welfareController = [[PBWelfareController alloc]init];
+        PBWelfareController *welfareController = [[PBWelfareController alloc] init];
         
         [self addChildViewController:welfareController];
         [pageView addSubview:welfareController.view];
         welfareController.view.backgroundColor = [UIColor lightGrayColor];
         return welfareController;
     } else {
-        PBWelfareController *welfareController = [[PBWelfareController alloc]init];
+        PBWelfareController *welfareController = [[PBWelfareController alloc] init];
         
         [self addChildViewController:welfareController];
         [pageView addSubview:welfareController.view];

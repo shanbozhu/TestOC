@@ -18,12 +18,12 @@
 @implementation PBChannelContentView
 
 + (id)channelContentViewWithFrame:(CGRect)frame {
-    return [[self alloc]initWithFrame:frame];
+    return [[self alloc] initWithFrame:frame];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) collectionViewLayout:layout];
@@ -77,7 +77,7 @@
 }
 
 - (void)setContentOffsetWithIndex:(NSInteger)index {
-    [self.collectionView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width*index, 0) animated:NO];
+    [self.collectionView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width * index, 0) animated:NO];
 }
 
 @end

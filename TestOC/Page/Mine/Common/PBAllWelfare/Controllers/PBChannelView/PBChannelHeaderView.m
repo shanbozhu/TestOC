@@ -26,13 +26,13 @@
 }
 
 + (id)channelView {
-    return [[self alloc]initWithFrame:CGRectZero];
+    return [[self alloc] initWithFrame:CGRectZero];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         // scrollView
-        UIScrollView *scrollView = [[UIScrollView alloc]init];
+        UIScrollView *scrollView = [[UIScrollView alloc] init];
         self.scrollView = scrollView;
         [self addSubview:scrollView];
         scrollView.showsVerticalScrollIndicator = NO;
@@ -53,7 +53,7 @@
     self.btnArr = nil;
     
     // showView
-    UIView *showView = [[UIView alloc]init];
+    UIView *showView = [[UIView alloc] init];
     self.showView = showView;
     [self.scrollView addSubview:self.showView];
     showView.backgroundColor = [UIColor redColor];
@@ -76,21 +76,21 @@
         }
         [btn setTitle:self.channelArr[i] forState:UIControlStateNormal];
         
-        UILabel *lab = [[UILabel alloc]init];
+        UILabel *lab = [[UILabel alloc] init];
         //[btn addSubview:lab];
         lab.textColor = [UIColor redColor];
         lab.frame = CGRectMake(20, 0, 100, 0);
         lab.text = self.channelArr[i];
         [lab sizeToFit];
         CGRect rect = lab.frame;
-        rect.origin.y = (self.frame.size.height-lab.frame.size.height)/2;
+        rect.origin.y = (self.frame.size.height - lab.frame.size.height) / 2;
         lab.frame = rect;
         
         if (i == 0) {
-            btn.frame = CGRectMake(0, 0, lab.frame.size.width+40, self.frame.size.height);
-            self.showView.frame = CGRectMake(btn.frame.origin.x, btn.frame.size.height-2, btn.frame.size.width, 2);
+            btn.frame = CGRectMake(0, 0, lab.frame.size.width + 40, self.frame.size.height);
+            self.showView.frame = CGRectMake(btn.frame.origin.x, btn.frame.size.height - 2, btn.frame.size.width, 2);
         } else {
-            btn.frame = CGRectMake(CGRectGetMaxX([self.btnArr[i-1] frame]), 0, lab.frame.size.width+40, self.frame.size.height);
+            btn.frame = CGRectMake(CGRectGetMaxX([self.btnArr[i - 1] frame]), 0, lab.frame.size.width + 40, self.frame.size.height);
         }
     }
     self.scrollView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.frame.size.height);
@@ -104,7 +104,7 @@
 
 - (void)setContentOffsetWithOffset:(CGPoint)offset {
     // 偏移一半就切换状态
-    NSInteger index = (offset.x+[UIScreen mainScreen].bounds.size.width/2.0)/[UIScreen mainScreen].bounds.size.width;
+    NSInteger index = (offset.x + [UIScreen mainScreen].bounds.size.width / 2.0) / [UIScreen mainScreen].bounds.size.width;
     [self moveWithIndex:index];
 }
 
@@ -123,7 +123,7 @@
     UIButton *selectBtn = [self.btnArr objectAtIndex:index];
     
     // 标签居中
-    float offsetx = selectBtn.frame.origin.x - ([UIScreen mainScreen].bounds.size.width-selectBtn.frame.size.width)/2.0;
+    float offsetx = selectBtn.frame.origin.x - ([UIScreen mainScreen].bounds.size.width - selectBtn.frame.size.width) / 2.0;
     
     // 向左移动,最小偏移量
     if (offsetx < 0) {
@@ -132,12 +132,12 @@
     
     // 向右移动,最大偏移量
     if (offsetx + self.scrollView.frame.size.width > self.scrollView.contentSize.width) {
-        offsetx = self.scrollView.contentSize.width-self.scrollView.frame.size.width;
+        offsetx = self.scrollView.contentSize.width - self.scrollView.frame.size.width;
     }
     
     [UIView animateWithDuration:0.5 animations:^{
         [self.scrollView setContentOffset:CGPointMake(offsetx, 0) animated:NO];
-        self.showView.frame = CGRectMake(selectBtn.frame.origin.x, selectBtn.frame.size.height-2, selectBtn.frame.size.width, 2);
+        self.showView.frame = CGRectMake(selectBtn.frame.origin.x, selectBtn.frame.size.height - 2, selectBtn.frame.size.width, 2);
     }];
 }
 
