@@ -64,6 +64,7 @@
         
         [self addChildViewController:welfareController];
         [pageView addSubview:welfareController.view];
+        welfareController.view.frame = pageView.bounds;
         welfareController.view.backgroundColor = [UIColor lightGrayColor];
         return welfareController;
     } else {
@@ -71,6 +72,7 @@
         
         [self addChildViewController:welfareController];
         [pageView addSubview:welfareController.view];
+        welfareController.view.frame = pageView.bounds;
         welfareController.view.backgroundColor = [UIColor grayColor];
         return welfareController;
     }
