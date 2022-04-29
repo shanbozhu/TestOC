@@ -30,16 +30,20 @@
     PBChannelHeaderView *channelHeaderView = [PBChannelHeaderView channelView];
     self.channelHeaderView = channelHeaderView;
     [self.view addSubview:channelHeaderView];
-    channelHeaderView.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, 40);
+    channelHeaderView.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 100, [UIScreen mainScreen].bounds.size.width - 100, 40);
     channelHeaderView.channelArr = @[@"哈哈", @"哈哈哈哈哈哈", @"哈哈哈哈", @"哈哈", @"哈哈哈哈", @"哈哈", @"哈哈", @"哈哈哈哈哈哈哈哈哈哈哈", @"哈哈哈哈", @"哈哈", @"哈哈哈哈", @"哈哈"];
     channelHeaderView.delegate = self;
+    channelHeaderView.layer.borderColor = [UIColor redColor].CGColor;
+    channelHeaderView.layer.borderWidth = 1.1;
     
     // 内容
-    PBChannelContentView *channelContentView = [PBChannelContentView channelContentViewWithFrame:CGRectMake(0, CGRectGetMaxY(channelHeaderView.frame), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - CGRectGetHeight(channelHeaderView.frame) - APPLICATION_NAVIGATIONBAR_HEIGHT)];
+    PBChannelContentView *channelContentView = [PBChannelContentView channelContentViewWithFrame:CGRectMake(CGRectGetMinX(channelHeaderView.frame), CGRectGetMaxY(channelHeaderView.frame), CGRectGetWidth(channelHeaderView.frame), 400)];
     self.channelContentView = channelContentView;
     [self.view addSubview:channelContentView];
     channelContentView.channelArr = channelHeaderView.channelArr;
     channelContentView.delegate = self;
+    channelContentView.layer.borderColor = [UIColor blueColor].CGColor;
+    channelContentView.layer.borderWidth = 1.1;
 }
 
 // delegate

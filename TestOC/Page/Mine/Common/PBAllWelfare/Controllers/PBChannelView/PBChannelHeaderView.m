@@ -93,7 +93,7 @@
             btn.frame = CGRectMake(CGRectGetMaxX([self.btnArr[i - 1] frame]), 0, lab.frame.size.width + 40, self.frame.size.height);
         }
     }
-    self.scrollView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.frame.size.height);
+    self.scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX([[self.btnArr lastObject] frame]), 0);
 }
 
@@ -104,7 +104,7 @@
 
 - (void)setContentOffsetWithOffset:(CGPoint)offset {
     // 偏移一半就切换状态
-    NSInteger index = (offset.x + [UIScreen mainScreen].bounds.size.width / 2.0) / [UIScreen mainScreen].bounds.size.width;
+    NSInteger index = (offset.x + self.frame.size.width / 2.0) / self.frame.size.width;
     [self moveWithIndex:index];
 }
 
@@ -123,7 +123,7 @@
     UIButton *selectBtn = [self.btnArr objectAtIndex:index];
     
     // 标签居中
-    float offsetx = selectBtn.frame.origin.x - ([UIScreen mainScreen].bounds.size.width - selectBtn.frame.size.width) / 2.0;
+    float offsetx = selectBtn.frame.origin.x - (self.frame.size.width - selectBtn.frame.size.width) / 2.0;
     
     // 向左移动,最小偏移量
     if (offsetx < 0) {

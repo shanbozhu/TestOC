@@ -77,7 +77,7 @@
 }
 
 - (void)setContentOffsetWithIndex:(NSInteger)index {
-    [self.collectionView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width * index, 0) animated:NO];
+    [self.collectionView setContentOffset:CGPointMake(self.frame.size.width * index, 0) animated:NO];
 }
 
 @end
