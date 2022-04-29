@@ -9,6 +9,7 @@
 #import "PBCellHeightCollectionOneView.h"
 #import "PBCellHeightCollectionOneCell.h"
 #import "PBCollectionViewWaterfallLayout.h"
+#import "PBRefresh.h"
 
 @interface PBCellHeightCollectionOneView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PBCollectionViewWaterfallLayoutDelegate>
 
@@ -39,6 +40,14 @@
         
         collectionView.layer.borderColor = [UIColor blueColor].CGColor;
         collectionView.layer.borderWidth = 1.1;
+        
+        //
+        collectionView.mj_header = [PBRefresh refreshHeaderWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
+            [collectionView.mj_header endRefreshing];
+        }];
+        collectionView.mj_footer = [PBRefresh refreshFooterWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
+            [collectionView.mj_footer endRefreshing];
+        }];
     }
     return self;
 }

@@ -8,16 +8,9 @@
 
 #import "PBRefresh.h"
 
-@interface PBRefresh ()
-
-@property (nonatomic, weak) MJRefreshHeader *header;
-@property (nonatomic, weak) MJRefreshFooter *footer;
-
-@end
-
 @implementation PBRefresh
 
-- (void)refreshHeader {
+- (MJRefreshHeader *)refreshHeader {
     MJRefreshNormalHeader *refreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         if (self.headerBlock) {
             self.headerBlock(self);
@@ -28,56 +21,46 @@
     [refreshNormalHeader setTitle:@"释放更新" forState:MJRefreshStatePulling];
     [refreshNormalHeader setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
     refreshNormalHeader.stateLabel.textColor = [UIColor redColor];
-    self.header = refreshNormalHeader;
+    refreshNormalHeader.automaticallyChangeAlpha = YES;
+    //[refreshNormalHeader beginRefreshing];
+    
+    refreshNormalHeader.layer.borderColor = [UIColor redColor].CGColor;
+    refreshNormalHeader.layer.borderWidth = 1.1;
+    
+    return refreshNormalHeader;
 }
 
-- (void)refreshFooter {
+- (MJRefreshFooter *)refreshFooter {
     MJRefreshAutoNormalFooter *refreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         if (self.footerBlock) {
             self.footerBlock(self);
         }
     }];
-    refreshAutoNormalFooter.refreshingTitleHidden = YES;
+//    refreshAutoNormalFooter.refreshingTitleHidden = YES;
     [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateIdle];
     [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStatePulling];
     [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateRefreshing];
     [refreshAutoNormalFooter setTitle:@"暂无更多内容" forState:MJRefreshStateNoMoreData];
     refreshAutoNormalFooter.stateLabel.textColor = [UIColor redColor];
-    self.footer = refreshAutoNormalFooter;
+    refreshAutoNormalFooter.automaticallyChangeAlpha = YES;
+    //[refreshAutoNormalFooter beginRefreshing];
     
-    /**
-    MJRefreshBackNormalFooter *refreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        if (self.footerBlock != nil) {
-            self.footerBlock(self);
-        }
-        [self.delegate refreshFooter:self];
-        
-    }];
-    refreshBackNormalFooter.refreshingTitleHidden = YES; //修改菊花坐标为居中显示
-    [refreshBackNormalFooter setTitle:@"" forState:MJRefreshStateIdle]; //修改提示文字
-    [refreshBackNormalFooter setTitle:@"" forState:MJRefreshStatePulling];
-    [refreshBackNormalFooter setTitle:@"" forState:MJRefreshStateRefreshing];
-    [refreshBackNormalFooter setTitle:@"暂无更多内容" forState:MJRefreshStateNoMoreData];
-    refreshBackNormalFooter.stateLabel.textColor = kPBColorWithHexAndAlpha(0x949494, 1);
-    self.footer = refreshBackNormalFooter;*/
+    refreshAutoNormalFooter.layer.borderColor = [UIColor redColor].CGColor;
+    refreshAutoNormalFooter.layer.borderWidth = 1.1;
+    
+    return refreshAutoNormalFooter;
 }
 
 + (MJRefreshHeader *)refreshHeaderWithTarget:(id)target refreshingBlock:(PBRefreshHeaderBlock)headerBlock {
     PBRefresh *refresh = [[self alloc] init];
     refresh.headerBlock = headerBlock;
-    [refresh refreshHeader];
-    refresh.header.automaticallyChangeAlpha = YES;
-    //[refresh.header beginRefreshing];
-    return refresh.header;
+    return [refresh refreshHeader];
 }
 
 + (MJRefreshFooter *)refreshFooterWithTarget:(id)target refreshingBlock:(PBRefreshFooterBlock)footerBlock {
     PBRefresh *refresh = [[self alloc] init];
     refresh.footerBlock = footerBlock;
-    [refresh refreshFooter];
-    refresh.footer.automaticallyChangeAlpha = YES;
-    //[refresh.footer beginRefreshing];
-    return refresh.footer;
+    return [refresh refreshFooter];
 }
 
 - (void)dealloc {
