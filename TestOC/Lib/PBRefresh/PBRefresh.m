@@ -10,6 +10,15 @@
 
 @implementation PBRefresh
 
++ (instancetype)sharedInstance {
+    static id sharedInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (MJRefreshHeader *)refreshHeader {
     __weak typeof(self) weakSelf = self;
     MJRefreshNormalHeader *refreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -54,13 +63,13 @@
 }
 
 + (MJRefreshHeader *)refreshHeaderWithTarget:(id)target refreshingBlock:(PBRefreshHeaderBlock)headerBlock {
-    PBRefresh *refresh = [[self alloc] init];
+    PBRefresh *refresh = [PBRefresh sharedInstance];
     refresh.headerBlock = headerBlock;
     return [refresh refreshHeader];
 }
 
 + (MJRefreshFooter *)refreshFooterWithTarget:(id)target refreshingBlock:(PBRefreshFooterBlock)footerBlock {
-    PBRefresh *refresh = [[self alloc] init];
+    PBRefresh *refresh = [PBRefresh sharedInstance];
     refresh.footerBlock = footerBlock;
     return [refresh refreshFooter];
 }
