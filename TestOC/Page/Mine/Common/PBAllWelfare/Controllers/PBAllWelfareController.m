@@ -31,9 +31,7 @@
     self.channelHeaderView = channelHeaderView;
     [self.view addSubview:channelHeaderView];
     channelHeaderView.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, 40);
-    
     channelHeaderView.channelArr = @[@"哈哈", @"哈哈哈哈哈哈", @"哈哈哈哈", @"哈哈", @"哈哈哈哈", @"哈哈", @"哈哈", @"哈哈哈哈哈哈哈哈哈哈哈", @"哈哈哈哈", @"哈哈", @"哈哈哈哈", @"哈哈"];
-    
     channelHeaderView.delegate = self;
     
     // 内容
@@ -55,7 +53,7 @@
     [self.channelHeaderView setContentOffsetWithOffset:offset];
 }
 
-// DataSource
+// dataSource
 - (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index {
     if (index % 2 == 0) {
         PBWelfareController *welfareController = [[PBWelfareController alloc] init];
