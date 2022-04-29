@@ -36,7 +36,7 @@
             self.footerBlock(self);
         }
     }];
-//    refreshAutoNormalFooter.refreshingTitleHidden = YES;
+    refreshAutoNormalFooter.refreshingTitleHidden = YES;
     [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateIdle];
     [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStatePulling];
     [refreshAutoNormalFooter setTitle:@"" forState:MJRefreshStateRefreshing];
