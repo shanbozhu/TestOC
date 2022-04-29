@@ -12,6 +12,7 @@
 @interface PBCellHeightZero : NSObject
 
 @property (nonatomic, strong) NSArray *data; // arr
+@property (nonatomic, assign) BOOL dataAddIsNull;
 
 + (id)testListWithDict:(NSDictionary *)dict;
 

@@ -41,12 +41,13 @@
         collectionView.layer.borderColor = [UIColor blueColor].CGColor;
         collectionView.layer.borderWidth = 1.1;
         
-        //
+        // 刷新
         collectionView.mj_header = [PBRefresh refreshHeaderWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
-            [collectionView.mj_header endRefreshing];
+            [self.delegate cellHeightCollectionOneView:self sinceId:0 status:0];
         }];
         collectionView.mj_footer = [PBRefresh refreshFooterWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
-            //[collectionView.mj_footer endRefreshing];
+            NSInteger sinceId = 1000; // 提供个假值
+            [self.delegate cellHeightCollectionOneView:self sinceId:sinceId status:1];
         }];
     }
     return self;
@@ -55,6 +56,14 @@
 - (void)setTestList:(PBCellHeightZero *)testList {
     _testList = testList;
     [self.collectionView reloadData];
+    
+    // 刷新
+    [self.collectionView.mj_header endRefreshing];
+    if (self.testList.dataAddIsNull) {
+        [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+    } else {
+        [self.collectionView.mj_footer endRefreshing];
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

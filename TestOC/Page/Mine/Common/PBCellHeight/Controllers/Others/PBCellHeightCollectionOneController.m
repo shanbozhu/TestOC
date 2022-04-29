@@ -11,7 +11,7 @@
 #import "YYFPSLabel.h"
 #import "PBCellHeightZero.h"
 
-@interface PBCellHeightCollectionOneController ()
+@interface PBCellHeightCollectionOneController () <PBCellHeightCollectionOneViewDelegate>
 
 @property (nonatomic, weak) PBCellHeightCollectionOneView *testListView;
 
@@ -19,15 +19,29 @@
 
 @implementation PBCellHeightCollectionOneController
 
-- (void)requestData {
+- (void)requestDataWithSinceId:(NSInteger)sinceId status:(NSInteger)status {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"PBCellHeightZero" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
+    // testList
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
-    self.testListView.testList = testList;
+    if (status == 0) {
+        self.testListView.testList = testList;
+    } else {
+        NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:self.testListView.testList.data];
+        [tmpArr addObjectsFromArray:testList.data];
+        
+        if (testList.data.count == 0) {
+            self.testListView.testList.dataAddIsNull = YES;
+        } else {
+            self.testListView.testList.dataAddIsNull = NO;
+        }
+        self.testListView.testList.data = tmpArr;
+        self.testListView.testList = self.testListView.testList;
+    }
 }
 
 - (void)viewDidLoad {
@@ -36,12 +50,19 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
     
+    // testListView
     PBCellHeightCollectionOneView *testListView = [PBCellHeightCollectionOneView testListView];
     self.testListView = testListView;
     [self.view addSubview:testListView];
     testListView.frame = self.view.bounds;
+    testListView.delegate = self;
     
-    [self requestData];
+    // 默认刷新头
+    [self requestDataWithSinceId:0 status:0];
+}
+
+- (void)cellHeightCollectionOneView:(PBCellHeightCollectionOneView *)CellHeightCollectionOneView sinceId:(NSInteger)sinceId status:(NSInteger)status {
+    [self requestDataWithSinceId:sinceId status:status];
 }
 
 @end

@@ -11,9 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PBCellHeightCollectionOneView;
+@protocol PBCellHeightCollectionOneViewDelegate <NSObject>
+
+- (void)cellHeightCollectionOneView:(PBCellHeightCollectionOneView *)CellHeightCollectionOneView sinceId:(NSInteger)sinceId status:(NSInteger)status;
+
+@end
+
 @interface PBCellHeightCollectionOneView : UIView
 
 @property (nonatomic, strong) PBCellHeightZero *testList;
+@property (nonatomic, weak) id<PBCellHeightCollectionOneViewDelegate> delegate;
 
 + (id)testListView;
 
