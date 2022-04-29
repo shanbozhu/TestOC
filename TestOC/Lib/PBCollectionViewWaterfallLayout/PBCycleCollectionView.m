@@ -117,6 +117,7 @@ static CGFloat scrollInterval = 3.0f;
     return UIEdgeInsetsZero;
 }
 
+// 手动拖拽结束
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self cycleScroll];
     
