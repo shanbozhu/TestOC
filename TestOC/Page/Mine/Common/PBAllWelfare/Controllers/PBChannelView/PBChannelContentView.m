@@ -62,7 +62,7 @@
     }
     [cell.vc removeFromParentViewController];
     
-    UIViewController *vc = [self.delegate channelContentView:self andPageView:cell.contentView andIndex:indexPath.item];
+    UIViewController *vc = [self.delegate channelContentView:self pageView:cell.contentView index:indexPath.item];
     cell.vc = vc;
     
     return cell;
@@ -73,7 +73,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.delegate channelContentView:self andOffset:scrollView.contentOffset];
+    [self.delegate channelContentView:self offset:scrollView.contentOffset];
 }
 
 - (void)setContentOffsetWithIndex:(NSInteger)index {

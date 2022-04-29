@@ -98,7 +98,7 @@
 }
 
 - (void)btnClick:(UIButton *)btn {
-    [self.delegate channelView:self andIndex:btn.tag];
+    [self.delegate channelView:self index:btn.tag];
     [self moveWithIndex:btn.tag];
 }
 

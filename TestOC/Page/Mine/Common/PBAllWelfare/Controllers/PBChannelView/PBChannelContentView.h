@@ -11,8 +11,8 @@
 @class PBChannelContentView;
 @protocol PBChannelContentViewDelegate <NSObject>
 
-- (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index;
-- (void)channelContentView:(PBChannelContentView *)channelContentView andOffset:(CGPoint)offset;
+- (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView pageView:(UIView *)pageView index:(NSInteger)index;
+- (void)channelContentView:(PBChannelContentView *)channelContentView offset:(CGPoint)offset;
 
 @end
 

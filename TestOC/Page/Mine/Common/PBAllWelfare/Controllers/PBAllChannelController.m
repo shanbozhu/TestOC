@@ -43,18 +43,18 @@
 }
 
 // delegate
-- (void)channelView:(PBChannelHeaderView *)channelView andIndex:(NSInteger)index {
+- (void)channelView:(PBChannelHeaderView *)channelView index:(NSInteger)index {
     // 点击头部,设置内容偏移量
     [self.channelContentView setContentOffsetWithIndex:index];
 }
 
-- (void)channelContentView:(PBChannelContentView *)channelContentView andOffset:(CGPoint)offset {
+- (void)channelContentView:(PBChannelContentView *)channelContentView offset:(CGPoint)offset {
     // 拖动内容,设置头部偏移量
     [self.channelHeaderView setContentOffsetWithOffset:offset];
 }
 
 // dataSource
-- (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView andPageView:(UIView *)pageView andIndex:(NSInteger)index {
+- (UIViewController *)channelContentView:(PBChannelContentView *)channelContentView pageView:(UIView *)pageView index:(NSInteger)index {
     if (index % 2 == 0) {
         PBChannelController *welfareController = [[PBChannelController alloc] init];
         

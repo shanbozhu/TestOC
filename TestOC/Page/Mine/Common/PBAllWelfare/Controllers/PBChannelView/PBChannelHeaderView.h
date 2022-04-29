@@ -11,7 +11,7 @@
 @class PBChannelHeaderView;
 @protocol PBChannelHeaderViewDelegate <NSObject>
 
-- (void)channelView:(PBChannelHeaderView *)channelView andIndex:(NSInteger)index;
+- (void)channelView:(PBChannelHeaderView *)channelView index:(NSInteger)index;
 
 @end
 
