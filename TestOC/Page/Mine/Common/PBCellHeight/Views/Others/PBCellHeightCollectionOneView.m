@@ -42,12 +42,15 @@
         collectionView.layer.borderWidth = 1.1;
         
         // 刷新
+        __weak typeof(self) weakSelf = self;
         collectionView.mj_header = [PBRefresh refreshHeaderWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
-            [self.delegate cellHeightCollectionOneView:self sinceId:0 status:0];
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf.delegate cellHeightCollectionOneView:strongSelf sinceId:0 status:0];
         }];
         collectionView.mj_footer = [PBRefresh refreshFooterWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             NSInteger sinceId = 1000; // 提供个假值
-            [self.delegate cellHeightCollectionOneView:self sinceId:sinceId status:1];
+            [strongSelf.delegate cellHeightCollectionOneView:strongSelf sinceId:sinceId status:1];
         }];
     }
     return self;

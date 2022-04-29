@@ -11,9 +11,10 @@
 @implementation PBRefresh
 
 - (MJRefreshHeader *)refreshHeader {
+    __weak typeof(self) weakSelf = self;
     MJRefreshNormalHeader *refreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        if (self.headerBlock) {
-            self.headerBlock(self);
+        if (weakSelf.headerBlock) {
+            weakSelf.headerBlock(weakSelf);
         }
     }];
     refreshNormalHeader.lastUpdatedTimeLabel.hidden = YES;
@@ -31,9 +32,10 @@
 }
 
 - (MJRefreshFooter *)refreshFooter {
+    __weak typeof(self) weakSelf = self;
     MJRefreshAutoNormalFooter *refreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        if (self.footerBlock) {
-            self.footerBlock(self);
+        if (weakSelf.footerBlock) {
+            weakSelf.footerBlock(weakSelf);
         }
     }];
     refreshAutoNormalFooter.refreshingTitleHidden = YES;
