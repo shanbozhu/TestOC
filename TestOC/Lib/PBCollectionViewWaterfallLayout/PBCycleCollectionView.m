@@ -121,7 +121,7 @@ static CGFloat scrollInterval = 3.0f;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self cycleScroll];
     
-    // 拖拽动作后间隔3s继续轮播
+    // 手动拖拽结束,间隔3s继续轮播
     if (self.autoPage) {
         self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:scrollInterval];
     }
