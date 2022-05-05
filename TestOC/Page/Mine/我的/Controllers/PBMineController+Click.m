@@ -31,6 +31,7 @@
 
 - (NSArray *)pageArr {
     return @[@"PBCommonController",
+             @"PBSwiftController",
              @"PBArrayDeleteController",
              @"PBAllLinkageController",
              @"PBSyntaxController",
@@ -51,8 +52,7 @@
              @"PBAVPlayerListController",
              @"PBUniversalLinkController",
              @"PBRuntimeController",
-             @"PBAnimationController",
-             @"PBSwiftController"];
+             @"PBAnimationController"];
 }
 
 // delegate
