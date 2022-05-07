@@ -28,7 +28,7 @@
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.estimatedRowHeight = 0;
+        tableView.estimatedRowHeight = 0; // required
         if (@available(iOS 11.0, *)) {
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
@@ -54,6 +54,7 @@
     return self.testList.data.count;
 }
 
+// required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell removeFromSuperview];

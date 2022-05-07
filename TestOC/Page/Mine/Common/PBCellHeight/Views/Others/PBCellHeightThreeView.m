@@ -26,7 +26,7 @@
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.estimatedRowHeight = 0;
+        tableView.estimatedRowHeight = 0; // required
     }
     return self;
 }
@@ -39,6 +39,7 @@
     return self.testList.data.count;
 }
 
+// required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView registerClass:[PBCellHeightThreeCell class] forCellReuseIdentifier:@"PBCellHeightThreeCell"];
     return [tableView fd_heightForCellWithIdentifier:@"PBCellHeightThreeCell" configuration:^(id cell) {

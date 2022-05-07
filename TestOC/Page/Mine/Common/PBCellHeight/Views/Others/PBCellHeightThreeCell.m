@@ -33,7 +33,7 @@
             make.left.mas_equalTo(20);
             make.top.mas_equalTo(20);
             make.right.mas_equalTo(-20);
-            make.bottom.mas_equalTo(-20); // 不能缺少
+            make.bottom.mas_equalTo(-20); // required
         }];
     }
     return self;

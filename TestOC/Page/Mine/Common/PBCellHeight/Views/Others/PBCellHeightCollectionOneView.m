@@ -85,6 +85,8 @@
 }
 
 #pragma mark - PBCollectionViewWaterfallLayoutDelegate
+
+// required
 - (CGFloat)collectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout heightForRowAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth {
     return itemWidth * (1 + arc4random_uniform(3));
 }

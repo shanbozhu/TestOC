@@ -50,6 +50,7 @@
     return self.testList.data.count;
 }
 
+// required
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     {
         PBCellHeightZeroData *testListData = self.testList.data[indexPath.item];

@@ -25,7 +25,7 @@
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.estimatedRowHeight = 100;
+        tableView.estimatedRowHeight = 100; // required
     }
     return self;
 }
@@ -38,6 +38,7 @@
     return self.testList.data.count;
 }
 
+// required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }

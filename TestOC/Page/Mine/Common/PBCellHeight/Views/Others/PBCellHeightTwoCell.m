@@ -17,6 +17,7 @@
 
 @implementation PBCellHeightTwoCell
 
+// required
 - (CGSize)sizeThatFits:(CGSize)size {
     return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame) + 20);
 }
