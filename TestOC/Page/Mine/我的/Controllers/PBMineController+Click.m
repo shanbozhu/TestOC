@@ -26,12 +26,14 @@
 #import "PBAVPlayerListController.h"
 #import "PBUniversalLinkController.h"
 #import "PBRuntimeController.h"
+#import "PBMasonryController.h"
 
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
     return @[@"PBCommonController",
              @"PBSwiftController",
+             @"PBMasonryController",
              @"PBArrayDeleteController",
              @"PBAllLinkageController",
              @"PBSyntaxController",

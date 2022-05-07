@@ -103,6 +103,7 @@
 		5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */; };
 		5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */; };
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
+		5C98866A2826529500D3AEAD /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9886692826529500D3AEAD /* PBMasonryController.m */; };
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
@@ -508,6 +509,8 @@
 		5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLRotateAnimationView.swift; sourceTree = "<group>"; };
 		5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelHeadView.swift; sourceTree = "<group>"; };
 		5C98839F282616A000D3AEAD /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
+		5C9886682826529500D3AEAD /* PBMasonryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMasonryController.h; sourceTree = "<group>"; };
+		5C9886692826529500D3AEAD /* PBMasonryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBMasonryController.m; sourceTree = "<group>"; };
 		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
 		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
 		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
@@ -1436,6 +1439,15 @@
 				5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */,
 			);
 			path = CLPlayerContentView;
+			sourceTree = "<group>";
+		};
+		5C9886672826527A00D3AEAD /* PBMasonry */ = {
+			isa = PBXGroup;
+			children = (
+				5C9886682826529500D3AEAD /* PBMasonryController.h */,
+				5C9886692826529500D3AEAD /* PBMasonryController.m */,
+			);
+			path = PBMasonry;
 			sourceTree = "<group>";
 		};
 		5CEFE1AD280FB43E0073BC47 /* PBCommon */ = {
@@ -2610,6 +2622,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5C9886672826527A00D3AEAD /* PBMasonry */,
 				5CEFE467281030FE0073BC47 /* PBArrayDelete */,
 				5C2D064C280C032A00C775B3 /* PBAFNetworking */,
 				5C2D057B280BFBFB00C775B3 /* Common */,
@@ -3101,6 +3114,7 @@
 				95C873E822E84410002795D0 /* PBTestListCell.m in Sources */,
 				5C09497F2812C679002CEBC2 /* PBCellHeightFourCell.m in Sources */,
 				5C2D063F280BFBFC00C775B3 /* BBAEmoticonManager.m in Sources */,
+				5C98866A2826529500D3AEAD /* PBMasonryController.m in Sources */,
 				9575932A22F82A46009CA618 /* PBDatabase.m in Sources */,
 				9533421522F434E700DC7251 /* PBKVOList.m in Sources */,
 				957593D922F84F20009CA618 /* PBGCDListTenController.m in Sources */,
