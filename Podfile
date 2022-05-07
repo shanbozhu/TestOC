@@ -29,5 +29,5 @@ target "TestOC" do
   pod 'SDCycleScrollView', '1.82'
   
   # swift框架
-  pod 'SnapKit'
+  pod 'SnapKit', '4.2.0'
 end
