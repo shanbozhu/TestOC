@@ -25,6 +25,7 @@ static id sharedDatabase = nil;
 @implementation PBDatabase
 
 #pragma mark - 单例
+
 + (id)sharedDatabase {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
@@ -106,6 +107,7 @@ static id sharedDatabase = nil;
 }
 
 #pragma mark - 操作
+
 - (void)excuteSQLInTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
     [self.dbQueue inTransaction:block];
 }

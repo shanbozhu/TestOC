@@ -28,6 +28,7 @@ static const UIEdgeInsets defaultEdgeInsets = {10, 10, 10, 10}; // 内边距
 @implementation PBCollectionViewWaterfallLayout
 
 #pragma mark -
+
 - (CGFloat)rowMargin {
     if ([self.delegate respondsToSelector:@selector(rowMarginInCollectionViewWaterfallLayout:)]) {
         return [self.delegate rowMarginInCollectionViewWaterfallLayout:self];
@@ -61,6 +62,7 @@ static const UIEdgeInsets defaultEdgeInsets = {10, 10, 10, 10}; // 内边距
 }
 
 #pragma mark -
+
 - (NSMutableArray *)attrsArr {
     if (!_attrsArr) {
         _attrsArr = [NSMutableArray array];

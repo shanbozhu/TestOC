@@ -26,6 +26,7 @@
 @implementation PBDownload
 
 #pragma mark - 下载操作
+
 + (PBDownload *)download {
     return [[PBDownload alloc] init];
 }
@@ -58,6 +59,7 @@
 }
 
 #pragma mark - 下载请求
+
 - (void)requestDataWithURL:(NSString *)urlStr progress:(void(^)(long long downloadedSize, long long))progress {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

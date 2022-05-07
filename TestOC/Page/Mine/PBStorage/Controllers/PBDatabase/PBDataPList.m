@@ -28,6 +28,7 @@ static id sharedDataPList = nil;
 @implementation PBDataPList
 
 #pragma mark - 单例
+
 + (id)sharedDataPList {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
@@ -67,6 +68,7 @@ static id sharedDataPList = nil;
 }
 
 #pragma mark - 操作
+
 - (void)setValue:(id)value forKey:(NSString *)key {
     pthread_rwlock_wrlock(&_lock);
     NSData *data = [PBArchiver dataWithObject:value key:key];

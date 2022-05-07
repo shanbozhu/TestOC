@@ -91,6 +91,7 @@
 }
 
 #pragma mark - 表情扩展
+
 - (NSString *)imageNameWithRangeString:(NSString *)rangeString {
     if ([rangeString isEqualToString:@"[调皮]"]) {
         return @"0022";

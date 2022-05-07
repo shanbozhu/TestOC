@@ -20,6 +20,7 @@
 @implementation PBLinkageTopController
 
 #pragma mark -
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -53,6 +54,7 @@
 
 
 #pragma mark -
+
 - (UIScrollView *)pageViewController:(YNPageViewController *)pageViewController pageForIndex:(NSInteger)index {
     UIViewController *vc = pageViewController.controllersM[index];
     if (index == 0) {
@@ -63,6 +65,7 @@
 }
 
 #pragma mark -
+
 + (NSArray *)getArrayTitles {
     return @[@"鞋子", @"衣服"];
 }

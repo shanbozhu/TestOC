@@ -20,6 +20,7 @@
 @implementation PBSandBox
 
 #pragma mark - 沙盒文件操作
+
 + (NSArray *)fileOrDirectoryInfosAboutContentsOfDirectoryAtPath:(NSString *)directoryPath {
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -141,6 +142,7 @@
 }
 
 #pragma mark - 沙盒目录
+
 + (NSString *)path4Home {
     return NSHomeDirectory();
 }

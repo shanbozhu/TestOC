@@ -23,6 +23,7 @@
 static NSString *_someString;
 
 #pragma mark - implementation
+
 @implementation PBSyntax
 
 @synthesize name=_name;
@@ -36,6 +37,7 @@ static NSString *_someString;
 }
 
 #pragma mark - 有@synthesize修饰,可以同时重写setter、getter方法
+
 - (void)setName:(NSString *)name {
     _name = name;
 }
@@ -45,6 +47,7 @@ static NSString *_someString;
 }
 
 #pragma mark - 没有@synthesize修饰,只能同时重写setter、getter中的一种方法
+
 - (void)setAge:(NSString *)age {
     _age = age;
 }
@@ -54,6 +57,7 @@ static NSString *_someString;
 //}
 
 #pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法,私有成员变量如果需要使用也要自己声明
+
 - (void)setHeight:(NSString *)height {
     _height = height;
 }
@@ -63,11 +67,13 @@ static NSString *_someString;
 }
 
 #pragma mark - protocol
+
 - (NSString *)sex {
     return @"male";
 }
 
 #pragma mark - extension
+
 - (NSString *)hobby {
     return @"dance";
 }
@@ -75,6 +81,7 @@ static NSString *_someString;
 @end
 
 #pragma mark - category
+
 @implementation PBSyntax (ability)
 
 - (void)setSing:(NSString *)sing {
@@ -89,6 +96,7 @@ static NSString *_someString;
 }
 
 #pragma mark - class property
+
 + (void)setSomeString:(NSString *)someString {
     _someString = someString;
 }

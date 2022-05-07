@@ -12,6 +12,7 @@
 @implementation NSObject (PBRuntime)
 
 #pragma mark - 获取类的所有属性
+
 - (NSArray *)pb_propertyList {
     NSMutableArray *propertyList = [NSMutableArray array];
     unsigned int count = 0;

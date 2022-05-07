@@ -10,6 +10,7 @@
 #import "NSObject+PBRuntime.h"
 
 #pragma mark - [归解档]例子
+
 /**
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeBool:self.hasRequestedAsyncAd forKey:@"hasRequestedAsyncAd"];
@@ -30,6 +31,7 @@
 @implementation PBArchiver
 
 #pragma mark - 支持[归解挡]操作的[模型对象]需要实现的方法
+
 // 归档时当前对象需要实现的代理方法
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     for (NSString *property in [self pb_propertyList]) {
@@ -48,6 +50,7 @@
 }
 
 #pragma mark - [归解档]操作
+
 + (NSData *)dataWithObject:(id)obj key:(NSString *)key {
     NSMutableData *data = [NSMutableData data];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
