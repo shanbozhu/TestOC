@@ -27,4 +27,7 @@ target "TestOC" do
   pod 'CocoaLumberjack', '3.6.2'
   pod 'HMSegmentedControl', '1.5.6'
   pod 'SDCycleScrollView', '1.82'
+  
+  # swift框架
+  pod 'SnapKit'
 end
