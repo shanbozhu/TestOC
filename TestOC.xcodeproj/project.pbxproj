@@ -87,6 +87,22 @@
 		5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */; };
 		5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */; };
 		5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */; };
+		5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838E282616A000D3AEAD /* CLImageHelper.swift */; };
+		5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838F282616A000D3AEAD /* CLPlayer.swift */; };
+		5C9883A2282616A000D3AEAD /* CLFullScreenLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */; };
+		5C9883A3282616A000D3AEAD /* CLAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988392282616A000D3AEAD /* CLAnimationTransitioning.swift */; };
+		5C9883A4282616A000D3AEAD /* CLFullScreenRightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988393282616A000D3AEAD /* CLFullScreenRightController.swift */; };
+		5C9883A5282616A000D3AEAD /* CLFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988394282616A000D3AEAD /* CLFullScreenController.swift */; };
+		5C9883A6282616A000D3AEAD /* CLGCDTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988395282616A000D3AEAD /* CLGCDTimer.swift */; };
+		5C9883A7282616A000D3AEAD /* CLPlayerConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988396282616A000D3AEAD /* CLPlayerConfigure.swift */; };
+		5C9883A8282616A000D3AEAD /* CLPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988397282616A000D3AEAD /* CLPlayerDelegate.swift */; };
+		5C9883A9282616A000D3AEAD /* CLPlayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988399282616A000D3AEAD /* CLPlayerContentView.swift */; };
+		5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839A282616A000D3AEAD /* CLPlayerContentPanelCell.swift */; };
+		5C9883AB282616A000D3AEAD /* CLSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839B282616A000D3AEAD /* CLSlider.swift */; };
+		5C9883AC282616A000D3AEAD /* CLPlayerContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839C282616A000D3AEAD /* CLPlayerContentViewDelegate.swift */; };
+		5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */; };
+		5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */; };
+		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
@@ -476,6 +492,22 @@
 		5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
 		5C33FD7D2744DE9B00F6DDF0 /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
 		5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
+		5C98838E282616A000D3AEAD /* CLImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImageHelper.swift; sourceTree = "<group>"; };
+		5C98838F282616A000D3AEAD /* CLPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayer.swift; sourceTree = "<group>"; };
+		5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLFullScreenLeftController.swift; sourceTree = "<group>"; };
+		5C988392282616A000D3AEAD /* CLAnimationTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLAnimationTransitioning.swift; sourceTree = "<group>"; };
+		5C988393282616A000D3AEAD /* CLFullScreenRightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLFullScreenRightController.swift; sourceTree = "<group>"; };
+		5C988394282616A000D3AEAD /* CLFullScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLFullScreenController.swift; sourceTree = "<group>"; };
+		5C988395282616A000D3AEAD /* CLGCDTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLGCDTimer.swift; sourceTree = "<group>"; };
+		5C988396282616A000D3AEAD /* CLPlayerConfigure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerConfigure.swift; sourceTree = "<group>"; };
+		5C988397282616A000D3AEAD /* CLPlayerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerDelegate.swift; sourceTree = "<group>"; };
+		5C988399282616A000D3AEAD /* CLPlayerContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentView.swift; sourceTree = "<group>"; };
+		5C98839A282616A000D3AEAD /* CLPlayerContentPanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelCell.swift; sourceTree = "<group>"; };
+		5C98839B282616A000D3AEAD /* CLSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLSlider.swift; sourceTree = "<group>"; };
+		5C98839C282616A000D3AEAD /* CLPlayerContentViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentViewDelegate.swift; sourceTree = "<group>"; };
+		5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLRotateAnimationView.swift; sourceTree = "<group>"; };
+		5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelHeadView.swift; sourceTree = "<group>"; };
+		5C98839F282616A000D3AEAD /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
 		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
 		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
 		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
@@ -1367,6 +1399,45 @@
 			path = PBFoundation;
 			sourceTree = "<group>";
 		};
+		5C98838D282616A000D3AEAD /* CLPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				5C98838E282616A000D3AEAD /* CLImageHelper.swift */,
+				5C98838F282616A000D3AEAD /* CLPlayer.swift */,
+				5C988390282616A000D3AEAD /* CLFullScreenController */,
+				5C988395282616A000D3AEAD /* CLGCDTimer.swift */,
+				5C988396282616A000D3AEAD /* CLPlayerConfigure.swift */,
+				5C988397282616A000D3AEAD /* CLPlayerDelegate.swift */,
+				5C988398282616A000D3AEAD /* CLPlayerContentView */,
+				5C98839F282616A000D3AEAD /* CLPlayer.bundle */,
+			);
+			path = CLPlayer;
+			sourceTree = "<group>";
+		};
+		5C988390282616A000D3AEAD /* CLFullScreenController */ = {
+			isa = PBXGroup;
+			children = (
+				5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */,
+				5C988392282616A000D3AEAD /* CLAnimationTransitioning.swift */,
+				5C988393282616A000D3AEAD /* CLFullScreenRightController.swift */,
+				5C988394282616A000D3AEAD /* CLFullScreenController.swift */,
+			);
+			path = CLFullScreenController;
+			sourceTree = "<group>";
+		};
+		5C988398282616A000D3AEAD /* CLPlayerContentView */ = {
+			isa = PBXGroup;
+			children = (
+				5C988399282616A000D3AEAD /* CLPlayerContentView.swift */,
+				5C98839A282616A000D3AEAD /* CLPlayerContentPanelCell.swift */,
+				5C98839B282616A000D3AEAD /* CLSlider.swift */,
+				5C98839C282616A000D3AEAD /* CLPlayerContentViewDelegate.swift */,
+				5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */,
+				5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */,
+			);
+			path = CLPlayerContentView;
+			sourceTree = "<group>";
+		};
 		5CEFE1AD280FB43E0073BC47 /* PBCommon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1952,6 +2023,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5C98838D282616A000D3AEAD /* CLPlayer */,
 				5CF05889281ABA7F0024B752 /* PBRefresh */,
 				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
 				5C0D2E102798118A00C9274E /* YNPageViewController */,
@@ -2709,6 +2781,7 @@
 				952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */,
 				95C8742E22E84E8A002795D0 /* pbimage_text.html in Resources */,
 				9575940E22F92790009CA618 /* 插入排序.gif in Resources */,
+				5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */,
 				9575945122F95120009CA618 /* PBPauseBtn.png in Resources */,
 				5C2D063D280BFBFC00C775B3 /* iOS_render.png in Resources */,
 				952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */,
@@ -2791,6 +2864,7 @@
 				5C09497E2812C679002CEBC2 /* PBCellHeightThreeCell.m in Sources */,
 				957593F322F84F3B009CA618 /* PBGCDLockController.m in Sources */,
 				95C873E722E84410002795D0 /* PBTestListView.m in Sources */,
+				5C9883A6282616A000D3AEAD /* CLGCDTimer.swift in Sources */,
 				5C2D062B280BFBFC00C775B3 /* PBYYText.m in Sources */,
 				5C2D0617280BFBFC00C775B3 /* PBCellHeightController.m in Sources */,
 				5C09497A2812C679002CEBC2 /* PBCellHeightOneView.m in Sources */,
@@ -2812,6 +2886,7 @@
 				5C09497B2812C679002CEBC2 /* PBCellHeightOneCell.m in Sources */,
 				9575934422F82A64009CA618 /* PBStorageDataBaseTwoController.m in Sources */,
 				957593D822F84F20009CA618 /* PBGCDListFourteenController.m in Sources */,
+				5C9883A2282616A000D3AEAD /* CLFullScreenLeftController.swift in Sources */,
 				B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */,
 				9575998222FC2415009CA618 /* XPathQuery.m in Sources */,
 				5C2D060A280BFBFC00C775B3 /* PBLinkageController.m in Sources */,
@@ -2819,6 +2894,8 @@
 				5C2D0610280BFBFC00C775B3 /* PBLinkageContainerCell.m in Sources */,
 				9575934122F82A64009CA618 /* PBStorageTextTwoController.m in Sources */,
 				9533420722F427D200DC7251 /* PBCopy.m in Sources */,
+				5C9883A4282616A000D3AEAD /* CLFullScreenRightController.swift in Sources */,
+				5C9883A3282616A000D3AEAD /* CLAnimationTransitioning.swift in Sources */,
 				5C0D2E2F2798118B00C9274E /* YNPageCollectionView.m in Sources */,
 				95C871BF22E71CBE002795D0 /* PBRowIndexView.m in Sources */,
 				95C8718422E708CC002795D0 /* PBCalendarView.m in Sources */,
@@ -2837,7 +2914,9 @@
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
 				95C871C022E71CBE002795D0 /* PBCenterLineView.m in Sources */,
 				957593F922F84F3B009CA618 /* PBGCDLockSevenController.m in Sources */,
+				5C9883A5282616A000D3AEAD /* CLFullScreenController.swift in Sources */,
 				5C2D062D280BFBFC00C775B3 /* PBYYTextController.m in Sources */,
+				5C9883AC282616A000D3AEAD /* CLPlayerContentViewDelegate.swift in Sources */,
 				9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */,
 				95C871AF22E71CAC002795D0 /* PBTestEspressosSCSLSeatInfo.m in Sources */,
 				5CEFEBA328117B660073BC47 /* PBCellHeightCollectionZeroController.m in Sources */,
@@ -2875,6 +2954,7 @@
 				5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */,
 				9575934D22F82B5E009CA618 /* PBStorageController.m in Sources */,
 				9575932B22F82A46009CA618 /* PBArchiver.m in Sources */,
+				5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */,
 				9575998B22FC2415009CA618 /* YYWeakProxy.m in Sources */,
 				9575940322F9275C009CA618 /* PBAlgorithmController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
@@ -2898,6 +2978,7 @@
 				5C09497D2812C679002CEBC2 /* PBCellHeightThreeView.m in Sources */,
 				95C8718522E708CC002795D0 /* PBCalendarCell.m in Sources */,
 				957593F822F84F3B009CA618 /* PBGCDLockFourController.m in Sources */,
+				5C9883A9282616A000D3AEAD /* CLPlayerContentView.swift in Sources */,
 				9516BDC724696A390070C282 /* AppDelegate.m in Sources */,
 				95D34C97267357250007A67D /* PBSwiftController.swift in Sources */,
 				95C872E022E801DA002795D0 /* PBQRCodeGenerate.m in Sources */,
@@ -2906,6 +2987,7 @@
 				957593F622F84F3B009CA618 /* PBGCDLockThreeController.m in Sources */,
 				B0F04ACC1F9E02A600F69AC3 /* PBListController.m in Sources */,
 				9575998522FC2415009CA618 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */,
 				5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */,
 				955441012328F5AB003A615C /* PBRuntimeController+Test.m in Sources */,
 				5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */,
@@ -2953,6 +3035,7 @@
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				5C0D2E302798118B00C9274E /* YNPageScrollMenuView.m in Sources */,
+				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,
 				5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,
 				95C873C322E83B39002795D0 /* PBAnnotation.m in Sources */,
@@ -2965,6 +3048,7 @@
 				95C8741322E84436002795D0 /* PBTestListTwoController.m in Sources */,
 				95C872DF22E801DA002795D0 /* PBQRCodeScan.m in Sources */,
 				5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */,
+				5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */,
 				95C873E422E84410002795D0 /* PBContentModel.m in Sources */,
 				5C0D2E4327982EAF00C9274E /* PBLinkageTopOneListController.m in Sources */,
 				95C871C322E71CBE002795D0 /* PBSeatButton.m in Sources */,
@@ -2996,6 +3080,9 @@
 				957593F722F84F3B009CA618 /* PBGCDLockTwoController.m in Sources */,
 				5C2D0643280BFBFC00C775B3 /* PBChannelHeaderView.m in Sources */,
 				9575945522F95120009CA618 /* PBPlayerMaskView.m in Sources */,
+				5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */,
+				5C9883A7282616A000D3AEAD /* CLPlayerConfigure.swift in Sources */,
+				5C9883A8282616A000D3AEAD /* CLPlayerDelegate.swift in Sources */,
 				95C872E422E801DA002795D0 /* PBQRCodeController.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
 				95C19230262548400008FD14 /* PBSyntaxController.m in Sources */,
@@ -3003,6 +3090,7 @@
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,
 				5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */,
+				5C9883AB282616A000D3AEAD /* CLSlider.swift in Sources */,
 				9575931E22F82A37009CA618 /* PBStorageOneController.m in Sources */,
 				5C2D0661280C032A00C775B3 /* PBAFNetworkingTwoController.m in Sources */,
 				9575935722F84D28009CA618 /* PBGCDOneController.m in Sources */,

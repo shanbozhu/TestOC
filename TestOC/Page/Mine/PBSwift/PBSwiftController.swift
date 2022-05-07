@@ -47,7 +47,7 @@ class PBSwiftController: PBBaseController {
     }
     
     deinit {
-        print("PBTestOneController对象被释放了")
+        print("PBSwiftController对象被释放了")
     }
     
     func requestHeaderAndBody(manager: AFHTTPRequestOperationManager) -> [String : String] {
