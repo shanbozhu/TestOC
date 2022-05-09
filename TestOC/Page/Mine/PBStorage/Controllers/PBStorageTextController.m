@@ -51,6 +51,11 @@
     NSArray *arr = @[testText, testText];
     NSDictionary *dic = @{@"testText":testText, @"name":@"helloworld", @"testTextArr":@[testText, testText]};
     
+    // block是自定义数据类型,不支持归档,会崩溃
+    void(^block)(void) = ^void(void){
+        
+    };
+    
     // 归档
     NSData *data = [PBArchiver dataWithObjects:@[str, arr, dic] keys:@[@"str", @"arr", @"dic"]];
     
