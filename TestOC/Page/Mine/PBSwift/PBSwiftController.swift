@@ -23,7 +23,8 @@ class PBSwiftController: PBBaseController {
         manager.post(requestUrl, parameters: paras, success: { (operation: AFHTTPRequestOperation?, responseObject: Any?) in
             let jsonDict: [String : AnyObject] = try! JSONSerialization.jsonObject(with: responseObject as! Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
             
-            weakSelf!.stringWithDictionary(jsonDict)
+            //weakSelf!.stringWithDictionary(jsonDict) // 页面被释放了,网络请求才回来,会崩溃
+            weakSelf?.stringWithDictionary(jsonDict)
             
         }) { (operation: AFHTTPRequestOperation?, error :Error?) in
             print(error!)
