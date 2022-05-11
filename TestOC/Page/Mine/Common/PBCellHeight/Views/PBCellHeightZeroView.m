@@ -29,6 +29,7 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.estimatedRowHeight = 0; // required
+        tableView.delaysContentTouches = NO;
         if (@available(iOS 11.0, *)) {
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

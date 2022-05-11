@@ -33,6 +33,7 @@
         if (@available(iOS 11.0, *)) {
             collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+        collectionView.delaysContentTouches = NO;
     }
     return self;
 }
@@ -109,6 +110,18 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(15, 13, 15, 13);
+}
+
+#pragma mark -
+
+-  (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = 0.3;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = 1;
 }
 
 @end

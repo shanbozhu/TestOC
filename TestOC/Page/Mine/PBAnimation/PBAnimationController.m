@@ -42,7 +42,6 @@
         scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     scrollView.delaysContentTouches = NO;
-    scrollView.canCancelContentTouches = YES;
     
     // 动画
     [self addAnimationViews];
