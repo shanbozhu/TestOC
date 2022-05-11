@@ -112,6 +112,10 @@
     return UIEdgeInsetsMake(15, 13, 15, 13);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"cell被点击了");
+}
+
 #pragma mark -
 
 -  (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
