@@ -133,7 +133,6 @@
 		952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */ = {isa = PBXBuildFile; fileRef = 952FF539265F3FC600B0D7DA /* commentgif_liked.gif */; };
 		952FF6F1265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */; };
 		952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */; };
-		952FF6F6265F7C0C00B0D7DA /* PBAnimationStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */; };
 		953341F022F405DE00DC7251 /* PBTimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953341EE22F405DE00DC7251 /* PBTimerController.m */; };
 		9533420422F427C600DC7251 /* PBCopyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420322F427C600DC7251 /* PBCopyController.m */; };
 		9533420722F427D200DC7251 /* PBCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420622F427D200DC7251 /* PBCopy.m */; };
@@ -561,8 +560,6 @@
 		952FF539265F3FC600B0D7DA /* commentgif_liked.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = commentgif_liked.gif; sourceTree = "<group>"; };
 		952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@2x.png"; sourceTree = "<group>"; };
 		952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomas_tts_invite_share_haoyou@3x.png"; sourceTree = "<group>"; };
-		952FF6F4265F7C0C00B0D7DA /* PBAnimationStateButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationStateButton.h; sourceTree = "<group>"; };
-		952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationStateButton.m; sourceTree = "<group>"; };
 		953341EE22F405DE00DC7251 /* PBTimerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTimerController.m; sourceTree = "<group>"; };
 		953341EF22F405DE00DC7251 /* PBTimerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTimerController.h; sourceTree = "<group>"; };
 		9533420222F427C600DC7251 /* PBCopyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCopyController.h; sourceTree = "<group>"; };
@@ -1561,8 +1558,6 @@
 				952FF34C265E492F00B0D7DA /* Res */,
 				952FF348265E42F300B0D7DA /* PBAnimationController.h */,
 				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
-				952FF6F4265F7C0C00B0D7DA /* PBAnimationStateButton.h */,
-				952FF6F5265F7C0C00B0D7DA /* PBAnimationStateButton.m */,
 				952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */,
 				952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */,
 				5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */,
@@ -3041,7 +3036,6 @@
 				5C0D2E2E2798118B00C9274E /* YNPageHeaderScrollView.m in Sources */,
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
-				952FF6F6265F7C0C00B0D7DA /* PBAnimationStateButton.m in Sources */,
 				952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				95D34CAF2673714E0007A67D /* PBSwiftLabel.swift in Sources */,

@@ -115,8 +115,6 @@
     // 给视图添加渐变色层
     UIView *iconView = [[UIView alloc] init];
     iconView.frame = CGRectMake(0, 0, 40, attStr.yy_font.lineHeight);
-    iconView.layer.cornerRadius = 3;
-    iconView.layer.masksToBounds = YES;
     UITapGestureRecognizer *zeroTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [iconView addGestureRecognizer:zeroTap];
     zeroTap.view.tag = 0;
@@ -130,6 +128,14 @@
     }
     [iconView.layer insertSublayer:layer atIndex:0];
     layer.colors = [NSArray arrayWithObjects:(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor, nil];
+    
+    // 给视图添加部分圆角
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:iconView.bounds
+                                                     byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight
+                                                           cornerRadii:CGSizeMake(6, 6)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.path = bezierPath.CGPath;
+    iconView.layer.mask = maskLayer;
     
     NSMutableAttributedString *attachStrZero = [NSMutableAttributedString yy_attachmentStringWithContent:iconView contentMode:UIViewContentModeCenter attachmentSize:iconView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
     [attachStrZero yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrZero.yy_rangeOfAll];
