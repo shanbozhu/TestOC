@@ -77,12 +77,12 @@
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.alpha = 0.3;
+    cell.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
 }
 
 - (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.alpha = 1;
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 @end
