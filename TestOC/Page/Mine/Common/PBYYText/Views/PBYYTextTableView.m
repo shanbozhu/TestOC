@@ -12,7 +12,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
-        self.delaysContentTouches = NO;
+        self.delaysContentTouches = NO; // required
     }
     return self;
 }

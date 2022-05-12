@@ -29,7 +29,6 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.estimatedRowHeight = 0; // required
-        tableView.delaysContentTouches = NO;
         if (@available(iOS 11.0, *)) {
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
@@ -71,18 +70,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"cell被点击了");
-}
-
-#pragma mark -
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
-}
-
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor clearColor];
+    [UIView animateWithDuration:0.4 animations:^{
+        cell.backgroundColor = [UIColor clearColor];
+    }];
 }
 
 @end
