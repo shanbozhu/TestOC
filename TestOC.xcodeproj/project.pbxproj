@@ -61,7 +61,6 @@
 		5C2D062B280BFBFC00C775B3 /* PBYYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05C9280BFBFC00C775B3 /* PBYYText.m */; };
 		5C2D062C280BFBFC00C775B3 /* PBRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05CE280BFBFC00C775B3 /* PBRegex.m */; };
 		5C2D062D280BFBFC00C775B3 /* PBYYTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05CF280BFBFC00C775B3 /* PBYYTextController.m */; };
-		5C2D062E280BFBFC00C775B3 /* PBYYTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05D2280BFBFC00C775B3 /* PBYYTextTableView.m */; };
 		5C2D062F280BFBFC00C775B3 /* PBYYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05D3280BFBFC00C775B3 /* PBYYTextView.m */; };
 		5C2D0630280BFBFC00C775B3 /* PBYYTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05D4280BFBFC00C775B3 /* PBYYTextCell.m */; };
 		5C2D063C280BFBFC00C775B3 /* iOS_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05EF280BFBFC00C775B3 /* iOS_origin.png */; };
@@ -437,10 +436,8 @@
 		5C2D05CE280BFBFC00C775B3 /* PBRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRegex.m; sourceTree = "<group>"; };
 		5C2D05CF280BFBFC00C775B3 /* PBYYTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextController.m; sourceTree = "<group>"; };
 		5C2D05D0280BFBFC00C775B3 /* PBYYTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextController.h; sourceTree = "<group>"; };
-		5C2D05D2280BFBFC00C775B3 /* PBYYTextTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextTableView.m; sourceTree = "<group>"; };
 		5C2D05D3280BFBFC00C775B3 /* PBYYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextView.m; sourceTree = "<group>"; };
 		5C2D05D4280BFBFC00C775B3 /* PBYYTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYTextCell.m; sourceTree = "<group>"; };
-		5C2D05D5280BFBFC00C775B3 /* PBYYTextTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextTableView.h; sourceTree = "<group>"; };
 		5C2D05D6280BFBFC00C775B3 /* PBYYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextView.h; sourceTree = "<group>"; };
 		5C2D05D7280BFBFC00C775B3 /* PBYYTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYTextCell.h; sourceTree = "<group>"; };
 		5C2D05EF280BFBFC00C775B3 /* iOS_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_origin.png; sourceTree = "<group>"; };
@@ -1242,8 +1239,6 @@
 		5C2D05D1280BFBFC00C775B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05D5280BFBFC00C775B3 /* PBYYTextTableView.h */,
-				5C2D05D2280BFBFC00C775B3 /* PBYYTextTableView.m */,
 				5C2D05D6280BFBFC00C775B3 /* PBYYTextView.h */,
 				5C2D05D3280BFBFC00C775B3 /* PBYYTextView.m */,
 				5C2D05D7280BFBFC00C775B3 /* PBYYTextCell.h */,
@@ -3081,7 +3076,6 @@
 				95C871AC22E71CAC002795D0 /* PBTestEspressosSeatCon.m in Sources */,
 				95C1922726246FE40008FD14 /* PBSyntax.m in Sources */,
 				9575931322F81E7E009CA618 /* PBMemoryList.m in Sources */,
-				5C2D062E280BFBFC00C775B3 /* PBYYTextTableView.m in Sources */,
 				957593D222F84F20009CA618 /* PBGCDListEightController.m in Sources */,
 				5C2D060D280BFBFC00C775B3 /* PBLinkageSectionView.m in Sources */,
 				957593F722F84F3B009CA618 /* PBGCDLockTwoController.m in Sources */,

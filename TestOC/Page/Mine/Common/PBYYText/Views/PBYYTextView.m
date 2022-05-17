@@ -8,7 +8,6 @@
 
 #import "PBYYTextView.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "PBYYTextTableView.h"
 #import "PBYYTextCell.h"
 
 @interface PBYYTextView ()<UITableViewDelegate, UITableViewDataSource, PBYYTextCellDelegate>
@@ -25,9 +24,10 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        UITableView *tableView = [[PBYYTextTableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
         self.tableView = tableView;
         [self addSubview:tableView];
+        tableView.delaysContentTouches = NO; // required
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.estimatedRowHeight = 0;
