@@ -68,23 +68,25 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
+    NSMutableString *mutableStr = [NSMutableString stringWithFormat:@"【%ld】", indexPath.row];
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"frame布局,通用手动算高";
+        [mutableStr appendString:@"frame布局,通用手动算高"];
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"frame布局,手动算高";
+        [mutableStr appendString:@"frame布局,手动算高"];
     } else if (indexPath.row == 2) {
-        cell.textLabel.text = @"frame布局,自动算高";
+        [mutableStr appendString:@"frame布局,自动算高"];
     } else if (indexPath.row == 3) {
-        cell.textLabel.text = @"autolayout布局,手动算高";
+        [mutableStr appendString:@"autolayout布局,手动算高"];
     } else if (indexPath.row == 4) {
-        cell.textLabel.text = @"autolayout布局,自动算高";
+        [mutableStr appendString:@"autolayout布局,自动算高"];
     } else if (indexPath.row == 5) {
-        cell.textLabel.text = @"frame布局,通用手动算高_UICollectionView";
+        [mutableStr appendString:@"frame布局,通用手动算高_UICollectionView"];
     } else if (indexPath.row == 6) {
-        cell.textLabel.text = @"WaterfallLayout瀑布流_UICollectionView";
+        [mutableStr appendString:@"WaterfallLayout瀑布流_UICollectionView"];
     } else if (indexPath.row == 7) {
-        cell.textLabel.text = @"Cycle无限轮播_UICollectionView";
+        [mutableStr appendString:@"Cycle无限轮播_UICollectionView"];
     }
+    cell.textLabel.text = mutableStr;
     return cell;
 }
 
