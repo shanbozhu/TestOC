@@ -12,6 +12,7 @@
 #import "PBCellHeightTwoController.h"
 #import "PBCellHeightThreeController.h"
 #import "PBCellHeightFourController.h"
+#import "PBCellHeightFiveController.h"
 #import "PBCellHeightCollectionZeroController.h"
 #import "PBCellHeightCollectionOneController.h"
 #import "PBCellHeightCollectionTwoController.h"
@@ -56,7 +57,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return 9;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,10 +81,12 @@
     } else if (indexPath.row == 4) {
         [mutableStr appendString:@"autolayout布局,自动算高"];
     } else if (indexPath.row == 5) {
-        [mutableStr appendString:@"frame布局,通用手动算高_UICollectionView"];
+        [mutableStr appendString:@"frame布局,手动算高_viewModel"];
     } else if (indexPath.row == 6) {
-        [mutableStr appendString:@"WaterfallLayout瀑布流_UICollectionView"];
+        [mutableStr appendString:@"frame布局,通用手动算高_UICollectionView"];
     } else if (indexPath.row == 7) {
+        [mutableStr appendString:@"WaterfallLayout瀑布流_UICollectionView"];
+    } else if (indexPath.row == 8) {
         [mutableStr appendString:@"Cycle无限轮播_UICollectionView"];
     }
     cell.textLabel.text = mutableStr;
@@ -119,16 +122,21 @@
         [self.navigationController pushViewController:testListFourController animated:YES];
         testListFourController.view.backgroundColor = [UIColor whiteColor];
     } else if (indexPath.row == 5) {
-        PBCellHeightCollectionZeroController *testListController = [[PBCellHeightCollectionZeroController alloc]init];
+        PBCellHeightFiveController *testListController = [[PBCellHeightFiveController alloc]init];
         
         [self.navigationController pushViewController:testListController animated:YES];
         testListController.view.backgroundColor = [UIColor whiteColor];
     } else if (indexPath.row == 6) {
-        PBCellHeightCollectionOneController *testListController = [[PBCellHeightCollectionOneController alloc]init];
+        PBCellHeightCollectionZeroController *testListController = [[PBCellHeightCollectionZeroController alloc]init];
         
         [self.navigationController pushViewController:testListController animated:YES];
         testListController.view.backgroundColor = [UIColor whiteColor];
     } else if (indexPath.row == 7) {
+        PBCellHeightCollectionOneController *testListController = [[PBCellHeightCollectionOneController alloc]init];
+        
+        [self.navigationController pushViewController:testListController animated:YES];
+        testListController.view.backgroundColor = [UIColor whiteColor];
+    } else if (indexPath.row == 8) {
         PBCellHeightCollectionTwoController *testListController = [[PBCellHeightCollectionTwoController alloc]init];
         
         [self.navigationController pushViewController:testListController animated:YES];
