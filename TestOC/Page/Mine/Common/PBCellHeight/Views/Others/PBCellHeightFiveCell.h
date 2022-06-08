@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <YYText.h>
-
-#define labFont 15
+#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightFiveCell : UITableViewCell
 
-@property (nonatomic, weak) YYLabel *lab;
-@property (nonatomic, weak) UIImageView *oneImageView;
+@property (nonatomic, strong) PBCellHeightFiveCellVM *fiveCellVM;
 
 + (id)testListFiveCellWithTableView:(UITableView *)tableView;
 

@@ -57,7 +57,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightFiveCell *cell = [PBCellHeightFiveCell testListFiveCellWithTableView:tableView];
     PBCellHeightFiveCellVM *fiveCellVM = self.testListArr[indexPath.row];
-    [fiveCellVM configureCell:cell];
+    cell.fiveCellVM = fiveCellVM;
     return cell;
 }
 

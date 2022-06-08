@@ -11,6 +11,8 @@
 
 @interface PBCellHeightFiveCell ()
 
+@property (nonatomic, weak) YYLabel *lab;
+@property (nonatomic, weak) UIImageView *oneImageView;
 
 @end
 
@@ -41,6 +43,20 @@
         imageView.layer.borderWidth = 1.1;
     }
     return self;
+}
+
+- (void)setFiveCellVM:(PBCellHeightFiveCellVM *)fiveCellVM {
+    _fiveCellVM = fiveCellVM;
+    [self fillCellHeightFiveCell];
+}
+
+- (void)fillCellHeightFiveCell {
+    //
+    self.lab.frame = self.fiveCellVM.labRect;
+    self.lab.text = self.fiveCellVM.testListData.content;
+    
+    //
+    self.oneImageView.frame = self.fiveCellVM.imageViewRect;
 }
 
 - (void)dealloc {

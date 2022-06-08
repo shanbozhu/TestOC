@@ -7,16 +7,11 @@
 //
 
 #import "PBCellHeightFiveCellVM.h"
+#import <YYText.h>
 
 @interface PBCellHeightFiveCellVM ()
 
-@property (nonatomic, strong) PBCellHeightZeroData *testListData;
-
-@property (nonatomic, assign) CGRect labRect;
-@property (nonatomic, assign) CGRect imageViewRect;
-
 @end
-
 
 @implementation PBCellHeightFiveCellVM
 
@@ -40,16 +35,6 @@
     
     //
     self.cellHeight = CGRectGetMaxY(self.imageViewRect) + 20; // 提前将各控件的frame计算好
-}
-
-#pragma mark -
-- (void)configureCell:(PBCellHeightFiveCell *)cell {
-    //
-    cell.lab.frame = self.labRect;
-    cell.lab.text = self.testListData.content;
-    
-    //
-    cell.oneImageView.frame = self.imageViewRect;
 }
 
 @end
