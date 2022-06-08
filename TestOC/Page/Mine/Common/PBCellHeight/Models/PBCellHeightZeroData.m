@@ -18,6 +18,10 @@
     if (self = [super init]) {
         
         [self setValuesForKeysWithDictionary:dict];
+        
+        // required
+        self.fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
+        [self.fiveCellVM layoutInfoWithData:self];
     }
     return self;
 }

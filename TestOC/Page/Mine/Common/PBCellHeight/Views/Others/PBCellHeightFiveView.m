@@ -7,9 +7,7 @@
 //
 
 #import "PBCellHeightFiveView.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 #import "PBCellHeightFiveCell.h"
-#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightFiveView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -35,29 +33,23 @@
     return self;
 }
 
-- (void)setTestListArr:(NSMutableArray *)testListArr {
-    _testListArr = testListArr;
-    [self.tableView reloadData];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.testListArr.count;
+    return self.testList.data.count;
 }
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PBCellHeightFiveCellVM *fiveCellVM = self.testListArr[indexPath.row];
-    return fiveCellVM.cellHeight;
+    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
+    return testListData.fiveCellVM.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightFiveCell *cell = [PBCellHeightFiveCell testListFiveCellWithTableView:tableView];
-    PBCellHeightFiveCellVM *fiveCellVM = self.testListArr[indexPath.row];
-    cell.fiveCellVM = fiveCellVM;
+    cell.testListData = self.testList.data[indexPath.row];
     return cell;
 }
 

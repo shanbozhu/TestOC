@@ -7,6 +7,7 @@
 //
 
 #import "PBCellHeightFiveCell.h"
+#import <YYText.h>
 #import <Masonry.h>
 
 @interface PBCellHeightFiveCell ()
@@ -45,18 +46,18 @@
     return self;
 }
 
-- (void)setFiveCellVM:(PBCellHeightFiveCellVM *)fiveCellVM {
-    _fiveCellVM = fiveCellVM;
-    [self fillCellHeightFiveCell];
+- (void)setTestListData:(PBCellHeightZeroData *)testListData {
+    _testListData = testListData;
+    [self fillTestListCell];
 }
 
-- (void)fillCellHeightFiveCell {
+- (void)fillTestListCell {
     //
-    self.lab.frame = self.fiveCellVM.labRect;
-    self.lab.text = self.fiveCellVM.testListData.content;
+    self.lab.frame = self.testListData.fiveCellVM.labRect;
+    self.lab.text = self.testListData.content;
     
     //
-    self.oneImageView.frame = self.fiveCellVM.imageViewRect;
+    self.oneImageView.frame = self.testListData.fiveCellVM.imageViewRect;
 }
 
 - (void)dealloc {

@@ -10,7 +10,6 @@
 #import "PBCellHeightFiveView.h"
 #import "YYFPSLabel.h"
 #import "PBCellHeightZero.h"
-#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightFiveController ()
 
@@ -28,15 +27,7 @@
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
-    
-    //
-    NSMutableArray *testListArr = [NSMutableArray array];
-    for (int i = 0; i < testList.data.count; i++) {
-        PBCellHeightFiveCellVM *fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
-        [fiveCellVM layoutInfoWithData:testList.data[i]];
-        [testListArr addObject:fiveCellVM];
-    }
-    self.testListFiveView.testListArr = testListArr;
+    self.testListFiveView.testList = testList;
 }
 
 - (void)viewDidLoad {

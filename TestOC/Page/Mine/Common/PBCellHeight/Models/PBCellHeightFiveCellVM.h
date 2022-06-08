@@ -7,19 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PBCellHeightZero.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #define labFont 15
 
+@class PBCellHeightZeroData;
 @interface PBCellHeightFiveCellVM : NSObject
 
 @property (nonatomic, assign) CGRect labRect;
 @property (nonatomic, assign) CGRect imageViewRect;
-@property (nonatomic, assign) CGFloat cellHeight;
 
-@property (nonatomic, strong) PBCellHeightZeroData *testListData;
+@property (nonatomic, assign) CGFloat cellHeight;
 
 - (void)layoutInfoWithData:(PBCellHeightZeroData *)testListData;
 
