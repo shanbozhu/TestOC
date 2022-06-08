@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PBCellHeightZero.h"
 
 @interface PBCellHeightFiveView : UIView
 
-@property (nonatomic, strong) PBCellHeightZero *testList;
+@property (nonatomic, strong) NSMutableArray *testListArr;
 
 + (id)testListFiveView;
 

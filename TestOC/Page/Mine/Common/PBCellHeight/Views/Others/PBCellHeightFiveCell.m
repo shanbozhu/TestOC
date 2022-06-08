@@ -7,21 +7,14 @@
 //
 
 #import "PBCellHeightFiveCell.h"
-#import <YYText.h>
 #import <Masonry.h>
 
 @interface PBCellHeightFiveCell ()
 
-@property (nonatomic, weak) YYLabel *lab;
 
 @end
 
 @implementation PBCellHeightFiveCell
-
-// required
-- (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame) + 20);
-}
 
 + (instancetype)testListFiveCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBCellHeightFiveCell"];
@@ -31,25 +24,23 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        //
         YYLabel *lab = [[YYLabel alloc] init];
         self.lab = lab;
         [self.contentView addSubview:lab];
         lab.numberOfLines = 0;
-        lab.font = [UIFont systemFontOfSize:15];
+        lab.font = [UIFont systemFontOfSize:labFont];
+        lab.layer.borderColor = [UIColor redColor].CGColor;
+        lab.layer.borderWidth = 1.1;
+        
+        //
+        UIImageView *imageView = [[UIImageView alloc] init];
+        self.oneImageView = imageView;
+        [self.contentView addSubview:imageView];
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.1;
     }
     return self;
-}
-
-- (void)setTestListData:(PBCellHeightZeroData *)testListData {
-    _testListData = testListData;
-    
-    [self fillTestListCell];
-}
-
-- (void)fillTestListCell {
-    self.lab.frame = CGRectMake(20, 20, [UIScreen mainScreen].bounds.size.width - 40, 10000);
-    self.lab.text = self.testListData.content;
-    [self.lab sizeToFit];
 }
 
 - (void)dealloc {

@@ -9,8 +9,11 @@
 #import "PBCellHeightFiveView.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "PBCellHeightFiveCell.h"
+#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightFiveView ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) UITableView *tableView;
 
 @end
 
@@ -23,6 +26,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
+        self.tableView = tableView;
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -31,28 +35,29 @@
     return self;
 }
 
+- (void)setTestListArr:(NSMutableArray *)testListArr {
+    _testListArr = testListArr;
+    [self.tableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.testList.data.count;
+    return self.testListArr.count;
 }
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView registerClass:[PBCellHeightFiveCell class] forCellReuseIdentifier:@"PBCellHeightFiveCell"];
-    return [tableView fd_heightForCellWithIdentifier:@"PBCellHeightFiveCell" configuration:^(id cell) {
-        PBCellHeightFiveCell *tmpCell = cell;
-        tmpCell.testListData = self.testList.data[indexPath.row];
-        
-        tmpCell.fd_enforceFrameLayout = YES;
-    }];
+    PBCellHeightFiveCellVM *fiveCellVM = self.testListArr[indexPath.row];
+    return fiveCellVM.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightFiveCell *cell = [PBCellHeightFiveCell testListFiveCellWithTableView:tableView];
-    cell.testListData = self.testList.data[indexPath.row];
+    PBCellHeightFiveCellVM *fiveCellVM = self.testListArr[indexPath.row];
+    [fiveCellVM configureCell:cell];
     return cell;
 }
 

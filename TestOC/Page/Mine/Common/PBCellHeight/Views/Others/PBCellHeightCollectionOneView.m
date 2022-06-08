@@ -92,7 +92,7 @@
 }
 
 - (CGFloat)colCountInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {
-    return 4;
+    return 3;
 }
 
 - (CGFloat)colMarginInCollectionViewWaterfallLayout:(PBCollectionViewWaterfallLayout *)PBCollectionViewWaterfallLayout {

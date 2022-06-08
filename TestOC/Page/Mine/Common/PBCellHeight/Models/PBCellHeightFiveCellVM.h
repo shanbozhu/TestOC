@@ -7,10 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PBCellHeightZero.h"
+#import "PBCellHeightFiveCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PBCellHeightFiveCellVM : NSObject
+
+@property (nonatomic, assign) CGFloat cellHeight;
+
+- (void)layoutInfoWithData:(PBCellHeightZeroData *)testListData;
+- (void)configureCell:(PBCellHeightFiveCell *)cell;
 
 @end
 

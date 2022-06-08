@@ -8,6 +8,48 @@
 
 #import "PBCellHeightFiveCellVM.h"
 
+@interface PBCellHeightFiveCellVM ()
+
+@property (nonatomic, strong) PBCellHeightZeroData *testListData;
+
+@property (nonatomic, assign) CGRect labRect;
+@property (nonatomic, assign) CGRect imageViewRect;
+
+@end
+
+
 @implementation PBCellHeightFiveCellVM
+
+#pragma mark -
+- (void)layoutInfoWithData:(PBCellHeightZeroData *)testListData {
+    self.testListData = testListData;
+    
+    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
+    
+    //
+    YYLabel *calLab = [[YYLabel alloc] init];
+    calLab.frame = CGRectMake(0, 0, size.width, size.height);
+    calLab.text = self.testListData.content;
+    calLab.font = [UIFont systemFontOfSize:labFont];
+    calLab.numberOfLines = 0;
+    [calLab sizeToFit];
+    self.labRect = CGRectMake(20, 20, calLab.frame.size.width, calLab.frame.size.height); // 提前将各控件的frame计算好
+    
+    //
+    self.imageViewRect = CGRectMake(CGRectGetMinX(self.labRect), CGRectGetMaxY(self.labRect) + 10, 150, 50 * (1 + arc4random_uniform(3))); // 提前将各控件的frame计算好
+    
+    //
+    self.cellHeight = CGRectGetMaxY(self.imageViewRect) + 20; // 提前将各控件的frame计算好
+}
+
+#pragma mark -
+- (void)configureCell:(PBCellHeightFiveCell *)cell {
+    //
+    cell.lab.frame = self.labRect;
+    cell.lab.text = self.testListData.content;
+    
+    //
+    cell.oneImageView.frame = self.imageViewRect;
+}
 
 @end
