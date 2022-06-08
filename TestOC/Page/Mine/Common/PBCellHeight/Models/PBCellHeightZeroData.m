@@ -30,4 +30,8 @@
     
 }
 
+- (void)dealloc {
+    NSLog(@"PBCellHeightZeroData对象被释放了");
+}
+
 @end

@@ -12,7 +12,7 @@
 
 @interface PBCellHeightFiveCellVM ()
 
-@property (nonatomic, strong) PBCellHeightZeroData *testListData;
+@property (nonatomic, weak) PBCellHeightZeroData *testListData;
 
 @end
 
@@ -37,6 +37,10 @@
     
     //
     self.cellHeight = CGRectGetMaxY(self.imageViewRect) + 20; // 提前将各控件的frame计算好
+}
+
+- (void)dealloc {
+    NSLog(@"PBCellHeightFiveCellVM对象被释放了");
 }
 
 @end
