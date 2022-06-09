@@ -87,52 +87,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 0) {
-        PBCellHeightZeroController *testListController = [[PBCellHeightZeroController alloc]init];
-        
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 1) {
-        PBCellHeightOneController *testListOneController = [[PBCellHeightOneController alloc]init];
-        
-        [self.navigationController pushViewController:testListOneController animated:YES];
-        testListOneController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 2) {
-        PBCellHeightTwoController *testListTwoController = [[PBCellHeightTwoController alloc]init];
-        
-        [self.navigationController pushViewController:testListTwoController animated:YES];
-        testListTwoController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 3) {
-        PBCellHeightThreeController *testListThreeController = [[PBCellHeightThreeController alloc]init];
-        
-        [self.navigationController pushViewController:testListThreeController animated:YES];
-        testListThreeController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 4) {
-        PBCellHeightFourController *testListFourController = [[PBCellHeightFourController alloc]init];
-        
-        [self.navigationController pushViewController:testListFourController animated:YES];
-        testListFourController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 5) {
-        PBCellHeightFiveController *testListController = [[PBCellHeightFiveController alloc]init];
-        
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 6) {
-        PBCellHeightCollectionZeroController *testListController = [[PBCellHeightCollectionZeroController alloc]init];
-        
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 7) {
-        PBCellHeightCollectionOneController *testListController = [[PBCellHeightCollectionOneController alloc]init];
-        
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    } else if (indexPath.row == 8) {
-        PBCellHeightCollectionTwoController *testListController = [[PBCellHeightCollectionTwoController alloc]init];
-        
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    }
+    NSArray *vcArr = @[@"PBCellHeightZeroController",
+                       @"PBCellHeightOneController",
+                       @"PBCellHeightTwoController",
+                       @"PBCellHeightThreeController",
+                       @"PBCellHeightFourController",
+                       @"PBCellHeightFiveController",
+                       @"PBCellHeightCollectionZeroController",
+                       @"PBCellHeightCollectionOneController",
+                       @"PBCellHeightCollectionTwoController"];
+    Class aClass = NSClassFromString(vcArr[indexPath.row]);
+    UIViewController *testListController = [[aClass alloc]init];
+    
+    [self.navigationController pushViewController:testListController animated:YES];
+    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
