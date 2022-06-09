@@ -70,25 +70,16 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
     NSMutableString *mutableStr = [NSMutableString stringWithFormat:@"【%ld】", indexPath.row];
-    if (indexPath.row == 0) {
-        [mutableStr appendString:@"frame布局,通用手动算高"];
-    } else if (indexPath.row == 1) {
-        [mutableStr appendString:@"frame布局,手动算高"];
-    } else if (indexPath.row == 2) {
-        [mutableStr appendString:@"frame布局,自动算高"];
-    } else if (indexPath.row == 3) {
-        [mutableStr appendString:@"autolayout布局,手动算高"];
-    } else if (indexPath.row == 4) {
-        [mutableStr appendString:@"autolayout布局,自动算高"];
-    } else if (indexPath.row == 5) {
-        [mutableStr appendString:@"frame布局,手动算高_viewModel"];
-    } else if (indexPath.row == 6) {
-        [mutableStr appendString:@"frame布局,通用手动算高_UICollectionView"];
-    } else if (indexPath.row == 7) {
-        [mutableStr appendString:@"WaterfallLayout瀑布流_UICollectionView"];
-    } else if (indexPath.row == 8) {
-        [mutableStr appendString:@"Cycle无限轮播_UICollectionView"];
-    }
+    NSArray *titleArr = @[@"frame布局,通用手动算高",
+                          @"frame布局,手动算高",
+                          @"frame布局,自动算高",
+                          @"autolayout布局,手动算高",
+                          @"autolayout布局,自动算高",
+                          @"frame布局,手动算高_viewModel",
+                          @"frame布局,通用手动算高_UICollectionView",
+                          @"WaterfallLayout瀑布流_UICollectionView",
+                          @"Cycle无限轮播_UICollectionView"];
+    [mutableStr appendString:titleArr[indexPath.row]];
     cell.textLabel.text = mutableStr;
     return cell;
 }
