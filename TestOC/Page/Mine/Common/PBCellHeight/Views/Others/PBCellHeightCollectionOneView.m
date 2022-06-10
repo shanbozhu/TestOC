@@ -25,8 +25,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        PBCollectionViewWaterfallLayout *layout = [[PBCollectionViewWaterfallLayout alloc] init];
-        layout.delegate = self;
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT - APPLICATION_SAFE_AREA_BOTTOM_MARGIN) collectionViewLayout:layout];
         self.collectionView = collectionView;
@@ -40,6 +39,10 @@
         
         collectionView.layer.borderColor = [UIColor blueColor].CGColor;
         collectionView.layer.borderWidth = 1.1;
+        
+        PBCollectionViewWaterfallLayout *Waterfalllayout = [[PBCollectionViewWaterfallLayout alloc] init];
+        Waterfalllayout.delegate = self;
+        collectionView.collectionViewLayout = Waterfalllayout;
         
         // 刷新
         __weak typeof(self) weakSelf = self;
