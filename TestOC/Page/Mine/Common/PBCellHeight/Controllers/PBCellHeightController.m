@@ -76,9 +76,9 @@
                           @"frame布局，自动算高",
                           @"autolayout布局，手动算高",
                           @"autolayout布局，自动算高",
-                          @"frame布局，通用手动算高_UICollectionView",
-                          @"WaterfallLayout瀑布流_UICollectionView",
-                          @"Cycle无限轮播_UICollectionView"];
+                          @"UICollectionView_frame布局，通用手动算高",
+                          @"UICollectionView_WaterfallLayout瀑布流",
+                          @"UICollectionView_Cycle无限轮播"];
     [mutableStr appendString:titleArr[indexPath.row]];
     cell.textLabel.text = mutableStr;
     return cell;

@@ -24,9 +24,9 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         //
-        PBCollectionViewWaterfallLayout *Waterfalllayout = [[PBCollectionViewWaterfallLayout alloc] init];
-        Waterfalllayout.delegate = self;
-        self.collectionView.collectionViewLayout = Waterfalllayout;
+        PBCollectionViewWaterfallLayout *waterfallLayout = [[PBCollectionViewWaterfallLayout alloc] init];
+        waterfallLayout.delegate = self;
+        self.collectionView.collectionViewLayout = waterfallLayout;
         
         // 刷新
         __weak typeof(self) weakSelf = self;
