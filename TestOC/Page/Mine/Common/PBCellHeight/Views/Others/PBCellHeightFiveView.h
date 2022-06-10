@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PBCellHeightZero.h"
+#import "PBCellHeightBaseView.h"
 
-@interface PBCellHeightFiveView : UIView
+@interface PBCellHeightFiveView : PBCellHeightBaseView
 
 @property (nonatomic, strong) PBCellHeightZero *testList;
 

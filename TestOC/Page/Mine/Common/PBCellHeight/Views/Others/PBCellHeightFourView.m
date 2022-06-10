@@ -21,11 +21,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
-        [self addSubview:tableView];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.estimatedRowHeight = 100; // required
+        self.tableView.estimatedRowHeight = 100; // required
     }
     return self;
 }

@@ -11,8 +11,6 @@
 
 @interface PBCellHeightZeroView () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) UITableView *tableView;
-
 @end
 
 @implementation PBCellHeightZeroView
@@ -23,20 +21,6 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT) style:UITableViewStylePlain];
-        self.tableView = tableView;
-        [self addSubview:tableView];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.estimatedRowHeight = 0; // required
-        if (@available(iOS 11.0, *)) {
-            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        if (@available(iOS 15, *)) {
-            tableView.sectionHeaderTopPadding = 0;
-        }
-        tableView.tableHeaderView = [UIView new];
-        tableView.tableFooterView = [UIView new];
     }
     return self;
 }
