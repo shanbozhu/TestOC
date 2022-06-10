@@ -12,15 +12,15 @@
 #import "PBCellHeightZero.h"
 #import "PBCellHeightFiveCellVM.h"
 
-@interface PBCellHeightFiveController ()
+@interface PBCellHeightFiveController () <PBCellHeightFiveViewDelegate>
 
-@property (nonatomic, weak) PBCellHeightFiveView *testListFiveView;
+@property (nonatomic, weak) PBCellHeightFiveView *testListView;
 
 @end
 
 @implementation PBCellHeightFiveController
 
-- (void)requestData {
+- (void)requestDataWithSinceId:(NSInteger)sinceId status:(NSInteger)status {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"PBCellHeightZero" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -29,6 +29,7 @@
     
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
     
+    //
     NSMutableArray *dataArr = [NSMutableArray array];
     for (PBCellHeightZeroData *testListZeroData in testList.data) {
         PBCellHeightFiveCellVM *fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
@@ -36,8 +37,28 @@
         [fiveCellVM layoutInfoWithData:testListZeroData]; // 提前计算好各控件的frame
         [dataArr addObject:fiveCellVM];
     }
+    testList.data = dataArr;
     
-    self.testListFiveView.dataArr = dataArr;
+    
+    // 提供个假值,模拟"暂无更多内容"
+    if (status != 0 && arc4random_uniform(3) == 0) {
+        testList.data = nil;
+    }
+    
+    if (status == 0) {
+        self.testListView.testList = testList;
+    } else {
+        NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:self.testListView.testList.data];
+        [tmpArr addObjectsFromArray:testList.data];
+        
+        if (testList.data.count == 0) {
+            self.testListView.testList.dataAddIsNull = YES;
+        } else {
+            self.testListView.testList.dataAddIsNull = NO;
+        }
+        self.testListView.testList.data = tmpArr;
+        self.testListView.testList = self.testListView.testList;
+    }
 }
 
 - (void)viewDidLoad {
@@ -46,12 +67,18 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
     
-    PBCellHeightFiveView *testListFiveView = [PBCellHeightFiveView testListFiveView];
-    self.testListFiveView = testListFiveView;
-    [self.view addSubview:testListFiveView];
-    testListFiveView.frame = self.view.bounds;
+    PBCellHeightFiveView *testListView = [PBCellHeightFiveView testListFiveView];
+    self.testListView = testListView;
+    [self.view addSubview:testListView];
+    testListView.frame = self.view.bounds;
+    testListView.delegate = self;
     
-    [self requestData];
+    // 默认刷新头
+    [self requestDataWithSinceId:0 status:0];
+}
+
+- (void)cellHeightFiveView:(PBCellHeightFiveView *)cellHeightFiveView sinceId:(NSInteger)sinceId status:(NSInteger)status {
+    [self requestDataWithSinceId:sinceId status:status];
 }
 
 @end
