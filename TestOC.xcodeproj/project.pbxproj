@@ -988,10 +988,10 @@
 				5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */,
 				5C42E3DF284DF5ED0065F887 /* PBCellHeightFiveCell.h */,
 				5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */,
-				5C09498728142D03002CEBC2 /* PBCellHeightCollectionOneCell.h */,
-				5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */,
 				5C09498928142D03002CEBC2 /* PBCellHeightCollectionOneView.h */,
 				5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */,
+				5C09498728142D03002CEBC2 /* PBCellHeightCollectionOneCell.h */,
+				5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
