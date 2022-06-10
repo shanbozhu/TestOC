@@ -13,8 +13,6 @@
 
 @interface PBCellHeightCollectionOneView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PBCollectionViewWaterfallLayoutDelegate>
 
-@property (nonatomic, weak) UICollectionView *collectionView;
-
 @end
 
 @implementation PBCellHeightCollectionOneView
@@ -25,32 +23,18 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - APPLICATION_NAVIGATIONBAR_HEIGHT - APPLICATION_SAFE_AREA_BOTTOM_MARGIN) collectionViewLayout:layout];
-        self.collectionView = collectionView;
-        [self addSubview:collectionView];
-        collectionView.backgroundColor = [UIColor whiteColor];
-        collectionView.delegate = self;
-        collectionView.dataSource = self;
-        if (@available(iOS 11.0, *)) {
-            collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        
-        collectionView.layer.borderColor = [UIColor blueColor].CGColor;
-        collectionView.layer.borderWidth = 1.1;
-        
+        //
         PBCollectionViewWaterfallLayout *Waterfalllayout = [[PBCollectionViewWaterfallLayout alloc] init];
         Waterfalllayout.delegate = self;
-        collectionView.collectionViewLayout = Waterfalllayout;
+        self.collectionView.collectionViewLayout = Waterfalllayout;
         
         // 刷新
         __weak typeof(self) weakSelf = self;
-        collectionView.mj_header = [PBRefresh refreshHeaderWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
+        self.collectionView.mj_header = [PBRefresh refreshHeaderWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf.delegate cellHeightCollectionOneView:strongSelf sinceId:0 status:0];
         }];
-        collectionView.mj_footer = [PBRefresh refreshFooterWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
+        self.collectionView.mj_footer = [PBRefresh refreshFooterWithTarget:self refreshingBlock:^(PBRefresh *refresh) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             NSInteger sinceId = 1000; // 提供个假值
             [strongSelf.delegate cellHeightCollectionOneView:strongSelf sinceId:sinceId status:1];

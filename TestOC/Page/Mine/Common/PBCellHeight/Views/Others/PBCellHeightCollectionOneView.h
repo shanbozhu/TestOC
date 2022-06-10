@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PBCellHeightZero.h"
+#import "PBCellHeightCollectionBaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PBCellHeightCollectionOneView : UIView
+@interface PBCellHeightCollectionOneView : PBCellHeightCollectionBaseView
 
 @property (nonatomic, strong) PBCellHeightZero *testList;
 @property (nonatomic, weak) id<PBCellHeightCollectionOneViewDelegate> delegate;
