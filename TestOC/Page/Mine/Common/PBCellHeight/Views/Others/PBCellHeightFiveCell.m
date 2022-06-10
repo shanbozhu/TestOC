@@ -46,18 +46,18 @@
     return self;
 }
 
-- (void)setTestListData:(PBCellHeightZeroData *)testListData {
-    _testListData = testListData;
+- (void)setFiveCellVM:(PBCellHeightFiveCellVM *)fiveCellVM {
+    _fiveCellVM = fiveCellVM;
     [self fillTestListCell];
 }
 
 - (void)fillTestListCell {
     //
-    self.lab.frame = self.testListData.fiveCellVM.labRect;
-    self.lab.text = self.testListData.content;
+    self.lab.frame = self.fiveCellVM.labRect;
+    self.lab.text = self.fiveCellVM.testListData.content;
     
     //
-    self.oneImageView.frame = self.testListData.fiveCellVM.imageViewRect;
+    self.oneImageView.frame = self.fiveCellVM.imageViewRect;
 }
 
 - (void)dealloc {

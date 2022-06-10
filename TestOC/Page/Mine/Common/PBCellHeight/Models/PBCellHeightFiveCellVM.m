@@ -8,11 +8,8 @@
 
 #import "PBCellHeightFiveCellVM.h"
 #import <YYText.h>
-#import "PBCellHeightZeroData.h"
 
 @interface PBCellHeightFiveCellVM ()
-
-@property (nonatomic, weak) PBCellHeightZeroData *testListData;
 
 @end
 

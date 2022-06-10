@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PBCellHeightZeroData.h"
+#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightFiveCell : UITableViewCell
 
-@property (nonatomic, strong) PBCellHeightZeroData *testListData;
+@property (nonatomic, strong) PBCellHeightFiveCellVM *fiveCellVM;
 
 + (id)testListFiveCellWithTableView:(UITableView *)tableView;
 

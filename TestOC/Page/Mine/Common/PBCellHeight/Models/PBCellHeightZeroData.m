@@ -18,10 +18,6 @@
     if (self = [super init]) {
         
         [self setValuesForKeysWithDictionary:dict];
-        
-        // required
-        self.fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
-        [self.fiveCellVM layoutInfoWithData:self]; // 提前计算好各控件的frame
     }
     return self;
 }
