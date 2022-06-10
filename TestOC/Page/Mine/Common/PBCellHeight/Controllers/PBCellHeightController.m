@@ -70,13 +70,13 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
     NSMutableString *mutableStr = [NSMutableString stringWithFormat:@"【%ld】", indexPath.row];
-    NSArray *titleArr = @[@"frame布局,手动算高_viewModel",
-                          @"frame布局,通用手动算高",
-                          @"frame布局,手动算高",
-                          @"frame布局,自动算高",
-                          @"autolayout布局,手动算高",
-                          @"autolayout布局,自动算高",
-                          @"frame布局,通用手动算高_UICollectionView",
+    NSArray *titleArr = @[@"frame布局，手动算高_viewModel",
+                          @"frame布局，通用手动算高",
+                          @"frame布局，手动算高",
+                          @"frame布局，自动算高",
+                          @"autolayout布局，手动算高",
+                          @"autolayout布局，自动算高",
+                          @"frame布局，通用手动算高_UICollectionView",
                           @"WaterfallLayout瀑布流_UICollectionView",
                           @"Cycle无限轮播_UICollectionView"];
     [mutableStr appendString:titleArr[indexPath.row]];
