@@ -27,18 +27,8 @@
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
+    // testList
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
-    
-    //
-    NSMutableArray *dataArr = [NSMutableArray array];
-    for (PBCellHeightZeroData *testListZeroData in testList.data) {
-        PBCellHeightFiveCellVM *fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
-        fiveCellVM.testListData = testListZeroData;
-        [fiveCellVM layoutInfoWithData:testListZeroData]; // 提前计算好各控件的frame
-        [dataArr addObject:fiveCellVM];
-    }
-    testList.data = dataArr;
-    
     
     // 提供个假值,模拟"暂无更多内容"
     if (status != 0 && arc4random_uniform(3) == 0) {

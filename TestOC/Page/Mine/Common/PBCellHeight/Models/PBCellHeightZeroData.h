@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightZeroData : NSObject
 
 @property (nonatomic, copy) NSString *content;
+
+@property (nonatomic, strong) PBCellHeightFiveCellVM *fiveCellVM;
 
 + (id)testListDataWithDict:(NSDictionary *)dict;
 

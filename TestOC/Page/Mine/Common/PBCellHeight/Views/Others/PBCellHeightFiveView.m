@@ -62,13 +62,13 @@
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PBCellHeightFiveCellVM *fiveCellVM = self.testList.data[indexPath.row];
-    return fiveCellVM.cellHeight;
+    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
+    return testListData.fiveCellVM.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightFiveCell *cell = [PBCellHeightFiveCell testListFiveCellWithTableView:tableView];
-    cell.fiveCellVM = self.testList.data[indexPath.row];
+    cell.testListData = self.testList.data[indexPath.row];
     return cell;
 }
 
