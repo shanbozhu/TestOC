@@ -41,7 +41,6 @@
 
 - (void)setTestListData:(PBCellHeightZeroData *)testListData {
     _testListData = testListData;
-    
     [self fillTestListCell];
 }
 
