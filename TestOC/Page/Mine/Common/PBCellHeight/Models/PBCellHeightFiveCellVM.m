@@ -31,13 +31,13 @@
     calLab.font = [UIFont systemFontOfSize:labFont];
     calLab.numberOfLines = 0;
     [calLab sizeToFit];
-    self.labRect = CGRectMake(20, 20, calLab.frame.size.width, calLab.frame.size.height); // 提前将各控件的frame计算好
+    self.labRect = CGRectMake(20, 20, calLab.frame.size.width, calLab.frame.size.height);
     
     //
-    self.imageViewRect = CGRectMake(CGRectGetMinX(self.labRect), CGRectGetMaxY(self.labRect) + 10, 150, 50 * (1 + arc4random_uniform(3))); // 提前将各控件的frame计算好
+    self.imageViewRect = CGRectMake(CGRectGetMinX(self.labRect), CGRectGetMaxY(self.labRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
     
     //
-    self.cellHeight = CGRectGetMaxY(self.imageViewRect) + 20; // 提前将各控件的frame计算好
+    self.cellHeight = CGRectGetMaxY(self.imageViewRect) + 20;
 }
 
 - (void)dealloc {
