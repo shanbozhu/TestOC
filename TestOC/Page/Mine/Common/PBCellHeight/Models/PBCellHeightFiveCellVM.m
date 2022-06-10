@@ -12,7 +12,7 @@
 
 @interface PBCellHeightFiveCellVM ()
 
-@property (nonatomic, strong) PBCellHeightZeroData *testListData;
+@property (nonatomic, weak) PBCellHeightZeroData *testListData;
 
 @end
 
