@@ -69,7 +69,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
-    NSMutableString *mutableStr = [NSMutableString stringWithFormat:@"【%ld】", indexPath.row];
+    NSMutableString *mutableStr = [NSMutableString stringWithFormat:@""];
     NSArray *titleArr = @[@"frame布局，手动算高_viewModel",
                           @"frame布局，通用手动算高",
                           @"frame布局，手动算高",
