@@ -37,9 +37,42 @@
 
 @interface PBCellHeightController ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
+
 @end
 
 @implementation PBCellHeightController
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"frame布局，手动算高_viewModel",
+                      @"frame布局，通用手动算高",
+                      @"frame布局，手动算高",
+                      @"frame布局，自动算高",
+                      @"autolayout布局，手动算高",
+                      @"autolayout布局，自动算高",
+                      @"UICollectionView_frame布局，通用手动算高",
+                      @"UICollectionView_WaterfallLayout瀑布流",
+                      @"UICollectionView_Cycle无限轮播"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBCellHeightFiveController",
+                   @"PBCellHeightZeroController",
+                   @"PBCellHeightOneController",
+                   @"PBCellHeightTwoController",
+                   @"PBCellHeightThreeController",
+                   @"PBCellHeightFourController",
+                   @"PBCellHeightCollectionZeroController",
+                   @"PBCellHeightCollectionOneController",
+                   @"PBCellHeightCollectionTwoController"];
+    }
+    return _vcArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,36 +100,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    NSMutableString *mutableStr = [NSMutableString stringWithFormat:@""];
-    NSArray *titleArr = @[@"frame布局，手动算高_viewModel",
-                          @"frame布局，通用手动算高",
-                          @"frame布局，手动算高",
-                          @"frame布局，自动算高",
-                          @"autolayout布局，手动算高",
-                          @"autolayout布局，自动算高",
-                          @"UICollectionView_frame布局，通用手动算高",
-                          @"UICollectionView_WaterfallLayout瀑布流",
-                          @"UICollectionView_Cycle无限轮播"];
-    [mutableStr appendString:titleArr[indexPath.row]];
-    cell.textLabel.text = mutableStr;
+    cell.textLabel.text = self.titleArr[indexPath.row];
+    cell.detailTextLabel.text = self.vcArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSArray *vcArr = @[@"PBCellHeightFiveController",
-                       @"PBCellHeightZeroController",
-                       @"PBCellHeightOneController",
-                       @"PBCellHeightTwoController",
-                       @"PBCellHeightThreeController",
-                       @"PBCellHeightFourController",
-                       @"PBCellHeightCollectionZeroController",
-                       @"PBCellHeightCollectionOneController",
-                       @"PBCellHeightCollectionTwoController"];
-    Class aClass = NSClassFromString(vcArr[indexPath.row]);
+    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
     UIViewController *testListController = [[aClass alloc]init];
     
     [self.navigationController pushViewController:testListController animated:YES];
