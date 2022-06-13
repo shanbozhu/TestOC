@@ -36,13 +36,17 @@
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView registerClass:[PBCellHeightOneCell class] forCellReuseIdentifier:@"PBCellHeightOneCell"];
-    return [tableView fd_heightForCellWithIdentifier:@"PBCellHeightOneCell" configuration:^(id cell) {
-        PBCellHeightOneCell *tmpCell = cell;
-        tmpCell.testListData = self.testList.data[indexPath.row];
-        
-        tmpCell.fd_enforceFrameLayout = YES;
-    }];
+    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
+    
+    if (!testListData.cellHeight) {
+        [tableView registerClass:[PBCellHeightOneCell class] forCellReuseIdentifier:@"PBCellHeightOneCell"];
+        testListData.cellHeight = [tableView fd_heightForCellWithIdentifier:@"PBCellHeightOneCell" configuration:^(id cell) {
+            PBCellHeightOneCell *tmpCell = cell;
+            tmpCell.testListData = self.testList.data[indexPath.row];
+            tmpCell.fd_enforceFrameLayout = YES;
+        }];
+    }
+    return testListData.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

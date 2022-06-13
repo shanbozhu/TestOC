@@ -12,6 +12,7 @@
 
 @interface PBCellHeightZeroData : NSObject
 
+@property (nonatomic, assign) CGFloat cellHeight; // cell的高度
 @property (nonatomic, copy) NSString *content;
 
 @property (nonatomic, strong) PBCellHeightFiveCellVM *fiveCellVM;

@@ -40,9 +40,14 @@
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    [cell removeFromSuperview];
-    return CGRectGetHeight(cell.frame);
+    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
+    
+    if (!testListData.cellHeight) {
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        [cell removeFromSuperview];
+        testListData.cellHeight = CGRectGetHeight(cell.frame);
+    }
+    return testListData.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

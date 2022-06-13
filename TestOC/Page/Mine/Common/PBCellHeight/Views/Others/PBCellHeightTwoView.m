@@ -36,7 +36,18 @@
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewAutomaticDimension;
+    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
+    
+    if (!testListData.cellHeight) {
+        return UITableViewAutomaticDimension;
+    }
+    return testListData.cellHeight;
+}
+
+// required
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
+    testListData.cellHeight = cell.frame.size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
