@@ -23,7 +23,9 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"数据库常用SQL语句使用", @"数据库存储", @"数据库存储多线程"];
+        _titleArr = @[@"数据库常用SQL语句使用",
+                      @"数据库存储",
+                      @"数据库存储多线程"];
     }
     return _titleArr;
 }
