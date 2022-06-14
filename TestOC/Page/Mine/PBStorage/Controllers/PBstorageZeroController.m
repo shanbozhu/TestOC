@@ -14,10 +14,28 @@
 @interface PBStorageZeroController ()
 
 @property (nonatomic, strong) NSArray *objs;
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
 
 @end
 
 @implementation PBStorageZeroController
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"数据库常用SQL语句使用", @"数据库存储", @"数据库存储多线程"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBStorageDataBaseController",
+                   @"PBStorageDataBaseOneController",
+                   @"PBStorageDataBaseTwoController"];
+    }
+    return _vcArr;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -30,8 +48,6 @@
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
-    
-    self.objs = @[@"数据库常用SQL语句使用", @"数据库存储", @"数据库存储多线程"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -39,43 +55,31 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objs.count;
+    return self.vcArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = self.objs[indexPath.row];
-    
+    cell.textLabel.text = self.titleArr[indexPath.row];
+    cell.detailTextLabel.text = self.vcArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        PBStorageDataBaseController *testListController = [[PBStorageDataBaseController alloc]init];
-        testListController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 1) {
-        PBStorageDataBaseOneController *testListOneController = [[PBStorageDataBaseOneController alloc]init];
-        testListOneController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testListOneController animated:YES];
-        testListOneController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 2) {
-        PBStorageDataBaseTwoController *testListTwoController = [[PBStorageDataBaseTwoController alloc]init];
-        testListTwoController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testListTwoController animated:YES];
-        testListTwoController.view.backgroundColor = [UIColor whiteColor];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    UIViewController *testListController = [[aClass alloc]init];
+    
+    [self.navigationController pushViewController:testListController animated:YES];
+    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
