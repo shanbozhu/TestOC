@@ -13,10 +13,28 @@
 @interface PBImageTextController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
 
 @end
 
 @implementation PBImageTextController
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"PBTestListController",
+                      @"PBTestListTwoController"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBTestListController",
+                   @"PBTestListTwoController"];
+    }
+    return _vcArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,31 +59,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    cell.textLabel.text = self.titleArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        PBTestListController *testListController = [[PBTestListController alloc]init];
-        testListController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 1) {
-        PBTestListTwoController *testListTwoController = [[PBTestListTwoController alloc]init];
-        testListTwoController.hidesBottomBarWhenPushed = YES;
-        
-        // 先传值,在跳转
-        // 传值
-        //testListTwoController.xxx = xxx;
-        
-        // 跳转
-        [self.navigationController pushViewController:testListTwoController animated:YES];
-        testListTwoController.view.backgroundColor = [UIColor whiteColor];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    UIViewController *testListController = [[aClass alloc]init];
+    
+    [self.navigationController pushViewController:testListController animated:YES];
+    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
