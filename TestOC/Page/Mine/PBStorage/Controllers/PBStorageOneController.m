@@ -15,11 +15,34 @@
 
 @interface PBStorageOneController ()
 
-@property (nonatomic, strong) NSArray *objs;
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
 
 @end
 
 @implementation PBStorageOneController
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"NSKeyedArchiver(向文本文件中存储二进制)",
+                      @"NSUserDefaults",
+                      @"plist(向文本文件中存储字典或数组)",
+                      @"plist多线程",
+                      @"textfile(向文本文件中存储字符串)"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBStorageTextController",
+                   @"PBStorageTextOneController",
+                   @"PBStorageTextTwoController",
+                   @"PBStorageTextThreeController",
+                   @"PBStorageTextFourController"];
+    }
+    return _vcArr;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -32,8 +55,6 @@
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
-    
-    self.objs = @[@"NSKeyedArchiver(向文本文件中存储二进制)", @"NSUserDefaults", @"plist(向文本文件中存储字典或数组)", @"plist多线程", @"textfile(向文本文件中存储字符串)"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -41,55 +62,31 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objs.count;
+    return self.vcArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = self.objs[indexPath.row];
-    
+    cell.textLabel.text = self.titleArr[indexPath.row];
+    cell.detailTextLabel.text = self.vcArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        PBStorageTextController *testTextController = [[PBStorageTextController alloc]init];
-        testTextController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testTextController animated:YES];
-        testTextController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 1) {
-        PBStorageTextOneController *testTextOneController = [[PBStorageTextOneController alloc]init];
-        testTextOneController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testTextOneController animated:YES];
-        testTextOneController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 2) {
-        PBStorageTextTwoController *testTextTwoController = [[PBStorageTextTwoController alloc]init];
-        testTextTwoController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testTextTwoController animated:YES];
-        testTextTwoController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 3) {
-        PBStorageTextThreeController *testTextThreeController = [[PBStorageTextThreeController alloc]init];
-        testTextThreeController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testTextThreeController animated:YES];
-        testTextThreeController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 4) {
-        PBStorageTextFourController *testTextFourController = [[PBStorageTextFourController alloc]init];
-        testTextFourController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:testTextFourController animated:YES];
-        testTextFourController.view.backgroundColor = [UIColor whiteColor];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    UIViewController *testListController = [[aClass alloc]init];
+    
+    [self.navigationController pushViewController:testListController animated:YES];
+    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end

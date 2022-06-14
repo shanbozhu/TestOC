@@ -13,7 +13,6 @@
 
 @interface PBStorageZeroController ()
 
-@property (nonatomic, strong) NSArray *objs;
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) NSArray *vcArr;
 
