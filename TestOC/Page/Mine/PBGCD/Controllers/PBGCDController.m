@@ -13,10 +13,29 @@
 @interface PBGCDController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
 
 @end
 
 @implementation PBGCDController
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"PBGCDZeroController",
+                      @"PBGCDOneController"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBGCDZeroController",
+                   @"PBGCDOneController"];
+    }
+    return _vcArr;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,33 +54,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.vcArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    cell.textLabel.text = self.titleArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        PBGCDZeroController *testListController = [[PBGCDZeroController alloc]init];
-        testListController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    }
-    if (indexPath.row == 1) {
-        PBGCDOneController *testListOneController = [[PBGCDOneController alloc]init];
-        testListOneController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListOneController animated:YES];
-        testListOneController.view.backgroundColor = [UIColor whiteColor];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    UIViewController *testListController = [[aClass alloc]init];
+    
+    [self.navigationController pushViewController:testListController animated:YES];
+    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
