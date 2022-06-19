@@ -25,7 +25,8 @@
 
 @interface PBGCDZeroController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray *arr;
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
 
 @end
 
@@ -41,29 +42,54 @@
 
 @implementation PBGCDZeroController
 
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"(0)dispatch_group_enter",
+                      @"(1)并行队列 + 同步执行",
+                      @"(2)并行队列 + 异步执行",
+                      @"(3)全局并行队列 + 同步执行",
+                      @"(4)全局并行队列 + 异步执行",
+                      @"(5)串行队列 + 同步执行",
+                      @"(6)串行队列 + 异步执行",
+                      @"(7)主串行队列 + 同步执行",
+                      @"(8)主串行队列 + 异步执行",
+                      @"(9)线程通信",
+                      @"(10)栅栏方法",
+                      @"(11)延时方法",
+                      @"(12)一次性方法",
+                      @"(13)并行遍历",
+                      @"(14)队列组"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBGCDListController",
+                   @"PBGCDListOneController",
+                   @"PBGCDListTwoController",
+                   @"PBGCDListThreeController",
+                   @"PBGCDListFourController",
+                   @"PBGCDListFiveController",
+                   @"PBGCDListSixController",
+                   @"PBGCDListSevenController",
+                   @"PBGCDListEightController",
+                   @"PBGCDListNineController",
+                   @"PBGCDListTenController",
+                   @"PBGCDListElevenController",
+                   @"PBGCDListTwelveController",
+                   @"PBGCDListThirteenController",
+                   @"PBGCDListFourteenController"];
+    }
+    return _vcArr;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"多线程";
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    NSArray *arr = @[@"(0)dispatch_group_enter",
-                     @"(1)并行队列 + 同步执行",
-                     @"(2)并行队列 + 异步执行",
-                     @"(3)全局并行队列 + 同步执行",
-                     @"(4)全局并行队列 + 异步执行",
-                     @"(5)串行队列 + 同步执行",
-                     @"(6)串行队列 + 异步执行",
-                     @"(7)主串行队列 + 同步执行",
-                     @"(8)主串行队列 + 异步执行",
-                     @"(9)线程通信",
-                     @"(10)栅栏方法",
-                     @"(11)延时方法",
-                     @"(12)一次性方法",
-                     @"(13)并行遍历",
-                     @"(14)队列组"];
-    self.arr = arr;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -71,145 +97,31 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.arr.count;
+    return self.vcArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = self.arr[indexPath.row];
+    cell.textLabel.text = self.titleArr[indexPath.row];
+    cell.detailTextLabel.text = self.vcArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 0) {
-        PBGCDListController *testListController = [[PBGCDListController alloc] init];
-        testListController.hidesBottomBarWhenPushed = YES;
-                
-        [self.navigationController pushViewController:testListController animated:YES];
-        testListController.view.backgroundColor = [UIColor whiteColor];
-    }
+    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    UIViewController *testListController = [[aClass alloc]init];
     
-    if (indexPath.row == 1) {
-        PBGCDListOneController *testListOneController = [[PBGCDListOneController alloc] init];
-        testListOneController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListOneController animated:YES];
-        testListOneController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 2) {
-        PBGCDListTwoController *testListTwoController = [[PBGCDListTwoController alloc] init];
-        testListTwoController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListTwoController animated:YES];
-        testListTwoController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 3) {
-        PBGCDListThreeController *testListThreeController = [[PBGCDListThreeController alloc] init];
-        testListThreeController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListThreeController animated:YES];
-        testListThreeController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 4) {
-        PBGCDListFourController *testListFourController = [[PBGCDListFourController alloc] init];
-        testListFourController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListFourController animated:YES];
-        testListFourController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 5) {
-        PBGCDListFiveController *testListFiveController = [[PBGCDListFiveController alloc] init];
-        testListFiveController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListFiveController animated:YES];
-        testListFiveController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 6) {
-        PBGCDListSixController *testListSixController = [[PBGCDListSixController alloc] init];
-        testListSixController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListSixController animated:YES];
-        testListSixController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 7) {
-        PBGCDListSevenController *testListSevenController = [[PBGCDListSevenController alloc] init];
-        testListSevenController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListSevenController animated:YES];
-        testListSevenController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 8) {
-        PBGCDListEightController *testListEightController = [[PBGCDListEightController alloc] init];
-        testListEightController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListEightController animated:YES];
-        testListEightController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 9) {
-        PBGCDListNineController *testListNineController = [[PBGCDListNineController alloc] init];
-        testListNineController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListNineController animated:YES];
-        testListNineController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 10) {
-        PBGCDListTenController *testListTenController = [[PBGCDListTenController alloc] init];
-        testListTenController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListTenController animated:YES];
-        testListTenController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 11) {
-        PBGCDListElevenController *testListElevenController = [[PBGCDListElevenController alloc] init];
-        testListElevenController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListElevenController animated:YES];
-        testListElevenController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 12) {
-        PBGCDListTwelveController *testListTwelveController = [[PBGCDListTwelveController alloc] init];
-        testListTwelveController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListTwelveController animated:YES];
-        testListTwelveController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 13) {
-        PBGCDListThirteenController *testListThirteenController = [[PBGCDListThirteenController alloc] init];
-        testListThirteenController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListThirteenController animated:YES];
-        testListThirteenController.view.backgroundColor = [UIColor whiteColor];
-    }
-    
-    if (indexPath.row == 14) {
-        PBGCDListFourteenController *testListFourteenController = [[PBGCDListFourteenController alloc] init];
-        testListFourteenController.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:testListFourteenController animated:YES];
-        testListFourteenController.view.backgroundColor = [UIColor whiteColor];
-    }
+    [self.navigationController pushViewController:testListController animated:YES];
+    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
