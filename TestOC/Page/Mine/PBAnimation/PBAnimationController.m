@@ -20,8 +20,6 @@
 @interface PBAnimationController ()
 
 @property (nonatomic, weak) UIScrollView *scrollView;
-@property (nonatomic, weak) UIImageView *stepRightImageView;
-@property (nonatomic, weak) UILabel *stepRightLab;
 
 @end
 
@@ -46,6 +44,21 @@
     
     // 气泡
     [self addBubbleViews];
+    
+    // sw
+    UISwitch *sw = [[UISwitch alloc] init];
+    [self.view addSubview:sw];
+    sw.frame = CGRectMake(200, 400, 0, 0);
+    sw.backgroundColor = kPBBackgroundColor;
+    sw.onTintColor = [UIColor blueColor];
+    sw.thumbTintColor = [UIColor redColor];
+    sw.tintColor = [UIColor yellowColor];
+    UIView *view = sw.subviews.firstObject;
+    if ([view isKindOfClass:[UIView class]] && [view respondsToSelector:@selector(backgroundColor)]) {
+        view.backgroundColor = [UIColor grayColor];
+        view.layer.cornerRadius = 15.5f;
+    }
+    sw.transform = CGAffineTransformMakeScale(0.76f, 0.73f);
 }
 
 - (void)addAnimationViews {
