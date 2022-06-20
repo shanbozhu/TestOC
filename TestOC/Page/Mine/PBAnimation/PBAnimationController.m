@@ -185,8 +185,8 @@
 - (void)addSwitchView {
     // sw
     UISwitch *sw = [[UISwitch alloc] init];
-    [self.view addSubview:sw];
-    sw.frame = CGRectMake(200, 400, 0, 0);
+    [self.scrollView addSubview:sw];
+    sw.frame = CGRectMake(200, 300, 0, 0);
     sw.backgroundColor = kPBBackgroundColor;
     sw.onTintColor = [UIColor blueColor];
     sw.thumbTintColor = [UIColor redColor];
