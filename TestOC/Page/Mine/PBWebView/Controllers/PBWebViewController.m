@@ -13,10 +13,28 @@
 @interface PBWebViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) NSArray *titleArr;
+@property (nonatomic, strong) NSArray *vcArr;
 
 @end
 
 @implementation PBWebViewController
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"UIWebView",
+                      @"WKWebView"];
+    }
+    return _titleArr;
+}
+
+- (NSArray *)vcArr {
+    if (!_vcArr) {
+        _vcArr = @[@"PBUIWebViewController",
+                   @"PBWKWebViewController"];
+    }
+    return _vcArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,14 +58,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"UIWebView";
-    } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"WKWebView";
-    }
+    cell.textLabel.text = self.titleArr[indexPath.row];
+    cell.detailTextLabel.text = self.vcArr[indexPath.row];
     return cell;
 }
 
