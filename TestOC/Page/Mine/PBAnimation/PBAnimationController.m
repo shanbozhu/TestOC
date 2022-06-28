@@ -25,6 +25,42 @@
 
 @implementation PBAnimationController
 
+#pragma mark -
+
+NSArray *allSubviews(UIView *aView) {
+    NSArray *results = [aView subviews];
+    for (UIView *eachView in aView.subviews) {
+        NSArray *subviews = allSubviews(eachView);
+        if (subviews)
+            results = [results arrayByAddingObjectsFromArray:subviews];
+    }
+    return results;
+}
+
+- (UIView *)navigationBarBottomLineView {
+    // 去掉系统导航栏底部分割线
+    NSArray *subViews = allSubviews(self.navigationController.navigationBar);
+    for (UIView *view in subViews) {
+        if ([view isKindOfClass:[UIView class]] && view.bounds.size.height > 0 && view.bounds.size.height < 1) {
+            view.hidden = YES;
+            return view;
+        }
+    }
+    return nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self navigationBarBottomLineView].hidden = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self navigationBarBottomLineView].hidden = NO;
+}
+
+#pragma mark -
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距

@@ -23,7 +23,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
+    
+    // scrollView
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    [self.view addSubview:scrollView];
+    scrollView.frame = CGRectMake(0, APPLICATION_NAVIGATIONBAR_HEIGHT, APPLICATION_FRAME_WIDTH, APPLICATION_FRAME_HEIGHT - APPLICATION_NAVIGATIONBAR_HEIGHT);
+    scrollView.contentSize = CGSizeMake(0, APPLICATION_FRAME_HEIGHT);
+    if (@available(iOS 11.0, *)) {
+        scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
 
+    
     //
     NSMutableAttributedString *attributedString = [self responseString];
 
@@ -32,7 +43,7 @@
 
     //
     BBACommentContentLabel *lab = [[BBACommentContentLabel alloc] init];
-    [self.view addSubview:lab];
+    [scrollView addSubview:lab];
     lab.layer.borderColor = [UIColor redColor].CGColor;
     lab.layer.borderWidth = 1;
     lab.backgroundColor = [UIColor whiteColor];
