@@ -10,6 +10,7 @@
 #import <YYText/YYText.h>
 #import <YYImage/YYImage.h>
 #import "PBRegex.h"
+#import "YYLabel+Copy.h"
 
 @interface PBYYTextCell ()
 
@@ -52,6 +53,8 @@
     /// oneLab
     YYLabel *oneLab = [[YYLabel alloc]init];
     [self.contentView addSubview:oneLab];
+    ///复制使用
+    [oneLab addGestureRecognizer];
     
     // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];

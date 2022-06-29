@@ -112,6 +112,9 @@
 		5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */; };
 		5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */; };
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
+		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
+		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
+		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
@@ -534,6 +537,11 @@
 		5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLRotateAnimationView.swift; sourceTree = "<group>"; };
 		5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelHeadView.swift; sourceTree = "<group>"; };
 		5C98839F282616A000D3AEAD /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
+		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
+		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
+		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
+		5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYLabel+Copy.m"; sourceTree = "<group>"; };
+		5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnifiterView.m; sourceTree = "<group>"; };
 		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
 		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
 		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
@@ -1519,6 +1527,18 @@
 			path = PBMasonry;
 			sourceTree = "<group>";
 		};
+		5CDCA715286C21BB001E4BBB /* YYLabelCopy */ = {
+			isa = PBXGroup;
+			children = (
+				5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */,
+				5CDCA717286C21BB001E4BBB /* MagnifiterView.h */,
+				5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */,
+				5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */,
+				5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */,
+			);
+			path = YYLabelCopy;
+			sourceTree = "<group>";
+		};
 		5CEFE1AD280FB43E0073BC47 /* PBCommon */ = {
 			isa = PBXGroup;
 			children = (
@@ -2102,6 +2122,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5CDCA715286C21BB001E4BBB /* YYLabelCopy */,
 				5C98838D282616A000D3AEAD /* CLPlayer */,
 				5CF05889281ABA7F0024B752 /* PBRefresh */,
 				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
@@ -2830,6 +2851,7 @@
 				95C872D222E801DA002795D0 /* pbqrcode_logo.png in Resources */,
 				5C2D066C280C03A300C775B3 /* curl in Resources */,
 				9575940D22F92790009CA618 /* 选择排序.gif in Resources */,
+				5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */,
 				952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
 				95C8723A22E72022002795D0 /* pbseatselection_xuanzhong.png in Resources */,
@@ -3137,6 +3159,7 @@
 				95C872DF22E801DA002795D0 /* PBQRCodeScan.m in Sources */,
 				5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */,
 				5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */,
+				5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */,
 				95C873E422E84410002795D0 /* PBContentModel.m in Sources */,
 				5C0D2E4327982EAF00C9274E /* PBLinkageTopOneListController.m in Sources */,
 				95C871C322E71CBE002795D0 /* PBSeatButton.m in Sources */,
@@ -3170,6 +3193,7 @@
 				9575945522F95120009CA618 /* PBPlayerMaskView.m in Sources */,
 				5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */,
 				5C9883A7282616A000D3AEAD /* CLPlayerConfigure.swift in Sources */,
+				5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */,
 				5C9883A8282616A000D3AEAD /* CLPlayerDelegate.swift in Sources */,
 				95C872E422E801DA002795D0 /* PBQRCodeController.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
