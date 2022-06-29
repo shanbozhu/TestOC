@@ -53,7 +53,7 @@
     /// oneLab
     YYLabel *oneLab = [[YYLabel alloc]init];
     [self.contentView addSubview:oneLab];
-    ///复制使用
+    // 选择复制
     [oneLab addGestureRecognizer];
     
     // 富文本(属性字符串)
