@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-// Linux 遵循"所有皆文件"
+// Linux"所有皆文件"
 // 目录也是一种文件
 // 下面为了符合常识,文件和目录区分处理
 
