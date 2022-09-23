@@ -17,7 +17,7 @@
  @property:声明私有成员变量,定义getter、setter方法
  
  @synthesize:声明私有成员变量
- @dynamic:必须手动声明私有成员变量,定义getter、setter方法
+ @dynamic:必须手动声明私有成员变量,必须手动定义getter、setter方法
  */
 
 // class property
@@ -58,7 +58,7 @@ static NSString *_someString;
 //    return _age;
 //}
 
-#pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法,私有成员变量如果需要使用也要自己声明
+#pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法
 
 - (void)setHeight:(NSString *)height {
     _height = height;
