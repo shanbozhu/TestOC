@@ -15,6 +15,7 @@
  protocol:协议,方法声明.遵守协议,实现协议方法的定义
  category:分类,方法定义
  @property:声明私有成员变量,定义getter、setter方法
+ 
  @synthesize:声明私有成员变量
  @dynamic:必须手动声明私有成员变量,定义getter、setter方法
  */
@@ -28,6 +29,7 @@ static NSString *_someString;
 
 @synthesize name=_name;
 @dynamic height;
+@dynamic someString;
 
 - (instancetype)init {
     if (self = [super init]) {
