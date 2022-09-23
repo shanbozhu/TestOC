@@ -55,7 +55,7 @@ static NSString *_someString;
 }
 
 //- (NSString *)age {
-//    return _age;
+//    return _age; // 同时重写导致未声明成员变量
 //}
 
 #pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法
