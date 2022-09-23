@@ -87,7 +87,6 @@ static NSString *_someString;
 @implementation PBSyntax (ability)
 
 - (void)setSing:(NSString *)sing {
-    // 全局存储
     // 设置self的关联对象key/value
     objc_setAssociatedObject(self, @selector(sing), sing, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
