@@ -12,7 +12,7 @@
 /**
  interface:类声明
  implementation:类定义
- protocol:协议,方法声明.遵守协议,实现协议方法的定义
+ protocol:协议,方法声明.遵守协议,调用协议方法
  category:分类,方法定义
  @property:声明私有成员变量,定义getter、setter方法
  
