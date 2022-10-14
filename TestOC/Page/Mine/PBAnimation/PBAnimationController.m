@@ -219,10 +219,16 @@ NSArray *allSubviews(UIView *aView) {
 #pragma mark - 开关
 
 - (void)addSwitchView {
+    UIView *backView = [[UIView alloc] init];
+    [self.scrollView addSubview:backView];
+    backView.backgroundColor = [UIColor lightGrayColor];
+    backView.frame = CGRectMake(200, 300, 80, 80);
+
     // sw
     UISwitch *sw = [[UISwitch alloc] init];
-    [self.scrollView addSubview:sw];
-    sw.frame = CGRectMake(200, 300, 0, 0);
+    [backView addSubview:sw];
+    sw.frame = CGRectMake((backView.frame.size.width - sw.frame.size.width) / 2.0, (backView.frame.size.height - sw.frame.size.height) / 2.0, sw.frame.size.width, sw.frame.size.height); // 先使用sw.frame.size.width,在原有大小上计算居中
+    sw.transform = CGAffineTransformMakeScale(0.76f, 0.73f); // 然后在长宽整体进行缩放,注意先后顺序
     sw.backgroundColor = kPBBackgroundColor;
     sw.onTintColor = [UIColor blueColor];
     sw.thumbTintColor = [UIColor redColor];
@@ -232,7 +238,6 @@ NSArray *allSubviews(UIView *aView) {
         view.backgroundColor = [UIColor grayColor];
         view.layer.cornerRadius = 15.5f;
     }
-    sw.transform = CGAffineTransformMakeScale(0.76f, 0.73f);
 }
 
 @end
