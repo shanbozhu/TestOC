@@ -210,17 +210,29 @@ NSArray *allSubviews(UIView *aView) {
         NSLog(@"超出父视图frame的气泡被点击了");
     };
     bubbleView.bubbleBackgroundColor = [UIColor bba_RGBColorFromHexString:@"#1CD350"];
-    [bubbleView showBubbleWithText:@"自拍测福气自拍测福气"
-                            inView:hostView];
+    [bubbleView showBubbleWithText:@"自拍测福气自拍测福气" inView:hostView];
     bubbleView.backgroundColor = kPBBackgroundColor;
     
     hostView.bubbleView = bubbleView;
     
     // 图片拉伸实现
+    UIImage *image = [UIImage imageNamed:@"qipao_right_normal_blue"];
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    NSLog(@"width = %lf, height = %lf", width, height); // 原始尺寸: width = 45.000000, height = 40.000000
+    
     UIImageView *oneBubble = [[UIImageView alloc] init];
     [self.scrollView addSubview:oneBubble];
-    oneBubble.frame = CGRectMake(200, 400, 80, 80);
     oneBubble.backgroundColor = kPBBackgroundColor;
+    
+    oneBubble.frame = CGRectMake(200, 400, 80, 100);
+    
+    // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
+    // https://zhuanlan.zhihu.com/p/322407368
+    // https://www.yotrolz.com/posts/5fe4e0ec/
+    // https://www.jianshu.com/p/c9cbbdaa9b02
+    // https://blog.51cto.com/u_15127644/4057466
+    oneBubble.image = [image stretchableImageWithLeftCapWidth:23 topCapHeight:13];
 }
 
 #pragma mark - 开关
