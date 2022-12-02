@@ -129,8 +129,8 @@
     for (CALayer *sublayer in iconView.layer.sublayers) {
         [sublayer removeFromSuperlayer];
     }
-    [iconView.layer insertSublayer:layer atIndex:0];
     layer.colors = [NSArray arrayWithObjects:(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor, nil];
+    [iconView.layer insertSublayer:layer atIndex:0];
     
     // 给视图添加部分圆角
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:iconView.bounds
