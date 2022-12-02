@@ -198,6 +198,7 @@ NSArray *allSubviews(UIView *aView) {
 #pragma mark - 气泡
 
 - (void)addBubbleViews {
+    // 代码实现
     PBBubbleImageView *hostView = [[PBBubbleImageView alloc] init];
     [self.scrollView addSubview:hostView];
     hostView.frame = CGRectMake(200, 160, 50, 50);
@@ -214,6 +215,12 @@ NSArray *allSubviews(UIView *aView) {
     bubbleView.backgroundColor = kPBBackgroundColor;
     
     hostView.bubbleView = bubbleView;
+    
+    // 图片拉伸实现
+    UIImageView *oneBubble = [[UIImageView alloc] init];
+    [self.scrollView addSubview:oneBubble];
+    oneBubble.frame = CGRectMake(200, 400, 80, 80);
+    oneBubble.backgroundColor = kPBBackgroundColor;
 }
 
 #pragma mark - 开关

@@ -93,6 +93,7 @@
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
 		5C42E3E3284DFDC10065F887 /* PBCellHeightFiveCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */; };
 		5C464D132939EBB000BA6B3D /* libswiftCoreGraphics.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */; };
+		5C464D152939F7A800BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D142939F7A800BA6B3D /* qipao_right_normal_blue@3x.png */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
 		5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5F2833AA08007B484B /* PBMasonryView.m */; };
 		5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC622833AB17007B484B /* PBMasonryOneController.m */; };
@@ -515,6 +516,7 @@
 		5C42E3E1284DFDC10065F887 /* PBCellHeightFiveCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveCellVM.h; sourceTree = "<group>"; };
 		5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveCellVM.m; sourceTree = "<group>"; };
 		5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftCoreGraphics.tbd; path = usr/lib/swift/libswiftCoreGraphics.tbd; sourceTree = SDKROOT; };
+		5C464D142939F7A800BA6B3D /* qipao_right_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_right_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMasonryController.m; sourceTree = "<group>"; };
 		5C6CDC5C2833A9A6007B484B /* PBMasonryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMasonryController.h; sourceTree = "<group>"; };
 		5C6CDC5E2833AA08007B484B /* PBMasonryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMasonryView.h; sourceTree = "<group>"; };
@@ -1664,6 +1666,7 @@
 		952FF34C265E492F00B0D7DA /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				5C464D142939F7A800BA6B3D /* qipao_right_normal_blue@3x.png */,
 				952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */,
 				952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */,
 				952FF539265F3FC600B0D7DA /* commentgif_liked.gif */,
@@ -2869,6 +2872,7 @@
 				95C872D322E801DA002795D0 /* qrcode_righttop@2x.png in Resources */,
 				952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
+				5C464D152939F7A800BA6B3D /* qipao_right_normal_blue@3x.png in Resources */,
 				952FF35F265E64A700B0D7DA /* bubble_voicesearch_lottie.json in Resources */,
 				95C872DA22E801DA002795D0 /* qrcode_flashlightcloseimage@2x.png in Resources */,
 				9575945022F95120009CA618 /* PBRound1.png in Resources */,
