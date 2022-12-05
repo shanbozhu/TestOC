@@ -220,28 +220,56 @@ NSArray *allSubviews(UIView *aView) {
     // https://www.yotrolz.com/posts/5fe4e0ec/
     // https://www.jianshu.com/p/c9cbbdaa9b02
     // https://blog.51cto.com/u_15127644/4057466
-    UIImage *image = [UIImage imageNamed:@"qipao_right_normal_blue"]; // qipao_up_normal_blue
+    UIImage *image = [UIImage imageNamed:@"qipao_up_normal_blue"]; // qipao_up_normal_blue
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
-    NSLog(@"width = %lf, height = %lf", width, height); // 原始尺寸: width = 48.000000, height = 40.000000
+    NSLog(@"width = %lf, height = %lf", width, height); // 原始尺寸: width = 40.000000, height = 48.000000
     
     UIImageView *oneBubble = [[UIImageView alloc] init];
     [self.scrollView addSubview:oneBubble];
     oneBubble.backgroundColor = kPBBackgroundColor;
-    
     oneBubble.frame = CGRectMake(150, 400, 200, 100);
     
     // iOS 5.0之前
     // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
-    //oneBubble.image = [image stretchableImageWithLeftCapWidth:23 topCapHeight:13];
+//    oneBubble.image = [image stretchableImageWithLeftCapWidth:13 topCapHeight:23];
     
     // iOS 5.0
-    //oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 30, 20)];
+//    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34)];
     
     // iOS 6.0+
     // UIImageResizingModeTile = 0,    拉伸模式,通过拉伸UIEdgeInsets指定的矩形区域来填充图片
     // UIImageResizingModeStretch = 1, 平铺模式,通过重复显示UIEdgeInsets指定的矩形区域来填充图片
-    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 30, 20) resizingMode:UIImageResizingModeStretch];
+//    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34) resizingMode:UIImageResizingModeStretch];
+    
+    oneBubble.image = [self imageStretchLeftAndRightWithContainerSize:oneBubble.frame.size image:image];
+}
+
+/**
+ 图片只拉伸两侧，不拉伸中间部位
+
+ @param imageViewSize   图片控件size
+ @param originImage     要拉伸的图片
+ @return 拉伸完成的图片
+ */
+- (UIImage *)imageStretchLeftAndRightWithContainerSize:(CGSize)imageViewSize image:(UIImage *)originImage {
+    
+    CGSize imageSize = originImage.size;
+    CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); //imageView的宽高取整，否则会出现横竖两条缝
+    
+    UIImage *image = [originImage stretchableImageWithLeftCapWidth:floorf(imageSize.width * 0.7) topCapHeight:imageSize.height * 0.5];
+    CGFloat tempWidth = (bgSize.width)/2 + (imageSize.width)/2;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake((NSInteger)tempWidth, (NSInteger)bgSize.height), NO, [UIScreen mainScreen].scale);
+    
+    [image drawInRect:CGRectMake(0, 0, (NSInteger)tempWidth, (NSInteger)bgSize.height)];
+    
+    UIImage *firstStrechImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImage *secondStrechImage = [firstStrechImage stretchableImageWithLeftCapWidth:floorf(imageSize.width * 0.3) topCapHeight:imageSize.height * 0.5];
+    
+    return secondStrechImage;
 }
 
 #pragma mark - 开关
