@@ -216,21 +216,29 @@ NSArray *allSubviews(UIView *aView) {
     oneBubble.backgroundColor = kPBBackgroundColor;
     oneBubble.frame = CGRectMake(150, 400, 200, 100);
     
-    // iOS 5.0之前
-    // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
-//    oneBubble.image = [image stretchableImageWithLeftCapWidth:13 topCapHeight:23];
+    {
+        // 拉伸中间,不拉伸两边
+        
+        // iOS 5.0之前
+        // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
+        //    oneBubble.image = [image stretchableImageWithLeftCapWidth:13 topCapHeight:23];
+        
+        // iOS 5.0
+        //    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34)];
+        
+        // iOS 6.0+
+        // UIImageResizingModeTile = 0,    拉伸模式,通过拉伸UIEdgeInsets指定的矩形区域来填充图片
+        // UIImageResizingModeStretch = 1, 平铺模式,通过重复显示UIEdgeInsets指定的矩形区域来填充图片
+        //    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34) resizingMode:UIImageResizingModeStretch];
+    }
     
-    // iOS 5.0
-//    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34)];
-    
-    // iOS 6.0+
-    // UIImageResizingModeTile = 0,    拉伸模式,通过拉伸UIEdgeInsets指定的矩形区域来填充图片
-    // UIImageResizingModeStretch = 1, 平铺模式,通过重复显示UIEdgeInsets指定的矩形区域来填充图片
-//    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34) resizingMode:UIImageResizingModeStretch];
-    
-//    oneBubble.image = [self imageStretchLeftAndRightWithContainerSize:oneBubble.frame.size image:image];
-    
-    oneBubble.image = [self imageStretchUpAndDownWithContainerSize:oneBubble.frame.size image:image];
+    {
+        // 拉伸两边,不拉伸中间
+        
+        //    oneBubble.image = [self imageStretchLeftAndRightWithContainerSize:oneBubble.frame.size image:image];
+        
+        oneBubble.image = [self imageStretchUpAndDownWithContainerSize:oneBubble.frame.size image:image];
+    }
 }
 
 /**
