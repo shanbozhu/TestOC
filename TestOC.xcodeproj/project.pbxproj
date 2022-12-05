@@ -94,6 +94,7 @@
 		5C42E3E3284DFDC10065F887 /* PBCellHeightFiveCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */; };
 		5C464D132939EBB000BA6B3D /* libswiftCoreGraphics.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */; };
 		5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */; };
+		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
 		5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5F2833AA08007B484B /* PBMasonryView.m */; };
 		5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC622833AB17007B484B /* PBMasonryOneController.m */; };
@@ -517,6 +518,7 @@
 		5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveCellVM.m; sourceTree = "<group>"; };
 		5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftCoreGraphics.tbd; path = usr/lib/swift/libswiftCoreGraphics.tbd; sourceTree = SDKROOT; };
 		5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_right_normal_blue@3x.png"; sourceTree = "<group>"; };
+		5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_up_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMasonryController.m; sourceTree = "<group>"; };
 		5C6CDC5C2833A9A6007B484B /* PBMasonryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMasonryController.h; sourceTree = "<group>"; };
 		5C6CDC5E2833AA08007B484B /* PBMasonryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMasonryView.h; sourceTree = "<group>"; };
@@ -1667,6 +1669,7 @@
 			isa = PBXGroup;
 			children = (
 				5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */,
+				5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */,
 				952FF6EF265F785900B0D7DA /* tomas_tts_invite_share_haoyou@2x.png */,
 				952FF6F0265F785900B0D7DA /* tomas_tts_invite_share_haoyou@3x.png */,
 				952FF539265F3FC600B0D7DA /* commentgif_liked.gif */,
@@ -2894,6 +2897,7 @@
 				5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */,
 				9575945122F95120009CA618 /* PBPauseBtn.png in Resources */,
 				5C2D063D280BFBFC00C775B3 /* iOS_render.png in Resources */,
+				5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */,
 				952FF517265E709D00B0D7DA /* search_weather_voice_big@3x.png in Resources */,
 				5C2D0613280BFBFC00C775B3 /* PBCellHeightZero.json in Resources */,
 				95C8723922E72022002795D0 /* pbseatselection_screenBg@3x.png in Resources */,

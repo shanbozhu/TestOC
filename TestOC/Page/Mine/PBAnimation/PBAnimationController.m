@@ -220,7 +220,7 @@ NSArray *allSubviews(UIView *aView) {
     // https://www.yotrolz.com/posts/5fe4e0ec/
     // https://www.jianshu.com/p/c9cbbdaa9b02
     // https://blog.51cto.com/u_15127644/4057466
-    UIImage *image = [UIImage imageNamed:@"qipao_right_normal_blue"];
+    UIImage *image = [UIImage imageNamed:@"qipao_right_normal_blue"]; // qipao_up_normal_blue
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
     NSLog(@"width = %lf, height = %lf", width, height); // 原始尺寸: width = 48.000000, height = 40.000000
