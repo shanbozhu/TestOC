@@ -231,8 +231,17 @@ NSArray *allSubviews(UIView *aView) {
     
     oneBubble.frame = CGRectMake(200, 400, 80, 100);
     
+    // iOS 5.0之前
     // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
-    oneBubble.image = [image stretchableImageWithLeftCapWidth:23 topCapHeight:13];
+    //oneBubble.image = [image stretchableImageWithLeftCapWidth:23 topCapHeight:13];
+    
+    // iOS 5.0
+    //oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 30, 20)];
+    
+    // iOS 6.0+
+    // UIImageResizingModeTile = 0,    拉伸模式,通过拉伸UIEdgeInsets指定的矩形区域来填充图片
+    // UIImageResizingModeStretch = 1, 平铺模式,通过重复显示UIEdgeInsets指定的矩形区域来填充图片
+    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 30, 20) resizingMode:UIImageResizingModeStretch];
 }
 
 #pragma mark - 开关
