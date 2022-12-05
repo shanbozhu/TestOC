@@ -229,7 +229,7 @@ NSArray *allSubviews(UIView *aView) {
     [self.scrollView addSubview:oneBubble];
     oneBubble.backgroundColor = kPBBackgroundColor;
     
-    oneBubble.frame = CGRectMake(200, 400, 80, 100);
+    oneBubble.frame = CGRectMake(150, 400, 200, 100);
     
     // iOS 5.0之前
     // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
