@@ -109,36 +109,22 @@ NSArray *allSubviews(UIView *aView) {
     ttsButton.layer.borderWidth = 1.0;
     ttsButton.layer.cornerRadius = 15;
     ttsButton.layer.masksToBounds = YES;
+    
+    // 左图右文
     ttsButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
     ttsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
+    
+    // 左文右图
+    if (@available(iOS 9.0, *)) {
+        ttsButton.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+    }
+    ttsButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
+    ttsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
     
     ttsButton.imageView.animationDuration = 2;
     ttsButton.imageView.animationImages = [self animateImageArray];
     ttsButton.imageView.animationRepeatCount = 0;
     [ttsButton.imageView startAnimating];
-    
-    // image array
-    UIButton *ttsButtonOne = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.scrollView addSubview:ttsButtonOne];
-    ttsButtonOne.frame = CGRectMake(animationView.pb_left, ttsButton.pb_bottom + 20, 90, 30);
-    ttsButtonOne.backgroundColor = kPBBackgroundColor;
-    [ttsButtonOne setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
-    [ttsButtonOne setTitle:@"听天气" forState:UIControlStateNormal];
-    ttsButtonOne.titleLabel.font = [UIFont systemFontOfSize:16];
-    ttsButtonOne.layer.borderColor = [UIColor bba_RGBColorFromHexString:@"#ffffff" alpha:0.6].CGColor;
-    ttsButtonOne.layer.borderWidth = 1.0;
-    ttsButtonOne.layer.cornerRadius = 15;
-    ttsButtonOne.layer.masksToBounds = YES;
-    if (@available(iOS 9.0, *)) {
-        ttsButtonOne.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft; // 左文右图
-    }
-    ttsButtonOne.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2);
-    ttsButtonOne.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-    
-    ttsButtonOne.imageView.animationDuration = 2;
-    ttsButtonOne.imageView.animationImages = [self animateImageArray];
-    ttsButtonOne.imageView.animationRepeatCount = 0;
-    [ttsButtonOne.imageView startAnimating];
     
     // gif
     NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"commentgif_liked" ofType:@"gif"];
@@ -146,7 +132,7 @@ NSArray *allSubviews(UIView *aView) {
     FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
     FLAnimatedImageView *animationImageView = [[FLAnimatedImageView alloc] init];
     [self.scrollView addSubview:animationImageView];
-    animationImageView.frame = CGRectMake(animationView.pb_left, ttsButtonOne.pb_bottom + 20, 50, 50);
+    animationImageView.frame = CGRectMake(animationView.pb_left, ttsButton.pb_bottom + 20, 50, 50);
     animationImageView.animatedImage = animatedImage;
     animationImageView.backgroundColor = kPBBackgroundColor;
     
