@@ -291,7 +291,7 @@ NSArray *allSubviews(UIView *aView) {
     UIImage *firstStrechImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    UIImage *secondStrechImage = [firstStrechImage stretchableImageWithLeftCapWidth:floorf(imageSize.width * 0.3) topCapHeight:imageSize.height * 0.7];
+    UIImage *secondStrechImage = [firstStrechImage stretchableImageWithLeftCapWidth:floorf(imageSize.width * 0.3) topCapHeight:imageSize.height * 0.3];
     
     return secondStrechImage;
 }
