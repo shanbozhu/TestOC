@@ -234,6 +234,7 @@ NSArray *allSubviews(UIView *aView) {
     
     {
         // 拉伸两边,不拉伸中间
+        // https://www.jianshu.com/p/07a4c27af1b7
         
         //    oneBubble.image = [self imageStretchLeftAndRightWithContainerSize:oneBubble.frame.size image:image];
         
