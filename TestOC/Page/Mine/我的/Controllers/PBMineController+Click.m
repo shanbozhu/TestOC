@@ -43,7 +43,7 @@
     NSString *page = self.pageArr[indexPath.row];
     Class class = NSClassFromString(page);
     if (!class) {
-        class = NSClassFromString([NSString stringWithFormat:@"TestOC.%@", page]);
+        class = NSClassFromString([NSString stringWithFormat:@"TestOC.%@", page]); // oc调用swift
     }
     UIViewController *vc = [[class alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
