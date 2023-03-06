@@ -31,7 +31,7 @@
          ------------ obj = 3
          ------------ tmp = 3
          
-         只用 *stop = YES; 相当于break的用法，但是有一点区别本次循环需要执行完成
+         只用 *stop = YES; 相当于break的用法,但是有一点区别当前循环会执行完成
          */
         NSArray *objs = @[@"1" , @"2", @"3", @"4", @"5"];
         __block NSString *tmp = nil;
@@ -76,7 +76,7 @@
          ------------ tmp = 3
          
          【强烈推荐】
-         *stop = YES; 和 return; 连用, 相当于break的用法
+         *stop = YES; 和 return; 连用,相当于break的用法
          */
         NSArray *objs = @[@"1" , @"2", @"3", @"4", @"5"];
         __block NSString *tmp = nil;
