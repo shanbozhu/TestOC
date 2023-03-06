@@ -8,25 +8,6 @@
 
 #import "PBMineController+Click.h"
 #import "PBMineView.h"
-#import "PBCommonController.h"
-#import "PBCalendarController.h"
-#import "PBSeatSelectionController.h"
-#import "PBQRCodeController.h"
-#import "PBAnnotationController.h"
-#import "PBImageTextController.h"
-#import "PBAFNetworkingController.h"
-#import "PBWebViewController.h"
-#import "PBTimerController.h"
-#import "PBCopyController.h"
-#import "PBKVOController.h"
-#import "PBMemoryController.h"
-#import "PBStorageController.h"
-#import "PBGCDController.h"
-#import "PBAlgorithmController.h"
-#import "PBAVPlayerListController.h"
-#import "PBUniversalLinkController.h"
-#import "PBRuntimeController.h"
-#import "PBMasonryController.h"
 
 @implementation PBMineController (Click)
 
@@ -34,7 +15,7 @@
     return @[@"PBCommonController",
              @"PBSwiftController",
              @"PBMasonryController",
-             @"PBArrayDeleteController",
+             @"PBArrayController",
              @"PBAllLinkageController",
              @"PBSyntaxController",
              @"PBCalendarController",

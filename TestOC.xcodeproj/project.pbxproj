@@ -115,6 +115,8 @@
 		5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */; };
 		5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */; };
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
+		5CCB742129B5B19B00853864 /* PBArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742029B5B19B00853864 /* PBArrayController.m */; };
+		5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */; };
 		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
 		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
 		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
@@ -543,6 +545,10 @@
 		5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLRotateAnimationView.swift; sourceTree = "<group>"; };
 		5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelHeadView.swift; sourceTree = "<group>"; };
 		5C98839F282616A000D3AEAD /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
+		5CCB741F29B5B19B00853864 /* PBArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBArrayController.h; sourceTree = "<group>"; };
+		5CCB742029B5B19B00853864 /* PBArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBArrayController.m; sourceTree = "<group>"; };
+		5CCB742229B5B4E700853864 /* PBArrayTraversalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayTraversalController.h; sourceTree = "<group>"; };
+		5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBArrayTraversalController.m; sourceTree = "<group>"; };
 		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
 		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
 		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
@@ -1587,8 +1593,12 @@
 		5CEFE468281030FE0073BC47 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CCB741F29B5B19B00853864 /* PBArrayController.h */,
+				5CCB742029B5B19B00853864 /* PBArrayController.m */,
 				5CEFE46A281031170073BC47 /* PBArrayDeleteController.h */,
 				5CEFE46B281031170073BC47 /* PBArrayDeleteController.m */,
+				5CCB742229B5B4E700853864 /* PBArrayTraversalController.h */,
+				5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3028,6 +3038,7 @@
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				955440FA2328F1F9003A615C /* PBRuntimeController.m in Sources */,
 				5C2D0641280BFBFC00C775B3 /* BBACommentContentLabelItem.m in Sources */,
+				5CCB742129B5B19B00853864 /* PBArrayController.m in Sources */,
 				952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */,
 				95C872E522E801DA002795D0 /* PBQRCodeScanController.m in Sources */,
 				95C871C022E71CBE002795D0 /* PBCenterLineView.m in Sources */,
@@ -3090,6 +3101,7 @@
 				95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */,
 				5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */,
 				9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */,
+				5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */,
 				9533421222F434D900DC7251 /* PBKVOListController.m in Sources */,
 				95C8718622E708CC002795D0 /* PBCalendar.m in Sources */,
 				95C8741522E84436002795D0 /* PBTestListTwoView.m in Sources */,
