@@ -31,11 +31,11 @@
 }
 
 - (void)registerEventObjects:(NSArray<id> *)eventObjects forService:(Protocol *)eventService {
-    if (!eventService || CHECK_ARRAY_INVALID(eventObjects)) {
+    if (!eventService || !eventObjects || ![eventObjects isKindOfClass:[NSArray class]] || eventObjects.count == 0) {
         return;
     }
     NSString *eventKey = NSStringFromProtocol(eventService);
-    if (CHECK_STRING_INVALID(eventKey)) {
+    if (!eventKey || ![eventKey isKindOfClass:[NSString class]] || eventKey.length == 0) {
         return;
     }
     @synchronized (self) {
