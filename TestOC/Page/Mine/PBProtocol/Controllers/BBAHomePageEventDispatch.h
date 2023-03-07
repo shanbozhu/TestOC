@@ -14,22 +14,22 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBAHomePageEventDispatch : NSObject
 
 /// 注册事件
-/// @param eventObject 事件对象，注册完成后不会影响 eventObject 的生命周期
-/// @param eventService 事件服务，即 eventObject 实现的事件协议
-- (void)registerEventObject:(id)eventObject forService:(Protocol *)eventService;
+/// @param service 事件对象，注册完成后不会影响 eventObject 的生命周期
+/// @param protocol 事件服务，即 eventObject 实现的事件协议
+- (void)registerService:(id)service protocol:(Protocol *)protocol;
 
 /// 获取所有事件对象
-/// @param eventService 事件服务
-- (NSArray *)eventObjectsForService:(Protocol *)eventService;
+/// @param protocol 事件服务
+- (NSArray *)servicesForProtocol:(Protocol *)protocol;
 
 /// 移除事件对象
-/// @param eventObject  事件对象
-/// @param eventService 事件服务，即 eventObject 实现的事件协议
-- (void)removeEventObject:(id)eventObject forService:(Protocol *)eventService;
+/// @param service  事件对象
+/// @param protocol 事件服务，即 service 实现的事件协议
+- (void)removeService:(id)service protocol:(Protocol *)protocol;
 
 /// 移除所有事件对象
-/// @param eventService 事件服务
-- (void)removeAllEventObjectsForService:(Protocol *)eventService;
+/// @param protocol 事件服务
+- (void)removeAllServicesForProtocol:(Protocol *)protocol;
 
 @end
 

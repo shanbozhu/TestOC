@@ -24,7 +24,7 @@
 }
 
 - (void)registerService:(id)service protocol:(Protocol *)protocol {
-    if (!service || !protocol) {
+    if (!protocol || !service) {
         return;
     }
     [self registerServices:@[service] protocol:protocol];
@@ -50,38 +50,38 @@
     }
 }
 
-- (NSArray *)eventObjectsForService:(Protocol *)eventService {
-    if (!eventService) {
+- (NSArray *)servicesForProtocol:(Protocol *)protocol {
+    if (!protocol) {
         return nil;
     }
-    NSArray *eventObjects = nil;
+    NSArray *services = nil;
     @synchronized (self) {
-        NSString *eventKey = NSStringFromProtocol(eventService);
-        eventObjects = [_servicesMap objectForKey:eventKey].allObjects;
+        NSString *protocolKey = NSStringFromProtocol(protocol);
+        services = [_servicesMap objectForKey:protocolKey].allObjects;
     }
-    return eventObjects;
+    return services;
 }
 
-- (void)removeEventObject:(id)eventObject forService:(Protocol *)eventService {
-    if (!eventService || !eventObject) {
+- (void)removeService:(id)service protocol:(Protocol *)protocol {
+    if (!protocol || !service) {
         return;
     }
     @synchronized (self) {
-        NSString *eventKey = NSStringFromProtocol(eventService);
-        NSHashTable *eventObjects = [_servicesMap objectForKey:eventKey];
-        if (eventObjects) {
-            [eventObjects removeObject:eventObject];
+        NSString *protocolKey = NSStringFromProtocol(protocol);
+        NSHashTable *servicesTable = [_servicesMap objectForKey:protocolKey];
+        if (servicesTable) {
+            [servicesTable removeObject:service];
         }
     }
 }
 
-- (void)removeAllEventObjectsForService:(Protocol *)eventService {
-    if (!eventService) {
+- (void)removeAllServicesForProtocol:(Protocol *)protocol {
+    if (!protocol) {
         return;
     }
     @synchronized (self) {
-        NSString *eventKey = NSStringFromProtocol(eventService);
-        [_servicesMap removeObjectForKey:eventKey];
+        NSString *protocolKey = NSStringFromProtocol(protocol);
+        [_servicesMap removeObjectForKey:protocolKey];
     }
 }
 
