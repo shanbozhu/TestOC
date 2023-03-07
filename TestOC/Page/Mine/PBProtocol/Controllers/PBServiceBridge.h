@@ -26,11 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return         所有遵守该协议的服务对象
 - (NSArray *)servicesForProtocol:(Protocol *)protocol;
 
+
 /// 注册服务类对象
 /// @param aClass   服务类对象
 /// @param protocol 服务类对象遵守的协议
 + (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol;
 
+/// 获取服务类对象
+/// @param protocol 服务类对象遵守的协议
+/// @return         遵守该协议的服务类对象
 + (Class)classServiceForProtocol:(Protocol *)protocol;
 
 @end
