@@ -31,9 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param protocol 服务类对象遵守的协议
 + (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol;
 
-/// 获取服务对象
-/// @param protocol 服务对象遵守的协议
-/// @return         所有遵守该协议的服务对象
 + (Class)classServiceForProtocol:(Protocol *)protocol;
 
 @end
