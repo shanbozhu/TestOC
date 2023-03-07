@@ -27,11 +27,11 @@
 // delegate
 - (void)CommonView:(PBCommonView *)CommonView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *page = self.pageArr[indexPath.row];
-    Class class = NSClassFromString(page);
-    if (!class) {
-        class = NSClassFromString([NSString stringWithFormat:@"TestOC.%@", page]);
+    Class aClass = NSClassFromString(page);
+    if (!aClass) {
+        aClass = NSClassFromString([NSString stringWithFormat:@"TestOC.%@", page]);
     }
-    UIViewController *vc = [[class alloc] init];
+    UIViewController *vc = [[aClass alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.title = page;
     

@@ -12,7 +12,7 @@
 /**
  interface:类声明
  implementation:类定义
- protocol:协议,方法声明.遵守协议,拥有协议方法声明
+ protocol:协议,方法声明."遵守协议,拥有协议方法声明".一个类可以遵守多个协议,一个协议也可以被多个类遵守
  category:分类,方法定义
  @property:声明私有成员变量,定义getter、setter方法
  
