@@ -13,8 +13,11 @@
 @synthesize provideData=_provideData;
 
 + (void)load {
-    [PBServiceBridge bindService:[self new]
+    [PBServiceBridge registerService:[[self alloc] init]
                         protocol:@protocol(PBServiceProtocol)];
+    
+    [PBServiceBridge registerClassService:self
+                             protocol:@protocol(PBServiceProtocol)];
 }
 
 - (NSString *)provideData {

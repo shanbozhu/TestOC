@@ -121,6 +121,7 @@
 		5CCB744129B6DAFB00853864 /* PBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB743F29B6DAFB00853864 /* PBService.m */; };
 		5CCB744829B6DB2F00853864 /* PBServiceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744629B6DB2F00853864 /* PBServiceBridge.m */; };
 		5CCB744B29B6DB4C00853864 /* PBProtocolBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744929B6DB4C00853864 /* PBProtocolBridgeController.m */; };
+		5CCB744E29B73ED600853864 /* BBAHomePageEventDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744C29B73ED600853864 /* BBAHomePageEventDispatch.m */; };
 		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
 		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
 		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
@@ -562,6 +563,8 @@
 		5CCB744729B6DB2F00853864 /* PBServiceBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceBridge.h; sourceTree = "<group>"; };
 		5CCB744929B6DB4C00853864 /* PBProtocolBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBProtocolBridgeController.m; sourceTree = "<group>"; };
 		5CCB744A29B6DB4C00853864 /* PBProtocolBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBProtocolBridgeController.h; sourceTree = "<group>"; };
+		5CCB744C29B73ED600853864 /* BBAHomePageEventDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAHomePageEventDispatch.m; sourceTree = "<group>"; };
+		5CCB744D29B73ED600853864 /* BBAHomePageEventDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAHomePageEventDispatch.h; sourceTree = "<group>"; };
 		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
 		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
 		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
@@ -1564,6 +1567,8 @@
 		5CCB742629B6039900853864 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CCB744D29B73ED600853864 /* BBAHomePageEventDispatch.h */,
+				5CCB744C29B73ED600853864 /* BBAHomePageEventDispatch.m */,
 				5CCB742829B6046200853864 /* PBProtocolController.h */,
 				5CCB742929B6046200853864 /* PBProtocolController.m */,
 				5CCB744729B6DB2F00853864 /* PBServiceBridge.h */,
@@ -3274,6 +3279,7 @@
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				5C0D2E302798118B00C9274E /* YNPageScrollMenuView.m in Sources */,
+				5CCB744E29B73ED600853864 /* BBAHomePageEventDispatch.m in Sources */,
 				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,
 				5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,

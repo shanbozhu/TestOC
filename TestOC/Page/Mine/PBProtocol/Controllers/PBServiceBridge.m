@@ -11,6 +11,7 @@
 @interface PBServiceBridge ()
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id> *serviceStore;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, id> *classServiceStore;
 
 @end
 
@@ -20,9 +21,16 @@
 
 - (NSMutableDictionary<NSString *, id> *)serviceStore {
     if (!_serviceStore) {
-        _serviceStore = [NSMutableDictionary new];
+        _serviceStore = [NSMutableDictionary dictionary];
     }
     return _serviceStore;
+}
+
+- (NSMutableDictionary<NSString *, id> *)classServiceStore {
+    if (!_classServiceStore) {
+        _classServiceStore = [NSMutableDictionary dictionary];
+    }
+    return _classServiceStore;
 }
 
 #pragma mark -
@@ -38,7 +46,7 @@
 
 #pragma mark -
 
-+ (void)bindService:(id)service protocol:(Protocol *)protocol {
++ (void)registerService:(id)service protocol:(Protocol *)protocol {
     if ([service conformsToProtocol:protocol]) {
         [[PBServiceBridge sharedInstance].serviceStore setValue:service
                                                          forKey:NSStringFromProtocol(protocol)];
@@ -47,6 +55,17 @@
 
 + (id)serviceForProtocol:(Protocol *)protocol {
     return [[PBServiceBridge sharedInstance].serviceStore valueForKey:NSStringFromProtocol(protocol)];
+}
+
+#pragma mark -
++ (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol {
+    if ([aClass conformsToProtocol:protocol]) {
+        [[PBServiceBridge sharedInstance].classServiceStore setValue:aClass forKey:NSStringFromProtocol(protocol)];
+    }
+}
+
++ (Class)classServiceForProtocol:(Protocol *)protocol {
+    return [[PBServiceBridge sharedInstance].classServiceStore valueForKey:NSStringFromProtocol(protocol)];;
 }
 
 @end

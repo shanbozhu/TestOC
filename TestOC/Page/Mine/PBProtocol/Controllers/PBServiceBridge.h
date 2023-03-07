@@ -12,8 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBServiceBridge : NSObject
 
-+ (void)bindService:(id)service protocol:(Protocol *)protocol;
+// 对象
++ (void)registerService:(id)service protocol:(Protocol *)protocol;
 + (id)serviceForProtocol:(Protocol *)protocol;
+
+// 类对象
++ (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol;
++ (Class)classServiceForProtocol:(Protocol *)protocol;
 
 @end
 
