@@ -1,33 +1,26 @@
 //
-//  BBAHomePageEventDispatch.m
+//  PBServiceDispatch.m
 //  BBAHomePage
 //
 //  Created by fanshuaifei on 2020/2/28.
 //  Copyright © 2020 Baidu. All rights reserved.
 //
 
-#import "BBAHomePageEventDispatch.h"
+#import "PBServiceDispatch.h"
 
-@interface BBAHomePageEventDispatch ()
+@interface PBServiceDispatch ()
 
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSHashTable *> *servicesMap;
 
 @end
 
-@implementation BBAHomePageEventDispatch
+@implementation PBServiceDispatch
 
 - (instancetype)init {
     if (self = [super init]) {
         _servicesMap = [NSMutableDictionary dictionary];
     }
     return self;
-}
-
-- (void)registerService:(id)service protocol:(Protocol *)protocol {
-    if (!protocol || !service) {
-        return;
-    }
-    [self registerServices:@[service] protocol:protocol];
 }
 
 - (void)registerServices:(NSArray<id> *)services protocol:(Protocol *)protocol {
@@ -48,6 +41,15 @@
             [servicesTable addObject:obj];
         }];
     }
+}
+
+#pragma mark - Public
+
+- (void)registerService:(id)service protocol:(Protocol *)protocol {
+    if (!protocol || !service) {
+        return;
+    }
+    [self registerServices:@[service] protocol:protocol];
 }
 
 - (NSArray *)servicesForProtocol:(Protocol *)protocol {

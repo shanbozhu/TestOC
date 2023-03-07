@@ -7,13 +7,13 @@
 //
 
 #import "PBServiceBridge.h"
-#import "BBAHomePageEventDispatch.h"
+#import "PBServiceDispatch.h"
 
 @interface PBServiceBridge ()
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *classServicesMap;
 
-@property (nonatomic, strong) BBAHomePageEventDispatch *eventDispatch;
+@property (nonatomic, strong) PBServiceDispatch *eventDispatch;
 
 @end
 
@@ -35,12 +35,13 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        sharedInstance.eventDispatch = [[BBAHomePageEventDispatch alloc] init];
+        
+        sharedInstance.eventDispatch = [[PBServiceDispatch alloc] init];
     });
     return sharedInstance;
 }
 
-#pragma mark -
+#pragma mark - Public
 
 + (void)registerService:(id)service protocol:(Protocol *)protocol {
     if ([service conformsToProtocol:protocol]) {
@@ -52,7 +53,6 @@
     return [[PBServiceBridge sharedInstance].eventDispatch servicesForProtocol:protocol];
 }
 
-#pragma mark -
 + (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol {
     if ([aClass conformsToProtocol:protocol]) {
         [[PBServiceBridge sharedInstance].classServicesMap setObject:NSStringFromClass([aClass class]) forKey:NSStringFromProtocol(protocol)];
