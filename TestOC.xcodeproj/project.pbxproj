@@ -1557,7 +1557,6 @@
 			isa = PBXGroup;
 			children = (
 				5CCB742629B6039900853864 /* Controllers */,
-				5CCB742729B6039900853864 /* Views */,
 			);
 			path = PBProtocol;
 			sourceTree = "<group>";
@@ -1572,13 +1571,6 @@
 				5CCB742B29B6062D00853864 /* PBBridge */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		5CCB742729B6039900853864 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5CCB742B29B6062D00853864 /* PBBridge */ = {
