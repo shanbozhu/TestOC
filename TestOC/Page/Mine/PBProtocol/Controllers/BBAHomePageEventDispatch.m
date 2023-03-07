@@ -10,7 +10,7 @@
 
 @interface BBAHomePageEventDispatch ()
 
-@property (nonatomic) NSMutableDictionary <NSString *, NSHashTable *> *servicesMap;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, NSHashTable *> *servicesMap;
 
 @end
 

@@ -7,11 +7,13 @@
 //
 
 #import "PBServiceBridge.h"
+#import "BBAHomePageEventDispatch.h"
 
 @interface PBServiceBridge ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, id> *serviceStore;
-@property (nonatomic, strong) NSMutableDictionary<NSString *, id> *classServiceStore;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *classServicesMap;
+
+@property (nonatomic, strong) BBAHomePageEventDispatch *eventDispatch;
 
 @end
 
@@ -19,27 +21,21 @@
 
 #pragma mark -
 
-- (NSMutableDictionary<NSString *, id> *)serviceStore {
-    if (!_serviceStore) {
-        _serviceStore = [NSMutableDictionary dictionary];
+- (NSMutableDictionary<NSString *, NSString *> *)classServicesMap {
+    if (!_classServicesMap) {
+        _classServicesMap = [NSMutableDictionary dictionary];
     }
-    return _serviceStore;
-}
-
-- (NSMutableDictionary<NSString *, id> *)classServiceStore {
-    if (!_classServiceStore) {
-        _classServiceStore = [NSMutableDictionary dictionary];
-    }
-    return _classServiceStore;
+    return _classServicesMap;
 }
 
 #pragma mark -
 
 + (instancetype)sharedInstance {
-    static id sharedInstance = nil;
+    static PBServiceBridge *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
+        sharedInstance.eventDispatch = [[BBAHomePageEventDispatch alloc] init];
     });
     return sharedInstance;
 }
@@ -48,24 +44,27 @@
 
 + (void)registerService:(id)service protocol:(Protocol *)protocol {
     if ([service conformsToProtocol:protocol]) {
-        [[PBServiceBridge sharedInstance].serviceStore setValue:service
-                                                         forKey:NSStringFromProtocol(protocol)];
+        [[PBServiceBridge sharedInstance].eventDispatch registerService:service protocol:protocol];
     }
 }
 
-+ (id)serviceForProtocol:(Protocol *)protocol {
-    return [[PBServiceBridge sharedInstance].serviceStore valueForKey:NSStringFromProtocol(protocol)];
+- (NSArray *)servicesForProtocol:(Protocol *)protocol {
+    return [[PBServiceBridge sharedInstance].eventDispatch servicesForProtocol:protocol];
 }
 
 #pragma mark -
 + (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol {
     if ([aClass conformsToProtocol:protocol]) {
-        [[PBServiceBridge sharedInstance].classServiceStore setValue:aClass forKey:NSStringFromProtocol(protocol)];
+        [[PBServiceBridge sharedInstance].classServicesMap setObject:NSStringFromClass([aClass class]) forKey:NSStringFromProtocol(protocol)];
     }
 }
 
 + (Class)classServiceForProtocol:(Protocol *)protocol {
-    return [[PBServiceBridge sharedInstance].classServiceStore valueForKey:NSStringFromProtocol(protocol)];
+    NSString *aClass = [[PBServiceBridge sharedInstance].classServicesMap objectForKey:NSStringFromProtocol(protocol)];
+    if (!aClass && aClass.length > 0) {
+        return NSClassFromString(aClass);
+    }
+    return nil;
 }
 
 @end

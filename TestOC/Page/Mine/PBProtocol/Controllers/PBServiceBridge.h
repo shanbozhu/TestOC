@@ -10,11 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 一个类可以遵守多个协议,一个协议可以被多个类遵守
+ */
+
 @interface PBServiceBridge : NSObject
 
 // 对象
 + (void)registerService:(id)service protocol:(Protocol *)protocol;
-+ (id)serviceForProtocol:(Protocol *)protocol;
+- (NSArray *)servicesForProtocol:(Protocol *)protocol;
 
 // 类对象
 + (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol;
