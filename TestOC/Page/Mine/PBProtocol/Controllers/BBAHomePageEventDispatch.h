@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param eventService 事件服务，即 eventObject 实现的事件协议
 - (void)registerEventObject:(id)eventObject forService:(Protocol *)eventService;
 
+/// 获取所有事件对象
+/// @param eventService 事件服务
+- (NSArray *)eventObjectsForService:(Protocol *)eventService;
+
 /// 移除事件对象
 /// @param eventObject  事件对象
 /// @param eventService 事件服务，即 eventObject 实现的事件协议
@@ -26,11 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 移除所有事件对象
 /// @param eventService 事件服务
 - (void)removeAllEventObjectsForService:(Protocol *)eventService;
-
-/// 获取所有事件对象
-/// @param eventService 事件服务
-- (NSArray *)eventObjectsForService:(Protocol *)eventService;
-
 
 @end
 

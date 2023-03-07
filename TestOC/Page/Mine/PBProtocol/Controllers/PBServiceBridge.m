@@ -65,7 +65,7 @@
 }
 
 + (Class)classServiceForProtocol:(Protocol *)protocol {
-    return [[PBServiceBridge sharedInstance].classServiceStore valueForKey:NSStringFromProtocol(protocol)];;
+    return [[PBServiceBridge sharedInstance].classServiceStore valueForKey:NSStringFromProtocol(protocol)];
 }
 
 @end

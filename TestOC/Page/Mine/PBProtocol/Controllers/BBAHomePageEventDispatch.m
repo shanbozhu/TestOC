@@ -6,8 +6,7 @@
 //  Copyright © 2020 Baidu. All rights reserved.
 //
 
-#import <BBAHomePage/BBAHomePageEventDispatch.h>
-#import <BBAFoundation/BBAFoundation.h>
+#import "BBAHomePageEventDispatch.h"
 
 @interface BBAHomePageEventDispatch ()
 
@@ -16,8 +15,6 @@
 @end
 
 @implementation BBAHomePageEventDispatch
-
-
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -53,6 +50,18 @@
     }
 }
 
+- (NSArray *)eventObjectsForService:(Protocol *)eventService {
+    if (!eventService) {
+        return nil;
+    }
+    NSArray *eventObjects = nil;
+    @synchronized (self) {
+        NSString *eventKey = NSStringFromProtocol(eventService);
+        eventObjects = [_eventMap objectForKey:eventKey].allObjects;
+    }
+    return eventObjects;
+}
+
 - (void)removeEventObject:(id)eventObject forService:(Protocol *)eventService {
     if (!eventService || !eventObject) {
         return;
@@ -66,7 +75,6 @@
     }
 }
 
-
 - (void)removeAllEventObjectsForService:(Protocol *)eventService {
     if (!eventService) {
         return;
@@ -76,20 +84,5 @@
         [_eventMap removeObjectForKey:eventKey];
     }
 }
-
-- (NSArray *)eventObjectsForService:(Protocol *)eventService {
-    if (!eventService) {
-        return nil;
-    }
-    NSArray *eventObjects = nil;
-    @synchronized (self) {
-        NSString *eventKey = NSStringFromProtocol(eventService);
-        eventObjects = [_eventMap objectForKey:eventKey].allObjects;
-    }
-    return eventObjects;
-}
-
-
-
 
 @end
