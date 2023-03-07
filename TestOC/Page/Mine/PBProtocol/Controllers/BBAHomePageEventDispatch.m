@@ -10,7 +10,7 @@
 
 @interface BBAHomePageEventDispatch ()
 
-@property (nonatomic) NSMutableDictionary <NSString *, NSHashTable *> *eventMap;
+@property (nonatomic) NSMutableDictionary <NSString *, NSHashTable *> *servicesMap;
 
 @end
 
@@ -18,34 +18,34 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _eventMap = [NSMutableDictionary dictionary];
+        _servicesMap = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)registerEventObject:(id)eventObject forService:(Protocol *)eventService {
-    if (!eventService || !eventObject) {
+- (void)registerService:(id)service protocol:(Protocol *)protocol {
+    if (!service || !protocol) {
         return;
     }
-    [self registerEventObjects:@[eventObject] forService:eventService];
+    [self registerServices:@[service] protocol:protocol];
 }
 
-- (void)registerEventObjects:(NSArray<id> *)eventObjects forService:(Protocol *)eventService {
-    if (!eventService || !eventObjects || ![eventObjects isKindOfClass:[NSArray class]] || eventObjects.count == 0) {
+- (void)registerServices:(NSArray<id> *)services protocol:(Protocol *)protocol {
+    if (!protocol || !services || ![services isKindOfClass:[NSArray class]] || services.count == 0) {
         return;
     }
-    NSString *eventKey = NSStringFromProtocol(eventService);
-    if (!eventKey || ![eventKey isKindOfClass:[NSString class]] || eventKey.length == 0) {
+    NSString *protocolKey = NSStringFromProtocol(protocol);
+    if (!protocolKey || ![protocolKey isKindOfClass:[NSString class]] || protocolKey.length == 0) {
         return;
     }
     @synchronized (self) {
-        NSHashTable *mapEventObjects = [_eventMap objectForKey:eventKey];
-        if (!mapEventObjects) {
-            mapEventObjects = [NSHashTable hashTableWithOptions:NSHashTableWeakMemory];
-            [_eventMap setObject:mapEventObjects forKey:eventKey];
+        NSHashTable *servicesTable = [_servicesMap objectForKey:protocolKey];
+        if (!servicesTable) {
+            servicesTable = [NSHashTable hashTableWithOptions:NSHashTableWeakMemory];
+            [_servicesMap setObject:servicesTable forKey:protocolKey];
         }
-        [eventObjects enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-            [mapEventObjects addObject:obj];
+        [services enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+            [servicesTable addObject:obj];
         }];
     }
 }
@@ -57,7 +57,7 @@
     NSArray *eventObjects = nil;
     @synchronized (self) {
         NSString *eventKey = NSStringFromProtocol(eventService);
-        eventObjects = [_eventMap objectForKey:eventKey].allObjects;
+        eventObjects = [_servicesMap objectForKey:eventKey].allObjects;
     }
     return eventObjects;
 }
@@ -68,7 +68,7 @@
     }
     @synchronized (self) {
         NSString *eventKey = NSStringFromProtocol(eventService);
-        NSHashTable *eventObjects = [_eventMap objectForKey:eventKey];
+        NSHashTable *eventObjects = [_servicesMap objectForKey:eventKey];
         if (eventObjects) {
             [eventObjects removeObject:eventObject];
         }
@@ -81,7 +81,7 @@
     }
     @synchronized (self) {
         NSString *eventKey = NSStringFromProtocol(eventService);
-        [_eventMap removeObjectForKey:eventKey];
+        [_servicesMap removeObjectForKey:eventKey];
     }
 }
 
