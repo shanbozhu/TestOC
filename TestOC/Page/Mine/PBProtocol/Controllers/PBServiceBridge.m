@@ -61,7 +61,7 @@
 
 + (Class)classServiceForProtocol:(Protocol *)protocol {
     NSString *aClass = [[PBServiceBridge sharedInstance].classServicesMap objectForKey:NSStringFromProtocol(protocol)];
-    if (!aClass && aClass.length > 0) {
+    if (aClass && aClass.length > 0) {
         return NSClassFromString(aClass);
     }
     return nil;
