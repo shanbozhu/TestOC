@@ -17,13 +17,7 @@
 
 @implementation BBAHomePageEventDispatch
 
-#ifdef __BAIDULITE
-- (void)removeAllEventObjects {
-    if (CHECK_DICTIONARY_VALID(_eventMap)) {
-        [_eventMap removeAllObjects];
-    }
-}
-#endif
+
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -96,8 +90,6 @@
 }
 
 
-- (id)firstEventObjectForService:(Protocol *)eventService {
-    return [self eventObjectsForService:eventService].firstObject;
-}
+
 
 @end
