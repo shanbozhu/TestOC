@@ -16,6 +16,7 @@
              @"PBSwiftController",
              @"PBMasonryController",
              @"PBArrayController",
+             @"PBProtocolController",
              @"PBAllLinkageController",
              @"PBSyntaxController",
              @"PBCalendarController",
