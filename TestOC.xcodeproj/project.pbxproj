@@ -1612,8 +1612,8 @@
 		5CCB745F29B82E2E00853864 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB746029B82E2E00853864 /* PBProtocolController.m */,
 				5CCB746129B82E2E00853864 /* PBProtocolController.h */,
+				5CCB746029B82E2E00853864 /* PBProtocolController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
