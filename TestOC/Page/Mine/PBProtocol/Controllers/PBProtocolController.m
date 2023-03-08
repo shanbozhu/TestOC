@@ -7,72 +7,46 @@
 //
 
 #import "PBProtocolController.h"
+#import "PBService.h"
+#import "PBServiceBridge.h"
 
 @interface PBProtocolController ()
 
-@property (nonatomic, strong) NSArray *titleArr;
-@property (nonatomic, strong) NSArray *vcArr;
+@property (nonatomic, strong) PBService *service;
 
 @end
 
 @implementation PBProtocolController
 
-- (NSArray *)titleArr {
-    if (!_titleArr) {
-        _titleArr = @[@"1111",
-                      @"2222"];
-    }
-    return _titleArr;
-}
-
-- (NSArray *)vcArr {
-    if (!_vcArr) {
-        _vcArr = @[@"PBProtocolBridgeController",
-                   @"PBProtocolBridgeController"];
-    }
-    return _vcArr;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.tableFooterView = [[UIView alloc]init];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:btn];
+    btn.frame = CGRectMake(100, 200, 50, 50);
+    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 注册服务对象
+    PBService *service = [[PBService alloc] init];
+    self.service = service;
+    [PBServiceBridge registerService:service protocol:@protocol(PBServiceProtocol)];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vcArr.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
+- (void)btnClick:(UIButton *)btn {
+    // 分发服务对象
+    NSArray *services = [PBServiceBridge servicesForProtocol:@protocol(PBServiceProtocol)];
+    [services enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj respondsToSelector:@selector(doSomething)]) {
+            [obj doSomething];
+        }
+    }];
+    
+    // 分发服务类对象
+    Class<PBServiceProtocol> aClass = [PBServiceBridge classServiceForProtocol:@protocol(PBServiceProtocol)];
+    if ([aClass respondsToSelector:@selector(doSomething)]) {
+        [aClass doSomething];
     }
-    cell.textLabel.text = self.titleArr[indexPath.row];
-    cell.detailTextLabel.text = self.vcArr[indexPath.row];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
-    UIViewController *testListController = [[aClass alloc]init];
-    
-    [self.navigationController pushViewController:testListController animated:YES];
-    testListController.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end
