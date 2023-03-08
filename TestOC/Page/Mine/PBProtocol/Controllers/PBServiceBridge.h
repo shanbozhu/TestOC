@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取所有服务对象
 /// @param protocol 服务对象遵守的协议
 /// @return         所有遵守该协议的服务对象
-- (NSArray *)servicesForProtocol:(Protocol *)protocol;
++ (NSArray *)servicesForProtocol:(Protocol *)protocol;
 
 
 //  服务类对象也可以存储多个,可以将类对象转化为NSString字符串存储,但是一般情况下,服务类对象只存储一个,与协议一一对应

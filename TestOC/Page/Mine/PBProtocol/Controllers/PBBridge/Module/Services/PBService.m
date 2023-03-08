@@ -10,22 +10,21 @@
 #import "PBServiceBridge.h"
 
 @implementation PBService
-@synthesize provideData=_provideData;
 
 + (void)load {
-    [PBServiceBridge registerService:[[self alloc] init]
-                        protocol:@protocol(PBServiceProtocol)];
-    
+    // 注册服务类对象
     [PBServiceBridge registerClassService:self
-                             protocol:@protocol(PBServiceProtocol)];
+                                 protocol:@protocol(PBServiceProtocol)];
 }
 
-- (NSString *)provideData {
-    return @"PBService provideData";
++ (void)doSomething {
+    NSLog(@"PBService +doSomething");
 }
+
+#pragma mark -
 
 - (void)doSomething {
-    NSLog(@"PBService doSomething");
+    NSLog(@"PBService -doSomething");
 }
 
 @end

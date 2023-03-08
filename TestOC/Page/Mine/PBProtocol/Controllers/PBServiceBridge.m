@@ -35,7 +35,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        
         sharedInstance.serviceDispatch = [[PBServiceDispatch alloc] init];
     });
     return sharedInstance;
@@ -49,7 +48,7 @@
     }
 }
 
-- (NSArray *)servicesForProtocol:(Protocol *)protocol {
++ (NSArray *)servicesForProtocol:(Protocol *)protocol {
     return [[PBServiceBridge sharedInstance].serviceDispatch servicesForProtocol:protocol];
 }
 

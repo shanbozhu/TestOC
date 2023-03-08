@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PBServiceProtocol <NSObject>
 
-@property (nonatomic, copy) NSString *provideData;
-
++ (void)doSomething;
 - (void)doSomething;
 
 @end
