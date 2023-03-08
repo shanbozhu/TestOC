@@ -1568,9 +1568,9 @@
 		5CCB745829B82E2E00853864 /* PBBridge */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB745929B82E2E00853864 /* Module */,
-				5CCB745D29B82E2E00853864 /* Business */,
 				5CCB746329B82E2E00853864 /* API */,
+				5CCB745D29B82E2E00853864 /* Business */,
+				5CCB745929B82E2E00853864 /* Module */,
 			);
 			path = PBBridge;
 			sourceTree = "<group>";
