@@ -117,10 +117,10 @@
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
 		5CCB742129B5B19B00853864 /* PBArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742029B5B19B00853864 /* PBArrayController.m */; };
 		5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */; };
-		5CCB742A29B6046200853864 /* PBProtocolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742929B6046200853864 /* PBProtocolController.m */; };
 		5CCB744129B6DAFB00853864 /* PBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB743F29B6DAFB00853864 /* PBService.m */; };
 		5CCB744829B6DB2F00853864 /* PBServiceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744629B6DB2F00853864 /* PBServiceBridge.m */; };
 		5CCB744E29B73ED600853864 /* PBServiceDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744C29B73ED600853864 /* PBServiceDispatch.m */; };
+		5CCB745129B82DC200853864 /* PBProtocolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744F29B82DC200853864 /* PBProtocolController.m */; };
 		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
 		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
 		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
@@ -553,8 +553,6 @@
 		5CCB742029B5B19B00853864 /* PBArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBArrayController.m; sourceTree = "<group>"; };
 		5CCB742229B5B4E700853864 /* PBArrayTraversalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayTraversalController.h; sourceTree = "<group>"; };
 		5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBArrayTraversalController.m; sourceTree = "<group>"; };
-		5CCB742829B6046200853864 /* PBProtocolController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBProtocolController.h; sourceTree = "<group>"; };
-		5CCB742929B6046200853864 /* PBProtocolController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBProtocolController.m; sourceTree = "<group>"; };
 		5CCB743F29B6DAFB00853864 /* PBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBService.m; sourceTree = "<group>"; };
 		5CCB744029B6DAFB00853864 /* PBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBService.h; sourceTree = "<group>"; };
 		5CCB744229B6DB0800853864 /* PBServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBServiceProtocol.h; sourceTree = "<group>"; };
@@ -562,6 +560,8 @@
 		5CCB744729B6DB2F00853864 /* PBServiceBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceBridge.h; sourceTree = "<group>"; };
 		5CCB744C29B73ED600853864 /* PBServiceDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBServiceDispatch.m; sourceTree = "<group>"; };
 		5CCB744D29B73ED600853864 /* PBServiceDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceDispatch.h; sourceTree = "<group>"; };
+		5CCB744F29B82DC200853864 /* PBProtocolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBProtocolController.m; sourceTree = "<group>"; };
+		5CCB745029B82DC200853864 /* PBProtocolController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBProtocolController.h; sourceTree = "<group>"; };
 		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
 		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
 		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
@@ -1566,8 +1566,6 @@
 			children = (
 				5CCB744D29B73ED600853864 /* PBServiceDispatch.h */,
 				5CCB744C29B73ED600853864 /* PBServiceDispatch.m */,
-				5CCB742829B6046200853864 /* PBProtocolController.h */,
-				5CCB742929B6046200853864 /* PBProtocolController.m */,
 				5CCB744729B6DB2F00853864 /* PBServiceBridge.h */,
 				5CCB744629B6DB2F00853864 /* PBServiceBridge.m */,
 				5CCB742B29B6062D00853864 /* PBBridge */,
@@ -1621,6 +1619,8 @@
 		5CCB743C29B6DAAA00853864 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CCB745029B82DC200853864 /* PBProtocolController.h */,
+				5CCB744F29B82DC200853864 /* PBProtocolController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3151,7 +3151,6 @@
 				9575998C22FC2415009CA618 /* YYFPSLabel.m in Sources */,
 				95C871AF22E71CAC002795D0 /* PBTestEspressosSCSLSeatInfo.m in Sources */,
 				5CEFEBA328117B660073BC47 /* PBCellHeightCollectionZeroController.m in Sources */,
-				5CCB742A29B6046200853864 /* PBProtocolController.m in Sources */,
 				5C2D0647280BFBFC00C775B3 /* PBChannelController.m in Sources */,
 				9575933D22F82A64009CA618 /* PBStorageTextOneController.m in Sources */,
 				5C2D060E280BFBFC00C775B3 /* PBLinkageView.m in Sources */,
@@ -3311,6 +3310,7 @@
 				5C0949832812C7A8002CEBC2 /* PBCellHeight.m in Sources */,
 				5C33FD7F2744DE9B00F6DDF0 /* PBMethodSwizzling.m in Sources */,
 				5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */,
+				5CCB745129B82DC200853864 /* PBProtocolController.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
 				95C871AC22E71CAC002795D0 /* PBTestEspressosSeatCon.m in Sources */,
