@@ -117,10 +117,10 @@
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
 		5CCB742129B5B19B00853864 /* PBArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742029B5B19B00853864 /* PBArrayController.m */; };
 		5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */; };
-		5CCB744129B6DAFB00853864 /* PBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB743F29B6DAFB00853864 /* PBService.m */; };
-		5CCB744829B6DB2F00853864 /* PBServiceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744629B6DB2F00853864 /* PBServiceBridge.m */; };
-		5CCB744E29B73ED600853864 /* PBServiceDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744C29B73ED600853864 /* PBServiceDispatch.m */; };
-		5CCB745129B82DC200853864 /* PBProtocolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB744F29B82DC200853864 /* PBProtocolController.m */; };
+		5CCB745629B82E2500853864 /* PBServiceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745229B82E2500853864 /* PBServiceBridge.m */; };
+		5CCB745729B82E2500853864 /* PBServiceDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745429B82E2500853864 /* PBServiceDispatch.m */; };
+		5CCB746529B82E2E00853864 /* PBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745C29B82E2E00853864 /* PBService.m */; };
+		5CCB746629B82E2E00853864 /* PBProtocolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB746029B82E2E00853864 /* PBProtocolController.m */; };
 		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
 		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
 		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
@@ -553,15 +553,15 @@
 		5CCB742029B5B19B00853864 /* PBArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBArrayController.m; sourceTree = "<group>"; };
 		5CCB742229B5B4E700853864 /* PBArrayTraversalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayTraversalController.h; sourceTree = "<group>"; };
 		5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBArrayTraversalController.m; sourceTree = "<group>"; };
-		5CCB743F29B6DAFB00853864 /* PBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBService.m; sourceTree = "<group>"; };
-		5CCB744029B6DAFB00853864 /* PBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBService.h; sourceTree = "<group>"; };
-		5CCB744229B6DB0800853864 /* PBServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBServiceProtocol.h; sourceTree = "<group>"; };
-		5CCB744629B6DB2F00853864 /* PBServiceBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBServiceBridge.m; sourceTree = "<group>"; };
-		5CCB744729B6DB2F00853864 /* PBServiceBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceBridge.h; sourceTree = "<group>"; };
-		5CCB744C29B73ED600853864 /* PBServiceDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBServiceDispatch.m; sourceTree = "<group>"; };
-		5CCB744D29B73ED600853864 /* PBServiceDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceDispatch.h; sourceTree = "<group>"; };
-		5CCB744F29B82DC200853864 /* PBProtocolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBProtocolController.m; sourceTree = "<group>"; };
-		5CCB745029B82DC200853864 /* PBProtocolController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBProtocolController.h; sourceTree = "<group>"; };
+		5CCB745229B82E2500853864 /* PBServiceBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBServiceBridge.m; sourceTree = "<group>"; };
+		5CCB745329B82E2500853864 /* PBServiceBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceBridge.h; sourceTree = "<group>"; };
+		5CCB745429B82E2500853864 /* PBServiceDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBServiceDispatch.m; sourceTree = "<group>"; };
+		5CCB745529B82E2500853864 /* PBServiceDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceDispatch.h; sourceTree = "<group>"; };
+		5CCB745B29B82E2E00853864 /* PBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBService.h; sourceTree = "<group>"; };
+		5CCB745C29B82E2E00853864 /* PBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBService.m; sourceTree = "<group>"; };
+		5CCB746029B82E2E00853864 /* PBProtocolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBProtocolController.m; sourceTree = "<group>"; };
+		5CCB746129B82E2E00853864 /* PBProtocolController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBProtocolController.h; sourceTree = "<group>"; };
+		5CCB746429B82E2E00853864 /* PBServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceProtocol.h; sourceTree = "<group>"; };
 		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
 		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
 		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
@@ -1556,89 +1556,81 @@
 		5CCB742529B6039900853864 /* PBProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB742629B6039900853864 /* Controllers */,
+				5CCB745829B82E2E00853864 /* PBBridge */,
+				5CCB745329B82E2500853864 /* PBServiceBridge.h */,
+				5CCB745229B82E2500853864 /* PBServiceBridge.m */,
+				5CCB745529B82E2500853864 /* PBServiceDispatch.h */,
+				5CCB745429B82E2500853864 /* PBServiceDispatch.m */,
 			);
 			path = PBProtocol;
 			sourceTree = "<group>";
 		};
-		5CCB742629B6039900853864 /* Controllers */ = {
+		5CCB745829B82E2E00853864 /* PBBridge */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB744D29B73ED600853864 /* PBServiceDispatch.h */,
-				5CCB744C29B73ED600853864 /* PBServiceDispatch.m */,
-				5CCB744729B6DB2F00853864 /* PBServiceBridge.h */,
-				5CCB744629B6DB2F00853864 /* PBServiceBridge.m */,
-				5CCB742B29B6062D00853864 /* PBBridge */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		5CCB742B29B6062D00853864 /* PBBridge */ = {
-			isa = PBXGroup;
-			children = (
-				5CCB743929B6DA4A00853864 /* API */,
-				5CCB743829B6D9E200853864 /* Business */,
-				5CCB743A29B6DA8F00853864 /* Module */,
+				5CCB745929B82E2E00853864 /* Module */,
+				5CCB745D29B82E2E00853864 /* Business */,
+				5CCB746329B82E2E00853864 /* API */,
 			);
 			path = PBBridge;
 			sourceTree = "<group>";
 		};
-		5CCB743829B6D9E200853864 /* Business */ = {
+		5CCB745929B82E2E00853864 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB743B29B6DAAA00853864 /* PBBridge */,
-			);
-			path = Business;
-			sourceTree = "<group>";
-		};
-		5CCB743929B6DA4A00853864 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				5CCB744229B6DB0800853864 /* PBServiceProtocol.h */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		5CCB743A29B6DA8F00853864 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				5CCB743E29B6DAEB00853864 /* Services */,
+				5CCB745A29B82E2E00853864 /* Services */,
 			);
 			path = Module;
 			sourceTree = "<group>";
 		};
-		5CCB743B29B6DAAA00853864 /* PBBridge */ = {
+		5CCB745A29B82E2E00853864 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB743C29B6DAAA00853864 /* Controllers */,
-				5CCB743D29B6DAAA00853864 /* Views */,
+				5CCB745B29B82E2E00853864 /* PBService.h */,
+				5CCB745C29B82E2E00853864 /* PBService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5CCB745D29B82E2E00853864 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB745E29B82E2E00853864 /* PBBridge */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		5CCB745E29B82E2E00853864 /* PBBridge */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB745F29B82E2E00853864 /* Controllers */,
+				5CCB746229B82E2E00853864 /* Views */,
 			);
 			path = PBBridge;
 			sourceTree = "<group>";
 		};
-		5CCB743C29B6DAAA00853864 /* Controllers */ = {
+		5CCB745F29B82E2E00853864 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB745029B82DC200853864 /* PBProtocolController.h */,
-				5CCB744F29B82DC200853864 /* PBProtocolController.m */,
+				5CCB746029B82E2E00853864 /* PBProtocolController.m */,
+				5CCB746129B82E2E00853864 /* PBProtocolController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		5CCB743D29B6DAAA00853864 /* Views */ = {
+		5CCB746229B82E2E00853864 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5CCB743E29B6DAEB00853864 /* Services */ = {
+		5CCB746329B82E2E00853864 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				5CCB744029B6DAFB00853864 /* PBService.h */,
-				5CCB743F29B6DAFB00853864 /* PBService.m */,
+				5CCB746429B82E2E00853864 /* PBServiceProtocol.h */,
 			);
-			path = Services;
+			path = API;
 			sourceTree = "<group>";
 		};
 		5CDCA715286C21BB001E4BBB /* YYLabelCopy */ = {
@@ -3096,6 +3088,7 @@
 				5C09497A2812C679002CEBC2 /* PBCellHeightOneView.m in Sources */,
 				9575998022FC2415009CA618 /* TFHpple.m in Sources */,
 				9575930522F81E55009CA618 /* PBMemoryController.m in Sources */,
+				5CCB745729B82E2500853864 /* PBServiceDispatch.m in Sources */,
 				9575945422F95120009CA618 /* PBPlayerSlider.m in Sources */,
 				5C2D0614280BFBFC00C775B3 /* PBCellHeightZero.m in Sources */,
 				5C0D2E2D2798118B00C9274E /* YNPageScrollView.m in Sources */,
@@ -3117,6 +3110,7 @@
 				B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */,
 				9575998222FC2415009CA618 /* XPathQuery.m in Sources */,
 				5C2D060A280BFBFC00C775B3 /* PBLinkageController.m in Sources */,
+				5CCB745629B82E2500853864 /* PBServiceBridge.m in Sources */,
 				5C0D2E272798118B00C9274E /* UIViewController+YNPageExtend.m in Sources */,
 				5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */,
 				5C2D0610280BFBFC00C775B3 /* PBLinkageContainerCell.m in Sources */,
@@ -3191,6 +3185,7 @@
 				9575998B22FC2415009CA618 /* YYWeakProxy.m in Sources */,
 				9575940322F9275C009CA618 /* PBAlgorithmController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
+				5CCB746529B82E2E00853864 /* PBService.m in Sources */,
 				957593D622F84F20009CA618 /* PBGCDListSixController.m in Sources */,
 				9575932922F82A46009CA618 /* PBSandBox.m in Sources */,
 				9575943922F9510C009CA618 /* PBAVPlayerListCell.m in Sources */,
@@ -3203,7 +3198,6 @@
 				95C873BE22E83B24002795D0 /* PBAnnotationController.m in Sources */,
 				5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */,
 				9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */,
-				5CCB744129B6DAFB00853864 /* PBService.m in Sources */,
 				5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */,
 				9533421222F434D900DC7251 /* PBKVOListController.m in Sources */,
 				95C8718622E708CC002795D0 /* PBCalendar.m in Sources */,
@@ -3272,7 +3266,6 @@
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				5C0D2E302798118B00C9274E /* YNPageScrollMenuView.m in Sources */,
-				5CCB744E29B73ED600853864 /* PBServiceDispatch.m in Sources */,
 				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,
 				5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */,
 				95C872E322E801DA002795D0 /* PBQRCodeContentController.m in Sources */,
@@ -3304,13 +3297,12 @@
 				5C2D0615280BFBFC00C775B3 /* PBCellHeightZeroData.m in Sources */,
 				5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
-				5CCB744829B6DB2F00853864 /* PBServiceBridge.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
 				5C0949832812C7A8002CEBC2 /* PBCellHeight.m in Sources */,
 				5C33FD7F2744DE9B00F6DDF0 /* PBMethodSwizzling.m in Sources */,
 				5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */,
-				5CCB745129B82DC200853864 /* PBProtocolController.m in Sources */,
+				5CCB746629B82E2E00853864 /* PBProtocolController.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
 				95C871AC22E71CAC002795D0 /* PBTestEspressosSeatCon.m in Sources */,
