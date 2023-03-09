@@ -15,7 +15,8 @@
  - (int)sumWitha:(int)a b:(int)b {}
  [O sumWitha:3 b:4];
  
- // Swift "a a: int"第一个a是子标题,第二个a是变量
+ // Swift
+ // "a a: int"第一个a是子标题,第二个a是变量
  func sum(a a: int, b b: int) -> int {}
  O.sum(a: 3, b: 4)
  // 不写子标题,子标题默认与变量同名
