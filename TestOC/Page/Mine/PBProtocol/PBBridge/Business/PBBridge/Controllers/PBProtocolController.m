@@ -21,7 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 参考文档:https://blog.csdn.net/a18339063397/article/details/120891093
+    // 参考文档:
+    // iOS：Protocol详解 https://blog.csdn.net/a18339063397/article/details/120891093
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:btn];
