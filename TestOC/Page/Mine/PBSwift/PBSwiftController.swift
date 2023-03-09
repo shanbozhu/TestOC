@@ -6,6 +6,27 @@
 //  Copyright © 2021 DaMaiIOS. All rights reserved.
 //
 
+/**
+ // C
+ int sum(int a, int b) {}
+ sum(3, 4);
+ 
+ // OC
+ - (int)sumWitha:(int)a b:(int)b {}
+ [O sumWitha:3 b:4];
+ 
+ // Swift "a a: int"第一个a是子标题,第二个a是变量
+ func sum(a a: int, b b: int) -> int {}
+ O.sum(a: 3, b: 4)
+ // 不写子标题,子标题默认与变量同名
+ fun sum(a: int, b: int) -> int {}
+ O.sum(a: 3, b: 4)
+ // "_"强制取消子标题
+ func sum(_ a: int, b b: int) -> int {}
+ O.sum(3, b: 4)
+ 
+ */
+
 import UIKit
 
 class PBSwiftController: PBBaseController {
