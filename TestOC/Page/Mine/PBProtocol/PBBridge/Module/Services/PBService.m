@@ -11,7 +11,7 @@
 
 __attribute__((constructor))
 static void registerClassService(void) {
-    NSLog(@"__attribute__((constructor))");
+    NSLog(@"2 - __attribute__((constructor))");
     // 注册服务类对象
     [PBServiceBridge registerClassService:[PBService class]
                                  protocol:@protocol(PBServiceProtocol)];
@@ -20,7 +20,7 @@ static void registerClassService(void) {
 @implementation PBService
 
 + (void)load {
-    NSLog(@"load");
+    NSLog(@"1 - load");
 }
 
 + (void)doSomething {
