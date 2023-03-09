@@ -7,6 +7,8 @@
 //
 
 /**
+ // C、OC、Swift各语言对比
+ 
  // C
  int sum(int a, int b) {}
  sum(3, 4);
