@@ -9,6 +9,9 @@
 #import "PBService.h"
 #import "PBServiceBridge.h"
 
+// 参考文档:https://www.jianshu.com/p/036f502a2b15/
+// 调用顺序: +load -> __attribute__((constructor)) -> main -> +initialize
+
 __attribute__((constructor))
 static void registerClassService(void) {
     NSLog(@"2 - __attribute__((constructor))");
