@@ -9,12 +9,18 @@
 #import "PBService.h"
 #import "PBServiceBridge.h"
 
+__attribute__((constructor))
+static void registerClassService(void) {
+    NSLog(@"__attribute__((constructor))");
+    // 注册服务类对象
+    [PBServiceBridge registerClassService:[PBService class]
+                                 protocol:@protocol(PBServiceProtocol)];
+}
+
 @implementation PBService
 
 + (void)load {
-    // 注册服务类对象
-    [PBServiceBridge registerClassService:self
-                                 protocol:@protocol(PBServiceProtocol)];
+    NSLog(@"load");
 }
 
 + (void)doSomething {
