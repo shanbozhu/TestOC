@@ -24,7 +24,7 @@
  // 不写子标题,子标题默认与变量同名
  fun sum(a: int, b: int) -> int {}
  o.sum(a: 3, b: 4)
- // "_"不显示子标题
+ // "_"取消子标题
  func sum(_ a: int, b b: int) -> int {}
  o.sum(3, b: 4)
  
