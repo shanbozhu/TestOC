@@ -137,6 +137,8 @@
 		5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF05322281A92230024B752 /* PBCycleCollectionView.m */; };
 		5CF055D8281AA1440024B752 /* PBCycleTimerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */; };
 		5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0588B281ABA7F0024B752 /* PBRefresh.m */; };
+		66B6B5F829BAD10000C8725F /* UIWindow+PBCurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6B5F729BAD10000C8725F /* UIWindow+PBCurrentVC.m */; };
+		66B6B5FB29BAD1B200C8725F /* UIViewController+PBCurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6B5FA29BAD1B200C8725F /* UIViewController+PBCurrentVC.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -593,6 +595,10 @@
 		5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCycleTimerProxy.m; sourceTree = "<group>"; };
 		5CF0588A281ABA7F0024B752 /* PBRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRefresh.h; sourceTree = "<group>"; };
 		5CF0588B281ABA7F0024B752 /* PBRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRefresh.m; sourceTree = "<group>"; };
+		66B6B5F629BAD10000C8725F /* UIWindow+PBCurrentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PBCurrentVC.h"; sourceTree = "<group>"; };
+		66B6B5F729BAD10000C8725F /* UIWindow+PBCurrentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PBCurrentVC.m"; sourceTree = "<group>"; };
+		66B6B5F929BAD1B200C8725F /* UIViewController+PBCurrentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PBCurrentVC.h"; sourceTree = "<group>"; };
+		66B6B5FA29BAD1B200C8725F /* UIViewController+PBCurrentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PBCurrentVC.m"; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
@@ -1738,6 +1744,10 @@
 				95B988CD262052E8003DABFF /* PBTabBarButton.m */,
 				95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */,
 				95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */,
+				66B6B5F629BAD10000C8725F /* UIWindow+PBCurrentVC.h */,
+				66B6B5F729BAD10000C8725F /* UIWindow+PBCurrentVC.m */,
+				66B6B5F929BAD1B200C8725F /* UIViewController+PBCurrentVC.h */,
+				66B6B5FA29BAD1B200C8725F /* UIViewController+PBCurrentVC.m */,
 			);
 			path = PBTabBarController;
 			sourceTree = "<group>";
@@ -3237,6 +3247,8 @@
 				5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */,
 				5C0D2E2A2798118B00C9274E /* YNPageViewController.m in Sources */,
 				5C0949662812C5C3002CEBC2 /* PBCellHeightThreeController.m in Sources */,
+				66B6B5F829BAD10000C8725F /* UIWindow+PBCurrentVC.m in Sources */,
+				66B6B5FB29BAD1B200C8725F /* UIViewController+PBCurrentVC.m in Sources */,
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
 				9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */,
 				9575945322F95120009CA618 /* PBPlayerView.m in Sources */,

@@ -1,0 +1,19 @@
+//
+//  UIWindow+PBCurrentVC.h
+//  TestOC
+//
+//  Created by matrix on 2023/3/10.
+//  Copyright © 2023 DaMaiIOS. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIWindow (PBCurrentVC)
+
++ (UIViewController *)bba_topViewController;
+
+@end
+
+NS_ASSUME_NONNULL_END
