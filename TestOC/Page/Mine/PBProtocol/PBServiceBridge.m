@@ -54,7 +54,9 @@
 
 + (void)registerClassService:(Class)aClass protocol:(Protocol *)protocol {
     if ([aClass conformsToProtocol:protocol]) {
-        [[PBServiceBridge sharedInstance].classServicesMap setObject:NSStringFromClass([aClass class]) forKey:NSStringFromProtocol(protocol)];
+        @synchronized (self) {
+            [[PBServiceBridge sharedInstance].classServicesMap setObject:NSStringFromClass([aClass class]) forKey:NSStringFromProtocol(protocol)];
+        }
     }
 }
 
