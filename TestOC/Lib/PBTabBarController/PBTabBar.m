@@ -28,6 +28,7 @@
         [self addSubview:topLineView];
         topLineView.frame = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 1.0 / [UIScreen mainScreen].scale);
         topLineView.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
+        topLineView.backgroundColor = [UIColor redColor]; // TabBar顶部分割线颜色
     }
     return self;
 }
