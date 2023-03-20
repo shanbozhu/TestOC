@@ -69,8 +69,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"[self pb_bundleOwnClassesInfo] = %@", [self.class pb_bundleOwnClassesInfo]);
-    NSLog(@"[self pb_bundleAllClassesInfo] = %@", [self.class pb_bundleAllClassesInfo]);
+    // 查找所有自定义类中遵守PBServiceProtocol协议的类
+    NSArray *ownClassesInfo = [self.class pb_bundleOwnClassesInfo];
+    NSArray *allClassesInfo = [self.class pb_bundleAllClassesInfo];
+    NSLog(@"ownClassesInfo = %@", ownClassesInfo);
+    NSLog(@"allClassesInfo = %@", allClassesInfo);
+    [ownClassesInfo enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj conformsToProtocol:NSProtocolFromString(@"PBServiceProtocol")]) {
+            NSLog(@"obj = %@", obj);
+        }
+    }];
 }
 
 
