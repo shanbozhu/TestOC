@@ -35,7 +35,7 @@
              @"PBAlgorithmController",
              @"PBAVPlayerListController",
              @"PBUniversalLinkController",
-             @"PBRuntimeController",
+             @"PBRuntimeZeroController",
              @"PBAnimationController"];
 }
 

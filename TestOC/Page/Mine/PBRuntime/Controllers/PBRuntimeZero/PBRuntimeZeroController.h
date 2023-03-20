@@ -1,5 +1,5 @@
 //
-//  PBRuntimeController.h
+//  PBRuntimeZeroController.h
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/9/11.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBRuntimeController : PBBaseController
+@interface PBRuntimeZeroController : PBBaseController
 
 @end
 
