@@ -124,6 +124,7 @@
 		5CD2213129C83AB9007C937B /* PBRuntimeZeroController+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212D29C83AB9007C937B /* PBRuntimeZeroController+Test.m */; };
 		5CD2213229C83AB9007C937B /* PBRuntimeZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */; };
 		5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213429C83B65007C937B /* PBRuntimeController.m */; };
+		5CD2213929C83DC0007C937B /* PBRuntimeOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */; };
 		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
 		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
 		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
@@ -571,6 +572,8 @@
 		5CD2213029C83AB9007C937B /* PBRuntimeZeroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroController.h; sourceTree = "<group>"; };
 		5CD2213329C83B65007C937B /* PBRuntimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeController.h; sourceTree = "<group>"; };
 		5CD2213429C83B65007C937B /* PBRuntimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeController.m; sourceTree = "<group>"; };
+		5CD2213729C83DC0007C937B /* PBRuntimeOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeOneController.h; sourceTree = "<group>"; };
+		5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeOneController.m; sourceTree = "<group>"; };
 		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
 		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
 		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
@@ -1653,6 +1656,15 @@
 			path = PBRuntimeZero;
 			sourceTree = "<group>";
 		};
+		5CD2213629C83DA6007C937B /* PBRuntimeOne */ = {
+			isa = PBXGroup;
+			children = (
+				5CD2213729C83DC0007C937B /* PBRuntimeOneController.h */,
+				5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */,
+			);
+			path = PBRuntimeOne;
+			sourceTree = "<group>";
+		};
 		5CDCA715286C21BB001E4BBB /* YYLabelCopy */ = {
 			isa = PBXGroup;
 			children = (
@@ -1935,6 +1947,7 @@
 		955440F32328EB0B003A615C /* PBRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				5CD2213629C83DA6007C937B /* PBRuntimeOne */,
 				5CD2212C29C83AB9007C937B /* PBRuntimeZero */,
 				5CD2213329C83B65007C937B /* PBRuntimeController.h */,
 				5CD2213429C83B65007C937B /* PBRuntimeController.m */,
@@ -3279,6 +3292,7 @@
 				95C873C622E83B4E002795D0 /* PBAnnotationView.m in Sources */,
 				958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */,
 				95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */,
+				5CD2213929C83DC0007C937B /* PBRuntimeOneController.m in Sources */,
 				957593F122F84F3B009CA618 /* PBGCDLockTenController.m in Sources */,
 				957593D722F84F20009CA618 /* PBGCDListOneController.m in Sources */,
 				5C0D2E2E2798118B00C9274E /* YNPageHeaderScrollView.m in Sources */,

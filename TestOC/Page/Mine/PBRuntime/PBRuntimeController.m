@@ -20,7 +20,7 @@
 - (NSArray *)titleArr {
     if (!_titleArr) {
         _titleArr = @[@"交换方法",
-                      @"交换方法"];
+                      @"获取当前工程的所有类"];
     }
     return _titleArr;
 }
@@ -28,13 +28,9 @@
 - (NSArray *)vcArr {
     if (!_vcArr) {
         _vcArr = @[@"PBRuntimeZeroController",
-                   @"PBRuntimeZeroController"];
+                   @"PBRuntimeOneController"];
     }
     return _vcArr;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad {
