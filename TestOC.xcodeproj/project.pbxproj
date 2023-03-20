@@ -125,6 +125,7 @@
 		5CD2213229C83AB9007C937B /* PBRuntimeZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */; };
 		5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213429C83B65007C937B /* PBRuntimeController.m */; };
 		5CD2213929C83DC0007C937B /* PBRuntimeOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */; };
+		5CD2277329C850FD007C937B /* PBRuntimeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */; };
 		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
 		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
 		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
@@ -574,6 +575,8 @@
 		5CD2213429C83B65007C937B /* PBRuntimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeController.m; sourceTree = "<group>"; };
 		5CD2213729C83DC0007C937B /* PBRuntimeOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeOneController.h; sourceTree = "<group>"; };
 		5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeOneController.m; sourceTree = "<group>"; };
+		5CD2277129C850FD007C937B /* PBRuntimeTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeTwoController.h; sourceTree = "<group>"; };
+		5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeTwoController.m; sourceTree = "<group>"; };
 		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
 		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
 		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
@@ -1665,6 +1668,15 @@
 			path = PBRuntimeOne;
 			sourceTree = "<group>";
 		};
+		5CD2276429C850D6007C937B /* PBRuntimeTwo */ = {
+			isa = PBXGroup;
+			children = (
+				5CD2277129C850FD007C937B /* PBRuntimeTwoController.h */,
+				5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */,
+			);
+			path = PBRuntimeTwo;
+			sourceTree = "<group>";
+		};
 		5CDCA715286C21BB001E4BBB /* YYLabelCopy */ = {
 			isa = PBXGroup;
 			children = (
@@ -1947,6 +1959,7 @@
 		955440F32328EB0B003A615C /* PBRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				5CD2276429C850D6007C937B /* PBRuntimeTwo */,
 				5CD2213629C83DA6007C937B /* PBRuntimeOne */,
 				5CD2212C29C83AB9007C937B /* PBRuntimeZero */,
 				5CD2213329C83B65007C937B /* PBRuntimeController.h */,
@@ -3376,6 +3389,7 @@
 				5C09497F2812C679002CEBC2 /* PBCellHeightFourCell.m in Sources */,
 				5C2D063F280BFBFC00C775B3 /* BBAEmoticonManager.m in Sources */,
 				9575932A22F82A46009CA618 /* PBDatabase.m in Sources */,
+				5CD2277329C850FD007C937B /* PBRuntimeTwoController.m in Sources */,
 				9533421522F434E700DC7251 /* PBKVOList.m in Sources */,
 				957593D922F84F20009CA618 /* PBGCDListTenController.m in Sources */,
 				5C0949792812C679002CEBC2 /* PBCellHeightTwoCell.m in Sources */,
