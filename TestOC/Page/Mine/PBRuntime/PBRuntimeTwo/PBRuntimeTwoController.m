@@ -20,6 +20,10 @@
 
 @implementation PBRuntimeTwoController
 
++ (void)manager {
+    return;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

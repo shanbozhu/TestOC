@@ -77,7 +77,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 查找所有自定义类中遵守PBServiceProtocol协议的类
+    // 查找工程所有自定义类中遵守PBServiceProtocol协议的类
     NSArray *ownClassesInfo = [self.class pb_bundleOwnClassesInfo];
     NSArray *allClassesInfo = [self.class pb_bundleAllClassesInfo];
     NSLog(@"ownClassesInfo = %@", ownClassesInfo);
