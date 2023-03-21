@@ -29,9 +29,9 @@
     [super viewDidLoad];
     
     {
-        unsigned int ivarCount;
-        Ivar *ivar = class_copyIvarList([self class], &ivarCount);
-        for (NSInteger index = 0; index < ivarCount; index++) {
+        unsigned int count;
+        Ivar *ivar = class_copyIvarList([self class], &count);
+        for (NSInteger index = 0; index < count; index++) {
             const char *ivarName = ivar_getName(ivar[index]);
             NSLog(@"成员变量名称----%@", [NSString stringWithUTF8String:ivarName]);
         }
@@ -39,9 +39,9 @@
     }
     
     {
-        unsigned int number;
-        objc_property_t *propertiList = class_copyPropertyList([self class], &number);
-        for (unsigned int i = 0; i < number; i++) {
+        unsigned int count;
+        objc_property_t *propertiList = class_copyPropertyList([self class], &count);
+        for (unsigned int i = 0; i < count; i++) {
             const char *propertyName = property_getName(propertiList[i]);
             NSLog(@"属性名称----%@", [NSString stringWithUTF8String:propertyName]);
         }
@@ -49,9 +49,9 @@
     }
     
     {
-        unsigned int methodCount;
-        Method *method = class_copyMethodList([self class], &methodCount);
-        for (unsigned int i = 0; i < methodCount; i++) {
+        unsigned int count;
+        Method *method = class_copyMethodList([self class], &count);
+        for (unsigned int i = 0; i < count; i++) {
             Method me = method[i];
             NSLog(@"方法名称----%@", NSStringFromSelector(method_getName(me)));
         }
@@ -59,10 +59,10 @@
     }
     
     {
-        unsigned int methodCount;
+        unsigned int count;
         Class metaClass = object_getClass([self class]);
-        Method *method = class_copyMethodList(metaClass, &methodCount);
-        for (unsigned int i = 0; i < methodCount; i++) {
+        Method *method = class_copyMethodList(metaClass, &count);
+        for (unsigned int i = 0; i < count; i++) {
             Method me = method[i];
             NSLog(@"类方法名称----%@", NSStringFromSelector(method_getName(me)));
         }
@@ -81,9 +81,9 @@
     }
     
     {
-        unsigned int protocalCount;
-        __unsafe_unretained Protocol **protocolList = class_copyProtocolList([self class], &protocalCount);
-        for (unsigned int i = 0; i< protocalCount; i++) {
+        unsigned int count;
+        __unsafe_unretained Protocol **protocolList = class_copyProtocolList([self class], &count);
+        for (unsigned int i = 0; i< count; i++) {
             Protocol *myProtocal = protocolList[i];
             const char *protocolName = protocol_getName(myProtocal);
             NSLog(@"协议名称----%@", [NSString stringWithUTF8String:protocolName]);
@@ -91,6 +91,5 @@
         free(protocolList);
     }
 }
-
 
 @end
