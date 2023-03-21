@@ -28,6 +28,16 @@
     [super viewDidLoad];
     
     {
+        unsigned int ivarCount;
+        Ivar *ivar = class_copyIvarList([self class], &ivarCount);
+        for (NSInteger index = 0; index < ivarCount; index++) {
+            const char *ivarName = ivar_getName(ivar[index]);
+            NSLog(@"成员变量名称----%@", [NSString stringWithUTF8String:ivarName]);
+        }
+        free(ivar);
+    }
+    
+    {
         unsigned int number;
         objc_property_t *propertiList = class_copyPropertyList([self class], &number);
         for (unsigned int i = 0; i < number; i++) {
@@ -48,13 +58,26 @@
     }
     
     {
-        unsigned int ivarCount;
-        Ivar *ivar = class_copyIvarList([self class], &ivarCount);
-        for (NSInteger index = 0; index < ivarCount; index++) {
-            const char *ivarName = ivar_getName(ivar[index]);
-            NSLog(@"成员变量名称----%@", [NSString stringWithUTF8String:ivarName]);
+        unsigned int methodCount;
+        Class metaClass = object_getClass([self class]);
+        Method *method = class_copyMethodList(metaClass, &methodCount);
+        for (unsigned int i = 0; i < methodCount; i++) {
+            Method me = method[i];
+            NSLog(@"类方法名称----%@", NSStringFromSelector(method_getName(me)));
         }
-        free(ivar);
+        free(method);
+    }
+    
+    {
+        Protocol *protocol = @protocol(PBRuntimeTwoControllerProtocol);
+        unsigned int count = 0;
+        NSMutableArray<NSString *> *methodList = @[].mutableCopy;
+        struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count);
+        for (unsigned int i = 0; i < count; i++) {
+            struct objc_method_description method = methods[i];
+            NSLog(@"协议方法名称----%@", NSStringFromSelector(method.name));
+        }
+        free(methods);
     }
     
     {
