@@ -13,18 +13,26 @@
 /**
  // 添加约束
  - (NSArray *)mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make))block;
- 
  // 更新(某一个)约束
  - (NSArray *)mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make))block;
- 
  // 重新添加约束
  - (NSArray *)mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make))block;
  
- equalTo()       参数是对象类型,一般是视图对象或者mas_width这样的坐标系对象
- mas_equalTo()   和上面功能相同,除了上面支持的参数外,还可以传递基本类型数据
+ equalTo()       参数是对象类型.传入视图对象或坐标系对象
+ mas_equalTo()   参数是对象类型和基本类型
  
- offset()        参数是基本类型,一般是偏移量;上、左是正数,下、右是负数
- mas_offset()    和上面功能相同,除了上面支持的参数外,还可以传递对象类型数据
+ offset()        参数是基本类型.传入偏移量:上、左是正数,下、右是负数
+ mas_offset()    参数是对象类型和基本类型
+ 
+ 假设view的父视图是self(self可以替换为其他任意视图),则下面语句等价:
+ make.top.mas_equalTo(self.mas_top).with.offset(10); // 制造顶部等于self的顶部偏移10
+ make.top.mas_equalTo(self.mas_top).offset(10);
+ make.top.mas_equalTo(self).offset(10);
+ make.top.mas_equalTo(10);
+ make.top.mas_offset(10);
+ 
+ make.height.mas_equalTo(10);
+ make.height.offset(10);
  */
 
 @interface PBMasonryController () <UITableViewDelegate, UITableViewDataSource>
