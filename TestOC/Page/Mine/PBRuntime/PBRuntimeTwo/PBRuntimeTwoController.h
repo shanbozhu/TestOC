@@ -12,7 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PBRuntimeTwoControllerProtocol <NSObject>
 
-- (void)run;
+- (void)run1;
++ (void)run2;
+
+@optional
+- (void)run3;
++ (void)run4;
 
 @end
 

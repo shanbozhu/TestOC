@@ -12,6 +12,7 @@
 /**
  参考文档:
  iOS获取某类的属性/方法/成员变量/协议列表 https://www.jianshu.com/p/c2cf4a9cee74
+ iOS获取协议中的全部方法 https://www.jianshu.com/p/ebde55ddc094
  */
 
 @interface PBRuntimeTwoController ()
@@ -71,7 +72,6 @@
     {
         Protocol *protocol = @protocol(PBRuntimeTwoControllerProtocol);
         unsigned int count = 0;
-        NSMutableArray<NSString *> *methodList = @[].mutableCopy;
         struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count);
         for (unsigned int i = 0; i < count; i++) {
             struct objc_method_description method = methods[i];
