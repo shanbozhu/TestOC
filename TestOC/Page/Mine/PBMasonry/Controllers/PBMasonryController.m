@@ -26,7 +26,7 @@
  
  假设view的父视图是self(self可以替换为其他任意视图),则下面语句等价:
  make.top.mas_equalTo(self.mas_top).with.offset(10); // 制造顶部等于self的顶部偏移10
- make.top.mas_equalTo(self.mas_top).offset(10);
+ make.top.mas_equalTo(self.mas_top).offset(10); // 【推荐】
  make.top.mas_equalTo(self).offset(10);
  make.top.mas_equalTo(10);
  make.top.mas_offset(10);

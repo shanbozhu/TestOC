@@ -36,14 +36,14 @@
     [super viewDidLoad];
     
     {
-        // 方式一(不推荐):
+        // 方式一【不推荐】
         // 默认添加到NSDefaultRunLoopMode
         NSTimer *scheduledTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scheduledTimerClick:) userInfo:nil repeats:YES];
         self.scheduledTimer = scheduledTimer;
     }
     
     {
-        // 方式二(推荐):
+        // 方式二【推荐】
         // UIScrollView滑动时执行的是UITrackingRunLoopMode,此时NSDefaultRunLoopMode被挂起
         // 要么同时将timer添加到UITrackingRunLoopMode和NSDefaultRunLoopMode
         // 要么直接将timer添加到NSRunLoopCommonModes
@@ -56,7 +56,7 @@
     }
     
     {
-        // 方式三(推荐):
+        // 方式三【推荐】
         __block int count = 60;
         
         dispatch_source_t gcdTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
