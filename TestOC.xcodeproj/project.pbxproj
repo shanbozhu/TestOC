@@ -1647,13 +1647,13 @@
 			isa = PBXGroup;
 			children = (
 				5CCC109829CAF83E00F60C38 /* PBAllLinkageController.h */,
-				5CCC109929CAF83E00F60C38 /* PBLinkageTopOneListController.m */,
-				5CCC109A29CAF83E00F60C38 /* PBLinkageTopController.h */,
-				5CCC109B29CAF83E00F60C38 /* PBLinkageTopTwoListController.m */,
 				5CCC109C29CAF83E00F60C38 /* PBAllLinkageController.m */,
-				5CCC109D29CAF83E00F60C38 /* PBLinkageTopOneListController.h */,
+				5CCC109A29CAF83E00F60C38 /* PBLinkageTopController.h */,
 				5CCC109E29CAF83E00F60C38 /* PBLinkageTopController.m */,
+				5CCC109D29CAF83E00F60C38 /* PBLinkageTopOneListController.h */,
+				5CCC109929CAF83E00F60C38 /* PBLinkageTopOneListController.m */,
 				5CCC109F29CAF83E00F60C38 /* PBLinkageTopTwoListController.h */,
+				5CCC109B29CAF83E00F60C38 /* PBLinkageTopTwoListController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

@@ -33,7 +33,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 30;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,6 +60,7 @@
         if (@available(iOS 15, *)) {
             _tableView.sectionHeaderTopPadding = 0;
         }
+        _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
 }
