@@ -158,6 +158,9 @@
 		5CCC111E29CAF92900F60C38 /* PBTestListTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC110A29CAF92900F60C38 /* PBTestListTwoController.m */; };
 		5CCC111F29CAF92900F60C38 /* PBTestListTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC110F29CAF92900F60C38 /* PBTestListTwoCell.m */; };
 		5CCC112029CAF92900F60C38 /* PBTestListTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC111029CAF92900F60C38 /* PBTestListTwoView.m */; };
+		5CCC112A29CAFB6800F60C38 /* PBBusinessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC112329CAFB6800F60C38 /* PBBusinessController.m */; };
+		5CCC112B29CAFB6800F60C38 /* PBBusinessController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC112529CAFB6800F60C38 /* PBBusinessController+Click.m */; };
+		5CCC112C29CAFB6800F60C38 /* PBBusinessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC112929CAFB6800F60C38 /* PBBusinessView.m */; };
 		5CD2213129C83AB9007C937B /* PBRuntimeZeroController+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212D29C83AB9007C937B /* PBRuntimeZeroController+Test.m */; };
 		5CD2213229C83AB9007C937B /* PBRuntimeZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */; };
 		5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213429C83B65007C937B /* PBRuntimeController.m */; };
@@ -629,6 +632,12 @@
 		5CCC110F29CAF92900F60C38 /* PBTestListTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTestListTwoCell.m; sourceTree = "<group>"; };
 		5CCC111029CAF92900F60C38 /* PBTestListTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTestListTwoView.m; sourceTree = "<group>"; };
 		5CCC111129CAF92900F60C38 /* PBImageTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBImageTextController.h; sourceTree = "<group>"; };
+		5CCC112329CAFB6800F60C38 /* PBBusinessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBBusinessController.m; sourceTree = "<group>"; };
+		5CCC112429CAFB6800F60C38 /* PBBusinessController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBBusinessController+Click.h"; sourceTree = "<group>"; };
+		5CCC112529CAFB6800F60C38 /* PBBusinessController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBBusinessController+Click.m"; sourceTree = "<group>"; };
+		5CCC112629CAFB6800F60C38 /* PBBusinessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBusinessController.h; sourceTree = "<group>"; };
+		5CCC112829CAFB6800F60C38 /* PBBusinessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBusinessView.h; sourceTree = "<group>"; };
+		5CCC112929CAFB6800F60C38 /* PBBusinessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBBusinessView.m; sourceTree = "<group>"; };
 		5CD2212D29C83AB9007C937B /* PBRuntimeZeroController+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeZeroController+Test.m"; sourceTree = "<group>"; };
 		5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeZeroController.m; sourceTree = "<group>"; };
 		5CD2212F29C83AB9007C937B /* PBRuntimeZeroController+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeZeroController+Test.h"; sourceTree = "<group>"; };
@@ -1884,6 +1893,35 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5CCC112129CAFB6800F60C38 /* PBBusiness */ = {
+			isa = PBXGroup;
+			children = (
+				5CCC112229CAFB6800F60C38 /* Controllers */,
+				5CCC112729CAFB6800F60C38 /* Views */,
+			);
+			path = PBBusiness;
+			sourceTree = "<group>";
+		};
+		5CCC112229CAFB6800F60C38 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CCC112329CAFB6800F60C38 /* PBBusinessController.m */,
+				5CCC112429CAFB6800F60C38 /* PBBusinessController+Click.h */,
+				5CCC112529CAFB6800F60C38 /* PBBusinessController+Click.m */,
+				5CCC112629CAFB6800F60C38 /* PBBusinessController.h */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5CCC112729CAFB6800F60C38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5CCC112829CAFB6800F60C38 /* PBBusinessView.h */,
+				5CCC112929CAFB6800F60C38 /* PBBusinessView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		5CD2212C29C83AB9007C937B /* PBRuntimeZero */ = {
 			isa = PBXGroup;
 			children = (
@@ -2174,6 +2212,7 @@
 		9547319622E059A000F6BFA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CCC112129CAFB6800F60C38 /* PBBusiness */,
 				5CEFE1AD280FB43E0073BC47 /* PBCommon */,
 				9547319822E059A000F6BFA2 /* PBMineController.h */,
 				9547319722E059A000F6BFA2 /* PBMineController.m */,
@@ -3147,6 +3186,7 @@
 				958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */,
 				957593D122F84F20009CA618 /* PBGCDListFiveController.m in Sources */,
 				9575998A22FC2415009CA618 /* PBPhotoBrowserPageView.m in Sources */,
+				5CCC112C29CAFB6800F60C38 /* PBBusinessView.m in Sources */,
 				5C2D0662280C032A00C775B3 /* PBAFNetworkingController.m in Sources */,
 				957593D522F84F20009CA618 /* PBGCDListTwelveController.m in Sources */,
 				9575943022F950FB009CA618 /* PBAVPlayerList.m in Sources */,
@@ -3240,6 +3280,7 @@
 				9575932C22F82A46009CA618 /* PBDataPList.m in Sources */,
 				5C2D0642280BFBFC00C775B3 /* BBACommentContentLink.m in Sources */,
 				9575931222F81E7E009CA618 /* PBMemoryListMRCOne.m in Sources */,
+				5CCC112B29CAFB6800F60C38 /* PBBusinessController+Click.m in Sources */,
 				9575942C22F950EB009CA618 /* PBAVPlayerListController.m in Sources */,
 				9575998322FC2415009CA618 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				5CF05323281A92230024B752 /* PBCycleCell.m in Sources */,
@@ -3349,6 +3390,7 @@
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
 				B0F04ADA1F9E1BB600F69AC3 /* PBListThreeController.m in Sources */,
 				5C0949832812C7A8002CEBC2 /* PBCellHeight.m in Sources */,
+				5CCC112A29CAFB6800F60C38 /* PBBusinessController.m in Sources */,
 				5C33FD7F2744DE9B00F6DDF0 /* PBMethodSwizzling.m in Sources */,
 				5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */,
 				5CCB746629B82E2E00853864 /* PBProtocolController.m in Sources */,

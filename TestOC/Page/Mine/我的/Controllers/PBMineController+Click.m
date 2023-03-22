@@ -13,17 +13,14 @@
 
 - (NSArray *)pageArr {
     return @[@"PBCommonController",
+             @"PBBusinessController",
              @"PBSwiftController",
              @"PBMasonryController",
              @"PBArrayController",
              @"PBProtocolController",
-             @"PBAllLinkageController",
              @"PBSyntaxController",
-             @"PBCalendarController",
-             @"PBSeatSelectionController",
              @"PBQRCodeController",
              @"PBAnnotationController",
-             @"PBImageTextController",
              @"PBAFNetworkingController",
              @"PBWebViewController",
              @"PBTimerController",
