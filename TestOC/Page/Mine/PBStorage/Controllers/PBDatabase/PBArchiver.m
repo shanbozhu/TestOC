@@ -33,13 +33,13 @@
 - (NSArray *)pb_propertyList {
     NSMutableArray *propertyList = [NSMutableArray array];
     unsigned int count = 0;
-    objc_property_t *propertiList = class_copyPropertyList([self class], &count);
+    objc_property_t *propertiesList = class_copyPropertyList([self class], &count);
     for (unsigned int i = 0; i < count; i++) {
-        const char *propertyName = property_getName(propertiList[i]);
+        const char *propertyName = property_getName(propertiesList[i]);
         NSString *property = [NSString stringWithUTF8String:propertyName];
         [propertyList addObject:property];
     }
-    free(propertiList);
+    free(propertiesList);
     return propertyList;
 }
 

@@ -40,12 +40,12 @@
     
     {
         unsigned int count = 0;
-        objc_property_t *propertiList = class_copyPropertyList([self class], &count);
+        objc_property_t *propertiesList = class_copyPropertyList([self class], &count);
         for (unsigned int i = 0; i < count; i++) {
-            const char *propertyName = property_getName(propertiList[i]);
+            const char *propertyName = property_getName(propertiesList[i]);
             NSLog(@"属性名称----%@", [NSString stringWithUTF8String:propertyName]);
         }
-        free(propertiList);
+        free(propertiesList);
     }
     
     {
