@@ -26,6 +26,7 @@
     }
     
     self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
