@@ -33,17 +33,13 @@
 - (NSArray *)pb_propertyList {
     NSMutableArray *propertyList = [NSMutableArray array];
     unsigned int count = 0;
-    Ivar *ivarList = class_copyIvarList([self class], &count);
-    for (int i = 0; i < count; i++) {
-        Ivar var = ivarList[i];
-        
-        const char *varName = ivar_getName(var);
-        NSString *name = [NSString stringWithUTF8String:varName];
-        
-        NSString *property = [name substringFromIndex:1];
+    objc_property_t *propertiList = class_copyPropertyList([self class], &count);
+    for (unsigned int i = 0; i < count; i++) {
+        const char *propertyName = property_getName(propertiList[i]);
+        NSString *property = [NSString stringWithUTF8String:propertyName];
         [propertyList addObject:property];
     }
-    free(ivarList);
+    free(propertiList);
     return propertyList;
 }
 

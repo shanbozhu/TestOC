@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     {
-        unsigned int count;
+        unsigned int count = 0;
         Ivar *ivar = class_copyIvarList([self class], &count);
         for (NSInteger index = 0; index < count; index++) {
             const char *ivarName = ivar_getName(ivar[index]);
@@ -39,7 +39,7 @@
     }
     
     {
-        unsigned int count;
+        unsigned int count = 0;
         objc_property_t *propertiList = class_copyPropertyList([self class], &count);
         for (unsigned int i = 0; i < count; i++) {
             const char *propertyName = property_getName(propertiList[i]);
@@ -49,7 +49,7 @@
     }
     
     {
-        unsigned int count;
+        unsigned int count = 0;
         Method *method = class_copyMethodList([self class], &count);
         for (unsigned int i = 0; i < count; i++) {
             Method me = method[i];
@@ -59,7 +59,7 @@
     }
     
     {
-        unsigned int count;
+        unsigned int count = 0;
         Class metaClass = object_getClass([self class]);
         Method *method = class_copyMethodList(metaClass, &count);
         for (unsigned int i = 0; i < count; i++) {
@@ -81,7 +81,7 @@
     }
     
     {
-        unsigned int count;
+        unsigned int count = 0;
         __unsafe_unretained Protocol **protocolList = class_copyProtocolList([self class], &count);
         for (unsigned int i = 0; i< count; i++) {
             Protocol *myProtocal = protocolList[i];
