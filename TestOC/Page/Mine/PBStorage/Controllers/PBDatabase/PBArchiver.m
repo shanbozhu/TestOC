@@ -30,6 +30,23 @@
 
 @implementation PBArchiver
 
+- (NSArray *)pb_propertyList {
+    NSMutableArray *propertyList = [NSMutableArray array];
+    unsigned int count = 0;
+    Ivar *ivarList = class_copyIvarList([self class], &count);
+    for (int i = 0; i < count; i++) {
+        Ivar var = ivarList[i];
+        
+        const char *varName = ivar_getName(var);
+        NSString *name = [NSString stringWithUTF8String:varName];
+        
+        NSString *property = [name substringFromIndex:1];
+        [propertyList addObject:property];
+    }
+    free(ivarList);
+    return propertyList;
+}
+
 #pragma mark - 支持[归解挡]操作的[模型对象]需要实现的方法
 
 // 归档时当前对象需要实现的代理方法
