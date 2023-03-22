@@ -68,7 +68,7 @@
         objc_setAssociatedObject(tableView, _cmd, cellList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     UITableViewCell *cell = cellList[identifier];
-    if (cell == nil) {
+    if (!cell) {
         [tableView registerClass:NSClassFromString(cellClassName) forCellReuseIdentifier:identifier];
         cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         cellList[identifier] = cell;
@@ -92,7 +92,7 @@
         objc_setAssociatedObject(tableView, _cmd, cellList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     UITableViewCell *cell = cellList[identifier];
-    if (cell == nil) {
+    if (!cell) {
         [tableView registerClass:NSClassFromString(cellClassName) forCellReuseIdentifier:identifier];
         cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         cellList[identifier] = cell;

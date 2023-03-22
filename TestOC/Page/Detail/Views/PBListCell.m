@@ -19,7 +19,7 @@
 
 + (id)listCellWithTableView:(UITableView *)tableView {
     PBListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBListCell"];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[self alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PBListCell"];
     }
     return cell;

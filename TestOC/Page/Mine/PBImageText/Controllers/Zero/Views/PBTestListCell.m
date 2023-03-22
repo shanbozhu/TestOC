@@ -22,7 +22,7 @@
 
 + (id)testListCellWithTableView:(UITableView *)tableView {
     PBTestListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBTestListCell"];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[self alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PBTestListCell"];
     }
     return cell;

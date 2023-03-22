@@ -22,7 +22,7 @@
 
 + (id)testListCellWithTableView:(UITableView *)tableView andReuseIdentifier:(NSString *)reuseIdentifier {
     PBAVPlayerListCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[self alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     return cell;

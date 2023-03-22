@@ -19,7 +19,7 @@
 
 + (id)testListTwoCellWithTableView:(UITableView *)tableView {
     PBTestListTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBTestListTwoCell"];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[self alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PBTestListTwoCell"];
     }
     return cell;
