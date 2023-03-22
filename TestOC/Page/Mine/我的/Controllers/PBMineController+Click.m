@@ -19,8 +19,6 @@
              @"PBArrayController",
              @"PBProtocolController",
              @"PBSyntaxController",
-             @"PBQRCodeController",
-             @"PBAnnotationController",
              @"PBAFNetworkingController",
              @"PBWebViewController",
              @"PBTimerController",

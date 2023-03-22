@@ -15,6 +15,8 @@
     return @[@"PBImageTextController",
              @"PBCalendarController",
              @"PBSeatSelectionController",
+             @"PBAnnotationController",
+             @"PBQRCodeController",
              @"PBAllLinkageController"];
 }
 
