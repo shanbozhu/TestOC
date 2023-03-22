@@ -7,7 +7,6 @@
 //
 
 #import "PBArchiver.h"
-#import "NSObject+PBRuntime.h"
 
 #pragma mark - [归解档]例子
 
@@ -30,6 +29,7 @@
 
 @implementation PBArchiver
 
+// 获取类的所有属性
 - (NSArray *)pb_propertyList {
     NSMutableArray *propertyList = [NSMutableArray array];
     unsigned int count = 0;

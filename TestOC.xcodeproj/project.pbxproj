@@ -87,7 +87,6 @@
 		5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */; };
 		5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */; };
 		5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */; };
-		5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */; };
 		5C42E3DA284DF4830065F887 /* PBCellHeightFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */; };
 		5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */; };
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
@@ -513,12 +512,10 @@
 		5C33FD762744DE9B00F6DDF0 /* PBMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMethodSwizzling.m; sourceTree = "<group>"; };
 		5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBCommonExtension.m"; sourceTree = "<group>"; };
 		5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PBHexStr.m"; sourceTree = "<group>"; };
-		5C33FD792744DE9B00F6DDF0 /* NSObject+PBRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PBRuntime.h"; sourceTree = "<group>"; };
 		5C33FD7A2744DE9B00F6DDF0 /* PBMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMethodSwizzling.h; sourceTree = "<group>"; };
 		5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
 		5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
 		5C33FD7D2744DE9B00F6DDF0 /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
-		5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PBRuntime.m"; sourceTree = "<group>"; };
 		5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveController.m; sourceTree = "<group>"; };
 		5C42E3D9284DF4830065F887 /* PBCellHeightFiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveController.h; sourceTree = "<group>"; };
 		5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveView.m; sourceTree = "<group>"; };
@@ -1484,8 +1481,6 @@
 				5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */,
 				5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */,
 				5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */,
-				5C33FD792744DE9B00F6DDF0 /* NSObject+PBRuntime.h */,
-				5C33FD7E2744DE9B00F6DDF0 /* NSObject+PBRuntime.m */,
 			);
 			path = PBFoundation;
 			sourceTree = "<group>";
@@ -3283,7 +3278,6 @@
 				5C6CDC662833D437007B484B /* PBMasonryTwoController.m in Sources */,
 				5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */,
 				5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */,
-				5C33FD832744DE9B00F6DDF0 /* NSObject+PBRuntime.m in Sources */,
 				5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */,
 				5C0D2E2A2798118B00C9274E /* YNPageViewController.m in Sources */,
 				5C0949662812C5C3002CEBC2 /* PBCellHeightThreeController.m in Sources */,
