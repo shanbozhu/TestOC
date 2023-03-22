@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PBCommonView;
 @protocol PBCommonViewDelegate <NSObject>
 
-- (void)CommonView:(PBCommonView *)CommonView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)commonView:(PBCommonView *)commonView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id<PBCommonViewDelegate> delegate;
 @property (nonatomic, strong) NSArray *pageArr;
 
-+ (id)CommonView;
++ (id)commonView;
 
 @end
 

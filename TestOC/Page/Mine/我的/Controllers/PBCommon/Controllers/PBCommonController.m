@@ -33,12 +33,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
     
     // CommonView
-    PBCommonView *CommonView = [PBCommonView CommonView];
-    [self.view addSubview:CommonView];
-    CommonView.frame = self.view.bounds;
-    CommonView.delegate = self;
+    PBCommonView *commonView = [PBCommonView commonView];
+    [self.view addSubview:commonView];
+    commonView.frame = self.view.bounds;
+    commonView.delegate = self;
     
-    CommonView.pageArr = self.pageArr;
+    commonView.pageArr = self.pageArr;
 }
 
 @end

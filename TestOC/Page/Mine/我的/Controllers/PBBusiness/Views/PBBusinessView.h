@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PBBusinessView;
 @protocol PBBusinessViewDelegate <NSObject>
 
-- (void)BusinessView:(PBBusinessView *)BusinessView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)businessView:(PBBusinessView *)businessView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id<PBBusinessViewDelegate> delegate;
 @property (nonatomic, strong) NSArray *pageArr;
 
-+ (id)BusinessView;
++ (id)businessView;
 
 @end
 

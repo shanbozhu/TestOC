@@ -1905,10 +1905,10 @@
 		5CCC112229CAFB6800F60C38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CCC112629CAFB6800F60C38 /* PBBusinessController.h */,
 				5CCC112329CAFB6800F60C38 /* PBBusinessController.m */,
 				5CCC112429CAFB6800F60C38 /* PBBusinessController+Click.h */,
 				5CCC112529CAFB6800F60C38 /* PBBusinessController+Click.m */,
-				5CCC112629CAFB6800F60C38 /* PBBusinessController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

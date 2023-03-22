@@ -20,7 +20,7 @@
 }
 
 // delegate
-- (void)CommonView:(PBCommonView *)CommonView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)commonView:(PBCommonView *)commonView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *page = self.pageArr[indexPath.row];
     Class aClass = NSClassFromString(page);
     if (!aClass) {

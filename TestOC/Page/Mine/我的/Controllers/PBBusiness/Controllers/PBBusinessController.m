@@ -33,12 +33,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO; // 取消自动调节ScrollView内边距
     
     // BusinessView
-    PBBusinessView *BusinessView = [PBBusinessView BusinessView];
-    [self.view addSubview:BusinessView];
-    BusinessView.frame = self.view.bounds;
-    BusinessView.delegate = self;
+    PBBusinessView *businessView = [PBBusinessView businessView];
+    [self.view addSubview:businessView];
+    businessView.frame = self.view.bounds;
+    businessView.delegate = self;
     
-    BusinessView.pageArr = self.pageArr;
+    businessView.pageArr = self.pageArr;
 }
 
 @end

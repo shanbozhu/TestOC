@@ -19,7 +19,7 @@
 }
 
 // delegate
-- (void)BusinessView:(PBBusinessView *)BusinessView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)businessView:(PBBusinessView *)businessView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *page = self.pageArr[indexPath.row];
     Class aClass = NSClassFromString(page);
     if (!aClass) {

@@ -16,7 +16,7 @@
 
 @implementation PBBusinessView
 
-+ (id)BusinessView {
++ (id)businessView {
     return [[self alloc]initWithFrame:CGRectZero];
 }
 
@@ -59,8 +59,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(BusinessView:didSelectRowAtIndexPath:)]) {
-        [self.delegate BusinessView:self didSelectRowAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(businessView:didSelectRowAtIndexPath:)]) {
+        [self.delegate businessView:self didSelectRowAtIndexPath:indexPath];
     }
 }
 

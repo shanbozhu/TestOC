@@ -16,7 +16,7 @@
 
 @implementation PBCommonView
 
-+ (id)CommonView {
++ (id)commonView {
     return [[self alloc]initWithFrame:CGRectZero];
 }
 
@@ -59,8 +59,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(CommonView:didSelectRowAtIndexPath:)]) {
-        [self.delegate CommonView:self didSelectRowAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(commonView:didSelectRowAtIndexPath:)]) {
+        [self.delegate commonView:self didSelectRowAtIndexPath:indexPath];
     }
 }
 
