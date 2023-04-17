@@ -17,7 +17,7 @@ static CGFloat scrollInterval = 3.0f;
 
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, weak) UIPageControl *pageControl;
-@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, weak) NSTimer *timer;
 @property (nonatomic, assign) PBScrollDirection scrollDirection; // 滚动方向
 
 @end
@@ -65,19 +65,31 @@ static CGFloat scrollInterval = 3.0f;
         pageControl.layer.borderWidth = 1.1;
         
         //
-        PBCycleTimerProxy *cycleTimerProxy = [[PBCycleTimerProxy alloc] init];
-        cycleTimerProxy.delegate = self;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:scrollInterval target:cycleTimerProxy selector:@selector(showNext) userInfo:nil repeats:true];
-        self.timer.fireDate = [NSDate distantFuture];
         self.autoPage = NO;
     }
     return self;
 }
 
+- (void)startTimer {
+    [self stopTimer];
+    
+    //
+    PBCycleTimerProxy *cycleTimerProxy = [[PBCycleTimerProxy alloc] init];
+    cycleTimerProxy.delegate = self;
+    SEL showNext = NSSelectorFromString(@"showNext");
+    NSTimer *timer = [NSTimer timerWithTimeInterval:scrollInterval target:cycleTimerProxy selector:showNext userInfo:nil repeats:YES];
+    self.timer = timer;
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)stopTimer {
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
 - (void)setAutoPage:(BOOL)autoPage {
     _autoPage = autoPage;
-    NSDate *fireDate = autoPage ? [NSDate dateWithTimeIntervalSinceNow:scrollInterval] : [NSDate distantFuture];
-    self.timer.fireDate = fireDate;
+    autoPage ? [self startTimer] : [self stopTimer];
 }
 
 - (void)setTestList:(PBCellHeightZero *)testList {
@@ -134,7 +146,7 @@ static CGFloat scrollInterval = 3.0f;
     
     // 手动拖拽结束,间隔3s继续轮播
     if (self.autoPage) {
-        self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:scrollInterval];
+        [self startTimer];
     }
 }
 
@@ -188,8 +200,7 @@ static CGFloat scrollInterval = 3.0f;
 }
 
 - (void)dealloc {
-    [self.timer invalidate];
-    self.timer = nil;
+    [self stopTimer];
     NSLog(@"PBCycleCollectionView对象被释放了");
 }
 
