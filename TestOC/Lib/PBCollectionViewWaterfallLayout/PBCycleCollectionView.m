@@ -70,6 +70,11 @@ static CGFloat scrollInterval = 3.0f;
     return self;
 }
 
+- (void)dealloc {
+    [self stopTimer];
+    NSLog(@"PBCycleCollectionView对象被释放了");
+}
+
 #pragma mark -
 
 - (void)startTimer {
@@ -196,7 +201,7 @@ static CGFloat scrollInterval = 3.0f;
 }
 
 - (void)cycleTimerProxy:(PBCycleTimerProxy *)timerProxy {
-    // 手指滑动时,禁止自动轮播
+    // 手动滑动时,禁止自动轮播
     if (self.collectionView.isDragging) {
         return;
     }
@@ -208,11 +213,6 @@ static CGFloat scrollInterval = 3.0f;
         CGFloat targetY = self.collectionView.contentOffset.y + self.collectionView.bounds.size.height;
         [self.collectionView setContentOffset:CGPointMake(0, targetY) animated:true];
     }
-}
-
-- (void)dealloc {
-    [self stopTimer];
-    NSLog(@"PBCycleCollectionView对象被释放了");
 }
 
 @end
