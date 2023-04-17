@@ -14,6 +14,7 @@
 @interface PBCellHeightCollectionTwoController ()
 
 @property (nonatomic, weak) PBCycleCollectionView *testListView;
+@property (nonatomic, weak) PBCycleCollectionView *oneTestListView;
 
 @end
 
@@ -31,6 +32,12 @@
     NSArray *tmpArr = [testList.data subarrayWithRange:NSMakeRange(0, 3)]; // 只取前3个
     testList.data = tmpArr;
     self.testListView.testList = testList;
+    
+    // oneTestList
+    PBCellHeightZero *oneTestList = [PBCellHeightZero testListWithDict:jsonDict];
+    NSArray *oneTmpArr = [oneTestList.data subarrayWithRange:NSMakeRange(0, 3)]; // 只取前3个
+    oneTestList.data = oneTmpArr;
+    self.oneTestListView.testList = oneTestList;
 }
 
 - (void)viewDidLoad {
@@ -44,6 +51,12 @@
     self.testListView = testListView;
     [self.view addSubview:testListView];
     testListView.autoPage = YES;
+    
+    // PBCycleCollectionView
+    PBCycleCollectionView *oneTestListView = [[PBCycleCollectionView alloc] initWithFrame:CGRectMake(50, 500, self.view.bounds.size.width - 100, 200) scrollDirection:PBScrollDirectionVertical];
+    self.oneTestListView = oneTestListView;
+    [self.view addSubview:oneTestListView];
+    oneTestListView.autoPage = YES;
     
     //
     [self requestData];
