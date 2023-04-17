@@ -10,6 +10,10 @@
 #import "PBCycleCell.h"
 #import "PBCycleTimerProxy.h"
 
+/**
+ 3 1 2 3 1
+ */
+
 // 轮播时间间隔
 static CGFloat scrollInterval = 3.0f;
 
@@ -18,15 +22,11 @@ static CGFloat scrollInterval = 3.0f;
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, weak) UIPageControl *pageControl;
 @property (nonatomic, weak) NSTimer *timer;
-@property (nonatomic, assign) PBScrollDirection scrollDirection; // 滚动方向
+@property (nonatomic, assign) PBScrollDirection scrollDirection; // 滑动方向
 
 @end
 
 @implementation PBCycleCollectionView
-
-//+ (id)testListView {
-//    return [[self alloc] initWithFrame:CGRectZero];
-//}
 
 - (id)initWithFrame:(CGRect)frame scrollDirection:(PBScrollDirection)scrollDirection {
     if (self = [super initWithFrame:frame]) {
@@ -70,6 +70,8 @@ static CGFloat scrollInterval = 3.0f;
     return self;
 }
 
+#pragma mark -
+
 - (void)startTimer {
     [self stopTimer];
     
@@ -86,6 +88,8 @@ static CGFloat scrollInterval = 3.0f;
     [self.timer invalidate];
     self.timer = nil;
 }
+
+#pragma mark -
 
 - (void)setAutoPage:(BOOL)autoPage {
     _autoPage = autoPage;
@@ -108,6 +112,8 @@ static CGFloat scrollInterval = 3.0f;
     }
     [self.collectionView reloadData];
 }
+
+#pragma mark -
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -140,25 +146,34 @@ static CGFloat scrollInterval = 3.0f;
     return UIEdgeInsetsZero;
 }
 
-// 手动拖拽结束
+#pragma mark -
+
+// 手动滑动结束时会调用
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self cycleScroll];
     
-    // 手动拖拽结束,间隔3s继续轮播
+    // 间隔3s继续轮播
     if (self.autoPage) {
         [self startTimer];
     }
 }
 
+// 自动滑动结束时会调用
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self cycleScroll];
+}
+
+#pragma mark -
+
 - (void)cycleScroll {
     if (self.scrollDirection == PBScrollDirectionHorizontal) {
         NSInteger page = self.collectionView.contentOffset.x / self.collectionView.bounds.size.width;
         if (page == 0) {
-            // 滚动到左边
+            // 当滑动到最左边时设置到最右边倒数第二个
             self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width * (self.testList.data.count - 2), 0);
             self.pageControl.currentPage = self.testList.data.count - 2;
         } else if (page == self.testList.data.count - 1) {
-            // 滚动到右边
+            // 当滑动到最右边时设置到最左边第二个
             self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width, 0);
             self.pageControl.currentPage = 0;
         } else {
@@ -167,11 +182,11 @@ static CGFloat scrollInterval = 3.0f;
     } else {
         NSInteger page = self.collectionView.contentOffset.y / self.collectionView.bounds.size.height;
         if (page == 0) {
-            // 滚动到左边
+            // 当滑动到最下边时设置到最上边倒数第二个
             self.collectionView.contentOffset = CGPointMake(0, self.collectionView.bounds.size.height * (self.testList.data.count - 2));
             self.pageControl.currentPage = self.testList.data.count - 2;
         } else if (page == self.testList.data.count - 1) {
-            // 滚动到右边
+            // 当滑动到最上边时设置到最下边第二个
             self.collectionView.contentOffset = CGPointMake(0, self.collectionView.bounds.size.height);
             self.pageControl.currentPage = 0;
         } else {
@@ -181,10 +196,11 @@ static CGFloat scrollInterval = 3.0f;
 }
 
 - (void)cycleTimerProxy:(PBCycleTimerProxy *)timerProxy {
-    // 手指拖拽时如果计时器没有停止,禁止自动轮播
+    // 手指滑动时,禁止自动轮播
     if (self.collectionView.isDragging) {
         return;
     }
+    
     if (self.scrollDirection == PBScrollDirectionHorizontal) {
         CGFloat targetX = self.collectionView.contentOffset.x + self.collectionView.bounds.size.width;
         [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:true];
@@ -192,11 +208,6 @@ static CGFloat scrollInterval = 3.0f;
         CGFloat targetY = self.collectionView.contentOffset.y + self.collectionView.bounds.size.height;
         [self.collectionView setContentOffset:CGPointMake(0, targetY) animated:true];
     }
-}
-
-// 自动轮播结束
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    [self cycleScroll];
 }
 
 - (void)dealloc {
