@@ -18,6 +18,7 @@ static CGFloat scrollInterval = 3.0f;
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, weak) UIPageControl *pageControl;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) PBScrollDirection scrollDirection; // 滚动方向
 
 @end
 
@@ -27,10 +28,15 @@ static CGFloat scrollInterval = 3.0f;
 //    return [[self alloc] initWithFrame:CGRectZero];
 //}
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame scrollDirection:(PBScrollDirection)scrollDirection {
     if (self = [super initWithFrame:frame]) {
+        self.scrollDirection = scrollDirection;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        if (self.scrollDirection == PBScrollDirectionHorizontal) {
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        } else {
+            layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        }
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
         self.collectionView = collectionView;
         [self addSubview:collectionView];
@@ -42,6 +48,7 @@ static CGFloat scrollInterval = 3.0f;
         }
         collectionView.pagingEnabled = true;
         collectionView.showsHorizontalScrollIndicator = false;
+        collectionView.showsVerticalScrollIndicator = false;
         
         collectionView.layer.borderColor = [UIColor blueColor].CGColor;
         collectionView.layer.borderWidth = 1.1;
@@ -82,7 +89,11 @@ static CGFloat scrollInterval = 3.0f;
     testList.data = tmpArr;
     
     self.pageControl.numberOfPages = testList.data.count - 2;
-    [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width, 0)];
+    if (self.scrollDirection == PBScrollDirectionHorizontal) {
+        [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width, 0)];
+    } else {
+        [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.bounds.size.height)];
+    }
     [self.collectionView reloadData];
 }
 
@@ -128,17 +139,32 @@ static CGFloat scrollInterval = 3.0f;
 }
 
 - (void)cycleScroll {
-    NSInteger page = self.collectionView.contentOffset.x / self.collectionView.bounds.size.width;
-    if (page == 0) {
-        // 滚动到左边
-        self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width * (self.testList.data.count - 2), 0);
-        self.pageControl.currentPage = self.testList.data.count - 2;
-    } else if (page == self.testList.data.count - 1) {
-        // 滚动到右边
-        self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width, 0);
-        self.pageControl.currentPage = 0;
+    if (self.scrollDirection == PBScrollDirectionHorizontal) {
+        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.bounds.size.width;
+        if (page == 0) {
+            // 滚动到左边
+            self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width * (self.testList.data.count - 2), 0);
+            self.pageControl.currentPage = self.testList.data.count - 2;
+        } else if (page == self.testList.data.count - 1) {
+            // 滚动到右边
+            self.collectionView.contentOffset = CGPointMake(self.collectionView.bounds.size.width, 0);
+            self.pageControl.currentPage = 0;
+        } else {
+            self.pageControl.currentPage = page - 1;
+        }
     } else {
-        self.pageControl.currentPage = page - 1;
+        NSInteger page = self.collectionView.contentOffset.y / self.collectionView.bounds.size.height;
+        if (page == 0) {
+            // 滚动到左边
+            self.collectionView.contentOffset = CGPointMake(0, self.collectionView.bounds.size.height * (self.testList.data.count - 2));
+            self.pageControl.currentPage = self.testList.data.count - 2;
+        } else if (page == self.testList.data.count - 1) {
+            // 滚动到右边
+            self.collectionView.contentOffset = CGPointMake(0, self.collectionView.bounds.size.height);
+            self.pageControl.currentPage = 0;
+        } else {
+            self.pageControl.currentPage = page - 1;
+        }
     }
 }
 
@@ -147,8 +173,13 @@ static CGFloat scrollInterval = 3.0f;
     if (self.collectionView.isDragging) {
         return;
     }
-    CGFloat targetX = self.collectionView.contentOffset.x + self.collectionView.bounds.size.width;
-    [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:true];
+    if (self.scrollDirection == PBScrollDirectionHorizontal) {
+        CGFloat targetX = self.collectionView.contentOffset.x + self.collectionView.bounds.size.width;
+        [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:true];
+    } else {
+        CGFloat targetY = self.collectionView.contentOffset.y + self.collectionView.bounds.size.height;
+        [self.collectionView setContentOffset:CGPointMake(0, targetY) animated:true];
+    }
 }
 
 // 自动轮播结束

@@ -40,7 +40,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[YYFPSLabel alloc]initWithFrame:CGRectMake(0, 5, 60, 30)]];
     
     // PBCycleCollectionView
-    PBCycleCollectionView *testListView = [[PBCycleCollectionView alloc] initWithFrame:CGRectMake(50, 200, self.view.bounds.size.width - 100, 200)];
+    PBCycleCollectionView *testListView = [[PBCycleCollectionView alloc] initWithFrame:CGRectMake(50, 200, self.view.bounds.size.width - 100, 200) scrollDirection:PBScrollDirectionHorizontal];
     self.testListView = testListView;
     [self.view addSubview:testListView];
     testListView.autoPage = YES;
