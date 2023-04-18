@@ -90,6 +90,7 @@
 		5C464D132939EBB000BA6B3D /* libswiftCoreGraphics.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */; };
 		5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */; };
 		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
+		5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
 		5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5F2833AA08007B484B /* PBMasonryView.m */; };
 		5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC622833AB17007B484B /* PBMasonryOneController.m */; };
@@ -522,6 +523,8 @@
 		5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftCoreGraphics.tbd; path = usr/lib/swift/libswiftCoreGraphics.tbd; sourceTree = SDKROOT; };
 		5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_right_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_up_normal_blue@3x.png"; sourceTree = "<group>"; };
+		5C6C1B2329EE48C800429589 /* PBAnimationOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationOneController.h; sourceTree = "<group>"; };
+		5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationOneController.m; sourceTree = "<group>"; };
 		5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMasonryController.m; sourceTree = "<group>"; };
 		5C6CDC5C2833A9A6007B484B /* PBMasonryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMasonryController.h; sourceTree = "<group>"; };
 		5C6CDC5E2833AA08007B484B /* PBMasonryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBMasonryView.h; sourceTree = "<group>"; };
@@ -2211,6 +2214,8 @@
 				952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */,
 				5C33EB81273E939C00F6DDF0 /* PBBubbleImageView.h */,
 				5C33EB82273E939C00F6DDF0 /* PBBubbleImageView.m */,
+				5C6C1B2329EE48C800429589 /* PBAnimationOneController.h */,
+				5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */,
 			);
 			path = PBAnimation;
 			sourceTree = "<group>";
@@ -3329,6 +3334,7 @@
 				5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */,
 				5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */,
 				5C0D2E2A2798118B00C9274E /* YNPageViewController.m in Sources */,
+				5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */,
 				5C0949662812C5C3002CEBC2 /* PBCellHeightThreeController.m in Sources */,
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
 				9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */,
