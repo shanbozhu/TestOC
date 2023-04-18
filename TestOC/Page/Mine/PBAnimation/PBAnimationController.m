@@ -155,12 +155,13 @@ NSArray *allSubviews(UIView *aView) {
     animationImageViewOne.image = animatedImageOne;
     animationImageViewOne.backgroundColor = kPBBackgroundColor;
     
-    // Move Zoom
+    // Move Zoom 移动缩放
     UIButton *moveZoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.scrollView addSubview:moveZoomBtn];
     moveZoomBtn.frame = CGRectMake(animationImageViewOne.pb_left, animationImageViewOne.pb_bottom + 20, 50, 50);
     moveZoomBtn.backgroundColor = [UIColor redColor];
     [moveZoomBtn addTarget:self action:@selector(moveZoomBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [moveZoomBtn setTitle:@"Move Zoom" forState:UIControlStateNormal];
 }
 
 - (void)moveZoomBtnClick:(UIButton *)btn {
