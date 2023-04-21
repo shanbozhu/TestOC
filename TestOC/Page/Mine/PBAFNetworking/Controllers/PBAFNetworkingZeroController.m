@@ -35,6 +35,7 @@
         NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
         [paras setValue:@"2.x" forKey:@"AFNetworking"];
         
+        // 请求方式
         [manager POST:urlStr parameters:paras success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             [self processDataWithResponseObject:responseObject];
         } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
@@ -53,6 +54,7 @@
         NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
         [paras setValue:@"3.x" forKey:@"AFNetworking"];
         
+        // 请求方式
         [manager POST:urlStr parameters:paras success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             [self processDataWithResponseObject:responseObject];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -71,6 +73,7 @@
         NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
         [paras setValue:@"3.x" forKey:@"AFNetworking"];
         
+        // 请求方式
         [manager POST:urlStr parameters:paras success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             [self processDataWithResponseObject:responseObject];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
