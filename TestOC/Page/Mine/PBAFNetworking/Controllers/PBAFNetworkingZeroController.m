@@ -45,7 +45,7 @@
     {
         // AFNetworking 3.x
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        // 默认添加请求头: "Content-Type": "application/x-www-form-urlencoded"
+        // 添加请求头: "Content-Type": "application/x-www-form-urlencoded"
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         // 直接返回jsonStr, 以二进制形式
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -63,7 +63,7 @@
     {
         // AFNetworking 3.x
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        // 默认添加请求头: "Content-Type": "application/json"
+        // 添加请求头: "Content-Type": "application/json"
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         // 直接返回jsonDict
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
