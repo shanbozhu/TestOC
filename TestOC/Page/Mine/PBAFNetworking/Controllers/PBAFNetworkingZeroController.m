@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     // 路径、参数
-    NSString *urlStr = @"https://mbd.baidu.com/icomment/v1/comment/list?appname=baiduboxlite&cfrom=1005640h&from=1005640h&fv=12.1.0.0&matrixstyle=0&network=1_0&sid=6566_12070-6565_12068-5748_8984-5583_8566-5682_8784-5534_8296-7254_14771-6973_13646-5957_9811-5601_8529-5987_9960-6197_10730-6170_10622-5463_8044-3000127_1-159_4-5558_8367-5644_8666-6110_10431-5483_8131-6358_11300-6375_11363&st=0&ua=828_1792_iphone_5.1.1.10_0&uid=45D34CA04432AE7FB8F806F7483DB2F06B58F8588FMMDBHJSRH&ut=iPhone11%2C8_12.1.2&zid=Nz1vfc_o7oN3ci-TIwM1lwW9-GqQg2jHJyLNp9nVbRIHhgbIVW4OVnCeiRhpIqEjYXcbGrU5UQymp2JPdo_EmqA&sdkversion=1.1.2";
+    NSString *urlStr = @"https://m.baidu.com/suggest?empty_field=10000&ctl=his&action=list&cfrom=1099a&ds_lv=7&ds_stc=0.7740&from=1099a&matrixstyle=0&network=1_0&osbranch=i0&osname=baiduboxapp&puid=_u2Kt_OQv8SlmqqqB&service=bdbox&st=0&ua=828_1792_iphone_12.17.0.1_0&uid=45D34CA04432AE7FB8F806F7483DB2F06B58F8588FMMDBHJSRH&ut=iPhone11%2C8_12.1.2&zid=MowzQoEcY-nekbrCSe81hD2bEiGt5Q1itnKJo6S65D3FjREtnYW0pP9JS34FZAoGMXNM_cO7KynfHotkJEntNbw";
     
     {
         NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -87,17 +87,7 @@
     
     // 请求体
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
-    [paras setValue:@"1088000038593190" forKey:@"topic_id"];
-    [paras setValue:@"video" forKey:@"source"];
-    [paras setValue:@"9" forKey:@"order"];
-    [paras setValue:@"video" forKey:@"thread_type"];
-    [paras setValue:@"0" forKey:@"start"];
-    [paras setValue:@"sv_8576735144960951200" forKey:@"nid"];
-    [paras setValue:@"20" forKey:@"num"];
-    NSMutableDictionary *extdata = [NSMutableDictionary dictionary];
-    [extdata setValue:@"feed" forKey:@"origin"];
-    [extdata setValue:@"" forKey:@"s_session"];
-    [paras setValue:extdata forKey:@"extdata"];
+    [paras setValue:@"0" forKey:@"sortTime"];
     
     return paras;
 }
