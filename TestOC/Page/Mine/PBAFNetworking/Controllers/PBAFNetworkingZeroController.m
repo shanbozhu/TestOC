@@ -47,6 +47,8 @@
         // AFNetworking 3.x
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         // 添加请求头: "Content-Type": "application/x-www-form-urlencoded"
+        // AFNetworking会将json字典转换为form-urlencoded格式
+        // 转换的核心方法是AFNetworking里的`static NSString * AFQueryStringFromParameters(NSDictionary *parameters)`方法
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         // 直接返回jsonStr, 以二进制形式
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
