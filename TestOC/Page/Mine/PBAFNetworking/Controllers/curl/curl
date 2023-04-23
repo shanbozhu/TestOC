@@ -1,6 +1,5 @@
 // 参考文档:
 // Linux命令-Http工具Curl https://www.yijiyong.com/operation/linux/04-cmdcurl.html
-// form-urlencoded的值可以通过Charles抓包获取,如果数据是复杂点的结构,本身不好直接获取
 
 
 // 用法一:
