@@ -77,7 +77,7 @@
  */
 
 /**
- // c、oc、swift各语言对比
+ // c、oc、swift调用
  
  // c
  int sum(int a, int b) {}
