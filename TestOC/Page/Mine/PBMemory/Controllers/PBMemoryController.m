@@ -37,7 +37,7 @@
  算法:具体使用场景.如UI控件 + 网络 + 多线程 + 数据库
  
  数据类型:
- 基本类型:int(整型)、short(短整型)、long(长整型)、long long(长长整型); float(单精度浮点型)、double(双精度浮点型)、long double(长双精度浮点型); char(字符型); bool(布尔型)
+ 基本类型:int(整型)、short(短整型)、long(长整型)、long long(长长整型); float(单精度浮点型)、double(双精度浮点型)、long double(长双精度浮点型); char(字符型); bool(布尔型); enum(枚举型)
  对象类型:string(字符串)、arrar(数组.又叫list,列表)、dictionary(字典)、set(集合)、tuple(元组)
  */
 
