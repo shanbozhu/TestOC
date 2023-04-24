@@ -6,29 +6,6 @@
 //  Copyright © 2021 DaMaiIOS. All rights reserved.
 //
 
-/**
- // c、oc、swift各语言对比
- 
- // c
- int sum(int a, int b) {}
- sum(3, 4);
- 
- // oc
- - (int)sumWitha:(int)a b:(int)b {}
- [o sumWitha:3 b:4];
- 
- // swift
- // "a a: int"第一个a是子标题,第二个a是变量
- func sum(a a: int, b b: int) -> int {}
- o.sum(a: 3, b: 4)
- // 不写子标题,子标题默认与变量同名
- fun sum(a: int, b: int) -> int {}
- o.sum(a: 3, b: 4)
- // "_"取消子标题
- func sum(_ a: int, b b: int) -> int {}
- o.sum(3, b: 4)
- */
-
 import UIKit
 
 class PBSwiftController: PBBaseController {
