@@ -54,6 +54,29 @@
  */
 
 /**
+ 声明、定义、调用
+ 
+ 1.new/alloc一个对象(定义该类对象,返回对象地址):
+ // oc 空格中括号
+ A *a = [[A alloc] init];
+ 
+ // other 点小括号
+ A a = new A.init();
+ A a = new A(); // init可省略
+ A a = A(); // new可省略
+ 
+ 2.构造方法:
+ init;
+ 
+ 3.析构方法:
+ // oc
+ dealloc;
+ 
+ // other
+ deinit
+ */
+
+/**
  // c、oc、swift各语言对比
  
  // c
