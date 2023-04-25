@@ -104,6 +104,17 @@
     [extdata setValue:@"feed" forKey:@"origin"];
     [extdata setValue:@"E18940390F8EC74785570C5BE86236F8" forKey:@"client_logid"];
     [extdata setValue:@"" forKey:@"s_session"];
+    
+    NSMutableDictionary *a_session = [NSMutableDictionary dictionary];
+    [a_session setValue:@"12" forKey:@"123"];
+    [a_session setValue:@"23" forKey:@"234"];
+    [extdata setValue:a_session forKey:@"a_session"];
+    
+    NSMutableArray *b_session = [NSMutableArray array];
+    [b_session addObject:@"12"];
+    [b_session addObject:@"23"];
+    [paras setValue:b_session forKey:@"b_session"];
+    
     [paras setValue:extdata forKey:@"extdata"];
     
     return paras;
