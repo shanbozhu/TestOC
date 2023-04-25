@@ -109,7 +109,6 @@
     [a_session setValue:@"12" forKey:@"123"];
     [a_session setValue:@"23" forKey:@"234"];
     [extdata setValue:a_session forKey:@"a_session"];
-    
     NSMutableArray *b_session = [NSMutableArray array];
     [b_session addObject:@"12"];
     [b_session addObject:@"23"];
