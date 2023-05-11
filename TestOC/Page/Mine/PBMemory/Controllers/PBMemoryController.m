@@ -75,7 +75,7 @@
  // other 点小括号
  A a = new A.init();
  A a = new A(); // init可省略
- A a = A(); // new可省略
+ A a = A(); // new可省略.自动调用init构造方法
  
  2.构造方法:构造时调用的方法.
  init;
