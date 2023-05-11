@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 滚动方向
 typedef enum : NSUInteger {
-    PBScrollDirectionHorizontal = 0, //!< 横向
-    PBScrollDirectionVertical = 1, //!< 竖向
+    PBScrollDirectionHorizontal = 0, ///< 横向
+    PBScrollDirectionVertical = 1, ///< 竖向
 } PBScrollDirection;
 
 @interface PBCycleCollectionView : UIView

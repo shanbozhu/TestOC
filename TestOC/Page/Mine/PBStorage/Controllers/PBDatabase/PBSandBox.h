@@ -37,16 +37,16 @@
 
 /// 文件或目录类型
 typedef enum : NSUInteger {
-    PBSandBoxFileTypeNonDirectory = 0, //!< 非目录
-    PBSandBoxFileTypeDirectory = 1, //!< 目录
+    PBSandBoxFileTypeNonDirectory = 0, ///< 非目录
+    PBSandBoxFileTypeDirectory = 1, ///< 目录
 } PBSandBoxFileType;
 
 @interface PBSandBoxFileInfo : NSObject
 
-@property (nonatomic, assign) long long modifyTime; //!< 文件或目录修改时间,单位s
-@property (nonatomic, assign) long long size; //!< 文件或目录体积,单位B
-@property (nonatomic, copy) NSString *path; //!< 文件或目录路径
-@property (nonatomic, assign) PBSandBoxFileType type; //!< 文件或目录类型
+@property (nonatomic, assign) long long modifyTime; ///< 文件或目录修改时间,单位s
+@property (nonatomic, assign) long long size; ///< 文件或目录体积,单位B
+@property (nonatomic, copy) NSString *path; ///< 文件或目录路径
+@property (nonatomic, assign) PBSandBoxFileType type; ///< 文件或目录类型
 
 @end
 
