@@ -41,7 +41,7 @@ static NSString *_someString;
 #pragma mark - 有@synthesize修饰,可以同时重写setter、getter方法
 
 - (void)setName:(NSString *)name {
-    _name = name;
+    _name = name; // 等价于 self->_name = name;
 }
 
 - (NSString *)name {
