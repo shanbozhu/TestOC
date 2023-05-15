@@ -21,7 +21,7 @@
         
         // required
         self.fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
-        [self.fiveCellVM layoutInfoWithData:self]; // 提前计算好各控件的frame
+        [self.fiveCellVM layoutInfoWithData:self]; // 提前计算各控件frame
     }
     return self;
 }
