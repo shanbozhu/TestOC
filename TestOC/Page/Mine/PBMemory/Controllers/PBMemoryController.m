@@ -45,7 +45,7 @@
  
  数据类型:
  基本类型:int(整型)、short(短整型)、long(长整型)、long long(长长整型); float(单精度浮点型)、double(双精度浮点型)、long double(长双精度浮点型); char(字符型); bool(布尔型); enum(枚举型)
- 对象类型:string(字符串)、dictionary(字典:键值对组合,键遍历)、arrar(数组:数据组合,索引遍历.又叫list,列表)、set(集合:无序不重复数据组合)、tuple(元组:不可变数组)、struct(结构体:数据组合,点语法遍历)
+ 对象类型:string(字符串)、dictionary(字典:键值对组合,键遍历)、arrar(数组:数据组合,索引遍历.又叫list,列表)、set(集合:无序不重复数据组合)、tuple(元组:不可变数组)、struct(结构体:数据组合,点语法遍历)、class(类:点语法遍历)
  */
 
 /**
