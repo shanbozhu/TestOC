@@ -63,28 +63,25 @@
 /**
  声明、定义(等于声明加初始化)、调用
  
- 1.new/alloc一个对象:
- 1.1.new/alloc申请内存空间
- 1.2.free/release释放内存空间
- 
- // 定义该类对象,返回对象地址
- 
+ 1.定义方法:new/alloc一个对象. 申请内存空间
  // oc 空格中括号
- A *a = [[A alloc] init];
+ A *a = [[A alloc] init]; // 定义该类对象,返回对象地址
  
- // other 点小括号
+ // swift 点小括号
  A a = new A.init();
  A a = new A(); // init可省略
  A a = A(); // new可省略.自动调用init构造方法
  
- 2.构造方法:构造时调用的方法.
+ 2.释放方法:del/release
+ 
+ 3.构造方法:构造时调用的方法.
  init;
  
- 3.析构方法:析构时调用的方法.
+ 4.析构方法:析构时调用的方法.
  // oc
  dealloc;
  
- // other
+ // swift
  deinit;
  */
 
