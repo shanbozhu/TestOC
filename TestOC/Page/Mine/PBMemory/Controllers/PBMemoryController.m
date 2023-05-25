@@ -61,7 +61,9 @@
  */
 
 /**
- 声明、定义(等于声明加初始化)、调用
+ 声明
+ 定义(等于声明加初始化)
+ 调用
  
  1.定义方法:new/alloc一个对象. 申请内存空间
  // oc 空格中括号
@@ -93,8 +95,8 @@
  sum(3, 4);
  
  // oc
- - (int)sumWitha:(int)a b:(int)b {}
- [o sumWitha:3 b:4];
+ - (int)sumWithA:(int)a b:(int)b {}
+ [o sumWithA:3 b:4];
  
  // swift
  // "a a: int"第一个a是子标题,第二个a是变量
