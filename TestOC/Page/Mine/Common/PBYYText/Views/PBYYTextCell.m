@@ -189,21 +189,6 @@
     };
     [attStr yy_setTextHighlight:highlight range:range];
     
-    // 链接_自动匹配
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
-    
-    // 话题_自动匹配
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
-    
-    // 邮箱_自动匹配
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
-    
-    // 手机号_自动匹配
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
-    
-    // 用户名_自动匹配
-    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
-    
     // 图片表情(png图、gif图)
     [self emoticonWithAttributedString:attStr regularExpression:[PBRegex regexEmoticon]];
     
@@ -236,6 +221,21 @@
     // 下划线
     [attStrFour yy_setTextUnderline:decoration range:[attStrFour.string rangeOfString:@"下划线"]];
     [attStr appendAttributedString:attStrFour];
+    
+    // 链接_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
+    
+    // 话题_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
+    
+    // 邮箱_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
+    
+    // 手机号_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
+    
+    // 用户名_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
     
     // 下面方法均可以计算lab高度
     {
