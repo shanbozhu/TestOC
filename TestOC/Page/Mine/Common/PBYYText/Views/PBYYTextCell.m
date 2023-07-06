@@ -21,6 +21,13 @@
 
 @implementation PBYYTextCell
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    if ([self.contentView.subviews containsObject:self.textView]) {
+        return CGSizeMake(size.width, CGRectGetMaxY(self.textView.frame)+20);
+    }
+    return CGSizeMake(size.width, CGRectGetMaxY(self.twoLab.frame)+20);
+}
+
 + (instancetype)testListCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBYYTextCell"];
     PBYYTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBYYTextCell"];
@@ -304,7 +311,12 @@
     return nil;
 }
 
-// 利用正则表达式匹配特定字符串
+- (void)tapClick:(UITapGestureRecognizer *)tap {
+    NSLog(@"点击了图片%ld", tap.view.tag);
+}
+
+#pragma mark - 自动匹配
+
 - (void)highlightWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
     for (NSTextCheckingResult *at in result) {
@@ -330,17 +342,6 @@
             [attStr yy_setTextHighlight:highlight range:at.range];
         }
     }
-}
-
-- (CGSize)sizeThatFits:(CGSize)size {
-    if ([self.contentView.subviews containsObject:self.textView]) {
-        return CGSizeMake(size.width, CGRectGetMaxY(self.textView.frame)+20);
-    }
-    return CGSizeMake(size.width, CGRectGetMaxY(self.twoLab.frame)+20);
-}
-
-- (void)tapClick:(UITapGestureRecognizer *)tap {
-    NSLog(@"点击了图片%ld", tap.view.tag);
 }
 
 @end
