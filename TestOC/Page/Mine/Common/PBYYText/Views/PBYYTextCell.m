@@ -10,7 +10,6 @@
 #import <YYText/YYText.h>
 #import <YYImage/YYImage.h>
 #import "PBRegex.h"
-#import "YYLabel+Copy.h"
 
 @interface PBYYTextCell ()
 
@@ -54,7 +53,7 @@
     YYLabel *oneLab = [[YYLabel alloc]init];
     [self.contentView addSubview:oneLab];
     // 选择复制
-    [oneLab addGestureRecognizer];
+    //YYLabel+Copy.h
     
     // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
@@ -159,7 +158,7 @@
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     }];
     
-    // 高亮点击自定义
+    // 高亮点击_自定义
     NSRange range = [attStr.string rangeOfString:@"高亮点击自定义"];
     UIColor *normalColor = [UIColor blueColor];
     [attStr yy_setColor:normalColor range:range];
@@ -183,19 +182,19 @@
     };
     [attStr yy_setTextHighlight:highlight range:range];
     
-    // 链接
+    // 链接_自动匹配
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
     
-    // 话题
+    // 话题_自动匹配
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
     
-    // 邮箱
+    // 邮箱_自动匹配
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
     
-    // 手机号
+    // 手机号_自动匹配
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
     
-    // 用户名
+    // 用户名_自动匹配
     [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
     
     // 图片表情(png图、gif图)
@@ -208,10 +207,11 @@
     twoImageView.userInteractionEnabled = YES;
     twoImageView.layer.cornerRadius = 10;
     twoImageView.layer.masksToBounds = YES;
+    // 图片点击
     UITapGestureRecognizer *twoTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     [twoImageView addGestureRecognizer:twoTap];
     twoTap.view.tag = 2;
-    
+    // 图片生成富文本
     NSMutableAttributedString *attachStrTwo = [NSMutableAttributedString yy_attachmentStringWithContent:twoImageView contentMode:UIViewContentModeCenter attachmentSize:twoImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
     [attachStrTwo yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrTwo.yy_rangeOfAll];
     [attStr appendAttributedString:attachStrTwo];
@@ -259,6 +259,8 @@
     [textView sizeToFit];
 }
 
+#pragma mark - 图片表情(png图、gif图)
+
 - (void)emoticonWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
     CGFloat emoticonWidth = attStr.yy_font.lineHeight;
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
@@ -275,15 +277,16 @@
             continue;
         }
         
-        // 将图片生成富文本
+        // 图片
         UIImageView *threeImageView = [[YYAnimatedImageView alloc]init];
         threeImageView.image = [YYImage imageNamed:imageName];
         threeImageView.frame = CGRectMake(0, 0, emoticonWidth, emoticonWidth);
         threeImageView.userInteractionEnabled = YES;
+        // 图片点击
         UITapGestureRecognizer *threeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
         [threeImageView addGestureRecognizer:threeTap];
         threeTap.view.tag = 3;
-
+        // 图片生成富文本
         NSMutableAttributedString *attachStrThree = [NSMutableAttributedString yy_attachmentStringWithContent:threeImageView contentMode:UIViewContentModeCenter attachmentSize:threeImageView.frame.size alignToFont:attStr.yy_font alignment:YYTextVerticalAlignmentCenter];
         [attachStrThree yy_setLineSpacing:attStr.yy_lineSpacing range:attachStrThree.yy_rangeOfAll];
         

@@ -193,9 +193,6 @@
 		5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213429C83B65007C937B /* PBRuntimeController.m */; };
 		5CD2213929C83DC0007C937B /* PBRuntimeOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */; };
 		5CD2277329C850FD007C937B /* PBRuntimeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */; };
-		5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */; };
-		5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */; };
-		5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */; };
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
@@ -688,11 +685,6 @@
 		5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeOneController.m; sourceTree = "<group>"; };
 		5CD2277129C850FD007C937B /* PBRuntimeTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeTwoController.h; sourceTree = "<group>"; };
 		5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeTwoController.m; sourceTree = "<group>"; };
-		5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag-dot@2x.png"; sourceTree = "<group>"; };
-		5CDCA717286C21BB001E4BBB /* MagnifiterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifiterView.h; sourceTree = "<group>"; };
-		5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Copy.h"; sourceTree = "<group>"; };
-		5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYLabel+Copy.m"; sourceTree = "<group>"; };
-		5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnifiterView.m; sourceTree = "<group>"; };
 		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
 		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
 		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
@@ -2071,18 +2063,6 @@
 			path = PBRuntimeTwo;
 			sourceTree = "<group>";
 		};
-		5CDCA715286C21BB001E4BBB /* YYLabelCopy */ = {
-			isa = PBXGroup;
-			children = (
-				5CDCA716286C21BB001E4BBB /* drag-dot@2x.png */,
-				5CDCA717286C21BB001E4BBB /* MagnifiterView.h */,
-				5CDCA71A286C21BB001E4BBB /* MagnifiterView.m */,
-				5CDCA718286C21BB001E4BBB /* YYLabel+Copy.h */,
-				5CDCA719286C21BB001E4BBB /* YYLabel+Copy.m */,
-			);
-			path = YYLabelCopy;
-			sourceTree = "<group>";
-		};
 		5CEFE1AD280FB43E0073BC47 /* PBCommon */ = {
 			isa = PBXGroup;
 			children = (
@@ -2680,7 +2660,6 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5CDCA715286C21BB001E4BBB /* YYLabelCopy */,
 				5C98838D282616A000D3AEAD /* CLPlayer */,
 				5CF05889281ABA7F0024B752 /* PBRefresh */,
 				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
@@ -3059,7 +3038,6 @@
 			files = (
 				5C2D066C280C03A300C775B3 /* curl in Resources */,
 				9575940D22F92790009CA618 /* 选择排序.gif in Resources */,
-				5CDCA71B286C21BB001E4BBB /* drag-dot@2x.png in Resources */,
 				952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */,
 				5CCC116329CB040000F60C38 /* qrcode_righttop@2x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
@@ -3378,7 +3356,6 @@
 				957593CE22F84F20009CA618 /* PBGCDListController.m in Sources */,
 				5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */,
 				5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */,
-				5CDCA71D286C21BB001E4BBB /* MagnifiterView.m in Sources */,
 				5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */,
 				5CCC10D329CAF87800F60C38 /* PBTestEspressosSeatCon.m in Sources */,
 				9533420F22F434C900DC7251 /* PBKVOController.m in Sources */,
@@ -3416,7 +3393,6 @@
 				5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */,
 				5CCC111B29CAF92900F60C38 /* PBActivityDetailContent.m in Sources */,
 				5C9883A7282616A000D3AEAD /* CLPlayerConfigure.swift in Sources */,
-				5CDCA71C286C21BB001E4BBB /* YYLabel+Copy.m in Sources */,
 				5C9883A8282616A000D3AEAD /* CLPlayerDelegate.swift in Sources */,
 				5CCC117429CB040000F60C38 /* PBQRCodeContentController.m in Sources */,
 				5CCC10D829CAF87800F60C38 /* PBHallLogoView.m in Sources */,
