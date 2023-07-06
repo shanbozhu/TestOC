@@ -315,7 +315,7 @@
     NSLog(@"点击了图片%ld", tap.view.tag);
 }
 
-#pragma mark - 自动匹配
+#pragma mark - 链接_自动匹配
 
 - (void)highlightWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
