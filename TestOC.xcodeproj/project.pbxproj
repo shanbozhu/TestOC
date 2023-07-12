@@ -55,7 +55,6 @@
 		5C2D0627280BFBFC00C775B3 /* pbyytext_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05C3280BFBFC00C775B3 /* pbyytext_pic.png */; };
 		5C2D0628280BFBFC00C775B3 /* 002@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05C5280BFBFC00C775B3 /* 002@2x.gif */; };
 		5C2D0629280BFBFC00C775B3 /* 0022@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05C6280BFBFC00C775B3 /* 0022@2x.png */; };
-		5C2D062A280BFBFC00C775B3 /* pbyytext_flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D05C7280BFBFC00C775B3 /* pbyytext_flag@2x.png */; };
 		5C2D062B280BFBFC00C775B3 /* PBYYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05C9280BFBFC00C775B3 /* PBYYText.m */; };
 		5C2D062C280BFBFC00C775B3 /* PBRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05CE280BFBFC00C775B3 /* PBRegex.m */; };
 		5C2D062D280BFBFC00C775B3 /* PBYYTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D05CF280BFBFC00C775B3 /* PBYYTextController.m */; };
@@ -451,7 +450,6 @@
 		5C2D05C3280BFBFC00C775B3 /* pbyytext_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbyytext_pic.png; sourceTree = "<group>"; };
 		5C2D05C5280BFBFC00C775B3 /* 002@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "002@2x.gif"; sourceTree = "<group>"; };
 		5C2D05C6280BFBFC00C775B3 /* 0022@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0022@2x.png"; sourceTree = "<group>"; };
-		5C2D05C7280BFBFC00C775B3 /* pbyytext_flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbyytext_flag@2x.png"; sourceTree = "<group>"; };
 		5C2D05C9280BFBFC00C775B3 /* PBYYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBYYText.m; sourceTree = "<group>"; };
 		5C2D05CA280BFBFC00C775B3 /* PBYYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBYYText.h; sourceTree = "<group>"; };
 		5C2D05CD280BFBFC00C775B3 /* PBRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRegex.h; sourceTree = "<group>"; };
@@ -1250,7 +1248,6 @@
 		5C2D05C2280BFBFC00C775B3 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D05C7280BFBFC00C775B3 /* pbyytext_flag@2x.png */,
 				5C2D05C3280BFBFC00C775B3 /* pbyytext_pic.png */,
 				5C2D05C4280BFBFC00C775B3 /* emoticon */,
 			);
@@ -3097,7 +3094,6 @@
 				9575944E22F95120009CA618 /* PBPlayBtn.png in Resources */,
 				9575944F22F95120009CA618 /* PBBackBtn.png in Resources */,
 				B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */,
-				5C2D062A280BFBFC00C775B3 /* pbyytext_flag@2x.png in Resources */,
 				5CCC10CD29CAF87700F60C38 /* pbseatselection_maoyan_logo.png in Resources */,
 				9575940F22F92790009CA618 /* 冒泡排序.gif in Resources */,
 				9575944B22F95120009CA618 /* PBRound.png in Resources */,
