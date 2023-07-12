@@ -94,9 +94,9 @@
 
 - (NSString *)imageNameWithRangeString:(NSString *)rangeString {
     if ([rangeString isEqualToString:@"[调皮]"]) {
-        return @"0022";
+        return @"001";
     } else if ([rangeString isEqualToString:@"[大调皮]"]) {
-        return @"002";
+        return @"0001";
     }
     return nil;
 }
