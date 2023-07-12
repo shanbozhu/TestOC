@@ -23,7 +23,7 @@
     return [[self alloc]initWithFrame:CGRectZero];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         [self setThumbImage:[UIImage imageNamed:@"PBRound"] forState:UIControlStateNormal];
         [self setThumbImage:[UIImage imageNamed:@"PBRound"] forState:UIControlStateHighlighted];

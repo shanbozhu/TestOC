@@ -18,7 +18,7 @@
 
 @implementation PBGCDLockFourController
 
-- (id)init {
+- (instancetype)init {
     if ([super init]) {
         _lock = [[NSRecursiveLock alloc] init];
     }

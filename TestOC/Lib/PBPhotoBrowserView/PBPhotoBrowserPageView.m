@@ -29,7 +29,7 @@
     return [[self alloc]initWithFrame:CGRectZero];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         // scrollView
         UIScrollView *scrollView = [[UIScrollView alloc]init];

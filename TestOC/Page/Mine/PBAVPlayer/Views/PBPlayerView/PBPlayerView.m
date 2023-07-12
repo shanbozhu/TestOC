@@ -43,7 +43,7 @@ typedef enum PBPlayerState PBPlayerState;
     return [[self alloc]initWithFrame:frame];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         self.backgroundColor = [UIColor blackColor];
         

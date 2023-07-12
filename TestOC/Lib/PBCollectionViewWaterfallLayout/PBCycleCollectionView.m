@@ -28,7 +28,7 @@ static CGFloat scrollInterval = 3.0f;
 
 @implementation PBCycleCollectionView
 
-- (id)initWithFrame:(CGRect)frame scrollDirection:(PBScrollDirection)scrollDirection {
+- (instancetype)initWithFrame:(CGRect)frame scrollDirection:(PBScrollDirection)scrollDirection {
     if (self = [super initWithFrame:frame]) {
         self.scrollDirection = scrollDirection;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];

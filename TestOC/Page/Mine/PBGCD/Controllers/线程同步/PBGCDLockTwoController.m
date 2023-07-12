@@ -18,7 +18,7 @@
 
 @implementation PBGCDLockTwoController
 
-- (id)init {
+- (instancetype)init {
     if ([super init]) {
         _lock = [[NSCondition alloc] init];
     }

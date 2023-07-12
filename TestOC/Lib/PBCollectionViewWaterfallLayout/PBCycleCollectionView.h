@@ -24,7 +24,7 @@ typedef enum : NSUInteger {
 // 自动翻页 默认 NO
 @property (nonatomic, assign) BOOL autoPage;
 
-- (id)initWithFrame:(CGRect)frame scrollDirection:(PBScrollDirection)scrollDirection;
+- (instancetype)initWithFrame:(CGRect)frame scrollDirection:(PBScrollDirection)scrollDirection;
 
 @end
 

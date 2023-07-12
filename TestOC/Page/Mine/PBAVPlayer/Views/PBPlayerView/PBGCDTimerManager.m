@@ -23,7 +23,7 @@
 
 @implementation PBGCDTimer
 
-- (id)initWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
+- (instancetype)initWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
     if (self = [super init]) {
         self.action = action;
         self.timerName = timerName;
@@ -172,7 +172,7 @@
     return sharedManager;
 }
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.timerDict = [NSMutableDictionary dictionary];
     }

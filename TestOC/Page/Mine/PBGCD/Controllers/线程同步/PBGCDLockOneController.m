@@ -18,7 +18,7 @@
 
 @implementation PBGCDLockOneController
 
-- (id)init {
+- (instancetype)init {
     if ([super init]) {
         _lock = [[NSLock alloc] init];
     }

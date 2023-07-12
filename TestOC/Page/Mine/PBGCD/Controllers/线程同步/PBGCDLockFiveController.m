@@ -19,7 +19,7 @@
 
 @implementation PBGCDLockFiveController
 
-- (id)init {
+- (instancetype)init {
     if ([super init]) {
         pthread_mutex_init(&_lock, NULL);
     }

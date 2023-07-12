@@ -19,7 +19,7 @@
 
 @implementation PBGCDLockSixController
 
-- (id)init {
+- (instancetype)init {
     if ([super init]) {
         _lock = OS_SPINLOCK_INIT;
     }

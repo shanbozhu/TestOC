@@ -18,7 +18,7 @@
 
 @implementation PBGCDLockThreeController
 
-- (id)init {
+- (instancetype)init {
     if ([super init]) {
         _lock = [[NSConditionLock alloc] init];
     }

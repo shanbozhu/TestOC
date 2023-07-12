@@ -24,7 +24,7 @@
     return [[self alloc]initWithFrame:frame];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         // 顶部工具条
         UIView *topToolBarView = [[UIView alloc]init];
