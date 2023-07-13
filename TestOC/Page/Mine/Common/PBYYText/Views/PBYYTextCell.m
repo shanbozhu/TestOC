@@ -59,8 +59,8 @@
     /// oneLab
     YYLabel *oneLab = [[YYLabel alloc]init];
     [self.contentView addSubview:oneLab];
-    // 选择复制
-    //YYLabel+Copy.h
+    oneLab.layer.borderColor = [UIColor redColor].CGColor;
+    oneLab.layer.borderWidth = 1.1;
     
     // 富文本(属性字符串)
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:str];
@@ -115,6 +115,8 @@
     twoLab.textAlignment = NSTextAlignmentCenter;
     twoLab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
     //twoLab.displaysAsynchronously = YES;
+    twoLab.layer.borderColor = [UIColor redColor].CGColor;
+    twoLab.layer.borderWidth = 1.1;
     
     attStr = [[NSMutableAttributedString alloc]initWithString:str];
     [attStr yy_setFont:[UIFont systemFontOfSize:17] range:NSMakeRange(0, attStr.length)];
@@ -252,6 +254,8 @@
     textView.frame = CGRectMake(20, CGRectGetMaxY(twoLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     textView.attributedText = attStr;
     [textView sizeToFit];
+    textView.layer.borderColor = [UIColor redColor].CGColor;
+    textView.layer.borderWidth = 1.1;
 }
 
 #pragma mark - 图片表情(png图、gif图)
