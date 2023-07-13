@@ -7,6 +7,7 @@
 //
 
 #import "PBAttributedStringController.h"
+#import "PBYYTextCell.h"
 
 @interface PBAttributedStringController ()
 
@@ -18,8 +19,8 @@
     [super viewDidLoad];
     
     
-    
-    
+    NSString *str = [PBYYTextCell originStr];
+    NSLog(@"str = %@", str);
 }
 
 

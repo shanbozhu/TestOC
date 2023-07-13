@@ -24,4 +24,6 @@
 
 + (id)testListCellWithTableView:(UITableView *)tableView;
 
++ (NSString *)originStr;
+
 @end
