@@ -27,7 +27,7 @@
     self.tableView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(show:) name:@"hhhh" object:nil];
 }
 
@@ -69,7 +69,7 @@
     
     cell.contentModel = self.testZeroEspressos.pEle[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    //cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0); // 设置默认分隔线大小
     
     return cell;
 }
