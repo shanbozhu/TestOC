@@ -222,22 +222,8 @@
     [attStrFour yy_setTextUnderline:decoration range:[attStrFour.string rangeOfString:@"下划线"]];
     [attStr appendAttributedString:attStrFour];
     
-    {
-        // 链接_自动匹配
-        [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
-        
-        // 话题_自动匹配
-        [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
-        
-        // 邮箱_自动匹配
-        [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
-        
-        // 手机号_自动匹配
-        [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
-        
-        // 用户名_自动匹配
-        [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
-    }
+    // 链接_自动匹配
+    [self automaticMatchRegularExpressionWithAttStr:attStr];
     
     // 下面方法均可以计算lab高度
     {
@@ -318,6 +304,23 @@
 }
 
 #pragma mark - 链接_自动匹配
+
+- (void)automaticMatchRegularExpressionWithAttStr:(NSMutableAttributedString *)attStr {
+    // 链接_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexUrl]];
+    
+    // 话题_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexTopic]];
+    
+    // 邮箱_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexEmail]];
+    
+    // 手机号_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexPhone]];
+    
+    // 用户名_自动匹配
+    [self highlightWithAttributedString:attStr regularExpression:[PBRegex regexAt]];
+}
 
 - (void)highlightWithAttributedString:(NSMutableAttributedString *)attStr regularExpression:(NSRegularExpression *)regularExpression {
     NSArray *result = [regularExpression matchesInString:attStr.string options:kNilOptions range:attStr.yy_rangeOfAll];
