@@ -23,16 +23,6 @@
 		5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498528142C60002CEBC2 /* PBCellHeightCollectionOneController.m */; };
 		5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */; };
 		5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */; };
-		5C0D2E272798118B00C9274E /* UIViewController+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */; };
-		5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */; };
-		5C0D2E292798118B00C9274E /* UIScrollView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E172798118B00C9274E /* UIScrollView+YNPageExtend.m */; };
-		5C0D2E2A2798118B00C9274E /* YNPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E182798118B00C9274E /* YNPageViewController.m */; };
-		5C0D2E2B2798118B00C9274E /* YNPageConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E192798118B00C9274E /* YNPageConfigration.m */; };
-		5C0D2E2C2798118B00C9274E /* YNPageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E1C2798118B00C9274E /* YNPageTableView.m */; };
-		5C0D2E2D2798118B00C9274E /* YNPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E1F2798118B00C9274E /* YNPageScrollView.m */; };
-		5C0D2E2E2798118B00C9274E /* YNPageHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E202798118B00C9274E /* YNPageHeaderScrollView.m */; };
-		5C0D2E2F2798118B00C9274E /* YNPageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E212798118B00C9274E /* YNPageCollectionView.m */; };
-		5C0D2E302798118B00C9274E /* YNPageScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D2E232798118B00C9274E /* YNPageScrollMenuView.m */; };
 		5C0E6D172852E894009A5BB1 /* PBCellHeightBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E6D142852E894009A5BB1 /* PBCellHeightBaseView.m */; };
 		5C0E6D182852E894009A5BB1 /* PBCellHeightCollectionBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E6D152852E894009A5BB1 /* PBCellHeightCollectionBaseView.m */; };
 		5C2D0609280BFBFC00C775B3 /* PBLinkageThreeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D0582280BFBFB00C775B3 /* PBLinkageThreeListController.m */; };
@@ -116,10 +106,6 @@
 		5CCB745729B82E2500853864 /* PBServiceDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745429B82E2500853864 /* PBServiceDispatch.m */; };
 		5CCB746529B82E2E00853864 /* PBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745C29B82E2E00853864 /* PBService.m */; };
 		5CCB746629B82E2E00853864 /* PBProtocolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB746029B82E2E00853864 /* PBProtocolController.m */; };
-		5CCC10A129CAF83E00F60C38 /* PBLinkageTopOneListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC109929CAF83E00F60C38 /* PBLinkageTopOneListController.m */; };
-		5CCC10A229CAF83E00F60C38 /* PBLinkageTopTwoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC109B29CAF83E00F60C38 /* PBLinkageTopTwoListController.m */; };
-		5CCC10A329CAF83E00F60C38 /* PBAllLinkageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC109C29CAF83E00F60C38 /* PBAllLinkageController.m */; };
-		5CCC10A429CAF83E00F60C38 /* PBLinkageTopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC109E29CAF83E00F60C38 /* PBLinkageTopController.m */; };
 		5CCC10CA29CAF87700F60C38 /* pbseatselection_yishou.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CCC10A729CAF87700F60C38 /* pbseatselection_yishou.png */; };
 		5CCC10CB29CAF87700F60C38 /* pbseatselection_screenBg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CCC10A829CAF87700F60C38 /* pbseatselection_screenBg@3x.png */; };
 		5CCC10CC29CAF87700F60C38 /* pbseatselection_kexuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CCC10A929CAF87700F60C38 /* pbseatselection_kexuan.png */; };
@@ -206,6 +192,7 @@
 		5CF055D8281AA1440024B752 /* PBCycleTimerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF055D7281AA1440024B752 /* PBCycleTimerProxy.m */; };
 		5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0588B281ABA7F0024B752 /* PBRefresh.m */; };
 		5CF412382A5ED97F00BC690C /* iOS_YYText_render.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF412372A5ED97F00BC690C /* iOS_YYText_render.png */; };
+		5CF415692A5FC79400BC690C /* PBAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF415682A5FC79400BC690C /* PBAttributedStringController.m */; };
 		66B6B60129BAD3C700C8725F /* UIViewController+PBCurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6B5FF29BAD3C700C8725F /* UIViewController+PBCurrentVC.m */; };
 		66B6B60229BAD3C700C8725F /* UIWindow+PBCurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6B60029BAD3C700C8725F /* UIWindow+PBCurrentVC.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
@@ -391,26 +378,6 @@
 		5C09498828142D03002CEBC2 /* PBCellHeightCollectionOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionOneView.m; sourceTree = "<group>"; };
 		5C09498928142D03002CEBC2 /* PBCellHeightCollectionOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionOneView.h; sourceTree = "<group>"; };
 		5C09498A28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionOneCell.m; sourceTree = "<group>"; };
-		5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YNPageExtend.m"; sourceTree = "<group>"; };
-		5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YNPageExtend.m"; sourceTree = "<group>"; };
-		5C0D2E142798118B00C9274E /* UIScrollView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YNPageExtend.h"; sourceTree = "<group>"; };
-		5C0D2E152798118B00C9274E /* UIView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YNPageExtend.h"; sourceTree = "<group>"; };
-		5C0D2E162798118B00C9274E /* UIViewController+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YNPageExtend.h"; sourceTree = "<group>"; };
-		5C0D2E172798118B00C9274E /* UIScrollView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YNPageExtend.m"; sourceTree = "<group>"; };
-		5C0D2E182798118B00C9274E /* YNPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageViewController.m; sourceTree = "<group>"; };
-		5C0D2E192798118B00C9274E /* YNPageConfigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageConfigration.m; sourceTree = "<group>"; };
-		5C0D2E1B2798118B00C9274E /* YNPageHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageHeaderScrollView.h; sourceTree = "<group>"; };
-		5C0D2E1C2798118B00C9274E /* YNPageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageTableView.m; sourceTree = "<group>"; };
-		5C0D2E1D2798118B00C9274E /* YNPageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageCollectionView.h; sourceTree = "<group>"; };
-		5C0D2E1E2798118B00C9274E /* YNPageScrollMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageScrollMenuView.h; sourceTree = "<group>"; };
-		5C0D2E1F2798118B00C9274E /* YNPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageScrollView.m; sourceTree = "<group>"; };
-		5C0D2E202798118B00C9274E /* YNPageHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageHeaderScrollView.m; sourceTree = "<group>"; };
-		5C0D2E212798118B00C9274E /* YNPageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageCollectionView.m; sourceTree = "<group>"; };
-		5C0D2E222798118B00C9274E /* YNPageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageTableView.h; sourceTree = "<group>"; };
-		5C0D2E232798118B00C9274E /* YNPageScrollMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageScrollMenuView.m; sourceTree = "<group>"; };
-		5C0D2E242798118B00C9274E /* YNPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageScrollView.h; sourceTree = "<group>"; };
-		5C0D2E252798118B00C9274E /* YNPageConfigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageConfigration.h; sourceTree = "<group>"; };
-		5C0D2E262798118B00C9274E /* YNPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageViewController.h; sourceTree = "<group>"; };
 		5C0E6D132852E894009A5BB1 /* PBCellHeightCollectionBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightCollectionBaseView.h; sourceTree = "<group>"; };
 		5C0E6D142852E894009A5BB1 /* PBCellHeightBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightBaseView.m; sourceTree = "<group>"; };
 		5C0E6D152852E894009A5BB1 /* PBCellHeightCollectionBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightCollectionBaseView.m; sourceTree = "<group>"; };
@@ -558,14 +525,6 @@
 		5CCB746029B82E2E00853864 /* PBProtocolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBProtocolController.m; sourceTree = "<group>"; };
 		5CCB746129B82E2E00853864 /* PBProtocolController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBProtocolController.h; sourceTree = "<group>"; };
 		5CCB746429B82E2E00853864 /* PBServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBServiceProtocol.h; sourceTree = "<group>"; };
-		5CCC109829CAF83E00F60C38 /* PBAllLinkageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAllLinkageController.h; sourceTree = "<group>"; };
-		5CCC109929CAF83E00F60C38 /* PBLinkageTopOneListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBLinkageTopOneListController.m; sourceTree = "<group>"; };
-		5CCC109A29CAF83E00F60C38 /* PBLinkageTopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBLinkageTopController.h; sourceTree = "<group>"; };
-		5CCC109B29CAF83E00F60C38 /* PBLinkageTopTwoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBLinkageTopTwoListController.m; sourceTree = "<group>"; };
-		5CCC109C29CAF83E00F60C38 /* PBAllLinkageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAllLinkageController.m; sourceTree = "<group>"; };
-		5CCC109D29CAF83E00F60C38 /* PBLinkageTopOneListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBLinkageTopOneListController.h; sourceTree = "<group>"; };
-		5CCC109E29CAF83E00F60C38 /* PBLinkageTopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBLinkageTopController.m; sourceTree = "<group>"; };
-		5CCC109F29CAF83E00F60C38 /* PBLinkageTopTwoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBLinkageTopTwoListController.h; sourceTree = "<group>"; };
 		5CCC10A729CAF87700F60C38 /* pbseatselection_yishou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbseatselection_yishou.png; sourceTree = "<group>"; };
 		5CCC10A829CAF87700F60C38 /* pbseatselection_screenBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbseatselection_screenBg@3x.png"; sourceTree = "<group>"; };
 		5CCC10A929CAF87700F60C38 /* pbseatselection_kexuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbseatselection_kexuan.png; sourceTree = "<group>"; };
@@ -711,6 +670,8 @@
 		5CF0588A281ABA7F0024B752 /* PBRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRefresh.h; sourceTree = "<group>"; };
 		5CF0588B281ABA7F0024B752 /* PBRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRefresh.m; sourceTree = "<group>"; };
 		5CF412372A5ED97F00BC690C /* iOS_YYText_render.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_YYText_render.png; sourceTree = "<group>"; };
+		5CF415672A5FC79400BC690C /* PBAttributedStringController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAttributedStringController.h; sourceTree = "<group>"; };
+		5CF415682A5FC79400BC690C /* PBAttributedStringController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAttributedStringController.m; sourceTree = "<group>"; };
 		66B6B5FD29BAD3C700C8725F /* UIViewController+PBCurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PBCurrentVC.h"; sourceTree = "<group>"; };
 		66B6B5FE29BAD3C700C8725F /* UIWindow+PBCurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PBCurrentVC.h"; sourceTree = "<group>"; };
 		66B6B5FF29BAD3C700C8725F /* UIViewController+PBCurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PBCurrentVC.m"; sourceTree = "<group>"; };
@@ -1055,49 +1016,6 @@
 			path = PBCellHeight;
 			sourceTree = "<group>";
 		};
-		5C0D2E102798118A00C9274E /* YNPageViewController */ = {
-			isa = PBXGroup;
-			children = (
-				5C0D2E112798118B00C9274E /* Category */,
-				5C0D2E1A2798118B00C9274E /* View */,
-				5C0D2E262798118B00C9274E /* YNPageViewController.h */,
-				5C0D2E182798118B00C9274E /* YNPageViewController.m */,
-				5C0D2E252798118B00C9274E /* YNPageConfigration.h */,
-				5C0D2E192798118B00C9274E /* YNPageConfigration.m */,
-			);
-			path = YNPageViewController;
-			sourceTree = "<group>";
-		};
-		5C0D2E112798118B00C9274E /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				5C0D2E162798118B00C9274E /* UIViewController+YNPageExtend.h */,
-				5C0D2E122798118B00C9274E /* UIViewController+YNPageExtend.m */,
-				5C0D2E152798118B00C9274E /* UIView+YNPageExtend.h */,
-				5C0D2E132798118B00C9274E /* UIView+YNPageExtend.m */,
-				5C0D2E142798118B00C9274E /* UIScrollView+YNPageExtend.h */,
-				5C0D2E172798118B00C9274E /* UIScrollView+YNPageExtend.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		5C0D2E1A2798118B00C9274E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5C0D2E1B2798118B00C9274E /* YNPageHeaderScrollView.h */,
-				5C0D2E202798118B00C9274E /* YNPageHeaderScrollView.m */,
-				5C0D2E222798118B00C9274E /* YNPageTableView.h */,
-				5C0D2E1C2798118B00C9274E /* YNPageTableView.m */,
-				5C0D2E1D2798118B00C9274E /* YNPageCollectionView.h */,
-				5C0D2E212798118B00C9274E /* YNPageCollectionView.m */,
-				5C0D2E1E2798118B00C9274E /* YNPageScrollMenuView.h */,
-				5C0D2E232798118B00C9274E /* YNPageScrollMenuView.m */,
-				5C0D2E242798118B00C9274E /* YNPageScrollView.h */,
-				5C0D2E1F2798118B00C9274E /* YNPageScrollView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5C0E6D122852E85A009A5BB1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1112,6 +1030,7 @@
 		5C2D057B280BFBFB00C775B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5CF415632A5FC74C00BC690C /* PBAttributedString */,
 				5C2D057C280BFBFB00C775B3 /* PBScrollViewLinkage */,
 				5C2D0594280BFBFB00C775B3 /* PBCellHeight */,
 				5C2D05C1280BFBFC00C775B3 /* PBYYText */,
@@ -1616,48 +1535,8 @@
 				5CCC10EC29CAF92900F60C38 /* PBImageText */,
 				5CCC10DD29CAF89A00F60C38 /* PBCalendar */,
 				5CCC10A529CAF87700F60C38 /* PBSeatSelection */,
-				5CCC109529CAF83E00F60C38 /* PBAllLinkage */,
 			);
 			path = Business;
-			sourceTree = "<group>";
-		};
-		5CCC109529CAF83E00F60C38 /* PBAllLinkage */ = {
-			isa = PBXGroup;
-			children = (
-				5CCC109629CAF83E00F60C38 /* Models */,
-				5CCC109729CAF83E00F60C38 /* Controllers */,
-				5CCC10A029CAF83E00F60C38 /* Views */,
-			);
-			path = PBAllLinkage;
-			sourceTree = "<group>";
-		};
-		5CCC109629CAF83E00F60C38 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		5CCC109729CAF83E00F60C38 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				5CCC109829CAF83E00F60C38 /* PBAllLinkageController.h */,
-				5CCC109C29CAF83E00F60C38 /* PBAllLinkageController.m */,
-				5CCC109A29CAF83E00F60C38 /* PBLinkageTopController.h */,
-				5CCC109E29CAF83E00F60C38 /* PBLinkageTopController.m */,
-				5CCC109D29CAF83E00F60C38 /* PBLinkageTopOneListController.h */,
-				5CCC109929CAF83E00F60C38 /* PBLinkageTopOneListController.m */,
-				5CCC109F29CAF83E00F60C38 /* PBLinkageTopTwoListController.h */,
-				5CCC109B29CAF83E00F60C38 /* PBLinkageTopTwoListController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		5CCC10A029CAF83E00F60C38 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5CCC10A529CAF87700F60C38 /* PBSeatSelection */ = {
@@ -2143,6 +2022,39 @@
 				5CF0588B281ABA7F0024B752 /* PBRefresh.m */,
 			);
 			path = PBRefresh;
+			sourceTree = "<group>";
+		};
+		5CF415632A5FC74C00BC690C /* PBAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				5CF415642A5FC74C00BC690C /* Models */,
+				5CF415652A5FC74C00BC690C /* Controllers */,
+				5CF415662A5FC74C00BC690C /* Views */,
+			);
+			path = PBAttributedString;
+			sourceTree = "<group>";
+		};
+		5CF415642A5FC74C00BC690C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5CF415652A5FC74C00BC690C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CF415672A5FC79400BC690C /* PBAttributedStringController.h */,
+				5CF415682A5FC79400BC690C /* PBAttributedStringController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5CF415662A5FC74C00BC690C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		66B6B5FC29BAD3C700C8725F /* UIViewController */ = {
@@ -2663,7 +2575,6 @@
 				5C98838D282616A000D3AEAD /* CLPlayer */,
 				5CF05889281ABA7F0024B752 /* PBRefresh */,
 				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
-				5C0D2E102798118A00C9274E /* YNPageViewController */,
 				5C33FD742744DE9B00F6DDF0 /* PBFoundation */,
 				95168891261F19620047D1B2 /* PBTabBarController */,
 				9575995C22FC2415009CA618 /* TFHpple */,
@@ -3165,7 +3076,6 @@
 				5CCB745729B82E2500853864 /* PBServiceDispatch.m in Sources */,
 				9575945422F95120009CA618 /* PBPlayerSlider.m in Sources */,
 				5C2D0614280BFBFC00C775B3 /* PBCellHeightZero.m in Sources */,
-				5C0D2E2D2798118B00C9274E /* YNPageScrollView.m in Sources */,
 				958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */,
 				957593D122F84F20009CA618 /* PBGCDListFiveController.m in Sources */,
 				9575998A22FC2415009CA618 /* PBPhotoBrowserPageView.m in Sources */,
@@ -3188,15 +3098,12 @@
 				5CCC10D529CAF87800F60C38 /* PBSeatSelectionController.m in Sources */,
 				5C2D060A280BFBFC00C775B3 /* PBLinkageController.m in Sources */,
 				5CCB745629B82E2500853864 /* PBServiceBridge.m in Sources */,
-				5C0D2E272798118B00C9274E /* UIViewController+YNPageExtend.m in Sources */,
 				5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */,
 				5C2D0610280BFBFC00C775B3 /* PBLinkageContainerCell.m in Sources */,
 				9575934122F82A64009CA618 /* PBStorageTextTwoController.m in Sources */,
 				9533420722F427D200DC7251 /* PBCopy.m in Sources */,
 				5C9883A4282616A000D3AEAD /* CLFullScreenRightController.swift in Sources */,
 				5C9883A3282616A000D3AEAD /* CLAnimationTransitioning.swift in Sources */,
-				5C0D2E2F2798118B00C9274E /* YNPageCollectionView.m in Sources */,
-				5CCC10A429CAF83E00F60C38 /* PBLinkageTopController.m in Sources */,
 				5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */,
 				957593CF22F84F20009CA618 /* PBGCDListNineController.m in Sources */,
 				5CCC111F29CAF92900F60C38 /* PBTestListTwoCell.m in Sources */,
@@ -3265,6 +3172,7 @@
 				5CCC10EB29CAF89A00F60C38 /* PBCalendarController.m in Sources */,
 				5CCC113E29CB03DE00F60C38 /* PBAnnotationView.m in Sources */,
 				9575932C22F82A46009CA618 /* PBDataPList.m in Sources */,
+				5CF415692A5FC79400BC690C /* PBAttributedStringController.m in Sources */,
 				5C2D0642280BFBFC00C775B3 /* BBACommentContentLink.m in Sources */,
 				9575931222F81E7E009CA618 /* PBMemoryListMRCOne.m in Sources */,
 				5CCC112B29CAFB6800F60C38 /* PBBusinessController+Click.m in Sources */,
@@ -3275,7 +3183,6 @@
 				9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */,
 				5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */,
 				9533421222F434D900DC7251 /* PBKVOListController.m in Sources */,
-				5C0D2E2B2798118B00C9274E /* YNPageConfigration.m in Sources */,
 				5CCC111629CAF92900F60C38 /* PBTestListController.m in Sources */,
 				5C2D066B280C032A00C775B3 /* PBAFNetworkingZeroController.m in Sources */,
 				5CD2213229C83AB9007C937B /* PBRuntimeZeroController.m in Sources */,
@@ -3304,14 +3211,12 @@
 				9575934022F82A64009CA618 /* PBStorageDataBaseController.m in Sources */,
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				5CCC10EA29CAF89A00F60C38 /* PBCalendar.m in Sources */,
-				5CCC10A229CAF83E00F60C38 /* PBLinkageTopTwoListController.m in Sources */,
 				5CCC10DA29CAF87800F60C38 /* PBSeatButton.m in Sources */,
 				5C42E3E3284DFDC10065F887 /* PBCellHeightFiveCellVM.m in Sources */,
 				5C6CDC662833D437007B484B /* PBMasonryTwoController.m in Sources */,
 				5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */,
 				5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */,
 				5C2D061B280BFBFC00C775B3 /* PBCellHeightZeroController.m in Sources */,
-				5C0D2E2A2798118B00C9274E /* YNPageViewController.m in Sources */,
 				5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */,
 				5C0949662812C5C3002CEBC2 /* PBCellHeightThreeController.m in Sources */,
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
@@ -3336,7 +3241,6 @@
 				957593F122F84F3B009CA618 /* PBGCDLockTenController.m in Sources */,
 				5CCC117529CB040000F60C38 /* PBQRCodeGenerateController.m in Sources */,
 				957593D722F84F20009CA618 /* PBGCDListOneController.m in Sources */,
-				5C0D2E2E2798118B00C9274E /* YNPageHeaderScrollView.m in Sources */,
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
 				952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */,
@@ -3344,10 +3248,7 @@
 				95D34CAF2673714E0007A67D /* PBSwiftLabel.swift in Sources */,
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
-				5C0D2E302798118B00C9274E /* YNPageScrollMenuView.m in Sources */,
 				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,
-				5C0D2E282798118B00C9274E /* UIView+YNPageExtend.m in Sources */,
-				5CCC10A129CAF83E00F60C38 /* PBLinkageTopOneListController.m in Sources */,
 				5CCC111929CAF92900F60C38 /* PBTestListCell.m in Sources */,
 				957593CC22F84F20009CA618 /* PBGCDListFourController.m in Sources */,
 				5C2D060C280BFBFC00C775B3 /* PBLinkageOneListController.m in Sources */,
@@ -3396,7 +3297,6 @@
 				5C9883A8282616A000D3AEAD /* CLPlayerDelegate.swift in Sources */,
 				5CCC117429CB040000F60C38 /* PBQRCodeContentController.m in Sources */,
 				5CCC10D829CAF87800F60C38 /* PBHallLogoView.m in Sources */,
-				5CCC10A329CAF83E00F60C38 /* PBAllLinkageController.m in Sources */,
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
 				5CCC111E29CAF92900F60C38 /* PBTestListTwoController.m in Sources */,
 				95C19230262548400008FD14 /* PBSyntaxController.m in Sources */,
@@ -3421,13 +3321,11 @@
 				5C2D0622280BFBFC00C775B3 /* PBCellHeightZeroCell.m in Sources */,
 				9575998122FC2415009CA618 /* TFHppleElement.m in Sources */,
 				9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */,
-				5C0D2E292798118B00C9274E /* UIScrollView+YNPageExtend.m in Sources */,
 				5CCC10DC29CAF87800F60C38 /* PBAppLogoView.m in Sources */,
 				9575931F22F82A37009CA618 /* PBstorageZeroController.m in Sources */,
 				9575933F22F82A64009CA618 /* PBStorageTextThreeController.m in Sources */,
 				5C2D0625280BFBFC00C775B3 /* PBCellHeightZeroView.m in Sources */,
 				95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */,
-				5C0D2E2C2798118B00C9274E /* YNPageTableView.m in Sources */,
 				5CCC111529CAF92900F60C38 /* PBTestZeroEspressos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
