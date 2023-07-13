@@ -35,9 +35,8 @@
         self.lab = lab;
         [self.contentView addSubview:lab];
         lab.numberOfLines = 0;
-        
-        //lab.layer.borderWidth = 1;
-        //lab.layer.borderColor = [UIColor redColor].CGColor;
+        lab.layer.borderColor = [UIColor redColor].CGColor;
+        lab.layer.borderWidth = 1.1;
     }
     return self;
 }
