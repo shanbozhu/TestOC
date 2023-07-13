@@ -1668,10 +1668,10 @@
 		5CCC10EF29CAF92900F60C38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CCC111129CAF92900F60C38 /* PBImageTextController.h */,
 				5CCC10F029CAF92900F60C38 /* PBImageTextController.m */,
 				5CCC10F129CAF92900F60C38 /* Zero */,
 				5CCC110029CAF92900F60C38 /* Two */,
-				5CCC111129CAF92900F60C38 /* PBImageTextController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1690,8 +1690,8 @@
 			isa = PBXGroup;
 			children = (
 				5CCC10F329CAF92900F60C38 /* PBContentModel.h */,
-				5CCC10F429CAF92900F60C38 /* PBTestZeroEspressos.h */,
 				5CCC10F529CAF92900F60C38 /* PBContentModel.m */,
+				5CCC10F429CAF92900F60C38 /* PBTestZeroEspressos.h */,
 				5CCC10F629CAF92900F60C38 /* PBTestZeroEspressos.m */,
 			);
 			path = Models;
@@ -1710,9 +1710,9 @@
 			isa = PBXGroup;
 			children = (
 				5CCC10FB29CAF92900F60C38 /* PBTestListView.h */,
-				5CCC10FC29CAF92900F60C38 /* PBTestListCell.h */,
-				5CCC10FD29CAF92900F60C38 /* PBTestListView.xib */,
 				5CCC10FE29CAF92900F60C38 /* PBTestListView.m */,
+				5CCC10FD29CAF92900F60C38 /* PBTestListView.xib */,
+				5CCC10FC29CAF92900F60C38 /* PBTestListCell.h */,
 				5CCC10FF29CAF92900F60C38 /* PBTestListCell.m */,
 			);
 			path = Views;
@@ -1741,9 +1741,9 @@
 		5CCC110429CAF92900F60C38 /* PBActivityDetailCalView */ = {
 			isa = PBXGroup;
 			children = (
+				5CCC110729CAF92900F60C38 /* PBActivityDetailContent.h */,
 				5CCC110529CAF92900F60C38 /* PBActivityDetailContent.m */,
 				5CCC110629CAF92900F60C38 /* PBActivityDetail.js */,
-				5CCC110729CAF92900F60C38 /* PBActivityDetailContent.h */,
 				5CCC110829CAF92900F60C38 /* PBActivityDetail.css */,
 			);
 			path = PBActivityDetailCalView;
@@ -1752,8 +1752,8 @@
 		5CCC110929CAF92900F60C38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC110A29CAF92900F60C38 /* PBTestListTwoController.m */,
 				5CCC110B29CAF92900F60C38 /* PBTestListTwoController.h */,
+				5CCC110A29CAF92900F60C38 /* PBTestListTwoController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1761,10 +1761,10 @@
 		5CCC110C29CAF92900F60C38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC110D29CAF92900F60C38 /* PBTestListTwoCell.h */,
 				5CCC110E29CAF92900F60C38 /* PBTestListTwoView.h */,
-				5CCC110F29CAF92900F60C38 /* PBTestListTwoCell.m */,
 				5CCC111029CAF92900F60C38 /* PBTestListTwoView.m */,
+				5CCC110D29CAF92900F60C38 /* PBTestListTwoCell.h */,
+				5CCC110F29CAF92900F60C38 /* PBTestListTwoCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
