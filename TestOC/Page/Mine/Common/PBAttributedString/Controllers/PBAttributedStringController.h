@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBAttributedStringController : UIViewController
+@interface PBAttributedStringController : PBBaseController
 
 @end
 

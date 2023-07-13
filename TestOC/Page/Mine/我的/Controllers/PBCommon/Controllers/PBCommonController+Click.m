@@ -12,7 +12,8 @@
 @implementation PBCommonController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBYYTextController",
+    return @[@"PBAttributedStringController",
+             @"PBYYTextController",
              @"PBContentController",
              @"PBCellHeightController",
              @"PBLinkageController",
