@@ -115,7 +115,7 @@
     YYLabel *twoLab = [[YYLabel alloc]init];
     self.twoLab = twoLab;
     [self.contentView addSubview:twoLab];
-    twoLab.frame = CGRectMake(20, CGRectGetMaxY(oneLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
+    twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     twoLab.numberOfLines = 0;
     twoLab.textAlignment = NSTextAlignmentCenter;
     twoLab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
@@ -240,9 +240,9 @@
     }
     
     {
-        twoLab.attributedText = attStr;
         YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(CGRectGetWidth(twoLab.frame), MAXFLOAT) text:attStr];
         twoLab.frame = CGRectMake(CGRectGetMinX(oneLab.frame), CGRectGetMaxY(oneLab.frame)+50, layout.textBoundingSize.width, layout.textBoundingSize.height);
+        twoLab.attributedText = attStr;
     }
     
     {
@@ -256,7 +256,7 @@
     [self.contentView addSubview:textView];
     textView.textContainerInset = UIEdgeInsetsZero; // YYTextView上下左右间距为0
     //textView.editable = NO;
-    textView.frame = CGRectMake(20, CGRectGetMaxY(twoLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
+    textView.frame = CGRectMake(CGRectGetMinX(twoLab.frame), CGRectGetMaxY(twoLab.frame)+50, [UIScreen mainScreen].bounds.size.width-40, 100000);
     textView.attributedText = attStr;
     [textView sizeToFit];
     textView.layer.borderColor = [UIColor redColor].CGColor;
