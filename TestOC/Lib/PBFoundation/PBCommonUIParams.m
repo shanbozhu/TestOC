@@ -38,11 +38,6 @@
     }
 }
 
-+ (BOOL)isFringeScreen {
-    UIEdgeInsets edge = [PBCommonUIParams safeMargin];
-    return !(edge.bottom == 0 && edge.left == 0 && edge.right == 0);
-}
-
 + (CGFloat)safeTopMargin {
     return [PBCommonUIParams safeMargin].top;
 }

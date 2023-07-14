@@ -48,8 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGFloat)safeLeftMargin;
 + (CGFloat)safeRightMargin;
 
-+ (BOOL)isFringeScreen;
-
 @end
 
 NS_ASSUME_NONNULL_END
