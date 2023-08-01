@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PBSyntaxMidController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBSyntaxController : PBBaseController
+@interface PBSyntaxController : PBSyntaxMidController
 
 @end
 

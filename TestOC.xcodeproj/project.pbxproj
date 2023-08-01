@@ -84,6 +84,7 @@
 		5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5F2833AA08007B484B /* PBMasonryView.m */; };
 		5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC622833AB17007B484B /* PBMasonryOneController.m */; };
 		5C6CDC662833D437007B484B /* PBMasonryTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC642833D436007B484B /* PBMasonryTwoController.m */; };
+		5C8EDCB52A792598008F00D8 /* PBSyntaxMidController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */; };
 		5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838E282616A000D3AEAD /* CLImageHelper.swift */; };
 		5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838F282616A000D3AEAD /* CLPlayer.swift */; };
 		5C9883A2282616A000D3AEAD /* CLFullScreenLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */; };
@@ -496,6 +497,8 @@
 		5C6CDC622833AB17007B484B /* PBMasonryOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBMasonryOneController.m; sourceTree = "<group>"; };
 		5C6CDC642833D436007B484B /* PBMasonryTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMasonryTwoController.m; sourceTree = "<group>"; };
 		5C6CDC652833D436007B484B /* PBMasonryTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMasonryTwoController.h; sourceTree = "<group>"; };
+		5C8EDCB32A792598008F00D8 /* PBSyntaxMidController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxMidController.h; sourceTree = "<group>"; };
+		5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxMidController.m; sourceTree = "<group>"; };
 		5C98838E282616A000D3AEAD /* CLImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImageHelper.swift; sourceTree = "<group>"; };
 		5C98838F282616A000D3AEAD /* CLPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayer.swift; sourceTree = "<group>"; };
 		5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLFullScreenLeftController.swift; sourceTree = "<group>"; };
@@ -2687,6 +2690,8 @@
 				95C1922626246FE30008FD14 /* PBSyntax.m */,
 				95C1922E262548400008FD14 /* PBSyntaxController.h */,
 				95C1922F262548400008FD14 /* PBSyntaxController.m */,
+				5C8EDCB32A792598008F00D8 /* PBSyntaxMidController.h */,
+				5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */,
 			);
 			path = PBSyntax;
 			sourceTree = "<group>";
@@ -3281,6 +3286,7 @@
 				5CCB746629B82E2E00853864 /* PBProtocolController.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
 				5CCC10D029CAF87800F60C38 /* PBTestEspressosSCSeatList.m in Sources */,
+				5C8EDCB52A792598008F00D8 /* PBSyntaxMidController.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
 				5CCC111A29CAF92900F60C38 /* PBTestTwoEspressos.m in Sources */,
 				95C1922726246FE40008FD14 /* PBSyntax.m in Sources */,

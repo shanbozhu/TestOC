@@ -15,6 +15,16 @@
 
 @implementation PBSyntaxController
 
+- (instancetype)init {
+    if (self = [super init]) {
+    }
+    return self;
+}
+
+- (void)setupUI {
+    NSLog(@"调用PBSyntaxController的setupUI");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
