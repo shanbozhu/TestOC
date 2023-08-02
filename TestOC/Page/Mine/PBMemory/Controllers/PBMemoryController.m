@@ -150,7 +150,7 @@
  static修饰全局变量限制全局变量作用域
  static修饰局部变量延长局部变量生命期
  static修饰函数限制函数作用域
- inline修饰内联函数,相当于宏替换函数体.一般与static结合使用,如static inline
+ inline修饰内联函数,相当于宏替换函数体,允许在头文件中定义.一般与static结合使用,如static inline
  
  const修饰后面常量.常量:一旦赋值不可修改.常量又叫只读变量
  extern导入外部变量、函数声明

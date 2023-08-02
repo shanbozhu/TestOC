@@ -8,6 +8,8 @@
 
 #import "PBSyntaxMidController.h"
 
+#define TestMacro @"PBSyntaxMidController"
+
 @interface PBSyntaxMidController ()
 
 @end
@@ -27,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"TestMacro = %@", TestMacro);
 }
 
 @end
