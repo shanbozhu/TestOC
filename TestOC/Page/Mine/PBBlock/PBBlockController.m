@@ -8,13 +8,22 @@
 
 #import "PBBlockController.h"
 
+typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
+
 @interface PBBlockController ()
 
 @property (nonatomic, copy) NSString *name;
 
+@property (nonatomic, copy) NSInteger(^block)(NSInteger a, NSInteger b); // block作为属性
+
 @end
 
 @implementation PBBlockController
+
+// block作为形参
+- (void)funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block param2:(block_t)param2 {
+    NSLog(@"");
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +40,6 @@
     }
     
     {
-        // 传地址
         static NSInteger value = 100;
         static NSInteger value1 = 100;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
@@ -44,7 +52,6 @@
     }
     
     {
-        // 传地址
         __block NSInteger value = 100;
         __block NSInteger value1 = 100;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
