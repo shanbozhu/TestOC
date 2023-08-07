@@ -18,6 +18,7 @@
              @"PBMasonryController",
              @"PBArrayController",
              @"PBProtocolController",
+             @"PBBlockController",
              @"PBSyntaxController",
              @"PBAFNetworkingController",
              @"PBWebViewController",

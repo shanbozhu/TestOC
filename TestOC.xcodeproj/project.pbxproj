@@ -85,6 +85,7 @@
 		5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC622833AB17007B484B /* PBMasonryOneController.m */; };
 		5C6CDC662833D437007B484B /* PBMasonryTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC642833D436007B484B /* PBMasonryTwoController.m */; };
 		5C8EDCB52A792598008F00D8 /* PBSyntaxMidController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */; };
+		5C8EE0202A810FBE008F00D8 /* PBBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */; };
 		5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838E282616A000D3AEAD /* CLImageHelper.swift */; };
 		5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838F282616A000D3AEAD /* CLPlayer.swift */; };
 		5C9883A2282616A000D3AEAD /* CLFullScreenLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */; };
@@ -499,6 +500,8 @@
 		5C6CDC652833D436007B484B /* PBMasonryTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBMasonryTwoController.h; sourceTree = "<group>"; };
 		5C8EDCB32A792598008F00D8 /* PBSyntaxMidController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxMidController.h; sourceTree = "<group>"; };
 		5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxMidController.m; sourceTree = "<group>"; };
+		5C8EE01E2A810FBE008F00D8 /* PBBlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBlockController.h; sourceTree = "<group>"; };
+		5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBlockController.m; sourceTree = "<group>"; };
 		5C98838E282616A000D3AEAD /* CLImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImageHelper.swift; sourceTree = "<group>"; };
 		5C98838F282616A000D3AEAD /* CLPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayer.swift; sourceTree = "<group>"; };
 		5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLFullScreenLeftController.swift; sourceTree = "<group>"; };
@@ -1399,6 +1402,15 @@
 				5C6CDC5F2833AA08007B484B /* PBMasonryView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5C8EE01D2A810FA4008F00D8 /* PBBlock */ = {
+			isa = PBXGroup;
+			children = (
+				5C8EE01E2A810FBE008F00D8 /* PBBlockController.h */,
+				5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */,
+			);
+			path = PBBlock;
 			sourceTree = "<group>";
 		};
 		5C98838D282616A000D3AEAD /* CLPlayer */ = {
@@ -2819,6 +2831,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5C8EE01D2A810FA4008F00D8 /* PBBlock */,
 				5CCB742529B6039900853864 /* PBProtocol */,
 				5C9886672826527A00D3AEAD /* PBMasonry */,
 				5CEFE467281030FE0073BC47 /* PBArrayDelete */,
@@ -3311,6 +3324,7 @@
 				5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */,
 				5C9883AB282616A000D3AEAD /* CLSlider.swift in Sources */,
 				9575931E22F82A37009CA618 /* PBStorageOneController.m in Sources */,
+				5C8EE0202A810FBE008F00D8 /* PBBlockController.m in Sources */,
 				5C2D0661280C032A00C775B3 /* PBAFNetworkingTwoController.m in Sources */,
 				9575935722F84D28009CA618 /* PBGCDOneController.m in Sources */,
 				5C2D0644280BFBFC00C775B3 /* PBChannelContentView.m in Sources */,
