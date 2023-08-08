@@ -1031,7 +1031,7 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		5C2D057B280BFBFB00C775B3 /* Common */ = {
+		5C2D057B280BFBFB00C775B3 /* Common🐣 */ = {
 			isa = PBXGroup;
 			children = (
 				5CF415632A5FC74C00BC690C /* PBAttributedString */,
@@ -1041,7 +1041,7 @@
 				5C2D05ED280BFBFC00C775B3 /* PBContentLabel */,
 				5C2D05FC280BFBFC00C775B3 /* PBAllWelfare */,
 			);
-			path = Common;
+			path = "Common🐣";
 			sourceTree = "<group>";
 		};
 		5C2D057C280BFBFB00C775B3 /* PBScrollViewLinkage */ = {
@@ -1540,7 +1540,7 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		5CCC109429CAF80D00F60C38 /* Business */ = {
+		5CCC109429CAF80D00F60C38 /* Business🐣 */ = {
 			isa = PBXGroup;
 			children = (
 				5CCC113F29CB040000F60C38 /* PBQRCode */,
@@ -1549,7 +1549,7 @@
 				5CCC10DD29CAF89A00F60C38 /* PBCalendar */,
 				5CCC10A529CAF87700F60C38 /* PBSeatSelection */,
 			);
-			path = Business;
+			path = "Business🐣";
 			sourceTree = "<group>";
 		};
 		5CCC10A529CAF87700F60C38 /* PBSeatSelection */ = {
@@ -2847,8 +2847,8 @@
 				953341FD22F427B200DC7251 /* PBCopy */,
 				953341E922F405BD00DC7251 /* PBTimer */,
 				958378CC22EACE1400AA39AF /* PBWebView */,
-				5CCC109429CAF80D00F60C38 /* Business */,
-				5C2D057B280BFBFB00C775B3 /* Common */,
+				5CCC109429CAF80D00F60C38 /* Business🐣 */,
+				5C2D057B280BFBFB00C775B3 /* Common🐣 */,
 				9547319222E059A000F6BFA2 /* 我的 */,
 			);
 			path = Mine;
