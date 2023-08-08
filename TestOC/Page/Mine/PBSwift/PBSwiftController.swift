@@ -8,28 +8,21 @@
 
 import UIKit
 
-class Person {
-    var residence: Residence?
-}
-
-class Residence {
-    var numberOfRooms = 1
-}
-
 class PBSwiftController: PBBaseController {
-
+    
+    var myString:String?
+    var myString1:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false // 取消自动调节ScrollView内边距
         
-        let john = Person()
-
-        // 链接可选residence?属性，如果residence存在则取回numberOfRooms的值
-        if let roomCount = john.residence?.numberOfRooms {
-            print("John 的房间号为 \(roomCount)。")
-        } else {
-            print("不能查看房间号")
-        }
+        // 可选强制解析
+        myString = "Hello, Swift!"
+        print(myString)
+        print(myString!)
+        
+        // 可选自动解析
+        print(myString1)
     }
     
     deinit {
