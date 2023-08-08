@@ -26,6 +26,18 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     return param2;
 }
 
+- (NSInteger(^)(NSInteger a, NSInteger b))funcParam1 {
+    __block NSInteger inner = 0;
+    NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
+        return inner += a;
+    };
+    return block;
+    
+    return ^NSInteger(NSInteger a, NSInteger b) {
+        return inner += a;
+    };
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -89,6 +101,12 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         NSLog(@"%ld", block(1, 2));
         NSLog(@"%ld", block(1, 2));
         NSLog(@"%ld", block(1, 2));
+        
+        
+        NSInteger(^block1)(NSInteger a, NSInteger b) = [self funcParam1];
+        NSLog(@"%ld", block1(1, 2));
+        NSLog(@"%ld", block1(1, 2));
+        NSLog(@"%ld", block1(1, 2));
     }
 }
 
