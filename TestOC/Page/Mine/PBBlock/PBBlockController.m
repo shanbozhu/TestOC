@@ -67,7 +67,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         __weak typeof(self) weakSelf = self;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
-            weakSelf.name = @"name"; // 弱引用self
+            strongSelf.name = @"name"; // 弱引用self
             _name = @"name"; // 强引用self
             return a + b;
         };
