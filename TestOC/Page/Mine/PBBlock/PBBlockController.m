@@ -20,9 +20,10 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 
 @implementation PBBlockController
 
-// block作为形参
-- (void)funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block param2:(block_t)param2 {
-    NSLog(@"");
+// block作为返回类型
+// block作为形参类型
+- (NSInteger(^)(NSInteger a, NSInteger b))funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block param2:(block_t)param2 {
+    return param2;
 }
 
 - (void)viewDidLoad {
@@ -40,6 +41,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     }
     
     {
+        // 传地址
         static NSInteger value = 100;
         static NSInteger value1 = 100;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
@@ -52,6 +54,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     }
     
     {
+        // 传地址
         __block NSInteger value = 100;
         __block NSInteger value1 = 100;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
@@ -72,6 +75,20 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
             return a + b;
         };
         block(1, 2); // 输出200
+    }
+    
+    {
+        __block NSInteger inner = 0;
+        NSInteger(^block)(NSInteger a, NSInteger b) = [self funcParam1:^NSInteger(NSInteger a, NSInteger b) {
+            NSLog(@"没有被回调");
+            return a + b;
+        } param2:^NSInteger(NSInteger a, NSInteger b) {
+            inner = inner + 1;
+            return inner;
+        }];
+        NSLog(@"%ld", block(1, 2));
+        NSLog(@"%ld", block(1, 2));
+        NSLog(@"%ld", block(1, 2));
     }
 }
 
