@@ -12,8 +12,8 @@
 @implementation PBMineController (Click)
 
 - (NSArray *)pageArr {
-    return @[@"PBCommonController",
-             @"PBBusinessController",
+    return @[@"PBCommonController🐣",
+             @"PBBusinessController🐣",
              @"PBSwiftController",
              @"PBMasonryController",
              @"PBArrayController",
@@ -38,6 +38,10 @@
 // delegate
 - (void)mineView:(PBMineView *)mineView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *page = self.pageArr[indexPath.row];
+    NSString *suffix = @"🐣";
+    if ([page containsString:suffix]) {
+        page = [page stringByReplacingOccurrencesOfString:suffix withString:@""];
+    }
     Class class = NSClassFromString(page);
     if (!class) {
         class = NSClassFromString([NSString stringWithFormat:@"TestOC.%@", page]); // oc调用swift
