@@ -81,10 +81,10 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         return inner += a;
     };
     
-    NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
-        return inner += a;
-    };
-    return block;
+//    NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
+//        return inner += a;
+//    };
+//    return block;
 }
 
 - (void)viewDidLoad {
@@ -169,7 +169,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         NSLog(@"block3 = %ld", block3(1, 2));
         NSLog(@"block3 = %ld", block3(1, 2));
         
-        //
+        // 自调用函数
         block_t block4 = (^block_t(void) {
             __block NSInteger inner = 0;
             return ^NSInteger (NSInteger a, NSInteger b) {
