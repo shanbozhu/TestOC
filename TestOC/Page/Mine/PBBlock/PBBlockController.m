@@ -20,9 +20,39 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 
 @implementation PBBlockController
 
-# pragma mark - 下面写法,Swift语法允许
+# pragma mark - JavaScript
 
 /**
+ var x = function (a, b) {
+     return a + b
+ };
+ x(1, 2);
+
+ var x = (a, b) => {
+     return a + b
+ };
+ x(1, 2);
+ 
+ // 自调用函数
+ (function (a, b) {
+     return a + b
+ })(1, 2);
+ */
+
+# pragma mark - Swift
+
+/**
+ let closure: (Int, Int) -> Int = { (a: Int, b: Int) -> Int in
+     return a + b
+ }
+ closure(1, 2)
+ */
+
+# pragma mark - OC
+
+/**
+ 下面写法,Swift语法允许
+ 
 - (NSInteger)stepForward:(NSInteger)a stepBackward:(NSInteger)b {
     return a + b;
 }
@@ -38,8 +68,6 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     block(1, 2);
 }
  */
-
-# pragma mark -
 
 // block作为返回类型
 // block作为形参类型
@@ -58,8 +86,6 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         return inner += a;
     };
 }
-
-# pragma mark -
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -125,11 +151,35 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         NSLog(@"%ld", block(1, 2));
         NSLog(@"%ld", block(1, 2));
         
-        
+        //
         NSInteger(^block1)(NSInteger a, NSInteger b) = [self funcParam1];
         NSLog(@"%ld", block1(1, 2));
         NSLog(@"%ld", block1(1, 2));
         NSLog(@"%ld", block1(1, 2));
+        
+        
+        
+        
+        block_t(^block2)(void) = ^block_t(void) {
+            __block NSInteger inner = 0;
+            return ^NSInteger (NSInteger a, NSInteger b) {
+                return inner += a;
+            };
+        };
+        block_t block3 = block2();
+        NSLog(@"block3 = %ld", block3(1, 2));
+        NSLog(@"block3 = %ld", block3(1, 2));
+        NSLog(@"block3 = %ld", block3(1, 2));
+        
+        block_t block4 = (^block_t(void) {
+            __block NSInteger inner = 0;
+            return ^NSInteger (NSInteger a, NSInteger b) {
+                return inner += a;
+            };
+        })();
+        NSLog(@"block4 = %ld", block4(1, 2));
+        NSLog(@"block4 = %ld", block4(1, 2));
+        NSLog(@"block4 = %ld", block4(1, 2));
     }
 }
 
