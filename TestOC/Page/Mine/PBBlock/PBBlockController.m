@@ -71,7 +71,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 
 // block作为返回类型
 // block作为形参类型
-- (NSInteger(^)(NSInteger a, NSInteger b))funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block {
+- (NSInteger(^)(NSInteger a, NSInteger b))funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block param2:(block_t)param2 {
     return block;
 }
 
@@ -143,6 +143,9 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         NSInteger(^block)(NSInteger a, NSInteger b) = [self funcParam1:^NSInteger(NSInteger a, NSInteger b) {
             inner = inner + 1;
             return inner;
+        } param2:^NSInteger(NSInteger a, NSInteger b) {
+            NSLog(@"当前block没有被回调");
+            return a + b;
         }];
         NSLog(@"block = %ld", block(1, 2));
         NSLog(@"block = %ld", block(1, 2));
