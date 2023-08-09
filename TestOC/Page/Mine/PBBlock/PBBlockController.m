@@ -63,6 +63,18 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
  }
  print(closure(1, 2))
  
+ // 闭包自调用
+ let closure: (Int, Int) -> Int = ({ () -> ((Int, Int) -> Int) in
+     var inner = 0;
+     return { (a: Int, b: Int) -> Int in
+         inner += a
+         return inner
+     }
+ })()
+ print(closure(1, 2))
+ print(closure(1, 2))
+ print(closure(1, 2))
+ 
  // 嵌套函数
  func outerFunction() -> () -> Int {
      var runningTotal = 0
