@@ -23,40 +23,69 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 # pragma mark - JavaScript
 
 /**
+ // 匿名函数
  var x = function (a, b) {
      return a + b
  };
- x(1, 2);
-
+ console.log(x(1, 2));
+ 
  var x = (a, b) => {
      return a + b
  };
- x(1, 2);
+ console.log(x(1, 2));
  
- // 自调用函数
- (function (a, b) {
-     return a + b
- })(1, 2);
+ // 匿名函数自调用
+ var x = (function (a, b) {
+      return a + b
+  })(1, 2);
+ console.log(x)
+ 
+ // 嵌套函数
+ function outerFunction() {
+     var counter = 0;
+     function innerFunction(){
+         return counter += 1;
+     }
+     return innerFunction;
+ }
+ var add = outerFunction();
+ console.log(add());
+ console.log(add());
+ console.log(add());
  */
 
 # pragma mark - Swift
 
 /**
+ // 闭包
  let closure: (Int, Int) -> Int = { (a: Int, b: Int) -> Int in
      return a + b
  }
- closure(1, 2)
+ print(closure(1, 2))
+ 
+ // 嵌套函数
+ func outerFunction() -> () -> Int {
+     var runningTotal = 0
+     func innerFunction() -> Int {
+         runningTotal += 1
+         return runningTotal
+     }
+     return innerFunction
+ }
+ let add = outerFunction()
+ print(add())
+ print(add())
+ print(add())
  */
 
 # pragma mark - OC
 
 /**
- 下面写法,Swift语法允许
- 
 - (NSInteger)stepForward:(NSInteger)a stepBackward:(NSInteger)b {
     return a + b;
 }
 
+ // Block不支持嵌套函数
 - (NSInteger(^)(NSInteger a, NSInteger b))chooseStepFunction {
     return stepForward:stepBackward:;
 }
@@ -169,7 +198,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         NSLog(@"block3 = %ld", block3(1, 2));
         NSLog(@"block3 = %ld", block3(1, 2));
         
-        // 自调用函数
+        // block自调用
         block_t block4 = (^block_t(void) {
             __block NSInteger inner = 0;
             return ^NSInteger (NSInteger a, NSInteger b) {
