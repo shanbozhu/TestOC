@@ -71,20 +71,20 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 
 // block作为返回类型
 // block作为形参类型
-- (NSInteger(^)(NSInteger a, NSInteger b))funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block param2:(block_t)param2 {
-    return param2;
+- (NSInteger(^)(NSInteger a, NSInteger b))funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block {
+    return block;
 }
 
 - (NSInteger(^)(NSInteger a, NSInteger b))funcParam1 {
     __block NSInteger inner = 0;
+    return ^NSInteger(NSInteger a, NSInteger b) {
+        return inner += a;
+    };
+    
     NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
         return inner += a;
     };
     return block;
-    
-    return ^NSInteger(NSInteger a, NSInteger b) {
-        return inner += a;
-    };
 }
 
 - (void)viewDidLoad {
@@ -141,25 +141,20 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     {
         __block NSInteger inner = 0;
         NSInteger(^block)(NSInteger a, NSInteger b) = [self funcParam1:^NSInteger(NSInteger a, NSInteger b) {
-            NSLog(@"没有被回调");
-            return a + b;
-        } param2:^NSInteger(NSInteger a, NSInteger b) {
             inner = inner + 1;
             return inner;
         }];
-        NSLog(@"%ld", block(1, 2));
-        NSLog(@"%ld", block(1, 2));
-        NSLog(@"%ld", block(1, 2));
+        NSLog(@"block = %ld", block(1, 2));
+        NSLog(@"block = %ld", block(1, 2));
+        NSLog(@"block = %ld", block(1, 2));
         
         //
         NSInteger(^block1)(NSInteger a, NSInteger b) = [self funcParam1];
-        NSLog(@"%ld", block1(1, 2));
-        NSLog(@"%ld", block1(1, 2));
-        NSLog(@"%ld", block1(1, 2));
+        NSLog(@"block1 = %ld", block1(1, 2));
+        NSLog(@"block1 = %ld", block1(1, 2));
+        NSLog(@"block1 = %ld", block1(1, 2));
         
-        
-        
-        
+        //
         block_t(^block2)(void) = ^block_t(void) {
             __block NSInteger inner = 0;
             return ^NSInteger (NSInteger a, NSInteger b) {
@@ -171,6 +166,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         NSLog(@"block3 = %ld", block3(1, 2));
         NSLog(@"block3 = %ld", block3(1, 2));
         
+        //
         block_t block4 = (^block_t(void) {
             __block NSInteger inner = 0;
             return ^NSInteger (NSInteger a, NSInteger b) {
