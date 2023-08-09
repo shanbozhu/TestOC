@@ -20,6 +20,27 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 
 @implementation PBBlockController
 
+# pragma mark - 下面写法,Swift语法允许
+
+/**
+- (NSInteger)stepForward:(NSInteger)a stepBackward:(NSInteger)b {
+    return a + b;
+}
+
+- (NSInteger(^)(NSInteger a, NSInteger b))chooseStepFunction {
+    return stepForward:stepBackward:;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    NSInteger(^block)(NSInteger a, NSInteger b) = [self chooseStepFunction];
+    block(1, 2);
+}
+ */
+
+# pragma mark -
+
 // block作为返回类型
 // block作为形参类型
 - (NSInteger(^)(NSInteger a, NSInteger b))funcParam1:(NSInteger(^)(NSInteger a, NSInteger b))block param2:(block_t)param2 {
@@ -37,6 +58,8 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         return inner += a;
     };
 }
+
+# pragma mark -
 
 - (void)viewDidLoad {
     [super viewDidLoad];
