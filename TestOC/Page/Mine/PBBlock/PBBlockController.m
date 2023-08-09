@@ -122,10 +122,12 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
         return inner += a;
     };
     
-//    NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
-//        return inner += a;
-//    };
-//    return block;
+    /**
+    NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
+        return inner += a;
+    };
+    return block;
+     */
 }
 
 - (void)viewDidLoad {
