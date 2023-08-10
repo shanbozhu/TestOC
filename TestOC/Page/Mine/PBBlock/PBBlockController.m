@@ -43,7 +43,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
  // 嵌套函数
  function outerFunction() {
      var counter = 0;
-     function innerFunction(){
+     function innerFunction() {
          return counter += 1;
      }
      return innerFunction;
