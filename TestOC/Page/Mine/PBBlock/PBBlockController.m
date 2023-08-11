@@ -173,7 +173,9 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     {
         // __weak修饰self表示block弱引用self
         // __strong修饰self表示__strong强引用self
-        // 如果不加__strong修饰,当block内部有延时操作时,
+        // __strong持有self,self持有block,不会造成循环引用
+        // 如果不加__strong修饰,当block内部有延时操作时,若self被提前释放,此时执行self方法将失效
+        // 如果加__strong修饰,当block内部有延时操作时,由于__strong强引用self,self不会被提前释放,此时执行self方法将有效
         __weak typeof(self) weakSelf = self;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
