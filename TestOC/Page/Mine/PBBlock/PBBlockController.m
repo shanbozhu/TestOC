@@ -88,6 +88,31 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
  print(add())
  print(add())
  print(add())
+ 
+ // 尾随闭包
+ extension Int {
+     func repetitions(task: (Int) -> Void) {
+         for _ in 0..<self {
+             task(222222)
+         }
+     }
+ }
+ // 原始
+ 3.repetitions(task: { (a: Int) in
+     print(a)
+ })
+ // 尾随闭包:闭包移至小括号的外面
+ 3.repetitions(task: ) { (a: Int) in
+     print(a)
+ }
+ // 标签可以取消
+ 3.repetitions() { (a: Int) in
+     print(a)
+ }
+ // 小括号也可以取消
+ 3.repetitions { (a: Int) in
+     print(a)
+ }
  */
 
 # pragma mark - OC
