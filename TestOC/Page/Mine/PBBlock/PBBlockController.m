@@ -96,6 +96,11 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
              task(222222)
          }
      }
+     func repetitions1(task: () -> Void) {
+         for _ in 0..<self {
+             task()
+         }
+     }
  }
  // 原始
  3.repetitions(task: { (a: Int) in
@@ -112,6 +117,10 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
  // 小括号也可以取消
  3.repetitions { (a: Int) in
      print(a)
+ }
+ // 闭包形参类型与返回类型都为空,可以整体省略
+ 3.repetitions1 {
+     print("hello!")
  }
  */
 
