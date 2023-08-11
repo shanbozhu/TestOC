@@ -99,13 +99,13 @@
  [o sumWithA:3 b:4];
  
  // swift
- // "a a: int"第一个a是子标题,第二个a是变量
+ // "a a: int"第一个a是标签,第二个a是变量
  func sum(a a: int, b b: int) -> int {}
  o.sum(a: 3, b: 4)
- // 不写子标题,子标题默认与变量同名
+ // 不写标签,标签与变量同名
  fun sum(a: int, b: int) -> int {}
  o.sum(a: 3, b: 4)
- // "_"取消子标题
+ // "_"取消标签
  func sum(_ a: int, b b: int) -> int {}
  o.sum(3, b: 4)
  */
