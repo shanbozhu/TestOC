@@ -95,18 +95,18 @@
  sum(3, 4);
  
  // oc
- - (int)sumWithA:(int)a b:(int)b {}
+ - (NSInteger)sumWithA:(NSInteger)a b:(NSInteger)b {}
  [o sumWithA:3 b:4];
  
  // swift
- // "a a: int"第一个a是标签,第二个a是变量
- func sum(a a: int, b b: int) -> int {}
+ // "a a: Int"第一个a是标签,第二个a是变量
+ func sum(a a: Int, b b: Int) -> Int {}
  o.sum(a: 3, b: 4)
  // 不写标签,标签与变量同名
- fun sum(a: int, b: int) -> int {}
+ fun sum(a: Int, b: Int) -> Int {}
  o.sum(a: 3, b: 4)
  // "_"取消标签
- func sum(_ a: int, b b: int) -> int {}
+ func sum(_ a: Int, b b: Int) -> Int {}
  o.sum(3, b: 4)
  */
 
