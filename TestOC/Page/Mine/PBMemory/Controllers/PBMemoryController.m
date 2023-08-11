@@ -160,6 +160,13 @@
  continue继续下次循环
  return函数结束,向主调函数返回空
  exit程序结束,向系统返回空
+ 
+ 访问控制
+ private:当前类中访问
+ fileprivate:当前文件中访问
+ protected:当前类和子类中访问
+ internal:当前框架中访问(Swift默认)
+ public:其他类中访问(可以跨框架)
  */
 
 @interface PBMemoryController ()
