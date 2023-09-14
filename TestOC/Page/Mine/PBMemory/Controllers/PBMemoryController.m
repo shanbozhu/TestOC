@@ -155,7 +155,7 @@
  inline修饰内联函数,相当于宏替换函数体,允许在头文件中定义.一般与static结合使用,如static inline
  
  const修饰后面常量.常量:一旦赋值不可修改.常量又叫只读变量
- extern导入外部变量、函数声明
+ extern外部变量声明、外部函数声明
  break跳出当前循环,跳出switch判断体
  continue继续下次循环
  return函数结束,向主调函数返回空
