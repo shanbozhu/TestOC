@@ -39,8 +39,6 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     [monitorView addGestureRecognizer:panGesture];
-    
-    
 }
 
 - (void)handleSwipe:(UIPanGestureRecognizer *)gesture {
@@ -57,7 +55,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                 break;
             case UIGestureRecognizerStateChanged: {
                 // 计算目标frame
-                CGRect dragableFrame = [self bbamatrix_getDragableFrameOfView:self.monitorView];
+                CGRect dragableFrame = [self getDragableFrameOfView:self.monitorView];
                 CGPoint ap = [gesture locationInView:superview];
                 CGFloat halfWidth = self.monitorView.frame.size.width / 2.0f;
                 CGFloat halfHeight = self.monitorView.frame.size.height / 2.0f;
@@ -80,10 +78,10 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                 break;
             case UIGestureRecognizerStateEnded:
             case UIGestureRecognizerStateCancelled: {
-                CGRect positionFrame = [self bbamatrix_getPositionRangeOfView:self.monitorView];
+                CGRect positionFrame = [self getPositionRangeOfView:self.monitorView];
                 // 判断是否超过屏幕一半的位置
                 CGPoint ap = [gesture locationInView:superview];
-                BOOL onRight = [self bbamatrix_isOnRightWhenSwipeFinish:ap.x totalWidth:superview.frame.size.width];
+                BOOL onRight = [self isOnRightWhenSwipeFinish:ap.x totalWidth:superview.frame.size.width];
                 // 放开后动画至位置
                 [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     // 计算将要移动到的frame
@@ -116,20 +114,21 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     }
 }
 
-- (CGRect)bbamatrix_getDragableFrameOfView:(UIView *)monitorView {
+// monitorView可拖拽的区域frame
+- (CGRect)getDragableFrameOfView:(UIView *)monitorView {
     UIEdgeInsets inset = UIEdgeInsetsZero;
-    return [self bbamatrix_transformInsetsToFrame:inset inView:monitorView];
+    return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
-- (CGRect)bbamatrix_getPositionRangeOfView:(UIView *)monitorView {
+- (CGRect)getPositionRangeOfView:(UIView *)monitorView {
     UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT,
                                           0,
                                           APPLICATION_TABBAR_HEIGHT,
                                           0);
-    return [self bbamatrix_transformInsetsToFrame:inset inView:monitorView];
+    return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
-- (CGRect)bbamatrix_transformInsetsToFrame:(UIEdgeInsets)insets inView:(UIView *)view {
+- (CGRect)transformInsetsToFrame:(UIEdgeInsets)insets inView:(UIView *)view {
     CGRect frame = view.superview.bounds;
     CGFloat x = insets.left;
     CGFloat y = insets.top;
@@ -138,7 +137,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     return CGRectMake(x, y, width, height);
 }
 
-- (BOOL)bbamatrix_isOnRightWhenSwipeFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
+- (BOOL)isOnRightWhenSwipeFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
     BOOL onRight = NO;
     CGFloat halfCenter = totalWidth / 2.0;
     if (finishX > halfCenter) {
