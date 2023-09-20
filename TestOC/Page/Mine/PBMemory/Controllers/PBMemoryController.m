@@ -167,6 +167,8 @@
  protected:当前类和子类中访问
  internal:当前框架中访问(Swift默认)
  public:其他类中访问(可以跨框架)
+ 
+ 时间戳:格林尼治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)开始至现在的总秒数。
  */
 
 @interface PBMemoryController ()
