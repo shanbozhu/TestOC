@@ -57,7 +57,7 @@
                 CGPoint gesturePoint = [gesture locationInView:superview];
                 NSLog(@"gesturePoint = %@", [NSValue valueWithCGPoint:gesturePoint]);
                 
-                // 手势frame
+                // monitorView.frame
                 CGRect targetFrame = CGRectMake(gesturePoint.x - self.monitorView.frame.size.width / 2.0f, gesturePoint.y - self.monitorView.frame.size.height / 2.0f, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
                 
                 // 可滑动区域frame
@@ -98,21 +98,22 @@
                 
                 // 手势 放开后 动画至位置
                 [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    CGRect resultFrame = self.monitorView.frame;
-                    if (onRight) {
-                        resultFrame.origin.x = CGRectGetMaxX(finalPositionFrame) - CGRectGetWidth(resultFrame);
-                    } else {
-                        resultFrame.origin.x = CGRectGetMinX(finalPositionFrame);
-                    }
+                    // monitorView.frame
+                    CGRect targetFrame = self.monitorView.frame;
                     
-                    if (CGRectGetMinY(resultFrame) < CGRectGetMinY(finalPositionFrame)) {
-                        resultFrame.origin.y = CGRectGetMinY(finalPositionFrame);
-                    } else if (CGRectGetMaxY(resultFrame) > CGRectGetMaxY(finalPositionFrame)) {
-                        resultFrame.origin.y = CGRectGetMaxY(finalPositionFrame) - CGRectGetHeight(resultFrame);
+                    if (onRight) {
+                        targetFrame.origin.x = CGRectGetMaxX(finalPositionFrame) - CGRectGetWidth(targetFrame);
+                    } else {
+                        targetFrame.origin.x = CGRectGetMinX(finalPositionFrame);
+                    }
+                    if (CGRectGetMinY(targetFrame) < CGRectGetMinY(finalPositionFrame)) {
+                        targetFrame.origin.y = CGRectGetMinY(finalPositionFrame);
+                    } else if (CGRectGetMaxY(targetFrame) > CGRectGetMaxY(finalPositionFrame)) {
+                        targetFrame.origin.y = CGRectGetMaxY(finalPositionFrame) - CGRectGetHeight(targetFrame);
                     }
                     
                     // monitorView.frame
-                    self.monitorView.frame = resultFrame;
+                    self.monitorView.frame = targetFrame;
                 } completion:nil];
             }
                 break;
