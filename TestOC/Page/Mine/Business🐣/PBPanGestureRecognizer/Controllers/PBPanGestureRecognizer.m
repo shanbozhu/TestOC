@@ -37,6 +37,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     monitorView.frame = CGRectMake(50, 50, 50, 50);
     monitorView.backgroundColor = [UIColor redColor];
     
+    // monitorView增加滑动手势
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     [monitorView addGestureRecognizer:panGesture];
 }
@@ -50,10 +51,12 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
         
         switch (gesture.state) {
             case UIGestureRecognizerStateBegan: {
-                
+                NSLog(@"UIGestureRecognizerStateBegan");
             }
                 break;
             case UIGestureRecognizerStateChanged: {
+                NSLog(@"UIGestureRecognizerStateChanged");
+                
                 // 触摸point
                 CGPoint touchPoint = [gesture locationInView:superview];
                 NSLog(@"touchPoint = %@", [NSValue valueWithCGPoint:touchPoint]);
@@ -61,10 +64,10 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                 // 触摸frame
                 CGRect targetFrame = CGRectMake(touchPoint.x - self.monitorView.frame.size.width / 2.0f, touchPoint.y - self.monitorView.frame.size.height / 2.0f, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
                 
-                // 可拖拽区域frame
+                // 可滑动区域frame
                 CGRect dragableFrame = [self dragableFrameOfView:self.monitorView];
                 
-                // 将 触摸frame 限制在 可拖拽区域frame
+                // 将 触摸frame 限制在 可滑动区域frame
                 if (CGRectGetMinX(targetFrame) < CGRectGetMinX(dragableFrame)) {
                     targetFrame.origin.x = CGRectGetMinX(dragableFrame);
                 }
@@ -82,8 +85,12 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                 self.monitorView.frame = targetFrame;
             }
                 break;
-            case UIGestureRecognizerStateEnded:
+            case UIGestureRecognizerStateEnded: {
+                NSLog(@"UIGestureRecognizerStateEnded");
+            }
             case UIGestureRecognizerStateCancelled: {
+                NSLog(@"UIGestureRecognizerStateCancelled");
+                
                 CGRect positionFrame = [self getPositionRangeOfView:self.monitorView];
                 // 判断是否超过屏幕一半的位置
                 CGPoint ap = [gesture locationInView:superview];
@@ -120,7 +127,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     }
 }
 
-// monitorView可拖拽的区域frame
+// monitorView可滑动的区域frame
 - (CGRect)dragableFrameOfView:(UIView *)monitorView {
     UIEdgeInsets inset = UIEdgeInsetsZero;
     return [self transformInsetsToFrame:inset inView:monitorView];
