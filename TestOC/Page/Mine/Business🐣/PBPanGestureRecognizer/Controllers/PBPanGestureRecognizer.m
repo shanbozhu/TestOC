@@ -8,10 +8,6 @@
 
 #import "PBPanGestureRecognizer.h"
 
-const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewVerticalMargin = 20.0f;
-const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewVerticalTopMargin = 43.0f;
-const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
-
 @interface PBPanGestureRecognizer ()
 
 @property (nonatomic, weak) UIView *monitorView;
@@ -34,7 +30,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     UIView *monitorView = [[UIView alloc] init];
     self.monitorView = monitorView;
     [contentView addSubview:monitorView];
-    monitorView.frame = CGRectMake(50, 50, 50, 50);
+    monitorView.frame = CGRectMake(50, 50, 100, 100);
     monitorView.backgroundColor = [UIColor redColor];
     
     // monitorView增加滑动手势
@@ -57,17 +53,17 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
             case UIGestureRecognizerStateChanged: {
                 NSLog(@"UIGestureRecognizerStateChanged");
                 
-                // 触摸point
+                // 手势point
                 CGPoint touchPoint = [gesture locationInView:superview];
                 NSLog(@"touchPoint = %@", [NSValue valueWithCGPoint:touchPoint]);
                 
-                // 触摸frame
+                // 手势frame
                 CGRect targetFrame = CGRectMake(touchPoint.x - self.monitorView.frame.size.width / 2.0f, touchPoint.y - self.monitorView.frame.size.height / 2.0f, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
                 
                 // 可滑动区域frame
                 CGRect dragableFrame = [self dragableFrameOfView:self.monitorView];
                 
-                // 将 触摸frame 限制在 可滑动区域frame
+                // 将 手势frame 限制在 可滑动区域frame
                 if (CGRectGetMinX(targetFrame) < CGRectGetMinX(dragableFrame)) {
                     targetFrame.origin.x = CGRectGetMinX(dragableFrame);
                 }
@@ -91,36 +87,37 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
             case UIGestureRecognizerStateCancelled: {
                 NSLog(@"UIGestureRecognizerStateCancelled");
                 
-                CGRect positionFrame = [self positionRangeOfView:self.monitorView];
-                // 判断是否超过屏幕一半的位置
+                // 最终位置frame
+                CGRect positionFrame = [self finalPositionRangeOfView:self.monitorView];
+                
+                // 手势point
                 CGPoint touchPoint = [gesture locationInView:superview];
-                BOOL onRight = [self isOnRightWhenSwipeFinish:touchPoint.x totalWidth:superview.frame.size.width];
-                // 放开后动画至位置
+                
+                // 判断是否超过superview一半的位置
+                BOOL onRight = [self isOnRightWhenDragFinish:touchPoint.x totalWidth:superview.frame.size.width];
+                
+                // 手势 放开后 动画至位置
                 [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    // 计算将要移动到的frame
                     CGRect resultFrame = self.monitorView.frame;
-                    // 贴边
                     if (onRight) {
-                        // kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin 解释：贴边要求有固定间距
-                        resultFrame.origin.x = CGRectGetMaxX(positionFrame) - CGRectGetWidth(resultFrame) - kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin;
+                        resultFrame.origin.x = CGRectGetMaxX(positionFrame) - CGRectGetWidth(resultFrame);
                     } else {
-                        resultFrame.origin.x = CGRectGetMinX(positionFrame) + kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin;
+                        resultFrame.origin.x = CGRectGetMinX(positionFrame);
                     }
-                    // 修正y
-                    CGFloat minY = CGRectGetMinY(positionFrame) + kBDPGrowthSystemTingshuTaskBuoyViewVerticalTopMargin;
-                    CGFloat maxY = CGRectGetMaxY(positionFrame) - kBDPGrowthSystemTingshuTaskBuoyViewVerticalMargin;
-                    if (CGRectGetMinY(resultFrame) < minY) {
-                        resultFrame.origin.y = minY;
-                    } else if (CGRectGetMaxY(resultFrame) > maxY) {
-                        resultFrame.origin.y = maxY - CGRectGetHeight(resultFrame);
+                    
+                    if (CGRectGetMinY(resultFrame) < CGRectGetMinY(positionFrame)) {
+                        resultFrame.origin.y = CGRectGetMinY(positionFrame);
+                    } else if (CGRectGetMaxY(resultFrame) > CGRectGetMaxY(positionFrame)) {
+                        resultFrame.origin.y = CGRectGetMaxY(positionFrame) - CGRectGetHeight(resultFrame);
                     }
+                    
+                    // monitorView.frame
                     self.monitorView.frame = resultFrame;
-                } completion:^(BOOL finished) {
-                }];
+                } completion:nil];
             }
                 break;
             default: {
-                
+                NSLog(@"default");
             }
                 break;
         }
@@ -133,8 +130,9 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
-- (CGRect)positionRangeOfView:(UIView *)monitorView {
-    UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT, 0, APPLICATION_TABBAR_HEIGHT, 0);
+// 最终位置frame
+- (CGRect)finalPositionRangeOfView:(UIView *)monitorView {
+    UIEdgeInsets inset = UIEdgeInsetsMake(10, 30, 50, 70);
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
@@ -145,7 +143,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     return CGRectMake(insets.left, insets.top, width, height);
 }
 
-- (BOOL)isOnRightWhenSwipeFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
+- (BOOL)isOnRightWhenDragFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
     BOOL onRight = NO;
     CGFloat halfCenter = totalWidth / 2.0;
     if (finishX > halfCenter) {
