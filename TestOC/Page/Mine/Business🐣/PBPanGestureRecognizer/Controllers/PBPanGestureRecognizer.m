@@ -12,9 +12,21 @@
 
 @property (nonatomic, weak) UIView *monitorView;
 
+// finalPositionView仅仅为了展示最终停留区域,实际并没有任务用处
+@property (nonatomic, strong) UIView *finalPositionView;
+
 @end
 
 @implementation PBPanGestureRecognizer
+
+- (UIView *)finalPositionView {
+    if (!_finalPositionView) {
+        _finalPositionView = [[UIView alloc] init];
+        _finalPositionView.layer.borderColor = [UIColor blueColor].CGColor;
+        _finalPositionView.layer.borderWidth = 1.1;
+    }
+    return _finalPositionView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +37,9 @@
     contentView.frame = CGRectMake(50, APPLICATION_NAVIGATIONBAR_HEIGHT + 50, APPLICATION_FRAME_WIDTH - 100, APPLICATION_FRAME_HEIGHT - (50 + APPLICATION_NAVIGATIONBAR_HEIGHT + 50));
     contentView.layer.borderColor = [UIColor redColor].CGColor;
     contentView.layer.borderWidth = 1.1;
+    
+    // finalPositionView
+    [contentView addSubview:self.finalPositionView];
     
     // monitorView
     UIView *monitorView = [[UIView alloc] init];
@@ -89,6 +104,9 @@
                 
                 // 最终停留位置frame
                 CGRect finalPositionFrame = [self finalPositionRangeOfView:self.monitorView];
+                
+                // finalPositionView
+                self.finalPositionView.frame = finalPositionFrame;
                 
                 // 手势point
                 CGPoint gesturePoint = [gesture locationInView:superview];
