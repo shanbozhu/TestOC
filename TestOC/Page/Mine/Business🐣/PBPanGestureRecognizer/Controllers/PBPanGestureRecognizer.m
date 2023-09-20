@@ -54,11 +54,11 @@
                 NSLog(@"UIGestureRecognizerStateChanged");
                 
                 // 手势point
-                CGPoint touchPoint = [gesture locationInView:superview];
-                NSLog(@"touchPoint = %@", [NSValue valueWithCGPoint:touchPoint]);
+                CGPoint gesturePoint = [gesture locationInView:superview];
+                NSLog(@"gesturePoint = %@", [NSValue valueWithCGPoint:gesturePoint]);
                 
                 // 手势frame
-                CGRect targetFrame = CGRectMake(touchPoint.x - self.monitorView.frame.size.width / 2.0f, touchPoint.y - self.monitorView.frame.size.height / 2.0f, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
+                CGRect targetFrame = CGRectMake(gesturePoint.x - self.monitorView.frame.size.width / 2.0f, gesturePoint.y - self.monitorView.frame.size.height / 2.0f, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
                 
                 // 可滑动区域frame
                 CGRect dragableFrame = [self dragableFrameOfView:self.monitorView];
@@ -87,28 +87,28 @@
             case UIGestureRecognizerStateCancelled: {
                 NSLog(@"UIGestureRecognizerStateCancelled");
                 
-                // 最终位置frame
-                CGRect positionFrame = [self finalPositionRangeOfView:self.monitorView];
+                // 最终停留位置frame
+                CGRect finalPositionFrame = [self finalPositionRangeOfView:self.monitorView];
                 
                 // 手势point
-                CGPoint touchPoint = [gesture locationInView:superview];
+                CGPoint gesturePoint = [gesture locationInView:superview];
                 
                 // 判断是否超过superview一半的位置
-                BOOL onRight = [self isOnRightWhenDragFinish:touchPoint.x totalWidth:superview.frame.size.width];
+                BOOL onRight = [self isOnRightWhenDragFinish:gesturePoint.x totalWidth:superview.frame.size.width];
                 
                 // 手势 放开后 动画至位置
-                [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     CGRect resultFrame = self.monitorView.frame;
                     if (onRight) {
-                        resultFrame.origin.x = CGRectGetMaxX(positionFrame) - CGRectGetWidth(resultFrame);
+                        resultFrame.origin.x = CGRectGetMaxX(finalPositionFrame) - CGRectGetWidth(resultFrame);
                     } else {
-                        resultFrame.origin.x = CGRectGetMinX(positionFrame);
+                        resultFrame.origin.x = CGRectGetMinX(finalPositionFrame);
                     }
                     
-                    if (CGRectGetMinY(resultFrame) < CGRectGetMinY(positionFrame)) {
-                        resultFrame.origin.y = CGRectGetMinY(positionFrame);
-                    } else if (CGRectGetMaxY(resultFrame) > CGRectGetMaxY(positionFrame)) {
-                        resultFrame.origin.y = CGRectGetMaxY(positionFrame) - CGRectGetHeight(resultFrame);
+                    if (CGRectGetMinY(resultFrame) < CGRectGetMinY(finalPositionFrame)) {
+                        resultFrame.origin.y = CGRectGetMinY(finalPositionFrame);
+                    } else if (CGRectGetMaxY(resultFrame) > CGRectGetMaxY(finalPositionFrame)) {
+                        resultFrame.origin.y = CGRectGetMaxY(finalPositionFrame) - CGRectGetHeight(resultFrame);
                     }
                     
                     // monitorView.frame
@@ -130,7 +130,7 @@
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
-// 最终位置frame
+// 最终停留位置frame
 - (CGRect)finalPositionRangeOfView:(UIView *)monitorView {
     UIEdgeInsets inset = UIEdgeInsetsMake(10, 30, 50, 70);
     return [self transformInsetsToFrame:inset inView:monitorView];
