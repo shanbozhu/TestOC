@@ -79,6 +79,7 @@
 		5C464D132939EBB000BA6B3D /* libswiftCoreGraphics.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */; };
 		5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */; };
 		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
+		5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */; };
 		5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
 		5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5F2833AA08007B484B /* PBMasonryView.m */; };
@@ -487,6 +488,8 @@
 		5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftCoreGraphics.tbd; path = usr/lib/swift/libswiftCoreGraphics.tbd; sourceTree = SDKROOT; };
 		5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_right_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_up_normal_blue@3x.png"; sourceTree = "<group>"; };
+		5C516ED12ABAE48F0052E52C /* PBPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBPanGestureRecognizer.h; sourceTree = "<group>"; };
+		5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBPanGestureRecognizer.m; sourceTree = "<group>"; };
 		5C6C1B2329EE48C800429589 /* PBAnimationOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationOneController.h; sourceTree = "<group>"; };
 		5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationOneController.m; sourceTree = "<group>"; };
 		5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMasonryController.m; sourceTree = "<group>"; };
@@ -1373,6 +1376,39 @@
 			path = PBFoundation;
 			sourceTree = "<group>";
 		};
+		5C516ECD2ABAE4760052E52C /* PBPanGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				5C516ECE2ABAE4760052E52C /* Models */,
+				5C516ECF2ABAE4760052E52C /* Controllers */,
+				5C516ED02ABAE4760052E52C /* Views */,
+			);
+			path = PBPanGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		5C516ECE2ABAE4760052E52C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C516ECF2ABAE4760052E52C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C516ED12ABAE48F0052E52C /* PBPanGestureRecognizer.h */,
+				5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5C516ED02ABAE4760052E52C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		5C6CDC582833A970007B484B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1543,6 +1579,7 @@
 		5CCC109429CAF80D00F60C38 /* Business🐣 */ = {
 			isa = PBXGroup;
 			children = (
+				5C516ECD2ABAE4760052E52C /* PBPanGestureRecognizer */,
 				5CCC113F29CB040000F60C38 /* PBQRCode */,
 				5CCC112D29CB03DD00F60C38 /* PBAnnotation */,
 				5CCC10EC29CAF92900F60C38 /* PBImageText */,
@@ -3162,6 +3199,7 @@
 				5C0949642812C5C3002CEBC2 /* PBCellHeightTwoController.m in Sources */,
 				5C2D0630280BFBFC00C775B3 /* PBYYTextCell.m in Sources */,
 				5CF055D8281AA1440024B752 /* PBCycleTimerProxy.m in Sources */,
+				5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */,
 				5C2D062C280BFBFC00C775B3 /* PBRegex.m in Sources */,
 				9575934322F82A64009CA618 /* PBStorageTextController.m in Sources */,
 				9575998822FC2415009CA618 /* PBPhotoBrowserView.m in Sources */,

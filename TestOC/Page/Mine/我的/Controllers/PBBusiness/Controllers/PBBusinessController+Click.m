@@ -16,7 +16,8 @@
              @"PBCalendarController",
              @"PBSeatSelectionController",
              @"PBAnnotationController",
-             @"PBQRCodeController"];
+             @"PBQRCodeController",
+             @"PBPanGestureRecognizer"];
 }
 
 // delegate
