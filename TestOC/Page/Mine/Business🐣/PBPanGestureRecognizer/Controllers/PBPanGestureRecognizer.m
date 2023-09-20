@@ -32,6 +32,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     
     // monitorView
     UIView *monitorView = [[UIView alloc] init];
+    self.monitorView = monitorView;
     [contentView addSubview:monitorView];
     monitorView.frame = CGRectMake(50, 50, 50, 50);
     monitorView.backgroundColor = [UIColor redColor];
@@ -39,7 +40,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     [monitorView addGestureRecognizer:panGesture];
     
-    self.monitorView = monitorView;
+    
 }
 
 - (void)handleSwipe:(UIPanGestureRecognizer *)gesture {
@@ -50,7 +51,9 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
         }
         
         switch (gesture.state) {
-            case UIGestureRecognizerStateBegan:
+            case UIGestureRecognizerStateBegan: {
+                
+            }
                 break;
             case UIGestureRecognizerStateChanged: {
                 // 计算目标frame
@@ -101,45 +104,47 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                         resultFrame.origin.y = maxY - CGRectGetHeight(resultFrame);
                     }
                     self.monitorView.frame = resultFrame;
-                    } completion:^(BOOL finished) {
-                    }];
-                }
-                 break;
-                                    default:
-                 break;
+                } completion:^(BOOL finished) {
+                }];
             }
+                break;
+            default: {
+                
+            }
+                break;
         }
     }
-    
-    - (CGRect)bbamatrix_getDragableFrameOfView:(UIView *)monitorView {
-        UIEdgeInsets inset = UIEdgeInsetsZero;
-        return [self bbamatrix_transformInsetsToFrame:inset inView:monitorView];
+}
+
+- (CGRect)bbamatrix_getDragableFrameOfView:(UIView *)monitorView {
+    UIEdgeInsets inset = UIEdgeInsetsZero;
+    return [self bbamatrix_transformInsetsToFrame:inset inView:monitorView];
+}
+
+- (CGRect)bbamatrix_getPositionRangeOfView:(UIView *)monitorView {
+    UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT,
+                                          0,
+                                          APPLICATION_TABBAR_HEIGHT,
+                                          0);
+    return [self bbamatrix_transformInsetsToFrame:inset inView:monitorView];
+}
+
+- (CGRect)bbamatrix_transformInsetsToFrame:(UIEdgeInsets)insets inView:(UIView *)view {
+    CGRect frame = view.superview.bounds;
+    CGFloat x = insets.left;
+    CGFloat y = insets.top;
+    CGFloat width = CGRectGetWidth(frame) - insets.left - insets.right;
+    CGFloat height = CGRectGetHeight(frame) - insets.top - insets.bottom;
+    return CGRectMake(x, y, width, height);
+}
+
+- (BOOL)bbamatrix_isOnRightWhenSwipeFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
+    BOOL onRight = NO;
+    CGFloat halfCenter = totalWidth / 2.0;
+    if (finishX > halfCenter) {
+        onRight = YES;
     }
-    
-    - (CGRect)bbamatrix_getPositionRangeOfView:(UIView *)monitorView {
-        UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT,
-                                              0,
-                                              APPLICATION_TABBAR_HEIGHT,
-                                              0);
-        return [self bbamatrix_transformInsetsToFrame:inset inView:monitorView];
-    }
-    
-    - (CGRect)bbamatrix_transformInsetsToFrame:(UIEdgeInsets)insets inView:(UIView *)view {
-        CGRect frame = view.superview.bounds;
-        CGFloat x = insets.left;
-        CGFloat y = insets.top;
-        CGFloat width = CGRectGetWidth(frame) - insets.left - insets.right;
-        CGFloat height = CGRectGetHeight(frame) - insets.top - insets.bottom;
-        return CGRectMake(x, y, width, height);
-    }
-    
-    - (BOOL)bbamatrix_isOnRightWhenSwipeFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
-        BOOL onRight = NO;
-        CGFloat halfCenter = totalWidth / 2.0;
-        if (finishX > halfCenter) {
-            onRight = YES;
-        }
-        return onRight;
-    }
-    
-    @end
+    return onRight;
+}
+
+@end
