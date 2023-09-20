@@ -14,7 +14,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
 
 @interface PBPanGestureRecognizer ()
 
-@property (nonatomic, weak) UIView *widgetView;
+@property (nonatomic, weak) UIView *monitorView;
 
 @end
 
@@ -39,26 +39,26 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     [monitorView addGestureRecognizer:panGesture];
     
-    self.widgetView = monitorView;
+    self.monitorView = monitorView;
 }
 
 - (void)handleSwipe:(UIPanGestureRecognizer *)gesture {
-    if (self.widgetView) {
-        
-        UIView *superview = self.widgetView.superview;
+    if (self.monitorView) {
+        UIView *superview = self.monitorView.superview;
         if (!superview) {
             return;
         }
+        
         switch (gesture.state) {
             case UIGestureRecognizerStateBegan:
                 break;
             case UIGestureRecognizerStateChanged: {
                 // 计算目标frame
-                CGRect dragableFrame = [self bbamatrix_getDragableFrameOfView:self.widgetView];
+                CGRect dragableFrame = [self bbamatrix_getDragableFrameOfView:self.monitorView];
                 CGPoint ap = [gesture locationInView:superview];
-                CGFloat halfWidth = self.widgetView.frame.size.width / 2.0f;
-                CGFloat halfHeight = self.widgetView.frame.size.height / 2.0f;
-                CGRect targetFrame = CGRectMake(ap.x - halfWidth, ap.y - halfHeight, self.widgetView.frame.size.width, self.widgetView.frame.size.height);
+                CGFloat halfWidth = self.monitorView.frame.size.width / 2.0f;
+                CGFloat halfHeight = self.monitorView.frame.size.height / 2.0f;
+                CGRect targetFrame = CGRectMake(ap.x - halfWidth, ap.y - halfHeight, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
                 // 修正目标frame
                 if (CGRectGetMinX(targetFrame) < CGRectGetMinX(dragableFrame)) {
                     targetFrame.origin.x = CGRectGetMinX(dragableFrame);
@@ -72,19 +72,19 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                 if (CGRectGetMaxY(targetFrame) > CGRectGetMaxY(dragableFrame)) {
                     targetFrame.origin.y = CGRectGetMaxY(dragableFrame) - CGRectGetHeight(targetFrame);
                 }
-                self.widgetView.frame = targetFrame;
+                self.monitorView.frame = targetFrame;
             }
                 break;
             case UIGestureRecognizerStateEnded:
             case UIGestureRecognizerStateCancelled: {
-                CGRect positionFrame = [self bbamatrix_getPositionRangeOfView:self.widgetView];
+                CGRect positionFrame = [self bbamatrix_getPositionRangeOfView:self.monitorView];
                 // 判断是否超过屏幕一半的位置
                 CGPoint ap = [gesture locationInView:superview];
                 BOOL onRight = [self bbamatrix_isOnRightWhenSwipeFinish:ap.x totalWidth:superview.frame.size.width];
                 // 放开后动画至位置
                 [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     // 计算将要移动到的frame
-                    CGRect resultFrame = self.widgetView.frame;
+                    CGRect resultFrame = self.monitorView.frame;
                     // 贴边
                     if (onRight) {
                         // kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin 解释：贴边要求有固定间距
@@ -100,7 +100,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                     } else if (CGRectGetMaxY(resultFrame) > maxY) {
                         resultFrame.origin.y = maxY - CGRectGetHeight(resultFrame);
                     }
-                    self.widgetView.frame = resultFrame;
+                    self.monitorView.frame = resultFrame;
                     } completion:^(BOOL finished) {
                     }];
                 }
