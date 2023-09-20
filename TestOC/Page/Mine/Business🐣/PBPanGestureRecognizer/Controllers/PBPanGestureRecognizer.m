@@ -54,13 +54,17 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
             }
                 break;
             case UIGestureRecognizerStateChanged: {
-                // 计算目标frame
-                CGRect dragableFrame = [self getDragableFrameOfView:self.monitorView];
-                CGPoint ap = [gesture locationInView:superview];
-                CGFloat halfWidth = self.monitorView.frame.size.width / 2.0f;
-                CGFloat halfHeight = self.monitorView.frame.size.height / 2.0f;
-                CGRect targetFrame = CGRectMake(ap.x - halfWidth, ap.y - halfHeight, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
-                // 修正目标frame
+                // 触摸point
+                CGPoint touchPoint = [gesture locationInView:superview];
+                NSLog(@"touchPoint = %@", [NSValue valueWithCGPoint:touchPoint]);
+                
+                // 触摸frame
+                CGRect targetFrame = CGRectMake(touchPoint.x - self.monitorView.frame.size.width / 2.0f, touchPoint.y - self.monitorView.frame.size.height / 2.0f, self.monitorView.frame.size.width, self.monitorView.frame.size.height);
+                
+                // 可拖拽区域frame
+                CGRect dragableFrame = [self dragableFrameOfView:self.monitorView];
+                
+                // 将 触摸frame 限制在 可拖拽区域frame
                 if (CGRectGetMinX(targetFrame) < CGRectGetMinX(dragableFrame)) {
                     targetFrame.origin.x = CGRectGetMinX(dragableFrame);
                 }
@@ -73,6 +77,8 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
                 if (CGRectGetMaxY(targetFrame) > CGRectGetMaxY(dragableFrame)) {
                     targetFrame.origin.y = CGRectGetMaxY(dragableFrame) - CGRectGetHeight(targetFrame);
                 }
+                
+                // monitorView.frame
                 self.monitorView.frame = targetFrame;
             }
                 break;
@@ -115,26 +121,21 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
 }
 
 // monitorView可拖拽的区域frame
-- (CGRect)getDragableFrameOfView:(UIView *)monitorView {
+- (CGRect)dragableFrameOfView:(UIView *)monitorView {
     UIEdgeInsets inset = UIEdgeInsetsZero;
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
 - (CGRect)getPositionRangeOfView:(UIView *)monitorView {
-    UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT,
-                                          0,
-                                          APPLICATION_TABBAR_HEIGHT,
-                                          0);
+    UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT, 0, APPLICATION_TABBAR_HEIGHT, 0);
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
 - (CGRect)transformInsetsToFrame:(UIEdgeInsets)insets inView:(UIView *)view {
     CGRect frame = view.superview.bounds;
-    CGFloat x = insets.left;
-    CGFloat y = insets.top;
     CGFloat width = CGRectGetWidth(frame) - insets.left - insets.right;
     CGFloat height = CGRectGetHeight(frame) - insets.top - insets.bottom;
-    return CGRectMake(x, y, width, height);
+    return CGRectMake(insets.left, insets.top, width, height);
 }
 
 - (BOOL)isOnRightWhenSwipeFinish:(CGFloat)finishX totalWidth:(CGFloat)totalWidth {
