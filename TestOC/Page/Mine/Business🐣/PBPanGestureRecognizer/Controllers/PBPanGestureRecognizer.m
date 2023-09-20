@@ -93,7 +93,7 @@
                 // 手势point
                 CGPoint gesturePoint = [gesture locationInView:superview];
                 
-                // 判断是否超过superview一半的位置
+                // 判断 手势 是否超过superview一半的位置
                 BOOL onRight = [self isOnRightWhenDragFinish:gesturePoint.x totalWidth:superview.frame.size.width];
                 
                 // 手势 放开后 动画至位置
@@ -133,7 +133,7 @@
 
 // 最终停留位置frame
 - (CGRect)finalPositionRangeOfView:(UIView *)monitorView {
-    UIEdgeInsets inset = UIEdgeInsetsMake(10, 30, 50, 70);
+    UIEdgeInsets inset = UIEdgeInsetsMake(10, 25, 40, 55);
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
