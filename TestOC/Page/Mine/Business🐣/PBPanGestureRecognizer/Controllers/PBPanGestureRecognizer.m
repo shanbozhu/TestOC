@@ -91,10 +91,10 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
             case UIGestureRecognizerStateCancelled: {
                 NSLog(@"UIGestureRecognizerStateCancelled");
                 
-                CGRect positionFrame = [self getPositionRangeOfView:self.monitorView];
+                CGRect positionFrame = [self positionRangeOfView:self.monitorView];
                 // 判断是否超过屏幕一半的位置
-                CGPoint ap = [gesture locationInView:superview];
-                BOOL onRight = [self isOnRightWhenSwipeFinish:ap.x totalWidth:superview.frame.size.width];
+                CGPoint touchPoint = [gesture locationInView:superview];
+                BOOL onRight = [self isOnRightWhenSwipeFinish:touchPoint.x totalWidth:superview.frame.size.width];
                 // 放开后动画至位置
                 [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     // 计算将要移动到的frame
@@ -133,7 +133,7 @@ const CGFloat kBDPGrowthSystemTingshuTaskBuoyViewHorizonMargin = 13.0f;
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
 
-- (CGRect)getPositionRangeOfView:(UIView *)monitorView {
+- (CGRect)positionRangeOfView:(UIView *)monitorView {
     UIEdgeInsets inset = UIEdgeInsetsMake(APPLICATION_NAVIGATIONBAR_HEIGHT, 0, APPLICATION_TABBAR_HEIGHT, 0);
     return [self transformInsetsToFrame:inset inView:monitorView];
 }
