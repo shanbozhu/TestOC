@@ -32,6 +32,12 @@
  WebKit（WebCore和JavaScriptCore）--------> Safari
                                      |
                    BLink（WebCore和V8）--------> Chrome
+ 
+ 虚拟机（解释器）:
+ Python 安装python
+ Shell 安装bash
+ 
+ 
  */
 
 /**
