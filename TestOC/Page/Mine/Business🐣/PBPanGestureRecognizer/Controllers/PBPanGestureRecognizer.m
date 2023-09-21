@@ -111,12 +111,12 @@
                 // 手势point
                 CGPoint gesturePoint = [gesture locationInView:superview];
                 
-                // 判断 手势 是否超过superview一半的位置
-                BOOL onRight = [self isOnRightWhenDragFinish:gesturePoint.x totalWidth:superview.frame.size.width];
-                
                 [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     // monitorView.frame
                     CGRect targetFrame = self.monitorView.frame;
+                    
+                    // 判断 手势 是否超过superview一半的位置
+                    BOOL onRight = [self isOnRightWhenDragFinish:gesturePoint.x totalWidth:superview.frame.size.width];
                     
                     // 手势 放开后 动画至位置
                     if (onRight) {
