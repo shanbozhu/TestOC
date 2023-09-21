@@ -49,11 +49,11 @@
     monitorView.backgroundColor = [UIColor redColor];
     
     // monitorView增加滑动手势
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [monitorView addGestureRecognizer:panGesture];
 }
 
-- (void)handleSwipe:(UIPanGestureRecognizer *)gesture {
+- (void)handlePan:(UIPanGestureRecognizer *)gesture {
     if (self.monitorView) {
         UIView *superview = self.monitorView.superview;
         if (!superview) {
