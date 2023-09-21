@@ -29,14 +29,18 @@
  链接:对目标文件进行处理,生成可执行文件.目标文件是相对地址,可执行文件是绝对地址
  
  浏览器内核:
- WebKit（WebCore和JavaScriptCore）--------> Safari
+ WebKit(WebCore和JavaScriptCore) --------> Safari
                                      |
-                   BLink（WebCore和V8）--------> Chrome
+                   BLink(WebCore和V8) --------> Chrome
  
- 虚拟机（解释器）:
+ 虚拟机(解释器):
  Python 安装python
  Shell 安装bash
- 
+ JavaScript 安装node.js或浏览器
+ TypeScript 安装typescript(含有tsc编译器)编译成JavaScript
+ 或者
+ TypeScript 安装ts-node(含有tsc编译器编译成JavaScript和node.js解释器)
+ Java 安装JDK(含有javac编译器编译成中间文件和java解释器)
  
  */
 
