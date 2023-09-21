@@ -41,7 +41,6 @@
  或者
  TypeScript 安装ts-node(含有tsc编译器编译成JavaScript和node.js解释器)
  Java 安装JDK(含有javac编译器编译成中间文件和java解释器)
- 
  */
 
 /**
