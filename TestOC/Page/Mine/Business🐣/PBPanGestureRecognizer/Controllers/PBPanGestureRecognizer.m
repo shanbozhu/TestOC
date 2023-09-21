@@ -111,6 +111,7 @@
                 // 手势point
                 CGPoint gesturePoint = [gesture locationInView:superview];
                 
+                // 动画
                 [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     // monitorView.frame
                     CGRect targetFrame = self.monitorView.frame;
