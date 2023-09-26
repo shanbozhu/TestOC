@@ -23,6 +23,15 @@
  1.代码提示
  2.断点调试(单步执行:step over、单步执行进入:step into、执行完当前函数:step out、继续执行:continue program execution)
  
+ 虚拟机(解释器):
+ Python:安装python. IDE:PyCharm
+ Shell:安装bash. IDE:VSCode + bashdb
+ JavaScript:安装node.js或浏览器. IDE:WebStorm
+ TypeScript:安装typescript(含有tsc编译器)编译成JavaScript. IDE:WebStorm
+ 或者
+ TypeScript:安装ts-node(含有tsc编译器编译成JavaScript和node.js解释器)
+ Java:安装JDK(含有javac编译器编译成中间文件和java解释器). IDE:IDEA
+ 
  编译包括:
  预处理 --> 编译 --> 汇编 --> 链接
  
@@ -35,15 +44,6 @@
  WebKit(WebCore和JavaScriptCore) --------> Safari
                                      |
                    BLink(WebCore和V8) --------> Chrome
- 
- 虚拟机(解释器):
- Python 安装python
- Shell 安装bash
- JavaScript 安装node.js或浏览器
- TypeScript 安装typescript(含有tsc编译器)编译成JavaScript
- 或者
- TypeScript 安装ts-node(含有tsc编译器编译成JavaScript和node.js解释器)
- Java 安装JDK(含有javac编译器编译成中间文件和java解释器)
  */
 
 /**
