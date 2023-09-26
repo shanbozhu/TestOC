@@ -21,7 +21,7 @@
  编辑 --> 编译/解释 --> 执行 --> 调试
  IDE(集成开发环境):
  1.代码提示
- 2.断点调试(单步执行:step over、单步执行进入:step into、执行完当前函数:step out、继续执行:continue program execution)
+ 2.代码调试(单步执行:step over、单步执行进入:step into、执行完当前函数:step out、继续执行:continue program execution)
  
  虚拟机(解释器):
  Python:安装python. IDE:PyCharm
