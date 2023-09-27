@@ -101,7 +101,7 @@ NSArray *allSubviews(UIView *aView) {
     // image array
     UIButton *ttsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.scrollView addSubview:ttsButton];
-    ttsButton.frame = CGRectMake(animationView.pb_left, animationView.pb_bottom + 20, 90, 30);
+    ttsButton.frame = CGRectMake(animationView.pb_left, animationView.pb_bottom + 20, 150, 30);
     ttsButton.backgroundColor = kPBBackgroundColor;
     [ttsButton setImage:[UIImage imageNamed:@"search_weather_voice_big"] forState:UIControlStateNormal];
     [ttsButton setTitle:@"听天气" forState:UIControlStateNormal];
