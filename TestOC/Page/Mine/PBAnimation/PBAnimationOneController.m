@@ -43,15 +43,15 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    //
-    CGRect originRect = [self.oneMiddleBtn.superview convertRect:self.oneMiddleBtn.frame toView:[UIApplication sharedApplication].delegate.window];
+    // 也可以使用相对于[UIApplication sharedApplication].delegate.window
+    CGRect originRect = [self.oneMiddleBtn.superview convertRect:self.oneMiddleBtn.frame toView:self.view];
     UIImageView *bgImageView = [[UIImageView alloc] init];
-    [[UIApplication sharedApplication].delegate.window addSubview:bgImageView];
+    [self.view addSubview:bgImageView];
     bgImageView.frame = originRect;
     bgImageView.image = image;
     
     //
-    CGRect rect = [self.twoMiddleBtn.superview convertRect:self.twoMiddleBtn.frame toView:[UIApplication sharedApplication].delegate.window];
+    CGRect rect = [self.twoMiddleBtn.superview convertRect:self.twoMiddleBtn.frame toView:self.view];
     CGFloat x = rect.origin.x + rect.size.width / 2; // 中心点x
     CGFloat y = rect.origin.y + rect.size.height / 2; // 中心点y
     [UIView animateWithDuration:10.0f animations:^{
