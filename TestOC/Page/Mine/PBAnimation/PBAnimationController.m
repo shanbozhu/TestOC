@@ -264,7 +264,6 @@ NSArray *allSubviews(UIView *aView) {
  @return 拉伸完成的图片
  */
 - (UIImage *)imageStretchLeftAndRightWithContainerSize:(CGSize)imageViewSize image:(UIImage *)originImage {
-    
     CGSize imageSize = originImage.size;
     CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); //imageView的宽高取整，否则会出现横竖两条缝
     
@@ -291,7 +290,6 @@ NSArray *allSubviews(UIView *aView) {
  @return 拉伸完成的图片
  */
 - (UIImage *)imageStretchUpAndDownWithContainerSize:(CGSize)imageViewSize image:(UIImage *)originImage {
-    
     CGSize imageSize = originImage.size;
     CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); //imageView的宽高取整，否则会出现横竖两条缝
     
