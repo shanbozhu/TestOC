@@ -1,12 +1,12 @@
 //
-//  AppDelegate+UniversalLink.m
+//  AppDelegate+UniversalLink_URLSchema.m
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/8/6.
 //  Copyright © 2019年 DaMaiIOS. All rights reserved.
 //
 
-#import "AppDelegate+UniversalLink.h"
+#import "AppDelegate+UniversalLink_URLSchema.h"
 
 @implementation AppDelegate (UniversalLink)
 

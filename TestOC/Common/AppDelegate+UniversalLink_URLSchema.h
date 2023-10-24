@@ -1,5 +1,5 @@
 //
-//  AppDelegate+UniversalLink.h
+//  AppDelegate+UniversalLink_URLSchema.h
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/8/6.

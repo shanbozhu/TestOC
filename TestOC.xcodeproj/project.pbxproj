@@ -201,7 +201,7 @@
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
-		9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */; };
+		9516BDC824696A390070C282 /* AppDelegate+UniversalLink_URLSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC624696A390070C282 /* AppDelegate+UniversalLink_URLSchema.m */; };
 		952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */; };
 		952FF34A265E42F300B0D7DA /* PBAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FF349265E42F300B0D7DA /* PBAnimationController.m */; };
 		952FF35F265E64A700B0D7DA /* bubble_voicesearch_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 952FF35E265E64A700B0D7DA /* bubble_voicesearch_lottie.json */; };
@@ -690,10 +690,10 @@
 		95168A01261F1FE70047D1B2 /* PBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBar.h; sourceTree = "<group>"; };
 		95168A02261F1FE70047D1B2 /* PBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBar.m; sourceTree = "<group>"; };
 		9516BDC224696A390070C282 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9516BDC324696A390070C282 /* AppDelegate+UniversalLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UniversalLink.h"; sourceTree = "<group>"; };
+		9516BDC324696A390070C282 /* AppDelegate+UniversalLink_URLSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UniversalLink_URLSchema.h"; sourceTree = "<group>"; };
 		9516BDC424696A390070C282 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9516BDC524696A390070C282 /* TestOC.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestOC.pch; sourceTree = "<group>"; };
-		9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink.m"; sourceTree = "<group>"; };
+		9516BDC624696A390070C282 /* AppDelegate+UniversalLink_URLSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UniversalLink_URLSchema.m"; sourceTree = "<group>"; };
 		952F09CB2660B67300B0D7DA /* PBAnimationBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationBubbleView.h; sourceTree = "<group>"; };
 		952F09CC2660B67300B0D7DA /* PBAnimationBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAnimationBubbleView.m; sourceTree = "<group>"; };
 		952FF348265E42F300B0D7DA /* PBAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationController.h; sourceTree = "<group>"; };
@@ -2139,8 +2139,8 @@
 			children = (
 				9516BDC224696A390070C282 /* AppDelegate.h */,
 				9516BDC424696A390070C282 /* AppDelegate.m */,
-				9516BDC324696A390070C282 /* AppDelegate+UniversalLink.h */,
-				9516BDC624696A390070C282 /* AppDelegate+UniversalLink.m */,
+				9516BDC324696A390070C282 /* AppDelegate+UniversalLink_URLSchema.h */,
+				9516BDC624696A390070C282 /* AppDelegate+UniversalLink_URLSchema.m */,
 				9516BDC524696A390070C282 /* TestOC.pch */,
 			);
 			path = Common;
@@ -3189,7 +3189,7 @@
 				5C0949782812C679002CEBC2 /* PBCellHeightTwoView.m in Sources */,
 				5C2D063E280BFBFC00C775B3 /* PBContentController.m in Sources */,
 				66B6B60129BAD3C700C8725F /* UIViewController+PBCurrentVC.m in Sources */,
-				9516BDC824696A390070C282 /* AppDelegate+UniversalLink.m in Sources */,
+				9516BDC824696A390070C282 /* AppDelegate+UniversalLink_URLSchema.m in Sources */,
 				957593D422F84F20009CA618 /* PBGCDListThreeController.m in Sources */,
 				958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */,
 				5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */,
