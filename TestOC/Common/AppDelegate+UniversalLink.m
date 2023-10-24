@@ -10,12 +10,11 @@
 
 @implementation AppDelegate (UniversalLink)
 
-// URLScheme
+// URLSchema
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     NSLog(@"url.absoluteString = %@", url.absoluteString);
     
     if ([url.scheme isEqualToString:@"TestOCAAA"]) {
-        // xxx
         [[NSNotificationCenter defaultCenter]postNotificationName:@"Link" object:nil userInfo:@{@"url":url}];
     }
     return YES;
@@ -28,7 +27,6 @@
         NSLog(@"url.absoluteString = %@", url.absoluteString);
         
         if ([url.host isEqualToString:@"damai.cn"]) {
-            // xxx
             [[NSNotificationCenter defaultCenter]postNotificationName:@"Link" object:nil userInfo:@{@"url":url}];
         } else {
             if (@available(iOS 10.0, *)) {
