@@ -94,9 +94,14 @@ NSArray *allSubviews(UIView *aView) {
     LOTAnimationView *animationView = [LOTAnimationView animationWithFilePath:lottiePath];
     [self.scrollView addSubview:animationView];
     animationView.frame = CGRectMake(50, 50, 29, 48);
-    animationView.loopAnimation = YES;
-    [animationView play];
     animationView.backgroundColor = kPBBackgroundColor;
+    //animationView.loopAnimation = YES; // 循环播放
+    animationView.completionBlock = ^(BOOL animationFinished) {
+        if (animationFinished) {
+            NSLog(@"Lottie动画完成一定要判断animationFinished");
+        }
+    };
+    [animationView play]; // play需要在completionBlock之后调用,否则completionBlock不会被回调
     
     // image array
     UIButton *ttsButton = [UIButton buttonWithType:UIButtonTypeCustom];
