@@ -23,48 +23,48 @@
     // 浅拷贝:只拷贝地址,不拷贝对象.指向同一个对象
     // 深拷贝:既拷贝地址,又拷贝对象.指向两个不同的对象,两个对象存储的值相同
     
-    // 不可变类型的对象调用copy方法是浅拷贝,其他都是深拷贝
-    // copy方法返回的对象是不可变的
-    // mutableCopy方法返回的对象是可变的
+    // 不可变类型的对象调用copy是浅拷贝,其他都是深拷贝
+    // copy返回的对象是不可变的
+    // mutableCopy返回的对象是可变的
     
     {
-        // 不可变类型的对象调用copy方法是浅拷贝
+        // 不可变类型的对象调用copy是浅拷贝
         NSArray *arr = @[@"hello"];
         
         NSMutableArray *oneArr = [arr copy];
-        //[oneArr addObject:@"world"]; // 会崩溃,copy方法返回的对象是不可变的
+        //[oneArr addObject:@"world"]; // 会崩溃,copy返回的对象是不可变的
         NSLog(@"1-- oneArr = %p, oneArr = %@", oneArr, oneArr);
         NSLog(@"1-- arr = %p, arr = %@", arr, arr);
     }
     
     {
-        // 不可变类型的对象调用mutableCopy方法是深拷贝
+        // 不可变类型的对象调用mutableCopy是深拷贝
         NSArray *arr = @[@"hello"];
         
         NSMutableArray *oneArr = [arr mutableCopy];
-        [oneArr addObject:@"world"]; // mutableCopy方法返回的对象是可变的
+        [oneArr addObject:@"world"]; // mutableCopy返回的对象是可变的
         NSLog(@"2-- oneArr = %p, oneArr = %@", oneArr, oneArr);
         NSLog(@"2-- arr = %p, arr = %@", arr, arr);
     }
     
     {
-        // 可变类型的对象调用copy方法是深拷贝
+        // 可变类型的对象调用copy是深拷贝
         NSMutableArray *arr = [NSMutableArray array];
         [arr addObject:@"hello"];
         
         NSMutableArray *oneArr = [arr copy];
-        //[oneArr addObject:@"world"]; // 会崩溃,copy方法返回的对象是不可变的
+        //[oneArr addObject:@"world"]; // 会崩溃,copy返回的对象是不可变的
         NSLog(@"3-- oneArr = %p, oneArr = %@", oneArr, oneArr);
         NSLog(@"3-- arr = %p, arr = %@", arr, arr);
     }
     
     {
-        // 可变类型的对象调用mutableCopy方法是深拷贝
+        // 可变类型的对象调用mutableCopy是深拷贝
         NSMutableArray *arr = [NSMutableArray array];
         [arr addObject:@"hello"];
         
         NSMutableArray *oneArr = [arr mutableCopy];
-        [oneArr addObject:@"world"]; // mutableCopy方法返回的对象是可变的
+        [oneArr addObject:@"world"]; // mutableCopy返回的对象是可变的
         NSLog(@"4-- oneArr = %p, oneArr = %@", oneArr, oneArr);
         NSLog(@"4-- arr = %p, arr = %@", arr, arr);
     }
@@ -80,7 +80,7 @@
         [arr addObject:@"hello"];
         
         self.arr = arr;
-        //[self.arr addObject:@"world"]; // 会崩溃,copy方法返回的对象是不可变的
+        //[self.arr addObject:@"world"]; // 会崩溃,copy返回的对象是不可变的
         [arr addObject:@"world"];
         NSLog(@"5-- self.arr = %p, self.arr = %@", self.arr, self.arr);
         NSLog(@"5-- arr = %p, arr = %@", arr, arr);
