@@ -32,7 +32,7 @@
         NSArray *arr = @[@"hello"];
         
         NSMutableArray *oneArr = [arr copy];
-        //[oneArr addObject:@"world"]; // 会崩溃,copy返回的对象是不可变的
+        //[oneArr addObject:@"world"]; // 会崩溃.copy返回的对象是不可变的
         NSLog(@"1-- oneArr = %p, oneArr = %@", oneArr, oneArr);
         NSLog(@"1-- arr = %p, arr = %@", arr, arr);
     }
@@ -53,7 +53,7 @@
         [arr addObject:@"hello"];
         
         NSMutableArray *oneArr = [arr copy];
-        //[oneArr addObject:@"world"]; // 会崩溃,copy返回的对象是不可变的
+        //[oneArr addObject:@"world"]; // 会崩溃.copy返回的对象是不可变的
         NSLog(@"3-- oneArr = %p, oneArr = %@", oneArr, oneArr);
         NSLog(@"3-- arr = %p, arr = %@", arr, arr);
     }
@@ -80,7 +80,7 @@
         [arr addObject:@"hello"];
         
         self.arr = arr;
-        //[self.arr addObject:@"world"]; // 会崩溃,copy返回的对象是不可变的
+        //[self.arr addObject:@"world"]; // 会崩溃.copy返回的对象是不可变的
         [arr addObject:@"world"];
         NSLog(@"5-- self.arr = %p, self.arr = %@", self.arr, self.arr);
         NSLog(@"5-- arr = %p, arr = %@", arr, arr);
