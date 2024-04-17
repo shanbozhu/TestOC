@@ -73,6 +73,7 @@
 		5C33FD802744DE9B00F6DDF0 /* UIView+PBCommonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD772744DE9B00F6DDF0 /* UIView+PBCommonExtension.m */; };
 		5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */; };
 		5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */; };
+		5C354AE52BD0124D00A14B95 /* PBAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354AE42BD0124D00A14B95 /* PBAlertController.m */; };
 		5C42E3DA284DF4830065F887 /* PBCellHeightFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */; };
 		5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */; };
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
@@ -480,6 +481,8 @@
 		5C33FD7B2744DE9B00F6DDF0 /* PBCommonUIParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonUIParams.m; sourceTree = "<group>"; };
 		5C33FD7C2744DE9B00F6DDF0 /* UIColor+PBHexStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PBHexStr.h"; sourceTree = "<group>"; };
 		5C33FD7D2744DE9B00F6DDF0 /* UIView+PBCommonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBCommonExtension.h"; sourceTree = "<group>"; };
+		5C354AE32BD0124D00A14B95 /* PBAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAlertController.h; sourceTree = "<group>"; };
+		5C354AE42BD0124D00A14B95 /* PBAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAlertController.m; sourceTree = "<group>"; };
 		5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveController.m; sourceTree = "<group>"; };
 		5C42E3D9284DF4830065F887 /* PBCellHeightFiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveController.h; sourceTree = "<group>"; };
 		5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveView.m; sourceTree = "<group>"; };
@@ -1377,6 +1380,39 @@
 				5C33FD782744DE9B00F6DDF0 /* UIColor+PBHexStr.m */,
 			);
 			path = PBFoundation;
+			sourceTree = "<group>";
+		};
+		5C354ADF2BD0123400A14B95 /* PBAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				5C354AE02BD0123400A14B95 /* Models */,
+				5C354AE12BD0123400A14B95 /* Controllers */,
+				5C354AE22BD0123400A14B95 /* Views */,
+			);
+			path = PBAlertController;
+			sourceTree = "<group>";
+		};
+		5C354AE02BD0123400A14B95 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C354AE12BD0123400A14B95 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C354AE32BD0124D00A14B95 /* PBAlertController.h */,
+				5C354AE42BD0124D00A14B95 /* PBAlertController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5C354AE22BD0123400A14B95 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5C516ECD2ABAE4760052E52C /* PBPanGestureRecognizer */ = {
@@ -2870,6 +2906,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5C354ADF2BD0123400A14B95 /* PBAlertController */,
 				5C8EE01D2A810FA4008F00D8 /* PBBlock */,
 				5CCB742529B6039900853864 /* PBProtocol */,
 				5C9886672826527A00D3AEAD /* PBMasonry */,
@@ -3358,6 +3395,7 @@
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
 				5CCC111E29CAF92900F60C38 /* PBTestListTwoController.m in Sources */,
 				95C19230262548400008FD14 /* PBSyntaxController.m in Sources */,
+				5C354AE52BD0124D00A14B95 /* PBAlertController.m in Sources */,
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,
 				5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */,
