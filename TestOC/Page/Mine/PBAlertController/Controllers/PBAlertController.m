@@ -8,6 +8,25 @@
 
 #import "PBAlertController.h"
 
+
+// UIView+HierarchyLogging.h
+@interface UIView (ViewHierarchyLogging)
+- (void)logViewHierarchy;
+@end
+  
+// UIView+HierarchyLogging.m
+@implementation UIView (ViewHierarchyLogging)
+- (void)logViewHierarchy
+{
+    NSLog(@"%@", self);
+    for (UIView *subview in self.subviews)
+    {
+        
+        [subview logViewHierarchy];
+    }
+}
+@end
+
 @interface PBAlertController ()
 
 @end
@@ -16,6 +35,27 @@
 #define kPBAlertControllerMessage @"kPBAlertControllerMessage"
 
 @implementation PBAlertController
+
+// 获得所有ivar
+-(NSArray *)getAllIvar:(id)object {
+    NSMutableArray *array = [NSMutableArray array];
+   unsigned int count;
+    Ivar *ivars = class_copyIvarList([object class], &count);
+    for (int i = 0; i < count; i++) {
+        Ivar ivar = ivars[i];
+        const char *keyChar = ivar_getName(ivar);
+        NSString *keyStr = [NSString stringWithCString:keyChar encoding:NSUTF8StringEncoding];
+        id valueStr = [object valueForKey:keyStr];
+        NSDictionary *dic = nil;
+        if (valueStr) {
+            dic = @{keyStr : valueStr};
+        } else {
+            dic = @{keyStr : @"值为nil"};
+        }
+        [array addObject:dic];
+    }
+    return [array copy];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -117,7 +157,8 @@
     [ps setAlignment:NSTextAlignmentLeft];
     [alertControllerMessageStr addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, message.length)];
     [alertControllerMessageStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0, message.length)];
-    [alertControllerMessageStr addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, message.length)];
+    [alertControllerMessageStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, message.length)];
+//    [alert setValue:alertControllerMessageStr forKey:@"_attributedMessage"];
     [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
@@ -126,6 +167,19 @@
     }];
     [alert addAction:alertAction];
     [self presentViewController:alert animated:YES completion:nil];
+    
+    NSLog(@"[UIAlertController alloc] = %@", [self getAllIvar:alert.view]);
+    UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"];
+    NSLog(@"messageLabel = %@", messageLabel);
+    
+    
+    [alert.view logViewHierarchy];
 }
 
+
+
 @end
+
+
+
+
