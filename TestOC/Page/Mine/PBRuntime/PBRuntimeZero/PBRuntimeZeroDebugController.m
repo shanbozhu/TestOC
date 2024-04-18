@@ -7,6 +7,12 @@
 //
 
 #import "PBRuntimeZeroDebugController.h"
+#import "PBMethodSwizzling.h"
+
+/**
+ hook:
+ 一般用于hook一个不可修改的原方法,而又需要在原方法的基础上添加代码
+ */
 
 @interface PBRuntimeZeroDebugController ()
 
@@ -14,19 +20,20 @@
 
 @implementation PBRuntimeZeroDebugController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+#pragma mark -
+
+// +load方法在main函数之前执行
++ (void)load {
+    [PBMethodSwizzling replaceClass:NSClassFromString(@"PBRuntimeZeroController")
+                                sel:NSSelectorFromString(@"func")
+                          withClass:self
+                            withSEL:NSSelectorFromString(@"pb_func") isClassMethod:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
++ (void)pb_func {
+    NSLog(@"被执行了1.先执行自定义语句,在执行下面的原方法");
+    NSLog(@"self = %@", self); // hook方法中要慎用self,防止self指代错误
+    [self pb_func]; // 交换了方法,此时self是PBRuntimeZeroController,pb_func是func
 }
-*/
 
 @end
