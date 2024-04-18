@@ -55,6 +55,37 @@
     free(method);
 }
 
+- (void)classMethodList:(id)object {
+    unsigned int count = 0;
+    Class metaClass = object_getClass([self class]);
+    Method *method = class_copyMethodList(metaClass, &count);
+    for (unsigned int i = 0; i < count; i++) {
+        Method me = method[i];
+        NSLog(@"类方法: %@", NSStringFromSelector(method_getName(me)));
+    }
+    free(method);
+}
+
+- (void)protocolMethodList:(Protocol *)protocol {
+    unsigned int count = 0;
+    struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count); // 第二个参数是否是required,第三个参数是否是对象方法
+    for (unsigned int i = 0; i < count; i++) {
+        struct objc_method_description method = methods[i];
+        NSLog(@"协议方法: %@", NSStringFromSelector(method.name));
+    }
+    free(methods);
+}
+
+- (void)conformProtocolList:(id)object {
+    unsigned int count = 0;
+    __unsafe_unretained Protocol **protocolList = class_copyProtocolList([object class], &count);
+    for (unsigned int i = 0; i< count; i++) {
+        Protocol *myProtocal = protocolList[i];
+        const char *protocolName = protocol_getName(myProtocal);
+        NSLog(@"协议: %@", [NSString stringWithUTF8String:protocolName]);
+    }
+    free(protocolList);
+}
 
 #pragma mark -
 
@@ -78,36 +109,15 @@
     }
     
     {
-        unsigned int count = 0;
-        Class metaClass = object_getClass([self class]);
-        Method *method = class_copyMethodList(metaClass, &count);
-        for (unsigned int i = 0; i < count; i++) {
-            Method me = method[i];
-            NSLog(@"类方法名称----%@", NSStringFromSelector(method_getName(me)));
-        }
-        free(method);
+        [self classMethodList:self];
     }
     
     {
-        Protocol *protocol = @protocol(PBRuntimeTwoControllerProtocol);
-        unsigned int count = 0;
-        struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count); // 第二个参数是否是required,第三个参数是否是对象方法
-        for (unsigned int i = 0; i < count; i++) {
-            struct objc_method_description method = methods[i];
-            NSLog(@"协议方法名称----%@", NSStringFromSelector(method.name));
-        }
-        free(methods);
+        [self protocolMethodList:@protocol(PBRuntimeTwoControllerProtocol)];
     }
     
     {
-        unsigned int count = 0;
-        __unsafe_unretained Protocol **protocolList = class_copyProtocolList([self class], &count);
-        for (unsigned int i = 0; i< count; i++) {
-            Protocol *myProtocal = protocolList[i];
-            const char *protocolName = protocol_getName(myProtocal);
-            NSLog(@"协议名称----%@", [NSString stringWithUTF8String:protocolName]);
-        }
-        free(protocolList);
+        [self conformProtocolList:self];
     }
 }
 
