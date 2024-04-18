@@ -97,26 +97,32 @@
     [super viewDidLoad];
     
     {
+        // 成员变量
         [self ivarList:self];
     }
     
     {
+        // 属性
         [self propertyList:self];
     }
     
     {
+        // 方法
         [self instanceMethodList:self];
     }
     
     {
+        // 类方法
         [self classMethodList:self];
     }
     
     {
+        // 协议方法
         [self protocolMethodList:@protocol(PBRuntimeTwoControllerProtocol)];
     }
     
     {
+        // 协议
         [self conformProtocolList:self];
     }
 }
