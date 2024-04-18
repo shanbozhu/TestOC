@@ -36,27 +36,6 @@
 
 @implementation PBAlertController
 
-// 获得所有ivar
--(NSArray *)getAllIvar:(id)object {
-    NSMutableArray *array = [NSMutableArray array];
-   unsigned int count;
-    Ivar *ivars = class_copyIvarList([object class], &count);
-    for (int i = 0; i < count; i++) {
-        Ivar ivar = ivars[i];
-        const char *keyChar = ivar_getName(ivar);
-        NSString *keyStr = [NSString stringWithCString:keyChar encoding:NSUTF8StringEncoding];
-        id valueStr = [object valueForKey:keyStr];
-        NSDictionary *dic = nil;
-        if (valueStr) {
-            dic = @{keyStr : valueStr};
-        } else {
-            dic = @{keyStr : @"值为nil"};
-        }
-        [array addObject:dic];
-    }
-    return [array copy];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
@@ -153,13 +132,13 @@
     NSString *message = @"messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagem\nessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemes\nsagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessage\nmessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagem\nessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemes\nsagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessage\nmessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagem\nessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemes\nsagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessage\n";
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
     NSMutableAttributedString *alertControllerMessageStr = [[NSMutableAttributedString alloc] initWithString:message];
-    NSMutableParagraphStyle *ps = [[NSMutableParagraphStyle alloc] init];
-    [ps setAlignment:NSTextAlignmentLeft];
-    [alertControllerMessageStr addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, message.length)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentLeft];
+    [alertControllerMessageStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, message.length)];
     [alertControllerMessageStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0, message.length)];
     [alertControllerMessageStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, message.length)];
-//    [alert setValue:alertControllerMessageStr forKey:@"_attributedMessage"];
-    [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"];
+    //[alert setValue:alertControllerMessageStr forKey:@"_attributedMessage"];
+    [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"]; // 与上面调用效果相同, 1.通过设置类的私有属性实现
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alert addAction:cancelAction];
@@ -168,9 +147,10 @@
     [alert addAction:alertAction];
     [self presentViewController:alert animated:YES completion:nil];
     
-    NSLog(@"[UIAlertController alloc] = %@", [self getAllIvar:alert.view]);
-    UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"];
+    UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 2.通过遍历视图的所有子视图,找到要修改的视图实现
     NSLog(@"messageLabel = %@", messageLabel);
+    messageLabel.layer.borderColor = [UIColor blueColor].CGColor;
+    messageLabel.layer.borderWidth = 1.1;
     
     
     [alert.view logViewHierarchy];
