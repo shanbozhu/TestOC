@@ -36,20 +36,20 @@
 
 + (NSString *)getSymbolsWithDepth:(int)size {
     vm_address_t *stacks[size];
-    size_t depth = backtrace((void**)stacks, size);
+    size_t depth = backtrace((void **)stacks, size);
     NSMutableString *stackInfo = [[NSMutableString alloc] init];
-    NSDateFormatter* df1 = [NSDateFormatter new];
+    NSDateFormatter *df1 = [NSDateFormatter new];
     df1.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
     NSString *dateStr1 = [df1 stringFromDate:[NSDate date]];
     [stackInfo appendFormat:@"%@\n", dateStr1];
     
     char **strings;
-    strings = backtrace_symbols((void**)stacks, (int)depth);
+    strings = backtrace_symbols((void **)stacks, (int)depth);
     if (strings == NULL) {
         return NULL;
     }
     for (int j = 0; j < depth; j++) {
-        NSString *str=  [[NSString alloc] initWithUTF8String:strings[j]];
+        NSString *str = [[NSString alloc] initWithUTF8String:strings[j]];
         [stackInfo appendFormat:@"%@\n", str];
     }
     free(strings);
