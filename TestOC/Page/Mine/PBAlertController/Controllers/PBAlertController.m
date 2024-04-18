@@ -8,65 +8,6 @@
 
 #import "PBAlertController.h"
 
-
-// UIView+HierarchyLogging.h
-@interface UIView (ViewHierarchyLogging)
-- (void)logViewHierarchy;
-
-@property (nonatomic, assign) NSInteger index;
-@property (nonatomic, weak) UIView *superView;
-@end
-  
-// UIView+HierarchyLogging.m
-@implementation UIView (ViewHierarchyLogging)
-
-- (void)setIndex:(NSInteger)index {
-    objc_setAssociatedObject(self, @selector(index), @(index), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSInteger)index {
-    return [objc_getAssociatedObject(self, @selector(index)) integerValue];
-}
-
-//- (void)setSing:(NSString *)sing {
-//    // 设置self的关联对象key/value
-//    objc_setAssociatedObject(self, @selector(sing), sing, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//}
-//
-//- (NSString *)sing {
-//    // 获取self的关联对象key/value
-//    return objc_getAssociatedObject(self, @selector(sing));
-//}
-
-- (void)logViewHierarchy
-{
-    static NSInteger i = 0;
-    i++;
-    
-    if (self.superview.index > 0) {
-        i = self.superview.index;
-    }
-    
-    if (i == 1) {
-        NSLog(@"%ld, %@", i, self);
-    } else {
-        NSLog(@"%*s%ld, %@", (int)i - 1, " ", i, self);
-    }
-    
-//    if (self.superview.index < 0) {
-        self.superview.index = i;
-//    }
-    
-    
-
-    
-    for (UIView *subview in self.subviews)
-    {
-        [subview logViewHierarchy];
-    }
-}
-@end
-
 @interface PBAlertController ()
 
 @end
@@ -193,17 +134,55 @@
     messageLabel.layer.borderWidth = 1.1;
     
     // 2.通过遍历视图的所有子视图,找到要修改的视图实现
-    [alert.view logViewHierarchy];
-    
-    NSLog(@"messageLabel = %@", alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1]);
-    
-    NSLog(@"messageLabel = %@", alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews);
+    [self logViewHierarchy:alert.view];
+    NSLog(@"hello%*sworld", 12, " ");
     
     
-        NSLog(@"hello%*sworld", 12, " ");
+    // 打印所有子视图
+    [self getSub:alert.view andLevel:1];
 }
 
+- (void)logViewHierarchy:(UIView *)view {
+    for (UIView *subview in view.subviews) {
+        static NSInteger i = 0;
+        i++;
+        if (subview.superview.tag > 0) {
+            i = subview.superview.tag;
+        }
+        subview.superview.tag = i;
+        if (i == 1) {
+            NSLog(@"%ld: %@", i, subview.class);
+        } else {
+            NSLog(@"%*s %ld: %@", (int)i - 1, " ", i, subview.class);
+        }
+        
+        [self logViewHierarchy:subview];
+    }
+}
 
+// 递归获取子视图
+- (void)getSub:(UIView *)view andLevel:(int)level {
+    NSArray *subviews = [view subviews];
+    
+    // 如果没有子视图就直接返回
+    if ([subviews count] == 0) return;
+    
+    for (UIView *subview in subviews) {
+        
+        // 根据层级决定前面空格个数，来缩进显示
+        NSString *blank = @"";
+        for (int i = 1; i < level; i++) {
+            blank = [NSString stringWithFormat:@"  %@", blank];
+        }
+        
+        // 打印子视图类名
+        NSLog(@"%@%d: %@", blank, level, subview.class);
+        
+        // 递归获取此视图的子视图
+        [self getSub:subview andLevel:(level+1)];
+        
+    }
+}
 
 @end
 
