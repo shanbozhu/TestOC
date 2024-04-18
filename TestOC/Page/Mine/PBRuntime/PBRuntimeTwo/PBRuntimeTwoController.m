@@ -45,6 +45,16 @@
     free(propertiesList);
 }
 
+- (void)instanceMethodList:(id)object {
+    unsigned int count = 0;
+    Method *method = class_copyMethodList([object class], &count);
+    for (unsigned int i = 0; i < count; i++) {
+        Method me = method[i];
+        NSLog(@"方法: %@", NSStringFromSelector(method_getName(me)));
+    }
+    free(method);
+}
+
 
 #pragma mark -
 
@@ -64,13 +74,7 @@
     }
     
     {
-        unsigned int count = 0;
-        Method *method = class_copyMethodList([self class], &count);
-        for (unsigned int i = 0; i < count; i++) {
-            Method me = method[i];
-            NSLog(@"方法名称----%@", NSStringFromSelector(method_getName(me)));
-        }
-        free(method);
+        [self instanceMethodList:self];
     }
     
     {
