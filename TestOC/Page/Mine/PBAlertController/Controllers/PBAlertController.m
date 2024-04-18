@@ -128,6 +128,12 @@
     [alert addAction:alertAction];
     [self presentViewController:alert animated:YES completion:nil];
     
+    
+    
+    
+    
+    
+    
     UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 1.通过设置类的私有属性实现
     NSLog(@"messageLabel = %@", messageLabel);
     messageLabel.layer.borderColor = [UIColor blueColor].CGColor;
@@ -150,16 +156,19 @@
             i = subview.superview.tag;
         }
         subview.superview.tag = i;
+        
         if (i == 1) {
             NSLog(@"%ld: %@", i, subview.class);
         } else {
-            NSLog(@"%*s %ld: %@", (int)i - 1, " ", i, subview.class);
+            NSLog(@"%*s%ld: %@", (int)i - 1, " ", i, subview.class);
         }
         
         [self logViewHierarchy:subview];
     }
 }
 
+
+// 参考文档: https://www.jianshu.com/p/f78a82bdfc68
 // 递归获取子视图
 - (void)getSub:(UIView *)view andLevel:(int)level {
     NSArray *subviews = [view subviews];
