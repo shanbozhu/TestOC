@@ -20,8 +20,9 @@
 - (NSArray *)titleArr {
     if (!_titleArr) {
         _titleArr = @[@"交换方法",
-                      @"获取当前工程的所有类/所有自定义类",
-                      @"获取某类的属性/方法/成员变量/协议"];
+                      @"遍历当前工程的所有类/所有自定义类",
+                      @"遍历某类的属性/方法/成员变量/协议",
+                      @"遍历某视图的所有子视图"];
     }
     return _titleArr;
 }
@@ -30,7 +31,8 @@
     if (!_vcArr) {
         _vcArr = @[@"PBRuntimeZeroController",
                    @"PBRuntimeOneController",
-                   @"PBRuntimeTwoController"];
+                   @"PBRuntimeTwoController",
+                   @"PBRuntimeThreeController"];
     }
     return _vcArr;
 }

@@ -142,12 +142,10 @@
     messageLabel.layer.borderWidth = 1.1;
     
     // 2.通过遍历视图的所有子视图,找到要修改的视图实现
-    [self logViewHierarchy:alert.view];
-    NSLog(@"hello%*sworld", 12, " ");
     
     
-    // 打印所有子视图
-    [self getSub:alert.view andLevel:1];
+    
+    
     
     
     NSLog(@"<<<<%@>>>>", [self.class getSymbolsWithDepth:1000]);
@@ -176,50 +174,7 @@
     return stackInfo;
 }
 
-- (void)logViewHierarchy:(UIView *)view {
-    for (UIView *subview in view.subviews) {
-        static NSInteger i = 0;
-        i++;
-        if (subview.superview.tag > 0) {
-            i = subview.superview.tag;
-        }
-        subview.superview.tag = i;
-        
-        if (i == 1) {
-            NSLog(@"%ld: %@", i, subview.class);
-        } else {
-            NSLog(@"%*s%ld: %@", (int)i - 1, " ", i, subview.class);
-        }
-        
-        [self logViewHierarchy:subview];
-    }
-}
 
-
-// 参考文档: https://www.jianshu.com/p/f78a82bdfc68 https://www.cnblogs.com/allanliu/p/4229762.html
-// 递归获取子视图
-- (void)getSub:(UIView *)view andLevel:(int)level {
-    NSArray *subviews = [view subviews];
-    
-    // 如果没有子视图就直接返回
-    if ([subviews count] == 0) return;
-    
-    for (UIView *subview in subviews) {
-        
-        // 根据层级决定前面空格个数，来缩进显示
-        NSString *blank = @"";
-        for (int i = 1; i < level; i++) {
-            blank = [NSString stringWithFormat:@"  %@", blank];
-        }
-        
-        // 打印子视图类名
-        NSLog(@"%@%d: %@", blank, level, subview.class);
-        
-        // 递归获取此视图的子视图
-        [self getSub:subview andLevel:(level+1)];
-        
-    }
-}
 
 @end
 
