@@ -18,30 +18,14 @@
 
 #pragma mark -
 
-+ (void)load {
-    Class aClass = NSClassFromString(@"UIDevice");
-    if (aClass) {
-        [PBMethodSwizzling replaceClass:[aClass class]
-                                    sel:@selector(systemVersion)
-                              withClass:[self class]
-                                withSEL:@selector(debug_systemVersion)
-                          isClassMethod:NO];
-    }
-}
-
-- (NSString *)debug_systemVersion {
-    NSLog(@"<<<<%@>>>>", [PBRuntimeFourController getSymbolsWithDepth:1000]);
-    return [self debug_systemVersion];
-}
-
 + (NSString *)getSymbolsWithDepth:(int)size {
     vm_address_t *stacks[size];
     size_t depth = backtrace((void **)stacks, size);
     NSMutableString *stackInfo = [[NSMutableString alloc] init];
-    NSDateFormatter *df1 = [NSDateFormatter new];
-    df1.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
-    NSString *dateStr1 = [df1 stringFromDate:[NSDate date]];
-    [stackInfo appendFormat:@"%@\n", dateStr1];
+    NSDateFormatter *df = [NSDateFormatter new];
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
+    NSString *dateStr = [df stringFromDate:[NSDate date]];
+    [stackInfo appendFormat:@"%@\n", dateStr];
     
     char **strings;
     strings = backtrace_symbols((void **)stacks, (int)depth);
@@ -59,11 +43,28 @@
 
 #pragma mark -
 
++ (void)load {
+    Class aClass = NSClassFromString(@"UIDevice");
+    if (aClass) {
+        [PBMethodSwizzling replaceClass:[aClass class]
+                                    sel:@selector(systemVersion)
+                              withClass:[self class]
+                                withSEL:@selector(debug_systemVersion)
+                          isClassMethod:NO];
+    }
+}
+
+- (NSString *)debug_systemVersion {
+    NSLog(@"<<<<%@>>>>", [PBRuntimeFourController getSymbolsWithDepth:1000]);
+    return [self debug_systemVersion];
+}
+
+#pragma mark -
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSLog(@"[UIDevice currentDevice].systemVersion = %@", [UIDevice currentDevice].systemVersion);
 }
-
 
 @end
