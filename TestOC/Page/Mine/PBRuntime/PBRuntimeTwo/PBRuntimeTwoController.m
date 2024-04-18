@@ -21,6 +21,33 @@
 
 @implementation PBRuntimeTwoController
 
+#pragma mark -
+
+- (void)ivarList:(id)object {
+    unsigned int count = 0;
+    Ivar *ivar = class_copyIvarList([object class], &count);
+    for (NSInteger index = 0; index < count; index++) {
+        const char *ivarName = ivar_getName(ivar[index]);
+        NSString *name = [NSString stringWithUTF8String:ivarName];
+        NSLog(@"成员变量: %@, 值: %@", name, [object valueForKey:name]);
+    }
+    free(ivar);
+}
+
+- (void)propertyList:(id)object {
+    unsigned int count = 0;
+    objc_property_t *propertiesList = class_copyPropertyList([object class], &count);
+    for (unsigned int i = 0; i < count; i++) {
+        const char *propertyName = property_getName(propertiesList[i]);
+        NSString *name = [NSString stringWithUTF8String:propertyName];
+        NSLog(@"属性: %@, 值: %@", name, [object valueForKey:name]);
+    }
+    free(propertiesList);
+}
+
+
+#pragma mark -
+
 + (void)manager {
     return;
 }
@@ -29,23 +56,11 @@
     [super viewDidLoad];
     
     {
-        unsigned int count = 0;
-        Ivar *ivar = class_copyIvarList([self class], &count);
-        for (NSInteger index = 0; index < count; index++) {
-            const char *ivarName = ivar_getName(ivar[index]);
-            NSLog(@"成员变量名称----%@", [NSString stringWithUTF8String:ivarName]);
-        }
-        free(ivar);
+        [self ivarList:self];
     }
     
     {
-        unsigned int count = 0;
-        objc_property_t *propertiesList = class_copyPropertyList([self class], &count);
-        for (unsigned int i = 0; i < count; i++) {
-            const char *propertyName = property_getName(propertiesList[i]);
-            NSLog(@"属性名称----%@", [NSString stringWithUTF8String:propertyName]);
-        }
-        free(propertiesList);
+        [self propertyList:self];
     }
     
     {
