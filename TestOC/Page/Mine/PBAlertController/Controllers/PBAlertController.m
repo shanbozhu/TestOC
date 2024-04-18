@@ -12,16 +12,56 @@
 // UIView+HierarchyLogging.h
 @interface UIView (ViewHierarchyLogging)
 - (void)logViewHierarchy;
+
+@property (nonatomic, assign) NSInteger index;
+@property (nonatomic, weak) UIView *superView;
 @end
   
 // UIView+HierarchyLogging.m
 @implementation UIView (ViewHierarchyLogging)
+
+- (void)setIndex:(NSInteger)index {
+    objc_setAssociatedObject(self, @selector(index), @(index), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSInteger)index {
+    return [objc_getAssociatedObject(self, @selector(index)) integerValue];
+}
+
+//- (void)setSing:(NSString *)sing {
+//    // 设置self的关联对象key/value
+//    objc_setAssociatedObject(self, @selector(sing), sing, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+//- (NSString *)sing {
+//    // 获取self的关联对象key/value
+//    return objc_getAssociatedObject(self, @selector(sing));
+//}
+
 - (void)logViewHierarchy
 {
-    NSLog(@"%@", self);
+    static NSInteger i = 0;
+    i++;
+    
+    if (self.superview.index > 0) {
+        i = self.superview.index;
+    }
+    
+    if (i == 1) {
+        NSLog(@"%ld, %@", i, self);
+    } else {
+        NSLog(@"%*s%ld, %@", (int)i - 1, " ", i, self);
+    }
+    
+//    if (self.superview.index < 0) {
+        self.superview.index = i;
+//    }
+    
+    
+
+    
     for (UIView *subview in self.subviews)
     {
-        
         [subview logViewHierarchy];
     }
 }
@@ -147,13 +187,20 @@
     [alert addAction:alertAction];
     [self presentViewController:alert animated:YES completion:nil];
     
-    UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 2.通过遍历视图的所有子视图,找到要修改的视图实现
+    UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 1.通过设置类的私有属性实现
     NSLog(@"messageLabel = %@", messageLabel);
     messageLabel.layer.borderColor = [UIColor blueColor].CGColor;
     messageLabel.layer.borderWidth = 1.1;
     
-    
+    // 2.通过遍历视图的所有子视图,找到要修改的视图实现
     [alert.view logViewHierarchy];
+    
+    NSLog(@"messageLabel = %@", alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1]);
+    
+    NSLog(@"messageLabel = %@", alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews);
+    
+    
+        NSLog(@"hello%*sworld", 12, " ");
 }
 
 
