@@ -27,13 +27,13 @@
     [PBMethodSwizzling replaceClass:NSClassFromString(@"PBRuntimeZeroController")
                                 sel:NSSelectorFromString(@"func")
                           withClass:self
-                            withSEL:NSSelectorFromString(@"pb_func") isClassMethod:YES];
+                            withSEL:NSSelectorFromString(@"debug_func") isClassMethod:YES];
 }
 
-+ (void)pb_func {
++ (void)debug_func {
     NSLog(@"被执行了1.先执行自定义语句,在执行下面的原方法");
     NSLog(@"self = %@", self); // hook方法中要慎用self,防止self指代错误
-    [self pb_func]; // 交换了方法,此时self是PBRuntimeZeroController,pb_func是func
+    [self debug_func]; // 交换了方法,此时self是PBRuntimeZeroController,debug_func是func
 }
 
 @end
