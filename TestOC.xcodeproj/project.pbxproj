@@ -180,7 +180,6 @@
 		5CCC117329CB040000F60C38 /* PBQRCodeScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC115E29CB040000F60C38 /* PBQRCodeScanController.m */; };
 		5CCC117429CB040000F60C38 /* PBQRCodeContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC115F29CB040000F60C38 /* PBQRCodeContentController.m */; };
 		5CCC117529CB040000F60C38 /* PBQRCodeGenerateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC116029CB040000F60C38 /* PBQRCodeGenerateController.m */; };
-		5CD2213129C83AB9007C937B /* PBRuntimeZeroController+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212D29C83AB9007C937B /* PBRuntimeZeroController+Test.m */; };
 		5CD2213229C83AB9007C937B /* PBRuntimeZeroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */; };
 		5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213429C83B65007C937B /* PBRuntimeController.m */; };
 		5CD2213929C83DC0007C937B /* PBRuntimeOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */; };
@@ -653,9 +652,7 @@
 		5CCC115E29CB040000F60C38 /* PBQRCodeScanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBQRCodeScanController.m; sourceTree = "<group>"; };
 		5CCC115F29CB040000F60C38 /* PBQRCodeContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBQRCodeContentController.m; sourceTree = "<group>"; };
 		5CCC116029CB040000F60C38 /* PBQRCodeGenerateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBQRCodeGenerateController.m; sourceTree = "<group>"; };
-		5CD2212D29C83AB9007C937B /* PBRuntimeZeroController+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeZeroController+Test.m"; sourceTree = "<group>"; };
 		5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeZeroController.m; sourceTree = "<group>"; };
-		5CD2212F29C83AB9007C937B /* PBRuntimeZeroController+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeZeroController+Test.h"; sourceTree = "<group>"; };
 		5CD2213029C83AB9007C937B /* PBRuntimeZeroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroController.h; sourceTree = "<group>"; };
 		5CD2213329C83B65007C937B /* PBRuntimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeController.h; sourceTree = "<group>"; };
 		5CD2213429C83B65007C937B /* PBRuntimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeController.m; sourceTree = "<group>"; };
@@ -2031,8 +2028,6 @@
 			children = (
 				5CD2213029C83AB9007C937B /* PBRuntimeZeroController.h */,
 				5CD2212E29C83AB9007C937B /* PBRuntimeZeroController.m */,
-				5CD2212F29C83AB9007C937B /* PBRuntimeZeroController+Test.h */,
-				5CD2212D29C83AB9007C937B /* PBRuntimeZeroController+Test.m */,
 				5C07E66D2BCD56FC0049758D /* PBRuntimeZeroDebugController.h */,
 				5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */,
 			);
@@ -3264,7 +3259,6 @@
 				5C354B452BD1435600A14B95 /* PBRuntimeFourController.m in Sources */,
 				5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */,
 				5C0949652812C5C3002CEBC2 /* PBCellHeightOneController.m in Sources */,
-				5CD2213129C83AB9007C937B /* PBRuntimeZeroController+Test.m in Sources */,
 				5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */,
 				5C0949642812C5C3002CEBC2 /* PBCellHeightTwoController.m in Sources */,
 				5C2D0630280BFBFC00C775B3 /* PBYYTextCell.m in Sources */,
