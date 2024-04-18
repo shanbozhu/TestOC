@@ -169,7 +169,7 @@
 }
 
 
-// 参考文档: https://www.jianshu.com/p/f78a82bdfc68
+// 参考文档: https://www.jianshu.com/p/f78a82bdfc68 https://www.cnblogs.com/allanliu/p/4229762.html
 // 递归获取子视图
 - (void)getSub:(UIView *)view andLevel:(int)level {
     NSArray *subviews = [view subviews];
