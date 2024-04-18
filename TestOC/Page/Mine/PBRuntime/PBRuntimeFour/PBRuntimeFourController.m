@@ -64,6 +64,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 获取调用[UIDevice currentDevice].systemVersion的堆栈
     NSLog(@"[UIDevice currentDevice].systemVersion = %@", [UIDevice currentDevice].systemVersion);
 }
 
