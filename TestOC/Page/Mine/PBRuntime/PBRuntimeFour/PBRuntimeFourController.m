@@ -38,7 +38,7 @@
     }
     free(strings);
     
-    return stackInfo;
+    return [NSString stringWithFormat:@"<<<<%@>>>>", stackInfo];
 }
 
 #pragma mark -
@@ -55,7 +55,7 @@
 }
 
 - (NSString *)debug_systemVersion {
-    NSLog(@"<<<<%@>>>>", [PBRuntimeFourController getSymbolsWithDepth:1000]);
+    NSLog(@"%@", [PBRuntimeFourController getSymbolsWithDepth:1000]);
     return [self debug_systemVersion];
 }
 
