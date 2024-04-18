@@ -20,13 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"[对象方法]被执行了2");
-    
     [PBRuntimeZeroController func];
 }
 
 + (void)func {
-    NSLog(@"[类方法]被执行了2");
+    NSLog(@"被执行了2");
 }
 
 @end
