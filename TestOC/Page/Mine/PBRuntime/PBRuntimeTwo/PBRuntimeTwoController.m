@@ -23,7 +23,7 @@
 
 #pragma mark -
 
-- (void)ivarList:(id)object {
++ (void)ivarList:(id)object {
     unsigned int count = 0;
     Ivar *ivar = class_copyIvarList([object class], &count);
     for (NSInteger index = 0; index < count; index++) {
@@ -34,7 +34,7 @@
     free(ivar);
 }
 
-- (void)propertyList:(id)object {
++ (void)propertyList:(id)object {
     unsigned int count = 0;
     objc_property_t *propertiesList = class_copyPropertyList([object class], &count);
     for (unsigned int i = 0; i < count; i++) {
@@ -45,7 +45,7 @@
     free(propertiesList);
 }
 
-- (void)instanceMethodList:(id)object {
++ (void)instanceMethodList:(id)object {
     unsigned int count = 0;
     Method *method = class_copyMethodList([object class], &count);
     for (unsigned int i = 0; i < count; i++) {
@@ -55,7 +55,7 @@
     free(method);
 }
 
-- (void)classMethodList:(id)object {
++ (void)classMethodList:(id)object {
     unsigned int count = 0;
     Class metaClass = object_getClass([self class]);
     Method *method = class_copyMethodList(metaClass, &count);
@@ -66,7 +66,7 @@
     free(method);
 }
 
-- (void)protocolMethodList:(Protocol *)protocol {
++ (void)protocolMethodList:(Protocol *)protocol {
     unsigned int count = 0;
     struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count); // 第二个参数是否是required,第三个参数是否是对象方法
     for (unsigned int i = 0; i < count; i++) {
@@ -76,7 +76,7 @@
     free(methods);
 }
 
-- (void)conformProtocolList:(id)object {
++ (void)conformProtocolList:(id)object {
     unsigned int count = 0;
     __unsafe_unretained Protocol **protocolList = class_copyProtocolList([object class], &count);
     for (unsigned int i = 0; i< count; i++) {
@@ -98,32 +98,32 @@
     
     {
         // 成员变量
-        [self ivarList:self];
+        [self.class ivarList:self];
     }
     
     {
         // 属性
-        [self propertyList:self];
+        [self.class propertyList:self];
     }
     
     {
         // 方法
-        [self instanceMethodList:self];
+        [self.class instanceMethodList:self];
     }
     
     {
         // 类方法
-        [self classMethodList:self];
+        [self.class classMethodList:self];
     }
     
     {
         // 协议方法
-        [self protocolMethodList:@protocol(PBRuntimeTwoControllerProtocol)];
+        [self.class protocolMethodList:@protocol(PBRuntimeTwoControllerProtocol)];
     }
     
     {
         // 协议
-        [self conformProtocolList:self];
+        [self.class conformProtocolList:self];
     }
 }
 
