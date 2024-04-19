@@ -7,7 +7,6 @@
 //
 
 #import "PBAlertController.h"
-#include <execinfo.h> /* for backtrace() */
 
 @interface PBAlertController ()
 
