@@ -20,9 +20,13 @@
 // https://www.jianshu.com/p/f78a82bdfc68
 // https://www.cnblogs.com/allanliu/p/4229762.html
 
-+ (void)logViewHierarchy:(UIView *)view {
++ (void)logViewHierarchy:(UIView *)view outer:(BOOL)outer {
     for (UIView *subview in view.subviews) {
+        // 层级
         static NSInteger i = 0;
+        if (outer) {
+            i = 0;
+        }
         i++;
         if (subview.superview.tag > 0) {
             i = subview.superview.tag;
@@ -36,7 +40,7 @@
         }
         NSLog(@"%@%ld: %@", blank, i, subview.class);
         
-        [self logViewHierarchy:subview];
+        [self logViewHierarchy:subview outer:NO];
     }
 }
 
@@ -73,7 +77,7 @@
     [self.view addSubview:twoLab];
     
     {
-        [self.class logViewHierarchy:self.view];
+        [self.class logViewHierarchy:self.view outer:YES];
     }
     
     {
