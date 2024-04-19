@@ -29,11 +29,12 @@
         }
         subview.superview.tag = i;
         
-        if (i == 1) {
-            NSLog(@"%ld: %@", i, subview.class);
-        } else {
-            NSLog(@"%*s%ld: %@", (int)i - 1, " ", i, subview.class);
+        // 打印
+        NSString *blank = @"";
+        for (int j = 1; j < i; j++) {
+            blank = [blank stringByAppendingString:@"  "];
         }
+        NSLog(@"%@%ld: %@", blank, i, subview.class);
         
         [self logViewHierarchy:subview];
     }
@@ -41,12 +42,11 @@
 
 + (void)logViewHierarchy:(UIView *)view level:(int)level {
     for (UIView *subview in view.subviews) {
-        // 根据层级决定前面空格个数，来缩进显示
+        // 打印
         NSString *blank = @"";
         for (int i = 1; i < level; i++) {
-            blank = [NSString stringWithFormat:@"  %@", blank];
+            blank = [blank stringByAppendingString:@"  "];
         }
-        
         NSLog(@"%@%d: %@", blank, level, subview.class);
         
         [self logViewHierarchy:subview level:level + 1];
@@ -64,6 +64,9 @@
     
     UIView *oneView = [[UIView alloc] init];
     [oneLab addSubview:oneView];
+    
+    UIView *oneView2 = [[UIView alloc] init];
+    [oneView addSubview:oneView2];
     
     //
     UILabel *twoLab = [[UILabel alloc] init];
