@@ -79,6 +79,7 @@
 		5C354B882BD2624700A14B95 /* PBRuntimeFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B872BD2624700A14B95 /* PBRuntimeFiveController.m */; };
 		5C354B8B2BD26F4500A14B95 /* PBRuntimeFiveDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B8A2BD26F4500A14B95 /* PBRuntimeFiveDebugController.m */; };
 		5C354B8E2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B8D2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.m */; };
+		5C354B922BD6627700A14B95 /* PBRuntimeSixController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B912BD6627700A14B95 /* PBRuntimeSixController.m */; };
 		5C42E3DA284DF4830065F887 /* PBCellHeightFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */; };
 		5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */; };
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
@@ -497,6 +498,8 @@
 		5C354B8A2BD26F4500A14B95 /* PBRuntimeFiveDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeFiveDebugController.m; sourceTree = "<group>"; };
 		5C354B8C2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeZeroDebugController+Debug.h"; sourceTree = "<group>"; };
 		5C354B8D2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeZeroDebugController+Debug.m"; sourceTree = "<group>"; };
+		5C354B902BD6627700A14B95 /* PBRuntimeSixController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeSixController.h; sourceTree = "<group>"; };
+		5C354B912BD6627700A14B95 /* PBRuntimeSixController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeSixController.m; sourceTree = "<group>"; };
 		5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveController.m; sourceTree = "<group>"; };
 		5C42E3D9284DF4830065F887 /* PBCellHeightFiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveController.h; sourceTree = "<group>"; };
 		5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveView.m; sourceTree = "<group>"; };
@@ -1456,6 +1459,15 @@
 			path = PBRuntimeFive;
 			sourceTree = "<group>";
 		};
+		5C354B8F2BD6626000A14B95 /* PBRuntimeSix */ = {
+			isa = PBXGroup;
+			children = (
+				5C354B902BD6627700A14B95 /* PBRuntimeSixController.h */,
+				5C354B912BD6627700A14B95 /* PBRuntimeSixController.m */,
+			);
+			path = PBRuntimeSix;
+			sourceTree = "<group>";
+		};
 		5C516ECD2ABAE4760052E52C /* PBPanGestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2380,6 +2392,7 @@
 		955440F32328EB0B003A615C /* PBRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				5C354B8F2BD6626000A14B95 /* PBRuntimeSix */,
 				5C354B852BD2623500A14B95 /* PBRuntimeFive */,
 				5C354B422BD1433C00A14B95 /* PBRuntimeFour */,
 				5C354B3E2BD13D2900A14B95 /* PBRuntimeThree */,
@@ -3251,6 +3264,7 @@
 				5C0E6D182852E894009A5BB1 /* PBCellHeightCollectionBaseView.m in Sources */,
 				5C2D0640280BFBFC00C775B3 /* BBACommentContentLabel.m in Sources */,
 				957593F222F84F3B009CA618 /* PBGCDLockFiveController.m in Sources */,
+				5C354B922BD6627700A14B95 /* PBRuntimeSixController.m in Sources */,
 				5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */,
 				5C2D0646280BFBFC00C775B3 /* PBAllChannelController.m in Sources */,
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,

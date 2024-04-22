@@ -20,7 +20,7 @@
 }
 
 + (void)debug_run {
-    NSLog(@"debug_run被执行了1.先执行自定义语句,在执行下面的原方法");
+    NSLog(@"debug_run被执行了1. 在分类中hook");
     NSLog(@"self = %@", self);
     [self debug_run];
 }

@@ -24,7 +24,8 @@
                       @"遍历某类的属性/方法/成员变量/协议",
                       @"遍历某视图的所有子视图",
                       @"获取调用某方法的堆栈",
-                      @"消息转发"];
+                      @"消息转发",
+                      @"方法调用"];
     }
     return _titleArr;
 }
@@ -36,7 +37,8 @@
                    @"PBRuntimeTwoController",
                    @"PBRuntimeThreeController",
                    @"PBRuntimeFourController",
-                   @"PBRuntimeFiveController"];
+                   @"PBRuntimeFiveController",
+                   @"PBRuntimeSixController"];
     }
     return _vcArr;
 }
