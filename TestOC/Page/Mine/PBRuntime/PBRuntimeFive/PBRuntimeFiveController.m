@@ -30,23 +30,23 @@
 
 #pragma mark - 方案一
 
-+ (BOOL)resolveInstanceMethod:(SEL)sel {
-    if (sel == @selector(test)) {
-        IMP imp = class_getMethodImplementation(self, @selector(run));
-        class_addMethod(self, sel, imp, "v@:");
-        return YES;
-    }
-    return [super resolveInstanceMethod:sel];
-}
+//+ (BOOL)resolveInstanceMethod:(SEL)sel {
+//    if (sel == @selector(test)) {
+//        IMP imp = class_getMethodImplementation(self, @selector(run));
+//        class_addMethod(self, sel, imp, "v@:");
+//        return YES;
+//    }
+//    return [super resolveInstanceMethod:sel];
+//}
 
 #pragma mark - 方案二
 
-- (id)forwardingTargetForSelector:(SEL)aSelector {
-    if (aSelector == @selector(test)) {
-        return [PBRuntimeFiveDebugController new];
-    }
-    return nil;
-}
+//- (id)forwardingTargetForSelector:(SEL)aSelector {
+//    if (aSelector == @selector(test)) {
+//        return [PBRuntimeFiveDebugController new];
+//    }
+//    return nil;
+//}
 
 #pragma mark - 方案三
 
