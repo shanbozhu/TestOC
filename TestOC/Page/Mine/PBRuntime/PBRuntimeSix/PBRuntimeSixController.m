@@ -42,7 +42,7 @@
         [invocation setArgument:&arg2 atIndex:3];
         [invocation setArgument:&arg3 atIndex:4];
         [invocation invoke];
-        NSLog(@"执行1. sign.numberOfArguments = %ld, sign.methodReturnLength = %ld", sign.numberOfArguments, sign.methodReturnLength);
+        NSLog(@"执行2. sign.numberOfArguments = %ld, sign.methodReturnLength = %ld", sign.numberOfArguments, sign.methodReturnLength);
         if (sign.methodReturnLength > 0) {
             NSString *result = nil;
             [invocation getReturnValue:&result];
@@ -54,7 +54,7 @@
 }
 
 - (NSString *)runA:(NSString *)a b:(NSString *)b c:(NSString *)c {
-    NSLog(@"执行2. ----run-----, a: %@, b: %@, c: %@", a, b, c);
+    NSLog(@"执行1. ----run-----, a: %@, b: %@, c: %@", a, b, c);
     return @"NSInvocation Succeed!";
 }
 
