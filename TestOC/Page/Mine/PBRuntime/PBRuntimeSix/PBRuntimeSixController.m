@@ -29,11 +29,12 @@
          第三个起是自定义参数，必须传递参数的地址，不能直接传值，例如：str1，str2，str3
          3.3获取返回值；可以在调用invoke前，也可以在invoke之后
          */
-        NSMethodSignature *sign = [self methodSignatureForSelector:@selector(runA:b:c:)];
-        //NSMethodSignature *sign = [[self class] instanceMethodSignatureForSelector:@selector(runA:b:c:)];
+        SEL selector = @selector(runA:b:c:);
+        NSMethodSignature *sign = [self methodSignatureForSelector:selector];
+        //NSMethodSignature *sign = [self.class instanceMethodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sign];
         invocation.target = self;
-        invocation.selector = @selector(runA:b:c:);
+        invocation.selector = selector;
         NSString *arg1 = @"a";
         NSString *arg2 = @"b";
         NSString *arg3 = @"c";
