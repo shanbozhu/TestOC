@@ -25,11 +25,11 @@
 }
 
 + (void)func {
-    NSLog(@"func被执行了2");
+    NSLog(@"执行2. func");
 }
 
 + (void)run {
-    NSLog(@"run被执行了2");
+    NSLog(@"执行2. run");
 }
 
 @end

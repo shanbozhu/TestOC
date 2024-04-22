@@ -20,7 +20,7 @@
 }
 
 + (void)debug_run {
-    NSLog(@"debug_run被执行了1. 在分类中hook");
+    NSLog(@"执行1. debug_run. 在分类中hook");
     NSLog(@"self = %@", self);
     [self debug_run];
 }
