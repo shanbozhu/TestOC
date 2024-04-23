@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     // 方案一
-    [self performSelector:@selector(run) withObject:nil];
+    [self performSelector:@selector(run:a:) withObject:@"name" withObject:@(9527)];
     
     // 方案二
     [self performSelector:@selector(func:) withObject:@"func"];

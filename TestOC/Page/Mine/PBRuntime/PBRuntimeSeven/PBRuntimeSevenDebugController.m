@@ -16,16 +16,16 @@
 
 + (void)load {
     // 方案一
-    IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run));
-    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run), imp, "v@:");
+    IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:));
+    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run:a:), imp, "v@:##");
     
     // 方案二
     Method method = class_getInstanceMethod(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(func:));
     class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), method_getImplementation(method), method_getTypeEncoding(method));
 }
 
-- (void)run {
-    NSLog(@"----run----");
+- (void)run:(NSString *)name a:(NSNumber *)a {
+    NSLog(@"----run----, name = %@, a = %@", name, a);
 }
 
 - (void)func:(NSString *)name {
