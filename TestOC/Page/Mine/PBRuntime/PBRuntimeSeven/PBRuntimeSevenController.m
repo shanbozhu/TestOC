@@ -24,6 +24,4 @@
     [self performSelector:@selector(func:) withObject:@"func"];
 }
 
-
-
 @end
