@@ -33,11 +33,12 @@
     {
         /**
          NSInvocation调用方法
-         1.进行方法签名；NSMethodSignature的两个参数：numberOfArguments方法参数的个数；methodReturnLength方法返回值类型
-         的长度，大于0表示有返回值
+         1.进行方法签名；NSMethodSignature的两个参数：
+            numberOfArguments 方法参数的个数
+            methodReturnLength 方法返回值类型的长度，大于0表示有返回值
          2.初始化NSInvocation并设置参数
-            第一个参数下标为0是target，及响应者；
-            第二个参数是selector，及需要调用的方法；
+            第一个参数下标为0是target，即响应者；
+            第二个参数是selector，即需要调用的方法；
             第三个起是自定义参数，必须传递参数的地址，不能直接传值，例如：str1，str2，str3
          3.获取返回值；可以在调用invoke前，也可以在invoke之后
          */
@@ -62,6 +63,11 @@
         } else {
             NSLog(@"没有返回值");
         }
+    }
+    
+    
+    {
+        objc_msgSend();
     }
 }
 
