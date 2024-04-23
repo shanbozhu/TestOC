@@ -10,7 +10,8 @@
 #import <objc/runtime.h>
 #import "PBRuntimeFiveDebugController.h"
 
-// iOS - 动态添加方法和消息转发: https://www.jianshu.com/p/206438719d5f https://blog.csdn.net/u013712343/article/details/108060035
+// 参考文档:
+// iOS - 动态添加方法和消息转发 https://blog.csdn.net/u013712343/article/details/108060035
 
 @interface PBRuntimeFiveController ()
 
