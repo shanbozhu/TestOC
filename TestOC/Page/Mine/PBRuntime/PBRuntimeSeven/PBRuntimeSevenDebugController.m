@@ -15,20 +15,25 @@
 @implementation PBRuntimeSevenDebugController
 
 + (void)load {
-    IMP imp = class_getMethodImplementation(PBRuntimeSevenDebugController.class, @selector(run));
+    // 方案一
+    IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run));
     class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run), imp, "v@:");
+    
+    // 方案二
+    Method method = class_getInstanceMethod(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(func:));
+    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), method_getImplementation(method), method_getTypeEncoding(method));
 }
 
 - (void)run {
     NSLog(@"----run----");
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
+- (void)func:(NSString *)name {
+    NSLog(@"----func----, name = %@", name);
 }
 
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
 
 @end

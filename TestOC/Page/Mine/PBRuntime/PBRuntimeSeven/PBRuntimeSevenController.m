@@ -17,11 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 方案一
+    [self performSelector:@selector(run) withObject:nil];
     
-    // 执行实例方法(对象)
-    [self performSelector:@selector(run) withObject:@"this"];
-    // 执行类方法(类对象)
-//    [PBRuntimeFiveController performSelector:@selector(strategyDetailWithTapClick) withObject:@"world"];
+    // 方案二
+    [self performSelector:@selector(func:) withObject:@"func"];
 }
 
 
