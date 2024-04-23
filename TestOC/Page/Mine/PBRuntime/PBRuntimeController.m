@@ -19,13 +19,14 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"hook方法",
+        _titleArr = @[@"hook方法(替换方法)",
                       @"遍历当前工程的所有类/所有自定义类",
                       @"遍历某类的属性/方法/成员变量/协议",
                       @"遍历某视图的所有子视图",
                       @"获取调用某方法的堆栈",
                       @"消息转发",
-                      @"方法调用"];
+                      @"方法调用",
+                      @"添加方法"];
     }
     return _titleArr;
 }
@@ -38,7 +39,8 @@
                    @"PBRuntimeThreeController",
                    @"PBRuntimeFourController",
                    @"PBRuntimeFiveController",
-                   @"PBRuntimeSixController"];
+                   @"PBRuntimeSixController",
+                   @"PBRuntimeSevenController"];
     }
     return _vcArr;
 }

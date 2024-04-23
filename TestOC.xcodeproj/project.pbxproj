@@ -80,6 +80,8 @@
 		5C354B8B2BD26F4500A14B95 /* PBRuntimeFiveDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B8A2BD26F4500A14B95 /* PBRuntimeFiveDebugController.m */; };
 		5C354B8E2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B8D2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.m */; };
 		5C354B922BD6627700A14B95 /* PBRuntimeSixController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B912BD6627700A14B95 /* PBRuntimeSixController.m */; };
+		5C354B962BD7537900A14B95 /* PBRuntimeSevenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B952BD7537900A14B95 /* PBRuntimeSevenController.m */; };
+		5C354B992BD7542F00A14B95 /* PBRuntimeSevenDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B982BD7542F00A14B95 /* PBRuntimeSevenDebugController.m */; };
 		5C42E3DA284DF4830065F887 /* PBCellHeightFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */; };
 		5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */; };
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
@@ -500,6 +502,10 @@
 		5C354B8D2BD65BC400A14B95 /* PBRuntimeZeroDebugController+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeZeroDebugController+Debug.m"; sourceTree = "<group>"; };
 		5C354B902BD6627700A14B95 /* PBRuntimeSixController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeSixController.h; sourceTree = "<group>"; };
 		5C354B912BD6627700A14B95 /* PBRuntimeSixController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeSixController.m; sourceTree = "<group>"; };
+		5C354B942BD7537900A14B95 /* PBRuntimeSevenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeSevenController.h; sourceTree = "<group>"; };
+		5C354B952BD7537900A14B95 /* PBRuntimeSevenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeSevenController.m; sourceTree = "<group>"; };
+		5C354B972BD7542F00A14B95 /* PBRuntimeSevenDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeSevenDebugController.h; sourceTree = "<group>"; };
+		5C354B982BD7542F00A14B95 /* PBRuntimeSevenDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeSevenDebugController.m; sourceTree = "<group>"; };
 		5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveController.m; sourceTree = "<group>"; };
 		5C42E3D9284DF4830065F887 /* PBCellHeightFiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveController.h; sourceTree = "<group>"; };
 		5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveView.m; sourceTree = "<group>"; };
@@ -1468,6 +1474,17 @@
 			path = PBRuntimeSix;
 			sourceTree = "<group>";
 		};
+		5C354B932BD7536100A14B95 /* PBRuntimeSeven */ = {
+			isa = PBXGroup;
+			children = (
+				5C354B942BD7537900A14B95 /* PBRuntimeSevenController.h */,
+				5C354B952BD7537900A14B95 /* PBRuntimeSevenController.m */,
+				5C354B972BD7542F00A14B95 /* PBRuntimeSevenDebugController.h */,
+				5C354B982BD7542F00A14B95 /* PBRuntimeSevenDebugController.m */,
+			);
+			path = PBRuntimeSeven;
+			sourceTree = "<group>";
+		};
 		5C516ECD2ABAE4760052E52C /* PBPanGestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2392,6 +2409,7 @@
 		955440F32328EB0B003A615C /* PBRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				5C354B932BD7536100A14B95 /* PBRuntimeSeven */,
 				5C354B8F2BD6626000A14B95 /* PBRuntimeSix */,
 				5C354B852BD2623500A14B95 /* PBRuntimeFive */,
 				5C354B422BD1433C00A14B95 /* PBRuntimeFour */,
@@ -3363,6 +3381,7 @@
 				9575934222F82A64009CA618 /* PBStorageTextFourController.m in Sources */,
 				5C0949632812C5C3002CEBC2 /* PBCellHeightFourController.m in Sources */,
 				957593AD22F84D8E009CA618 /* PBGCDController.m in Sources */,
+				5C354B992BD7542F00A14B95 /* PBRuntimeSevenDebugController.m in Sources */,
 				5C2D060F280BFBFC00C775B3 /* PBLinkageTableView.m in Sources */,
 				9575934022F82A64009CA618 /* PBStorageDataBaseController.m in Sources */,
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
@@ -3457,6 +3476,7 @@
 				B0F04ACF1F9E02A600F69AC3 /* PBListCell.m in Sources */,
 				5CCC111E29CAF92900F60C38 /* PBTestListTwoController.m in Sources */,
 				95C19230262548400008FD14 /* PBSyntaxController.m in Sources */,
+				5C354B962BD7537900A14B95 /* PBRuntimeSevenController.m in Sources */,
 				5C354AE52BD0124D00A14B95 /* PBAlertController.m in Sources */,
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,
