@@ -15,12 +15,12 @@
 @implementation PBRuntimeSevenDebugController
 
 + (void)load {
-    IMP imp = class_getMethodImplementation(PBRuntimeSevenDebugController.class, @selector(strategyDetailWithTapClick1));
-    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(strategyDetailWithTapClick), imp, "v@:");
+    IMP imp = class_getMethodImplementation(PBRuntimeSevenDebugController.class, @selector(run));
+    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run), imp, "v@:");
 }
 
-- (void)strategyDetailWithTapClick1 {
-    NSLog(@"haha");
+- (void)run {
+    NSLog(@"----run----");
 }
 
 - (void)viewDidLoad {

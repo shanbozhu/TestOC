@@ -17,6 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    {
+        // 执行实例方法(对象)
+//        [self performSelector:@selector(run) withObject:@"this"];
+        // 执行类方法(类对象)
+    //    [PBRuntimeFiveController performSelector:@selector(strategyDetailWithTapClick) withObject:@"world"];
+    }
+    
     
     {
         /**
@@ -54,7 +61,7 @@
 }
 
 - (NSString *)runA:(NSString *)a b:(NSString *)b c:(NSString *)c {
-    NSLog(@"执行1. ----run-----, a: %@, b: %@, c: %@", a, b, c);
+    NSLog(@"执行1. ----run----, a: %@, b: %@, c: %@", a, b, c);
     return @"NSInvocation Succeed!";
 }
 

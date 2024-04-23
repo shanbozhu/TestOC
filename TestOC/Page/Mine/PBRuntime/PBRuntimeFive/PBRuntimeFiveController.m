@@ -25,7 +25,7 @@
 }
 
 - (void)run {
-    NSLog(@"----run-----");
+    NSLog(@"----run----");
 }
 
 #pragma mark - 方案一
