@@ -72,8 +72,15 @@
     {
         // 方案四
         
-        // zhutodo
-        objc_msgSend();
+        // 强制转换和调用分开
+        void *(*msgSend)(id, SEL, void *, void *, void *) = (void *)objc_msgSend;
+        NSString *r = (__bridge NSString *)(msgSend(self, @selector(runA:b:c:), @"a", @"b", @"c"));
+        NSLog(@"%@", r);
+        
+        // 强制转换和调用一起
+        ((void(*)(id, SEL, void *, void *, void *))objc_msgSend)(self, @selector(runA:b:c:), @"a", @"b", @"c");
+        NSString * r2 = ((void(*)(id, SEL, void *, void *, void *))objc_msgSend)(self, @selector(runA:b:c:), @"a", @"b", @"c");
+        NSLog(@"%@", r2);
     }
 }
 
