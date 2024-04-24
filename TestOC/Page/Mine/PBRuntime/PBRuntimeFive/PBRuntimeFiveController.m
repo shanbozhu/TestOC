@@ -15,6 +15,8 @@
 
 @interface PBRuntimeFiveController ()
 
+- (void)test:(NSString *)name;
+
 @end
 
 @implementation PBRuntimeFiveController
@@ -22,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test];
+    [self test:@"test"];
 }
 
 - (void)run {
@@ -52,8 +54,8 @@
 #pragma mark - 方案三
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    if (aSelector == @selector(test)) {
-        return [NSMethodSignature signatureWithObjCTypes:"v@:"];
+    if (aSelector == @selector(test:)) {
+        return [NSMethodSignature signatureWithObjCTypes:"v@:#"];
     }
     return [super methodSignatureForSelector:aSelector];
 }

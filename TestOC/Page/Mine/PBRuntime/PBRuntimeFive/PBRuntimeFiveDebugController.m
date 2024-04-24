@@ -19,8 +19,8 @@
     
 }
 
-- (void)test {
-    NSLog(@"----test-----");
+- (void)test:(NSString *)name {
+    NSLog(@"----test-----, name = %@", name);
 }
 
 @end

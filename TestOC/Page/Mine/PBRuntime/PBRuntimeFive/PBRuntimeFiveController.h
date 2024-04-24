@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBRuntimeFiveController : PBBaseController
 
-- (void)test;
-
 @end
 
 NS_ASSUME_NONNULL_END
