@@ -16,7 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+}
+
+- (void)run:(NSString *)name {
+    NSLog(@"----run----, name = %@", name);
 }
 
 - (void)test:(NSString *)name {
