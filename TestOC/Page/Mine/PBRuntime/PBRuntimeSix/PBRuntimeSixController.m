@@ -18,10 +18,13 @@
     [super viewDidLoad];
     
     {
+        // 方案一
         [self run];
     }
     
     {
+        // 方案二
+        
         // 执行对象方法
         [self performSelector:@selector(run) withObject:nil];
         
@@ -31,6 +34,7 @@
     }
     
     {
+        // 方案三
         /**
          NSInvocation调用方法
          1.进行方法签名；NSMethodSignature的两个参数：
@@ -67,6 +71,9 @@
     
     
     {
+        // 方案四
+        
+        // zhutodo
         objc_msgSend();
     }
 }
