@@ -16,7 +16,7 @@
 
 + (void)load {
     Class cls = NSClassFromString(@"PBRuntimeEightController");
-    [self.class addPropertyWithtarget:cls withPropertyName:@"height" withValueType:[NSString class]];
+    [self.class addPropertyWithtarget:cls withPropertyName:@"height"];
 }
 
 - (void)viewDidLoad {
@@ -26,23 +26,19 @@
 static NSMutableDictionary *dictCustomerProperty;
 
 
-+ (void)addPropertyWithtarget:(Class)cls withPropertyName:(NSString *)propertyName withValueType:(Class)valueCls {
-    //先判断有没有这个属性，没有就添加，有就返回
++ (void)addPropertyWithtarget:(Class)cls withPropertyName:(NSString *)propertyName {
+    // 先判断有没有这个属性，没有就添加，有就返回
     Ivar ivar = class_getInstanceVariable(cls, [[NSString stringWithFormat:@"_%@", propertyName] UTF8String]);
     if (ivar) {
         return;
     }
     
-    objc_property_attribute_t type = { "T", [[NSString stringWithFormat:@"@\"%@\"",NSStringFromClass(valueCls)] UTF8String] };
-    objc_property_attribute_t ownership = { "&", "N" };
-    objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
-    objc_property_attribute_t attrs[] = { type, ownership, backingivar };
-    if (class_addProperty(cls, [propertyName UTF8String], attrs, 3)) {
+    objc_property_attribute_t attrs[] = {  };
+    if (class_addProperty(cls, [propertyName UTF8String], attrs, 0)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:",[propertyName capitalizedString]]), (IMP)customSetter, "v@:@");
-        NSLog(@"创建属性Property成功");
     } else {
-        class_replaceProperty(cls, [propertyName UTF8String], attrs, 3);
+        class_replaceProperty(cls, [propertyName UTF8String], attrs, 0);
         //添加get和set方法
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:",[propertyName capitalizedString]]), (IMP)customSetter, "v@:@");
