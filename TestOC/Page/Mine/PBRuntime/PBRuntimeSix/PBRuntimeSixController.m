@@ -84,6 +84,14 @@
         // 强制转换和调用一起
         ((void(*)(Class, SEL, NSString *))objc_msgSend)(self.class, @selector(func:), @"a");
     }
+    
+    {
+        // 方案五
+        IMP imp = [self methodForSelector:@selector(runA:b:c:)];
+        NSString *(*msgSend)(id, SEL, NSString *, NSString *, NSString *) = (void *)imp;
+        NSString *r = msgSend(self, @selector(runA:b:c:), @"a", @"b", @"c");
+        NSLog(@"%@", r);
+    }
 }
 
 - (NSString *)runA:(NSString *)a b:(NSString *)b c:(NSString *)c {
