@@ -78,8 +78,8 @@
         NSLog(@"%@", r);
         
         // 强制转换和调用一起
-        NSString *r2 = ((NSString *(*)(id, SEL, NSString *, NSString *, NSString *))objc_msgSend)(self, @selector(runA:b:c:), @"a", @"b", @"c");
-        NSLog(@"%@", r2);
+        NSString *r1 = ((NSString *(*)(id, SEL, NSString *, NSString *, NSString *))objc_msgSend)(self, @selector(runA:b:c:), @"a", @"b", @"c");
+        NSLog(@"%@", r1);
         
         // 强制转换和调用一起
         ((void(*)(Class, SEL, NSString *))objc_msgSend)(self.class, @selector(func:), @"a");
