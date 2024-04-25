@@ -82,6 +82,9 @@
 		5C354B922BD6627700A14B95 /* PBRuntimeSixController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B912BD6627700A14B95 /* PBRuntimeSixController.m */; };
 		5C354B962BD7537900A14B95 /* PBRuntimeSevenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B952BD7537900A14B95 /* PBRuntimeSevenController.m */; };
 		5C354B992BD7542F00A14B95 /* PBRuntimeSevenDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354B982BD7542F00A14B95 /* PBRuntimeSevenDebugController.m */; };
+		5C354C472BDA2FF400A14B95 /* PBRuntimeEightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354C462BDA2FF400A14B95 /* PBRuntimeEightController.m */; };
+		5C354C4A2BDA304A00A14B95 /* PBRuntimeEightController+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354C492BDA304A00A14B95 /* PBRuntimeEightController+Debug.m */; };
+		5C354C4D2BDA32C000A14B95 /* PBRuntimeEightDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C354C4C2BDA32C000A14B95 /* PBRuntimeEightDebugController.m */; };
 		5C42E3DA284DF4830065F887 /* PBCellHeightFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */; };
 		5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */; };
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
@@ -506,6 +509,12 @@
 		5C354B952BD7537900A14B95 /* PBRuntimeSevenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeSevenController.m; sourceTree = "<group>"; };
 		5C354B972BD7542F00A14B95 /* PBRuntimeSevenDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeSevenDebugController.h; sourceTree = "<group>"; };
 		5C354B982BD7542F00A14B95 /* PBRuntimeSevenDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeSevenDebugController.m; sourceTree = "<group>"; };
+		5C354C452BDA2FF400A14B95 /* PBRuntimeEightController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeEightController.h; sourceTree = "<group>"; };
+		5C354C462BDA2FF400A14B95 /* PBRuntimeEightController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeEightController.m; sourceTree = "<group>"; };
+		5C354C482BDA304A00A14B95 /* PBRuntimeEightController+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PBRuntimeEightController+Debug.h"; sourceTree = "<group>"; };
+		5C354C492BDA304A00A14B95 /* PBRuntimeEightController+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PBRuntimeEightController+Debug.m"; sourceTree = "<group>"; };
+		5C354C4B2BDA32C000A14B95 /* PBRuntimeEightDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeEightDebugController.h; sourceTree = "<group>"; };
+		5C354C4C2BDA32C000A14B95 /* PBRuntimeEightDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeEightDebugController.m; sourceTree = "<group>"; };
 		5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveController.m; sourceTree = "<group>"; };
 		5C42E3D9284DF4830065F887 /* PBCellHeightFiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveController.h; sourceTree = "<group>"; };
 		5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveView.m; sourceTree = "<group>"; };
@@ -1485,6 +1494,19 @@
 			path = PBRuntimeSeven;
 			sourceTree = "<group>";
 		};
+		5C354C442BDA2FD800A14B95 /* PBRuntimeEight */ = {
+			isa = PBXGroup;
+			children = (
+				5C354C452BDA2FF400A14B95 /* PBRuntimeEightController.h */,
+				5C354C462BDA2FF400A14B95 /* PBRuntimeEightController.m */,
+				5C354C482BDA304A00A14B95 /* PBRuntimeEightController+Debug.h */,
+				5C354C492BDA304A00A14B95 /* PBRuntimeEightController+Debug.m */,
+				5C354C4B2BDA32C000A14B95 /* PBRuntimeEightDebugController.h */,
+				5C354C4C2BDA32C000A14B95 /* PBRuntimeEightDebugController.m */,
+			);
+			path = PBRuntimeEight;
+			sourceTree = "<group>";
+		};
 		5C516ECD2ABAE4760052E52C /* PBPanGestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2409,6 +2431,7 @@
 		955440F32328EB0B003A615C /* PBRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				5C354C442BDA2FD800A14B95 /* PBRuntimeEight */,
 				5C354B932BD7536100A14B95 /* PBRuntimeSeven */,
 				5C354B8F2BD6626000A14B95 /* PBRuntimeSix */,
 				5C354B852BD2623500A14B95 /* PBRuntimeFive */,
@@ -3233,6 +3256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C354C4A2BDA304A00A14B95 /* PBRuntimeEightController+Debug.m in Sources */,
 				5C09497E2812C679002CEBC2 /* PBCellHeightThreeCell.m in Sources */,
 				957593F322F84F3B009CA618 /* PBGCDLockController.m in Sources */,
 				5C9883A6282616A000D3AEAD /* CLGCDTimer.swift in Sources */,
@@ -3253,6 +3277,7 @@
 				957593D522F84F20009CA618 /* PBGCDListTwelveController.m in Sources */,
 				9575943022F950FB009CA618 /* PBAVPlayerList.m in Sources */,
 				5CF04DB5281A64310024B752 /* PBCellHeightCollectionTwoController.m in Sources */,
+				5C354C472BDA2FF400A14B95 /* PBRuntimeEightController.m in Sources */,
 				5C2D0611280BFBFC00C775B3 /* PBLinkagePosterCell.m in Sources */,
 				957593FA22F84F3B009CA618 /* PBGCDLockNineController.m in Sources */,
 				5C0E6D172852E894009A5BB1 /* PBCellHeightBaseView.m in Sources */,
@@ -3438,6 +3463,7 @@
 				5C2D062F280BFBFC00C775B3 /* PBYYTextView.m in Sources */,
 				66B6B60229BAD3C700C8725F /* UIWindow+PBCurrentVC.m in Sources */,
 				5CEFEBA628117E760073BC47 /* PBCellHeightCollectionZeroView.m in Sources */,
+				5C354C4D2BDA32C000A14B95 /* PBRuntimeEightDebugController.m in Sources */,
 				5C2D0609280BFBFC00C775B3 /* PBLinkageThreeListController.m in Sources */,
 				957593D322F84F20009CA618 /* PBGCDListThirteenController.m in Sources */,
 				9547319F22E059A000F6BFA2 /* PBMineView.m in Sources */,

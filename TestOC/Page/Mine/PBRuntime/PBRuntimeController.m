@@ -26,7 +26,8 @@
                       @"获取调用某方法的堆栈",
                       @"消息转发",
                       @"方法调用",
-                      @"方法添加"];
+                      @"方法添加",
+                      @"属性添加"];
     }
     return _titleArr;
 }
@@ -40,7 +41,8 @@
                    @"PBRuntimeFourController",
                    @"PBRuntimeFiveController",
                    @"PBRuntimeSixController",
-                   @"PBRuntimeSevenController"];
+                   @"PBRuntimeSevenController",
+                   @"PBRuntimeEightController"];
     }
     return _vcArr;
 }
