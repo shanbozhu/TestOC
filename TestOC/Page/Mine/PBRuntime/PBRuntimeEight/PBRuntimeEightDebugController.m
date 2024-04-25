@@ -14,19 +14,14 @@
 
 @implementation PBRuntimeEightDebugController
 
+#pragma mark -
+
 + (void)load {
     Class cls = NSClassFromString(@"PBRuntimeEightController");
-    [self.class addPropertyWithtarget:cls withPropertyName:@"height"];
+    [self.class addPropertyWithClass:cls propertyName:@"height"];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-static NSMutableDictionary *dictCustomerProperty;
-
-
-+ (void)addPropertyWithtarget:(Class)cls withPropertyName:(NSString *)propertyName {
++ (void)addPropertyWithClass:(Class)cls propertyName:(NSString *)propertyName {
     // 先判断有没有这个属性，没有就添加，有就返回
     Ivar ivar = class_getInstanceVariable(cls, [[NSString stringWithFormat:@"_%@", propertyName] UTF8String]);
     if (ivar) {
@@ -36,24 +31,31 @@ static NSMutableDictionary *dictCustomerProperty;
     objc_property_attribute_t attrs[] = {  };
     if (class_addProperty(cls, [propertyName UTF8String], attrs, 0)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
-        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:",[propertyName capitalizedString]]), (IMP)customSetter, "v@:@");
+        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)customSetter, "v@:@");
     } else {
         class_replaceProperty(cls, [propertyName UTF8String], attrs, 0);
-        //添加get和set方法
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
-        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:",[propertyName capitalizedString]]), (IMP)customSetter, "v@:@");
+        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)customSetter, "v@:@");
     }
+}
+
++ (NSString *)dealPropertyName:(NSString *)dealString {
+    NSString *resultString = @"";
+    if (dealString.length > 0) {
+        resultString = [dealString stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[dealString substringToIndex:1] capitalizedString]];
+    }
+    return resultString;
 }
 
 id customGetter(id self, SEL _cmd) {
-    if (dictCustomerProperty == nil) {
-        dictCustomerProperty = [NSMutableDictionary new];
-    }
     NSString *key = NSStringFromSelector(_cmd);
-    return [dictCustomerProperty objectForKey:key];
+    return objc_getAssociatedObject(self, NSSelectorFromString(key));
 }
 
 void customSetter(id self, SEL _cmd, id newValue) {
+    if (!newValue) {
+        return;
+    }
     //移除set
     NSString *key = [NSStringFromSelector(_cmd) stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
     //首字母小写
@@ -62,12 +64,13 @@ void customSetter(id self, SEL _cmd, id newValue) {
     key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:head];
     //移除后缀 ":"
     key = [key stringByReplacingCharactersInRange:NSMakeRange(key.length - 1, 1) withString:@""];
-    
-    if (dictCustomerProperty == nil) {
-        dictCustomerProperty = [NSMutableDictionary new];
-    }
-    
-    [dictCustomerProperty setObject:newValue forKey:key];
+    objc_setAssociatedObject(self, NSSelectorFromString(key), newValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+#pragma mark -
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
 }
 
 @end
