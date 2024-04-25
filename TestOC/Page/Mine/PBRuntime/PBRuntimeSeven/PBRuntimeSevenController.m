@@ -22,6 +22,9 @@
     
     // 方案二
     [self performSelector:@selector(func:) withObject:@"func"];
+    
+    // 方案三
+    [self performSelector:@selector(c_run) withObject:@"c_run"];
 }
 
 @end

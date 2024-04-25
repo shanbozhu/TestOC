@@ -27,6 +27,13 @@
         IMP imp = method_getImplementation(method); // 既可以获取对象方法的IMP,也可以获取类方法的IMP
         class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), imp, method_getTypeEncoding(method));
     }
+    
+    {
+        // 方案三
+        
+        // 添加C方法
+        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(c_run), (IMP)c_run, "v@:");
+    }
 }
 
 - (void)run:(NSString *)name a:(NSNumber *)a {
@@ -35,6 +42,10 @@
 
 - (void)func:(NSString *)name {
     NSLog(@"----func----, name = %@", name);
+}
+
+void c_run(id self, SEL _cmd, NSString *name) {
+    NSLog(@"_cmd = %s, name = %@", sel_getName(_cmd), name);
 }
 
 - (void)viewDidLoad {
