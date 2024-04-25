@@ -29,7 +29,8 @@
     
     {
         // 方案二
-        
+        [self performSelector:@selector(setHeight:) withObject:@"190"];
+        NSLog(@"height = %@", [self performSelector:@selector(height)]);
     }
 }
 
