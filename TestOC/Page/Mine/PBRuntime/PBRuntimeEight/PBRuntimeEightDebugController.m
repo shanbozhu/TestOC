@@ -45,17 +45,17 @@ static NSMutableDictionary *dictCustomerProperty;
     }
 }
 
-id customGetter(id self1, SEL _cmd1) {
+id customGetter(id self, SEL _cmd) {
     if (dictCustomerProperty == nil) {
         dictCustomerProperty = [NSMutableDictionary new];
     }
-    NSString *key = NSStringFromSelector(_cmd1);
+    NSString *key = NSStringFromSelector(_cmd);
     return [dictCustomerProperty objectForKey:key];
 }
 
-void customSetter(id self1, SEL _cmd1, id newValue) {
+void customSetter(id self, SEL _cmd, id newValue) {
     //移除set
-    NSString *key = [NSStringFromSelector(_cmd1) stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
+    NSString *key = [NSStringFromSelector(_cmd) stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
     //首字母小写
     NSString *head = [key substringWithRange:NSMakeRange(0, 1)];
     head = [head lowercaseString];
