@@ -82,7 +82,7 @@
         NSLog(@"%@", r2);
         
         // 强制转换和调用一起
-        ((void *(*)(Class, SEL, NSString *))objc_msgSend)(self.class, @selector(func:), @"a");
+        ((void(*)(Class, SEL, NSString *))objc_msgSend)(self.class, @selector(func:), @"a");
     }
 }
 
