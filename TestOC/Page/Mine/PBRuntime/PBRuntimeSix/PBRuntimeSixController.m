@@ -73,8 +73,8 @@
         // 方案四
         
         // 强制转换和调用分开
-        void *(*msgSend)(id, SEL, NSString *, NSString *, NSString *) = (void *)objc_msgSend;
-        NSString *r = (__bridge NSString *)(msgSend(self, @selector(runA:b:c:), @"a", @"b", @"c"));
+        NSString *(*msgSend)(id, SEL, NSString *, NSString *, NSString *) = (void *)objc_msgSend;
+        NSString *r = msgSend(self, @selector(runA:b:c:), @"a", @"b", @"c");
         NSLog(@"%@", r);
         
         // 强制转换和调用一起
