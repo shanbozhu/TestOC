@@ -15,13 +15,18 @@
 @implementation PBRuntimeSevenDebugController
 
 + (void)load {
-    // 方案一
-    IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:));
-    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run:a:), imp, "v@:##");
+    {
+        // 方案一
+        IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:));
+        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run:a:), imp, "v@:##");
+    }
     
-    // 方案二
-    Method method = class_getInstanceMethod(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(func:));
-    class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), method_getImplementation(method), method_getTypeEncoding(method));
+    {
+        // 方案二
+        Method method = class_getInstanceMethod(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(func:));
+        IMP imp = method_getImplementation(method);
+        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), imp, method_getTypeEncoding(method));
+    }
 }
 
 - (void)run:(NSString *)name a:(NSNumber *)a {
