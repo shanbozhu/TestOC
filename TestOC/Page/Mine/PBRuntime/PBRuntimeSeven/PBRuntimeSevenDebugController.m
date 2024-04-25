@@ -44,8 +44,9 @@
     NSLog(@"----func----, name = %@", name);
 }
 
+// C方法
 void c_run(id self, SEL _cmd, NSString *name) {
-    NSLog(@"_cmd = %s, name = %@", sel_getName(_cmd), name);
+    NSLog(@"self = %@, _cmd = %s, name = %@", self, sel_getName(_cmd), name);
 }
 
 - (void)viewDidLoad {
