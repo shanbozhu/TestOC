@@ -25,10 +25,10 @@
     {
         // 方案二
         
-        // 执行对象方法
+        // 调用对象方法
         [self performSelector:@selector(run) withObject:nil];
         
-        // 执行类方法
+        // 调用类方法
         [PBRuntimeSixController performSelector:@selector(func:) withObject:@"func"];
         [self.class performSelector:@selector(func:) withObject:@"func"];
     }
