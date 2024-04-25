@@ -17,14 +17,14 @@
 + (void)load {
     {
         // 方案一
-        IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:));
+        IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:)); // 获取对象方法的IMP
         class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run:a:), imp, "v@:##");
     }
     
     {
         // 方案二
         Method method = class_getInstanceMethod(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(func:));
-        IMP imp = method_getImplementation(method);
+        IMP imp = method_getImplementation(method); // 既可以获取对象方法的IMP,也可以获取类方法的IMP
         class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), imp, method_getTypeEncoding(method));
     }
 }
