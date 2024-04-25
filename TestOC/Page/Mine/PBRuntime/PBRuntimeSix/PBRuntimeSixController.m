@@ -88,13 +88,13 @@
     {
         // 方案五
         IMP imp = [self methodForSelector:@selector(runA:b:c:)]; // 调用对象方法
-        NSString *(*msgSend)(id, SEL, NSString *, NSString *, NSString *) = (void *)imp;
-        NSString *r = msgSend(self, @selector(runA:b:c:), @"a", @"b", @"c");
+        NSString *(*func)(id, SEL, NSString *, NSString *, NSString *) = (void *)imp;
+        NSString *r = func(self, @selector(runA:b:c:), @"a", @"b", @"c");
         NSLog(@"%@", r);
         
         IMP imp1 = [self.class methodForSelector:@selector(func:)]; // 调用类方法
-        void(*msgSend1)(id, SEL, NSString *) = (void *)imp1;
-        msgSend1(self, @selector(func:), @"a");
+        void(*func1)(id, SEL, NSString *) = (void *)imp1;
+        func1(self, @selector(func:), @"a");
     }
 }
 
