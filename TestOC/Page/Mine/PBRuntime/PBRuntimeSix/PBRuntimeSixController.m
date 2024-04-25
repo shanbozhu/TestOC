@@ -87,6 +87,7 @@
     
     {
         // 方案五
+        
         IMP imp = [self methodForSelector:@selector(runA:b:c:)]; // 调用对象方法
         NSString *(*func)(id, SEL, NSString *, NSString *, NSString *) = (void *)imp;
         NSString *r = func(self, @selector(runA:b:c:), @"a", @"b", @"c");
