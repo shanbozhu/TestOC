@@ -16,6 +16,8 @@
 @interface PBRuntimeEightController ()
 
 @property (nonatomic, copy) NSString *testName;
+@property (nonatomic, strong) NSArray *testAge;
+@property (nonatomic, assign) NSInteger testHeight;
 
 @end
 
@@ -32,7 +34,25 @@
             objc_property_attribute_t *attributeList = property_copyAttributeList(nameProperty, &count);
             for (int i = 0; i < count; i++) {
                 objc_property_attribute_t t= attributeList[i];
-                NSLog(@"name= %s, value = %s", t.name, t.value);
+                NSLog(@"name = %s, value = %s", t.name, t.value);
+            }
+            
+            // 打印指定属性的属性
+            nameProperty = class_getProperty(self.class, "testAge");
+            count = 0;
+            attributeList = property_copyAttributeList(nameProperty, &count);
+            for (int i = 0; i < count; i++) {
+                objc_property_attribute_t t= attributeList[i];
+                NSLog(@"name = %s, value = %s", t.name, t.value);
+            }
+            
+            // 打印指定属性的属性
+            nameProperty = class_getProperty(self.class, "testHeight");
+            count = 0;
+            attributeList = property_copyAttributeList(nameProperty, &count);
+            for (int i = 0; i < count; i++) {
+                objc_property_attribute_t t= attributeList[i];
+                NSLog(@"name = %s, value = %s", t.name, t.value);
             }
         }
         

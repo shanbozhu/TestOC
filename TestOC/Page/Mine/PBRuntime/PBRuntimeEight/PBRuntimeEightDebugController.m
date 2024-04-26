@@ -18,10 +18,10 @@
 
 + (void)load {
     Class cls = NSClassFromString(@"PBRuntimeEightController");
-    [self.class addPropertyWithClass:cls propertyName:@"height"];
+    [self.class addPropertyWithClass:cls propertyName:@"height" propertyType:NSString.class];
 }
 
-+ (void)addPropertyWithClass:(Class)cls propertyName:(NSString *)propertyName {
++ (void)addPropertyWithClass:(Class)cls propertyName:(NSString *)propertyName propertyType:(Class)propertyTypeCls {
     // 先判断有没有这个属性，没有就添加，有就返回
     Ivar ivar = class_getInstanceVariable(cls, [[NSString stringWithFormat:@"_%@", propertyName] UTF8String]);
     if (ivar) {
@@ -29,23 +29,23 @@
     }
     
     unsigned int count = 4;
-    objc_property_attribute_t attrs[count];
+    objc_property_attribute_t attrs[count]; // 属性的属性
     // 添加类型
     objc_property_attribute_t t1;
     t1.name = "T";
-    t1.value = "NSString";
-    // 添加ivar
+    t1.value = [[NSString stringWithFormat:@"@\"%@\"", NSStringFromClass(propertyTypeCls)] UTF8String];
+    // 添加strong
     objc_property_attribute_t t2;
-    t2.name = "V";
-    t2.value = [[NSString stringWithFormat:@"_%@", propertyName] UTF8String];
+    t2.name = "C";
+    t2.value = "";
     // 添加nonatomic
     objc_property_attribute_t t3;
     t3.name = "N";
     t3.value = "";
-    // 添加copy
+    // 添加ivar
     objc_property_attribute_t t4;
-    t4.name = "C";
-    t4.value = "";
+    t4.name = "V";
+    t4.value = [[NSString stringWithFormat:@"_%@", propertyName] UTF8String];
     
     attrs[0] = t1;
     attrs[1] = t2;
