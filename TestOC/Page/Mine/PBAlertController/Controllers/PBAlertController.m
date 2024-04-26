@@ -134,6 +134,7 @@
     NSLog(@"messageLabel = %@", messageLabel);
     messageLabel.layer.borderColor = [UIColor blueColor].CGColor;
     messageLabel.layer.borderWidth = 1.1;
+    messageLabel.superview.superview.backgroundColor = [UIColor blackColor];
 }
 
 @end
