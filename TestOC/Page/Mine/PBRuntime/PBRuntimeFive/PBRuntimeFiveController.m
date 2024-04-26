@@ -32,7 +32,7 @@
 //    if (sel == @selector(test:)) {
 //        Class cls = NSClassFromString(@"PBRuntimeFiveDebugController");
 //        IMP imp = class_getMethodImplementation(cls, @selector(run:));
-//        class_addMethod(self, sel, imp, "v@:#");
+//        class_addMethod(self, sel, imp, "v@:@");
 //        return YES;
 //    }
 //    return [super resolveInstanceMethod:sel];
@@ -52,7 +52,7 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
     if (aSelector == @selector(test:)) {
-        return [NSMethodSignature signatureWithObjCTypes:"v@:#"];
+        return [NSMethodSignature signatureWithObjCTypes:"v@:@"];
     }
     return [super methodSignatureForSelector:aSelector];
 }

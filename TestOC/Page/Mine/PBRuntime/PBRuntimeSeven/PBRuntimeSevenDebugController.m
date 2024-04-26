@@ -18,7 +18,7 @@
     {
         // 方案一
         IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:)); // 获取对象方法的IMP
-        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run:a:), imp, "v@:##");
+        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(run:a:), imp, "v@:@@");
     }
     
     {
@@ -32,7 +32,7 @@
         // 方案三
         
         // 添加C方法
-        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(c_run), (IMP)c_run, "v@:");
+        class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(c_run), (IMP)c_run, "v@:@");
     }
 }
 

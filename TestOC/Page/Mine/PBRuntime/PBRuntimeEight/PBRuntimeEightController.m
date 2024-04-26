@@ -9,6 +9,10 @@
 #import "PBRuntimeEightController.h"
 #import "PBRuntimeEightController+Debug.h"
 
+// 参考文档:
+// ios动态添加属性的几种方法 https://blog.csdn.net/shengyumojian/article/details/44919695
+// Objective-C Runtime https://yulingtianxia.com/blog/2014/11/05/objective-c-runtime/#objc-property-t
+
 @interface PBRuntimeEightController ()
 
 @end
