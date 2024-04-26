@@ -15,12 +15,37 @@
 
 @interface PBRuntimeEightController ()
 
+@property (nonatomic, copy) NSString *testName;
+
 @end
 
 @implementation PBRuntimeEightController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    {
+        {
+            // 打印指定属性的属性
+            objc_property_t nameProperty = class_getProperty(self.class, "testName");
+            unsigned int count = 0;
+            objc_property_attribute_t *attributeList = property_copyAttributeList(nameProperty, &count);
+            for (int i = 0; i < count; i++) {
+                objc_property_attribute_t t= attributeList[i];
+                NSLog(@"name= %s, value = %s", t.name, t.value);
+            }
+        }
+        
+        {
+            // 打印类的所有的属性的属性
+            unsigned int count = 0;
+            objc_property_t *list = class_copyPropertyList(self.class, &count);
+            for (int i = 0; i < count; i++) {
+                objc_property_t t = list[i];
+                NSLog(@"name = %s, att = %s", property_getName(t), property_getAttributes(t));
+            }
+        }
+    }
     
     {
         // 方案一

@@ -28,8 +28,31 @@
         return;
     }
     
-    objc_property_attribute_t attrs[] = {  };
-    if (class_addProperty(cls, [propertyName UTF8String], attrs, 0)) {
+    unsigned int count = 4;
+    objc_property_attribute_t attrs[count];
+    // 添加类型
+    objc_property_attribute_t t1;
+    t1.name = "T";
+    t1.value = "NSString";
+    // 添加ivar
+    objc_property_attribute_t t2;
+    t2.name = "V";
+    t2.value = [[NSString stringWithFormat:@"_%@", propertyName] UTF8String];
+    // 添加nonatomic
+    objc_property_attribute_t t3;
+    t3.name = "N";
+    t3.value = "";
+    // 添加copy
+    objc_property_attribute_t t4;
+    t4.name = "C";
+    t4.value = "";
+    
+    attrs[0] = t1;
+    attrs[1] = t2;
+    attrs[2] = t3;
+    attrs[3] = t4;
+    
+    if (class_addProperty(cls, [propertyName UTF8String], attrs, count)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)customSetter, "v@:@");
     } else {
