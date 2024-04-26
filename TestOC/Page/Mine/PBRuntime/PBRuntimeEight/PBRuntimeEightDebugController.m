@@ -53,11 +53,12 @@
 //    attrs[3] = t4;
     
     objc_property_attribute_t type = { "T", "@\"NSString\"" };
-    objc_property_attribute_t ownership = { "C", ",N" };
+    objc_property_attribute_t ownership = { "C", "" };
+    objc_property_attribute_t ownership1 = { "N", "" };
     objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
-    objc_property_attribute_t attrs[] = { type, ownership, backingivar };
+    objc_property_attribute_t attrs[] = { type, ownership, ownership1, backingivar };
     
-    if (class_addProperty(cls, [propertyName UTF8String], attrs, 3)) {
+    if (class_addProperty(cls, [propertyName UTF8String], attrs, 4)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     } else {
