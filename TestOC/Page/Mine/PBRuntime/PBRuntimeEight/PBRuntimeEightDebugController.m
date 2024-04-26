@@ -67,6 +67,33 @@ void customSetter(id self, SEL _cmd, id newValue) {
     objc_setAssociatedObject(self, NSSelectorFromString(key), newValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+/**
+ (lldb) po key
+ strategyDetail
+ (lldb) po _cmd
+ "setStrategyDetail:"
+ (lldb) po @selector(key)
+ "key"
+ (lldb) po NSSelectorFromString(key)
+ "strategyDetail"
+
+ Printing description of self:
+ <BBANovelSecondBarBookModel: 0x133e14bd0>
+
+
+ (lldb) po key
+ strategyDetail
+ (lldb) po _cmd
+ "strategyDetail"
+ (lldb) po @selector(key)
+ "key"
+ (lldb) po NSSelectorFromString(key)
+ "strategyDetail"
+
+ Printing description of self:
+ <BBANovelSecondBarBookModel: 0x133e14bd0>
+ */
+
 #pragma mark -
 
 - (void)viewDidLoad {
