@@ -53,12 +53,12 @@
     attrs[3] = t4;
     
     if (class_addProperty(cls, [propertyName UTF8String], attrs, count)) {
-        class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
-        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)customSetter, "v@:@");
+        class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
+        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     } else {
         class_replaceProperty(cls, [propertyName UTF8String], attrs, 0);
-        class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)customGetter, "@@:");
-        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)customSetter, "v@:@");
+        class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
+        class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     }
 }
 
@@ -70,12 +70,12 @@
     return resultString;
 }
 
-id customGetter(id self, SEL _cmd) {
+id getter(id self, SEL _cmd) {
     NSString *key = NSStringFromSelector(_cmd);
     return objc_getAssociatedObject(self, NSSelectorFromString(key));
 }
 
-void customSetter(id self, SEL _cmd, id newValue) {
+void setter(id self, SEL _cmd, id newValue) {
     if (!newValue) {
         return;
     }
