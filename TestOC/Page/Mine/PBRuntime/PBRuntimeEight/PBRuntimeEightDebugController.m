@@ -104,11 +104,11 @@ void setter(id self, SEL _cmd, id newValue) {
  "key"
  (lldb) po NSSelectorFromString(key)
  "strategyDetail"
-
+ 
  Printing description of self:
  <BBANovelSecondBarBookModel: 0x133e14bd0>
-
-
+ 
+ 
  (lldb) po key
  strategyDetail
  (lldb) po _cmd
@@ -117,7 +117,7 @@ void setter(id self, SEL _cmd, id newValue) {
  "key"
  (lldb) po NSSelectorFromString(key)
  "strategyDetail"
-
+ 
  Printing description of self:
  <BBANovelSecondBarBookModel: 0x133e14bd0>
  */
