@@ -28,31 +28,36 @@
         return;
     }
     
-    unsigned int count = 4;
-    objc_property_attribute_t attrs[count]; // 属性的属性
-    // 添加类型
-    objc_property_attribute_t t1;
-    t1.name = "T";
-    t1.value = [[NSString stringWithFormat:@"@\"%@\"", NSStringFromClass(propertyTypeCls)] UTF8String];
-    // 添加copy
-    objc_property_attribute_t t2;
-    t2.name = "C"; // copy修饰传"C", strong修饰传"&", assign修饰不传
-    t2.value = "";
-    // 添加nonatomic
-    objc_property_attribute_t t3;
-    t3.name = "N";
-    t3.value = "";
-    // 添加ivar
-    objc_property_attribute_t t4;
-    t4.name = "V";
-    t4.value = [[NSString stringWithFormat:@"_%@", propertyName] UTF8String];
+//    unsigned int count = 4;
+//    objc_property_attribute_t attrs[count]; // 属性的属性
+//    // 添加类型
+//    objc_property_attribute_t t1;
+//    t1.name = "T";
+//    t1.value = [[NSString stringWithFormat:@"@\"%@\"", NSStringFromClass(propertyTypeCls)] UTF8String];
+//    // 添加copy
+//    objc_property_attribute_t t2;
+//    t2.name = "C"; // copy修饰传"C", strong修饰传"&", assign修饰不传
+//    t2.value = "";
+//    // 添加nonatomic
+//    objc_property_attribute_t t3;
+//    t3.name = "N";
+//    t3.value = "";
+//    // 添加ivar
+//    objc_property_attribute_t t4;
+//    t4.name = "V";
+//    t4.value = [[NSString stringWithFormat:@"_%@", propertyName] UTF8String];
+//    
+//    attrs[0] = t1;
+//    attrs[1] = t2;
+//    attrs[2] = t3;
+//    attrs[3] = t4;
     
-    attrs[0] = t1;
-    attrs[1] = t2;
-    attrs[2] = t3;
-    attrs[3] = t4;
+    objc_property_attribute_t type = { "T", "@\"NSString\"" };
+    objc_property_attribute_t ownership = { "C", ",N" };
+    objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
+    objc_property_attribute_t attrs[] = { type, ownership, backingivar };
     
-    if (class_addProperty(cls, [propertyName UTF8String], attrs, count)) {
+    if (class_addProperty(cls, [propertyName UTF8String], attrs, 3)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     } else {

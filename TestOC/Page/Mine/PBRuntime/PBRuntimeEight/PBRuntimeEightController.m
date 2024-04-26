@@ -55,6 +55,15 @@
                 objc_property_attribute_t t= attributeList[i];
                 NSLog(@"name = %s, value = %s", t.name, t.value);
             }
+            
+            // 打印指定属性的属性
+            nameProperty = class_getProperty(self.class, "height");
+            count = 0;
+            attributeList = property_copyAttributeList(nameProperty, &count);
+            for (int i = 0; i < count; i++) {
+                objc_property_attribute_t t= attributeList[i];
+                NSLog(@"name = %s, value = %s", t.name, t.value);
+            }
         }
         
         {
