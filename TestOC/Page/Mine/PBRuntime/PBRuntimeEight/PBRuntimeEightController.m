@@ -92,6 +92,9 @@
         // 方案二
         [self performSelector:@selector(setHeight:) withObject:@[@"1", @"2", @{@"3" : @"4"}]];
         NSLog(@"height = %@", [self performSelector:@selector(height)]);
+        
+        [self setValue:@[@"1", @"2", @{@"3" : @"4"}] forKey:@"height"];
+        NSLog(@"height = %@", [self valueForKey:@"height"]);
     }
 }
 
