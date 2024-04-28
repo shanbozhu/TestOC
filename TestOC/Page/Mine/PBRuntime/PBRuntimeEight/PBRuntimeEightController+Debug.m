@@ -10,6 +10,20 @@
 
 @implementation PBRuntimeEightController (Debug)
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    NSLog(@"key = %@", key);
+    if ([key isEqualToString:@"aa"]) {
+        objc_setAssociatedObject(self, @selector(aa), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+- (id)valueForUndefinedKey:(NSString *)key {
+    NSLog(@"key = %@", key);
+    if ([key isEqualToString:@"aa"]) {
+        return objc_getAssociatedObject(self, @selector(aa));
+    }
+    return self;
+}
+
 #pragma mark - 对象类型
 
 - (NSString *)name {

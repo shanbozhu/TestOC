@@ -96,6 +96,14 @@
         [self setValue:@[@"1", @"2", @{@"3" : @"4"}] forKey:@"height"];
         NSLog(@"height = %@", [self valueForKey:@"height"]);
     }
+    
+    {
+        // 方案三
+        
+        // 分类中添加属性
+        [self setValue:@[@"1", @"2", @{@"3" : @"4"}] forKey:@"aa"];
+        NSLog(@"aa = %@", [self valueForKey:@"aa"]);
+    }
 }
 
 @end
