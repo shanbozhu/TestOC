@@ -19,7 +19,7 @@
 #pragma mark -
 
 + (NSString *)getSymbolsWithDepth:(int)size {
-    vm_address_t *stacks[size];
+    vm_address_t *stacks[size]; // 整形指针数组:数组里面每个元素是整形指针.stacks(数组名)指向(存储)数组首元素地址
     size_t depth = backtrace((void **)stacks, size);
     NSMutableString *stackInfo = [[NSMutableString alloc] init];
     NSDateFormatter *df = [NSDateFormatter new];
