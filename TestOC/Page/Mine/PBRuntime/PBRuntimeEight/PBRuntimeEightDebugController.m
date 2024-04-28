@@ -28,6 +28,7 @@
         return;
     }
     
+    // 写法一
 //    unsigned int count = 4;
 //    objc_property_attribute_t attrs[count]; // 属性的属性
 //    // 添加类型
@@ -46,17 +47,28 @@
 //    objc_property_attribute_t t4;
 //    t4.name = "V";
 //    t4.value = [[NSString stringWithFormat:@"_%@", propertyName] UTF8String];
-//    
 //    attrs[0] = t1;
 //    attrs[1] = t2;
 //    attrs[2] = t3;
 //    attrs[3] = t4;
     
+    // 写法二
+//    objc_property_attribute_t t1 = { "T", "@\"NSString\"" };
+//    objc_property_attribute_t t2 = { "C", "" };
+//    objc_property_attribute_t t3 = { "N", "" };
+//    objc_property_attribute_t t4  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
+//    objc_property_attribute_t attrs[] = { t1, t2, t3, t4 }; // 结构体数组,attrs指向(存储)数组首元素地址
+    
+    // 写法三
+    objc_property_attribute_t *attrs = malloc(4 * sizeof(objc_property_attribute_t));
     objc_property_attribute_t t1 = { "T", "@\"NSString\"" };
     objc_property_attribute_t t2 = { "C", "" };
     objc_property_attribute_t t3 = { "N", "" };
     objc_property_attribute_t t4  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
-    objc_property_attribute_t attrs[] = { t1, t2, t3, t4 }; // 结构体数组,attrs指向(存储)数组首元素地址
+    attrs[0] = t1;
+    attrs[1] = t2;
+    attrs[2] = t3;
+    attrs[3] = t4;
     
     if (class_addProperty(cls, [propertyName UTF8String], attrs, 4)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
@@ -66,6 +78,8 @@
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     }
+    // 写法三
+    free(attrs);
 }
 
 + (NSString *)dealPropertyName:(NSString *)dealString {
