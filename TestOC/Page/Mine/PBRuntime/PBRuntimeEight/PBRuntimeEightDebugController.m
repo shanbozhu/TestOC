@@ -62,7 +62,7 @@
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     } else {
-        class_replaceProperty(cls, [propertyName UTF8String], attrs, 0);
+        class_replaceProperty(cls, [propertyName UTF8String], attrs, 4);
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
         class_addMethod(cls, NSSelectorFromString([NSString stringWithFormat:@"set%@:", [self dealPropertyName:propertyName]]), (IMP)setter, "v@:@");
     }
