@@ -56,7 +56,7 @@
     objc_property_attribute_t t2 = { "C", "" };
     objc_property_attribute_t t3 = { "N", "" };
     objc_property_attribute_t t4  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
-    objc_property_attribute_t attrs[] = { t1, t2, t3, t4 };
+    objc_property_attribute_t attrs[] = { t1, t2, t3, t4 }; // 结构体数组,attrs指向(存储)数组首元素地址
     
     if (class_addProperty(cls, [propertyName UTF8String], attrs, 4)) {
         class_addMethod(cls, NSSelectorFromString(propertyName), (IMP)getter, "@@:");
