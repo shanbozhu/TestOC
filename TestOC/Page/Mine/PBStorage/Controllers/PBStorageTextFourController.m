@@ -45,9 +45,14 @@
 }
 
 - (void)selectBtn:(UIButton *)btn {
-    NSData *data = [NSData dataWithContentsOfFile:self.filePath];
-    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"str = %@", str);
+    {
+        NSData *data = [NSData dataWithContentsOfFile:self.filePath];
+        NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"str = %@", str);
+    }
+    {
+        NSLog(@"str = %@", [NSString stringWithContentsOfFile:self.filePath encoding:NSUTF8StringEncoding error:nil]);
+    }
 }
 
 @end
