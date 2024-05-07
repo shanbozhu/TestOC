@@ -18,7 +18,7 @@ static id sharedQRCodeScan = nil;
 @implementation PBQRCodeScan
 
 + (id)sharedQRCodeScan {
-    if (sharedQRCodeScan == nil) {
+    if (!sharedQRCodeScan) {
         static dispatch_once_t predicate;
         dispatch_once(&predicate, ^{
             sharedQRCodeScan = [[self alloc]init];

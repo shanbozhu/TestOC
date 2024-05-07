@@ -184,7 +184,7 @@
         weakSelf.scrollView.zoomScale = 1.0;
         
         // 下载成功,移除等待视图
-        if (error == nil) {
+        if (!error) {
             [weakSelf.activityIndicatorView stopAnimating];
             [weakSelf.activityIndicatorView removeFromSuperview];
         }

@@ -338,7 +338,7 @@
             continue;
         }
         
-        if ([attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location] == nil) {
+        if (![attStr yy_attribute:YYTextHighlightAttributeName atIndex:at.range.location]) {
             [attStr yy_setColor:[UIColor blueColor] range:at.range];
             
             YYTextHighlight *highlight = [[YYTextHighlight alloc]init];

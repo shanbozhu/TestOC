@@ -69,12 +69,12 @@
 }
 
 - (void)addGCDTimerManagerWithName:(NSString *)timerName andTimeInterval:(NSTimeInterval)timeInterval andDelaySecs:(float)delaySecs andQueue:(dispatch_queue_t)queue andRepeats:(BOOL)repeats andAction:(dispatch_block_t)action {
-    if (queue == nil) {
+    if (!queue) {
         queue = dispatch_get_global_queue(0, 0);
     }
     
     PBGCDTimer *gcdTimer = self.gcdTimerDict[timerName];
-    if (gcdTimer == nil) {
+    if (!gcdTimer) {
         gcdTimer = [[PBGCDTimer alloc]initWithName:timerName andTimeInterval:timeInterval andDelaySecs:delaySecs andQueue:queue andRepeats:repeats andAction:action];
         self.gcdTimerDict[timerName] = gcdTimer;
     } else {
@@ -86,7 +86,7 @@
     }
     
     dispatch_source_t timer = self.timerDict[timerName];
-    if (timer == nil) {
+    if (!timer) {
         timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, gcdTimer.queue);
         self.timerDict[timerName] = timer;
     }
@@ -110,7 +110,7 @@
 
 - (void)resumeTimer:(NSString *)timerName {
     dispatch_source_t timer = self.timerDict[timerName];
-    if (timer == nil) {
+    if (!timer) {
         return;
     }
     
@@ -123,7 +123,7 @@
 
 - (void)cancelTimerWithName:(NSString *)timerName {
     dispatch_source_t timer = self.timerDict[timerName];
-    if (timer == nil) {
+    if (!timer) {
         return;
     }
     
@@ -138,7 +138,7 @@
 
 - (void)suspendTimer:(NSString *)timerName {
     dispatch_source_t timer = self.timerDict[timerName];
-    if (timer == nil) {
+    if (!timer) {
         return;
     }
     
@@ -150,14 +150,14 @@
 }
 
 - (NSMutableDictionary *)gcdTimerDict {
-    if (_gcdTimerDict == nil) {
+    if (!_gcdTimerDict) {
         _gcdTimerDict = [NSMutableDictionary dictionary];
     }
     return _gcdTimerDict;
 }
 
 - (NSMutableDictionary *)timerDict {
-    if (_timerDict == nil) {
+    if (!_timerDict) {
         _timerDict = [NSMutableDictionary dictionary];
     }
     return _timerDict;

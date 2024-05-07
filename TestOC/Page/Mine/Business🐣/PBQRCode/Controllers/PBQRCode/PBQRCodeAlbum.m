@@ -21,7 +21,7 @@ static id sharedQRCodeAlbum = nil;
 @implementation PBQRCodeAlbum
 
 + (id)sharedQRCodeAlbum {
-    if (sharedQRCodeAlbum == nil) {
+    if (!sharedQRCodeAlbum) {
         static dispatch_once_t predicate;
         dispatch_once(&predicate, ^{
             sharedQRCodeAlbum = [[self alloc]init];

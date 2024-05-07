@@ -124,7 +124,7 @@
     /**
     // 地点大头针
     MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MKPinAnnotationView"];
-    if (pinAnnotationView == nil) {
+    if (!pinAnnotationView) {
         pinAnnotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"MKPinAnnotationView"];
     }
 

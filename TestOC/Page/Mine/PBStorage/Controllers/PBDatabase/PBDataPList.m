@@ -49,22 +49,16 @@ static id sharedDataPList = nil;
     if (self = [super init]) {
         pthread_rwlock_init(&_lock, NULL);
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        
         // 指定路径创建文件
         self.filePath = [PBSandBox absolutePathWithRelativePath:DATAPLISTFILEPATH];
         [PBSandBox createFileAtPath:self.filePath];
         
         self.dict = [NSMutableDictionary dictionaryWithContentsOfFile:self.filePath];
-        if (self.dict == nil) {
+        if (!self.dict) {
             self.dict = [NSMutableDictionary dictionary];
         }
     }
     return self;
-}
-
-- (void)applicationDidEnterBackground {
-    [self.dict writeToFile:self.filePath atomically:YES]; // 无法自动创建父目录
 }
 
 #pragma mark - 操作
@@ -73,12 +67,14 @@ static id sharedDataPList = nil;
     pthread_rwlock_wrlock(&_lock);
     NSData *data = [PBArchiver dataWithObject:value key:key];
     [self.dict setValue:data forKey:key];
+    [self.dict writeToFile:self.filePath atomically:YES]; // 无法自动创建父目录
     pthread_rwlock_unlock(&_lock);
 }
 
 - (void)removeObjectForKey:(NSString *)defaultName {
     pthread_rwlock_wrlock(&_lock);
     [self.dict removeObjectForKey:defaultName];
+    [self.dict writeToFile:self.filePath atomically:YES]; // 无法自动创建父目录
     pthread_rwlock_unlock(&_lock);
 }
 
@@ -93,6 +89,7 @@ static id sharedDataPList = nil;
 - (void)removeAllObjects {
     pthread_rwlock_wrlock(&_lock);
     [self.dict removeAllObjects];
+    [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     pthread_rwlock_unlock(&_lock);
 }
 

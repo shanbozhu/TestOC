@@ -22,7 +22,7 @@
 @implementation PBTestZeroEspressos
 
 - (NSMutableArray *)imageObjs {
-    if (_imageObjs == nil) {
+    if (!_imageObjs) {
         _imageObjs = [NSMutableArray array];
     }
     return _imageObjs;

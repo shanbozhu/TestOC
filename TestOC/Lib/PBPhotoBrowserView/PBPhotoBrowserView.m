@@ -173,7 +173,7 @@
         photoBrowserPageView.frame = CGRectMake((kPBSWidth+imageMargin*2)*i, 0, kPBSWidth+imageMargin*2, kPBSHeight);
         
         photoBrowserPageView.delegate = self;
-        if (self.imgModelIndexArr == nil) {
+        if (!self.imgModelIndexArr) {
             photoBrowserPageView.imageView.tag = i;
         } else {
             photoBrowserPageView.imageView.tag = [self.imgModelIndexArr[i] integerValue];
@@ -217,7 +217,7 @@
     }
     
     UIImageView *sourceImageView;
-    if (self.sourceImageSlideView == nil) {
+    if (!self.sourceImageSlideView) {
         if (self.isCarousel == YES) {
             sourceImageView = self.sourceImageFatherView.subviews[self.currentImageIndex];
         } else {
@@ -300,7 +300,7 @@
 // 缩略图动画
 - (void)showImageAnimation {
     UIImageView *sourceImageView;
-    if (self.sourceImageSlideView == nil) {
+    if (!self.sourceImageSlideView) {
         // 九宫格或轮播
         sourceImageView = self.sourceImageFatherView.subviews[self.currentImageIndex];
     } else {
@@ -327,7 +327,7 @@
     CGFloat showImageAnimationDuration;
     if (tmpImageViewTwo.pbTag == 1) {
         // 微信
-        if (tmpImageView.image == nil) {
+        if (!tmpImageView.image) {
             placeholderH = 0;
         } else {
             placeholderH = tmpImageView.frame.size.height;
@@ -344,7 +344,7 @@
         showImageAnimationDuration = 0.2;
     } else {
         // 新浪
-        if (tmpImageView.image == nil) {
+        if (!tmpImageView.image) {
             placeholderH = 0;
         } else {
             placeholderH = kPBSWidth/tmpImageView.image.size.width*tmpImageView.image.size.height;
@@ -436,7 +436,7 @@
 - (UIImageView *)thumbImageWithIndex:(NSInteger)index {
     UIImageView *tmpImageView = [[UIImageView alloc]init];
     [tmpImageView sd_setImageWithURL:[self hdImageURLWithIndex:index]];
-    if (tmpImageView.image == nil) {
+    if (!tmpImageView.image) {
         tmpImageView = [self.delegate photoBrowserView:self andThumbImageURLWithIndex:index];
         tmpImageView.pbTag = 1; // 缩略(微信) (此处修改的是真正的原视图上的缩略图对象)
     } else {

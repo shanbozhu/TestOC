@@ -19,7 +19,7 @@
 @implementation PBChannelHeaderView
 
 - (NSMutableArray *)btnArr {
-    if (_btnArr == nil) {
+    if (!_btnArr) {
         _btnArr = [NSMutableArray array];
     }
     return _btnArr;

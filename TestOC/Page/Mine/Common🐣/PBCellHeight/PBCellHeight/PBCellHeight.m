@@ -63,7 +63,7 @@
     
     // 计算用cell,只有一个.tableView被释放,计算用cell则被释放
     NSMutableDictionary *cellList = objc_getAssociatedObject(tableView, _cmd);
-    if (cellList == nil) {
+    if (!cellList) {
         cellList = @{}.mutableCopy;
         objc_setAssociatedObject(tableView, _cmd, cellList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -87,7 +87,7 @@
     
     // 计算用cell,只有一个.tableView被释放,计算用cell则被释放
     NSMutableDictionary *cellList = objc_getAssociatedObject(tableView, _cmd);
-    if (cellList == nil) {
+    if (!cellList) {
         cellList = @{}.mutableCopy;
         objc_setAssociatedObject(tableView, _cmd, cellList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }

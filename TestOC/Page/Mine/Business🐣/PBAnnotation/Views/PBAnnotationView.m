@@ -18,7 +18,7 @@
 
 + (id)annotationViewWithMapView:(MKMapView *)mapView andAnnotation:(id<MKAnnotation>)annotation {
     PBAnnotationView *annotationView = (PBAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MKAnnotationView"];
-    if (annotationView == nil) {
+    if (!annotationView) {
         annotationView = [[self alloc]initWithAnnotation:annotation reuseIdentifier:@"MKAnnotationView"];
         //annotationView.image = [UIImage imageNamed:@"pbaddress_location"];
     }

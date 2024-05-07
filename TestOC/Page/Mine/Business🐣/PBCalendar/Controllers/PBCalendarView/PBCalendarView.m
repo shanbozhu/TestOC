@@ -88,7 +88,7 @@
         calendar.dateBlock = ^(NSInteger year, NSInteger month) {
             self.titleLab.text = [NSString stringWithFormat:@"%ld年%ld月", year, month];
             
-            if (self.nowYearMonth == nil) {
+            if (!self.nowYearMonth) {
                 self.nowYearMonth = self.titleLab.text;
             }
         };
