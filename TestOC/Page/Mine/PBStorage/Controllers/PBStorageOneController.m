@@ -27,7 +27,7 @@
         _titleArr = @[@"NSUserDefaults",
                       @"plist(向空文件中存储字典或数组)",
                       @"plist多线程",
-                      @"textfile(向空文件中存储字符串)"];
+                      @"txt(向空文件中存储字符串)"];
     }
     return _titleArr;
 }
