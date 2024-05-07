@@ -24,8 +24,7 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"NSKeyedArchiver(向空文件中存储二进制)",
-                      @"NSUserDefaults",
+        _titleArr = @[@"NSUserDefaults",
                       @"plist(向空文件中存储字典或数组)",
                       @"plist多线程",
                       @"textfile(向空文件中存储字符串)"];
@@ -35,8 +34,7 @@
 
 - (NSArray *)vcArr {
     if (!_vcArr) {
-        _vcArr = @[@"PBStorageTextController",
-                   @"PBStorageTextOneController",
+        _vcArr = @[@"PBStorageTextOneController",
                    @"PBStorageTextTwoController",
                    @"PBStorageTextThreeController",
                    @"PBStorageTextFourController"];

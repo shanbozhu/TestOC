@@ -23,7 +23,7 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"DataBaseFile",
+        _titleArr = @[@"BinaryFile",
                       @"TextFile"];
     }
     return _titleArr;

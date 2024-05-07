@@ -22,7 +22,8 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"数据库常用SQL语句使用",
+        _titleArr = @[@"NSKeyedArchiver(向空文件中存储二进制)",
+                      @"数据库常用SQL语句使用",
                       @"数据库存储",
                       @"数据库存储多线程"];
     }
@@ -31,7 +32,8 @@
 
 - (NSArray *)vcArr {
     if (!_vcArr) {
-        _vcArr = @[@"PBStorageDataBaseController",
+        _vcArr = @[@"PBStorageTextController",
+                   @"PBStorageDataBaseController",
                    @"PBStorageDataBaseOneController",
                    @"PBStorageDataBaseTwoController"];
     }
