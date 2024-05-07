@@ -64,7 +64,7 @@
     }
     
     {
-        // 向空文件中存储字典或数组
+        // 向空文件中存储数组
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageArr"];
         [PBSandBox createFileAtPath:filePath];
         
@@ -81,6 +81,20 @@
         NSDictionary *dict = @{@"1": @"2"};
         [dict writeToFile:filePath atomically:YES];
         NSLog(@"[NSDictionary dictionaryWithContentsOfFile:filePath] = %@", [NSDictionary dictionaryWithContentsOfFile:filePath]);
+    }
+    
+    {
+        // 向空文件中存储二进制
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageData"];
+        [PBSandBox createFileAtPath:filePath];
+        
+        NSDictionary *dict = @{@"1": @"2"};
+        NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+        [data writeToFile:filePath atomically:YES];
+        
+        NSData *readData = [NSData dataWithContentsOfFile:filePath];
+        NSDictionary *readDict = [NSJSONSerialization JSONObjectWithData:readData options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"readDict = %@", readDict);
     }
 }
 
