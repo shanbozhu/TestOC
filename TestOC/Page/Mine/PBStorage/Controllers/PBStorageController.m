@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView = tableView;
     [self.view addSubview:self.tableView];
@@ -52,6 +52,36 @@
     NSLog(@"[NSBundle mainBundle].bundlePath = %@", [NSBundle mainBundle].bundlePath);
     // 应用沙盒目录 /var/mobile/Containers/Data/Application/6EB3CEC1-4D63-458E-97DD-3EDD686252D8
     NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
+    
+    {
+        // 向空文件中存储字符串
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageStr"];
+        [PBSandBox createFileAtPath:filePath];
+        
+        NSString *str = @"helloworld!";
+        [str writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
+    }
+    
+    {
+        // 向空文件中存储字典或数组
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageArr"];
+        [PBSandBox createFileAtPath:filePath];
+        
+        NSArray *arr = @[@"1", @"2"];
+        [arr writeToFile:filePath atomically:YES];
+        NSLog(@"[NSArray arrayWithContentsOfFile:filePath] = %@", [NSArray arrayWithContentsOfFile:filePath]);
+    }
+    
+    {
+        // 向空文件中存储字典
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageDict"];
+        [PBSandBox createFileAtPath:filePath];
+        
+        NSDictionary *dict = @{@"1": @"2"};
+        [dict writeToFile:filePath atomically:YES];
+        NSLog(@"[NSDictionary dictionaryWithContentsOfFile:filePath] = %@", [NSDictionary dictionaryWithContentsOfFile:filePath]);
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
