@@ -24,11 +24,11 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"NSKeyedArchiver(向文本文件中存储二进制)",
+        _titleArr = @[@"NSKeyedArchiver(向空文件中存储二进制)",
                       @"NSUserDefaults",
-                      @"plist(向文本文件中存储字典或数组)",
+                      @"plist(向空文件中存储字典或数组)",
                       @"plist多线程",
-                      @"textfile(向文本文件中存储字符串)"];
+                      @"textfile(向空文件中存储字符串)"];
     }
     return _titleArr;
 }
