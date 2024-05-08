@@ -71,6 +71,9 @@
         NSArray *arr = @[@"1", @"2"];
         [arr writeToFile:filePath atomically:YES];
         NSLog(@"[NSArray arrayWithContentsOfFile:filePath] = %@", [NSArray arrayWithContentsOfFile:filePath]);
+        
+        //
+        NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
     }
     {
         // 向空文件中存储字典
@@ -80,6 +83,9 @@
         NSDictionary *dict = @{@"1": @"2"};
         [dict writeToFile:filePath atomically:YES];
         NSLog(@"[NSDictionary dictionaryWithContentsOfFile:filePath] = %@", [NSDictionary dictionaryWithContentsOfFile:filePath]);
+        
+        //
+        NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
     }
     
     // 二进制文件
@@ -95,6 +101,9 @@
         NSData *readData = [NSData dataWithContentsOfFile:filePath];
         NSDictionary *readDict = [NSJSONSerialization JSONObjectWithData:readData options:NSJSONReadingMutableLeaves error:nil];
         NSLog(@"readDict = %@", readDict);
+        
+        //
+        NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
     }
 }
 
