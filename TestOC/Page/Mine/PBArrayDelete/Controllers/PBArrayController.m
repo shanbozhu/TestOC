@@ -19,8 +19,8 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"数组删除元素",
-                      @"数组遍历元素"];
+        _titleArr = @[@"删除数组元素",
+                      @"遍历数组元素"];
     }
     return _titleArr;
 }
