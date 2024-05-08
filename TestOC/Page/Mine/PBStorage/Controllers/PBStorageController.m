@@ -53,6 +53,7 @@
     // 应用沙盒目录 /var/mobile/Containers/Data/Application/6EB3CEC1-4D63-458E-97DD-3EDD686252D8
     NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
     
+    // 文本文件
     {
         // 向空文件中存储字符串
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageStr"];
@@ -62,7 +63,6 @@
         [str writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
     }
-    
     {
         // 向空文件中存储数组
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageArr"];
@@ -72,7 +72,6 @@
         [arr writeToFile:filePath atomically:YES];
         NSLog(@"[NSArray arrayWithContentsOfFile:filePath] = %@", [NSArray arrayWithContentsOfFile:filePath]);
     }
-    
     {
         // 向空文件中存储字典
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageDict"];
@@ -83,6 +82,7 @@
         NSLog(@"[NSDictionary dictionaryWithContentsOfFile:filePath] = %@", [NSDictionary dictionaryWithContentsOfFile:filePath]);
     }
     
+    // 二进制文件
     {
         // 向空文件中存储二进制
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageData"];

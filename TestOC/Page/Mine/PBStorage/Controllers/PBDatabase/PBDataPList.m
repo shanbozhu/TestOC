@@ -94,7 +94,6 @@ static id sharedDataPList = nil;
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     pthread_rwlock_destroy(&_lock);
     NSLog(@"PBDataPList对象被释放了");
 }
