@@ -10,6 +10,7 @@
 #import "PBStorageZeroController.h"
 #import "PBStorageOneController.h"
 #import "PBSandBox.h"
+#import "PBArchiver.h"
 
 @interface PBStorageController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -95,15 +96,20 @@
         [PBSandBox createFileAtPath:filePath];
         
         NSDictionary *dict = @{@"1": @"2"};
-        NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+        NSData *data = [PBArchiver dataWithObject:dict key:@"dict"];
         [data writeToFile:filePath atomically:YES];
         
-        NSData *readData = [NSData dataWithContentsOfFile:filePath];
-        NSDictionary *readDict = [NSJSONSerialization JSONObjectWithData:readData options:NSJSONReadingMutableLeaves error:nil];
+        NSDictionary *readDict = [PBArchiver objectWithData:data key:@"dict"];
         NSLog(@"readDict = %@", readDict);
         
         //
         NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
+        NSLog(@"[NSData dataWithContentsOfFile:filePath] = %@", [NSData dataWithContentsOfFile:filePath]);
+        
+        NSStringEncoding usedEncoding;
+        NSError *error;
+        [NSString stringWithContentsOfFile:filePath usedEncoding:&usedEncoding error:&error];
+        NSLog(@"usedEncoding = %lu, error = %@", usedEncoding, error);
     }
 }
 
