@@ -8,7 +8,7 @@
 
 #import "PBArchiver.h"
 
-#pragma mark - [归解档]例子
+#pragma mark - 自定义类型的[模型对象][归解档]例子
 
 /**
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -43,7 +43,7 @@
     return propertyList;
 }
 
-#pragma mark - 支持[归解挡]操作的[模型对象]需要实现的方法
+#pragma mark - 支持[归解挡]操作的自定义类型的[模型对象]需要实现的方法
 
 // 归档时当前对象需要实现的代理方法
 - (void)encodeWithCoder:(NSCoder *)aCoder {
