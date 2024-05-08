@@ -110,6 +110,18 @@
         NSError *error;
         [NSString stringWithContentsOfFile:filePath usedEncoding:&usedEncoding error:&error];
         NSLog(@"usedEncoding = %lu, error = %@", usedEncoding, error);
+        
+        // 打印出二进制数据的十六进制表示，以便于阅读
+        NSMutableString *readStr = [NSMutableString string];
+        NSData *readData = [NSData dataWithContentsOfFile:filePath];
+        Byte *bytes = (Byte *)readData.bytes;
+        NSUInteger length = readData.length;
+        for (NSUInteger i = 0; i < length; i++) {
+            printf("%02x ", bytes[i]); // 不带换行符
+            [readStr appendString:[NSString stringWithFormat:@"%02x ", bytes[i]]];
+        }
+        printf("\n");
+        NSLog(@"readStr = %@", readStr);
     }
 }
 
