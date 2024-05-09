@@ -47,13 +47,13 @@
 - (void)selectBtn:(UIButton *)btn {
     {
         // 读取文件
-        NSData *data = [NSData dataWithContentsOfFile:self.filePath];
-        NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"str = %@", str);
+        NSLog(@"str = %@", [NSString stringWithContentsOfFile:self.filePath encoding:NSUTF8StringEncoding error:nil]);
     }
     {
         // 读取文件
-        NSLog(@"str = %@", [NSString stringWithContentsOfFile:self.filePath encoding:NSUTF8StringEncoding error:nil]);
+        NSData *data = [NSData dataWithContentsOfFile:self.filePath];
+        NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"str = %@", str);
     }
 }
 
