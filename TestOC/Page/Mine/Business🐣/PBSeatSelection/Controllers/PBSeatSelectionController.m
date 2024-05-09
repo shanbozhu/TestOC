@@ -45,8 +45,8 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *path = [[NSBundle mainBundle]pathForResource:@"pbseat_selection" ofType:@"json"];
-            NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-            NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+            NSString *jsonStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+            NSData *data = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
             NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"jsonDict = %@", jsonDict);
             

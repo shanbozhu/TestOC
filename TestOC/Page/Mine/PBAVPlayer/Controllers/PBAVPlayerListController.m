@@ -33,7 +33,8 @@
 
 - (void)requestData {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"PBAVPlayerList" ofType:@"json"]];
+        NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"PBAVPlayerList" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *jsonArr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
         NSMutableArray *objs = [NSMutableArray array];
