@@ -99,8 +99,8 @@
         NSData *data = [PBArchiver dataWithObject:dict key:@"dict"];
         [data writeToFile:filePath atomically:YES];
         
-        NSDictionary *readDict = [PBArchiver objectWithData:data key:@"dict"];
-        NSLog(@"readDict = %@", readDict);
+        //NSDictionary *readDict = [PBArchiver objectWithData:data key:@"dict"];
+        //NSLog(@"readDict = %@", readDict);
         
         //
         NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
