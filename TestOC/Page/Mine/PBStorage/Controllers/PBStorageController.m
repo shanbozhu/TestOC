@@ -95,12 +95,9 @@
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageData"];
         [PBSandBox createFileAtPath:filePath];
         
-        NSDictionary *dict = @{@"1": @"2"};
+        NSDictionary *dict = @{@"1": @"2", @"3": @"中文"};
         NSData *data = [PBArchiver dataWithObject:dict key:@"dict"];
         [data writeToFile:filePath atomically:YES];
-        
-        //NSDictionary *readDict = [PBArchiver objectWithData:data key:@"dict"];
-        //NSLog(@"readDict = %@", readDict);
         
         //
         NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
@@ -123,6 +120,10 @@
         }
         printf("\n");
         NSLog(@"readStr = %@", readStr);
+        
+        // readData
+        NSDictionary *readDict = [PBArchiver objectWithData:readData key:@"dict"];
+        NSLog(@"readDict = %@", readDict);
     }
 }
 
