@@ -17,32 +17,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //
-    NSUInteger age = 18;
-    NSLog(@"age = %lu", age);
-    NSLog(@"age = %hd", age);
-    NSLog(@"age = %hu", age);
+    // 十进制转k进制:除k取余法
+    // k进制转十进制:乘以k的次方
+    
+    // 有效数字:从第一个不是0的数开始,以下都是
+    // 00000018.012的有效数字是5
+    
+    // 十六进制:0xFFFF
+    // 八进制:0777
+    
+    // 十六进制小写:%x
+    // 十六进制大写:%X
+    // 八进制:%o
+    
+    // 总共显示12位,前面不足补0,小数点后显示3位小数:%012.3lf
     
     //
     CGFloat height = 18.012345;
-    NSLog(@"height = %.3lf", height);
+    NSLog(@"height = %012.3lf", height); // 00000018.012
     
     //
-    NSInteger aa = 1000;
-    NSLog(@"aa = %lx", aa);
-    NSLog(@"aa = %lX", aa);
-    NSLog(@"aa = %lo", aa);
-    NSLog(@"aa = %lO", aa);
-    NSLog(@"aa = %b", aa);
-    
-    
-    int number = 25; // 十进制数25
-    NSLog(@"%d in binary is %i", number, number); // 打印二进制表示
-    
-    // 除k取余法
-    // 乘以k的次方
+    NSInteger aa = 500;
+    NSLog(@"aa = %lx", aa); // 1f4 = 4 * 16^0 + f * 16^1 + 1 * 16^2 = 500
+    NSLog(@"aa = %lX", aa); // 1F4
+    NSLog(@"aa = %lo", aa); // 764 = 4 * 8^0 + 6 * 8^1 + 7 * 8^2 = 500
 }
-
-
 
 @end

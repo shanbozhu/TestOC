@@ -59,8 +59,10 @@
  蛇形命名法:每个单词的首字母小写,采用下划线拼接
  
  数据类型:
- 基本类型:int(整型)、short(短整型)、long(长整型)、long long(长长整型); float(单精度浮点型)、double(双精度浮点型)、long double(长双精度浮点型); char(字符型); bool(布尔型); enum(枚举型)
- 对象类型:string(字符串)、dictionary(字典:键值对组合,键遍历)、array(数组:数据组合,索引遍历.又叫list,列表)、set(集合:无序不重复数据组合)、tuple(元组:不可变数组)、struct(结构体:数据组合,点语法遍历)、class(类:点语法遍历)
+ 基本类型:
+ int(整型%d)、unsigned int(无符号整型%u)、short(短整型%hd)、long(长整型%ld)、long long(长长整型%lld); float(单精度浮点型%f)、double(双精度浮点型%lf)、long double(长双精度浮点型%llf); char(字符型%c); bool(布尔型%d); enum(枚举型%d)
+ 对象类型:
+ string(字符串)、dictionary(字典:键值对组合,键遍历)、array(数组:数据组合,索引遍历.又叫list,列表)、set(集合:无序不重复数据组合)、tuple(元组:不可变数组)、struct(结构体:数据组合,点语法遍历)、class(类:点语法遍历)
  */
 
 /**
