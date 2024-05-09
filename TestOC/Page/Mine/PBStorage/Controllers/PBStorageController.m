@@ -106,6 +106,7 @@
         NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
         NSLog(@"[NSData dataWithContentsOfFile:filePath] = %@", [NSData dataWithContentsOfFile:filePath]);
         
+        // 使用哪种字符串编码
         NSStringEncoding usedEncoding;
         NSError *error;
         [NSString stringWithContentsOfFile:filePath usedEncoding:&usedEncoding error:&error];
