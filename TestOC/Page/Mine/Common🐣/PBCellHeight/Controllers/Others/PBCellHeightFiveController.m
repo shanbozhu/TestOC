@@ -22,7 +22,8 @@
 
 - (void)requestDataWithSinceId:(NSInteger)sinceId status:(NSInteger)status {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"PBCellHeightZero" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
