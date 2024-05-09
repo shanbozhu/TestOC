@@ -35,6 +35,8 @@
     //
     CGFloat height = 18.012345;
     NSLog(@"height = %012.3lf", height); // 00000018.012
+    NSLog(@"height = %0.3lf", height); // 18.012
+    NSLog(@"height = %.3lf", height); // 18.012
     
     //
     NSInteger aa = 500;
