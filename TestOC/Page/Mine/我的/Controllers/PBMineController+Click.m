@@ -33,7 +33,8 @@
              @"PBUniversalLinkController",
              @"PBRuntimeController",
              @"PBAlertController",
-             @"PBAnimationController"];
+             @"PBAnimationController",
+             @"PBNSLogController"];
 }
 
 // delegate
