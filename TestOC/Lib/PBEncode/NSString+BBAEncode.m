@@ -19,14 +19,4 @@
     return [[self dataUsingEncoding:NSUTF8StringEncoding] bdp_sha1Hash];
 }
 
-#pragma mark - Deprecated Methods
-
-- (NSString*)bba_md5Hash {
-    return [self bdp_md5Hash];
-}
-
-- (NSString*)bba_sha1Hash {
-    return [self bdp_sha1Hash];
-}
-
 @end

@@ -146,22 +146,4 @@ static const char encodingTable[] =
                                         encoding:NSASCIIStringEncoding freeWhenDone:YES];
 }
 
-#pragma mark - Deprecated Methods
-
-- (NSString*)bba_md5Hash {
-    return [self bdp_md5Hash];
-}
-
-- (NSString*)bba_sha1Hash {
-    return [self bdp_sha1Hash];
-}
-
-+ (NSData*)bba_dataWithBase64EncodedString:(NSString *)string {
-    return [self bdp_dataWithBase64EncodedString:string];
-}
-
-- (NSString *)bba_base64Encoding {
-    return [self bdp_base64Encoding];
-}
-
 @end

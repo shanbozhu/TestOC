@@ -46,38 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)bdp_base64Encoding;
 
-
-#pragma mark - Deprecated Methods
-/**
- * @brief Calculate the md5 hash of this data using CC_MD5.
- *
- * @return md5 hash of this data
- */
-@property (nonatomic, readonly) NSString* bba_md5Hash __deprecated_msg("use bdp_md5Hash instead");
-
-/**
- * @brief Calculate the SHA1 hash of this data using CC_SHA1.
- *
- * @return SHA1 hash of this data
- */
-@property (nonatomic, readonly) NSString* bba_sha1Hash __deprecated_msg("use bdp_sha1Hash instead");
-
-/**
- * @brief Create an NSData from a base64 encoded representation
- *
- * @return the NSData object
- *
- * @note Padding '=' characters are optional. Whitespace is ignored.
- */
-+ (NSData *)bba_dataWithBase64EncodedString:(NSString *)string __deprecated_msg("use bdp_dataWithBase64EncodedString: instead");
-
-/**
- * @brief Marshal the data into a base64 encoded representation
- *
- * @return the base64 encoded string
- */
-- (NSString *)bba_base64Encoding __deprecated_msg("use bdp_base64Encoding instead");
-
 @end
 
 NS_ASSUME_NONNULL_END
