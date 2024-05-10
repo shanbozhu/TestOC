@@ -117,6 +117,8 @@
 		5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */; };
 		5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */; };
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
+		5CCA30642BEE517300FECE09 /* NSData+BBAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */; };
+		5CCA30652BEE517300FECE09 /* NSString+BBAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */; };
 		5CCB742129B5B19B00853864 /* PBArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742029B5B19B00853864 /* PBArrayController.m */; };
 		5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */; };
 		5CCB745629B82E2500853864 /* PBServiceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745229B82E2500853864 /* PBServiceBridge.m */; };
@@ -561,6 +563,10 @@
 		5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLRotateAnimationView.swift; sourceTree = "<group>"; };
 		5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelHeadView.swift; sourceTree = "<group>"; };
 		5C98839F282616A000D3AEAD /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
+		5CCA30602BEE517300FECE09 /* NSString+BBAEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBAEncode.h"; sourceTree = "<group>"; };
+		5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BBAEncode.m"; sourceTree = "<group>"; };
+		5CCA30622BEE517300FECE09 /* NSData+BBAEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BBAEncode.h"; sourceTree = "<group>"; };
+		5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBAEncode.m"; sourceTree = "<group>"; };
 		5CCB741F29B5B19B00853864 /* PBArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBArrayController.h; sourceTree = "<group>"; };
 		5CCB742029B5B19B00853864 /* PBArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBArrayController.m; sourceTree = "<group>"; };
 		5CCB742229B5B4E700853864 /* PBArrayTraversalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayTraversalController.h; sourceTree = "<group>"; };
@@ -1637,6 +1643,17 @@
 				5C6CDC582833A970007B484B /* Controllers */,
 			);
 			path = PBMasonry;
+			sourceTree = "<group>";
+		};
+		5CCA305F2BEE516200FECE09 /* PBEncode */ = {
+			isa = PBXGroup;
+			children = (
+				5CCA30622BEE517300FECE09 /* NSData+BBAEncode.h */,
+				5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */,
+				5CCA30602BEE517300FECE09 /* NSString+BBAEncode.h */,
+				5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */,
+			);
+			path = PBEncode;
 			sourceTree = "<group>";
 		};
 		5CCB742529B6039900853864 /* PBProtocol */ = {
@@ -2773,6 +2790,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5CCA305F2BEE516200FECE09 /* PBEncode */,
 				5C98838D282616A000D3AEAD /* CLPlayer */,
 				5CF05889281ABA7F0024B752 /* PBRefresh */,
 				5CF0531C281A92230024B752 /* PBCollectionViewWaterfallLayout */,
@@ -3279,6 +3297,7 @@
 				5CCC10E929CAF89A00F60C38 /* PBCalendarCell.m in Sources */,
 				9575998022FC2415009CA618 /* TFHpple.m in Sources */,
 				9575930522F81E55009CA618 /* PBMemoryController.m in Sources */,
+				5CCA30642BEE517300FECE09 /* NSData+BBAEncode.m in Sources */,
 				5CCB745729B82E2500853864 /* PBServiceDispatch.m in Sources */,
 				9575945422F95120009CA618 /* PBPlayerSlider.m in Sources */,
 				5C2D0614280BFBFC00C775B3 /* PBCellHeightZero.m in Sources */,
@@ -3473,6 +3492,7 @@
 				5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */,
 				5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */,
 				5CCC10D329CAF87800F60C38 /* PBTestEspressosSeatCon.m in Sources */,
+				5CCA30652BEE517300FECE09 /* NSString+BBAEncode.m in Sources */,
 				9533420F22F434C900DC7251 /* PBKVOController.m in Sources */,
 				5C2D062F280BFBFC00C775B3 /* PBYYTextView.m in Sources */,
 				66B6B60229BAD3C700C8725F /* UIWindow+PBCurrentVC.m in Sources */,

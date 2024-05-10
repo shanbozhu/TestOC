@@ -7,6 +7,7 @@
 //
 
 #import "PBNSLogController.h"
+#import "NSString+BBAEncode.h"
 
 @interface PBNSLogController ()
 
@@ -50,6 +51,10 @@
         printBinary(i);
         printf("\n");
     }
+    
+    //
+    NSString *md = @"helloworld!";
+    NSLog(@"[self bdp_md5Hash:md] = %@", [md bdp_md5Hash]);
 }
 
 /**

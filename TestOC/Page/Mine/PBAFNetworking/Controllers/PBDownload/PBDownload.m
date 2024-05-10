@@ -9,7 +9,7 @@
 #import "PBDownload.h"
 #import <AFNetworking/AFNetworking.h>
 #import "PBSandBox.h"
-#import <CommonCrypto/CommonCrypto.h>
+#import "NSString+BBAEncode.h"
 
 @interface PBDownload ()
 
@@ -114,23 +114,13 @@
 }
 
 - (void)createDownloadFileWithURL:(NSString *)urlStr {
-    NSString *fileName = [self md5:urlStr];
+    NSString *fileName = [urlStr bdp_md5Hash];
     // 指定路径创建文件
     self.filePath = [PBSandBox absolutePathWithRelativePath:[NSString stringWithFormat:@"/Documents/PBDownload/%@", fileName]];
     [PBSandBox createFileAtPath:self.filePath];
     
     // 本地已经下载的文件大小
     self.downloadedSize = [PBSandBox fileSizeAtPath:self.filePath];
-}
-
-- (NSString *)md5:(NSString *)info {
-    const char *str = [info cStringUsingEncoding:NSUTF8StringEncoding];
-    unsigned char r[16];
-    CC_MD5(str, (CC_LONG)strlen(str), r);
-    NSString *hash = [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-                      r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
-    
-    return hash;
 }
 
 - (void)dealloc {
