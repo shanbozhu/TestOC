@@ -53,6 +53,26 @@
         printf("\n");
     }
     
+    /**
+     -> 11 21:38:21
+      $ cat file
+     helloworld!
+     -> 11 21:38:31
+      $ md5 file
+     MD5 (file) = 6bfcc6e97ea949b83ffac53b5ca427a3
+     -> 11 21:38:40
+      $ shasum file
+     60e6fd8ac4942dbc6f90d3d6993508e03436e642  file
+     -> 11 21:38:47
+      $ shasum -a 1 file
+     60e6fd8ac4942dbc6f90d3d6993508e03436e642  file
+     -> 11 21:39:17
+      $ shasum -a 256 file
+     8a26bd96ac27d136e96fd5f8894cd30537b4e19320bdae2213534836bd83d22a  file
+     -> 11 21:39:34
+      $ shasum -a 512 file
+     2758cdd405154adb369f7f4f0e87d265a0b8b737d97474079f58795a1de0df13d3013befc9589d83d2beb107c5269d049f491b159bb0cae9b83d284e8e134ea5  file
+     */
     // md5  32个字符/2=16byte 16*8=128bit
     // sha1 40个字符/2=20byte 20*8=160bit
     NSString *str = @"helloworld!";
