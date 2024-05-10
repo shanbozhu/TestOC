@@ -58,6 +58,14 @@
         if (@available(iOS 15, *)) {
             _tableView.sectionHeaderTopPadding = 0;
         }
+        
+        //
+        UILabel *lab = [[UILabel alloc]init];
+        lab.bounds = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, 150);
+        lab.backgroundColor = [UIColor whiteColor];
+        lab.text = @"tableHeaderView";
+        lab.textAlignment = NSTextAlignmentCenter;
+        _tableView.tableHeaderView = lab;
     }
     return _tableView;
 }
@@ -80,7 +88,7 @@
         }
         return 100;
     }
-    return self.frame.size.height - kSectionViewHeight;
+    return self.frame.size.height - kSectionViewHeight - kSectionZeroViewHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,13 +110,19 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        UIView *view = [[UIView alloc]init];
+        view.bounds = CGRectMake(0, 0, APPLICATION_FRAME_WIDTH, kSectionZeroViewHeight);
+        view.backgroundColor = [UIColor redColor];
+        return view;
+    }
     // 选择header
     return self.sectionView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return 0.01;
+        return kSectionZeroViewHeight;
     }
     return kSectionViewHeight;
 }
@@ -136,8 +150,8 @@
     if (scrollView == self.tableView) {
         CGFloat bottomCellOffset = [self.tableView rectForSection:1].origin.y;
         
-        if (scrollView.contentOffset.y >= bottomCellOffset) {
-            scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
+        if (scrollView.contentOffset.y >= (bottomCellOffset - kSectionZeroViewHeight)) {
+            scrollView.contentOffset = CGPointMake(0, bottomCellOffset - kSectionZeroViewHeight);
             if (self.canScroll) {
                 self.canScroll = NO;
                 self.containerCell.objectCanScroll = YES;
