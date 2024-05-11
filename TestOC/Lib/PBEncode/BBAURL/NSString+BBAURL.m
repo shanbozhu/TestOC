@@ -54,4 +54,11 @@
     return resultString.stringByRemovingPercentEncoding;
 }
 
+#pragma mark -
+
+- (NSString *)bdp_percentEncoding {
+    NSCharacterSet *escapedCharacters = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%"];
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:escapedCharacters];
+}
+
 @end

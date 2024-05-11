@@ -52,5 +52,7 @@
  */
 - (NSString *)bdp_decodeURIComponent;
 
+// 返回一个百分号编码的字符串
+- (NSString *)bdp_percentEncoding;
 
 @end

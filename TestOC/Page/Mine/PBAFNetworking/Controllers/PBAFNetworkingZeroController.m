@@ -24,9 +24,8 @@
     
     {
         NSLog(@"[urlStr bdp_encodeURIComponent] = %@", [urlStr bdp_encodeURIComponent]);
-        NSLog(@"[urlStr bdp_encodeURIComponent] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
-        NSCharacterSet *characterSet = [NSCharacterSet URLQueryAllowedCharacterSet];
-        NSLog(@"[NSCharacterSet URLQueryAllowedCharacterSet] = %@", characterSet);
+        NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
+        NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
         
         NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         NSLog(@"url.scheme = %@, url.host = %@, url.port = %@, url.path = %@, url.query = %@", url.scheme, url.host, url.port, url.path, url.query);
