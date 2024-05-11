@@ -12,6 +12,7 @@
 #import "FileHash.h"
 #import "NSString+BBAMD5.h"
 #import "PBSandBox.h"
+#import "NSString+BBAURL.h"
 
 // 参考文档:
 // 一、消息摘要算法MD5、SHA-1 https://www.jianshu.com/p/38c93c677124
@@ -95,6 +96,11 @@
     NSData *data = [NSData bdp_dataWithBase64EncodedString:base64Str];
     NSString *originStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"originStr = %@", originStr); // HELLOWORLD
+    
+    // urlencode
+    NSString *urlStr = @"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02";
+    NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
+    NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
 }
 
 /**
