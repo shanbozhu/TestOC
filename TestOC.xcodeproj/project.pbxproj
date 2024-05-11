@@ -119,6 +119,8 @@
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
 		5CCA30642BEE517300FECE09 /* NSData+BBAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */; };
 		5CCA30652BEE517300FECE09 /* NSString+BBAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */; };
+		5CCA30692BEEFD5400FECE09 /* FileHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30682BEEFD5400FECE09 /* FileHash.m */; };
+		5CCA306D2BEEFD7900FECE09 /* NSString+BBAMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA306B2BEEFD7900FECE09 /* NSString+BBAMD5.m */; };
 		5CCB742129B5B19B00853864 /* PBArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742029B5B19B00853864 /* PBArrayController.m */; };
 		5CCB742429B5B4E700853864 /* PBArrayTraversalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB742329B5B4E700853864 /* PBArrayTraversalController.m */; };
 		5CCB745629B82E2500853864 /* PBServiceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB745229B82E2500853864 /* PBServiceBridge.m */; };
@@ -567,6 +569,10 @@
 		5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BBAEncode.m"; sourceTree = "<group>"; };
 		5CCA30622BEE517300FECE09 /* NSData+BBAEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BBAEncode.h"; sourceTree = "<group>"; };
 		5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBAEncode.m"; sourceTree = "<group>"; };
+		5CCA30672BEEFD5400FECE09 /* FileHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHash.h; sourceTree = "<group>"; };
+		5CCA30682BEEFD5400FECE09 /* FileHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHash.m; sourceTree = "<group>"; };
+		5CCA306B2BEEFD7900FECE09 /* NSString+BBAMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBAMD5.m"; sourceTree = "<group>"; };
+		5CCA306C2BEEFD7900FECE09 /* NSString+BBAMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBAMD5.h"; sourceTree = "<group>"; };
 		5CCB741F29B5B19B00853864 /* PBArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBArrayController.h; sourceTree = "<group>"; };
 		5CCB742029B5B19B00853864 /* PBArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBArrayController.m; sourceTree = "<group>"; };
 		5CCB742229B5B4E700853864 /* PBArrayTraversalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBArrayTraversalController.h; sourceTree = "<group>"; };
@@ -1648,12 +1654,32 @@
 		5CCA305F2BEE516200FECE09 /* PBEncode */ = {
 			isa = PBXGroup;
 			children = (
+				5CCA306A2BEEFD7900FECE09 /* MD5 */,
+				5CCA30662BEEFD5400FECE09 /* FileHash */,
 				5CCA30622BEE517300FECE09 /* NSData+BBAEncode.h */,
 				5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */,
 				5CCA30602BEE517300FECE09 /* NSString+BBAEncode.h */,
 				5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */,
 			);
 			path = PBEncode;
+			sourceTree = "<group>";
+		};
+		5CCA30662BEEFD5400FECE09 /* FileHash */ = {
+			isa = PBXGroup;
+			children = (
+				5CCA30672BEEFD5400FECE09 /* FileHash.h */,
+				5CCA30682BEEFD5400FECE09 /* FileHash.m */,
+			);
+			path = FileHash;
+			sourceTree = "<group>";
+		};
+		5CCA306A2BEEFD7900FECE09 /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				5CCA306C2BEEFD7900FECE09 /* NSString+BBAMD5.h */,
+				5CCA306B2BEEFD7900FECE09 /* NSString+BBAMD5.m */,
+			);
+			path = MD5;
 			sourceTree = "<group>";
 		};
 		5CCB742529B6039900853864 /* PBProtocol */ = {
@@ -3344,6 +3370,7 @@
 				5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */,
 				5C2D0646280BFBFC00C775B3 /* PBAllChannelController.m in Sources */,
 				95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */,
+				5CCA30692BEEFD5400FECE09 /* FileHash.m in Sources */,
 				95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */,
 				5CCC10DB29CAF87800F60C38 /* PBSeatSelectionView.m in Sources */,
 				5C2D0641280BFBFC00C775B3 /* BBACommentContentLabelItem.m in Sources */,
@@ -3458,6 +3485,7 @@
 				5CEFEBA928117E950073BC47 /* PBCellHeightCollectionZeroCell.m in Sources */,
 				9575945222F95120009CA618 /* PBGCDTimerManager.m in Sources */,
 				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,
+				5CCA306D2BEEFD7900FECE09 /* NSString+BBAMD5.m in Sources */,
 				9575998722FC2415009CA618 /* UIImage+ImageEffects.m in Sources */,
 				957593D022F84F20009CA618 /* PBGCDListTwoController.m in Sources */,
 				5C2D0663280C032A00C775B3 /* PBDownload.m in Sources */,

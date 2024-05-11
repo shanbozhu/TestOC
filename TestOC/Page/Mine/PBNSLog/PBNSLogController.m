@@ -9,6 +9,9 @@
 #import "PBNSLogController.h"
 #import "NSString+BBAEncode.h"
 #import "NSData+BBAEncode.h"
+#import "FileHash.h"
+#import "NSString+BBAMD5.h"
+#import "PBSandBox.h"
 
 // 参考文档:
 // 一、消息摘要算法MD5、SHA-1 https://www.jianshu.com/p/38c93c677124
@@ -88,6 +91,12 @@
     NSData *data = [NSData bdp_dataWithBase64EncodedString:base64Str];
     NSString *originStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"originStr = %@", originStr); // helloworld!
+    
+    //
+    NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageStr"];
+    //NSString *filePath = @"file://Users/wsc/Desktop/pms/11/file";
+    NSLog(@"[NSString bdp_fileMD5HashCreateWithPath:filePath] = %@", [NSString bdp_fileMD5HashCreateWithPath:filePath]);
+    NSLog(@"[FileHash md5HashOfFileAtPath:filePath] = %@", [FileHash md5HashOfFileAtPath:filePath]);
 }
 
 /**
