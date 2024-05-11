@@ -53,11 +53,11 @@
 
 - (void)addBtn:(UIButton *)btn {
     // NSString
-    [[PBDataPList sharedDataPList]setValue:@"helloworld" forKey:@"name"];
+    [[PBDataPList sharedDataPList]setValue:HELLOWORLD forKey:@"name"];
     
     // PBStorageText
     PBStorageText *testText = [[PBStorageText alloc]init];
-    testText.name = @"helloworld";
+    testText.name = HELLOWORLD;
     testText.age = 1000;
 
     [[PBDataPList sharedDataPList]setValue:testText forKey:@"testText"];

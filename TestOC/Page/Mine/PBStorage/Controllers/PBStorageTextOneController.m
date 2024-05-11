@@ -44,7 +44,7 @@
 - (void)addBtn:(UIButton *)btn {
     // PBStorageText
     PBStorageText *testText = [[PBStorageText alloc]init];
-    testText.name = @"helloworld";
+    testText.name = HELLOWORLD;
     testText.age = 1000;
     
     NSData *data = [PBArchiver dataWithObject:testText key:@"testText"];

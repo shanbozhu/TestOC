@@ -40,7 +40,7 @@
 }
 
 - (void)addBtn:(UIButton *)btn {
-    NSString *str = @"helloworldhelloworld";
+    NSString *str = HELLOWORLD;
     [str writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 

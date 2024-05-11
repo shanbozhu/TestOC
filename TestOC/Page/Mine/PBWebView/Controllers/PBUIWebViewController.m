@@ -129,7 +129,7 @@
     
     // ocCalljs
     NSString *param0 = @"finishLoad";
-    NSString *param1 = @"helloworld";
+    NSString *param1 = HELLOWORLD;
     NSString *jsStr = [NSString stringWithFormat:@"appCallHtml('%@', '%@')", param0, param1];
     NSString *jsReturn = [webView stringByEvaluatingJavaScriptFromString:jsStr];
     NSLog(@"jsReturn = %@", jsReturn);

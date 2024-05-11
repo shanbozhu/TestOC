@@ -81,7 +81,7 @@
      */
     // md5  32个字符/2=16byte 16*8=128bit
     // sha1 40个字符/2=20byte 20*8=160bit
-    NSString *str = @"helloworld!";
+    NSString *str = HELLOWORLD;
     NSLog(@"[str bdp_md5Hash] = %@", [str bdp_md5Hash]); // 420e57b017066b44e05ea1577f6e2e12
     NSLog(@"[str bdp_sha1Hash] = %@", [str bdp_sha1Hash]); // 3c608e47152c7b175e9d3c171002dc234bb00953
     
@@ -90,7 +90,7 @@
     NSLog(@"base64Str = %@", base64Str); // aGVsbG93b3JsZCE=
     NSData *data = [NSData bdp_dataWithBase64EncodedString:base64Str];
     NSString *originStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"originStr = %@", originStr); // helloworld!
+    NSLog(@"originStr = %@", originStr); // HELLOWORLD
     
     //
     NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageStr"];

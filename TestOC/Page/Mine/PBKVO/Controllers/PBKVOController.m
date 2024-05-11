@@ -37,7 +37,7 @@
     
     PBKVOList *testList = [[PBKVOList alloc]init];
     self.testList = testList;
-    testList.name = @"helloworld";
+    testList.name = HELLOWORLD;
     testList.sex = @"man";
 }
 

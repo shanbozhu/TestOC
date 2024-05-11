@@ -60,7 +60,7 @@
         NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageStr"];
         [PBSandBox createFileAtPath:filePath];
         
-        NSString *str = @"helloworld!";
+        NSString *str = HELLOWORLD;
         [str writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] = %@", [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil]);
     }

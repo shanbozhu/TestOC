@@ -51,7 +51,7 @@
 - (void)addBtn:(UIButton *)btn {
     // PBStorageList
     PBStorageList *testList = [[PBStorageList alloc]init];
-    testList.name = @"helloworld";
+    testList.name = HELLOWORLD;
     testList.age = 100;
     
     for (int i = 0; i < 1000; i++) {

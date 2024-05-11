@@ -51,7 +51,7 @@
 - (void)addBtn:(UIButton *)btn {
     // PBStorageText
     PBStorageText *testText = [[PBStorageText alloc]init];
-    testText.name = @"helloworld";
+    testText.name = HELLOWORLD;
     testText.age = 1000;
     
     for (int i = 0; i < 1000; i++) {

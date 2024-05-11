@@ -53,25 +53,25 @@
 - (void)addBtn:(UIButton *)btn {
     PBDatabase *db = [PBDatabase sharedDatabase];
     
-    //NSString
-    NSString *str = @"helloworld";
+    // NSString
+    NSString *str = HELLOWORLD;
     [db setValue:str forKey:@"str"];
     
-    //NSDictionary
-    NSDictionary *dic = @{@"name":@"helloworld", @"age":@(4)};
+    // NSDictionary
+    NSDictionary *dic = @{@"name":HELLOWORLD, @"age":@(4)};
     [db setValue:dic forKey:@"dic"];
     
-    //NSArray
+    // NSArray
     NSArray *arr = @[@"hello", @"world"];
     [db setValue:arr forKey:@"arr"];
     
-    //NSNumber
+    // NSNumber
     NSNumber *num = @(100);
     [db setValue:num forKey:@"age"];
     
-    //PBStorageList
+    // PBStorageList
     PBStorageList *testList = [[PBStorageList alloc]init];
-    testList.name = @"helloworld";
+    testList.name = HELLOWORLD;
     testList.age = 100;
     
     [db setValue:testList forKey:@"testList"];
@@ -80,23 +80,23 @@
 - (void)selectBtn:(UIButton *)btn {
     PBDatabase *db = [PBDatabase sharedDatabase];
     
-    //NSString
+    // NSString
     NSString *strTmp = [db valueForKey:@"str"];
     NSLog(@"strTmp = %@", strTmp);
     
-    //NSDictionary
+    // NSDictionary
     NSDictionary *dicTmp = [db valueForKey:@"dic"];
     NSLog(@"dicTmp[@\"name\"] = %@, dicTmp[@\"age\"] = %@", dicTmp[@"name"], dicTmp[@"age"]);
     
-    //NSArray
+    // NSArray
     NSArray *arrTmp = [db valueForKey:@"arr"];
     NSLog(@"arrTmp[0] = %@, arrTmp[1] = %@", arrTmp[0], arrTmp[1]);
     
-    //NSNumber
+    // NSNumber
     NSNumber *numTmp = [db valueForKey:@"age"];
     NSLog(@"numTmp = %@", numTmp);
     
-    //PBStorageList
+    // PBStorageList
     PBStorageList *testListTmp = [db valueForKey:@"testList"];
     NSLog(@"testListTmp.name = %@, testListTmp.age = %ld", testListTmp.name, testListTmp.age);
 }
