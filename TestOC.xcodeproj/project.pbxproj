@@ -102,7 +102,6 @@
 		5C8EDCB52A792598008F00D8 /* PBSyntaxMidController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */; };
 		5C8EE0202A810FBE008F00D8 /* PBBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */; };
 		5C96B5B72BEF705E003CC48B /* NSString+BBAURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C96B5B52BEF705E003CC48B /* NSString+BBAURL.m */; };
-		5C96B5B82BEF705E003CC48B /* PunyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C96B5B62BEF705E003CC48B /* PunyCode.m */; };
 		5C9883A0282616A000D3AEAD /* CLImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838E282616A000D3AEAD /* CLImageHelper.swift */; };
 		5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98838F282616A000D3AEAD /* CLPlayer.swift */; };
 		5C9883A2282616A000D3AEAD /* CLFullScreenLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */; };
@@ -551,10 +550,8 @@
 		5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxMidController.m; sourceTree = "<group>"; };
 		5C8EE01E2A810FBE008F00D8 /* PBBlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBlockController.h; sourceTree = "<group>"; };
 		5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBlockController.m; sourceTree = "<group>"; };
-		5C96B5B32BEF705E003CC48B /* PunyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PunyCode.h; sourceTree = "<group>"; };
 		5C96B5B42BEF705E003CC48B /* NSString+BBAURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBAURL.h"; sourceTree = "<group>"; };
 		5C96B5B52BEF705E003CC48B /* NSString+BBAURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBAURL.m"; sourceTree = "<group>"; };
-		5C96B5B62BEF705E003CC48B /* PunyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PunyCode.m; sourceTree = "<group>"; };
 		5C98838E282616A000D3AEAD /* CLImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImageHelper.swift; sourceTree = "<group>"; };
 		5C98838F282616A000D3AEAD /* CLPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayer.swift; sourceTree = "<group>"; };
 		5C988391282616A000D3AEAD /* CLFullScreenLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLFullScreenLeftController.swift; sourceTree = "<group>"; };
@@ -1611,10 +1608,8 @@
 		5C96B5B22BEF705E003CC48B /* BBAURL */ = {
 			isa = PBXGroup;
 			children = (
-				5C96B5B32BEF705E003CC48B /* PunyCode.h */,
 				5C96B5B42BEF705E003CC48B /* NSString+BBAURL.h */,
 				5C96B5B52BEF705E003CC48B /* NSString+BBAURL.m */,
-				5C96B5B62BEF705E003CC48B /* PunyCode.m */,
 			);
 			path = BBAURL;
 			sourceTree = "<group>";
@@ -3371,7 +3366,6 @@
 				5C2D060A280BFBFC00C775B3 /* PBLinkageController.m in Sources */,
 				5CCB745629B82E2500853864 /* PBServiceBridge.m in Sources */,
 				5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */,
-				5C96B5B82BEF705E003CC48B /* PunyCode.m in Sources */,
 				5C2D0610280BFBFC00C775B3 /* PBLinkageContainerCell.m in Sources */,
 				9575934122F82A64009CA618 /* PBStorageTextTwoController.m in Sources */,
 				9533420722F427D200DC7251 /* PBCopy.m in Sources */,
