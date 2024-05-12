@@ -95,6 +95,8 @@
     NSString *filePath = [PBSandBox absolutePathWithRelativePath:PBSTORAGESTR];
     NSLog(@"[NSString bdp_fileMD5HashCreateWithPath:filePath] = %@", [NSString bdp_fileMD5HashCreateWithPath:filePath]); // 420e57b017066b44e05ea1577f6e2e12
     NSLog(@"[FileHash md5HashOfFileAtPath:filePath] = %@", [FileHash md5HashOfFileAtPath:filePath]); // 420e57b017066b44e05ea1577f6e2e12
+    NSString *fileContentStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"[fileContentStr bdp_md5Hash] = %@", [fileContentStr bdp_md5Hash]); // 420e57b017066b44e05ea1577f6e2e12
     
     // base64
     NSString *base64Str = [[str dataUsingEncoding:NSUTF8StringEncoding] bdp_base64Encoding];
