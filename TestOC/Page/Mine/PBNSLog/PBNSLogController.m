@@ -13,6 +13,7 @@
 #import "NSString+BBAMD5.h"
 #import "PBSandBox.h"
 #import "NSString+BBAURL.h"
+#import "PBStorageController.h"
 
 // 参考文档:
 // 一、消息摘要算法MD5、SHA-1 https://www.jianshu.com/p/38c93c677124
@@ -61,24 +62,29 @@
     }
     
     /**
-     -> 11 21:38:21
-      $ cat file
-     helloworld!
-     -> 11 21:38:31
-      $ md5 file
-     MD5 (file) = 6bfcc6e97ea949b83ffac53b5ca427a3
-     -> 11 21:38:40
-      $ shasum file
-     60e6fd8ac4942dbc6f90d3d6993508e03436e642  file
-     -> 11 21:38:47
-      $ shasum -a 1 file
-     60e6fd8ac4942dbc6f90d3d6993508e03436e642  file
-     -> 11 21:39:17
-      $ shasum -a 256 file
-     8a26bd96ac27d136e96fd5f8894cd30537b4e19320bdae2213534836bd83d22a  file
-     -> 11 21:39:34
-      $ shasum -a 512 file
-     2758cdd405154adb369f7f4f0e87d265a0b8b737d97474079f58795a1de0df13d3013befc9589d83d2beb107c5269d049f491b159bb0cae9b83d284e8e134ea5  file
+     -> PBStorage 10:52:02
+      $ pwd
+     /Users/wsc/Library/Developer/CoreSimulator/Devices/6AED87EE-9937-4DF2-936B-A6E41A4F751E/data/Containers/Data/Application/DF8EFF49-AC1C-4588-9EF1-DA06D4BF0A80/Documents/PBStorage
+     -> PBStorage 10:52:16
+      $ ls
+     PBStorageArr    PBStorageData    PBStorageDict    PBStorageStr
+     -> PBStorage 10:52:23
+      $ cat PBStorageStr
+     helloworld!-> PBStorage 10:52:31
+      $ md5 PBStorageStr
+     MD5 (PBStorageStr) = 420e57b017066b44e05ea1577f6e2e12
+     -> PBStorage 10:52:40
+      $ shasum PBStorageStr
+     3c608e47152c7b175e9d3c171002dc234bb00953  PBStorageStr
+     -> PBStorage 10:52:48
+      $ shasum -a 1 PBStorageStr
+     3c608e47152c7b175e9d3c171002dc234bb00953  PBStorageStr
+     -> PBStorage 10:52:57
+      $ shasum -a 256 PBStorageStr
+     98d234db7e91f5ba026a25d0d6f17bc5ee0a347ea2216b0c9de06d43536d49f4  PBStorageStr
+     -> PBStorage 10:53:07
+      $ shasum -a 512 PBStorageStr
+     4e6be41aade78bebbe95662312b581088bd860320ed99cfbe5ae8ab8cf355e95f6bac60220bb0dee2d66613111c18f8ce08319d014fbc07e74001693172551c1  PBStorageStr
      */
     // md5  32个字符/2=16byte 16*8=128bit
     // sha1 40个字符/2=20byte 20*8=160bit
@@ -86,7 +92,7 @@
     NSLog(@"[str bdp_md5Hash] = %@", [str bdp_md5Hash]); // 420e57b017066b44e05ea1577f6e2e12
     NSLog(@"[str bdp_sha1Hash] = %@", [str bdp_sha1Hash]); // 3c608e47152c7b175e9d3c171002dc234bb00953
     
-    NSString *filePath = [PBSandBox absolutePathWithRelativePath:@"/Documents/PBStorage/PBStorageStr"];
+    NSString *filePath = [PBSandBox absolutePathWithRelativePath:PBSTORAGESTR];
     NSLog(@"[NSString bdp_fileMD5HashCreateWithPath:filePath] = %@", [NSString bdp_fileMD5HashCreateWithPath:filePath]); // 420e57b017066b44e05ea1577f6e2e12
     NSLog(@"[FileHash md5HashOfFileAtPath:filePath] = %@", [FileHash md5HashOfFileAtPath:filePath]); // 420e57b017066b44e05ea1577f6e2e12
     
