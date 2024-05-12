@@ -18,9 +18,8 @@
 
 /*************************************调试相关**************************************/
 
-// 切换开发板和稳定版,上线时必须注释 #define kPBDebug
-#define kPBDebug
-#ifdef kPBDebug
+// 切换开发板和稳定版
+#ifdef DEBUG
 #define NSLog(...) printf("------------ %s\n", [[NSString stringWithFormat:__VA_ARGS__] UTF8String])
 #else
 #define NSLog(...)
