@@ -111,7 +111,7 @@
     NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
     
     // Unicode
-    NSString *contentString = @"你好世界";
+    NSString *contentString = @"你好世界ABC";
     NSMutableString *unicodeStr = [NSMutableString string];
     for (int i = 0; i < contentString.length; i++) {
         unichar character = [contentString characterAtIndex:i];
