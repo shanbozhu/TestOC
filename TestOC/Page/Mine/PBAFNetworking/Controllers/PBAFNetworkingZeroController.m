@@ -37,6 +37,11 @@
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
+        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        policy.allowInvalidCertificates = YES; // 是否允许CA不信任的证书通过
+        policy.validatesDomainName = NO; // 是否验证主机名
+        manager.securityPolicy = policy;
+        
         NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
         [paras setValue:@"2.x" forKey:@"AFNetworking"];
         
@@ -58,6 +63,11 @@
         // 直接返回jsonStr, 以二进制形式
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
+        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        policy.allowInvalidCertificates = YES; // 是否允许CA不信任的证书通过
+        policy.validatesDomainName = NO; // 是否验证主机名
+        manager.securityPolicy = policy;
+        
         NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
         [paras setValue:@"3.x" forKey:@"AFNetworking"];
         
@@ -76,6 +86,11 @@
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         // 直接返回jsonDict
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        policy.allowInvalidCertificates = YES; // 是否允许CA不信任的证书通过
+        policy.validatesDomainName = NO; // 是否验证主机名
+        manager.securityPolicy = policy;
         
         NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
         [paras setValue:@"3.x" forKey:@"AFNetworking"];
