@@ -110,10 +110,16 @@
     NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
     NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
     
-    //
-    // \u0068\u0065\u006c\u006c\u006f\u0077\u006f\u0072\u006c\u0064\u0021
-    NSString *aaaa = @"\u6211";;
-    NSLog(@"---%@", aaaa);
+    // Unicode
+    NSString *aaaa = @"\u4e0d\u4f46\u6ca1\u62a2\uff0c\u800c\u4e14\u62a2\u6765\u7684\u4e5f\u9001\u7ed9\u4e86\u4ed6\uff0c\u6700\u540e\u8f66\u4e0a\u4eba\u628a\u81ea\u5df1\u7684\u94b1\u548c\u4e1c\u897f\u62ff\u8d70\u4e86\uff0c\u628a\u4ed6\u4fe9\u629b\u5f03\u4e86\uff01";
+    NSLog(@"aaaa = %@", aaaa);
+    UILabel *aaaaLab = [[UILabel alloc] init];
+    [self.view addSubview:aaaaLab];
+    aaaaLab.frame = CGRectMake(100, 150, 200, 100);
+    aaaaLab.numberOfLines = 0;
+    aaaaLab.text = aaaa;
+    aaaaLab.layer.borderWidth = 1.1;
+    aaaaLab.layer.borderColor = [UIColor redColor].CGColor;
 }
 
 /**
