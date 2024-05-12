@@ -111,7 +111,15 @@
     NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
     
     // Unicode
-    NSString *aaaa = @"\u4e0d\u4f46\u6ca1\u62a2\uff0c\u800c\u4e14\u62a2\u6765\u7684\u4e5f\u9001\u7ed9\u4e86\u4ed6\uff0c\u6700\u540e\u8f66\u4e0a\u4eba\u628a\u81ea\u5df1\u7684\u94b1\u548c\u4e1c\u897f\u62ff\u8d70\u4e86\uff0c\u628a\u4ed6\u4fe9\u629b\u5f03\u4e86\uff01";
+    NSMutableString *unicodeStr = [NSMutableString string];
+    NSString *contentString = @"你好世界";
+    for (int i = 0; i < contentString.length; i++) {
+        unichar character = [contentString characterAtIndex:i];
+        [unicodeStr appendFormat:@"\\u%04x", character];
+    }
+    NSLog(@"unicodeStr = %@", unicodeStr);
+    
+    NSString *aaaa = @"\u4f60\u597d\u4e16\u754c";
     NSLog(@"aaaa = %@", aaaa);
     UILabel *aaaaLab = [[UILabel alloc] init];
     [self.view addSubview:aaaaLab];
