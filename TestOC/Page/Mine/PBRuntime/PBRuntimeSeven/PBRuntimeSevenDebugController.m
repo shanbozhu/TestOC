@@ -15,6 +15,11 @@
 @implementation PBRuntimeSevenDebugController
 
 + (void)load {
+    /**
+     Method:方法(函数),包含selector(函数名,也可以表示为_cmd)和IMP(函数体)
+     selector:函数名
+     IMP:函数体
+     */
     {
         // 方案一
         IMP imp = class_getMethodImplementation(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(run:a:)); // 获取对象方法的IMP

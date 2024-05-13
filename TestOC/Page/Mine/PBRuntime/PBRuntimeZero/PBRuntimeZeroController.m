@@ -13,9 +13,6 @@
 
 @end
 
-/**
- 假设此类中的代码不可修改
- */
 @implementation PBRuntimeZeroController
 
 - (void)viewDidLoad {
