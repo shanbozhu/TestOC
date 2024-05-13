@@ -44,10 +44,12 @@
     // 至少显示12位,前面不足补0,大于12位显示实际位数,小数点后显示3位小数:%012.3lf
     
     //
-    CGFloat height = 18.012345;
+    CGFloat height = 18.0123456789;
+    NSLog(@"height = %lf", height); // 18.012346
     NSLog(@"height = %012.3lf", height); // 00000018.012
     NSLog(@"height = %0.3lf", height); // 18.012
     NSLog(@"height = %.3lf", height); // 18.012
+    NSLog(@"height = %e", height); // 1.801235e+01
     
     //
     NSUInteger aa = 500;
