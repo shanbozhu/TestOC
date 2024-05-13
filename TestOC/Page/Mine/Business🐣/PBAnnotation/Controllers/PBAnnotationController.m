@@ -179,14 +179,14 @@
     }
     
     if ([mapName isEqualToString:@"百度地图"]) {
-        NSString *urlStr = [NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02", self.annotation.coordinate.latitude, self.annotation.coordinate.longitude];
+        NSString *urlStr = [NSString stringWithFormat:kPBBaiduMap, self.annotation.coordinate.latitude, self.annotation.coordinate.longitude];
         urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];
     }
     
     if ([mapName isEqualToString:@"高德地图"]) {
-        NSString *urlStr = [NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2", @"TestOC", @"TestOCAAA", self.annotation.coordinate.latitude, self.annotation.coordinate.longitude];
+        NSString *urlStr = [NSString stringWithFormat:kPBiOSAMap, @"TestOC", @"TestOCAAA", self.annotation.coordinate.latitude, self.annotation.coordinate.longitude];
         urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];

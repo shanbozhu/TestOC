@@ -14,6 +14,7 @@
 #import "PBSandBox.h"
 #import "NSString+BBAURL.h"
 #import "PBStorageController.h"
+#import "PBAnnotationController.h"
 
 // 参考文档:
 // 一、消息摘要算法MD5、SHA-1 https://www.jianshu.com/p/38c93c677124
@@ -111,7 +112,7 @@
     NSLog(@"originStr = %@", originStr); // HELLOWORLD
     
     // urlencode
-    NSString *urlStr = @"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02";
+    NSString *urlStr = kPBBaiduMap;
     NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
     NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
     
