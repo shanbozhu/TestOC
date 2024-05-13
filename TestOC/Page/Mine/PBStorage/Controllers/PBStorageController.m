@@ -57,7 +57,7 @@
     // 文本文件
     {
         // 向空文件中存储字符串
-        NSString *filePath = [PBSandBox absolutePathWithRelativePath:PBSTORAGESTR];
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:kPBSTORAGESTR];
         [PBSandBox createFileAtPath:filePath];
         
         NSString *str = HELLOWORLD;
@@ -66,7 +66,7 @@
     }
     {
         // 向空文件中存储数组
-        NSString *filePath = [PBSandBox absolutePathWithRelativePath:PBSTORAGEARR];
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:kPBSTORAGEARR];
         [PBSandBox createFileAtPath:filePath];
         
         NSArray *arr = @[@"1", @"2"];
@@ -78,7 +78,7 @@
     }
     {
         // 向空文件中存储字典
-        NSString *filePath = [PBSandBox absolutePathWithRelativePath:PBSTORAGEDICT];
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:kPBSTORAGEDICT];
         [PBSandBox createFileAtPath:filePath];
         
         NSDictionary *dict = @{@"1": @"2"};
@@ -92,7 +92,7 @@
     // 二进制文件
     {
         // 向空文件中存储二进制
-        NSString *filePath = [PBSandBox absolutePathWithRelativePath:PBSTORAGEDATA];
+        NSString *filePath = [PBSandBox absolutePathWithRelativePath:kPBSTORAGEDATA];
         [PBSandBox createFileAtPath:filePath];
         
         NSDictionary *dict = @{@"1": @"2", @"3": @"中文"};

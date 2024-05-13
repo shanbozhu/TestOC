@@ -10,10 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define PBSTORAGESTR  @"/Documents/PBStorage/PBStorageStr"
-#define PBSTORAGEARR  @"/Documents/PBStorage/PBStorageArr"
-#define PBSTORAGEDICT @"/Documents/PBStorage/PBStorageDict"
-#define PBSTORAGEDATA @"/Documents/PBStorage/PBStorageData"
+#define kPBSTORAGESTR  @"/Documents/PBStorage/PBStorageStr"
+#define kPBSTORAGEARR  @"/Documents/PBStorage/PBStorageArr"
+#define kPBSTORAGEDICT @"/Documents/PBStorage/PBStorageDict"
+#define kPBSTORAGEDATA @"/Documents/PBStorage/PBStorageData"
 
 @interface PBStorageController : PBBaseController
 
