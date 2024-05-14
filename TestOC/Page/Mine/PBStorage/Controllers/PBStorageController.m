@@ -54,6 +54,58 @@
     // 应用沙盒目录 /var/mobile/Containers/Data/Application/6EB3CEC1-4D63-458E-97DD-3EDD686252D8
     NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
     
+    // 字符串
+    {
+        // 增
+        {
+            NSString *str = HELLOWORLD;
+            NSString *newStr = [str stringByAppendingString:HELLOWORLD];
+            NSLog(@"newStr = %@", newStr);
+        }
+        
+        // 删
+        {
+            NSString *str = HELLOWORLD;
+            NSMutableString *newStr = [NSMutableString string];
+            for (int i = 0; i < str.length; i++) {
+                unichar character = [str characterAtIndex:i];
+                if (character == 'o') {
+                    continue;
+                }
+                [newStr appendString:[NSString stringWithFormat:@"%c", character]];
+            }
+            NSLog(@"newStr = %@", newStr);
+        }
+        
+        // 改
+        {
+            NSString *str = HELLOWORLD;
+            NSMutableString *newStr = [NSMutableString string];
+            for (int i = 0; i < str.length; i++) {
+                unichar character = [str characterAtIndex:i];
+                if (character == 'o') {
+                    [newStr appendString:[NSString stringWithFormat:@"%c", 'O']];
+                } else {
+                    [newStr appendString:[NSString stringWithFormat:@"%c", character]];
+                }
+            }
+            NSLog(@"newStr = %@", newStr);
+        }
+        
+        // 查
+        {
+            NSInteger index = 0;
+            NSString *str = HELLOWORLD;
+            for (int i = 0; i < str.length; i++) {
+                unichar character = [str characterAtIndex:i];
+                if (character == 'o') {
+                    index = i;
+                    NSLog(@"index = %ld", index);
+                }
+            }
+        }
+    }
+    
     // 文本文件
     {
         // 向空文件中存储字符串
