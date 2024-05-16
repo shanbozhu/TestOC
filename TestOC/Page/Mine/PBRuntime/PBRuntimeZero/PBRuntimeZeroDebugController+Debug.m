@@ -16,7 +16,8 @@
     [PBRunTime replaceClass:NSClassFromString(@"PBRuntimeZeroController")
                         sel:NSSelectorFromString(@"run")
                   withClass:self
-                    withSEL:NSSelectorFromString(@"debug_run") isClassMethod:YES];
+                    withSEL:NSSelectorFromString(@"debug_run") 
+              isClassMethod:YES];
 }
 
 + (void)debug_run {
