@@ -7,7 +7,7 @@
 //
 
 #import "PBRuntimeFourController.h"
-#import "PBMethodSwizzling.h"
+#import "PBRunTime.h"
 #include <execinfo.h> /* for backtrace() */
 
 @interface PBRuntimeFourController ()
@@ -46,7 +46,7 @@
 + (void)load {
     Class aClass = NSClassFromString(@"UIDevice");
     if (aClass) {
-        [PBMethodSwizzling replaceClass:[aClass class]
+        [PBRunTime replaceClass:[aClass class]
                                     sel:@selector(systemVersion)
                               withClass:[self class]
                                 withSEL:@selector(debug_systemVersion)

@@ -7,13 +7,13 @@
 //
 
 #import "PBRuntimeZeroDebugController+Debug.h"
-#import "PBMethodSwizzling.h"
+#import "PBRunTime.h"
 
 @implementation PBRuntimeZeroDebugController (Debug)
 
 // +load方法在main函数之前执行
 + (void)load {
-    [PBMethodSwizzling replaceClass:NSClassFromString(@"PBRuntimeZeroController")
+    [PBRunTime replaceClass:NSClassFromString(@"PBRuntimeZeroController")
                                 sel:NSSelectorFromString(@"run")
                           withClass:self
                             withSEL:NSSelectorFromString(@"debug_run") isClassMethod:YES];

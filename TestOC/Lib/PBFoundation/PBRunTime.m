@@ -1,21 +1,21 @@
 //
-//  PBMethodSwizzling.m
+//  PBRunTime.m
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/9/11.
 //  Copyright © 2019年 DaMaiIOS. All rights reserved.
 //
 
-#import "PBMethodSwizzling.h"
+#import "PBRunTime.h"
 #import <objc/runtime.h>
 
 static volatile OSSpinLock lock = OS_SPINLOCK_INIT;
 
-@interface PBMethodSwizzling ()
+@interface PBRunTime ()
 
 @end
 
-@implementation PBMethodSwizzling
+@implementation PBRunTime
 
 + (BOOL)swizzleClassMethods:(Class)cls originalSEL:(SEL)origSel alternativeClass:(Class)altCls alternativeSEL:(SEL)altSel {
     Method originMethod = class_getClassMethod(cls, origSel);

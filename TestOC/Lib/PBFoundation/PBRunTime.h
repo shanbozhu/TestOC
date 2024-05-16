@@ -1,5 +1,5 @@
 //
-//  PBMethodSwizzling.h
+//  PBRunTime.h
 //  TestOC
 //
 //  Created by Zhu,Shanbo on 2019/9/11.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBMethodSwizzling : NSObject
+@interface PBRunTime : NSObject
 
 /**
  交换两个类的类(类对象)方法

@@ -7,7 +7,7 @@
 //
 
 #import "PBRuntimeZeroDebugController.h"
-#import "PBMethodSwizzling.h"
+#import "PBRunTime.h"
 
 /**
  hook:
@@ -24,7 +24,7 @@
 
 // +load方法在main函数之前执行
 + (void)load {
-    [PBMethodSwizzling replaceClass:NSClassFromString(@"PBRuntimeZeroController")
+    [PBRunTime replaceClass:NSClassFromString(@"PBRuntimeZeroController")
                                 sel:NSSelectorFromString(@"func")
                           withClass:self
                             withSEL:NSSelectorFromString(@"debug_func") isClassMethod:YES];
