@@ -47,10 +47,10 @@
     Class aClass = NSClassFromString(@"UIDevice");
     if (aClass) {
         [PBRunTime replaceClass:[aClass class]
-                                    sel:@selector(systemVersion)
-                              withClass:[self class]
-                                withSEL:@selector(debug_systemVersion)
-                          isClassMethod:NO];
+                            sel:@selector(systemVersion)
+                      withClass:[self class]
+                        withSEL:@selector(debug_systemVersion)
+                  isClassMethod:NO];
     }
 }
 

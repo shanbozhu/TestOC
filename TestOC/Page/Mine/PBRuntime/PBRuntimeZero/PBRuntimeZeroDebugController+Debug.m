@@ -14,9 +14,9 @@
 // +load方法在main函数之前执行
 + (void)load {
     [PBRunTime replaceClass:NSClassFromString(@"PBRuntimeZeroController")
-                                sel:NSSelectorFromString(@"run")
-                          withClass:self
-                            withSEL:NSSelectorFromString(@"debug_run") isClassMethod:YES];
+                        sel:NSSelectorFromString(@"run")
+                  withClass:self
+                    withSEL:NSSelectorFromString(@"debug_run") isClassMethod:YES];
 }
 
 + (void)debug_run {
