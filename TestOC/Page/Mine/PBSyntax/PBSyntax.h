@@ -13,10 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - protocol
 
 @protocol PBSyntaxProtocol <NSObject>
+@optional
 
 @property (nonatomic, copy) NSString *name;
 
 - (NSString *)sex;
++ (NSString *)func;
 
 @end
 
@@ -27,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @property (nonatomic, copy) NSString *age;
-
 @property (nonatomic, copy) NSString *height;
 
 // class property
-@property (class) NSString *someString;
+@property (class, nonatomic) NSString *someString; // 类属性存储对象
+@property (class, nonatomic) Class<PBSyntaxProtocol> someCls; // 类属性存储类对象
 
 @end
 

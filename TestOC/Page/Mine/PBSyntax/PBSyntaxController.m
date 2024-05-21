@@ -8,6 +8,7 @@
 
 #import "PBSyntaxController.h"
 #import "PBSyntax.h"
+#import "PBSyntaxSome.h"
 
 #define TestMacro @"PBSyntaxController"
 
@@ -36,6 +37,9 @@
     // class property
     PBSyntax.someString = @"class property";
     NSLog(@"PBSyntax.someString = %@", PBSyntax.someString);
+    
+    PBSyntax.someCls = [PBSyntaxSome class];
+    NSLog(@"[PBSyntax.someCls func] = %@", [PBSyntax.someCls func]);
     
     // TestMacro
     NSLog(@"TestMacro = %@", TestMacro);

@@ -93,6 +93,7 @@
 		5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */; };
 		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
 		5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */; };
+		5C63502C2BFC791900BDA678 /* PBSyntaxSome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */; };
 		5C65C1702BEBB27700F5F1EC /* PBNSLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */; };
 		5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
@@ -534,6 +535,8 @@
 		5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_up_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C516ED12ABAE48F0052E52C /* PBPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBPanGestureRecognizer.h; sourceTree = "<group>"; };
 		5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBPanGestureRecognizer.m; sourceTree = "<group>"; };
+		5C63502A2BFC791900BDA678 /* PBSyntaxSome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxSome.h; sourceTree = "<group>"; };
+		5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxSome.m; sourceTree = "<group>"; };
 		5C65C16E2BEBB27700F5F1EC /* PBNSLogController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBNSLogController.h; sourceTree = "<group>"; };
 		5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBNSLogController.m; sourceTree = "<group>"; };
 		5C6C1B2329EE48C800429589 /* PBAnimationOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationOneController.h; sourceTree = "<group>"; };
@@ -2947,6 +2950,8 @@
 				95C1922F262548400008FD14 /* PBSyntaxController.m */,
 				5C8EDCB32A792598008F00D8 /* PBSyntaxMidController.h */,
 				5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */,
+				5C63502A2BFC791900BDA678 /* PBSyntaxSome.h */,
+				5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */,
 			);
 			path = PBSyntax;
 			sourceTree = "<group>";
@@ -3556,6 +3561,7 @@
 				5C09498C28142D03002CEBC2 /* PBCellHeightCollectionOneCell.m in Sources */,
 				5CCB746629B82E2E00853864 /* PBProtocolController.m in Sources */,
 				9575943722F9510C009CA618 /* PBAVPlayerListView.m in Sources */,
+				5C63502C2BFC791900BDA678 /* PBSyntaxSome.m in Sources */,
 				5CCC10D029CAF87800F60C38 /* PBTestEspressosSCSeatList.m in Sources */,
 				5C8EDCB52A792598008F00D8 /* PBSyntaxMidController.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,

@@ -22,6 +22,7 @@
 
 // class property
 static NSString *_someString;
+static Class<PBSyntaxProtocol> _someCls;
 
 #pragma mark - implementation
 
@@ -30,6 +31,7 @@ static NSString *_someString;
 @synthesize name=_name;
 @dynamic height;
 @dynamic someString;
+@dynamic someCls;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -57,7 +59,7 @@ static NSString *_someString;
 }
 
 //- (NSString *)age {
-//    return _age; // 同时重写导致未声明成员变量
+//    return _age; // 若同时重写,会导致未声明成员变量
 //}
 
 #pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法
@@ -106,6 +108,14 @@ static NSString *_someString;
 
 + (NSString *)someString {
     return _someString;
+}
+
++ (void)setSomeCls:(Class<PBSyntaxProtocol>)someCls {
+    _someCls = someCls;
+}
+
++ (Class<PBSyntaxProtocol>)someCls {
+    return _someCls;
 }
 
 @end
