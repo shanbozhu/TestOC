@@ -95,6 +95,8 @@
 		5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */; };
 		5C63502C2BFC791900BDA678 /* PBSyntaxSome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */; };
 		5C6350442BFF1DFC00BDA678 /* PBDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */; };
+		5C6350482BFF316F00BDA678 /* PBCSBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6350472BFF316F00BDA678 /* PBCSBSController.m */; };
+		5C63504A2BFF328800BDA678 /* pbcsbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6350492BFF328700BDA678 /* pbcsbs.png */; };
 		5C65C1702BEBB27700F5F1EC /* PBNSLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */; };
 		5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
@@ -540,6 +542,9 @@
 		5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxSome.m; sourceTree = "<group>"; };
 		5C6350422BFF1DFB00BDA678 /* PBDelegateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDelegateController.h; sourceTree = "<group>"; };
 		5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDelegateController.m; sourceTree = "<group>"; };
+		5C6350462BFF316F00BDA678 /* PBCSBSController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCSBSController.h; sourceTree = "<group>"; };
+		5C6350472BFF316F00BDA678 /* PBCSBSController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCSBSController.m; sourceTree = "<group>"; };
+		5C6350492BFF328700BDA678 /* pbcsbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbcsbs.png; sourceTree = "<group>"; };
 		5C65C16E2BEBB27700F5F1EC /* PBNSLogController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBNSLogController.h; sourceTree = "<group>"; };
 		5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBNSLogController.m; sourceTree = "<group>"; };
 		5C6C1B2329EE48C800429589 /* PBAnimationOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationOneController.h; sourceTree = "<group>"; };
@@ -1571,6 +1576,16 @@
 				5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */,
 			);
 			path = PBDelegate;
+			sourceTree = "<group>";
+		};
+		5C6350452BFF315F00BDA678 /* PBCSBS */ = {
+			isa = PBXGroup;
+			children = (
+				5C6350492BFF328700BDA678 /* pbcsbs.png */,
+				5C6350462BFF316F00BDA678 /* PBCSBSController.h */,
+				5C6350472BFF316F00BDA678 /* PBCSBSController.m */,
+			);
+			path = PBCSBS;
 			sourceTree = "<group>";
 		};
 		5C65C16D2BEBB26100F5F1EC /* PBNSLog */ = {
@@ -3090,6 +3105,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5C6350452BFF315F00BDA678 /* PBCSBS */,
 				5C65C16D2BEBB26100F5F1EC /* PBNSLog */,
 				5C354ADF2BD0123400A14B95 /* PBAlertController */,
 				5C8EE01D2A810FA4008F00D8 /* PBBlock */,
@@ -3247,6 +3263,7 @@
 				5CCC113B29CB03DE00F60C38 /* pbannotation_info.json in Resources */,
 				952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
+				5C63504A2BFF328800BDA678 /* pbcsbs.png in Resources */,
 				5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */,
 				5CCC111C29CAF92900F60C38 /* PBActivityDetail.js in Resources */,
 				952FF35F265E64A700B0D7DA /* bubble_voicesearch_lottie.json in Resources */,
@@ -3386,6 +3403,7 @@
 				5C6CDC602833AA08007B484B /* PBMasonryView.m in Sources */,
 				5C2D0610280BFBFC00C775B3 /* PBLinkageContainerCell.m in Sources */,
 				9575934122F82A64009CA618 /* PBStorageTextTwoController.m in Sources */,
+				5C6350482BFF316F00BDA678 /* PBCSBSController.m in Sources */,
 				9533420722F427D200DC7251 /* PBCopy.m in Sources */,
 				5C9883A4282616A000D3AEAD /* CLFullScreenRightController.swift in Sources */,
 				5C9883A3282616A000D3AEAD /* CLAnimationTransitioning.swift in Sources */,
