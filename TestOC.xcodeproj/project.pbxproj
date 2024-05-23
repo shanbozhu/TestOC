@@ -94,6 +94,7 @@
 		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
 		5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */; };
 		5C63502C2BFC791900BDA678 /* PBSyntaxSome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */; };
+		5C6350442BFF1DFC00BDA678 /* PBDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */; };
 		5C65C1702BEBB27700F5F1EC /* PBNSLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */; };
 		5C6C1B2529EE48C800429589 /* PBAnimationOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C1B2429EE48C800429589 /* PBAnimationOneController.m */; };
 		5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CDC5B2833A9A6007B484B /* PBMasonryController.m */; };
@@ -537,6 +538,8 @@
 		5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBPanGestureRecognizer.m; sourceTree = "<group>"; };
 		5C63502A2BFC791900BDA678 /* PBSyntaxSome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxSome.h; sourceTree = "<group>"; };
 		5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxSome.m; sourceTree = "<group>"; };
+		5C6350422BFF1DFB00BDA678 /* PBDelegateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDelegateController.h; sourceTree = "<group>"; };
+		5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDelegateController.m; sourceTree = "<group>"; };
 		5C65C16E2BEBB27700F5F1EC /* PBNSLogController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBNSLogController.h; sourceTree = "<group>"; };
 		5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBNSLogController.m; sourceTree = "<group>"; };
 		5C6C1B2329EE48C800429589 /* PBAnimationOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAnimationOneController.h; sourceTree = "<group>"; };
@@ -1559,6 +1562,15 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5C6350412BFF1DC800BDA678 /* PBDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				5C6350422BFF1DFB00BDA678 /* PBDelegateController.h */,
+				5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */,
+			);
+			path = PBDelegate;
 			sourceTree = "<group>";
 		};
 		5C65C16D2BEBB26100F5F1EC /* PBNSLog */ = {
@@ -3081,6 +3093,7 @@
 				5C65C16D2BEBB26100F5F1EC /* PBNSLog */,
 				5C354ADF2BD0123400A14B95 /* PBAlertController */,
 				5C8EE01D2A810FA4008F00D8 /* PBBlock */,
+				5C6350412BFF1DC800BDA678 /* PBDelegate */,
 				5CCB742529B6039900853864 /* PBProtocol */,
 				5C9886672826527A00D3AEAD /* PBMasonry */,
 				5CEFE467281030FE0073BC47 /* PBArrayDelete */,
@@ -3529,6 +3542,7 @@
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,
 				5CCC111929CAF92900F60C38 /* PBTestListCell.m in Sources */,
+				5C6350442BFF1DFC00BDA678 /* PBDelegateController.m in Sources */,
 				957593CC22F84F20009CA618 /* PBGCDListFourController.m in Sources */,
 				5C2D060C280BFBFC00C775B3 /* PBLinkageOneListController.m in Sources */,
 				5CCC117329CB040000F60C38 /* PBQRCodeScanController.m in Sources */,
