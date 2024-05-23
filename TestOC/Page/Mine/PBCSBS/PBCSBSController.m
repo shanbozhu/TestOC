@@ -26,6 +26,21 @@
     [self.view addSubview:bgImageView];
     bgImageView.frame = CGRectMake(10, 100, APPLICATION_FRAME_WIDTH - 20, APPLICATION_FRAME_WIDTH - 20);
     bgImageView.image = [UIImage imageNamed:@"pbcsbs.png"];
+    
+    UILabel *oneLab = [[UILabel alloc] init];
+    [self.view addSubview:oneLab];
+    oneLab.frame = CGRectMake(bgImageView.pb_left, bgImageView.pb_bottom + 20, bgImageView.pb_width, 10);
+    oneLab.text = @"HTML：带布局信息";
+    
+    UILabel *twoLab = [[UILabel alloc] init];
+    [self.view addSubview:twoLab];
+    twoLab.frame = CGRectMake(bgImageView.pb_left, oneLab.pb_bottom + 20, bgImageView.pb_width, 10);
+    twoLab.text = @"JSON：不带布局信息";
+    
+    UILabel *threeLab = [[UILabel alloc] init];
+    [self.view addSubview:threeLab];
+    threeLab.frame = CGRectMake(bgImageView.pb_left, twoLab.pb_bottom + 20, bgImageView.pb_width, 10);
+    threeLab.text = @"蓝线：客户端发请求或浏览器发请求";
 }
 
 @end
