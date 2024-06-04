@@ -115,6 +115,7 @@
     NSString *urlStr = kPBBaiduMap;
     NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
     NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
+    NSLog(@"[urlStr bdp_encodeURIComponent] = %@", [urlStr bdp_encodeURIComponent]);
     
     // Unicode
     NSString *contentString = @"你好世界ABC";

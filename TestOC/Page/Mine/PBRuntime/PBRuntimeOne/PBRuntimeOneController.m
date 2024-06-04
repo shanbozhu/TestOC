@@ -50,7 +50,7 @@
     
     int classCount = objc_getClassList(NULL, 0);
     Class *classes = NULL;
-    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) *classCount);
+    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * classCount);
     classCount = objc_getClassList(classes, classCount);
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
