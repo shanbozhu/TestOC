@@ -124,7 +124,6 @@
             ocReturn = [weakSelf performSelector:selector withObject:jsonDict];
         }
         NSLog(@"ocReturn = %@", ocReturn);
-        return ocReturn;
     };
     
     // ocCalljs
