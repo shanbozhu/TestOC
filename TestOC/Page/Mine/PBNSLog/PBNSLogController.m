@@ -35,6 +35,12 @@
         
         // Good Case
         int *buf = malloc(sizeof(int) * 1024 * 1024);
+        *buf = 1; // 首元素
+        NSLog(@"sizeof(*buf) = %ld", sizeof(*buf)); // sizeof(*buf) = 4
+        NSLog(@"*buf = %d", *buf); // *buf = 1
+        NSLog(@"buf[0] = %d", buf[0]); // buf[0] = 1
+        NSLog(@"buf[1] = %d", buf[1]); // buf[1] = 0
+        NSLog(@"buf[2] = %d", buf[2]); // buf[2] = 0
     }
     {
         int buf[2 * 1024]; // 栈上
