@@ -31,7 +31,7 @@
     // 栈上申请的内存不要超过512K，避免发生栈溢出。
     {
         // Bad Case
-        //int buf[1024 * 1024]; // 会崩溃
+        //int buf[1024 * 1024] = {0}; // 会崩溃
         
         // Good Case
         int *buf = malloc(sizeof(int) * 1024 * 1024);
