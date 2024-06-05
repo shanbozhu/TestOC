@@ -35,15 +35,21 @@
         
         // Good Case
         int *buf = malloc(sizeof(int) * 1024 * 1024);
-        
     }
     {
-        int buf[2 * 1024]; // 栈上
+        int buf[2 * 1024]; // 栈上.未初始化,默认为随机值
         NSLog(@"sizeof(buf) = %ld", sizeof(buf)); // sizeof(buf) = 8192 = 2 * 1024 * 4(B)
         NSLog(@"sizeof(int) = %ld", sizeof(int)); // sizeof(int) = 4
+        
+        *buf = 1; // 首元素
+        NSLog(@"sizeof(*buf) = %ld", sizeof(*buf)); // sizeof(*buf) = 4
+        NSLog(@"*buf = %d", *buf); // *buf = 1
+        NSLog(@"buf[0] = %d", buf[0]); // buf[0] = 1
+        NSLog(@"buf[1] = %d", buf[1]); // buf[1] = 2612098
+        NSLog(@"buf[2] = %d", buf[2]); // buf[2] = 0
     }
     {
-        int *buf = malloc(sizeof(int) * 2 * 1024); // 堆上
+        int *buf = malloc(sizeof(int) * 2 * 1024); // 堆上.未初始化,默认为0
         NSLog(@"sizeof(buf) = %ld", sizeof(buf)); // sizeof(buf) = 8
         NSLog(@"sizeof(int) = %ld", sizeof(int)); // sizeof(int) = 4
         
