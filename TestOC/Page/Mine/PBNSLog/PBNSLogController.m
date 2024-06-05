@@ -55,7 +55,7 @@
     NSLog(@"height = %.10g", height); // 18.01234568
     
     //
-    NSUInteger aa = 500;
+    NSInteger aa = 500;
     NSLog(@"aa = %lx", aa); // 1f4 = 4 * 16^0 + f * 16^1 + 1 * 16^2 = 500
     NSLog(@"aa = %lX", aa); // 1F4
     NSLog(@"aa = %lo", aa); // 764 = 4 * 8^0 + 6 * 8^1 + 7 * 8^2 = 500
@@ -139,24 +139,11 @@
     aaaaLab.layer.borderColor = [UIColor redColor].CGColor;
 }
 
-/**
-void printBinary(unsigned int num) {
-    NSMutableString *binaryString = [NSMutableString string];
-    for (int i = 31; i >= 0; i--) {
-        [binaryString appendString:((num & (1 << i)) ? @"1" : @"0")];
-        if (i % 4 == 0) {
-            [binaryString appendString:@" "];
-        }
-    }
-    NSLog(@"Binary representation of %d is: %@", num, binaryString);
-}
- */
-
-void printBinary(unsigned int num) {
+void printBinary(long num) {
     if (num > 1) {
         printBinary(num >> 1);
     }
-    printf("%d", num & 1);
+    printf("%ld", num & 1);
 }
 
 @end
