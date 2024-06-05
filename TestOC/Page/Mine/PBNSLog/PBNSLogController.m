@@ -116,6 +116,8 @@
     NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
     NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
     NSLog(@"[urlStr bdp_encodeURIComponent] = %@", [urlStr bdp_encodeURIComponent]);
+    NSLog(@"[urlStr bdp_decodeURIComponent] = %@", [urlStr bdp_decodeURIComponent]);
+    NSLog(@"[[urlStr bdp_encodeURIComponent] bdp_decodeURIComponent] = %@", [[urlStr bdp_encodeURIComponent] bdp_decodeURIComponent]);
     
     // Unicode
     NSString *contentString = @"你好世界ABC";
