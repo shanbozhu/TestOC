@@ -28,6 +28,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 栈上申请的内存不要超过512K,避免发生栈溢出。
+    {
+        int buf[2 * 1024] = {0}; // 栈上
+        NSLog(@"sizeof(buf) = %ld", sizeof(buf)); // sizeof(buf) = 8192 = 2 * 1024 * 4(B)
+        NSLog(@"sizeof(int) = %ld", sizeof(int)); // sizeof(int) = 4
+    }
+    {
+        // Bad Case
+        //int buf[1024 * 1024] = {0}; // 栈上, 会崩溃
+        // Good Case
+        int *buf = malloc(sizeof(int) * 1024 * 1024); // 堆上
+        NSLog(@"sizeof(buf) = %ld", sizeof(buf)); // sizeof(buf) = 8
+        NSLog(@"sizeof(int) = %ld", sizeof(int)); // sizeof(int) = 4
+    }
+    
     // 十进制转k进制:除k取余法
     // k进制转十进制:乘以k的次方
     
