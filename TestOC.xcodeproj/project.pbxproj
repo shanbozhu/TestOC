@@ -2357,7 +2357,6 @@
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				66B6B5FC29BAD3C700C8725F /* BBACurrentVC */,
 				95168892261F19C60047D1B2 /* PBTabBarController.h */,
 				95168893261F19C60047D1B2 /* PBTabBarController.m */,
 				95168A01261F1FE70047D1B2 /* PBTabBar.h */,
@@ -2864,6 +2863,7 @@
 		9575995B22FC2415009CA618 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				66B6B5FC29BAD3C700C8725F /* BBACurrentVC */,
 				5CCA305F2BEE516200FECE09 /* PBEncode */,
 				5C98838D282616A000D3AEAD /* CLPlayer */,
 				5CF05889281ABA7F0024B752 /* PBRefresh */,
