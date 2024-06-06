@@ -206,6 +206,7 @@
 		5CEBEAA02C11981C0079CDDF /* UIView+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEA9E2C11981C0079CDDF /* UIView+BBACurrentVC.m */; };
 		5CEBEAA32C1198290079CDDF /* UIViewController+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEAA12C1198290079CDDF /* UIViewController+BBACurrentVC.m */; };
 		5CEBEAA62C1198320079CDDF /* UIWindow+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEAA52C1198320079CDDF /* UIWindow+BBACurrentVC.m */; };
+		5CEBEAAA2C11A0D20079CDDF /* PBRegexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEAA92C11A0D20079CDDF /* PBRegexController.m */; };
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
@@ -723,6 +724,8 @@
 		5CEBEAA22C1198290079CDDF /* UIViewController+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BBACurrentVC.h"; sourceTree = "<group>"; };
 		5CEBEAA42C1198320079CDDF /* UIWindow+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BBACurrentVC.h"; sourceTree = "<group>"; };
 		5CEBEAA52C1198320079CDDF /* UIWindow+BBACurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BBACurrentVC.m"; sourceTree = "<group>"; };
+		5CEBEAA82C11A0D20079CDDF /* PBRegexController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRegexController.h; sourceTree = "<group>"; };
+		5CEBEAA92C11A0D20079CDDF /* PBRegexController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRegexController.m; sourceTree = "<group>"; };
 		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
 		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
 		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
@@ -2226,6 +2229,15 @@
 			path = PBRuntimeTwo;
 			sourceTree = "<group>";
 		};
+		5CEBEAA72C11A08D0079CDDF /* PBRegularExpression */ = {
+			isa = PBXGroup;
+			children = (
+				5CEBEAA82C11A0D20079CDDF /* PBRegexController.h */,
+				5CEBEAA92C11A0D20079CDDF /* PBRegexController.m */,
+			);
+			path = PBRegularExpression;
+			sourceTree = "<group>";
+		};
 		5CEFE1AD280FB43E0073BC47 /* PBCommon */ = {
 			isa = PBXGroup;
 			children = (
@@ -3110,6 +3122,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5CEBEAA72C11A08D0079CDDF /* PBRegularExpression */,
 				5C6350452BFF315F00BDA678 /* PBCSBS */,
 				5C65C16D2BEBB26100F5F1EC /* PBNSLog */,
 				5C354ADF2BD0123400A14B95 /* PBAlertController */,
@@ -3589,6 +3602,7 @@
 				5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */,
 				9575934922F82A93009CA618 /* PBStorageText.m in Sources */,
 				5C2D0615280BFBFC00C775B3 /* PBCellHeightZeroData.m in Sources */,
+				5CEBEAAA2C11A0D20079CDDF /* PBRegexController.m in Sources */,
 				5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
 				B0F04AD01F9E02A600F69AC3 /* PBListView.m in Sources */,
