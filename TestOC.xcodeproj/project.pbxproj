@@ -203,6 +203,9 @@
 		5CD2213529C83B65007C937B /* PBRuntimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213429C83B65007C937B /* PBRuntimeController.m */; };
 		5CD2213929C83DC0007C937B /* PBRuntimeOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */; };
 		5CD2277329C850FD007C937B /* PBRuntimeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */; };
+		5CEBEAA02C11981C0079CDDF /* UIView+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEA9E2C11981C0079CDDF /* UIView+BBACurrentVC.m */; };
+		5CEBEAA32C1198290079CDDF /* UIViewController+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEAA12C1198290079CDDF /* UIViewController+BBACurrentVC.m */; };
+		5CEBEAA62C1198320079CDDF /* UIWindow+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBEAA52C1198320079CDDF /* UIWindow+BBACurrentVC.m */; };
 		5CEFE1B6280FB43E0073BC47 /* PBCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */; };
 		5CEFE1B7280FB43E0073BC47 /* PBCommonController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */; };
 		5CEFE1B8280FB43E0073BC47 /* PBCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFE1B4280FB43E0073BC47 /* PBCommonView.m */; };
@@ -714,6 +717,12 @@
 		5CD2213829C83DC0007C937B /* PBRuntimeOneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeOneController.m; sourceTree = "<group>"; };
 		5CD2277129C850FD007C937B /* PBRuntimeTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeTwoController.h; sourceTree = "<group>"; };
 		5CD2277229C850FD007C937B /* PBRuntimeTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeTwoController.m; sourceTree = "<group>"; };
+		5CEBEA9E2C11981C0079CDDF /* UIView+BBACurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBACurrentVC.m"; sourceTree = "<group>"; };
+		5CEBEA9F2C11981C0079CDDF /* UIView+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBACurrentVC.h"; sourceTree = "<group>"; };
+		5CEBEAA12C1198290079CDDF /* UIViewController+BBACurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BBACurrentVC.m"; sourceTree = "<group>"; };
+		5CEBEAA22C1198290079CDDF /* UIViewController+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BBACurrentVC.h"; sourceTree = "<group>"; };
+		5CEBEAA42C1198320079CDDF /* UIWindow+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BBACurrentVC.h"; sourceTree = "<group>"; };
+		5CEBEAA52C1198320079CDDF /* UIWindow+BBACurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BBACurrentVC.m"; sourceTree = "<group>"; };
 		5CEFE1AF280FB43E0073BC47 /* PBCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCommonController.m; sourceTree = "<group>"; };
 		5CEFE1B0280FB43E0073BC47 /* PBCommonController+Click.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBCommonController+Click.m"; sourceTree = "<group>"; };
 		5CEFE1B1280FB43E0073BC47 /* PBCommonController+Click.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBCommonController+Click.h"; sourceTree = "<group>"; };
@@ -2335,6 +2344,12 @@
 		66B6B5FC29BAD3C700C8725F /* BBACurrentVC */ = {
 			isa = PBXGroup;
 			children = (
+				5CEBEA9F2C11981C0079CDDF /* UIView+BBACurrentVC.h */,
+				5CEBEA9E2C11981C0079CDDF /* UIView+BBACurrentVC.m */,
+				5CEBEAA22C1198290079CDDF /* UIViewController+BBACurrentVC.h */,
+				5CEBEAA12C1198290079CDDF /* UIViewController+BBACurrentVC.m */,
+				5CEBEAA42C1198320079CDDF /* UIWindow+BBACurrentVC.h */,
+				5CEBEAA52C1198320079CDDF /* UIWindow+BBACurrentVC.m */,
 			);
 			path = BBACurrentVC;
 			sourceTree = "<group>";
@@ -3430,6 +3445,7 @@
 				957593DA22F84F20009CA618 /* PBGCDListElevenController.m in Sources */,
 				5CF05324281A92230024B752 /* PBCollectionViewWaterfallLayout.m in Sources */,
 				9575934A22F82A93009CA618 /* PBStorageList.m in Sources */,
+				5CEBEAA32C1198290079CDDF /* UIViewController+BBACurrentVC.m in Sources */,
 				5C0949782812C679002CEBC2 /* PBCellHeightTwoView.m in Sources */,
 				5C2D063E280BFBFC00C775B3 /* PBContentController.m in Sources */,
 				9516BDC824696A390070C282 /* AppDelegate+UniversalLink_URLSchema.m in Sources */,
@@ -3530,6 +3546,7 @@
 				5C2D0612280BFBFC00C775B3 /* PBLinkageDescCell.m in Sources */,
 				9575940922F92785009CA618 /* NSArray+PBSort.m in Sources */,
 				5CCC117129CB040000F60C38 /* PBQRCodeAlbum.m in Sources */,
+				5CEBEAA02C11981C0079CDDF /* UIView+BBACurrentVC.m in Sources */,
 				B0F04ACD1F9E02A600F69AC3 /* PBListTwoController.m in Sources */,
 				9533420422F427C600DC7251 /* PBCopyController.m in Sources */,
 				5CCC111429CAF92900F60C38 /* PBContentModel.m in Sources */,
@@ -3544,6 +3561,7 @@
 				9575998422FC2415009CA618 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				957597B222F99345009CA618 /* PBUniversalLinkController.m in Sources */,
 				952F09CD2660B67300B0D7DA /* PBAnimationBubbleView.m in Sources */,
+				5CEBEAA62C1198320079CDDF /* UIWindow+BBACurrentVC.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
