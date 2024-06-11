@@ -122,7 +122,7 @@
 		5C9883AD282616A000D3AEAD /* CLRotateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */; };
 		5C9883AE282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */; };
 		5C9883AF282616A000D3AEAD /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C98839F282616A000D3AEAD /* CLPlayer.bundle */; };
-		5CAA01B22C187E1B00F059C1 /* BoxfileOnlyHeaderBasicHandle.patch in Resources */ = {isa = PBXBuildFile; fileRef = 5CAA01B12C187E1B00F059C1 /* BoxfileOnlyHeaderBasicHandle.patch */; };
+		5CAA01B22C187E1B00F059C1 /* PBRegex.patch in Resources */ = {isa = PBXBuildFile; fileRef = 5CAA01B12C187E1B00F059C1 /* PBRegex.patch */; };
 		5CCA30642BEE517300FECE09 /* NSData+BBAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */; };
 		5CCA30652BEE517300FECE09 /* NSString+BBAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30632BEE517300FECE09 /* NSString+BBAEncode.m */; };
 		5CCA30692BEEFD5400FECE09 /* FileHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA30682BEEFD5400FECE09 /* FileHash.m */; };
@@ -582,7 +582,7 @@
 		5C98839D282616A000D3AEAD /* CLRotateAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLRotateAnimationView.swift; sourceTree = "<group>"; };
 		5C98839E282616A000D3AEAD /* CLPlayerContentPanelHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPlayerContentPanelHeadView.swift; sourceTree = "<group>"; };
 		5C98839F282616A000D3AEAD /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
-		5CAA01B12C187E1B00F059C1 /* BoxfileOnlyHeaderBasicHandle.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BoxfileOnlyHeaderBasicHandle.patch; sourceTree = "<group>"; };
+		5CAA01B12C187E1B00F059C1 /* PBRegex.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PBRegex.patch; sourceTree = "<group>"; };
 		5CCA30602BEE517300FECE09 /* NSString+BBAEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBAEncode.h"; sourceTree = "<group>"; };
 		5CCA30612BEE517300FECE09 /* NSData+BBAEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BBAEncode.m"; sourceTree = "<group>"; };
 		5CCA30622BEE517300FECE09 /* NSData+BBAEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BBAEncode.h"; sourceTree = "<group>"; };
@@ -2234,7 +2234,7 @@
 		5CEBEAA72C11A08D0079CDDF /* PBRegularExpression */ = {
 			isa = PBXGroup;
 			children = (
-				5CAA01B12C187E1B00F059C1 /* BoxfileOnlyHeaderBasicHandle.patch */,
+				5CAA01B12C187E1B00F059C1 /* PBRegex.patch */,
 				5CEBEAA82C11A0D20079CDDF /* PBRegexController.h */,
 				5CEBEAA92C11A0D20079CDDF /* PBRegexController.m */,
 			);
@@ -3270,7 +3270,7 @@
 				5CCC116329CB040000F60C38 /* qrcode_righttop@2x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
 				5CCC111D29CAF92900F60C38 /* PBActivityDetail.css in Resources */,
-				5CAA01B22C187E1B00F059C1 /* BoxfileOnlyHeaderBasicHandle.patch in Resources */,
+				5CAA01B22C187E1B00F059C1 /* PBRegex.patch in Resources */,
 				5CCC111229CAF92900F60C38 /* pbimage_text.html in Resources */,
 				5CCC116629CB040000F60C38 /* qrcode_lefttop@3x.png in Resources */,
 				B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */,
