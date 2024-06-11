@@ -126,7 +126,7 @@
     [self regexMatch:@"appleabababa123" pattern:@"(ab)\3"];
     
     // test
-    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BoxfileOnlyHeaderBasicHandle" ofType:@"patch"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PBRegex" ofType:@"patch"] encoding:NSUTF8StringEncoding error:nil];
     [self regexMatch:str pattern:@":name => '(.+)',"];
 }
 
