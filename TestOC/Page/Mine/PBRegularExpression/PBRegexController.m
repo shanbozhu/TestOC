@@ -42,6 +42,12 @@
         }
     }
     
+    // \t：水平制表
+    // \n：换行
+    // \r：回车
+    // \f：换页
+    // \v：垂直制表
+    
     // ^：匹配开始位置，^(a)匹配开头必须为a
     [self regexMatch:@"abxuuu2uu我" pattern:@"^(a)"];
     
@@ -95,9 +101,6 @@
     
     // \D：匹配一个非数字字符
     [self regexMatch:@"apple123我" pattern:@"\\D"];
-    
-    // \f：匹配一个换页符
-    // \t：匹配一个制表符
     
     // \n：匹配一个换行符
     [self regexMatch:@"apple\n123我" pattern:@"\\n"];
