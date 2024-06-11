@@ -122,8 +122,6 @@
     // \D：匹配非\d的字符
     // \B：匹配非\b的字符
     
-    
-    
     // \num：num为一个整数，匹配前面的表达式复制num次
     [self regexMatch:@"appleabababa123" pattern:@"(ab)\3"];
     
