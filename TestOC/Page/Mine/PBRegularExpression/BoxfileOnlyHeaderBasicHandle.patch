@@ -1,0 +1,1292 @@
+# 对 layer 做差异化定制的入口
+# 组件删除
+edit_layers! do
+  only_header_vendors_layer = {
+       :value => [
+            {
+               :parent_path => 'BaiduLiteApp/Vendors', # 要删除的组件所在的层级
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'MagicalRecord',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'libyuv',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'OCRText',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'HI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'barcode-detection',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'IVPlayer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDVRRender',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'rtmp',
+                    :value => {
+                        :only_headers => true
+                        }
+                    }
+                ]
+            },
+        ]
+    }
+    edit_layer 'Vendors', only_header_vendors_layer
+
+    only_header_Basics_layer = {
+       :value => [
+            {
+               :parent_path => 'BaiduLiteApp/Basics/Baidu-Vendors',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BaiduWallet_Portal',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDFSGRIM',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'yyopensdk',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'FaceSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'GPUImage',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'VideoProducer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDCloudAVContext',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'VivaceMedia',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'PCDN',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'ARSameSearch',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BaiduMap',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'boost',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'ImageMovingSpeed',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'YMGBehaviorVerify',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'abymg',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Basics/MISBasics',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'MISBasics',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISTools',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISUIKit',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISNetwork',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            }
+        ]
+    }
+    edit_layer 'Basics', only_header_Basics_layer
+
+    only_header_Services_layer = {
+       :value => [
+            {
+               :parent_path => 'BaiduLiteApp/Services/Baidu-Vendors',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'OFPublicSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'walle',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'YYVideoPlayer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BaiduSpeechSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAVoiceSearchCoreSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MagicFilterSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'FMTFaceBeauty',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BaiduAR',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'venus',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'LibArEffectIOS',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'orangefilter',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+		    		{
+                    :name => 'YYThunderEngine',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'hdstatsdk',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'gslb',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'LPFMidPurchase',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'YYULiveSDKBiz',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'YYULiveSDKBase',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'YYULiveSDKBridge',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BaiduRtcPlayer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'ALALiveSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/MISServices',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'MISWalle',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISWalleDataModel',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISModelManager',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISAggregator',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISImageModel',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISService',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'walle',
+                    :value => {
+                        :only_headers => true
+                        }
+                    }
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/AI',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAAIBusinessEngine',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AIFeatures',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AIComponents',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'DuFaceAR',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BaiduARBaseSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/AI/BBASuperResolution',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBASuperResolution',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AIImageSuperResolution',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AIVideoSuperResolution',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/Video/BBACorePlayer',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAYYCorePlayer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/InnerBox',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBABarrageCore',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/Performance/LagMonitor',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'LagMonitor+Yalog',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Services/Feed',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BDPFeedNativeRanking',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+        ]
+    }
+    edit_layer 'Services', only_header_Services_layer
+    only_header_Underlays_layer = {
+       :value => [
+            {
+               :parent_path => 'BaiduLiteApp/Underlays/Search/MISUnderlays',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'MISCommonUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISMediator',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISBeauty',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISPickWordKit',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAThemes',
+                    :value => {
+                        :only_headers => true
+                        }
+                    }
+                ]
+            },
+        ]
+    }
+    edit_layer 'Underlays', only_header_Underlays_layer
+
+    only_header_business_layer = {
+       :value => [
+            {
+               :parent_path => 'BaiduLiteApp/Business/Vertical',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBANovel',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/NetDisk',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BDPanNetdisk',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPanP2PSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPanVastPlayer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Wenku',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'WKNEditor',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEUIKit',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEPassport',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEUIWidgets',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'WKFileManager',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEHades',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDERouter',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDENetworking',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEExtension',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEFoundation',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDEJsonKit',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'SwiftyJSON',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/NewFeature',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAMiniGames',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAWatchBridge',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Vertical/PoiMap',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BDPPoiMap',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPPoiMap+PoiList',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPPoiMap+PoiDetail',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Routine',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBASuspensionBallImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Routine/Sniffer',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBASnifferImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Routine/UserGrowth',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAAppShortcutImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Routine/BBAHomePage',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAHomePage+ServiceCenter',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Interaction',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAMoment',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Interaction/BBAMessage',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BDPIM+Live',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPIM+ChatHN',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search/BBAServiceCenter',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAServiceCenterImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAImageSearch',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAWen',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAWeather',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAMapLanding',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBASport',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBASearchFloatingBall',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAMall',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBASearchFloatingBall',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAServiceCenter',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAVoiceSearch',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAVoiceSearchInterface',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBASearchMusicPlayer',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAHotSearch',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search/BBASearchBEE',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAVoiceStoryBEE',
+                    :value => {
+                        :only_headers => true
+                        }
+                    }
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search/ChatSearch',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'CSResultPage',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBADebugChat',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'CSMultiInput',
+                    :value => {
+                        :only_headers => true
+                        }
+                    }
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search/AISearch',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'AISearch',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AISearch+Bot',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AISearchCommonImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search/MMSImageSDK',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'MMSImageSDKImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MMSImageSDK+InnerBox',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISResultPage',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISGuideTips',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISCNNKit',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Search/MMSImageSDK/MISCategory',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'MISAR',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISARUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISBarCode',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISBarCodeUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISBarCode+Walle',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISFace',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISFaceUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISGeneral',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISGeneralUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISProducts',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISProductsUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISObject',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISObjectUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISQuestion',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISQuestionUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISScanWord',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISScanWordUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISTranslate',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'MISTranslateUI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/UGC/BBACompose',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BDPCompose+POI',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPPhotoEditor',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPPhotoEditorNew',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPAVRecorder',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPVideoPublisher',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/UGC/BBALive',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBALive',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBALiveSDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBALiveFeedPage',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBALiveSupport',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BZDAdvisorySDK',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'AppLauncher+Dye',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Feed/BBAFeed',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBATopicPage',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAFeedFollow',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAFeedNotePage',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAFeedYouth',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPFeedLive',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Feed',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAAlbumImmersion',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Feed/BDPEasyLandingPagesCore',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BDPEasySuperInterestBrowser',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BDPEasyFeedBotBrowser',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/CreativeCenter',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBACreativeCenterSupport',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BJHCreativeCenter',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BJHCreativeCenterImpl',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+            {
+               :parent_path => 'BaiduLiteApp/Business/Assistant',
+               :operation => :edit,
+               :data => [
+                    {
+                    :name => 'BBAAssistantChat',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAAssistantChatCommon',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAAssistantModel',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAAssistantManagement',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAAssistantEventsOp',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                    {
+                    :name => 'BBAAssistantUtils',
+                    :value => {
+                        :only_headers => true
+                        }
+                    },
+                ]
+            },
+        ]
+    }
+    edit_layer 'Business', only_header_business_layer
+end

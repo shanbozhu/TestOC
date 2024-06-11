@@ -124,6 +124,10 @@
     
     // \num：num为一个整数，匹配前面的表达式复制num次
     [self regexMatch:@"appleabababa123" pattern:@"(ab)\3"];
+    
+    // test
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BoxfileOnlyHeaderBasicHandle" ofType:@"patch"] encoding:NSUTF8StringEncoding error:nil];
+    [self regexMatch:str pattern:@":name => '(.+)',"];
 }
 
 @end
