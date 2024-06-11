@@ -45,8 +45,8 @@
     // ^：匹配开始位置，^(a)匹配开头必须为a
     [self regexMatch:@"abxuuu2uu我" pattern:@"^(a)"];
     
-    // $：匹配结束位置，$(a)匹配结尾必须为a
-    [self regexMatch:@"bxuuu2uu我a" pattern:@"$(a)"];
+    // $：匹配结束位置，(a)$匹配结尾必须为a
+    [self regexMatch:@"bxuuu2uu我a" pattern:@"(a)$"];
     
     // *：匹配前面的子表达式零次或多次。如"xu*"这个表达式就能够匹配"x"和"xuu"，子表达式是"u"
     [self regexMatch:@"xuuu2uu我" pattern:@"xu*"];
@@ -64,7 +64,7 @@
     [self regexMatch:@"guooooooo我" pattern:@"guo{2,}"];
     
     // {n,m}：m、n都是非负数，最少匹配n次，最多匹配m次
-    [self regexMatch:@"guooooooo我" pattern:@"guo{2, 5}"];
+    [self regexMatch:@"guooooooo我" pattern:@"guo{2,5}"];
     
     // (pattern)：匹配pattern并获取匹配结果
     [self regexMatch:@"guooooooo我" pattern:@"(uoo)"];
