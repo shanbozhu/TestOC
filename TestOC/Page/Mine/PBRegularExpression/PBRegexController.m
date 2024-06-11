@@ -95,7 +95,8 @@
     // \D：匹配一个非数字字符
     [self regexMatch:@"apple123" pattern:@"\\D"];
     
-    // 匹配一个换页符
+    // \f：匹配一个换页符
+    // \t：匹配一个制表符
     
     // \n：匹配一个换行符
     [self regexMatch:@"apple\n123" pattern:@"\\n"];
