@@ -106,6 +106,9 @@
     
     // \s：匹配任何空白字符
     [self regexMatch:@"apple\r \n123" pattern:@"\\s"];
+    
+    // x|y：匹配x或y
+    [self regexMatch:@"xuguojianguo123" pattern:@"(xu|jian)guo"];
 }
 
 @end
