@@ -31,6 +31,8 @@
     
     // OC 正则表达式详解 https://www.jianshu.com/p/efdf1cd950ab
     // OC 正则表达式的语法及使用 https://www.jianshu.com/p/3fc785cad3d7
+    // 正则表达式30分钟入门教程 https://deerchao.cn/tutorials/regex/regex.htm
+    // learn-regex https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md
     
     // 链接_自动匹配
     {
@@ -41,6 +43,9 @@
             NSLog(@"[str substringWithRange:at.range] = %@", [str substringWithRange:at.range]);
         }
     }
+    
+    // 正则表达式中的元字符包括：
+    // ( [ { \ ^ $ | ) ? * + . ] }
     
     // \t：水平制表
     // \n：换行
