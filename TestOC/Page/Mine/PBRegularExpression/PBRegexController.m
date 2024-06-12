@@ -92,6 +92,7 @@
     
     // \b：匹配一个单词的边界，如"guo\b"可以匹配"xujianguo"中的"guo"
     [self regexMatch:@"xujian 我guo" pattern:@"guo\\b"];
+    [self regexMatch:@"xujian 我guo" pattern:@"\\bxu"];
     
     // \B：匹配非单词边界，如"jian\B"可以匹配"xujianguo"中的"jian"
     [self regexMatch:@"xujianguo我" pattern:@"jian\\B"];
@@ -125,7 +126,7 @@
     // \D：匹配非\d的字符
     // \B：匹配非\b的字符
     
-    // \num：num为一个整数，匹配前面的表达式复制num次
+    // \num：num为一个正整数，匹配前面的表达式复制num次
     [self regexMatch:@"appleabababa123" pattern:@"(ab)\3"];
     
     // test
