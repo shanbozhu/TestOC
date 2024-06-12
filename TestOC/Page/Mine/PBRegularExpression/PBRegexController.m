@@ -48,7 +48,7 @@
     // \f：换页
     // \v：垂直制表
     
-    // ^：匹配开始位置，^(a)匹配开头必须为a
+    // ^：匹配开始位置，^(a)匹配开头必须为a。()括号是分割符的作用。
     [self regexMatch:@"abxuuu2uu我" pattern:@"^(a)"];
     
     // $：匹配结束位置，(a)$匹配结尾必须为a
@@ -132,6 +132,7 @@
     // test
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PBRegex" ofType:@"patch"] encoding:NSUTF8StringEncoding error:nil];
     [self regexMatch:str pattern:@":name => '(.+)',"];
+    [self regexMatch:str pattern:@":name => '.+',"];
 }
 
 @end
