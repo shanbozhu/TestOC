@@ -24,7 +24,7 @@
     
     PBMemoryListMRC *testListMRC = [[PBMemoryListMRC alloc]init];
     
-    PBMemoryListMRC *testListMRC1 = [testListMRC retain]; // retain方法将对象的强指针数加1,返回对象地址.相当于让testListMRC1变为强指针
+    PBMemoryListMRC *testListMRC1 = [testListMRC retain]; // retain方法将对象的强引用数加1,返回对象地址.相当于让testListMRC1变为强引用
     
     PBMemoryListMRCOne *testListMRCOne = [[PBMemoryListMRCOne alloc]init];
     testListMRC1.testListMRCOne = testListMRCOne;
@@ -32,7 +32,7 @@
     [testListMRCOne release];
     
     [testListMRC1 release];
-    [testListMRC release]; // release方法将对象的强指针数减1
+    [testListMRC release]; // release方法将对象的强引用数减1
     
     NSLog(@"先执行[PBMemoryListMRC对象被释放了],在执行此语句");
 }

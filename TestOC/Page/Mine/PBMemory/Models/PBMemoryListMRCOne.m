@@ -18,8 +18,8 @@
 
 - (void)setName:(NSString *)name {
     if (_name != name) {
-        [_name release]; // release方法将_name所指旧对象的强指针数减1
-        _name = [name retain]; // retain方法将name所指新对象的强指针数加1,返回新对象的地址.相当于让_name变为强指针
+        [_name release]; // release方法将_name所指旧对象的强引用数减1
+        _name = [name retain]; // retain方法将name所指新对象的强引用数加1,返回新对象的地址.相当于让_name变为强引用
     }
 }
 

@@ -99,13 +99,13 @@ void setter(id self, SEL _cmd, id newValue) {
     if (!newValue) {
         return;
     }
-    //移除set
+    // 移除set
     NSString *key = [NSStringFromSelector(_cmd) stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
-    //首字母小写
+    // 首字母小写
     NSString *head = [key substringWithRange:NSMakeRange(0, 1)];
     head = [head lowercaseString];
     key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:head];
-    //移除后缀 ":"
+    // 移除后缀 ":"
     key = [key stringByReplacingCharactersInRange:NSMakeRange(key.length - 1, 1) withString:@""];
     objc_setAssociatedObject(self, NSSelectorFromString(key), newValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
