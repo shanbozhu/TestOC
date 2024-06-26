@@ -127,12 +127,12 @@
     [paras setValue:extdata forKey:@"extdata"];
     
     NSMutableDictionary *a_session = [NSMutableDictionary dictionary];
-    [a_session setValue:@"12" forKey:@"123"];
-    [a_session setValue:@"23" forKey:@"234"];
+    [a_session setValue:@"a_12" forKey:@"a_123"];
+    [a_session setValue:@"a_23" forKey:@"a_234"];
     [extdata setValue:a_session forKey:@"a_session"];
     NSMutableArray *b_session = [NSMutableArray array];
-    [b_session addObject:@"12"];
-    [b_session addObject:@"23"];
+    [b_session addObject:@"b_12"];
+    [b_session addObject:@"b_23"];
     [paras setValue:b_session forKey:@"b_session"];
     
     return paras;
@@ -142,13 +142,13 @@
  (lldb) po paras
  {
      "b_session" =     (
-         12,
-         23
+         "b_12",
+         "b_23"
      );
      extdata =     {
          "a_session" =         {
-             123 = 12;
-             234 = 23;
+             "a_123" = "a_12";
+             "a_234" = "a_23";
          };
          "client_logid" = E18940390F8EC74785570C5BE86236F8;
          origin = feed;
@@ -165,7 +165,7 @@
  }
 
  (lldb) po AFQueryStringFromParameters(paras)
- b_session%5B%5D=12&b_session%5B%5D=23&extdata%5Ba_session%5D%5B123%5D=12&extdata%5Ba_session%5D%5B234%5D=23&extdata%5Bclient_logid%5D=E18940390F8EC74785570C5BE86236F8&extdata%5Borigin%5D=feed&extdata%5Bs_session%5D=&key=1762683039161549402&num=20&reply_id=1122518916369402407&request_id=38383331323433303437373531393733353736&source=channel_video_landing&source_type=baidumedia&start=0&topic_id=1000000056224844
+ b_session%5B%5D=b_12&b_session%5B%5D=b_23&extdata%5Ba_session%5D%5Ba_123%5D=a_12&extdata%5Ba_session%5D%5Ba_234%5D=a_23&extdata%5Bclient_logid%5D=E18940390F8EC74785570C5BE86236F8&extdata%5Borigin%5D=feed&extdata%5Bs_session%5D=&key=1762683039161549402&num=20&reply_id=1122518916369402407&request_id=38383331323433303437373531393733353736&source=channel_video_landing&source_type=baidumedia&start=0&topic_id=1000000056224844
 
  (lldb)
  */
