@@ -44,11 +44,11 @@
         policy.validatesDomainName = NO; // 是否验证主机名
         manager.securityPolicy = policy;
         
-        NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
-        [paras setValue:@"2.x" forKey:@"AFNetworking"];
+        NSMutableDictionary *params = [self requestHeaderAndBody:manager];
+        [params setValue:@"2.x" forKey:@"AFNetworking"];
         
         // 请求方式
-        [manager POST:urlStr parameters:paras success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        [manager POST:urlStr parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             [self processDataWithResponseObject:responseObject];
         } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
             NSLog(@"error = %@", error);
@@ -70,11 +70,11 @@
         policy.validatesDomainName = NO; // 是否验证主机名
         manager.securityPolicy = policy;
         
-        NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
-        [paras setValue:@"3.x" forKey:@"AFNetworking"];
+        NSMutableDictionary *params = [self requestHeaderAndBody:manager];
+        [params setValue:@"3.x" forKey:@"AFNetworking"];
         
         // 请求方式
-        [manager POST:urlStr parameters:paras success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [manager POST:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             [self processDataWithResponseObject:responseObject];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"error = %@", error);
@@ -94,11 +94,11 @@
         policy.validatesDomainName = NO; // 是否验证主机名
         manager.securityPolicy = policy;
         
-        NSMutableDictionary *paras = [self requestHeaderAndBody:manager];
-        [paras setValue:@"3.x" forKey:@"AFNetworking"];
+        NSMutableDictionary *params = [self requestHeaderAndBody:manager];
+        [params setValue:@"3.x" forKey:@"AFNetworking"];
         
         // 请求方式
-        [manager POST:urlStr parameters:paras success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [manager POST:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             [self processDataWithResponseObject:responseObject];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"error = %@", error);
@@ -122,20 +122,20 @@
     [requestSerializer setValue:@"https://m.baidu.com/s?tn=zbios&pu=sz%401320_480%2Ccuid%4045D34CA04432AE7FB8F806F7483DB2F06B58F8588FMMDBHJSRH%2Ccua%40828_1792_iphone_1.0.0.10_0%2Ccut%40iPhone11%2C8_12.1.2%2Cosname%40baiduboxapp%2Cosbranch%40i7%2Cctv%401%2Ccfrom%401005640h%2Ccsrc%40bdbox_tserch_txt%2Ccud%40REZCMkE2QjgtNkMzNy00MUEyLTgzRTEtQzMwNzk3RjhFQTRF&bd_page_type=1&word=%E5%BE%AE%E4%BF%A1%E5%B0%86%E6%8E%A8%E5%87%BA%E8%87%AA%E6%9C%89%E8%BE%93%E5%85%A5%E6%B3%95&sa=tkhr_3&ss=001001&network=1_0&from=1005640h&ant_ct=9%2BITzc9iee5%2F3Th%2BMIiUBqEXMBYcqM9RpZIkZRns%2Bxa8lKlxRUWJgmddGTCRGtet&rsv_sug4=8959&rsv_pq=16111291210279897629&oq=%E6%8B%9C%E7%99%BB%E5%90%AF%E7%A8%8B%E5%B0%B1%E8%81%8C%E5%91%8A%E5%88%AB%E6%B3%AA%E6%B4%92%E5%AE%B6%E4%B9%A1" forHTTPHeaderField:@"Referer"];
     
     // 请求体
-    NSMutableDictionary *paras = [NSMutableDictionary dictionary];
-    [paras setValue:@"1000000056224844" forKey:@"topic_id"];
-    [paras setValue:@"channel_video_landing" forKey:@"source"];
-    [paras setValue:@"0" forKey:@"start"];
-    [paras setValue:@"baidumedia" forKey:@"source_type"];
-    [paras setValue:@"1122518916369402407" forKey:@"reply_id"];
-    [paras setValue:@"38383331323433303437373531393733353736" forKey:@"request_id"];
-    [paras setValue:@"1762683039161549402" forKey:@"key"];
-    [paras setValue:@"20" forKey:@"num"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@"1000000056224844" forKey:@"topic_id"];
+    [params setValue:@"channel_video_landing" forKey:@"source"];
+    [params setValue:@"0" forKey:@"start"];
+    [params setValue:@"baidumedia" forKey:@"source_type"];
+    [params setValue:@"1122518916369402407" forKey:@"reply_id"];
+    [params setValue:@"38383331323433303437373531393733353736" forKey:@"request_id"];
+    [params setValue:@"1762683039161549402" forKey:@"key"];
+    [params setValue:@"20" forKey:@"num"];
     NSMutableDictionary *extdata = [NSMutableDictionary dictionary];
     [extdata setValue:@"feed" forKey:@"origin"];
     [extdata setValue:@"E18940390F8EC74785570C5BE86236F8" forKey:@"client_logid"];
     [extdata setValue:@"" forKey:@"s_session"];
-    [paras setValue:extdata forKey:@"extdata"];
+    [params setValue:extdata forKey:@"extdata"];
     
     NSMutableDictionary *a_session = [NSMutableDictionary dictionary];
     [a_session setValue:@"a_12" forKey:@"a_123"];
@@ -144,13 +144,13 @@
     NSMutableArray *b_session = [NSMutableArray array];
     [b_session addObject:@"b_12"];
     [b_session addObject:@"b_23"];
-    [paras setValue:b_session forKey:@"b_session"];
+    [params setValue:b_session forKey:@"b_session"];
     
-    return paras;
+    return params;
 }
 
 /**
- (lldb) po paras
+ (lldb) po params
  {
      "b_session" =     (
          "b_12",
@@ -175,7 +175,7 @@
      "topic_id" = 1000000056224844;
  }
 
- (lldb) po AFQueryStringFromParameters(paras)
+ (lldb) po AFQueryStringFromParameters(params)
  b_session%5B%5D=b_12&b_session%5B%5D=b_23&extdata%5Ba_session%5D%5Ba_123%5D=a_12&extdata%5Ba_session%5D%5Ba_234%5D=a_23&extdata%5Bclient_logid%5D=E18940390F8EC74785570C5BE86236F8&extdata%5Borigin%5D=feed&extdata%5Bs_session%5D=&key=1762683039161549402&num=20&reply_id=1122518916369402407&request_id=38383331323433303437373531393733353736&source=channel_video_landing&source_type=baidumedia&start=0&topic_id=1000000056224844
 
  (lldb)
