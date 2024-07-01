@@ -93,6 +93,7 @@
 		5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */; };
 		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
 		5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */; };
+		5C56F9EE2C326E4600228D85 /* PBAFNetworkingTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C56F9EC2C326E4500228D85 /* PBAFNetworkingTestController.m */; };
 		5C63502C2BFC791900BDA678 /* PBSyntaxSome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */; };
 		5C6350442BFF1DFC00BDA678 /* PBDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6350432BFF1DFB00BDA678 /* PBDelegateController.m */; };
 		5C6350482BFF316F00BDA678 /* PBCSBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6350472BFF316F00BDA678 /* PBCSBSController.m */; };
@@ -541,6 +542,8 @@
 		5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_up_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C516ED12ABAE48F0052E52C /* PBPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBPanGestureRecognizer.h; sourceTree = "<group>"; };
 		5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBPanGestureRecognizer.m; sourceTree = "<group>"; };
+		5C56F9EC2C326E4500228D85 /* PBAFNetworkingTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAFNetworkingTestController.m; sourceTree = "<group>"; };
+		5C56F9ED2C326E4500228D85 /* PBAFNetworkingTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAFNetworkingTestController.h; sourceTree = "<group>"; };
 		5C63502A2BFC791900BDA678 /* PBSyntaxSome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBSyntaxSome.h; sourceTree = "<group>"; };
 		5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBSyntaxSome.m; sourceTree = "<group>"; };
 		5C6350422BFF1DFB00BDA678 /* PBDelegateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDelegateController.h; sourceTree = "<group>"; };
@@ -1385,6 +1388,8 @@
 			children = (
 				5C2D0660280C032A00C775B3 /* PBAFNetworkingController.h */,
 				5C2D0650280C032A00C775B3 /* PBAFNetworkingController.m */,
+				5C56F9ED2C326E4500228D85 /* PBAFNetworkingTestController.h */,
+				5C56F9EC2C326E4500228D85 /* PBAFNetworkingTestController.m */,
 				5C2D064E280C032A00C775B3 /* PBAFNetworkingZeroController.h */,
 				5C2D065E280C032A00C775B3 /* PBAFNetworkingZeroController.m */,
 				5C2D065F280C032A00C775B3 /* PBAFNetworkingTwoController.h */,
@@ -3651,6 +3656,7 @@
 				5C2D0661280C032A00C775B3 /* PBAFNetworkingTwoController.m in Sources */,
 				9575935722F84D28009CA618 /* PBGCDOneController.m in Sources */,
 				5C2D0644280BFBFC00C775B3 /* PBChannelContentView.m in Sources */,
+				5C56F9EE2C326E4600228D85 /* PBAFNetworkingTestController.m in Sources */,
 				5C07E66F2BCD56FC0049758D /* PBRuntimeZeroDebugController.m in Sources */,
 				957597B522F99353009CA618 /* PBUniversalLinkListController.m in Sources */,
 				5C09497C2812C679002CEBC2 /* PBCellHeightFourView.m in Sources */,

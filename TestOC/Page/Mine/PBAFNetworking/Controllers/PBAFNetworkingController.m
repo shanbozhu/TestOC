@@ -9,6 +9,7 @@
 #import "PBAFNetworkingController.h"
 #import "PBAFNetworkingZeroController.h"
 #import "PBAFNetworkingTwoController.h"
+#import "PBAFNetworkingTestController.h"
 
 /**
  单工:单向通信,如"BB机"
@@ -158,6 +159,15 @@
     twoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     twoBtn.backgroundColor = [UIColor grayColor];
     twoBtn.tag = 2;
+    
+    UIButton *threeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:threeBtn];
+    threeBtn.frame = CGRectMake(20, 300, [UIScreen mainScreen].bounds.size.width-40, 40);
+    [threeBtn setTitle:@"测试用! 点我返回Json" forState:UIControlStateNormal];
+    [threeBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    threeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    threeBtn.backgroundColor = [UIColor grayColor];
+    threeBtn.tag = 3;
 }
 
 - (void)btnClick:(UIButton *)btn {
@@ -172,6 +182,12 @@
         testListTwoController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:testListTwoController animated:YES];
         testListTwoController.view.backgroundColor = [UIColor whiteColor];
+    }
+    if (btn.tag == 3) {
+        PBAFNetworkingTestController *testController = [[PBAFNetworkingTestController alloc]init];
+        testController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:testController animated:YES];
+        testController.view.backgroundColor = [UIColor whiteColor];
     }
 }
 
