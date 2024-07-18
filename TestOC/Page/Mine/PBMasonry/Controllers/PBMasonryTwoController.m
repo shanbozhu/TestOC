@@ -28,7 +28,7 @@
     scrollView.backgroundColor = UIColor.greenColor;
     scrollView.pagingEnabled = YES;
     [self.view addSubview:scrollView];
-    //设置 Scrollview 的约束
+    // 设置 Scrollview 的约束
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view).offset(100);
         make.left.mas_equalTo(10);
@@ -67,7 +67,7 @@
         previousView = label;
     }
     
-    //设置将影响到scrollView的contentSize
+    // 设置将影响到scrollView的contentSize
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(previousView.mas_right).offset(20);
     }];

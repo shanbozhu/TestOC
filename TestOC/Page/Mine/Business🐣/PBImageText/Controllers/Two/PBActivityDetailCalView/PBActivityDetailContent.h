@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-//屏幕宽度 屏幕高度
+// 屏幕宽度 屏幕高度
 #define kPBSWidth [UIScreen mainScreen].bounds.size.width
 #define kPBSHeight [UIScreen mainScreen].bounds.size.height
 

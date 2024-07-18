@@ -108,7 +108,7 @@ postDocState('docEnd');\
         }
         
         // 设置请求头，类型如字典
-        // key为Cookie,value为cookieString
+        // key为Cookie，value为cookieString
         [request setValue:cookieString forHTTPHeaderField:@"Cookie"];
     }
     

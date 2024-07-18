@@ -37,7 +37,7 @@
 //    t1.value = [[NSString stringWithFormat:@"@\"%@\"", NSStringFromClass(propertyTypeCls)] UTF8String];
 //    // 添加copy
 //    objc_property_attribute_t t2;
-//    t2.name = "C"; // copy修饰传"C", strong修饰传"&", assign修饰不传
+//    t2.name = "C"; // copy修饰传"C"，strong修饰传"&"，assign修饰不传
 //    t2.value = "";
 //    // 添加nonatomic
 //    objc_property_attribute_t t3;

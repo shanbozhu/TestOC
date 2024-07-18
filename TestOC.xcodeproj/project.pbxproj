@@ -1858,14 +1858,14 @@
 		5CCC10AD29CAF87700F60C38 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC10AE29CAF87700F60C38 /* PBTestEspressosSCSeatList.m */,
-				5CCC10AF29CAF87700F60C38 /* PBTestEspressosSeatCon.h */,
 				5CCC10B029CAF87700F60C38 /* pbseat_selection.json */,
-				5CCC10B129CAF87700F60C38 /* PBTestEspressosSCSLSeatInfo.h */,
+				5CCC10B529CAF87700F60C38 /* PBTestEspressos.h */,
 				5CCC10B229CAF87700F60C38 /* PBTestEspressos.m */,
+				5CCC10AF29CAF87700F60C38 /* PBTestEspressosSeatCon.h */,
 				5CCC10B329CAF87700F60C38 /* PBTestEspressosSeatCon.m */,
 				5CCC10B429CAF87700F60C38 /* PBTestEspressosSCSeatList.h */,
-				5CCC10B529CAF87700F60C38 /* PBTestEspressos.h */,
+				5CCC10AE29CAF87700F60C38 /* PBTestEspressosSCSeatList.m */,
+				5CCC10B129CAF87700F60C38 /* PBTestEspressosSCSLSeatInfo.h */,
 				5CCC10B629CAF87700F60C38 /* PBTestEspressosSCSLSeatInfo.m */,
 			);
 			path = Models;
@@ -1874,8 +1874,8 @@
 		5CCC10B729CAF87700F60C38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC10B829CAF87700F60C38 /* PBSeatSelectionController.m */,
 				5CCC10B929CAF87700F60C38 /* PBSeatSelectionController.h */,
+				5CCC10B829CAF87700F60C38 /* PBSeatSelectionController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1892,19 +1892,19 @@
 			isa = PBXGroup;
 			children = (
 				5CCC10BC29CAF87700F60C38 /* PBSeatsView.h */,
+				5CCC10C429CAF87700F60C38 /* PBSeatsView.m */,
 				5CCC10BD29CAF87700F60C38 /* PBHallLogoView.h */,
+				5CCC10C329CAF87700F60C38 /* PBHallLogoView.m */,
 				5CCC10BE29CAF87700F60C38 /* PBSeatButton.h */,
+				5CCC10C529CAF87700F60C38 /* PBSeatButton.m */,
 				5CCC10BF29CAF87700F60C38 /* PBAppLogoView.h */,
+				5CCC10C929CAF87700F60C38 /* PBAppLogoView.m */,
+				5CCC10C829CAF87700F60C38 /* PBRowIndexView.h */,
 				5CCC10C029CAF87700F60C38 /* PBRowIndexView.m */,
+				5CCC10C729CAF87700F60C38 /* PBCenterLineView.h */,
 				5CCC10C129CAF87700F60C38 /* PBCenterLineView.m */,
 				5CCC10C229CAF87700F60C38 /* PBSeatSelectionView.h */,
-				5CCC10C329CAF87700F60C38 /* PBHallLogoView.m */,
-				5CCC10C429CAF87700F60C38 /* PBSeatsView.m */,
-				5CCC10C529CAF87700F60C38 /* PBSeatButton.m */,
 				5CCC10C629CAF87700F60C38 /* PBSeatSelectionView.m */,
-				5CCC10C729CAF87700F60C38 /* PBCenterLineView.h */,
-				5CCC10C829CAF87700F60C38 /* PBRowIndexView.h */,
-				5CCC10C929CAF87700F60C38 /* PBAppLogoView.m */,
 			);
 			path = PBSeatSelectionView;
 			sourceTree = "<group>";
@@ -1921,8 +1921,8 @@
 			isa = PBXGroup;
 			children = (
 				5CCC10DF29CAF89A00F60C38 /* PBCalendarView */,
-				5CCC10E629CAF89A00F60C38 /* PBCalendarController.m */,
 				5CCC10E729CAF89A00F60C38 /* PBCalendarController.h */,
+				5CCC10E629CAF89A00F60C38 /* PBCalendarController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1930,12 +1930,12 @@
 		5CCC10DF29CAF89A00F60C38 /* PBCalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC10E029CAF89A00F60C38 /* PBCalendarView.h */,
 				5CCC10E129CAF89A00F60C38 /* PBCalendar.h */,
-				5CCC10E229CAF89A00F60C38 /* PBCalendarCell.h */,
-				5CCC10E329CAF89A00F60C38 /* PBCalendarView.m */,
-				5CCC10E429CAF89A00F60C38 /* PBCalendarCell.m */,
 				5CCC10E529CAF89A00F60C38 /* PBCalendar.m */,
+				5CCC10E029CAF89A00F60C38 /* PBCalendarView.h */,
+				5CCC10E329CAF89A00F60C38 /* PBCalendarView.m */,
+				5CCC10E229CAF89A00F60C38 /* PBCalendarCell.h */,
+				5CCC10E429CAF89A00F60C38 /* PBCalendarCell.m */,
 			);
 			path = PBCalendarView;
 			sourceTree = "<group>";
@@ -2113,8 +2113,8 @@
 			isa = PBXGroup;
 			children = (
 				5CCC113129CB03DD00F60C38 /* pbannotation_info.json */,
-				5CCC113229CB03DD00F60C38 /* PBAnnotation.m */,
 				5CCC113329CB03DD00F60C38 /* PBAnnotation.h */,
+				5CCC113229CB03DD00F60C38 /* PBAnnotation.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2131,8 +2131,8 @@
 		5CCC113729CB03DD00F60C38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC113829CB03DD00F60C38 /* PBAnnotationView.m */,
 				5CCC113929CB03DD00F60C38 /* PBAnnotationView.h */,
+				5CCC113829CB03DD00F60C38 /* PBAnnotationView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2157,14 +2157,14 @@
 		5CCC114229CB040000F60C38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5CCC114329CB040000F60C38 /* PBQRCodeScanController.h */,
-				5CCC114429CB040000F60C38 /* PBQRCodeController.h */,
-				5CCC114529CB040000F60C38 /* PBQRCodeContentController.h */,
 				5CCC114629CB040000F60C38 /* PBQRCode */,
-				5CCC115C29CB040000F60C38 /* PBQRCodeGenerateController.h */,
+				5CCC114429CB040000F60C38 /* PBQRCodeController.h */,
 				5CCC115D29CB040000F60C38 /* PBQRCodeController.m */,
+				5CCC114329CB040000F60C38 /* PBQRCodeScanController.h */,
 				5CCC115E29CB040000F60C38 /* PBQRCodeScanController.m */,
+				5CCC114529CB040000F60C38 /* PBQRCodeContentController.h */,
 				5CCC115F29CB040000F60C38 /* PBQRCodeContentController.m */,
+				5CCC115C29CB040000F60C38 /* PBQRCodeGenerateController.h */,
 				5CCC116029CB040000F60C38 /* PBQRCodeGenerateController.m */,
 			);
 			path = Controllers;
@@ -2174,13 +2174,13 @@
 			isa = PBXGroup;
 			children = (
 				5CCC114729CB040000F60C38 /* Res */,
-				5CCC115429CB040000F60C38 /* PBQRCodeGenerate.h */,
 				5CCC115529CB040000F60C38 /* PBQRCodeScan.h */,
-				5CCC115629CB040000F60C38 /* PBQRCodeScanView.h */,
-				5CCC115729CB040000F60C38 /* PBQRCodeAlbum.h */,
 				5CCC115829CB040000F60C38 /* PBQRCodeScan.m */,
+				5CCC115429CB040000F60C38 /* PBQRCodeGenerate.h */,
 				5CCC115929CB040000F60C38 /* PBQRCodeGenerate.m */,
+				5CCC115629CB040000F60C38 /* PBQRCodeScanView.h */,
 				5CCC115A29CB040000F60C38 /* PBQRCodeScanView.m */,
+				5CCC115729CB040000F60C38 /* PBQRCodeAlbum.h */,
 				5CCC115B29CB040000F60C38 /* PBQRCodeAlbum.m */,
 			);
 			path = PBQRCode;

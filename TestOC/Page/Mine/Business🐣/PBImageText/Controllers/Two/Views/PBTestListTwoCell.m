@@ -86,7 +86,7 @@
         
         // 启动图片浏览器
         PBPhotoBrowserView *photoBrowserView = [PBPhotoBrowserView photoBrowserView];
-        photoBrowserView.sourceImageFatherView = nil; //原图的父控件
+        photoBrowserView.sourceImageFatherView = nil; // 原图的父控件
         photoBrowserView.imageCount = self.testTwoEspressos.activityDetailContent.imageArr.count;
         photoBrowserView.currentImageIndex = [tmpArr[1] integerValue];
         photoBrowserView.delegate = self;

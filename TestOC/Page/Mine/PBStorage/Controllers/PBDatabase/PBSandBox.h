@@ -10,7 +10,7 @@
 
 // Linux"所有皆文件"
 // 目录也是一种文件
-// 下面为了符合常识,文件和目录区分处理
+// 下面为了符合常识，文件和目录区分处理
 
 /**
  沙盒目录结构如下:
@@ -160,7 +160,7 @@ typedef enum : NSUInteger {
 /**
  创建指定相对路径的绝对路劲
  
- @param relativePath 相对路径，值为例如：@"/Library/Caches/default_zsb/zsb",@"/Library/Caches/default_zsb/zsb/zsb.plist"
+ @param relativePath 相对路径，值为例如：@"/Library/Caches/default_zsb/zsb"，@"/Library/Caches/default_zsb/zsb/zsb.plist"
  @return 指定路径绝对路劲
  */
 + (NSString *)absolutePathWithRelativePath:(NSString *)relativePath;

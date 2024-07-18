@@ -103,7 +103,7 @@
         promptLab.font = [UIFont boldSystemFontOfSize:13];
         promptLab.textAlignment = NSTextAlignmentCenter;
         promptLab.textColor = [[UIColor whiteColor]colorWithAlphaComponent:0.6];
-        promptLab.text = @"将二维码/条形码放入框内,即可自动扫描";
+        promptLab.text = @"将二维码/条形码放入框内，即可自动扫描";
         
         // 手电筒
         UIButton *flashlightBtn = [UIButton buttonWithType:UIButtonTypeCustom];

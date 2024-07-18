@@ -51,7 +51,7 @@
     // 调用父类方法,找到能够处理event的view
     UIView *result = [super hitTest:point withEvent:event];
     if (result != self) {
-        // 如果这个view不是self,我们给self扩充一下响应范围,这里的扩充范围数据可以自己设置
+        // 如果这个view不是self，我们给self扩充一下响应范围，这里的扩充范围数据可以自己设置
         if ((point.y >= -15) && (point.y < (self.lastBounds.size.height + kPBSliderYBound)) && (point.x >= 0 && point.x < self.bounds.size.width)) {
             result = self;
         }
@@ -63,7 +63,7 @@
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     BOOL result = [super pointInside:point withEvent:event];
     if (result == NO) {
-        // 如果这个点不在self范围内,我们给self扩充一下响应范围,这里的扩充范围数据可以自己设置
+        // 如果这个点不在self范围内，我们给self扩充一下响应范围，这里的扩充范围数据可以自己设置
         if ((point.x >= (self.lastBounds.origin.x - kPBSliderXBound)) && (point.x <= (self.lastBounds.origin.x + self.lastBounds.size.width + kPBSliderXBound)) && (point.y >= -kPBSliderYBound) && (point.y < (self.lastBounds.size.height + kPBSliderYBound))) {
             result = YES;
         }

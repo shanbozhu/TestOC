@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 /**
- 参考文档:
+ 参考文档：
  iOS获取某类的属性/方法/成员变量/协议列表 https://www.jianshu.com/p/c2cf4a9cee74
  iOS获取协议中的全部方法 https://www.jianshu.com/p/ebde55ddc094
  */

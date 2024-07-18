@@ -13,7 +13,7 @@
 
 @interface PBTestEspressos : NSObject<YYModel>
 
-@property (nonatomic, strong) PBTestEspressosSeatCon *seatContainer; //dict
+@property (nonatomic, strong) PBTestEspressosSeatCon *seatContainer; // dict
 
 // 下面属性自己添加的
 @property (nonatomic, strong) NSArray *seats; // 所有座位数组

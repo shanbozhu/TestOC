@@ -11,7 +11,7 @@
 #import "PBQRCodeContentController.h"
 #import "PBQRCodeAlbum.h"
 
-@interface PBQRCodeScanController ()<PBQRCodeScanViewDelegate, PBQRCodeAlbumDelegate>
+@interface PBQRCodeScanController () <PBQRCodeScanViewDelegate, PBQRCodeAlbumDelegate>
 
 @property (nonatomic, weak) PBQRCodeScanView *qrCodeScanView;
 

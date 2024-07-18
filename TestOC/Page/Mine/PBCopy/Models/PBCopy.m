@@ -11,7 +11,7 @@
 @implementation PBCopy
 
 - (id)copyWithZone:(NSZone *)zone {
-    PBCopy *testList = [[self.class allocWithZone:zone]init];
+    PBCopy *testList = [[self.class allocWithZone:zone] init];
 
     testList.name = self.name;
 
@@ -19,7 +19,7 @@
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    PBCopy *testList = [[self.class allocWithZone:zone]init];
+    PBCopy *testList = [[self.class allocWithZone:zone] init];
     
     testList.name = self.name;
     

@@ -105,7 +105,7 @@
         NSArray *sizeArr = [urlStr componentsSeparatedByString:@"."];
         for (NSString *sizeStr in sizeArr) {
             if ([sizeStr rangeOfString:@"_"].location != NSNotFound) {
-                // 返回的url形式为 宽度*高度
+                // 返回的url形式为 宽度 * 高度
                 CGFloat indeedImageWidth = 0, indeedImageHeight = 0;
                 NSArray *tmpArr = [sizeStr componentsSeparatedByString:@"_"];
                 if (tmpArr.count > 1) {
@@ -122,7 +122,7 @@
         NSMutableString *imageHtmlStr = [NSMutableString string];
         //[imageHtmlStr appendFormat:@"src=\"%@\" width=\"%f\" height=\"%f\" onclick=\"imgClick(this.src, this.clientWidth, this.clientHeight, this.getBoundingClientRect().top)\"", urlStr, imageWidth, imageHeight];
         
-        // 高度也可以不用设置,会自动适应
+        // 高度也可以不用设置，会自动适应
         [imageHtmlStr appendFormat:@"src=\"%@\" alt=\"%d\" width=\"%f\" onclick=\"imgClick(this.src, this.alt, this.clientWidth, this.clientHeight, this.getBoundingClientRect().top)\" style=\"height:auto !important;\"", urlStr, i, imageWidth];
         [bodyStr replaceOccurrencesOfString:srcArr[i] withString:imageHtmlStr options:NSCaseInsensitiveSearch range:NSMakeRange(0, bodyStr.length)];
     }

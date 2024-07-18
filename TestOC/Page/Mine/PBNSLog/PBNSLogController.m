@@ -38,7 +38,7 @@
             int *buf = malloc(sizeof(int) * 1024 * 1024);
         }
         {
-            int buf[2 * 1024]; // 栈上.未初始化,默认为随机值
+            int buf[2 * 1024]; // 栈上。未初始化，默认为随机值
             NSLog(@"sizeof(buf) = %ld", sizeof(buf)); // sizeof(buf) = 8192 = 2 * 1024 * 4(B)
             NSLog(@"sizeof(int) = %ld", sizeof(int)); // sizeof(int) = 4
             
@@ -50,7 +50,7 @@
             NSLog(@"buf[2] = %d", buf[2]); // buf[2] = 0
         }
         {
-            int *buf = malloc(sizeof(int) * 2 * 1024); // 堆上.未初始化,默认为0
+            int *buf = malloc(sizeof(int) * 2 * 1024); // 堆上。未初始化，默认为0
             NSLog(@"sizeof(buf) = %ld", sizeof(buf)); // sizeof(buf) = 8
             NSLog(@"sizeof(int) = %ld", sizeof(int)); // sizeof(int) = 4
             
@@ -64,22 +64,22 @@
     }
     
     {
-        // 十进制转k进制:除k取余法
-        // k进制转十进制:乘以k的次方
+        // 十进制转k进制：除k取余法
+        // k进制转十进制：乘以k的次方
         
-        // 有效数字:从第一个不是0的数开始,以下都是
+        // 有效数字：从第一个不是0的数开始，以下都是
         // 00000018.012的有效数字是5
-        // 至多保留10位有效数字:%.10g
+        // 至多保留10位有效数字：%.10g
         
-        // 二进制:0b1111
-        // 十六进制:0x1f4
-        // 八进制:0o764
+        // 二进制：0b1111
+        // 十六进制：0x1f4
+        // 八进制：0o764
         
-        // 十六进制小写:%x
-        // 十六进制大写:%X
-        // 八进制:%o
+        // 十六进制小写：%x
+        // 十六进制大写：%X
+        // 八进制：%o
         
-        // 总共至少显示12位,前面不足补0,大于12位显示实际位数,小数点后显示3位小数:%012.3lf
+        // 总共至少显示12位，前面不足补0，大于12位显示实际位数，小数点后显示3位小数：%012.3lf
         
         //
         CGFloat height = 18.0123456789;
@@ -134,8 +134,8 @@
           $ shasum -a 512 PBStorageStr
          4e6be41aade78bebbe95662312b581088bd860320ed99cfbe5ae8ab8cf355e95f6bac60220bb0dee2d66613111c18f8ce08319d014fbc07e74001693172551c1  PBStorageStr
          */
-        // md5  32个字符/2=16byte 16*8=128bit
-        // sha1 40个字符/2=20byte 20*8=160bit
+        // md5  32个字符 / 2 = 16byte，16 * 8 = 128bit
+        // sha1 40个字符 / 2 = 20byte，20 * 8 = 160bit
         NSString *str = HELLOWORLD;
         NSLog(@"[str bdp_md5Hash] = %@", [str bdp_md5Hash]); // 420e57b017066b44e05ea1577f6e2e12
         NSLog(@"[str bdp_sha1Hash] = %@", [str bdp_sha1Hash]); // 3c608e47152c7b175e9d3c171002dc234bb00953

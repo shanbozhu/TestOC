@@ -18,7 +18,6 @@
 
 @end
 
-
 @implementation PBTestZeroEspressos
 
 - (NSMutableArray *)imageObjs {
@@ -236,7 +235,7 @@
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {
-    NSDictionary *userInfo = @{@"tag":@(tap.view.tag)};
+    NSDictionary *userInfo = @{@"tag" : @(tap.view.tag)};
     [[NSNotificationCenter defaultCenter]postNotificationName:@"hhhh" object:nil userInfo:userInfo];
 }
 

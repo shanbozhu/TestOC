@@ -76,7 +76,7 @@ typedef enum PBPlayerState PBPlayerState;
     _toolBarDisappearTime = toolBarDisappearTime;
     [self destroyToolBarTimer];
     
-    // 定时器,工具条定时消失
+    // 定时器，工具条定时消失
     [[PBGCDTimerManager sharedManager] gcdTimerManagerWithName:kPBTapTimer andTimeInterval:toolBarDisappearTime andDelaySecs:toolBarDisappearTime andQueue:dispatch_get_main_queue() andRepeats:YES andAction:^{
         
     }];
@@ -157,13 +157,13 @@ typedef enum PBPlayerState PBPlayerState;
         }
         
         // 当前时长
-        NSInteger proMin = (NSInteger)CMTimeGetSeconds([self.player currentTime]) / 60; //当前分钟
-        NSInteger proSec = (NSInteger)CMTimeGetSeconds([self.player currentTime]) % 60; //当前秒
+        NSInteger proMin = (NSInteger)CMTimeGetSeconds([self.player currentTime]) / 60; // 当前分钟
+        NSInteger proSec = (NSInteger)CMTimeGetSeconds([self.player currentTime]) % 60; // 当前秒
         self.playerMaskView.currentTimeLab.text = [NSString stringWithFormat:@"%02ld:%02ld", proMin, proSec];
         
         // 总时长
-        NSInteger durMin = (NSInteger)self.playerItem.duration.value / self.playerItem.duration.timescale / 60; //总分钟
-        NSInteger durSec = self.playerItem.duration.value / self.playerItem.duration.timescale % 60; //总秒
+        NSInteger durMin = (NSInteger)self.playerItem.duration.value / self.playerItem.duration.timescale / 60; // 总分钟
+        NSInteger durSec = self.playerItem.duration.value / self.playerItem.duration.timescale % 60; // 总秒
         self.playerMaskView.totalTimeLab.text = [NSString stringWithFormat:@"%02ld:%02ld", durMin, durSec];
     }
 }
@@ -220,7 +220,7 @@ typedef enum PBPlayerState PBPlayerState;
 - (void)bufferingSomeSecond {
     self.state = PBPlayerStateBuffering;
     self.isBuffering = YES;
-    // 需要先暂停一小会儿之后再播放,否则网络状态不好的时候再走,声音播放不出来
+    // 需要先暂停一小会儿之后再播放，否则网络状态不好的时候再走，声音播放不出来
     [self pausePlay];
     // 延时执行
     [self performSelector:@selector(bufferingSomeSecondEnd) withObject:@"Buffering" afterDelay:5];

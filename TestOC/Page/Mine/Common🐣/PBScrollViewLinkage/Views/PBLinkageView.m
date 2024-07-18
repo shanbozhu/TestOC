@@ -157,7 +157,7 @@
                 self.containerCell.objectCanScroll = YES;
             }
         } else {
-            // 内部的ScrollView还没滑动到顶部时,外部的ScrollView不可动
+            // 内部的ScrollView还没滑动到顶部时，外部的ScrollView不可动
             if (!self.canScroll) {
                 scrollView.contentOffset = CGPointMake(0, bottomCellOffset);
             }

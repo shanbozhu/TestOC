@@ -101,7 +101,7 @@ NSArray *allSubviews(UIView *aView) {
             NSLog(@"Lottie动画完成一定要判断animationFinished");
         }
     };
-    [animationView play]; // play需要在completionBlock之后调用,否则completionBlock不会被回调
+    [animationView play]; // play需要在completionBlock之后调用，否则completionBlock不会被回调
     
     // image array
     UIButton *ttsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -228,7 +228,7 @@ NSArray *allSubviews(UIView *aView) {
     UIImage *image = [UIImage imageNamed:@"qipao_right_normal_blue"]; // qipao_up_normal_blue、qipao_right_normal_blue
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
-    NSLog(@"width = %lf, height = %lf", width, height); // 原始尺寸: width = 40.000000, height = 48.000000
+    NSLog(@"width = %lf, height = %lf", width, height); // 原始尺寸：width = 40.000000, height = 48.000000
     
     UIImageView *oneBubble = [[UIImageView alloc] init];
     [self.scrollView addSubview:oneBubble];
@@ -236,7 +236,7 @@ NSArray *allSubviews(UIView *aView) {
     oneBubble.frame = CGRectMake(150, 400, 200, 100);
     
     {
-        // 拉伸中间,不拉伸两边
+        // 拉伸中间，不拉伸两边
         
         // iOS 5.0之前
         // 拉伸图片位置(23, 13, 1, 1)面积为1*1的矩形部分
@@ -246,13 +246,13 @@ NSArray *allSubviews(UIView *aView) {
         //    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34)];
         
         // iOS 6.0+
-        // UIImageResizingModeTile = 0,    拉伸模式,通过拉伸UIEdgeInsets指定的矩形区域来填充图片
-        // UIImageResizingModeStretch = 1, 平铺模式,通过重复显示UIEdgeInsets指定的矩形区域来填充图片
+        // UIImageResizingModeTile = 0,    拉伸模式，通过拉伸UIEdgeInsets指定的矩形区域来填充图片
+        // UIImageResizingModeStretch = 1, 平铺模式，通过重复显示UIEdgeInsets指定的矩形区域来填充图片
         //    oneBubble.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(23, 12, 20, 34) resizingMode:UIImageResizingModeStretch];
     }
     
     {
-        // 拉伸两边,不拉伸中间
+        // 拉伸两边，不拉伸中间
         // https://www.jianshu.com/p/07a4c27af1b7
         
         //    oneBubble.image = [self imageStretchLeftAndRightWithContainerSize:oneBubble.frame.size image:image];
@@ -270,7 +270,7 @@ NSArray *allSubviews(UIView *aView) {
  */
 - (UIImage *)imageStretchLeftAndRightWithContainerSize:(CGSize)imageViewSize image:(UIImage *)originImage {
     CGSize imageSize = originImage.size;
-    CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); //imageView的宽高取整，否则会出现横竖两条缝
+    CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); // imageView的宽高取整，否则会出现横竖两条缝
     
     UIImage *image = [originImage stretchableImageWithLeftCapWidth:floorf(imageSize.width * 0.7) topCapHeight:imageSize.height * 0.5];
     CGFloat tempWidth = (bgSize.width)/2 + (imageSize.width)/2;
@@ -296,7 +296,7 @@ NSArray *allSubviews(UIView *aView) {
  */
 - (UIImage *)imageStretchUpAndDownWithContainerSize:(CGSize)imageViewSize image:(UIImage *)originImage {
     CGSize imageSize = originImage.size;
-    CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); //imageView的宽高取整，否则会出现横竖两条缝
+    CGSize bgSize = CGSizeMake(imageViewSize.width, imageViewSize.height); // imageView的宽高取整，否则会出现横竖两条缝
     
     UIImage *image = [originImage stretchableImageWithLeftCapWidth:floorf(imageSize.width * 0.3) topCapHeight:imageSize.height * 0.7];
     CGFloat tempHeight = (bgSize.height)/2 + (imageSize.height)/2;

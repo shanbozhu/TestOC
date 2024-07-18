@@ -117,7 +117,7 @@
         self.failBtn = failBtn;
         [self addSubview:failBtn];
         failBtn.frame = CGRectMake((self.frame.size.width-200)/2.0, (self.frame.size.height-40)/2.0, 200, 40);
-        [failBtn setTitle:@"加载失败,点击重试" forState:UIControlStateNormal];
+        [failBtn setTitle:@"加载失败，点击重试" forState:UIControlStateNormal];
         [failBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         failBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         failBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -141,7 +141,7 @@
 - (void)setProgressPlayFinishColor:(UIColor *)progressPlayFinishColor {
     _progressPlayFinishColor = progressPlayFinishColor;
     
-    self.slider.minimumTrackTintColor = progressPlayFinishColor; //左边颜色
+    self.slider.minimumTrackTintColor = progressPlayFinishColor; // 左边颜色
 }
 
 - (void)failBtnClick:(UIButton *)btn {

@@ -57,7 +57,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame)==0?0.000001:CGRectGetMaxY(self.lab.frame));
+    return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame) == 0 ? 0.000001 : CGRectGetMaxY(self.lab.frame));
 }
 
 - (void)dealloc {

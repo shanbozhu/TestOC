@@ -131,7 +131,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     return a + b;
 }
 
- // Block不支持嵌套函数
+// Block不支持嵌套函数
 - (NSInteger(^)(NSInteger a, NSInteger b))chooseStepFunction {
     return stepForward:stepBackward:;
 }

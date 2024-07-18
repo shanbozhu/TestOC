@@ -27,7 +27,7 @@
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:addBtn];
     addBtn.frame = CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width-40, 40);
-    [addBtn setTitle:@"添加数据(增,改)" forState:UIControlStateNormal];
+    [addBtn setTitle:@"添加数据(增、改)" forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(addBtn:) forControlEvents:UIControlEventTouchUpInside];
     addBtn.backgroundColor = [UIColor lightGrayColor];
     

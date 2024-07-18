@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     /**
-     参考文档:
+     参考文档：
      iOS-enumerateObjectsUsingBlock跳出循环 https://www.jianshu.com/p/a48c01ac2e36
      iOS enumerateObjectsUsingBlock 循环停止问题 https://blog.csdn.net/LIUXIAOXIAOBO/article/details/111311686
      */
@@ -71,7 +71,7 @@
     
     {
         /**
-         打印如下:
+         打印如下：
          ------------ obj = 1
          ------------ obj = 2
          ------------ tmp = 3
@@ -92,6 +92,5 @@
         NSLog(@"tmp = %@", tmp);
     }
 }
-
 
 @end

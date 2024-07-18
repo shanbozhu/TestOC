@@ -48,12 +48,12 @@
 
 // delegate
 - (void)channelView:(PBChannelHeaderView *)channelView index:(NSInteger)index {
-    // 点击头部,设置内容偏移量
+    // 点击头部，设置内容偏移量
     [self.channelContentView setContentOffsetWithIndex:index];
 }
 
 - (void)channelContentView:(PBChannelContentView *)channelContentView offset:(CGPoint)offset {
-    // 拖动内容,设置头部偏移量
+    // 拖动内容，设置头部偏移量
     [self.channelHeaderView setContentOffsetWithOffset:offset];
 }
 

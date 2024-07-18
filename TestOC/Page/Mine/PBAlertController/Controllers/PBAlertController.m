@@ -119,7 +119,7 @@
     [alertControllerMessageStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0, message.length)];
     [alertControllerMessageStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, message.length)];
     //[alert setValue:alertControllerMessageStr forKey:@"_attributedMessage"];
-    [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"]; // 与上面调用效果相同, 1.通过设置类的私有属性
+    [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"]; // 与上面调用效果相同，1.通过设置类的私有属性
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alert addAction:cancelAction];

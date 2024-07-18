@@ -24,7 +24,7 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     
-//    //Controller
+//    // Controller
 //    PBHomeController *vc0 = [[PBHomeController alloc] init];
 //    vc0.view.backgroundColor = [UIColor whiteColor];
 //    vc0.title = @"首页";
@@ -43,7 +43,7 @@
 //    self.window.rootViewController = nav;
     
     
-    //Controller
+    // Controller
     PBHomeController *vc1 = [[PBHomeController alloc] init];
     UINavigationController *nav1 = [[PBNavigationController alloc] initWithRootViewController:vc1];
     vc1.view.backgroundColor = [UIColor whiteColor];

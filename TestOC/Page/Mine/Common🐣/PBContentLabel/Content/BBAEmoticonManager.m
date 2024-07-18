@@ -85,7 +85,7 @@
         NSMutableAttributedString *emoticon = [[NSMutableAttributedString alloc] initWithAttributedString:resutlt];
         [emoticon addAttributes:attributes range:NSMakeRange(0, resutlt.length)];
         
-        // 替换子串后改变了原字符串的长度,会改变其他子串的初始位置,此时替换会越界.从右往左替换则不会出现此问题,因为其他子串的位置不会因为后面子串的改变而改变.
+        // 替换子串后改变了原字符串的长度，会改变其他子串的初始位置，此时替换会越界。从右往左替换则不会出现此问题，因为其他子串的位置不会因为后面子串的改变而改变。
         [attributedString replaceCharactersInRange:at.range withAttributedString:emoticon];
     }
 }

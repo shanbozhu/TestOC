@@ -11,7 +11,7 @@
 #import "PBMemoryListMRCController.h"
 
 /**
- 语言:
+ 语言：
  1.编译型语言：OC、Swift等。编译成机器语言，操作系统可以直接执行可执行文件。程序自上而下逐行编译，主函数开始执行。
  2.解释型语言(脚本语言)：Python、JavaScript等。解释成中间语言，操作系统需要安装对应虚拟机执行可执行文件。程序自上而下逐行解释、执行。
  
@@ -30,7 +30,7 @@
  TypeScript：安装typescript(含有tsc编译器)编译成JavaScript 或者 安装ts-node(含有tsc编译器编译成JavaScript和node.js解释器)。IDE：WebStorm
  Java：安装JDK(含有javac编译器编译成中间文件和java解释器)。IDE：IDEA
  
- 编译包括:
+ 编译包括：
  预处理 --> 编译 --> 汇编 --> 链接
  
  预处理：对源文件进行处理，生成中间文件。主要进行文件包含和宏替换

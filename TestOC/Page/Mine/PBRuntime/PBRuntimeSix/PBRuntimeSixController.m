@@ -86,7 +86,7 @@
     }
     
     {
-        // 参考文档:
+        // 参考文档：
         // iOS 调用IMP/objc_msgSend详细说明 https://www.jianshu.com/p/e5aef096f967
         
         // 方案五

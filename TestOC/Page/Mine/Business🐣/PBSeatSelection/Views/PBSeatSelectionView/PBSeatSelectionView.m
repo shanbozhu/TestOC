@@ -256,7 +256,7 @@
 }
 
 - (void)seatsView:(PBSeatsView *)seatsView andSeatBtn:(PBSeatButton *)seatBtn {
-    // 只在第一次点击座位到达最大缩放高度后,其他次点击座位不在执行缩放,否则每次都会移动座位居中显示
+    // 只在第一次点击座位到达最大缩放高度后，其他次点击座位不在执行缩放，否则每次都会移动座位居中显示
     if (self.scrollView.maximumZoomScale == self.scrollView.zoomScale) {
         return;
     }
