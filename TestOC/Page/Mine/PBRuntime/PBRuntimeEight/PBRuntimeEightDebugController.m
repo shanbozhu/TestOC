@@ -57,7 +57,7 @@
 //    objc_property_attribute_t t2 = { "C", "" };
 //    objc_property_attribute_t t3 = { "N", "" };
 //    objc_property_attribute_t t4  = { "V", [[NSString stringWithFormat:@"_%@", propertyName] UTF8String] };
-//    objc_property_attribute_t attrs[] = { t1, t2, t3, t4 }; // 结构体数组:数组里面每个元素是结构体.attrs(数组名)存储(指向)数组首元素地址
+//    objc_property_attribute_t attrs[] = { t1, t2, t3, t4 }; // 结构体数组：数组里面每个元素是结构体。attrs数组名存储数组首元素地址
     
     // 写法三
     objc_property_attribute_t *attrs = malloc(4 * sizeof(objc_property_attribute_t));

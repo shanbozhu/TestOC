@@ -40,7 +40,11 @@ static Class<PBSyntaxProtocol> _someCls;
     return self;
 }
 
-#pragma mark - 有@synthesize修饰，可以同时重写setter、getter方法
+#pragma mark - 有@synthesize修饰，可以同时重写getter、setter方法
+
+- (NSString *)name {
+    return _name;
+}
 
 - (void)setName:(NSString *)name {
     // self是方法的默认参数
@@ -48,28 +52,24 @@ static Class<PBSyntaxProtocol> _someCls;
     _name = name;
 }
 
-- (NSString *)name {
-    return _name;
-}
-
-#pragma mark - 没有@synthesize修饰，只能同时重写setter、getter中的一种方法
-
-- (void)setAge:(NSString *)age {
-    _age = age;
-}
+#pragma mark - 没有@synthesize修饰，只能同时重写getter、setter方法中的一种
 
 //- (NSString *)age {
 //    return _age; // 若同时重写，会导致未声明成员变量
 //}
 
-#pragma mark - 有@dynamic修饰，必须同时重写getter、setter方法
-
-- (void)setHeight:(NSString *)height {
-    _height = height;
+- (void)setAge:(NSString *)age {
+    _age = age;
 }
+
+#pragma mark - 有@dynamic修饰，必须同时重写getter、setter方法
 
 - (NSString *)height {
     return _height;
+}
+
+- (void)setHeight:(NSString *)height {
+    _height = height;
 }
 
 #pragma mark - protocol
