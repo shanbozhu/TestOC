@@ -10,7 +10,7 @@
 #import <WebKit/WebKit.h>
 
 /**
- jsCalloc js端语句如下:
+ jsCalloc js端语句如下：
  var nativeDetailUrl = 'damai://V1/ProjectPage?id=' + id;
  window.webkit.messageHandlers.openPage.postMessage(nativeDetailUrl);
  */
@@ -75,7 +75,7 @@ postDocState('docEnd');\
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
         
-        // 对于WebView而言,在发起网络请求时,系统会自动设置UA,无需手动调用 [request setValue:jsonStr forHTTPHeaderField:@"User-Agent"];
+        // 对于WebView而言，在发起网络请求时，系统会自动设置UA，无需手动调用 [request setValue:jsonStr forHTTPHeaderField:@"User-Agent"];
     }
     
     {
@@ -96,10 +96,10 @@ postDocState('docEnd');\
         NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:twoCookie];
         
-        // 拼接Cookie,然后设置Cookie
+        // 拼接Cookie，然后设置Cookie
         NSMutableString *cookieString = [NSMutableString string];
         for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名,拼接特定cookie
+            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名，拼接特定cookie
                 [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
             }
         }
@@ -107,7 +107,7 @@ postDocState('docEnd');\
             [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length - 2, 2)];
         }
         
-        // 设置请求头,类型如字典
+        // 设置请求头，类型如字典
         // key为Cookie,value为cookieString
         [request setValue:cookieString forHTTPHeaderField:@"Cookie"];
     }

@@ -49,7 +49,7 @@
 - (void)deleteElement {
     while (true) {
         if (self.arr.count > 0) {
-            [self.arr removeLastObject]; // 不加锁,线程不安全,会崩溃
+            [self.arr removeLastObject]; // 不加锁，线程不安全，会崩溃
         } else {
             NSLog(@"完成删除");
             return;

@@ -324,8 +324,8 @@ NSArray *allSubviews(UIView *aView) {
     // sw
     UISwitch *sw = [[UISwitch alloc] init];
     [backView addSubview:sw];
-    sw.frame = CGRectMake((backView.frame.size.width - sw.frame.size.width) / 2.0, (backView.frame.size.height - sw.frame.size.height) / 2.0, sw.frame.size.width, sw.frame.size.height); // 先使用sw.frame.size.width,在原有大小上计算居中
-    sw.transform = CGAffineTransformMakeScale(0.76f, 0.73f); // 然后在长宽整体进行缩放,注意先后顺序
+    sw.frame = CGRectMake((backView.frame.size.width - sw.frame.size.width) / 2.0, (backView.frame.size.height - sw.frame.size.height) / 2.0, sw.frame.size.width, sw.frame.size.height); // 先使用sw.frame.size.width，在原有大小上计算居中
+    sw.transform = CGAffineTransformMakeScale(0.76f, 0.73f); // 然后在长宽整体进行缩放，注意先后顺序
     sw.backgroundColor = kPBBackgroundColor;
     sw.onTintColor = [UIColor blueColor];
     sw.thumbTintColor = [UIColor redColor];

@@ -44,8 +44,8 @@
             seatBtn.frame = CGRectMake(j * self.seatBtnWidth, i * self.seatBtnHeight, self.seatBtnWidth, self.seatBtnHeight);
             seatBtn.seatList = seatList;
             
-            // type表示  0过道,1座位,2换行
-            // state表示 0已售,2可选(还可以继续细分不同价格,使用dmPriceId字段继续细分)
+            // type表示  0过道，1座位，2换行
+            // state表示 0已售，2可选(还可以继续细分不同价格，使用dmPriceId字段继续细分)
             if (seatList.type == 0) {
                 continue;
             }

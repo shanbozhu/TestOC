@@ -23,7 +23,7 @@
 @implementation PBSeatSelectionController
 
 - (void)requestData {
-    // 大麦app, 开心麻花.戏剧新体验<婿事待发> 08-25周五19:30场次
+    // 大麦app，开心麻花.戏剧新体验<婿事待发> 08-25周五19:30场次
     
     /**
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

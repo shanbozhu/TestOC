@@ -20,17 +20,17 @@
  /tmp
  
  沙盒文件存储包括[文本文件]和[二进制文件]
- 一.文本文件:
+ 一.文本文件：
  1.向空文件中存储字符串(格式可以为.txt)
- 2.向空文件中存储字典或数组(格式为.plist,oc会自动将字典或数组转换为plist格式的字符串进行存储)
- 操作步骤:
+ 2.向空文件中存储字典或数组(格式为.plist，oc会自动将字典或数组转换为plist格式的字符串进行存储)
+ 操作步骤：
  1.调用 createFileAtPath: 指定路径创建空文件
  2.调用 writeToFile:atomically: 添加内容
  
  二.二进制文件(普通二进制文件或数据库文件)
  a.普通二进制文件
- 向空文件中存储二进制(格式可以为.ar,将任意类型对象归档为二进制数据)
- 操作步骤:
+ 向空文件中存储二进制(格式可以为.ar，将任意类型对象归档为二进制数据)
+ 操作步骤：
  1.调用 createFileAtPath: 指定路径创建空文件
  2.调用 writeToFile:atomically: 添加内容
  b.数据库文件
@@ -48,8 +48,8 @@ typedef enum : NSUInteger {
 
 @interface PBSandBoxFileInfo : NSObject
 
-@property (nonatomic, assign) long long modifyTime; ///< 文件或目录修改时间,单位s
-@property (nonatomic, assign) long long size; ///< 文件或目录体积,单位B
+@property (nonatomic, assign) long long modifyTime; ///< 文件或目录修改时间，单位s
+@property (nonatomic, assign) long long size; ///< 文件或目录体积，单位B
 @property (nonatomic, copy) NSString *path; ///< 文件或目录路径
 @property (nonatomic, assign) PBSandBoxFileType type; ///< 文件或目录类型
 
@@ -121,7 +121,7 @@ typedef enum : NSUInteger {
  删除指定路径的[文件]或[目录]
  
  @param fileOrDirectoryPath 文件或目录的路径
- @return 删除成功返回YES,否则,返回NO
+ @return 删除成功返回YES，否则，返回NO
  */
 + (BOOL)deleteFileOrDirectoryAtPath:(NSString *)fileOrDirectoryPath;
 
@@ -129,7 +129,7 @@ typedef enum : NSUInteger {
  获取指定路径的[目录]大小
  
  @param directoryPath 目录的路径
- @return 该路径的目录大小,单位B
+ @return 该路径的目录大小，单位B
  */
 + (long long)directorySizeAtPath:(NSString *)directoryPath;
 
@@ -137,15 +137,15 @@ typedef enum : NSUInteger {
  获取指定路径的[文件]大小
  
  @param filePath 文件的路径
- @return 该路径的文件大小,单位B
+ @return 该路径的文件大小，单位B
  */
 + (long long)fileSizeAtPath:(NSString *)filePath;
 
 /**
- 指定路径创建[文件],新建空文件
+ 指定路径创建[文件]，新建空文件
  
  @param filePath 文件的路径
- @return 指定路径的文件创建成功返回YES,否则,返回NO
+ @return 指定路径的文件创建成功返回YES，否则，返回NO
  */
 + (BOOL)createFileAtPath:(NSString *)filePath;
 
@@ -153,14 +153,14 @@ typedef enum : NSUInteger {
  指定路径创建[目录]
  
  @param directoryPath 目录的路径
- @return 指定路径的目录创建成功返回YES,否则,返回NO
+ @return 指定路径的目录创建成功返回YES，否则，返回NO
  */
 + (BOOL)createDirectoryAtPath:(NSString *)directoryPath;
 
 /**
  创建指定相对路径的绝对路劲
  
- @param relativePath 相对路径,值为例如: @"/Library/Caches/default_zsb/zsb",@"/Library/Caches/default_zsb/zsb/zsb.plist"
+ @param relativePath 相对路径，值为例如：@"/Library/Caches/default_zsb/zsb",@"/Library/Caches/default_zsb/zsb/zsb.plist"
  @return 指定路径绝对路劲
  */
 + (NSString *)absolutePathWithRelativePath:(NSString *)relativePath;

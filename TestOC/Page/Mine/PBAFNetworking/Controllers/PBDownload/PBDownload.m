@@ -67,7 +67,7 @@
     [manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
         NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
         if (urlResponse.statusCode == 200) { // 状态码为206是服务器支持分段下载文件
-            // 状态码为200是服务器不支持分段下载文件,每个下载任务只能从0开始至全部下载
+            // 状态码为200是服务器不支持分段下载文件，每个下载任务只能从0开始至全部下载
             [PBSandBox deleteFileOrDirectoryAtPath:weakSelf.filePath];
             [PBSandBox createFileAtPath:weakSelf.filePath];
             weakSelf.downloadedSize = 0;
@@ -95,7 +95,7 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     
-    // 设置http请求头中的Range,通知服务器下载文件的哪一段,从已经下载的大小到整个文件
+    // 设置http请求头中的Range，通知服务器下载文件的哪一段，从已经下载的大小到整个文件
     NSString *range = [NSString stringWithFormat:@"bytes=%lld-", self.downloadedSize];
     [request setValue:range forHTTPHeaderField:@"Range"];
     

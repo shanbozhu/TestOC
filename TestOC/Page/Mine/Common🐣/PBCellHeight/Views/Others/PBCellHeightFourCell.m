@@ -28,7 +28,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         YYLabel *lab = [[YYLabel alloc] init];
         self.lab = lab;
-        [self.contentView addSubview:lab]; // 必须先调用addSubview,在设置约束,否则会崩溃
+        [self.contentView addSubview:lab]; // 必须先调用addSubview，在设置约束，否则会崩溃
         [self.lab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(20);
             make.top.mas_equalTo(20);

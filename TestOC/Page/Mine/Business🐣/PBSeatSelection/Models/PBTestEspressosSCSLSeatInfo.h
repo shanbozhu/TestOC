@@ -18,6 +18,6 @@
 @property (nonatomic, assign) NSInteger tId;
 @property (nonatomic, assign) NSInteger fTId;
 @property (nonatomic, assign) NSInteger dmPriceId;
-@property (nonatomic, assign) NSInteger state; // 0已售,2可选(还可以继续细分不同价格)
+@property (nonatomic, assign) NSInteger state; // 0已售，2可选(还可以继续细分不同价格)
 
 @end

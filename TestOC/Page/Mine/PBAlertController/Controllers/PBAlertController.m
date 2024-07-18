@@ -130,7 +130,7 @@
     
     
     //UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 1.通过设置类的私有属性
-    UILabel *messageLabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1]; // 2.通过遍历视图的所有子视图,找到要修改的视图
+    UILabel *messageLabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1]; // 2.通过遍历视图的所有子视图，找到要修改的视图
     NSLog(@"messageLabel = %@", messageLabel);
     messageLabel.layer.borderColor = [UIColor blueColor].CGColor;
     messageLabel.layer.borderWidth = 1.1;

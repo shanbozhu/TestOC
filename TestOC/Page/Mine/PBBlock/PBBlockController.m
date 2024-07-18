@@ -106,7 +106,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
  3.repetitions(task: { (a: Int) in
      print(a)
  })
- // 尾随闭包:闭包移至小括号的外面
+ // 尾随闭包：闭包移至小括号的外面
  3.repetitions(task: ) { (a: Int) in
      print(a)
  }
@@ -118,7 +118,7 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
  3.repetitions { (a: Int) in
      print(a)
  }
- // 闭包形参类型与返回类型都为空,可以整体省略
+ // 闭包形参类型与返回类型都为空，可以整体省略
  3.repetitions1 {
      print("hello!")
  }
@@ -207,9 +207,9 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
     {
         // __weak修饰self表示block弱引用self
         // __strong修饰self表示__strong强引用self
-        // __strong持有self,self持有block,不会造成循环引用
-        // 如果不加__strong修饰,当block内部有延时操作时,若self被提前释放,此时执行self方法将失效
-        // 如果加__strong修饰,当block内部有延时操作时,由于__strong强引用self,self不会被提前释放,此时执行self方法将有效
+        // __strong持有self，self持有block，不会造成循环引用
+        // 如果不加__strong修饰，当block内部有延时操作时，若self被提前释放，此时执行self方法将失效
+        // 如果加__strong修饰，当block内部有延时操作时，由于__strong强引用self，self不会被提前释放，此时执行self方法将有效
         __weak typeof(self) weakSelf = self;
         NSInteger(^block)(NSInteger a, NSInteger b) = ^NSInteger(NSInteger a, NSInteger b) {
             __strong typeof(weakSelf) strongSelf = weakSelf;

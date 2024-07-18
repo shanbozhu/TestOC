@@ -73,7 +73,7 @@
     {
         NSInteger last, i;
         if (start >= end) {
-            return objs; // 此处只是拦截操作,返回什么下面都没有[接收一下], 所以为nil也可以的
+            return objs; // 此处只是拦截操作，返回什么下面都没有[接收一下]，所以为nil也可以的
         }
         NSNumber *tmp = objs[start];
         objs[start] = objs[(start + end) / 2];

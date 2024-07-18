@@ -25,8 +25,8 @@
         for (int i = 0; i < arr.count; i++) {
             NSString *str = arr[i];
             if (![str isEqualToString:@"1"]) {
-                [arr removeObject:str]; // 不会崩溃,但是删除不干净
-                //[arr removeObjectAtIndex:i]; // 不会崩溃,但是删除不干净
+                [arr removeObject:str]; // 不会崩溃，但是删除不干净
+                //[arr removeObjectAtIndex:i]; // 不会崩溃，但是删除不干净
             }
         }
         NSLog(@"0 arr = %@", arr);
@@ -61,8 +61,8 @@
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *str = (NSString *)obj;
             if (![str isEqualToString:@"1"]) {
-                [arr removeObject:str]; // 不会崩溃,但是删除不干净
-                //[arr removeObjectAtIndex:idx]; // 不会崩溃,但是删除不干净
+                [arr removeObject:str]; // 不会崩溃，但是删除不干净
+                //[arr removeObjectAtIndex:idx]; // 不会崩溃，但是删除不干净
             }
         }];
         NSLog(@"1 arr = %@", arr);

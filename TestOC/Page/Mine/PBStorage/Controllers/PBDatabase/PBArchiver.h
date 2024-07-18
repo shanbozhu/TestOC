@@ -23,7 +23,7 @@
 @interface PBArchiver : NSObject <NSCoding>
 
 /**
- 归档:将任意类型对象归档为二进制数据
+ 归档：将任意类型对象归档为二进制数据
  
  @param obj 任意类型对象
  @param key 任意类型对象对应的key值
@@ -32,7 +32,7 @@
 + (NSData *)dataWithObject:(id)obj key:(NSString *)key;
 
 /**
- 解档:将二进制数据解档为任意类型对象
+ 解档：将二进制数据解档为任意类型对象
  
  @param data 二进制数据
  @param key 任意类型对象对应的key值
@@ -41,7 +41,7 @@
 + (id)objectWithData:(NSData *)data key:(NSString *)key;
 
 /**
- 归档:将多个任意类型对象归档为二进制数据
+ 归档：将多个任意类型对象归档为二进制数据
  
  @param objs 多个任意类型对象
  @param keys 多个任意类型对象对应的key值
@@ -50,7 +50,7 @@
 + (NSData *)dataWithObjects:(NSArray *)objs keys:(NSArray *)keys;
 
 /**
- 解档:将二进制数据解档为多个任意类型对象
+ 解档：将二进制数据解档为多个任意类型对象
  
  @param data 二进制数据
  @param keys 多个任意类型对象对应的key值

@@ -16,7 +16,7 @@
 /**
  增加任意类型对象到属性列表(plist)文件
  
- @param value 任意类型对象,包括自定义类型
+ @param value 任意类型对象，包括自定义类型
  @param key 任意类型对象对应的key值
  */
 - (void)setValue:(id)value forKey:(NSString *)key;

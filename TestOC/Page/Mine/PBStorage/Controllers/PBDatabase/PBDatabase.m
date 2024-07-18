@@ -81,7 +81,7 @@ static id sharedDatabase = nil;
     }
 }
 
-// 老用户原先只有第一张表,升级程序后添加了第二张表
+// 老用户原先只有第一张表，升级程序后添加了第二张表
 - (void)upgradeFromV1ToV2 {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
@@ -93,8 +93,8 @@ static id sharedDatabase = nil;
 - (void)initDatabase {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
-        [db executeUpdate:@"create table if not exists keyValueTable(key TEXT, value BLOB)"]; // kLatestDatabaseVersion为1时,创建的第一张表
-        [db executeUpdate:@"create table if not exists newTable(key TEXT, value BLOB)"]; // kLatestDatabaseVersion为2时,数据库升级增加创建的第二张表
+        [db executeUpdate:@"create table if not exists keyValueTable(key TEXT, value BLOB)"]; // kLatestDatabaseVersion为1时，创建的第一张表
+        [db executeUpdate:@"create table if not exists newTable(key TEXT, value BLOB)"]; // kLatestDatabaseVersion为2时，数据库升级增加创建的第二张表
     }];
 }
 

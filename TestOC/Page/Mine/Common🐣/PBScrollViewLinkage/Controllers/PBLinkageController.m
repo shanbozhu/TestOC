@@ -9,9 +9,9 @@
 #import "PBLinkageController.h"
 #import "PBLinkageView.h"
 
-// 参考文档:
+// 参考文档：
 // ScrollView嵌套scrollView，如何解决联动问题 https://oscarwuer.github.io/2018/01/09/ScrollView%E5%B5%8C%E5%A5%97scrollView%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%81%94%E5%8A%A8%E9%97%AE%E9%A2%98/
-// 参考框架:YNPageViewController
+// 参考框架：YNPageViewController
 
 @interface PBLinkageController ()
 

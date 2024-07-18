@@ -28,7 +28,7 @@
     
     NSLog(@"开始所有执行");
     
-    // 子线程下载,主线程填充
+    // 子线程下载，主线程填充
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSLog(@"1 == %@", [NSThread currentThread]);
         

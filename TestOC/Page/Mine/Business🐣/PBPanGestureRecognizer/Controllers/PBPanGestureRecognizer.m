@@ -12,7 +12,7 @@
 
 @property (nonatomic, weak) UIView *monitorView;
 
-// finalPositionView仅仅为了展示最终停留区域,实际并没有任务用处
+// finalPositionView仅仅为了展示最终停留区域，实际并没有任务用处
 @property (nonatomic, strong) UIView *finalPositionView;
 
 @end

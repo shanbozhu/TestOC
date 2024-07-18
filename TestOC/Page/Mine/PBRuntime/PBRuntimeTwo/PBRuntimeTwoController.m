@@ -68,7 +68,7 @@
 
 + (void)protocolMethodList:(Protocol *)protocol {
     unsigned int count = 0;
-    struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count); // 第二个参数是否是required,第三个参数是否是对象方法
+    struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, YES, YES, &count); // 第二个参数是否是required，第三个参数是否是对象方法
     for (unsigned int i = 0; i < count; i++) {
         struct objc_method_description method = methods[i];
         NSLog(@"协议方法: %@", NSStringFromSelector(method.name));

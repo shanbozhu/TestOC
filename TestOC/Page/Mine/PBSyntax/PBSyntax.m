@@ -12,12 +12,12 @@
 /**
  interface 类声明
  implementation 类定义
- protocol 协议:公用方法声明. 遵守协议,含有方法声明.
- category 分类:方法定义
- @property 声明私有成员变量,定义getter、setter方法
+ protocol 协议：公用方法声明。遵守协议，含有方法声明。
+ category 分类：方法定义
+ @property 声明私有成员变量，定义getter、setter方法
  
  @synthesize 声明私有成员变量
- @dynamic 必须手动声明私有成员变量,必须手动定义getter、setter方法
+ @dynamic 必须手动声明私有成员变量，必须手动定义getter、setter方法
  */
 
 // class property
@@ -40,7 +40,7 @@ static Class<PBSyntaxProtocol> _someCls;
     return self;
 }
 
-#pragma mark - 有@synthesize修饰,可以同时重写setter、getter方法
+#pragma mark - 有@synthesize修饰，可以同时重写setter、getter方法
 
 - (void)setName:(NSString *)name {
     // self是方法的默认参数
@@ -52,17 +52,17 @@ static Class<PBSyntaxProtocol> _someCls;
     return _name;
 }
 
-#pragma mark - 没有@synthesize修饰,只能同时重写setter、getter中的一种方法
+#pragma mark - 没有@synthesize修饰，只能同时重写setter、getter中的一种方法
 
 - (void)setAge:(NSString *)age {
     _age = age;
 }
 
 //- (NSString *)age {
-//    return _age; // 若同时重写,会导致未声明成员变量
+//    return _age; // 若同时重写，会导致未声明成员变量
 //}
 
-#pragma mark - 有@dynamic修饰,必须同时重写getter、setter方法
+#pragma mark - 有@dynamic修饰，必须同时重写getter、setter方法
 
 - (void)setHeight:(NSString *)height {
     _height = height;

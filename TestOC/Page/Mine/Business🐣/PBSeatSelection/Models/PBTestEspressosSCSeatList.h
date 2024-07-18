@@ -11,7 +11,7 @@
 
 @interface PBTestEspressosSCSeatList : NSObject
 
-@property (nonatomic, assign) NSInteger type; // 0过道,1座位,2换行
+@property (nonatomic, assign) NSInteger type; // 0过道，1座位，2换行
 @property (nonatomic, strong) PBTestEspressosSCSLSeatInfo *seatInfo; // dict
 
 @end

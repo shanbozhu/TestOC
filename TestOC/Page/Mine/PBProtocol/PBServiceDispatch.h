@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PBServiceDispatch : NSObject
 
 /// 注册服务对象
-/// @param service  服务对象,注册完成后不会影响 service 的生命周期
+/// @param service  服务对象，注册完成后不会影响 service 的生命周期
 /// @param protocol 服务对象遵守的协议
 - (void)registerService:(id)service protocol:(Protocol *)protocol;
 

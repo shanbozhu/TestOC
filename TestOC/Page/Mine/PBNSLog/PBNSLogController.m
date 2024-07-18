@@ -16,7 +16,7 @@
 #import "PBStorageController.h"
 #import "PBAnnotationController.h"
 
-// 参考文档:
+// 参考文档：
 // 一、消息摘要算法MD5、SHA-1 https://www.jianshu.com/p/38c93c677124
 
 @interface PBNSLogController ()

@@ -16,7 +16,7 @@
 
 #pragma mark -
 
-// 参考文档:
+// 参考文档：
 // iOS遍历打印所有子视图 https://www.jianshu.com/p/f78a82bdfc68
 // iOS 遍历所有子视图subviews的2种方法 https://www.cnblogs.com/allanliu/p/4229762.html
 

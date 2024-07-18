@@ -125,12 +125,12 @@
     // 标签居中
     float offsetx = selectBtn.frame.origin.x - (self.frame.size.width - selectBtn.frame.size.width) / 2.0;
     
-    // 向左移动,最小偏移量
+    // 向左移动，最小偏移量
     if (offsetx < 0) {
         offsetx = 0;
     }
     
-    // 向右移动,最大偏移量
+    // 向右移动，最大偏移量
     if (offsetx + self.scrollView.frame.size.width > self.scrollView.contentSize.width) {
         offsetx = self.scrollView.contentSize.width - self.scrollView.frame.size.width;
     }

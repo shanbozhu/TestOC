@@ -20,7 +20,7 @@
 
 - (instancetype)init {
     if ([super init]) {
-        //此种情况不能采用[全局并行队列],否则会崩溃
+        // 此种情况不能采用[全局并行队列]，否则会崩溃
         _queue = dispatch_queue_create("test.queue", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;

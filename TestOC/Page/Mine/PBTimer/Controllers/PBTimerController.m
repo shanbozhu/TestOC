@@ -44,11 +44,11 @@
     
     {
         // 方式二【推荐】
-        // UIScrollView滑动时执行的是UITrackingRunLoopMode,此时NSDefaultRunLoopMode被挂起
+        // UIScrollView滑动时执行的是UITrackingRunLoopMode，此时NSDefaultRunLoopMode被挂起
         // 要么同时将timer添加到UITrackingRunLoopMode和NSDefaultRunLoopMode
         // 要么直接将timer添加到NSRunLoopCommonModes
-        // timer会持有target对象,NSRunLoop对象会持有timer
-        // self.timer如果是strong,self会持有timer
+        // timer会持有target对象，NSRunLoop对象会持有timer
+        // self.timer如果是strong，self会持有timer
         NSTimer *timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(timerClick:) userInfo:nil repeats:YES];
         //[[NSRunLoop mainRunLoop]addTimer:timer forMode:UITrackingRunLoopMode];
         //[[NSRunLoop mainRunLoop]addTimer:timer forMode:NSDefaultRunLoopMode];

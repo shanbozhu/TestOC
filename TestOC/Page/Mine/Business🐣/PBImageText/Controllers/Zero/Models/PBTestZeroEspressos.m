@@ -71,7 +71,7 @@
         NSMutableArray *imageArr = [NSMutableArray array];
         NSMutableArray *imageViewArr = [NSMutableArray array];
         
-        for (TFHppleElement *hppleEle in pEle) { // 每执行一次此循环,会换一次行
+        for (TFHppleElement *hppleEle in pEle) { // 每执行一次此循环，会换一次行
             // hppleEle表示所有p标签组成的数组中的其中一个p标签
             
             self.lastAttributedString = attributedString.copy;

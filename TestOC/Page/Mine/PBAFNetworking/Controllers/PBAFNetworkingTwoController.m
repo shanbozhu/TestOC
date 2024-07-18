@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //progressView
+    // progressView
     UIProgressView *progressView = [[UIProgressView alloc]init];
     self.progressView = progressView;
     [self.view addSubview:progressView];
@@ -36,7 +36,7 @@
     progressView.trackTintColor = [UIColor lightGrayColor];
     progressView.transform = CGAffineTransformMakeScale(1.0f, 2.0f);
     
-    //lab
+    // lab
     UILabel *lab = [[UILabel alloc]init];
     self.lab = lab;
     [self.view addSubview:lab];
@@ -45,7 +45,7 @@
     lab.text = @"0.00%";
     //lab.backgroundColor = [UIColor redColor];
     
-    //btn
+    // btn
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btn = btn;
     [self.view addSubview:btn];
@@ -56,7 +56,7 @@
     btn.backgroundColor = [UIColor lightGrayColor];
     btn.tag = 0;
     
-    //btn
+    // btn
     UIButton *oneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.oneBtn = btn;
     [self.view addSubview:oneBtn];

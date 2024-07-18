@@ -108,7 +108,7 @@
     NSInteger colCount = self.testEspressos.maxColCount;
     
     if (colCount % 2 == 1) {
-        colCount = colCount + 1; // 奇数列数加1,手动添加一列成为偶数列,防止中线压住座位
+        colCount = colCount + 1; // 奇数列数加1，手动添加一列成为偶数列，防止中线压住座位
     }
     
     NSLog(@"colCount = %ld", colCount);

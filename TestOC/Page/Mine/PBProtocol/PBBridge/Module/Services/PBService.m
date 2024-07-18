@@ -9,12 +9,12 @@
 #import "PBService.h"
 #import "PBServiceBridge.h"
 
-// 参考文档:
+// 参考文档：
 // +load、+initialize和__attribute__((constructor)) https://www.jianshu.com/p/036f502a2b15/
 // iOS实例对象和类对象 https://www.jianshu.com/p/5fd98a6bc83c
 //
-// 调用顺序: +load -> __attribute__((constructor)) -> main -> +initialize
-// 如果在 +load或__attribute__((constructor)) 中使用了该类,那么该类的 +initialize 会早于 main 调用
+// 调用顺序：+load -> __attribute__((constructor)) -> main -> +initialize
+// 如果在 +load或__attribute__((constructor)) 中使用了该类，那么该类的 +initialize 会早于 main 调用
 
 __attribute__((constructor))
 static void registerClassService(void) {

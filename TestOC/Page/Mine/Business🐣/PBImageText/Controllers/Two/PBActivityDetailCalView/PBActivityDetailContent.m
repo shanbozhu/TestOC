@@ -11,7 +11,7 @@
 @implementation PBActivityDetailContent
 
 + (id)activityDetailContentWithHtmlStr:(NSString *)htmlStr {
-    // 该类对象不一定要返回,因为在外面可以选择不接收该类对象,直接接收需要的数据类型的值
+    // 该类对象不一定要返回，因为在外面可以选择不接收该类对象，直接接收需要的数据类型的值
     //return [[self alloc]initWithHtmlStr:HtmlStr];
     PBActivityDetailContent *activityDetailContent = [[self alloc]initWithHtmlStr:htmlStr];
     return activityDetailContent;

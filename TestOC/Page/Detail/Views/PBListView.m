@@ -36,7 +36,7 @@
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         
-        //缩放视图
+        // 缩放视图
         UIView *bgView = [[UIView alloc]init];
         tableView.backgroundView = bgView;
         //bgView.frame = CGRectMake(0, 0, tableView.frame.size.width, 0);
@@ -63,7 +63,7 @@
         //coverView.backgroundColor = [UIColor redColor];
         coverView.userInteractionEnabled = YES;
         
-        //测试
+        // 测试
         UIButton *otherBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [tableView addSubview:otherBtn];
         otherBtn.frame = CGRectMake(20, -70, 120, 120);

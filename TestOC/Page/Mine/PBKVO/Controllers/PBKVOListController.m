@@ -28,7 +28,7 @@
 
 // kvo响应方法
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    // 此处不能调用super方法,否则会崩溃
+    // 此处不能调用super方法，否则会崩溃
     //[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     NSLog(@"change = %@", change[@"new"]);
 }

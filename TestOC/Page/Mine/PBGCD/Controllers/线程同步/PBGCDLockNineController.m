@@ -57,7 +57,7 @@
 
 - (void)deleteElement {
     while (true) {
-        dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER); //只要信号量大于0就会执行此方法,执行此方法后信号量减1,当信号量减为0时其他线程就会等待
+        dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER); // 只要信号量大于0就会执行此方法，执行此方法后信号量减1，当信号量减为0时其他线程就会等待
         if (self.arr.count > 0) {
             [self.arr removeLastObject];
         } else {
@@ -65,7 +65,7 @@
             dispatch_semaphore_signal(_lock);
             return;
         }
-        dispatch_semaphore_signal(_lock); //执行此方法后信号量加1
+        dispatch_semaphore_signal(_lock); // 执行此方法后信号量加1
     }
 }
 

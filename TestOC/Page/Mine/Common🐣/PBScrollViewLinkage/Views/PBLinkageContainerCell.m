@@ -76,7 +76,7 @@
     }
 }
 
-// 滑动的时候,外层的tableView不可动
+// 滑动的时候，外层的tableView不可动
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
         if (self.delegate &&
@@ -86,7 +86,7 @@
     }
 }
 
-// [拖动]滑动结束的时候,外层的tableView可动
+// [拖动]滑动结束的时候，外层的tableView可动
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
         if (self.delegate &&
@@ -96,7 +96,7 @@
     }
 }
 
-// [点击tab]滑动结束的时候,外层的tableView可动
+// [点击tab]滑动结束的时候，外层的tableView可动
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
         if (self.delegate &&

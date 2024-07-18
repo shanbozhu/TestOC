@@ -30,7 +30,7 @@
     // testList
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
     
-    // 提供个假值,模拟"暂无更多内容"
+    // 提供个假值，模拟"暂无更多内容"
     if (status != 0 && arc4random_uniform(3) == 0) {
         testList.data = nil;
     }

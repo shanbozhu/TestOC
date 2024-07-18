@@ -30,7 +30,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.delegate = target;
     
-    // 计算用cell,用完即释放
+    // 计算用cell，用完即释放
     UITableViewCell *cell = [cellHeight.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell removeFromSuperview];
     
@@ -41,7 +41,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.delegate = target;
     
-    // 计算用cell,用完即释放
+    // 计算用cell，用完即释放
     UITableViewCell *cell = [cellHeight.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell removeFromSuperview];
     
@@ -61,7 +61,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.block = block;
     
-    // 计算用cell,只有一个.tableView被释放,计算用cell则被释放
+    // 计算用cell，只有一个。tableView被释放，计算用cell则被释放
     NSMutableDictionary *cellList = objc_getAssociatedObject(tableView, _cmd);
     if (!cellList) {
         cellList = @{}.mutableCopy;
@@ -85,7 +85,7 @@
     PBCellHeight *cellHeight = [[PBCellHeight alloc]init];
     cellHeight.block = block;
     
-    // 计算用cell,只有一个.tableView被释放,计算用cell则被释放
+    // 计算用cell，只有一个。tableView被释放，计算用cell则被释放
     NSMutableDictionary *cellList = objc_getAssociatedObject(tableView, _cmd);
     if (!cellList) {
         cellList = @{}.mutableCopy;

@@ -16,9 +16,9 @@
 
 + (void)load {
     /**
-     Method:方法(函数),包含selector(函数名,也可以表示为_cmd)和IMP(函数体)
-     selector:函数名
-     IMP:函数体
+     Method：方法(函数)，包含selector(函数名，也可以表示为_cmd)和IMP(函数体)
+     selector：函数名
+     IMP：函数体
      */
     {
         // 方案一
@@ -29,7 +29,7 @@
     {
         // 方案二
         Method method = class_getInstanceMethod(NSClassFromString(@"PBRuntimeSevenDebugController"), @selector(func:));
-        IMP imp = method_getImplementation(method); // 既可以获取对象方法的IMP,也可以获取类方法的IMP
+        IMP imp = method_getImplementation(method); // 既可以获取对象方法的IMP，也可以获取类方法的IMP
         class_addMethod(NSClassFromString(@"PBRuntimeSevenController"), @selector(func:), imp, method_getTypeEncoding(method));
     }
     

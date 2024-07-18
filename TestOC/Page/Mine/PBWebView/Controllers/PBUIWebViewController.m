@@ -11,7 +11,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 /**
- jsCalloc js端语句如下:
+ jsCalloc js端语句如下：
  htmlCallApp("updatePerformApp", JSON.stringify(ps));
  */
 
@@ -46,7 +46,7 @@
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : jsonStr}];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        // 对于WebView而言,在发起网络请求时,系统会自动设置UA,无需手动调用 [request setValue:jsonStr forHTTPHeaderField:@"User-Agent"];
+        // 对于WebView而言，在发起网络请求时，系统会自动设置UA，无需手动调用 [request setValue:jsonStr forHTTPHeaderField:@"User-Agent"];
     }
     
     {
@@ -67,10 +67,10 @@
         NSHTTPCookie *twoCookie = [NSHTTPCookie cookieWithProperties:twoCookieDict];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:twoCookie];
         
-        // 拼接Cookie,然后设置Cookie
+        // 拼接Cookie，然后设置Cookie
         NSMutableString *cookieString = [NSMutableString string];
         for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名,拼接特定cookie
+            if ([cookie.domain isEqualToString:@".damai.cn"]) { // 针对特定域名，拼接特定cookie
                 [cookieString appendString:[NSString stringWithFormat:@"%@=%@; ", cookie.name, cookie.value]];
             }
         }
@@ -103,7 +103,7 @@
         context.exception = exception;
     };
     context[@"htmlCallApp"] = ^() {
-        // args数组一般含有两个元素,第一个元素是方法名(字符串),第二个元素是参数(json字符串)
+        // args数组一般含有两个元素，第一个元素是方法名(字符串)，第二个元素是参数(json字符串)
         NSArray *arguments = [JSContext currentArguments];
         NSMutableArray *objs = [NSMutableArray array];
         for (int i = 0; i < arguments.count; i++) {

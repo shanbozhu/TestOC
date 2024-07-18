@@ -18,7 +18,7 @@
 #import "PBCellHeightCollectionTwoController.h"
 
 /**
- 1.根据宽度内容设置高度,内容包括文本、字体、行间距
+ 1.根据宽度内容设置高度，内容包括文本、字体、行间距
  2.根据子视图高度设置父视图高度
  3.紧贴上一控件
  */
@@ -26,13 +26,13 @@
 /**
  [self setNeedsLayout];
  [self layoutIfNeeded];
- 先调用setNeedsLayout方法,在调用layoutIfNeeded方法,会立即触发调用layoutSubviews方法
+ 先调用setNeedsLayout方法，在调用layoutIfNeeded方法，会立即触发调用layoutSubviews方法
  
  [self setNeedsLayout];
- 只调用setNeedsLayout方法,会在下一个刷新周期触发调用layoutSubviews方法
+ 只调用setNeedsLayout方法，会在下一个刷新周期触发调用layoutSubviews方法
  
  [self setNeedsDisplay];
- 只调用setNeedsDisplay方法,会在下一个刷新周期触发调用drawRect:方法
+ 只调用setNeedsDisplay方法，会在下一个刷新周期触发调用drawRect:方法
  */
 
 @interface PBCellHeightController ()<UITableViewDelegate, UITableViewDataSource>

@@ -75,7 +75,7 @@
 #pragma mark - link
 
 /**
- 获取当前文本中的所有link对象, lazyLoad方法
+ 获取当前文本中的所有link对象，lazyLoad方法
 
  @return link对象数组，link的显示位置已计算出来了；
  */

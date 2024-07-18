@@ -36,7 +36,7 @@
                 [self.currentArr addObject:seatList];
             } else {
                 self.currentArr = [NSMutableArray array];
-                //[self.currentArr addObject:seatList]; // 表示换行的模型对象没有任何用处,舍弃
+                //[self.currentArr addObject:seatList]; // 表示换行的模型对象没有任何用处，舍弃
                 
                 [objsArr addObject:self.currentArr];
             }
