@@ -1,4 +1,4 @@
-### 1. 查看当前镜像源
+### 1. 查看当前Ruby镜像源
 
 `sudo gem sources -l`
 
@@ -31,9 +31,7 @@ sudo gem install -n /usr/local/bin cocoapods --pre
 
 3. 使用上面第三步重新安装1.2.0版本CocoaPods
 
----
-
-使用CocoaPods管理库
+### 4. 使用CocoaPods管理库
 
 ```
 # 取最新版本
@@ -52,3 +50,5 @@ pod 'MJRefresh', '<=3.1.12'
 # [0.0.0 3.1.12)
 pod 'MJRefresh', '<3.1.12'
 ```
+
+---
