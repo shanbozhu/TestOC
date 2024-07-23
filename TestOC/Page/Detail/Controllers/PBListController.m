@@ -38,6 +38,7 @@
 //- (BOOL)pb_panGestureRecognizerEnabled {
 //    return NO;
 //}
+
 - (BOOL)pb_navigationBarHidden {
     return YES;
 }

@@ -21,14 +21,16 @@
  编辑 --> 编译/解释 --> 执行/调试
  IDE(集成开发环境)：
  1.代码提示
- 2.代码调试(单步执行：step over、单步执行进入：step into、执行完当前函数：step out、继续执行：continue program execution)
+ 2.代码调试
+ 2.1.单步执行：step over、单步执行进入：step into、执行完当前函数：step out、继续执行：continue program execution
+ 2.2.控制台、变量、堆栈。
  
  虚拟机(解释器)：
  Python：安装python。IDE：PyCharm
  Shell：安装bash。IDE：VSCode + bashdb
  JavaScript：安装node.js或浏览器。IDE：WebStorm
- TypeScript：安装typescript(含有tsc编译器)编译成JavaScript 或者 安装ts-node(含有tsc编译器编译成JavaScript和node.js解释器)。IDE：WebStorm
- Java：安装JDK(含有javac编译器编译成中间文件和java解释器)。IDE：IDEA
+ TypeScript：安装typescript或ts-node。IDE：WebStorm
+ Java：安装JDK。IDE：IDEA
  
  编译包括：
  预处理 --> 编译 --> 汇编 --> 链接

@@ -135,11 +135,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBListCell *cell = [PBListCell listCellWithTableView:tableView];
-    
     cell.list = self.listArr[indexPath.row];
-    
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    
     return cell;
 }
 

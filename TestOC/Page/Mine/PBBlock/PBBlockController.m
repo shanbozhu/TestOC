@@ -127,21 +127,21 @@ typedef NSInteger(^block_t)(NSInteger a, NSInteger b); // block类型定义
 # pragma mark - OC
 
 /**
-- (NSInteger)stepForward:(NSInteger)a stepBackward:(NSInteger)b {
-    return a + b;
-}
-
-// Block不支持嵌套函数
-- (NSInteger(^)(NSInteger a, NSInteger b))chooseStepFunction {
-    return stepForward:stepBackward:;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    NSInteger(^block)(NSInteger a, NSInteger b) = [self chooseStepFunction];
-    block(1, 2);
-}
+ - (NSInteger)stepForward:(NSInteger)a stepBackward:(NSInteger)b {
+     return a + b;
+ }
+ 
+ // Block不支持嵌套函数
+ - (NSInteger(^)(NSInteger a, NSInteger b))chooseStepFunction {
+     return stepForward:stepBackward:;
+ }
+ 
+ - (void)viewDidLoad {
+     [super viewDidLoad];
+     
+     NSInteger(^block)(NSInteger a, NSInteger b) = [self chooseStepFunction];
+     block(1, 2);
+ }
  */
 
 // block作为返回类型
