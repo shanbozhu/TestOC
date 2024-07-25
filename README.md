@@ -38,16 +38,16 @@ sudo gem install -n /usr/local/bin cocoapods --pre
 pod 'MJRefresh',
 # 取3.1.12
 pod 'MJRefresh', '3.1.12'
-# [3.1.12 3.2.0)
+# [3.1.12, 3.2.0)
 pod 'MJRefresh', '~>3.1.12'
 
-# [3.1.12 ...]
+# [3.1.12, ...)
 pod 'MJRefresh', '>=3.1.12'
-# (3.1.12 ...]
+# (3.1.12, ...)
 pod 'MJRefresh', '>3.1.12'
-# [0.0.0 3.1.12]
+# [0.0.0, 3.1.12]
 pod 'MJRefresh', '<=3.1.12'
-# [0.0.0 3.1.12)
+# [0.0.0, 3.1.12)
 pod 'MJRefresh', '<3.1.12'
 ```
 
