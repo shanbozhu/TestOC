@@ -10,19 +10,33 @@ import UIKit
 
 class PBSwiftController: PBBaseController {
     
-    var myString:String?
-    var myString1:String!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 可选强制解析
-        myString = "Hello, Swift!"
-        print(myString)
-        print(myString!)
+        var myString: String? // 可选类型
+        var myString1: String! // 可选类型
+        var myString2: String // 字符串类型
         
-        // 可选自动解析
-        print(myString1)
+        // 可选强制解包
+        myString = "Hello"
+        print(myString) // Optional("Hello")
+        print(myString!) // Hello
+        myString = nil
+        print(myString) // nil
+        //print(myString!) // 对nil解包，会崩溃。
+        
+        // 可选隐式解包
+        myString1 = "world"
+        print(myString1) // Optional("world")
+        print(myString1!) // world
+        myString1 = nil
+        print(myString1) // nil
+        //print(myString1!) // 对nil解包，会崩溃。Fatal error: Unexpectedly found nil while unwrapping an Optional value: file TestOC/PBSwiftController.swift, line 36
+        
+        // 非nil字符串
+        myString2 = "world"
+        print(myString2) // Optional("world")
+        //myString2 = nil // 'nil' cannot be assigned to type 'String'
     }
     
     deinit {
