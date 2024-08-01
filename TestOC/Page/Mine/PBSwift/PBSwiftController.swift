@@ -13,8 +13,9 @@ class PBSwiftController: PBBaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 可选解包仅仅是为了获取里面的值
         // 警告和报错
+
+        // 可选解包仅仅是为了获取里面的值，解包的目的是为了使用里面的值，如果不涉及使用值，可以直接使用可选类型，比如可选类型的变量调用方法。
         // 可选就是可空的意思。虽然是可空的，但对空解包会崩溃
         
         var myString: String? // 可选类型
@@ -23,7 +24,7 @@ class PBSwiftController: PBBaseController {
         
         // 一、可选强制解包
         myString = "Hello"
-        print(myString) // Optional("Hello")。直接打印可选类型会有警告
+        print(myString) // Optional("Hello")。直接打印可选类型会有警告。Coercion of implicitly unwrappable value of type 'String?' to 'Any' does not unwrap optional
         print(myString!) // Hello
         
         let tmp: String = myString!
@@ -67,6 +68,19 @@ class PBSwiftController: PBBaseController {
         myString2 = "world"
         print(myString2) // world
         //myString2 = nil // 'nil' cannot be assigned to type 'String'
+        
+        // 四
+        var num: Int! = 13
+        var num2: Int! = 14
+        var num3 = num + num2 // 可选隐式解包，叹号可加可不加。
+        print(num3)
+        var num4 = num! + num2! // 可选隐式解包，叹号可加可不加。
+        print(num4)
+        
+        var num1: Int? = 13
+        var num12: Int? = 14
+        var num13 = num1! + num12! // 可选强制解包
+        print(num13)
     }
     
     deinit {
