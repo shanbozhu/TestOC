@@ -15,7 +15,7 @@ class PBSwiftController: PBBaseController {
         
         // 警告和报错
 
-        // 可选解包仅仅是为了获取里面的值，解包的目的是为了使用里面的值，如果不涉及使用值，可以直接使用可选类型，比如可选类型的变量调用方法。
+        // 可选解包仅仅是为了获取里面的值，解包的目的是为了使用里面的值。
         // 可选就是可空的意思。虽然是可空的，但对空解包会崩溃
         
         var myString: String? // 可选类型
@@ -26,6 +26,11 @@ class PBSwiftController: PBBaseController {
         myString = "Hello"
         print(myString) // Optional("Hello")。直接打印可选类型会有警告。Coercion of implicitly unwrappable value of type 'String?' to 'Any' does not unwrap optional
         print(myString!) // Hello
+        
+        //print(myString?) // '?' must be followed by a call, member lookup, or subscript
+        //print(myString.count) // Value of optional type 'String?' must be unwrapped to refer to member 'count' of wrapped base type 'String'
+        print(myString!.count)
+        print(myString?.count ?? 0) // 如果不涉及使用值，可以直接使用可选类型，比如可选类型的变量调用方法。
         
         let tmp: String = myString!
         print(tmp)
