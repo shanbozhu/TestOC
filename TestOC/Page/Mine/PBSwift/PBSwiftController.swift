@@ -13,17 +13,19 @@ class PBSwiftController: PBBaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 可选解包仅仅是为了获取里面的值
+        // 警告和报错
+        
         var myString: String? // 可选类型
-        var myString1: String! // 可选类型
+        var myString1: String! // 可选类型，支持隐式解包
         var myString2: String // 字符串类型
         
         // 可选强制解包
         myString = "Hello"
-        print(myString) // Optional("Hello")
+        print(myString) // Optional("Hello")。直接打印可选类型会有警告
         print(myString!) // Hello
-        myString = nil
-        print(myString) // nil
-        //print(myString!) // 对nil解包，会崩溃。
+        let tmp: String = myString!
+        print(tmp)
         if myString != nil {
             let tmp = myString!
             print(tmp)
@@ -31,17 +33,18 @@ class PBSwiftController: PBBaseController {
         if let tmp = myString {
             print(tmp)
         }
-        myString = "hello"
-        let tmp: String = myString!
-        print(tmp)
+        myString = nil
+        print(myString) // nil
+        //print(myString!) // 对nil解包，会崩溃。
         
         // 可选隐式解包
         myString1 = "world"
         print(myString1) // Optional("world")
         print(myString1!) // world
-        myString1 = nil
-        print(myString1) // nil
-        //print(myString1!) // 对nil解包，会崩溃。Fatal error: Unexpectedly found nil while unwrapping an Optional value: file TestOC/PBSwiftController.swift, line 36
+        let tmp1: String = myString1 // 等号左边是String类型，右边是Optional类型。等号左右两边变量数据类型要匹配，所以右边其实存在隐式解包。
+        print(tmp1)
+        let tmp11: String = myString1! // !叹号可加可不加
+        print(tmp11)
         if myString1 != nil {
             let tmp = myString1!
             print(tmp)
@@ -49,11 +52,9 @@ class PBSwiftController: PBBaseController {
         if let tmp = myString1 {
             print(tmp)
         }
-        myString1 = "world"
-        let tmp1: String = myString1
-        print(tmp1)
-        let tmp11: String = myString1! // !叹号可加可不加
-        print(tmp11)
+        myString1 = nil
+        print(myString1) // nil
+        //print(myString1!) // 对nil解包，会崩溃。Fatal error: Unexpectedly found nil while unwrapping an Optional value: file TestOC/PBSwiftController.swift, line 36
         
         // 非nil字符串
         myString2 = "world"
