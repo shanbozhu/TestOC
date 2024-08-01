@@ -24,7 +24,7 @@ class PBSwiftController: PBBaseController {
         
         // 一、可选强制解包
         myString = "Hello"
-        print(myString) // Optional("Hello")。直接打印可选类型会有警告。Coercion of implicitly unwrappable value of type 'String?' to 'Any' does not unwrap optional
+        print(myString) // Optional("Hello")。直接打印可选类型会有警告。Expression implicitly coerced from 'String?' to 'Any'
         print(myString!) // Hello
         
         //print(myString?) // '?' must be followed by a call, member lookup, or subscript
@@ -44,12 +44,12 @@ class PBSwiftController: PBBaseController {
         }
         
         myString = nil
-        print(myString) // nil
+        print(myString) // nil。Expression implicitly coerced from 'String?' to 'Any'
         //print(myString!) // 对nil解包，会崩溃。
         
         // 二、可选隐式解包
         myString1 = "world"
-        print(myString1) // Optional("world")
+        print(myString1) // Optional("world")。Coercion of implicitly unwrappable value of type 'String?' to 'Any' does not unwrap optional
         print(myString1!) // world
         
         let tmp1: String = myString1 // 等号左边是String类型，右边是Optional类型。等号左右两边变量数据类型匹配，所以右边其实存在隐式解包。
@@ -66,7 +66,7 @@ class PBSwiftController: PBBaseController {
         }
         
         myString1 = nil
-        print(myString1) // nil
+        print(myString1) // nil。Coercion of implicitly unwrappable value of type 'String?' to 'Any' does not unwrap optional
         //print(myString1!) // 对nil解包，会崩溃。Fatal error: Unexpectedly found nil while unwrapping an Optional value: file TestOC/PBSwiftController.swift, line 36
         
         // 三、非nil字符串
