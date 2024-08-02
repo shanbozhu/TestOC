@@ -10,11 +10,14 @@ import UIKit
 
 class PBSwiftController: PBBaseController {
     
+    var button: UIButton? = UIButton() // 可选类型
+    var button1: UIButton! = UIButton() // 可选类型，支持隐式解包
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 警告和报错
-
+        
         // 可选解包仅仅是为了获取里面的值，解包的目的是为了使用里面的值。
         // 可选就是可空的意思。虽然是可空的，但对空解包会崩溃
         
@@ -30,7 +33,7 @@ class PBSwiftController: PBBaseController {
         //print(myString?) // '?' must be followed by a call, member lookup, or subscript
         //print(myString.count) // Value of optional type 'String?' must be unwrapped to refer to member 'count' of wrapped base type 'String'
         print(myString!.count)
-        print(myString?.count ?? 0) // 如果不涉及使用值，可以直接使用可选类型，比如可选类型的变量调用方法。
+        print(myString?.count ?? 0) // 可选链式调用，myString可为空
         
         let tmp: String = myString!
         print(tmp)
@@ -75,17 +78,26 @@ class PBSwiftController: PBBaseController {
         //myString2 = nil // 'nil' cannot be assigned to type 'String'
         
         // 四
-        var num: Int! = 13
-        var num2: Int! = 14
-        var num3 = num + num2 // 可选隐式解包，叹号可加可不加。
+        let num: Int! = 13
+        let num2: Int! = 14
+        let num3 = num + num2 // 可选隐式解包，叹号可加可不加。
         print(num3)
-        var num4 = num! + num2! // 可选隐式解包，叹号可加可不加。
+        let num4 = num! + num2! // 可选隐式解包，叹号可加可不加。
         print(num4)
         
-        var num1: Int? = 13
-        var num12: Int? = 14
-        var num13 = num1! + num12! // 可选强制解包
+        let num1: Int? = 13
+        let num12: Int? = 14
+        let num13 = num1! + num12! // 可选强制解包
         print(num13)
+        
+        // 五、可选链式调用
+        print(self.button) // Expression implicitly coerced from 'UIButton?' to 'Any'
+        print(self.button?.frame.size.height ?? 0) // 可选链式调用。在不知道button是否为空的情况下推荐使用可选链式调用。button可空的，当button1为nil时，执行frame无效果，整体调用就返回0
+        print(self.button!.frame.size.height) // 强制解包。必须确保button1非nil，否则，对nil解包会崩溃
+        
+        print(self.button1) // Coercion of implicitly unwrappable value of type 'UIButton?' to 'Any' does not unwrap optional
+        print(self.button1.frame.size.height) // 可选隐式解包
+        print(self.button1!.frame.size.height) // 可选隐式解包，!叹号可写可不写
     }
     
     deinit {
