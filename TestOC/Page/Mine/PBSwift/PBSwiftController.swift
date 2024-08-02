@@ -57,7 +57,7 @@ class PBSwiftController: PBBaseController {
         
         let tmp1: String = myString1 // 等号左边是String类型，右边是Optional类型。等号左右两边变量数据类型匹配，所以右边其实存在隐式解包。
         print(tmp1)
-        let tmp11: String = myString1! // !叹号可加可不加
+        let tmp11: String = myString1! // !叹号可写可不写
         print(tmp11)
         
         if myString1 != nil {
@@ -80,9 +80,9 @@ class PBSwiftController: PBBaseController {
         // 四
         let num: Int! = 13
         let num2: Int! = 14
-        let num3 = num + num2 // 可选隐式解包，叹号可加可不加。
+        let num3 = num + num2 // 可选隐式解包，!叹号可写可不写。
         print(num3)
-        let num4 = num! + num2! // 可选隐式解包，叹号可加可不加。
+        let num4 = num! + num2! // 可选隐式解包，!叹号可写可不写。
         print(num4)
         
         let num1: Int? = 13
@@ -92,7 +92,7 @@ class PBSwiftController: PBBaseController {
         
         // 五、可选链式调用
         print(self.button) // Expression implicitly coerced from 'UIButton?' to 'Any'
-        print(self.button?.frame.size.height ?? 0) // 可选链式调用。在不知道button是否为空的情况下推荐使用可选链式调用。button可空的，当button1为nil时，执行frame无效果，整体调用就返回0
+        print(self.button?.frame.size.height ?? 0) // 可选链式调用。在不知道button是否为空的情况下推荐使用可选链式调用。button可空的，当button为nil时，执行frame无效果，整体调用就返回0
         print(self.button!.frame.size.height) // 强制解包。必须确保button1非nil，否则，对nil解包会崩溃
         
         print(self.button1) // Coercion of implicitly unwrappable value of type 'UIButton?' to 'Any' does not unwrap optional
