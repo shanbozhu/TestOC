@@ -57,7 +57,7 @@ class PBSwiftController: PBBaseController {
         
         let tmp1: String = myString1 // 等号左边是String类型，右边是Optional类型。等号左右两边变量数据类型匹配，所以右边其实存在隐式解包。
         print(tmp1)
-        let tmp11: String = myString1! // !叹号可写可不写
+        let tmp11: String = myString1! // !叹号可加可不加
         print(tmp11)
         
         if myString1 != nil {
@@ -80,9 +80,9 @@ class PBSwiftController: PBBaseController {
         // 四
         let num: Int! = 13
         let num2: Int! = 14
-        let num3 = num + num2 // 可选隐式解包，!叹号可写可不写。
+        let num3 = num + num2 // 可选隐式解包，!叹号可加可不加
         print(num3)
-        let num4 = num! + num2! // 可选隐式解包，!叹号可写可不写。
+        let num4 = num! + num2! // 可选隐式解包，!叹号可加可不加
         print(num4)
         
         let num1: Int? = 13
@@ -97,7 +97,7 @@ class PBSwiftController: PBBaseController {
         
         print(self.button1) // Coercion of implicitly unwrappable value of type 'UIButton?' to 'Any' does not unwrap optional
         print(self.button1.frame.size.height) // 可选隐式解包
-        print(self.button1!.frame.size.height) // 可选隐式解包，!叹号可写可不写
+        print(self.button1!.frame.size.height) // 可选隐式解包，!叹号可加可不加
     }
     
     deinit {
