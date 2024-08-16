@@ -14,6 +14,8 @@
 
 `sudo gem install -n /usr/local/bin cocoapods -v 1.2.0`
 
+`pod --version`
+
 ```
 # 安装最新版CocoaPods
 sudo gem install -n /usr/local/bin cocoapods --pre
