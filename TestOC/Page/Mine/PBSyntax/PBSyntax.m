@@ -10,8 +10,8 @@
 #import <objc/runtime.h>
 
 /**
- interface 类声明
- implementation 类定义
+ interface 接口：类的声明
+ implementation 实现：类的定义
  protocol 协议：方法声明。遵守协议，含有方法声明
  category 分类：方法定义
  @property 声明私有成员变量，定义getter、setter方法
