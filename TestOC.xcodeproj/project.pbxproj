@@ -246,6 +246,7 @@
 		9533420F22F434C900DC7251 /* PBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533420E22F434C900DC7251 /* PBKVOController.m */; };
 		9533421222F434D900DC7251 /* PBKVOListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533421122F434D900DC7251 /* PBKVOListController.m */; };
 		9533421522F434E700DC7251 /* PBKVOList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533421422F434E700DC7251 /* PBKVOList.m */; };
+		9539748B2CDA385000EDF4C2 /* PBExceptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9539748A2CDA385000EDF4C2 /* PBExceptionController.m */; };
 		9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */; };
 		9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */; };
 		9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319722E059A000F6BFA2 /* PBMineController.m */; };
@@ -796,6 +797,8 @@
 		9533421122F434D900DC7251 /* PBKVOListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKVOListController.m; sourceTree = "<group>"; };
 		9533421322F434E700DC7251 /* PBKVOList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKVOList.h; sourceTree = "<group>"; };
 		9533421422F434E700DC7251 /* PBKVOList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKVOList.m; sourceTree = "<group>"; };
+		953974892CDA385000EDF4C2 /* PBExceptionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBExceptionController.h; sourceTree = "<group>"; };
+		9539748A2CDA385000EDF4C2 /* PBExceptionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBExceptionController.m; sourceTree = "<group>"; };
 		9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@2x.png"; sourceTree = "<group>"; };
 		9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@3x.png"; sourceTree = "<group>"; };
 		9547319722E059A000F6BFA2 /* PBMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMineController.m; sourceTree = "<group>"; };
@@ -2509,6 +2512,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		953974882CDA382400EDF4C2 /* PBException */ = {
+			isa = PBXGroup;
+			children = (
+				953974892CDA385000EDF4C2 /* PBExceptionController.h */,
+				9539748A2CDA385000EDF4C2 /* PBExceptionController.m */,
+			);
+			path = PBException;
+			sourceTree = "<group>";
+		};
 		9547319222E059A000F6BFA2 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3130,6 +3142,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				953974882CDA382400EDF4C2 /* PBException */,
 				5CEBEAA72C11A08D0079CDDF /* PBRegularExpression */,
 				5C6350452BFF315F00BDA678 /* PBCSBS */,
 				5C65C16D2BEBB26100F5F1EC /* PBNSLog */,
@@ -3671,6 +3684,7 @@
 				5C2D0622280BFBFC00C775B3 /* PBCellHeightZeroCell.m in Sources */,
 				9575998122FC2415009CA618 /* TFHppleElement.m in Sources */,
 				9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */,
+				9539748B2CDA385000EDF4C2 /* PBExceptionController.m in Sources */,
 				5CCC10DC29CAF87800F60C38 /* PBAppLogoView.m in Sources */,
 				9575931F22F82A37009CA618 /* PBstorageZeroController.m in Sources */,
 				9575933F22F82A64009CA618 /* PBStorageTextThreeController.m in Sources */,
