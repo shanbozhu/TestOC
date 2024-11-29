@@ -19,6 +19,9 @@
 
 @end
 
+// ios开发 模糊处理 开发者选项模糊效果 https://blog.51cto.com/u_16099169/9345424
+// https://github.com/Vanbein/BlurViewExample
+
 @implementation PBListView
 
 + (id)listView {
