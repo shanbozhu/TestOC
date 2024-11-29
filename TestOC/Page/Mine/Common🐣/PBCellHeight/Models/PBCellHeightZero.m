@@ -26,6 +26,7 @@
             PBCellHeightZeroData *testListData = [PBCellHeightZeroData testListDataWithDict:dic];
             [dataArr addObject:testListData];
         }
+        // 保存成私有成员变量，同时增加一个强引用
         self.data = dataArr;
     }
     return self;
