@@ -76,6 +76,16 @@
      ------------ 2 == <NSThread: 0x2826cee80>{number = 1, name = main}
      ------------ 4 == <NSThread: 0x2826cee80>{number = 1, name = main}
      ------------ PBGCDListNineController对象被释放了
+     
+     ------------ 开始所有执行
+     ------------ 完成所有执行
+     ------------ 1 == <NSThread: 0x281eb9240>{number = 16, name = (null)}
+     ------------ 111 == <NSThread: 0x281e8f100>{number = 17, name = (null)}
+     ------------ 11 == <NSThread: 0x281e76e40>{number = 15, name = (null)}
+     ------------ 3 == <NSThread: 0x281e1ee80>{number = 1, name = main}
+     ------------ 2 == <NSThread: 0x281e1ee80>{number = 1, name = main}
+     ------------ 4 == <NSThread: 0x281e1ee80>{number = 1, name = main}
+     ------------ PBGCDListNineController对象被释放了
      */
     
     NSLog(@"开始所有执行");
