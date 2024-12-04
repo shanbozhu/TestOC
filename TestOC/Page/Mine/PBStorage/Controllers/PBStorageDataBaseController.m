@@ -144,8 +144,8 @@
     if (![self.db open]) {
         NSLog(@"打开数据库文件失败");
     }
-    //NSString *sql = @"select * from students order by sid ASC"; // 正向输出
-    //NSString *sql = @"select * from students order by sid DESC"; // 反向输出
+    //NSString *sql = @"select * from students order by sid ASC"; // 升序：越来越大
+    //NSString *sql = @"select * from students order by sid DESC"; // 降序：越来越小
     //NSString *sql = @"select name from students where sid = '952'";
     //NSString *sql = @"select * from students where sid = '952'";
     FMResultSet *result = [self.db executeQuery:@"select * from students where sid = ?", self.testSid];
