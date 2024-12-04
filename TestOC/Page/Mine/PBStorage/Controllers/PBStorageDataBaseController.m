@@ -30,7 +30,7 @@
 // 删除记录
 #define kDelete @"delete from students where sid = ?"
 // 修改记录
-#define kUpdate @"update students set name = '阿祖', sid = '1' where sid = ?"
+#define kUpdate @"update students set name = '阿祖' where sid = ?"
 // 查找记录
 #define kSelect @"select * from students where sid = ?"
 
