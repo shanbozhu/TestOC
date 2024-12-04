@@ -85,7 +85,7 @@ static id sharedDatabase = nil;
 - (void)upgradeFromV1ToV2 {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
-        [db executeUpdate:@"create table if not exists newTable(key TEXT, value BLOB)"];
+        [db executeUpdate:@"create table if not exists newTable (key TEXT, value BLOB)"];
     }];
 }
 
@@ -93,8 +93,8 @@ static id sharedDatabase = nil;
 - (void)initDatabase {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
-        [db executeUpdate:@"create table if not exists keyValueTable(key TEXT, value BLOB)"]; // kLatestDatabaseVersion为1时，创建的第一张表
-        [db executeUpdate:@"create table if not exists newTable(key TEXT, value BLOB)"]; // kLatestDatabaseVersion为2时，数据库升级增加创建的第二张表
+        [db executeUpdate:@"create table if not exists keyValueTable (key TEXT, value BLOB)"]; // kLatestDatabaseVersion为1时，创建的第一张表
+        [db executeUpdate:@"create table if not exists newTable (key TEXT, value BLOB)"]; // kLatestDatabaseVersion为2时，数据库升级增加创建的第二张表
     }];
 }
 
@@ -118,7 +118,7 @@ static id sharedDatabase = nil;
         while ([result next]) {
             [db executeUpdate:@"delete from keyValueTable where key = ?", key];
         }
-        [db executeUpdate:@"insert into keyValueTable(key, value) values(?, ?)", key, [PBArchiver dataWithObject:value key:key]];
+        [db executeUpdate:@"insert into keyValueTable (key, value) values (?, ?)", key, [PBArchiver dataWithObject:value key:key]];
     }];
 }
 

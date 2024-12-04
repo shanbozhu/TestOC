@@ -92,7 +92,7 @@
     if (![self.db open]) {
         NSLog(@"打开数据库文件失败");
     }
-    if ([self.db executeUpdate:@"create table if not exists students(sid TEXT, name TEXT)"]) {
+    if ([self.db executeUpdate:@"create table if not exists students (sid TEXT, name TEXT)"]) {
         NSLog(@"在数据库文件中创建表成功"); // 表名为students,含有两个表字段分别为sid和name
     }
     if (![self.db close]) {
@@ -105,7 +105,7 @@
     if (![self.db open]) {
         NSLog(@"打开数据库文件失败");
     }
-    if ([self.db executeUpdate:@"insert into students(sid, name) values(?, ?)", self.testSid, self.testName]) {
+    if ([self.db executeUpdate:@"insert into students (sid, name) values (?, ?)", self.testSid, self.testName]) {
         NSLog(@"增加表中的一条或多条记录成功");
     }
     if (![self.db close]) {
