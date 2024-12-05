@@ -30,14 +30,30 @@ static Class<PBSyntaxProtocol> _someCls;
 
 @synthesize name=_name;
 @dynamic height;
-@dynamic someString;
-@dynamic someCls;
 
 - (instancetype)init {
     if (self = [super init]) {
         self.height = @"180";
     }
     return self;
+}
+
+#pragma mark - class property
+
++ (void)setSomeString:(NSString *)someString {
+    _someString = someString;
+}
+
++ (NSString *)someString {
+    return _someString;
+}
+
++ (void)setSomeCls:(Class<PBSyntaxProtocol>)someCls {
+    _someCls = someCls;
+}
+
++ (Class<PBSyntaxProtocol>)someCls {
+    return _someCls;
 }
 
 #pragma mark - 有@synthesize修饰，可以同时重写getter、setter方法
@@ -54,9 +70,11 @@ static Class<PBSyntaxProtocol> _someCls;
 
 #pragma mark - 没有@synthesize修饰，只能同时重写getter、setter方法中的一种
 
-//- (NSString *)age {
-//    return _age; // 若同时重写，会导致未声明成员变量
-//}
+/**
+- (NSString *)age {
+    return _age; // 若同时重写，会导致未声明成员变量
+}
+ */
 
 - (void)setAge:(NSString *)age {
     _age = age;
@@ -91,31 +109,13 @@ static Class<PBSyntaxProtocol> _someCls;
 @implementation PBSyntax (ability)
 
 - (void)setSing:(NSString *)sing {
-    // 设置self的关联对象key/value
+    // 设置 self的关联对象key/value
     objc_setAssociatedObject(self, @selector(sing), sing, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSString *)sing {
-    // 获取self的关联对象key/value
+    // 获取 self的关联对象key/value
     return objc_getAssociatedObject(self, @selector(sing));
-}
-
-#pragma mark - class property
-
-+ (void)setSomeString:(NSString *)someString {
-    _someString = someString;
-}
-
-+ (NSString *)someString {
-    return _someString;
-}
-
-+ (void)setSomeCls:(Class<PBSyntaxProtocol>)someCls {
-    _someCls = someCls;
-}
-
-+ (Class<PBSyntaxProtocol>)someCls {
-    return _someCls;
 }
 
 @end

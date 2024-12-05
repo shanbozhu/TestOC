@@ -31,9 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *age;
 @property (nonatomic, copy) NSString *height;
 
+// 类属性：类对象的属性
 // class property
-@property (class, nonatomic) NSString *someString; // 类属性存储对象
-@property (class, nonatomic) Class<PBSyntaxProtocol> someCls; // 类属性存储类对象
+@property (nonatomic, class) NSString *someString; // 类属性用于存储“对象”
+@property (nonatomic, class) Class<PBSyntaxProtocol> someCls; // 类属性用于存储“类对象”
 
 @end
 
