@@ -5,6 +5,7 @@
 Cache.db
 workspace.xml
 xcschememanagement.plist
+IDEFindNavigatorScopes.plist
 
 #CocoaPods
 Pods/
