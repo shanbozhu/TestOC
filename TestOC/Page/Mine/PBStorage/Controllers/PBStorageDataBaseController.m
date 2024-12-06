@@ -33,6 +33,8 @@
 #define kUpdate @"update students set name = '阿祖' where sid = ?"
 // 查找记录
 #define kSelect @"select * from students where sid = ?"
+//@"select * from students order by sid ASC"; // 升序：越来越大
+//@"select * from students order by sid DESC"; // 降序：越来越小
 
 // 添加表字段
 #define kAddColumn @"alter table students add column %@ TEXT"
@@ -165,10 +167,6 @@
     if (![self.db open]) {
         NSLog(@"打开数据库文件失败");
     }
-    //NSString *sql = @"select * from students order by sid ASC"; // 升序：越来越大
-    //NSString *sql = @"select * from students order by sid DESC"; // 降序：越来越小
-    //NSString *sql = @"select name from students where sid = '952'";
-    //NSString *sql = @"select * from students where sid = '952'";
     FMResultSet *result = [self.db executeQuery:kSelect, self.testSid];
     while ([result next]) {
         NSString *sid = [result stringForColumn:@"sid"];
