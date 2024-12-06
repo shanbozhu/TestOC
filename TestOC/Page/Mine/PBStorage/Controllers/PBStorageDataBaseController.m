@@ -23,6 +23,9 @@
 
 @end
 
+//@"select * from students order by sid ASC"; // 升序：越来越大
+//@"select * from students order by sid DESC"; // 降序：越来越小
+
 // 创建表
 #define kCreateTable @"create table if not exists students (sid TEXT, name TEXT)"
 // 增加记录
@@ -33,8 +36,6 @@
 #define kUpdate @"update students set name = '阿祖' where sid = ?"
 // 查找记录
 #define kSelect @"select * from students where sid = ?"
-//@"select * from students order by sid ASC"; // 升序：越来越大
-//@"select * from students order by sid DESC"; // 降序：越来越小
 
 // 添加表字段
 #define kAddColumn @"alter table students add column %@ TEXT"

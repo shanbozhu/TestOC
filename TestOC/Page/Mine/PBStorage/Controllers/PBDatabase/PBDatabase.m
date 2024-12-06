@@ -76,7 +76,10 @@ static id sharedDatabase = nil;
         NSString *aSelectorName = [NSString stringWithFormat:@"upgradeFromV%luToV%lu", i, i+1];
         SEL aSelector = NSSelectorFromString(aSelectorName);
         if ([self respondsToSelector:aSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [self performSelector:aSelector];
+#pragma clang diagnostic pop
         }
     }
 }
