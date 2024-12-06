@@ -34,6 +34,16 @@
 // 查找记录
 #define kSelect @"select * from students where sid = ?"
 
+// 添加表字段
+#define kAddColumn @"alter table students add column %@ TEXT"
+
+// 重命名表
+#define kRename @"alter table students rename to tmp"
+// 复制表
+#define kCopy @"insert into students select sid, name from tmp"
+// 删除表
+#define kDrop @"drop table tmp"
+
 @implementation PBStorageDataBaseController
 
 - (void)viewDidLoad {
@@ -177,7 +187,7 @@
         NSLog(@"打开数据库文件失败");
     }
     if (![self.db columnExists:self.testColumn inTableWithName:@"students"]) {
-        NSString *sql = [NSString stringWithFormat:@"alter table students add column %@ TEXT", self.testColumn];
+        NSString *sql = [NSString stringWithFormat:kAddColumn, self.testColumn];
         if ([self.db executeUpdate:sql]) {
             NSLog(@"添加表字段成功");
         }
@@ -195,7 +205,7 @@
         NSLog(@"打开数据库文件失败");
     }
     if ([self.db tableExists:@"students"]) {
-        if ([self.db executeUpdate:@"alter table students rename to tmp"]) {
+        if ([self.db executeUpdate:kRename]) {
             NSLog(@"重命名表成功");
         }
     } else {
@@ -214,7 +224,7 @@
     if (![self.db open]) {
         NSLog(@"打开数据库文件失败");
     }
-    if ([self.db executeUpdate:@"insert into students select sid, name from tmp"]) {
+    if ([self.db executeUpdate:kCopy]) {
         NSLog(@"复制表成功");
     }
     if (![self.db close]) {
@@ -228,7 +238,7 @@
         NSLog(@"打开数据库文件失败");
     }
     if ([self.db tableExists:@"tmp"]) {
-        NSString *sql = @"drop table tmp";
+        NSString *sql = kDrop;
         if ([self.db executeUpdate:sql]) {
             NSLog(@"删除表成功");
         }
