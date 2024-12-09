@@ -289,19 +289,6 @@
  这时，整个表的所有记录都会被删除。
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //@"select * from students order by sid ASC"; // 升序：越来越大
 //@"select * from students order by sid DESC"; // 降序：越来越小
 
