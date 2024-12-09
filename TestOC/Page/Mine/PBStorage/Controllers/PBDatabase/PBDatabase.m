@@ -20,6 +20,9 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 
 #define DATABASEFILEPATH @"/Documents/PBStorage/PBStorageDb.db"
 
+#define kCreateTable @"create table if not exists keyValueTable (key TEXT, value BLOB)"
+#define kCreateTableTwo @"create table if not exists newTable (key TEXT, value BLOB)"
+
 static id sharedDatabase = nil;
 
 @implementation PBDatabase
@@ -88,7 +91,7 @@ static id sharedDatabase = nil;
 - (void)upgradeFromV1ToV2 {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
-        [db executeUpdate:@"create table if not exists newTable (key TEXT, value BLOB)"];
+        [db executeUpdate:kCreateTableTwo];
     }];
 }
 
@@ -96,8 +99,8 @@ static id sharedDatabase = nil;
 - (void)initDatabase {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
-        [db executeUpdate:@"create table if not exists keyValueTable (key TEXT, value BLOB)"]; // kLatestDatabaseVersion为1时，创建的第一张表
-        [db executeUpdate:@"create table if not exists newTable (key TEXT, value BLOB)"]; // kLatestDatabaseVersion为2时，数据库升级增加创建的第二张表
+        [db executeUpdate:kCreateTable]; // kLatestDatabaseVersion为1时，创建的第一张表
+        [db executeUpdate:kCreateTableTwo]; // kLatestDatabaseVersion为2时，数据库升级增加创建的第二张表
     }];
 }
 
