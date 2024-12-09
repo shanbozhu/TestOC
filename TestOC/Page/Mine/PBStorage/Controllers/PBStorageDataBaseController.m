@@ -33,6 +33,22 @@
  
  查询 所有列 来自 学生表 在那儿 分数大于等于80
  select * from students where score >= 80
+ 
+ // SQL简介
+ SQL：Structured Query Language 结构化查询语言
+ 
+ CSV文件：逗号分隔值文件
+ id,name,gender,score
+ 1,小明,M,90
+ 2,小红,F,95
+ 3,小军,M,88
+ 4,小丽,F,88
+ 
+ 主流关系数据库
+ 1.商用数据库，例如：Oracle，SQL Server，DB2等；
+ 2.开源数据库，例如：MySQL，PostgreSQL等；
+ 3.桌面数据库，以微软Access为代表，适合桌面应用程序使用；
+ 4.嵌入式数据库，以Sqlite为代表，适合手机应用和桌面程序。
  */
 
 //@"select * from students order by sid ASC"; // 升序：越来越大
