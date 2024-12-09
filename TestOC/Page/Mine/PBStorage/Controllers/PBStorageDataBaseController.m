@@ -23,6 +23,18 @@
 
 @end
 
+/**
+ ascending order：升序
+ descending order：降序
+ 
+ SELECT：选择、查询
+ 
+ 聚合查询中的非聚合字段必须出现在group by中
+ 
+ 查询 所有列 来自 学生表 在那儿 分数大于等于80
+ select * from students where score >= 80
+ */
+
 //@"select * from students order by sid ASC"; // 升序：越来越大
 //@"select * from students order by sid DESC"; // 降序：越来越小
 
