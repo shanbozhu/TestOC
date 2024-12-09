@@ -32,9 +32,13 @@
  聚合查询中的非聚合字段必须出现在group by中
  
  查询 所有列 来自 学生表 在那儿 分数大于等于80
- select * from students where score >= 80
+ select * from students where score >= 80;
+ 
  查询 score列的平均值 别名 average 来自 学生表 在那儿 性别为男性
  select avg(score) average from students where gender = 'm';
+ 
+ 查询 class_id gender count(*)所有列的行数 别名 num 来自 学生表 在那儿 分组通过 class_id 和 gender
+ select class_id, gender, count(*) num from students group by class_id, gender;
  
  // SQL简介
  SQL：Structured Query Language 结构化查询语言
