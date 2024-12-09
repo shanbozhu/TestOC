@@ -24,9 +24,6 @@
 @end
 
 /**
- ascending order：升序
- descending order：降序
- 
  SELECT：选择、查询
  
  聚合查询中的非聚合字段必须出现在group by中
@@ -39,6 +36,29 @@
  
  查询 class_id gender count(*)所有列的行数 别名 num 来自 学生表 在那儿 分组通过 class_id 和 gender
  select class_id, gender, count(*) num from students group by class_id, gender;
+ 
+ 效果如下
+ 原始表：
+ id    class_id    name    gender    score
+ 1    1    小明    M    90
+ 2    1    小红    F    95
+ 3    1    小军    M    88
+ 4    1    小米    F    73
+ 5    2    小白    F    81
+ 6    2    小兵    M    55
+ 7    2    小林    M    85
+ 8    3    小新    F    91
+ 9    3    小王    M    89
+ 10    3    小丽    F    85
+ 
+ 结果集：
+ class_id    gender    num
+ 1    M    2
+ 1    F    2
+ 2    F    1
+ 2    M    2
+ 3    F    2
+ 3    M    1
  
  // SQL简介
  SQL：Structured Query Language 结构化查询语言
@@ -100,6 +120,9 @@
  SELECT id, score points, name FROM students WHERE gender = 'M';
  
  **排序查询**
+ 
+ ascending order：升序
+ descending order：降序
  
  -- 按score从低到高:
  SELECT id, name, gender, score FROM students ORDER BY score;
