@@ -25,6 +25,11 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 // 创建表
 #define kCreateTableTwo @"create table if not exists newTable (key TEXT, value BLOB)"
 
+// 杂注 设置用户版本
+#define kSetUserVersion @"PRAGMA user_version = %zd"
+// 杂注 获取用户版本
+#define kUserVersion @"PRAGMA user_version"
+
 // 增加记录
 #define kInsert @"insert into keyValueTable (key, value) values (?, ?)"
 // 删除记录
@@ -102,7 +107,7 @@ static id sharedDatabase = nil;
 // 老用户原先只有第一张表，升级程序后添加了第二张表
 - (void)upgradeFromV1ToV2 {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
+        [db executeUpdate:[NSString stringWithFormat:kSetUserVersion, kLatestDatabaseVersion]];
         [db executeUpdate:kCreateTableTwo];
     }];
 }
@@ -110,7 +115,7 @@ static id sharedDatabase = nil;
 // 新用户直接创建先后两个版本添加的表
 - (void)initDatabase {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %zd", kLatestDatabaseVersion]];
+        [db executeUpdate:[NSString stringWithFormat:kSetUserVersion, kLatestDatabaseVersion]];
         [db executeUpdate:kCreateTable]; // kLatestDatabaseVersion为1时，创建的第一张表
         [db executeUpdate:kCreateTableTwo]; // kLatestDatabaseVersion为2时，数据库升级增加创建的第二张表
     }];
@@ -119,7 +124,7 @@ static id sharedDatabase = nil;
 - (NSUInteger)versionOfDatabase {
     __block NSUInteger version = 0;
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        version = [db intForQuery:@"PRAGMA user_version"];
+        version = [db intForQuery:kUserVersion];
     }];
     return version;
 }
