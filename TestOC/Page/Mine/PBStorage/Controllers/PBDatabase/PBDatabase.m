@@ -23,6 +23,10 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 #define kCreateTable @"create table if not exists keyValueTable (key TEXT, value BLOB)"
 #define kCreateTableTwo @"create table if not exists newTable (key TEXT, value BLOB)"
 
+#define kInsert @"insert into keyValueTable (key, value) values (?, ?)"
+#define kDelete @"delete from keyValueTable where key = ?"
+
+
 static id sharedDatabase = nil;
 
 @implementation PBDatabase
@@ -122,15 +126,15 @@ static id sharedDatabase = nil;
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         FMResultSet *result = [db executeQuery:@"select * from keyValueTable where key = ?", key];
         while ([result next]) {
-            [db executeUpdate:@"delete from keyValueTable where key = ?", key];
+            [db executeUpdate:kDelete, key];
         }
-        [db executeUpdate:@"insert into keyValueTable (key, value) values (?, ?)", key, [PBArchiver dataWithObject:value key:key]];
+        [db executeUpdate:kInsert, key, [PBArchiver dataWithObject:value key:key]];
     }];
 }
 
 - (void)removeObjectForKey:(NSString *)defaultName {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"delete from keyValueTable where key = ?", defaultName];
+        [db executeUpdate:kDelete, defaultName];
     }];
 }
 
