@@ -25,6 +25,7 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 
 #define kInsert @"insert into keyValueTable (key, value) values (?, ?)"
 #define kDelete @"delete from keyValueTable where key = ?"
+#define kSelect @"select * from keyValueTable where key = ?"
 
 
 static id sharedDatabase = nil;
@@ -124,7 +125,7 @@ static id sharedDatabase = nil;
 
 - (void)setValue:(id)value forKey:(NSString *)key {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *result = [db executeQuery:@"select * from keyValueTable where key = ?", key];
+        FMResultSet *result = [db executeQuery:kSelect, key];
         while ([result next]) {
             [db executeUpdate:kDelete, key];
         }
@@ -141,7 +142,7 @@ static id sharedDatabase = nil;
 - (id)valueForKey:(NSString *)key {
     __block NSData *value;
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *result = [db executeQuery:@"select * from keyValueTable where key = ?", key];
+        FMResultSet *result = [db executeQuery:kSelect, key];
         while ([result next]) {
             value = [result dataForColumn:@"value"];
         }
