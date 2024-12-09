@@ -33,6 +33,8 @@
  
  查询 所有列 来自 学生表 在那儿 分数大于等于80
  select * from students where score >= 80
+ 查询 score列的平均值 别名 average 来自 学生表 在那儿 性别为男性
+ select avg(score) average from students where gender = 'm';
  
  // SQL简介
  SQL：Structured Query Language 结构化查询语言
@@ -88,6 +90,8 @@
  等价于
  SELECT id, score as points, name FROM students;
  
+ as：作为、别名
+ 
  -- 使用投影查询+WHERE条件：
  SELECT id, score points, name FROM students WHERE gender = 'M';
  
@@ -103,6 +107,61 @@
  
  -- 按score降序，如果遇到score相同，在按照gender升序:
  SELECT id, name, gender, score FROM students ORDER BY score DESC, gender ASC;
+ 
+ 分页查询
+ 
+ -- 查询第1页:
+ -- 从偏移量0开始，最多查询3条记录
+ SELECT id, name, gender, score
+ FROM students
+ ORDER BY score DESC
+ LIMIT 3 OFFSET 0;
+ 
+ -- 查询第2页:
+ SELECT id, name, gender, score
+ FROM students
+ ORDER BY score DESC
+ LIMIT 3 OFFSET 3;
+ 
+ -- 查询第3页:
+ SELECT id, name, gender, score
+ FROM students
+ ORDER BY score DESC
+ LIMIT 3 OFFSET 6;
+ 
+ -- 查询第4页:
+ SELECT id, name, gender, score
+ FROM students
+ ORDER BY score DESC
+ LIMIT 3 OFFSET 9;
+ 
+ LIMIT：总是设定为pageSize
+ OFFSET：计算公式为pageSize * (pageIndex - 1)
+ 
+ OFFSET是可选的，如果只写LIMIT 15，那么相当于LIMIT 15 OFFSET 0
+ 
+ 聚合查询
+ 
+ -- 使用聚合查询:
+ SELECT COUNT(*) FROM students;
+ 
+ -- 使用聚合查询并设置结果集的列名为num:
+ SELECT COUNT(*) num FROM students;
+ 
+ COUNT(*)和COUNT(id)实际上是一样的效果。
+ 
+ -- 使用聚合查询并设置WHERE条件:
+ SELECT COUNT(*) boys FROM students WHERE gender = 'M';
+ 
+ 函数    说明
+ COUNT  计算某一列的行数
+ SUM    计算某一列的合计值，该列必须为数值类型
+ AVG    计算某一列的平均值，该列必须为数值类型
+ MAX    计算某一列的最大值
+ MIN    计算某一列的最小值
+ 
+ -- 使用聚合查询计算男生平均成绩:
+ SELECT AVG(score) average FROM students WHERE gender = 'M';
  */
 
 
