@@ -36,8 +36,7 @@
  
  查询 class_id gender count(*)所有列的行数 别名 num 来自 学生表 在那儿 分组通过 class_id 和 gender
  select class_id, gender, count(*) num from students group by class_id, gender;
- 
- 效果如下
+ 执行效果如下：
  原始表：
  id    class_id    name    gender    score
  1    1    小明    M    90
