@@ -52,7 +52,7 @@
  3.桌面数据库，以微软Access为代表，适合桌面应用程序使用；
  4.嵌入式数据库，以Sqlite为代表，适合手机应用和桌面程序。
  
- 基本查询
+ **基本查询**
  
  -- 查询students表的所有数据
  SELECT * FROM students;
@@ -60,7 +60,7 @@
  -- 计算100+200
  SELECT 100+200;
  
- 条件查询
+ **条件查询**
  
  -- 按AND条件查询students:
  SELECT * FROM students WHERE score >= 80 AND gender = 'M';
@@ -80,7 +80,7 @@
  -- gender是空
  SELECT * FROM students WHERE gender is null;
  
- 投影查询
+ **投影查询**
  
  -- 使用投影查询
  SELECT id, score, name FROM students;
@@ -95,7 +95,7 @@
  -- 使用投影查询+WHERE条件：
  SELECT id, score points, name FROM students WHERE gender = 'M';
  
- 排序
+ **排序查询**
  
  -- 按score从低到高:
  SELECT id, name, gender, score FROM students ORDER BY score;
@@ -108,7 +108,7 @@
  -- 按score降序，如果遇到score相同，在按照gender升序:
  SELECT id, name, gender, score FROM students ORDER BY score DESC, gender ASC;
  
- 分页查询
+ **分页查询**
  
  -- 查询第1页:
  -- 从偏移量0开始，最多查询3条记录
@@ -140,7 +140,7 @@
  
  OFFSET是可选的，如果只写LIMIT 15，那么相当于LIMIT 15 OFFSET 0
  
- 聚合查询
+ **聚合查询**
  
  -- 使用聚合查询:
  SELECT COUNT(*) FROM students;
@@ -177,7 +177,7 @@
  SELECT class_id, gender, COUNT(*) num FROM students GROUP BY class_id, gender;
  上述查询结果集一共有6条记录，分别对应各班级的男生和女生人数。
  
- 多表查询
+ **多表查询**
  
  -- FROM students, classes:
  SELECT * FROM students, classes;
@@ -216,7 +216,7 @@
  FROM students s, classes c
  WHERE s.gender = 'M' AND c.id = 1;
  
- 连接查询
+ **连接查询**
  
  -- 选出所有学生:
  SELECT s.id, s.name, s.class_id, s.gender, s.score FROM students s;
@@ -247,7 +247,7 @@
  FULL OUTER JOIN classes c
  ON s.class_id = c.id;
  
- 插入数据
+ **插入数据**
  
  -- 添加一条新记录:
  INSERT INTO students (class_id, name, gender, score) VALUES (2, '大牛', 'M', 80);
@@ -258,7 +258,7 @@
    (2, '二宝', 'M', 81),
    (3, '三宝', 'M', 83);
  
- 更新数据
+ **更新数据**
  
  -- 更新id = 1的记录:
  UPDATE students SET name = '大牛', score = 66 WHERE id = 1;
@@ -275,7 +275,7 @@
  UPDATE students SET score = 60;
  这时，整个表的所有记录都会被更新。
  
- 删除数据
+ **删除数据**
  
  -- 删除id = 1的记录:
  DELETE FROM students WHERE id = 1;
