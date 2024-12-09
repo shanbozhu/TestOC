@@ -20,12 +20,19 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 
 #define DATABASEFILEPATH @"/Documents/PBStorage/PBStorageDb.db"
 
+// 创建表
 #define kCreateTable @"create table if not exists keyValueTable (key TEXT, value BLOB)"
+// 创建表
 #define kCreateTableTwo @"create table if not exists newTable (key TEXT, value BLOB)"
 
+// 增加记录
 #define kInsert @"insert into keyValueTable (key, value) values (?, ?)"
+// 删除记录
 #define kDelete @"delete from keyValueTable where key = ?"
+// 查找记录
 #define kSelect @"select * from keyValueTable where key = ?"
+// 删除所有记录
+#define kDeleteAll @"delete from keyValueTable"
 
 
 static id sharedDatabase = nil;
@@ -152,7 +159,7 @@ static id sharedDatabase = nil;
 
 - (void)removeAllObjects {
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"delete from keyValueTable"];
+        [db executeUpdate:kDeleteAll];
     }];
 }
 
