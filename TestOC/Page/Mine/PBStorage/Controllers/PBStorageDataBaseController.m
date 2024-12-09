@@ -59,6 +59,8 @@
  3    F    2
  3    M    1
  
+ COUNT(1)和COUNT(*)在大多数数据库系统中是等价的，它们都会返回相同的结果。使用COUNT(1)而不是COUNT(*)有时候可以在某些数据库系统中提供更好的性能。
+ 
  // SQL简介
  SQL：Structured Query Language 结构化查询语言
  
