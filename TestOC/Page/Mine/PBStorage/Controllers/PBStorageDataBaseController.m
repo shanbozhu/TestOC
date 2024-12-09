@@ -45,11 +45,78 @@
  4,小丽,F,88
  
  主流关系数据库
- 1.商用数据库，例如：Oracle，SQL Server，DB2等；
- 2.开源数据库，例如：MySQL，PostgreSQL等；
+ 1.商用数据库，例如：Oracle、SQL Server、DB2等；
+ 2.开源数据库，例如：MySQL、PostgreSQL等；
  3.桌面数据库，以微软Access为代表，适合桌面应用程序使用；
  4.嵌入式数据库，以Sqlite为代表，适合手机应用和桌面程序。
+ 
+ 基本查询
+ 
+ -- 查询students表的所有数据
+ SELECT * FROM students;
+ 
+ -- 计算100+200
+ SELECT 100+200;
+ 
+ 条件查询
+ 
+ -- 按AND条件查询students:
+ SELECT * FROM students WHERE score >= 80 AND gender = 'M';
+ 
+ -- 按OR条件查询students:
+ SELECT * FROM students WHERE score >= 80 OR gender = 'M';
+ 
+ -- 按NOT条件查询students:
+ SELECT * FROM students WHERE NOT score = 80;
+ 等价于
+ SELECT * FROM students WHERE score <> 80;
+ 因此，NOT查询不是很常用。
+ 
+ -- gender是非空
+ SELECT * FROM students WHERE gender is not null;
+ 
+ -- gender是空
+ SELECT * FROM students WHERE gender is null;
+ 
+ 投影查询
+ 
+ -- 使用投影查询
+ SELECT id, score, name FROM students;
+ 
+ -- 使用投影查询，并将列名重命名：
+ SELECT id, score points, name FROM students;
+ 等价于
+ SELECT id, score as points, name FROM students;
+ 
+ -- 使用投影查询+WHERE条件：
+ SELECT id, score points, name FROM students WHERE gender = 'M';
+ 
+ 排序
+ 
+ -- 按score从低到高:
+ SELECT id, name, gender, score FROM students ORDER BY score;
+ 等价于
+ SELECT id, name, gender, score FROM students ORDER BY score ASC;
+ 
+ -- 按score从高到低:
+ SELECT id, name, gender, score FROM students ORDER BY score DESC;
+ 
+ -- 按score降序，如果遇到score相同，在按照gender升序:
+ SELECT id, name, gender, score FROM students ORDER BY score DESC, gender ASC;
  */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //@"select * from students order by sid ASC"; // 升序：越来越大
 //@"select * from students order by sid DESC"; // 降序：越来越小
