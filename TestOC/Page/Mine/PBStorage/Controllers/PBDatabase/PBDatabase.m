@@ -39,14 +39,13 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 // 删除所有记录
 #define kDeleteAll @"delete from keyValueTable"
 
-
 static id sharedDatabase = nil;
 
 @implementation PBDatabase
 
 #pragma mark - 单例
 
-+ (id)sharedDatabase {
++ (instancetype)sharedDatabase {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         sharedDatabase = [[self alloc]init];

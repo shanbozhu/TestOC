@@ -15,7 +15,7 @@
 // 支持多线程操作
 @interface PBDatabase : NSObject
 
-+ (id)sharedDatabase;
++ (instancetype)sharedDatabase;
 
 /**
  执行SQL语句
