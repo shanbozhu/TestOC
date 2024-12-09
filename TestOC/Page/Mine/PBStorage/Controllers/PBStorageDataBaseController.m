@@ -162,6 +162,131 @@
  
  -- 使用聚合查询计算男生平均成绩:
  SELECT AVG(score) average FROM students WHERE gender = 'M';
+ 
+ 如果我们要统计一班的学生数量，我们知道，可以用SELECT COUNT(*) num FROM students WHERE class_id = 1;。如果要继续统计二班、三班的学生数量，难道必须不断修改WHERE条件来执行SELECT语句吗？
+ -- 按class_id分组:
+ SELECT COUNT(*) num FROM students GROUP BY class_id;
+ 执行该SELECT语句时，会把class_id相同的列先分组，再分别计算，因此，得到了3行结果。
+ 
+ 但是这3行结果分别是哪三个班级的，不好看出来，所以我们可以把class_id列也放入结果集中：
+ -- 按class_id分组:
+ SELECT class_id, COUNT(*) num FROM students GROUP BY class_id;
+ 
+ 也可以使用多个列进行分组。例如，我们想统计各班的男生和女生人数：
+ -- 按class_id, gender分组:
+ SELECT class_id, gender, COUNT(*) num FROM students GROUP BY class_id, gender;
+ 上述查询结果集一共有6条记录，分别对应各班级的男生和女生人数。
+ 
+ 多表查询
+ 
+ -- FROM students, classes:
+ SELECT * FROM students, classes;
+ 这种一次查询两个表的数据，查询的结果也是一个二维表，它是students表和classes表的“乘积”，即students表的每一行与classes表的每一行都两两拼在一起返回。结果集的列数是students表和classes表的列数之和，行数是students表和classes表的行数之积。
+ 这种多表查询又称笛卡尔查询，使用笛卡尔查询时要非常小心，由于结果集是目标表的行数乘积，对两个各自有100行记录的表进行笛卡尔查询将返回1万条记录，对两个各自有1万行记录的表进行笛卡尔查询将返回1亿条记录。
+ 
+ -- set alias:
+ SELECT
+     students.id sid,
+     students.name,
+     students.gender,
+     students.score,
+     classes.id cid,
+     classes.name cname
+ FROM students, classes;
+ 
+ 注意，多表查询时，要使用表名.列名这样的方式来引用列和设置别名，这样就避免了结果集的列名重复问题。但是，用表名.列名这种方式列举两个表的所有列实在是很麻烦，所以SQL还允许给表设置一个别名，让我们在投影查询中引用起来稍微简洁一点：
+ -- set table alias:
+ SELECT
+     s.id sid,
+     s.name,
+     s.gender,
+     s.score,
+     c.id cid,
+     c.name cname
+ FROM students s, classes c;
+ 
+ -- set where clause:
+ SELECT
+     s.id sid,
+     s.name,
+     s.gender,
+     s.score,
+     c.id cid,
+     c.name cname
+ FROM students s, classes c
+ WHERE s.gender = 'M' AND c.id = 1;
+ 
+ 连接查询
+ 
+ -- 选出所有学生:
+ SELECT s.id, s.name, s.class_id, s.gender, s.score FROM students s;
+ 
+ -- 选出所有学生，同时返回班级名称:
+ SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+ FROM students s
+ INNER JOIN classes c
+ ON s.class_id = c.id;
+ 
+ -- 使用OUTER JOIN:
+ SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+ FROM students s
+ RIGHT OUTER JOIN classes c
+ ON s.class_id = c.id;
+ 
+ -- 先增加一列class_id=5:
+ INSERT INTO students (class_id, name, gender, score) values (5, '新生', 'M', 88);
+ -- 使用LEFT OUTER JOIN:
+ SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+ FROM students s
+ LEFT OUTER JOIN classes c
+ ON s.class_id = c.id;
+ 
+ -- 使用FULL OUTER JOIN:
+ SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+ FROM students s
+ FULL OUTER JOIN classes c
+ ON s.class_id = c.id;
+ 
+ 插入数据
+ 
+ -- 添加一条新记录:
+ INSERT INTO students (class_id, name, gender, score) VALUES (2, '大牛', 'M', 80);
+ 
+ -- 一次性添加多条新记录:
+ INSERT INTO students (class_id, name, gender, score) VALUES
+   (1, '大宝', 'M', 87),
+   (2, '二宝', 'M', 81),
+   (3, '三宝', 'M', 83);
+ 
+ 更新数据
+ 
+ -- 更新id = 1的记录:
+ UPDATE students SET name = '大牛', score = 66 WHERE id = 1;
+ 
+ -- 更新id = 5、6、7的记录:
+ UPDATE students SET name = '小牛', score = 77 WHERE id >= 5 AND id <= 7;
+ 
+ 在UPDATE语句中，更新字段时可以使用表达式。例如，把所有80分以下的同学的成绩加10分：
+ -- 更新score < 80的记录:
+ UPDATE students SET score = score + 10 WHERE score < 80;
+ 
+ 最后，要特别小心的是，UPDATE语句可以没有WHERE条件，例如：
+ -- 更新所有记录:
+ UPDATE students SET score = 60;
+ 这时，整个表的所有记录都会被更新。
+ 
+ 删除数据
+ 
+ -- 删除id = 1的记录:
+ DELETE FROM students WHERE id = 1;
+ 
+ -- 删除id = 5、6、7的记录:
+ DELETE FROM students WHERE id >= 5 AND id <= 7;
+ 
+ 最后，要特别小心的是，和UPDATE类似，不带WHERE条件的DELETE语句会删除整个表的数据：
+ -- 删除所有记录:
+ DELETE FROM students;
+ 这时，整个表的所有记录都会被删除。
  */
 
 
