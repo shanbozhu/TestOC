@@ -16,14 +16,15 @@
 
 @end
 
+// 数据库最新版本号
 static const NSUInteger kLatestDatabaseVersion = 2;
 
 #define DATABASEFILEPATH @"/Documents/PBStorage/PBStorageDb.db"
 
 // 创建表
-#define kCreateTable @"create table if not exists keyValueTable (key TEXT, value BLOB)"
-// 创建表
-#define kCreateTableTwo @"create table if not exists newTable (key TEXT, value BLOB)"
+#define kCreateTable @"create table if not exists keyValueTable (id INTEGER primary key autoincrement, key TEXT not null, value BLOB not null)"
+// 数据库升级创建表二
+#define kCreateTableTwo @"create table if not exists newTable (id INTEGER primary key autoincrement, key TEXT not null, value BLOB not null)"
 
 // 杂注 设置用户版本
 #define kSetUserVersion @"PRAGMA user_version = %zd"
@@ -34,8 +35,10 @@ static const NSUInteger kLatestDatabaseVersion = 2;
 #define kInsert @"insert into keyValueTable (key, value) values (?, ?)"
 // 删除记录
 #define kDelete @"delete from keyValueTable where key = ?"
+// 修改记录
+#define kUpdate @"update keyValueTable set value = ? where key = ?"
 // 查找记录
-#define kSelect @"select * from keyValueTable where key = ?"
+#define kSelect @"select value from keyValueTable where key = ?"
 // 删除所有记录
 #define kDeleteAll @"delete from keyValueTable"
 
@@ -60,6 +63,8 @@ static id sharedDatabase = nil;
     });
     return sharedDatabase;
 }
+
+#pragma mark - 初始化
 
 - (id)init {
     if (self = [super init]) {
@@ -128,29 +133,52 @@ static id sharedDatabase = nil;
     return version;
 }
 
-#pragma mark - 操作
+#pragma mark - 线程安全的数据库操作
 
 - (void)excuteSQLInTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
     [self.dbQueue inTransaction:block];
 }
 
+#pragma mark - 操作
+
 - (void)setValue:(id)value forKey:(NSString *)key {
+    if (!value ||
+        !key) {
+        return;
+    }
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         FMResultSet *result = [db executeQuery:kSelect, key];
         while ([result next]) {
             [db executeUpdate:kDelete, key];
         }
         [db executeUpdate:kInsert, key, [PBArchiver dataWithObject:value key:key]];
+        
+        /**
+        // 存在多线程问题，待解决
+        while ([result next]) {
+            // 如果存在，则直接更新记录
+            [db executeUpdate:kUpdate, [PBArchiver dataWithObject:value key:key], key];
+            return;
+        }
+        // 如果不存，则新增记录
+        [db executeUpdate:kInsert, key, [PBArchiver dataWithObject:value key:key]];
+         */
     }];
 }
 
 - (void)removeObjectForKey:(NSString *)defaultName {
+    if (!defaultName) {
+        return;
+    }
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:kDelete, defaultName];
     }];
 }
 
 - (id)valueForKey:(NSString *)key {
+    if (!key) {
+        return nil;
+    }
     __block NSData *value;
     [self excuteSQLInTransaction:^(FMDatabase *db, BOOL *rollback) {
         FMResultSet *result = [db executeQuery:kSelect, key];
@@ -166,6 +194,8 @@ static id sharedDatabase = nil;
         [db executeUpdate:kDeleteAll];
     }];
 }
+
+#pragma mark - 生命周期
 
 - (void)dealloc {
     NSLog(@"PBDatabase对象被释放了");
