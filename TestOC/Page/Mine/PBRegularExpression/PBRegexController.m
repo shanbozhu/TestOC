@@ -22,7 +22,7 @@
         NSLog(@"[str substringWithRange:at.range] = %@", [str substringWithRange:at.range]);
     }
     if (result.count <= 0) {
-        NSLog(@"给定字符串中未匹配到指定子串样式!");
+        NSLog(@"给定字符串中未匹配到指定样式的子串!");
     }
 }
 
