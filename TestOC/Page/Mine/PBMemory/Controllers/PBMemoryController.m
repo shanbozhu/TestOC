@@ -62,25 +62,25 @@
  
  数据类型：(基本类型、对象类型)
  基本类型：
- int(整型%d)
- unsigned int(无符号整型%u)
- short(短整型%hd)
- long(长整型%ld)
- long long(长长整型%lld)
- float(单精度浮点型%f)
- double(双精度浮点型%lf)
- long double(长双精度浮点型%llf)
- char(字符型%c)
- bool(布尔型%d)
- enum(枚举型%d)
+ int（整型%d）
+ unsigned int（无符号整型%u）
+ short（短整型%hd）
+ long（长整型%ld）
+ long long（长长整型%lld）
+ float（单精度浮点型%f）
+ double（双精度浮点型%lf）
+ long double（长双精度浮点型%llf）
+ char（字符%c）
+ bool（布尔型%d）
+ enum（枚举%d）
  对象类型：
- string(字符串)：用""或''表示
- array(数组)：数据组合，索引遍历。又叫list，列表。用[]表示
- tuple(元组)：不可变数组。用(,)表示，()可省略
- dictionary(字典)：键值对组合，键遍历。用{}表示
- set(集合)：无序不重复数据组合。用{}表示
- struct(结构体)：数据组合，点语法遍历
- class(类)：点语法遍历
+ string（字符串）：用""或''表示
+ array（数组）：数据组合，索引遍历。又叫list，列表。用[]表示
+ tuple（元组）：不可变数组。用(,)表示，()可省略
+ dictionary（字典）：键值对组合，键遍历。用{}表示
+ set（集合）：无序不重复数据组合。用{}表示
+ struct（结构体）：数据组合，点语法遍历
+ class（类）：点语法遍历
  */
 
 /**
