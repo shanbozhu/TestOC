@@ -60,19 +60,19 @@
  驼峰命名法：第一个单词首字母小写，其余单词首字母大写
  蛇形命名法：每个单词的首字母小写，采用下划线拼接
  
- 数据类型：(基本类型、对象类型)
+ 数据类型：（基本类型、对象类型）
  基本类型：
- int（整型%d）
- unsigned int（无符号整型%u）
- short（短整型%hd）
- long（长整型%ld）
- long long（长长整型%lld）
- float（单精度浮点型%f）
- double（双精度浮点型%lf）
- long double（长双精度浮点型%llf）
- char（字符%c）
- bool（布尔型%d）
- enum（枚举%d）
+ int（整型：%d）
+ unsigned int（无符号整型：%u）
+ short（短整型：%hd）
+ long（长整型：%ld）
+ long long（长长整型：%lld）
+ float（单精度浮点型：%f）
+ double（双精度浮点型：%lf）
+ long double（长双精度浮点型：%llf）
+ char（字符型：%c）
+ bool（布尔型：%d）
+ enum（枚举：%d）
  对象类型：
  string（字符串）：用""或''表示
  array（数组）：数据组合，索引遍历。又叫list，列表。用[]表示
