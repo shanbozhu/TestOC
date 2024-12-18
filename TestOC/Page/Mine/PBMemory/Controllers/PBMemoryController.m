@@ -42,8 +42,8 @@
  
  浏览器内核：
  WebKit（WebCore和JavaScriptCore）--------> Safari
-                                     |
-                                     --------> BLink（WebCore和V8）--------> Chrome
+    |
+    --------> BLink（WebCore和V8）--------> Chrome
  */
 
 /**
