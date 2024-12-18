@@ -70,8 +70,8 @@
  float（单精度浮点型：%f）
  double（双精度浮点型：%lf）
  long double（长双精度浮点型：%llf）
- char（字符型：%c）
- bool（布尔型：%d）
+ char（字符：%c）
+ bool（布尔：%d）
  enum（枚举：%d）
  对象类型：
  string（字符串）：用""或''表示
