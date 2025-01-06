@@ -119,7 +119,7 @@
     [alertControllerMessageStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0, message.length)];
     [alertControllerMessageStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, message.length)];
     //[alert setValue:alertControllerMessageStr forKey:@"_attributedMessage"];
-    [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"]; // 与上面调用效果相同，1.通过设置类的私有属性
+    [alert setValue:alertControllerMessageStr forKey:@"attributedMessage"]; // 与上面调用效果相同，1. 通过设置类的私有属性
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alert addAction:cancelAction];
@@ -129,8 +129,8 @@
     [self presentViewController:alert animated:YES completion:nil];
     
     
-    //UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 1.通过设置类的私有属性
-    UILabel *messageLabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1]; // 2.通过遍历视图的所有子视图，找到要修改的视图
+    //UILabel *messageLabel = [alert.view valueForKey:@"_messageLabel"]; // 1. 通过设置类的私有属性
+    UILabel *messageLabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1]; // 2. 通过遍历视图的所有子视图，找到要修改的视图
     NSLog(@"messageLabel = %@", messageLabel);
     messageLabel.layer.borderColor = [UIColor blueColor].CGColor;
     messageLabel.layer.borderWidth = 1.1;

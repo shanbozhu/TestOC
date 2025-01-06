@@ -19,8 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // 1.Build Settings -> Automatic Reference Counting 设为NO
-    // 2.下面对象调用retain和release方法时要成对存在，这样写一般都能正常释放内存，几乎不用仔细考虑每一步内存释放情况
+    // 1. Build Settings -> Automatic Reference Counting 设为NO
+    // 2. 下面对象调用retain和release方法时要成对存在，这样写一般都能正常释放内存，几乎不用仔细考虑每一步内存释放情况
     
     PBMemoryListMRC *testListMRC = [[PBMemoryListMRC alloc]init];
     

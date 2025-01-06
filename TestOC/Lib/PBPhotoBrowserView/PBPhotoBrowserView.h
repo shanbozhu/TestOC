@@ -12,10 +12,10 @@
 @class PBPhotoBrowserView;
 @protocol PBPhotoBrowserViewDelegate <NSObject>
 
-// 1.获取缩略图视图(传入缩略图视图主要是为了统一获取缩略图image和size)
+// 1. 获取缩略图视图（传入缩略图视图主要是为了统一获取缩略图image和size）
 - (UIImageView *)photoBrowserView:(PBPhotoBrowserView *)photoBrowserView andThumbImageURLWithIndex:(NSInteger)index;
 
-// 2.获取高清图地址
+// 2. 获取高清图地址
 - (NSURL *)photoBrowserView:(PBPhotoBrowserView *)photoBrowserView andHDImageURLWithIndex:(NSInteger)index;
 
 @optional

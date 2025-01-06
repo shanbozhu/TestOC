@@ -20,24 +20,24 @@
  /tmp
  
  沙盒文件存储包括[文本文件]和[二进制文件]
- 一.文本文件：
- 1.向空文件中存储字符串(格式可以为.txt)
- 2.向空文件中存储字典或数组(格式为.plist，oc会自动将字典或数组转换为plist格式的字符串进行存储)
+ 一、文本文件：
+ 1. 向空文件中存储字符串(格式可以为.txt)
+ 2. 向空文件中存储字典或数组(格式为.plist，oc会自动将字典或数组转换为plist格式的字符串进行存储)
  操作步骤：
- 1.调用 createFileAtPath: 指定路径创建空文件
- 2.调用 writeToFile:atomically: 添加内容
+ 1. 调用 createFileAtPath: 指定路径创建空文件
+ 2. 调用 writeToFile:atomically: 添加内容
  
- 二.二进制文件(普通二进制文件或数据库文件)
- a.普通二进制文件
+ 二、二进制文件(普通二进制文件或数据库文件)
+ a. 普通二进制文件
  向空文件中存储二进制(格式可以为.ar，将任意类型对象归档为二进制数据)
  操作步骤：
- 1.调用 createFileAtPath: 指定路径创建空文件
- 2.调用 writeToFile:atomically: 添加内容
- b.数据库文件
+ 1. 调用 createFileAtPath: 指定路径创建空文件
+ 2. 调用 writeToFile:atomically: 添加内容
+ b. 数据库文件
  向空文件中存储任意类型(格式为.db)
  操作步骤:
- 1.调用 createFileAtPath: 指定路径创建空文件
- 2.调用 databaseQueueWithPath: 连接数据库
+ 1. 调用 createFileAtPath: 指定路径创建空文件
+ 2. 调用 databaseQueueWithPath: 连接数据库
  */
 
 /// 文件或目录类型

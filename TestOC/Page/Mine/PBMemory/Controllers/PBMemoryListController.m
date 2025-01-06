@@ -18,8 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // 1.Build Settings -> Automatic Reference Counting 设为YES
-    // 2.指向该对象的强引用数为0，对象被释放。即retainCount = 0时，对象被释放
+    // 1. Build Settings -> Automatic Reference Counting 设为YES
+    // 2. 指向该对象的强引用数为0，对象被释放。即retainCount = 0时，对象被释放
     
     PBMemoryList *testList = [[PBMemoryList alloc]init];
     
