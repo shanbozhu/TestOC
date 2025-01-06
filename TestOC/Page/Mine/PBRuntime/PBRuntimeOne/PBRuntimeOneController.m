@@ -31,7 +31,7 @@
     unsigned int classCount;
     const char **classes;
     Dl_info info;
-    dladdr(&_mh_execute_header, &info);
+    dladdr(&_mh_execute_header, &info); // 记 xcode 16.1 beta 中 __mh_execute_header 编译报错 https://juejin.cn/post/7407695952255369226
     classes = objc_copyClassNamesForImage(info.dli_fname, &classCount);
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
