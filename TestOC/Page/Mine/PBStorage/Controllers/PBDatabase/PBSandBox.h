@@ -28,16 +28,16 @@
  2. 调用 writeToFile:atomically: 添加内容
  
  二、二进制文件(普通二进制文件或数据库文件)
- a. 普通二进制文件
+ 1. 普通二进制文件
  向空文件中存储二进制(格式可以为.ar，将任意类型对象归档为二进制数据)
  操作步骤：
- 1. 调用 createFileAtPath: 指定路径创建空文件
- 2. 调用 writeToFile:atomically: 添加内容
- b. 数据库文件
+ 1.1 调用 createFileAtPath: 指定路径创建空文件
+ 1.2 调用 writeToFile:atomically: 添加内容
+ 2. 数据库文件
  向空文件中存储任意类型(格式为.db)
  操作步骤:
- 1. 调用 createFileAtPath: 指定路径创建空文件
- 2. 调用 databaseQueueWithPath: 连接数据库
+ 2.1 调用 createFileAtPath: 指定路径创建空文件
+ 2.2 调用 databaseQueueWithPath: 连接数据库
  */
 
 /// 文件或目录类型
