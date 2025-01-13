@@ -57,7 +57,8 @@
 #pragma mark -
 
 - (NSString *)bdp_percentEncoding {
-    NSCharacterSet *escapedCharacters = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%"]; // 与oc提供的[NSCharacterSet URLQueryAllowedCharacterSet]方法相比,当前的字符串多了%字符
+    // 与oc提供的[NSCharacterSet URLQueryAllowedCharacterSet]方法相比,当前的字符串多了%字符
+    NSCharacterSet *escapedCharacters = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=%"];
     return [self stringByAddingPercentEncodingWithAllowedCharacters:escapedCharacters];
 }
 
