@@ -161,7 +161,7 @@
         NSLog(@"[urlStr bdp_decodeURIComponent] = %@", [urlStr bdp_decodeURIComponent]);
         NSLog(@"[[urlStr bdp_encodeURIComponent] bdp_decodeURIComponent] = %@", [[urlStr bdp_encodeURIComponent] bdp_decodeURIComponent]);
         
-        // Unicode
+        // Unicode、Unicode编码
         NSString *contentString = @"你好世界ABC";
         NSMutableString *unicodeStr = [NSMutableString string];
         for (int i = 0; i < contentString.length; i++) {
