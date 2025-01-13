@@ -146,14 +146,14 @@
         NSString *fileContentStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"[fileContentStr bdp_md5Hash] = %@", [fileContentStr bdp_md5Hash]); // 420e57b017066b44e05ea1577f6e2e12
         
-        // base64
+        // base64、base64编码
         NSString *base64Str = [[str dataUsingEncoding:NSUTF8StringEncoding] bdp_base64Encoding];
         NSLog(@"base64Str = %@", base64Str); // aGVsbG93b3JsZCE=
         NSData *data = [NSData bdp_dataWithBase64EncodedString:base64Str];
         NSString *originStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"originStr = %@", originStr); // HELLOWORLD
         
-        // urlencode
+        // urlencode、url编码、百分号编码
         NSString *urlStr = kPBBaiduMap;
         NSLog(@"[urlStr bdp_percentEncoding] = %@", [urlStr bdp_percentEncoding]);
         NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
