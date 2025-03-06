@@ -28,6 +28,12 @@
         NSLog(@"[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] = %@", [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
         
         NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        /**
+         https网络请求
+         方式：GET（没有请求体）、POST
+         请求：域名（host）、端口号（port）、请求路径（path）、请求参数（query）、请求头、请求体
+         响应：响应头、响应体
+         */
         // 协议（scheme）：https://
         // 域名（host）：mbd.baidu.com。子域名：mbd、二级域名：baidu、顶级域名：com
         // 端口（port）：443

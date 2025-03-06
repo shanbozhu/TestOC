@@ -126,13 +126,6 @@
  URL编码：%e4%bd%a0%e5%a5%bd%e4%b8%96%e7%95%8c
  */
 
-/**
- https网络请求
- 方式：GET（没有请求体）、POST
- 请求：域名（host）、端口号（port）、请求路径（path）、请求参数（query）、请求头、请求体
- 响应：响应头、响应体
- */
-
 @interface PBAFNetworkingController ()
 
 @end
