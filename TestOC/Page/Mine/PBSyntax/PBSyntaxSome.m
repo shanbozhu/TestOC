@@ -15,7 +15,7 @@
 
 @implementation PBSyntaxSome
 
-+ (NSString *)func {
++ (NSString *)fn {
     return @"PBSyntaxSome";
 }
 

@@ -17,28 +17,51 @@
  @property 声明私有成员变量，定义getter、setter方法
  
  @synthesize 声明私有成员变量
- @dynamic 必须手动声明私有成员变量，必须手动定义getter、setter方法
  */
 
 // class property
 static NSString *_someString;
 static Class<PBSyntaxProtocol> _someCls;
 
-#pragma mark - implementation
-
 @implementation PBSyntax
 
 @synthesize name=_name;
-@dynamic height;
+//@synthesize height = _height; // 既可以在接口（interface）里声明私有成员变量，也可以在实现（implementation）里通过@synthesize声明私有成员变量
+
+#pragma mark - init
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.height = @"180";
+        
     }
     return self;
 }
 
-#pragma mark - class property
+#pragma mark - interface
+
+// 没有@synthesize修饰，只能同时重写getter、setter方法中的一种。若同时重写，需要手动声明私有成员变量。
+
+// property
+
+//- (NSString *)age {
+//    return _age; // 同时重写会报错：提示未声明成员变量
+//}
+
+- (void)setAge:(NSString *)age {
+    // self是方法的默认参数
+    // 等价于 self->_age = age;
+    _age = age;
+}
+
+- (NSString *)height {
+    return _height;
+}
+
+- (void)setHeight:(NSString *)height {
+    _height = height;
+}
+
+// class property
 
 + (void)setSomeString:(NSString *)someString {
     _someString = someString;
@@ -54,40 +77,6 @@ static Class<PBSyntaxProtocol> _someCls;
 
 + (Class<PBSyntaxProtocol>)someCls {
     return _someCls;
-}
-
-#pragma mark - 有@synthesize修饰，可以同时重写getter、setter方法
-
-- (NSString *)name {
-    return _name;
-}
-
-- (void)setName:(NSString *)name {
-    // self是方法的默认参数
-    // 等价于 self->_name = name;
-    _name = name;
-}
-
-#pragma mark - 没有@synthesize修饰，只能同时重写getter、setter方法中的一种
-
-/**
-- (NSString *)age {
-    return _age; // 若同时重写，会导致未声明成员变量
-}
- */
-
-- (void)setAge:(NSString *)age {
-    _age = age;
-}
-
-#pragma mark - 有@dynamic修饰，必须同时重写getter、setter方法
-
-- (NSString *)height {
-    return _height;
-}
-
-- (void)setHeight:(NSString *)height {
-    _height = height;
 }
 
 #pragma mark - protocol
@@ -107,6 +96,7 @@ static Class<PBSyntaxProtocol> _someCls;
 #pragma mark - category
 
 @implementation PBSyntax (ability)
+//@dynamic sing; // 使用@dynamic只会去除警告，实际上并不会自动生成getter、setter方法，执行会崩溃。
 
 - (void)setSing:(NSString *)sing {
     // 设置 self的关联对象key/value

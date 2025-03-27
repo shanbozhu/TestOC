@@ -30,16 +30,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     PBSyntax *syntax = [[PBSyntax alloc] init];
+    
+#pragma mark - interface
+    
+    // property
+    syntax.age = @"18";
+    NSLog(@"syntax.age = %@", syntax.age);
+    syntax.height = @"180";
     NSLog(@"syntax.height = %@", syntax.height);
     
     // class property
     PBSyntax.someString = @"class property";
     NSLog(@"PBSyntax.someString = %@", PBSyntax.someString);
-    
     PBSyntax.someCls = [PBSyntaxSome class];
-    NSLog(@"[PBSyntax.someCls func] = %@", [PBSyntax.someCls func]);
+    NSLog(@"PBSyntax.someCls = %@", PBSyntax.someCls);
+    
+#pragma mark - protocol
+    
+    syntax.name = @"bobo";
+    NSLog(@"syntax.name = %@", syntax.name);
+    NSLog(@"[syntax sex] = %@", [syntax sex]);
+    NSLog(@"[PBSyntax.someCls func] = %@", [PBSyntax.someCls fn]);
+    
+    // 如果不显式遵守protocol，那么调用conformsToProtocol方法将返回NO
+    PBSyntaxSome *syntaxSome = [[PBSyntaxSome alloc] init];
+    NSLog(@"[syntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)] = %d", [syntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)]);
+    NSLog(@"[PBSyntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)] = %d", [PBSyntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)]);
+    
+#pragma mark - extension
+    
+    syntax.weight = @"120";
+    NSLog(@"syntax.weight = %@", syntax.weight);
+    NSLog(@"[syntax hobby] = %@", [syntax hobby]);
+    
+#pragma mark - category
+    
+    syntax.sing = @"sing";
+    NSLog(@"syntax.sing = %@", syntax.sing);
+    
+#pragma mark - Macro
     
     // TestMacro
     NSLog(@"TestMacro = %@", TestMacro);

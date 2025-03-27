@@ -11,7 +11,6 @@
 #import "PBTestEspressos.h"
 #import "YYFPSLabel.h"
 #import "AFNetworking.h"
-#import <YYModel/YYModel.h>
 #import "PBTestEspressos.h"
 
 @interface PBSeatSelectionController ()
@@ -51,6 +50,8 @@
             NSLog(@"jsonDict = %@", jsonDict);
             
             PBTestEspressos *testEspressos = [PBTestEspressos yy_modelWithDictionary:jsonDict];
+            NSLog(@"[testEspressos yy_modelToJSONObject] = %@", [testEspressos yy_modelToJSONObject]);
+            NSLog(@"[testEspressos yy_modelToJSONString] = %@", [testEspressos yy_modelToJSONString]);
             
             self.seatSelectionView.testEspressos = testEspressos;
         });

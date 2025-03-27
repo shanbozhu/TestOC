@@ -201,7 +201,7 @@ static CGFloat scrollInterval = 3.0f;
 }
 
 - (void)cycleTimerProxy:(PBCycleTimerProxy *)timerProxy {
-    // 手动滑动时,禁止自动轮播
+    // 手动滑动时，禁止自动轮播
     if (self.collectionView.isDragging) {
         return;
     }

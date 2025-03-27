@@ -22,7 +22,7 @@
 
  PS：
  利用delegate或block反向调用，只能调用行为，行为传系统类型或底层类型，无法传顶层类型。因为底层不依赖顶层，所以无法使用顶层类型。
- 底层调用，顶层实现(定义)。
+ 反向调用：传入delegate或block给底层，底层调用，顶层实现。协议下沉。
 
  问：novelcore需要使用growth中的类型，如何处理？
  答：novelcore利用delegate反向调用novel，novel调用growth。在novel中将growth的类型转换为novelcore的类型后返回。相当于novelcore使用growth中的类型。
