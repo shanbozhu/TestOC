@@ -223,6 +223,7 @@
 		5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0588B281ABA7F0024B752 /* PBRefresh.m */; };
 		5CF412382A5ED97F00BC690C /* iOS_YYText_render.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF412372A5ED97F00BC690C /* iOS_YYText_render.png */; };
 		5CF415692A5FC79400BC690C /* PBAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF415682A5FC79400BC690C /* PBAttributedStringController.m */; };
+		950D2E822D958F230037BB7D /* PBHouseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D2E812D958F230037BB7D /* PBHouseController.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
 		9516BDC724696A390070C282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9516BDC424696A390070C282 /* AppDelegate.m */; };
@@ -761,6 +762,8 @@
 		5CF415672A5FC79400BC690C /* PBAttributedStringController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAttributedStringController.h; sourceTree = "<group>"; };
 		5CF415682A5FC79400BC690C /* PBAttributedStringController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAttributedStringController.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
+		950D2E802D958F230037BB7D /* PBHouseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHouseController.h; sourceTree = "<group>"; };
+		950D2E812D958F230037BB7D /* PBHouseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHouseController.m; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
 		95168893261F19C60047D1B2 /* PBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarController.m; sourceTree = "<group>"; };
 		95168A01261F1FE70047D1B2 /* PBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBar.h; sourceTree = "<group>"; };
@@ -1828,6 +1831,7 @@
 				5CCC10EC29CAF92900F60C38 /* PBImageText */,
 				5CCC10DD29CAF89A00F60C38 /* PBCalendar */,
 				5CCC10A529CAF87700F60C38 /* PBSeatSelection */,
+				950D2E7F2D958F020037BB7D /* PBHouse */,
 			);
 			path = "Business🐣";
 			sourceTree = "<group>";
@@ -2373,6 +2377,15 @@
 				5CEBEAA52C1198320079CDDF /* UIWindow+BBACurrentVC.m */,
 			);
 			path = BBACurrentVC;
+			sourceTree = "<group>";
+		};
+		950D2E7F2D958F020037BB7D /* PBHouse */ = {
+			isa = PBXGroup;
+			children = (
+				950D2E802D958F230037BB7D /* PBHouseController.h */,
+				950D2E812D958F230037BB7D /* PBHouseController.m */,
+			);
+			path = PBHouse;
 			sourceTree = "<group>";
 		};
 		95168891261F19620047D1B2 /* PBTabBarController */ = {
@@ -3670,6 +3683,7 @@
 				5C56F9EE2C326E4600228D85 /* PBAFNetworkingTestController.m in Sources */,
 				5C07E66F2BCD56FC0049758D /* PBRuntimeZeroDebugController.m in Sources */,
 				957597B522F99353009CA618 /* PBUniversalLinkListController.m in Sources */,
+				950D2E822D958F230037BB7D /* PBHouseController.m in Sources */,
 				5C09497C2812C679002CEBC2 /* PBCellHeightFourView.m in Sources */,
 				5C09497F2812C679002CEBC2 /* PBCellHeightFourCell.m in Sources */,
 				5C2D063F280BFBFC00C775B3 /* BBAEmoticonManager.m in Sources */,
