@@ -14,7 +14,7 @@
  2. implementation 实现：类的定义。
  3. protocol 协议：只含有方法声明的公共头文件。
  3.1 表现形式：id<protocol>、Class<protocol>、UIView<protocol> *
- 3.2 遵守协议：含有方法声明，调用协议方法，实现方法定义。
+ 3.2 <protocol>：遵守协议，调用协议方法。
  4. category 分类：方法定义
  
  1. @property 声明私有成员变量，定义getter、setter方法
