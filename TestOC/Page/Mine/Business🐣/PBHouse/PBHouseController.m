@@ -39,12 +39,14 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"首付";
         showData.content = [NSString stringWithFormat:@"%ld", house.theFirstPayment];
+        showData.isHighlight = YES;
         [data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"总房贷";
         showData.content = [NSString stringWithFormat:@"%ld", house.totalMortgage];
+        showData.isHighlight = YES;
         [data addObject:showData];
     }
     {
@@ -57,12 +59,14 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"剩余房贷";
         showData.content = [NSString stringWithFormat:@"%ld", house.remainingMortgage];
+        showData.isHighlight = YES;
         [data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"已还房贷累计";
         showData.content = [NSString stringWithFormat:@"%ld", house.accumulatedRepaymentOfHousingLoans];
+        showData.isHighlight = YES;
         [data addObject:showData];
     }
     {

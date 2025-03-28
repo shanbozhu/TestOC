@@ -45,6 +45,11 @@
 
 - (void)fillHouseCell {
     self.lab.text = [NSString stringWithFormat:@"%@：%@", self.showData.title, self.showData.content];
+    if (self.showData.isHighlight) {
+        self.lab.backgroundColor = [UIColor greenColor];
+    } else {
+        self.lab.backgroundColor = [UIColor clearColor];
+    }
 }
 
 
