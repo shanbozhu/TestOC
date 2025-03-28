@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 /**
- 1. interface 接口：类的声明。有声明，就能调用，就能被编译器识别。
+ 1. interface 接口：类的声明。有声明，就可以调用。
  2. implementation 实现：类的定义。
  3. protocol 协议：只含有方法声明的公共头文件。
  3.1 表现形式：id<protocol>、Class<protocol>、UIView<protocol> *
