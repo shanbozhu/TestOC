@@ -124,7 +124,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"购买";
-        showData.content = [NSString stringWithFormat:@"假如想重新买套价值%ld的房，按三成来算，首付%ld * 0.3 = %lf，还需要额外拿出%lf - %ld = %lf，重新贷款%ld - %lf = %lf", house.buyAgain, house.buyAgain, house.buyAgain * 0.3, house.buyAgain * 0.3, house.sell - house.remainingMortgage, house.buyAgain * 0.3 - (house.sell - house.remainingMortgage), house.sell, house.buyAgain * 0.3, house.sell - house.buyAgain * 0.3];
+        showData.content = [NSString stringWithFormat:@"假如想重新买套价值%ld的房，按三成来算，首付%ld * 0.3 = %.lf，还需要额外拿出%.lf - %ld = %.lf，重新贷款%ld - %.lf = %.lf", house.buyAgain, house.buyAgain, house.buyAgain * 0.3, house.buyAgain * 0.3, house.sell - house.remainingMortgage, house.buyAgain * 0.3 - (house.sell - house.remainingMortgage), house.sell, house.buyAgain * 0.3, house.sell - house.buyAgain * 0.3];
         showData.isHighlight = YES;
         [data addObject:showData];
     }
