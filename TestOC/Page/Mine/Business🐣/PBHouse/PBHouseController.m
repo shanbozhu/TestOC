@@ -7,6 +7,7 @@
 //
 
 #import "PBHouseController.h"
+#import <YYText/YYText.h>
 
 @interface PBHouseController ()
 
