@@ -247,6 +247,8 @@
 		9533421222F434D900DC7251 /* PBKVOListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533421122F434D900DC7251 /* PBKVOListController.m */; };
 		9533421522F434E700DC7251 /* PBKVOList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9533421422F434E700DC7251 /* PBKVOList.m */; };
 		9539748B2CDA385000EDF4C2 /* PBExceptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9539748A2CDA385000EDF4C2 /* PBExceptionController.m */; };
+		953ED62A2D96E69B00F32217 /* PBHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 953ED6292D96E69B00F32217 /* PBHouse.m */; };
+		953ED62D2D96ED3100F32217 /* PBHouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 953ED62C2D96ED3100F32217 /* PBHouseCell.m */; };
 		9547319C22E059A000F6BFA2 /* pbmine_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */; };
 		9547319D22E059A000F6BFA2 /* pbmine_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */; };
 		9547319E22E059A000F6BFA2 /* PBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9547319722E059A000F6BFA2 /* PBMineController.m */; };
@@ -801,6 +803,10 @@
 		9533421422F434E700DC7251 /* PBKVOList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKVOList.m; sourceTree = "<group>"; };
 		953974892CDA385000EDF4C2 /* PBExceptionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBExceptionController.h; sourceTree = "<group>"; };
 		9539748A2CDA385000EDF4C2 /* PBExceptionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBExceptionController.m; sourceTree = "<group>"; };
+		953ED6282D96E69B00F32217 /* PBHouse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHouse.h; sourceTree = "<group>"; };
+		953ED6292D96E69B00F32217 /* PBHouse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHouse.m; sourceTree = "<group>"; };
+		953ED62B2D96ED3100F32217 /* PBHouseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHouseCell.h; sourceTree = "<group>"; };
+		953ED62C2D96ED3100F32217 /* PBHouseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHouseCell.m; sourceTree = "<group>"; };
 		9547319422E059A000F6BFA2 /* pbmine_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@2x.png"; sourceTree = "<group>"; };
 		9547319522E059A000F6BFA2 /* pbmine_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbmine_circle@3x.png"; sourceTree = "<group>"; };
 		9547319722E059A000F6BFA2 /* PBMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBMineController.m; sourceTree = "<group>"; };
@@ -2384,6 +2390,10 @@
 			children = (
 				950D2E802D958F230037BB7D /* PBHouseController.h */,
 				950D2E812D958F230037BB7D /* PBHouseController.m */,
+				953ED6282D96E69B00F32217 /* PBHouse.h */,
+				953ED6292D96E69B00F32217 /* PBHouse.m */,
+				953ED62B2D96ED3100F32217 /* PBHouseCell.h */,
+				953ED62C2D96ED3100F32217 /* PBHouseCell.m */,
 			);
 			path = PBHouse;
 			sourceTree = "<group>";
@@ -3434,6 +3444,7 @@
 				5C2D0662280C032A00C775B3 /* PBAFNetworkingController.m in Sources */,
 				957593D522F84F20009CA618 /* PBGCDListTwelveController.m in Sources */,
 				9575943022F950FB009CA618 /* PBAVPlayerList.m in Sources */,
+				953ED62A2D96E69B00F32217 /* PBHouse.m in Sources */,
 				5CF04DB5281A64310024B752 /* PBCellHeightCollectionTwoController.m in Sources */,
 				5C354C472BDA2FF400A14B95 /* PBRuntimeEightController.m in Sources */,
 				5C2D0611280BFBFC00C775B3 /* PBLinkagePosterCell.m in Sources */,
@@ -3560,6 +3571,7 @@
 				5CCC112029CAF92900F60C38 /* PBTestListTwoView.m in Sources */,
 				5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */,
 				5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */,
+				953ED62D2D96ED3100F32217 /* PBHouseCell.m in Sources */,
 				5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */,
 				5C2D060B280BFBFC00C775B3 /* PBLinkageTwoListController.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,

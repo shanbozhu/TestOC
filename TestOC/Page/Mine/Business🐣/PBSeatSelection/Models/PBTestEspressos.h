@@ -11,7 +11,7 @@
 #import <YYModel/YYModel.h>
 #import "PBTestEspressosSeatCon.h"
 
-@interface PBTestEspressos : NSObject<YYModel>
+@interface PBTestEspressos : NSObject <YYModel>
 
 @property (nonatomic, strong) PBTestEspressosSeatCon *seatContainer; // dict
 

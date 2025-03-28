@@ -10,7 +10,7 @@
 #import "PBTestEspressosSCSeatList.h"
 #import <YYModel/YYModel.h>
 
-@interface PBTestEspressosSeatCon : NSObject<YYModel>
+@interface PBTestEspressosSeatCon : NSObject <YYModel>
 
 @property (nonatomic, strong) NSArray *taopiaoList;
 @property (nonatomic, strong) NSArray *seatList;

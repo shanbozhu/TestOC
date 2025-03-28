@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PBHouseController : PBBaseController
+@interface PBHouseController : UITableViewController
 
 @end
 
