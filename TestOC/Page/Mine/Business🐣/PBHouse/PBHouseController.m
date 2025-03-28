@@ -25,10 +25,10 @@
     self.tableView.dataSource = self;
     
     NSDictionary *originalData = @{
-        @"theFirstPayment" : @35,
-        @"totalMortgage" : @47,
-        @"remainingMortgage" : @44,
-        @"accumulatedRepaymentOfHousingLoans" : @13
+        @"theFirstPayment" : @35, // 首付 + 契税
+        @"totalMortgage" : @47, // 总房贷
+        @"remainingMortgage" : @44, // 剩余房贷
+        @"accumulatedRepaymentOfHousingLoans" : @13 // 已还房贷累计
     };
     PBHouse *house = [PBHouse yy_modelWithDictionary:originalData];
     NSLog(@"house.theFirstPayment = %ld", house.theFirstPayment);
