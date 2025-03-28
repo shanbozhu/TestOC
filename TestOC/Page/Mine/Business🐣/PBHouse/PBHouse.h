@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger totalMortgage;
 @property (nonatomic, assign) NSInteger remainingMortgage;
 @property (nonatomic, assign) NSInteger accumulatedRepaymentOfHousingLoans;
+@property (nonatomic, assign) NSInteger sell;
+@property (nonatomic, assign) NSInteger buyAgain;
 
 @end
 

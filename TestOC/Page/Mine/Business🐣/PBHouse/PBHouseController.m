@@ -23,12 +23,15 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 100; // required
     
     NSDictionary *originalData = @{
         @"theFirstPayment" : @35, // 首付 + 契税
         @"totalMortgage" : @47, // 总房贷
         @"remainingMortgage" : @44, // 剩余房贷
-        @"accumulatedRepaymentOfHousingLoans" : @13 // 已还房贷累计
+        @"accumulatedRepaymentOfHousingLoans" : @13, // 已还房贷累计
+        @"sell" : @50, // 出售
+        @"buyAgain" : @50 // 重新购买
     };
     PBHouse *house = [PBHouse yy_modelWithDictionary:originalData];
     NSLog(@"house.theFirstPayment = %ld", house.theFirstPayment);
@@ -105,6 +108,26 @@
         showData.content = [NSString stringWithFormat:@"%ld - %ld = %ld", house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans + house.remainingMortgage, house.theFirstPayment + house.totalMortgage, (house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans + house.remainingMortgage) - (house.theFirstPayment + house.totalMortgage)];
         [data addObject:showData];
     }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"出售";
+        showData.content = [NSString stringWithFormat:@"假如卖%ld，首先还完房贷%ld，到手还剩%ld，整体亏损就是%ld + %ld - %ld = %ld", house.sell, house.remainingMortgage, house.sell - house.remainingMortgage, house.theFirstPayment,  house.accumulatedRepaymentOfHousingLoans, house.sell - house.remainingMortgage, house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans - (house.sell - house.remainingMortgage)];
+        showData.isHighlight = YES;
+        [data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"或者";
+        showData.content = [NSString stringWithFormat:@"%ld - %ld = %ld", house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans + house.remainingMortgage, house.sell, house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans + house.remainingMortgage - house.sell];
+        [data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"购买";
+        showData.content = [NSString stringWithFormat:@"假如想重新买套价值%ld的房，按三成来算，首付%ld * 0.3 = %lf，还需要额外拿出%lf - %ld = %lf，重新贷款%ld - %lf = %lf", house.buyAgain, house.buyAgain, house.buyAgain * 0.3, house.buyAgain * 0.3, house.sell - house.remainingMortgage, house.buyAgain * 0.3 - (house.sell - house.remainingMortgage), house.sell, house.buyAgain * 0.3, house.sell - house.buyAgain * 0.3];
+        showData.isHighlight = YES;
+        [data addObject:showData];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -116,12 +139,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBHouseCell *cell = [PBHouseCell houseCellWithTableView:tableView];
     cell.showData = self.data[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

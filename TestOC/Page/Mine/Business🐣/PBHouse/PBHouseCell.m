@@ -17,6 +17,11 @@
 
 @implementation PBHouseCell
 
+// required
+- (CGSize)sizeThatFits:(CGSize)size {
+    return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame) + 10);
+}
+
 + (instancetype)houseCellWithTableView:(UITableView *)tableView; {
     PBHouseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PBHouseCell"];
     if (!cell) {
@@ -45,12 +50,12 @@
 
 - (void)fillHouseCell {
     self.lab.text = [NSString stringWithFormat:@"%@：%@", self.showData.title, self.showData.content];
+    [self.lab sizeToFit];
     if (self.showData.isHighlight) {
         self.lab.backgroundColor = [UIColor greenColor];
     } else {
         self.lab.backgroundColor = [UIColor clearColor];
     }
 }
-
 
 @end
