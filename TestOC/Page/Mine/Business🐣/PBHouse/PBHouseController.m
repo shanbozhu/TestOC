@@ -120,12 +120,17 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"整体亏损";
         showData.content = [NSString stringWithFormat:@"%ld + %ld - %ld = %ld", house.theFirstPayment, house.accumulatedRepaymentOfHousingLoans, house.sell - house.remainingMortgage, house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans - (house.sell - house.remainingMortgage)];
-        showData.isHighlight = YES;
         [data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"或者";
+        showData.content = @"";
+        [data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"整体亏损";
         showData.content = [NSString stringWithFormat:@"%ld - %ld = %ld", house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans + house.remainingMortgage, house.sell, house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans + house.remainingMortgage - house.sell];
         [data addObject:showData];
     }
