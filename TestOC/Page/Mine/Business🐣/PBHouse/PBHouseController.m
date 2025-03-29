@@ -131,7 +131,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"出售";
-        showData.content = [NSString stringWithFormat:@"假如卖%ld，首先还完房贷%ld，到手还剩%ld", self.house.sell, self.house.remainingMortgage, self.house.sell - self.house.remainingMortgage];
+        showData.content = [NSString stringWithFormat:@"假如卖%ld，首先还完房贷%ld，还剩%ld - %ld = %ld", self.house.sell, self.house.remainingMortgage, self.house.sell, self.house.remainingMortgage, self.house.sell - self.house.remainingMortgage];
         showData.color = @"green";
         showData.key = kSell;
         [self.data addObject:showData];
