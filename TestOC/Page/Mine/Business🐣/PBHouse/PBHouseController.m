@@ -196,8 +196,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PBHouseShowData *showData = self.data[indexPath.row];
-    
-    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:kTheFirstPayment message:nil preferredStyle:UIAlertControllerStyleAlert];
+    if ([showData.key isEqualToString:kTheFirstPayment]) {
+        [self debugNovelCoreSelectTitleChannel:showData title:showData.key];
+    } else if ([showData.key isEqualToString:kTotalMortgage]) {
+        [self debugNovelCoreSelectTitleChannel:showData title:showData.key];
+    } else if ([showData.key isEqualToString:kRemainingMortgage]) {
+        [self debugNovelCoreSelectTitleChannel:showData title:showData.key];
+    } else if ([showData.key isEqualToString:kAccumulatedRepaymentOfHousingLoans]) {
+        [self debugNovelCoreSelectTitleChannel:showData title:showData.key];
+    } else if ([showData.key isEqualToString:kSell]) {
+        [self debugNovelCoreSelectTitleChannel:showData title:showData.key];
+    } else if ([showData.key isEqualToString:kBuyAgain]) {
+        [self debugNovelCoreSelectTitleChannel:showData title:showData.key];
+    }
+}
+
+- (void)debugNovelCoreSelectTitleChannel:(PBHouseShowData *)showData title:(NSString *)title {
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.keyboardType = UIKeyboardTypeNumberPad;
         textField.placeholder = [NSString stringWithFormat:@"请输入数字，单位默认是万"];
@@ -205,7 +220,6 @@
     UIAlertAction *alertText = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *textField = [[alertView textFields] firstObject];
         NSLog(@"textField.text = %@", textField.text);
-        
         if ([showData.key isEqualToString:kTheFirstPayment]) {
             self.house.theFirstPayment = [textField.text integerValue];
         } else if ([showData.key isEqualToString:kTotalMortgage]) {
