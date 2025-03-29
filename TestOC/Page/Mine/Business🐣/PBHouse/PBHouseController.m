@@ -24,6 +24,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 100; // required
+    self.tableView.showsVerticalScrollIndicator = NO;
     
     NSDictionary *originalData = @{
         @"theFirstPayment" : @35, // 首付 + 契税
@@ -111,7 +112,14 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"出售";
-        showData.content = [NSString stringWithFormat:@"假如卖%ld，首先还完房贷%ld，到手还剩%ld，整体亏损就是%ld + %ld - %ld = %ld", house.sell, house.remainingMortgage, house.sell - house.remainingMortgage, house.theFirstPayment,  house.accumulatedRepaymentOfHousingLoans, house.sell - house.remainingMortgage, house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans - (house.sell - house.remainingMortgage)];
+        showData.content = [NSString stringWithFormat:@"假如卖%ld，首先还完房贷%ld，到手还剩%ld", house.sell, house.remainingMortgage, house.sell - house.remainingMortgage];
+        showData.isHighlight = YES;
+        [data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"整体亏损";
+        showData.content = [NSString stringWithFormat:@"%ld + %ld - %ld = %ld", house.theFirstPayment, house.accumulatedRepaymentOfHousingLoans, house.sell - house.remainingMortgage, house.theFirstPayment + house.accumulatedRepaymentOfHousingLoans - (house.sell - house.remainingMortgage)];
         showData.isHighlight = YES;
         [data addObject:showData];
     }
@@ -147,6 +155,10 @@
     cell.showData = self.data[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end
