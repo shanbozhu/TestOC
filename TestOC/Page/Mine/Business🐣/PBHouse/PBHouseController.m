@@ -11,6 +11,13 @@
 #import "PBHouse.h"
 #import "PBHouseCell.h"
 
+#define kTheFirstPayment @"theFirstPayment"
+#define kTotalMortgage @"totalMortgage"
+#define kRemainingMortgage @"remainingMortgage"
+#define kAccumulatedRepaymentOfHousingLoans @"accumulatedRepaymentOfHousingLoans"
+#define kSell @"sell"
+#define kBuyAgain @"buyAgain"
+
 @interface PBHouseController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *data;
@@ -27,12 +34,12 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     
     NSDictionary *originalData = @{
-        @"theFirstPayment" : @35, // 首付 + 契税
-        @"totalMortgage" : @47, // 总房贷
-        @"remainingMortgage" : @44, // 剩余房贷
-        @"accumulatedRepaymentOfHousingLoans" : @13, // 已还房贷累计
-        @"sell" : @50, // 出售
-        @"buyAgain" : @50 // 重新购买
+        kTheFirstPayment : @35, // 首付 + 契税
+        kTotalMortgage : @47, // 总房贷
+        kRemainingMortgage : @44, // 剩余房贷
+        kAccumulatedRepaymentOfHousingLoans : @13, // 已还房贷累计
+        kSell : @50, // 出售
+        kBuyAgain : @50 // 重新购买
     };
     PBHouse *house = [PBHouse yy_modelWithDictionary:originalData];
     NSLog(@"house.theFirstPayment = %ld", house.theFirstPayment);
