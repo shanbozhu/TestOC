@@ -56,7 +56,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"首付";
         showData.content = [NSString stringWithFormat:@"%ld", self.house.theFirstPayment];
-        showData.isHighlight = YES;
+        showData.color = @"green";
         showData.key = kTheFirstPayment;
         [self.data addObject:showData];
     }
@@ -64,7 +64,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"总房贷";
         showData.content = [NSString stringWithFormat:@"%ld", self.house.totalMortgage];
-        showData.isHighlight = YES;
+        showData.color = @"green";
         showData.key = kTotalMortgage;
         [self.data addObject:showData];
     }
@@ -78,7 +78,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"剩余房贷";
         showData.content = [NSString stringWithFormat:@"%ld", self.house.remainingMortgage];
-        showData.isHighlight = YES;
+        showData.color = @"green";
         showData.key = kRemainingMortgage;
         [self.data addObject:showData];
     }
@@ -86,7 +86,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"已还房贷累计";
         showData.content = [NSString stringWithFormat:@"%ld", self.house.accumulatedRepaymentOfHousingLoans];
-        showData.isHighlight = YES;
+        showData.color = @"green";
         showData.key = kAccumulatedRepaymentOfHousingLoans;
         [self.data addObject:showData];
     }
@@ -94,6 +94,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"实际已经支出";
         showData.content = [NSString stringWithFormat:@"%ld + %ld = %ld", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans];
+        showData.color = @"gray";
         [self.data addObject:showData];
     }
     {
@@ -112,6 +113,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"目前总成本";
         showData.content = [NSString stringWithFormat:@"%ld + %ld + %ld = %ld", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.remainingMortgage, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage];
+        showData.color = @"gray";
         [self.data addObject:showData];
     }
     {
@@ -130,7 +132,7 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"出售";
         showData.content = [NSString stringWithFormat:@"假如卖%ld，首先还完房贷%ld，到手还剩%ld", self.house.sell, self.house.remainingMortgage, self.house.sell - self.house.remainingMortgage];
-        showData.isHighlight = YES;
+        showData.color = @"green";
         showData.key = kSell;
         [self.data addObject:showData];
     }
@@ -155,8 +157,8 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"重新购买";
-        showData.content = [NSString stringWithFormat:@"假如想重新买套价值%ld的房，按三成来算，首付%ld * 0.3 = %.lf，还需要额外拿出%.lf - %ld = %.lf，重新贷款%ld - %.lf = %.lf", self.house.buyAgain, self.house.buyAgain, self.house.buyAgain * 0.3, self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.sell, self.house.buyAgain * 0.3, self.house.sell - self.house.buyAgain * 0.3];
-        showData.isHighlight = YES;
+        showData.content = [NSString stringWithFormat:@"假如重新买套价值%ld的房，按三成来算，首付%ld * 0.3 = %.lf，还需要额外拿出%.lf - %ld = %.lf，重新贷款%ld - %.lf = %.lf", self.house.buyAgain, self.house.buyAgain, self.house.buyAgain * 0.3, self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.sell, self.house.buyAgain * 0.3, self.house.sell - self.house.buyAgain * 0.3];
+        showData.color = @"green";
         showData.key = kBuyAgain;
         [self.data addObject:showData];
     }
@@ -245,6 +247,10 @@
     [alertView addAction:cancleAction];
     [alertView addAction:alertText];
     [self presentViewController:alertView animated:YES completion:nil];
+}
+
+- (void)dealloc {
+    NSLog(@"PBHouseController对象被释放了");
 }
 
 @end
