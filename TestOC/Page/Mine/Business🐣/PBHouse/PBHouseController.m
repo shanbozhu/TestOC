@@ -197,10 +197,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PBHouseShowData *showData = self.data[indexPath.row];
     
-    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:kTheFirstPayment message:kTheFirstPayment preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:kTheFirstPayment message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.keyboardType = UIKeyboardTypeNumberPad;
-        textField.placeholder = [NSString stringWithFormat:@"请输入数字:"];
+        textField.placeholder = [NSString stringWithFormat:@"请输入数字，单位默认是万"];
     }];
     UIAlertAction *alertText = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *textField = [[alertView textFields] firstObject];
@@ -219,6 +219,7 @@
         } else if ([showData.key isEqualToString:kBuyAgain]) {
             self.house.buyAgain = [textField.text integerValue];
         }
+        // 刷新UI
         [self setupShowData];
     }];
     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
