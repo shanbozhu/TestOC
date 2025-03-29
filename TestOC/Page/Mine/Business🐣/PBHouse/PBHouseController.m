@@ -228,8 +228,4 @@
     [self presentViewController:alertView animated:YES completion:nil];
 }
 
-//- (void)debugNovelCoreSelectTitleChannel {
-//    
-//}
-
 @end

@@ -11,7 +11,7 @@
 
 @interface PBHouseCell ()
 
-@property (nonatomic, strong) YYLabel *lab;
+@property (nonatomic, weak) YYLabel *lab;
 
 @end
 
@@ -36,7 +36,6 @@
         YYLabel *lab = [[YYLabel alloc] initWithFrame:CGRectZero];
         self.lab = lab;
         [self.contentView addSubview:lab];
-        lab.frame = CGRectMake(10, 10, APPLICATION_FRAME_WIDTH - 20, 50 - 20);
         lab.font = [UIFont systemFontOfSize:20];
         lab.numberOfLines = 0;
     }
@@ -49,6 +48,7 @@
 }
 
 - (void)fillHouseCell {
+    self.lab.frame = CGRectMake(10, 10, APPLICATION_FRAME_WIDTH - 20, 50 - 20);
     self.lab.text = [NSString stringWithFormat:@"%@：%@", self.showData.title, self.showData.content];
     [self.lab sizeToFit];
     if (self.showData.isHighlight) {
