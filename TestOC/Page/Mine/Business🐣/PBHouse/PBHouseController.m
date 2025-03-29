@@ -212,12 +212,16 @@
 }
 
 - (void)debugNovelCoreSelectTitleChannel:(PBHouseShowData *)showData title:(NSString *)title {
-    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:title
+                                                                       message:nil
+                                                                preferredStyle:UIAlertControllerStyleAlert];
     [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.keyboardType = UIKeyboardTypeNumberPad;
         textField.placeholder = [NSString stringWithFormat:@"请输入数字，单位默认是万"];
     }];
-    UIAlertAction *alertText = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *alertText = [UIAlertAction actionWithTitle:@"确定"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
         UITextField *textField = [[alertView textFields] firstObject];
         NSLog(@"textField.text = %@", textField.text);
         if ([showData.key isEqualToString:kTheFirstPayment]) {
