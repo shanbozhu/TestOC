@@ -42,6 +42,23 @@
 - (void)setupData {
     [self setupOriginalData];
     [self setupShowData];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"复制" style:UIBarButtonItemStylePlain target:self action:@selector(onCopy:)];
+}
+
+- (void)onCopy:(UIBarButtonItem *)btn {
+    NSMutableString *str = [NSMutableString string];
+    for (PBHouseShowData *showData in self.data) {
+        [str appendFormat:@"%@：%@\n", showData.title, showData.content];
+    }
+    // 复制到粘贴板
+    if (str.length > 0) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"复制成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)setupOriginalData {
