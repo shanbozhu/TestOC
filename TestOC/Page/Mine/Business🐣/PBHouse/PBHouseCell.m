@@ -36,7 +36,7 @@
         YYLabel *lab = [[YYLabel alloc] initWithFrame:CGRectZero];
         self.lab = lab;
         [self.contentView addSubview:lab];
-        lab.font = [UIFont systemFontOfSize:20];
+        lab.font = [UIFont systemFontOfSize:17];
         lab.numberOfLines = 0;
     }
     return self;
