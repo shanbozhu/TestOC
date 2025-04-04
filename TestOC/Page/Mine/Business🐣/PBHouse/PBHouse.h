@@ -22,12 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBHouse : NSObject <YYModel>
 
-@property (nonatomic, assign) NSInteger theFirstPayment;
-@property (nonatomic, assign) NSInteger totalMortgage;
-@property (nonatomic, assign) NSInteger remainingMortgage;
-@property (nonatomic, assign) NSInteger accumulatedRepaymentOfHousingLoans;
-@property (nonatomic, assign) NSInteger sell;
-@property (nonatomic, assign) NSInteger buyAgain;
+@property (nonatomic, assign) CGFloat theFirstPayment;
+@property (nonatomic, assign) CGFloat totalMortgage;
+@property (nonatomic, assign) CGFloat remainingMortgage;
+@property (nonatomic, assign) CGFloat accumulatedRepaymentOfHousingLoans;
+@property (nonatomic, assign) CGFloat sell;
+@property (nonatomic, assign) CGFloat buyAgain;
 
 @end
 
