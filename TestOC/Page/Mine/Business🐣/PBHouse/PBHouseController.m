@@ -63,7 +63,7 @@
 
 - (void)setupOriginalData {
     self.house = [PBHouse yy_modelWithDictionary:self.originalData];
-    NSLog(@"self.house.theFirstPayment = %.1lf", self.house.theFirstPayment);
+    NSLog(@"self.house.theFirstPayment = %.2lf", self.house.theFirstPayment);
 }
 
 - (void)setupShowData {
@@ -72,7 +72,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"首付";
-        showData.content = [NSString stringWithFormat:@"%.1lf", self.house.theFirstPayment];
+        showData.content = [NSString stringWithFormat:@"%.2lf", self.house.theFirstPayment];
         showData.color = @"green";
         showData.key = kTheFirstPayment;
         [self.data addObject:showData];
@@ -80,7 +80,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"总房贷";
-        showData.content = [NSString stringWithFormat:@"%.1lf", self.house.totalMortgage];
+        showData.content = [NSString stringWithFormat:@"%.2lf", self.house.totalMortgage];
         showData.color = @"green";
         showData.key = kTotalMortgage;
         [self.data addObject:showData];
@@ -88,13 +88,13 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"开始总成本";
-        showData.content = [NSString stringWithFormat:@"%.1lf + %.1lf = %.1lf", self.house.theFirstPayment, self.house.totalMortgage, self.house.theFirstPayment + self.house.totalMortgage];
+        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment, self.house.totalMortgage, self.house.theFirstPayment + self.house.totalMortgage];
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"剩余房贷";
-        showData.content = [NSString stringWithFormat:@"%.1lf", self.house.remainingMortgage];
+        showData.content = [NSString stringWithFormat:@"%.2lf", self.house.remainingMortgage];
         showData.color = @"green";
         showData.key = kRemainingMortgage;
         [self.data addObject:showData];
@@ -102,7 +102,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"已还房贷累计";
-        showData.content = [NSString stringWithFormat:@"%.1lf", self.house.accumulatedRepaymentOfHousingLoans];
+        showData.content = [NSString stringWithFormat:@"%.2lf", self.house.accumulatedRepaymentOfHousingLoans];
         showData.color = @"green";
         showData.key = kAccumulatedRepaymentOfHousingLoans;
         [self.data addObject:showData];
@@ -110,26 +110,26 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"实际已经支出";
-        showData.content = [NSString stringWithFormat:@"%.1lf + %.1lf = %.1lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans];
+        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans];
         showData.color = @"gray";
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"已还本金";
-        showData.content = [NSString stringWithFormat:@"%.1lf - %.1lf = %.1lf", self.house.totalMortgage, self.house.remainingMortgage, self.house.totalMortgage - self.house.remainingMortgage];
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.totalMortgage, self.house.remainingMortgage, self.house.totalMortgage - self.house.remainingMortgage];
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"已还利息";
-        showData.content = [NSString stringWithFormat:@"%.1lf - %.1lf = %.1lf", self.house.accumulatedRepaymentOfHousingLoans, self.house.totalMortgage - self.house.remainingMortgage, self.house.accumulatedRepaymentOfHousingLoans - (self.house.totalMortgage - self.house.remainingMortgage)];
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.accumulatedRepaymentOfHousingLoans, self.house.totalMortgage - self.house.remainingMortgage, self.house.accumulatedRepaymentOfHousingLoans - (self.house.totalMortgage - self.house.remainingMortgage)];
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"目前总成本";
-        showData.content = [NSString stringWithFormat:@"%.1lf + %.1lf + %.1lf = %.1lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.remainingMortgage, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage];
+        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf + %.2lf = %.2lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.remainingMortgage, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage];
         showData.color = @"gray";
         [self.data addObject:showData];
     }
@@ -142,13 +142,13 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"已还利息";
-        showData.content = [NSString stringWithFormat:@"%.1lf - %.1lf = %.1lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage, self.house.theFirstPayment + self.house.totalMortgage, (self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage) - (self.house.theFirstPayment + self.house.totalMortgage)];
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage, self.house.theFirstPayment + self.house.totalMortgage, (self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage) - (self.house.theFirstPayment + self.house.totalMortgage)];
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"出售";
-        showData.content = [NSString stringWithFormat:@"假如卖%.1lf，首先还完房贷%.1lf，还剩%.1lf - %.1lf = %.1lf", self.house.sell, self.house.remainingMortgage, self.house.sell, self.house.remainingMortgage, self.house.sell - self.house.remainingMortgage];
+        showData.content = [NSString stringWithFormat:@"假如卖%.2lf，首先还完房贷%.2lf，还剩%.2lf - %.2lf = %.2lf", self.house.sell, self.house.remainingMortgage, self.house.sell, self.house.remainingMortgage, self.house.sell - self.house.remainingMortgage];
         showData.color = @"green";
         showData.key = kSell;
         [self.data addObject:showData];
@@ -156,7 +156,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"整体亏损";
-        showData.content = [NSString stringWithFormat:@"%.1lf + %.1lf - %.1lf = %.1lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.sell - self.house.remainingMortgage, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans - (self.house.sell - self.house.remainingMortgage)];
+        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf - %.2lf = %.2lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.sell - self.house.remainingMortgage, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans - (self.house.sell - self.house.remainingMortgage)];
         [self.data addObject:showData];
     }
     {
@@ -168,13 +168,13 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"整体亏损";
-        showData.content = [NSString stringWithFormat:@"%.1lf - %.1lf = %.1lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage, self.house.sell, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell];
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage, self.house.sell, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell];
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"重新购买";
-        showData.content = [NSString stringWithFormat:@"假如重新买套价值%.1lf的房，按三成来算，首付%.1lf * 0.3 = %.1lf，还需要额外拿出%.1lf - %.1lf = %.1lf，重新贷款%.1lf - %.1lf = %.1lf", self.house.buyAgain, self.house.buyAgain, self.house.buyAgain * 0.3, self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.sell, self.house.buyAgain * 0.3, self.house.sell - self.house.buyAgain * 0.3];
+        showData.content = [NSString stringWithFormat:@"假如重新买套价值%.2lf的房，按三成来算，首付%.2lf * 0.3 = %.2lf，还需要额外拿出%.2lf - %.2lf = %.2lf，重新贷款%.2lf - %.2lf = %.2lf", self.house.buyAgain, self.house.buyAgain, self.house.buyAgain * 0.3, self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.sell, self.house.buyAgain * 0.3, self.house.sell - self.house.buyAgain * 0.3];
         showData.color = @"green";
         showData.key = kBuyAgain;
         [self.data addObject:showData];
