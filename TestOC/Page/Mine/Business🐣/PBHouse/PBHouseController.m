@@ -162,9 +162,27 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"重新购买";
-        showData.content = [NSString stringWithFormat:@"假如重新买一套价值%.2lf的房，首付%.2lf * 0.3 = %.2lf，还需要额外拿出%.2lf - %.2lf = %.2lf，重新贷款%.2lf - %.2lf = %.2lf", self.house.buyAgain, self.house.buyAgain, self.house.buyAgain * 0.3, self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.sell, self.house.buyAgain * 0.3, self.house.sell - self.house.buyAgain * 0.3];
+        showData.content = [NSString stringWithFormat:@"假如重新买一套价值%.2lf的房", self.house.buyAgain];
         showData.color = @"green";
         showData.key = kBuyAgain;
+        [self.data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"首付";
+        showData.content = [NSString stringWithFormat:@"%.2lf * 0.3 = %.2lf", self.house.buyAgain, self.house.buyAgain * 0.3];
+        [self.data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"总房贷";
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.sell, self.house.buyAgain * 0.3, self.house.sell - self.house.buyAgain * 0.3];
+        [self.data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"额外拿出";
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)];
         [self.data addObject:showData];
     }
     
