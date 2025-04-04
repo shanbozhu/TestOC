@@ -244,17 +244,17 @@
         UITextField *textField = [[alertView textFields] firstObject];
         NSLog(@"textField.text = %@", textField.text);
         if ([showData.key isEqualToString:kTheFirstPayment]) {
-            self.house.theFirstPayment = [textField.text integerValue];
+            self.house.theFirstPayment = [textField.text floatValue];
         } else if ([showData.key isEqualToString:kTotalMortgage]) {
-            self.house.totalMortgage = [textField.text integerValue];
+            self.house.totalMortgage = [textField.text floatValue];
         } else if ([showData.key isEqualToString:kRemainingMortgage]) {
-            self.house.remainingMortgage = [textField.text integerValue];
+            self.house.remainingMortgage = [textField.text floatValue];
         } else if ([showData.key isEqualToString:kAccumulatedRepaymentOfHousingLoans]) {
-            self.house.accumulatedRepaymentOfHousingLoans = [textField.text integerValue];
+            self.house.accumulatedRepaymentOfHousingLoans = [textField.text floatValue];
         } else if ([showData.key isEqualToString:kSell]) {
-            self.house.sell = [textField.text integerValue];
+            self.house.sell = [textField.text floatValue];
         } else if ([showData.key isEqualToString:kBuyAgain]) {
-            self.house.buyAgain = [textField.text integerValue];
+            self.house.buyAgain = [textField.text floatValue];
         }
         // 刷新UI
         [self setupShowData];
