@@ -49,7 +49,7 @@
 
 - (void)fillHouseCell {
     self.lab.frame = CGRectMake(10, 10, APPLICATION_FRAME_WIDTH - 20, 50 - 20);
-    self.lab.text = [NSString stringWithFormat:@"%@：%@", self.showData.title, self.showData.content];
+    self.lab.text = [NSString stringWithFormat:@"%@%@", self.showData.title, self.showData.content];
     [self.lab sizeToFit];
     if ([self.showData.color isEqualToString:@"green"]) {
         self.lab.backgroundColor = [UIColor greenColor];
