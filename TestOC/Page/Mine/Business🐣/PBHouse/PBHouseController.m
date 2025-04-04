@@ -163,12 +163,14 @@
     //        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
     //        showData.title = @"亏损：";
     //        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf - %.2lf = %.2lf", self.house.theFirstPayment, self.house.accumulatedRepaymentOfHousingLoans, self.house.sell - self.house.remainingMortgage, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans - (self.house.sell - self.house.remainingMortgage)];
+    //        showData.color = @"gray";
     //        [self.data addObject:showData];
     //    }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"亏损：";
         showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage, self.house.sell, self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell];
+        showData.color = @"gray";
         [self.data addObject:showData];
     }
     {
@@ -207,12 +209,14 @@
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"先卖后买过程中亏损：";
         showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf - %.2lf = %.2lf", self.house.buyAgain - self.house.buyAgain * 0.3, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.remainingMortgage, self.house.buyAgain - self.house.buyAgain * 0.3 + (self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)) - self.house.remainingMortgage];
+        showData.color = @"gray";
         [self.data addObject:showData];
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"整体亏损：";
         showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell, self.house.buyAgain - self.house.buyAgain * 0.3 + (self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)) - self.house.remainingMortgage, (self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell) + (self.house.buyAgain - self.house.buyAgain * 0.3 + (self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)) - self.house.remainingMortgage)];
+        showData.color = @"gray";
         [self.data addObject:showData];
     }
     
