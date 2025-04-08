@@ -52,11 +52,11 @@
     self.lab.text = [NSString stringWithFormat:@"%@%@", self.showData.title, self.showData.content];
     [self.lab sizeToFit];
     if ([self.showData.color isEqualToString:@"green"]) {
-        self.lab.backgroundColor = [UIColor greenColor];
+        self.lab.textColor = [UIColor redColor];
     } else if ([self.showData.color isEqualToString:@"gray"]) {
-        self.lab.backgroundColor = [UIColor lightGrayColor];
+        self.lab.textColor = [UIColor blueColor];
     } else {
-        self.lab.backgroundColor = [UIColor clearColor];
+        self.lab.textColor = [UIColor blackColor];
     }
 }
 

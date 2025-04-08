@@ -87,12 +87,6 @@
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
-        showData.title = @"开始总成本：";
-        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment, self.house.totalMortgage, self.house.theFirstPayment + self.house.totalMortgage];
-        [self.data addObject:showData];
-    }
-    {
-        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"剩余房贷：";
         showData.content = [NSString stringWithFormat:@"%.2lf", self.house.remainingMortgage];
         showData.color = @"green";
@@ -105,6 +99,12 @@
         showData.content = [NSString stringWithFormat:@"%.2lf", self.house.accumulatedRepaymentOfHousingLoans];
         showData.color = @"green";
         showData.key = kAccumulatedRepaymentOfHousingLoans;
+        [self.data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"开始总成本：";
+        showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment, self.house.totalMortgage, self.house.theFirstPayment + self.house.totalMortgage];
         [self.data addObject:showData];
     }
     {
@@ -155,7 +155,7 @@
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
-        showData.title = @"到手还剩：";
+        showData.title = @"最终到手：";
         showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.sell, self.house.remainingMortgage, self.house.sell - self.house.remainingMortgage];
         [self.data addObject:showData];
     }
@@ -182,7 +182,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"重新购买：";
-        showData.content = [NSString stringWithFormat:@"重新买价值%.2lf的房", self.house.buyAgain];
+        showData.content = [NSString stringWithFormat:@"假如重新买%.2lf的房", self.house.buyAgain];
         showData.color = @"green";
         showData.key = kBuyAgain;
         [self.data addObject:showData];
