@@ -84,6 +84,7 @@
         //
         CGFloat height = 18.0123456789;
         NSLog(@"height = %lf", height); // 18.012346
+        NSLog(@"heigth = %.lf", height); // 18
         NSLog(@"height = %012.3lf", height); // 00000018.012
         NSLog(@"height = %0.3lf", height); // 18.012
         NSLog(@"height = %.3lf", height); // 18.012
