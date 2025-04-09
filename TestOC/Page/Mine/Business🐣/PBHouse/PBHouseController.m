@@ -207,10 +207,18 @@
         showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.buyAgain * 0.3, self.house.sell - self.house.remainingMortgage, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)];
         [self.data addObject:showData];
     }
+    //
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"先卖后买过程中亏损：";
         showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf - %.2lf = %.2lf", self.house.buyAgain - self.house.buyAgain * 0.3, self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage), self.house.remainingMortgage, self.house.buyAgain - self.house.buyAgain * 0.3 + (self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)) - self.house.remainingMortgage];
+        showData.color = @"gray";
+        [self.data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"先卖后买过程中亏损：";
+        showData.content = [NSString stringWithFormat:@"%.2lf - %.2lf = %.2lf", self.house.buyAgain, self.house.sell, self.house.buyAgain - self.house.sell];
         showData.color = @"gray";
         [self.data addObject:showData];
     }
