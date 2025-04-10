@@ -100,7 +100,7 @@
     UIAlertAction *alertText = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *userTextField = [[alertView textFields] firstObject];
         UITextField *passwordTextField = [[alertView textFields] lastObject];
-        NSLog(@"用户名:%@, 密码:%@", userTextField.text, passwordTextField.text);
+        NSLog(@"用户名 = %@, 密码 = %@", userTextField.text, passwordTextField.text);
     }];
     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     }];
