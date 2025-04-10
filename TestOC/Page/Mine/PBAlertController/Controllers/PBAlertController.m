@@ -91,11 +91,11 @@
     UIAlertController *alertView = [UIAlertController alertControllerWithTitle:kPBAlertControllerTitle message:kPBAlertControllerMessage preferredStyle:UIAlertControllerStyleAlert];
     [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.keyboardType = UIKeyboardTypeDefault;
-        textField.placeholder = [NSString stringWithFormat:@"请输入用户名:"];
+        textField.placeholder = [NSString stringWithFormat:@"请输入用户名"];
     }];
     [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.keyboardType = UIKeyboardTypeDefault;
-        textField.placeholder = [NSString stringWithFormat:@"请输入密码:"];
+        textField.placeholder = [NSString stringWithFormat:@"请输入密码"];
     }];
     UIAlertAction *alertText = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *userTextField = [[alertView textFields] firstObject];

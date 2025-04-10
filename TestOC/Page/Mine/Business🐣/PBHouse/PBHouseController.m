@@ -184,7 +184,7 @@
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"重新购买：";
-        showData.content = [NSString stringWithFormat:@"假如重新买%.2lf的房", self.house.buyAgain];
+        showData.content = [NSString stringWithFormat:@"假如重新买%.2lf", self.house.buyAgain];
         showData.color = @"green";
         showData.key = kBuyAgain;
         [self.data addObject:showData];
