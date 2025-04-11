@@ -16,7 +16,7 @@
 
 + (void)load {
     /**
-     Method：方法(函数)，包含selector(函数名，也可以表示为_cmd)和IMP(函数体)
+     Method：方法（函数），包含selector（函数名，也可以表示为_cmd）和IMP（函数体）
      selector：函数名
      IMP：函数体
      */

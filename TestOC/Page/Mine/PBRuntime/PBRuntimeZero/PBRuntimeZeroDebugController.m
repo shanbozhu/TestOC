@@ -27,13 +27,13 @@
     [PBRunTime replaceClass:NSClassFromString(@"PBRuntimeZeroController")
                         sel:NSSelectorFromString(@"func")
                   withClass:self
-                    withSEL:NSSelectorFromString(@"debug_func") 
+                    withSEL:NSSelectorFromString(@"debug_func")
               isClassMethod:YES];
 }
 
 + (void)debug_func {
     NSLog(@"执行1. debug_func. 在任意类中hook");
-    NSLog(@"使用hook时,PBRuntimeZeroDebugController可以没有任何调用");
+    NSLog(@"使用hook时，PBRuntimeZeroDebugController可以没有任何调用");
     NSLog(@"self = %@", self); // hook方法中要慎用self，防止self指代错误
     [self debug_func]; // 交换了方法，此时self是PBRuntimeZeroController，debug_func是func
 }
