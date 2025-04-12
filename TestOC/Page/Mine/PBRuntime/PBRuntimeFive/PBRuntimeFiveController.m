@@ -14,6 +14,8 @@
 
 @interface PBRuntimeFiveController ()
 
+@property (nonatomic, strong) id target;
+
 - (void)test:(NSString *)name;
 
 @end
@@ -22,6 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Class cls = NSClassFromString(@"PBRuntimeFiveDebugController");
+    id forward = [cls new];
+    self.target = forward;
     
     [self test:@"test"];
 }
@@ -51,18 +57,20 @@
 #pragma mark - 方案三
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    if (aSelector == @selector(test:)) {
-        return [NSMethodSignature signatureWithObjCTypes:"v@:@"];
+    //    if (aSelector == @selector(test:)) {
+    //        return [NSMethodSignature signatureWithObjCTypes:"v@:@"];
+    //    }
+    NSMethodSignature *signature = [self.target methodSignatureForSelector:aSelector];
+    if (signature) {
+        return signature;
     }
     return [super methodSignatureForSelector:aSelector];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     SEL sel = [anInvocation selector];
-    Class cls = NSClassFromString(@"PBRuntimeFiveDebugController");
-    id forward = [cls new];
-    if ([forward respondsToSelector:sel]) {
-        [anInvocation invokeWithTarget:forward];
+    if ([self.target respondsToSelector:sel]) {
+        [anInvocation invokeWithTarget:self.target];
     } else {
         [super forwardInvocation:anInvocation];
     }
