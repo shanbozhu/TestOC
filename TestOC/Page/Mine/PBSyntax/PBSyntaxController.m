@@ -52,7 +52,7 @@
     NSLog(@"[syntax sex] = %@", [syntax sex]);
     NSLog(@"[PBSyntax.someCls func] = %@", [PBSyntax.someCls fn]);
     
-    // 如果不显式遵守protocol，那么调用conformsToProtocol方法将返回NO
+    // 如果不显式遵守 protocol，那么调用 conformsToProtocol 方法将返回NO
     PBSyntaxSome *syntaxSome = [[PBSyntaxSome alloc] init];
     NSLog(@"[syntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)] = %d", [syntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)]);
     NSLog(@"[PBSyntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)] = %d", [PBSyntaxSome conformsToProtocol:@protocol(PBSyntaxProtocol)]);
