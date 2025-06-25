@@ -355,6 +355,8 @@
 		95C873CB22E83D93002795D0 /* PBMineController+Click.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C873CA22E83D93002795D0 /* PBMineController+Click.m */; };
 		95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8742A22E844CA002795D0 /* libxml2.2.tbd */; };
 		95D34C97267357250007A67D /* PBSwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D34C96267357250007A67D /* PBSwiftController.swift */; };
+		95FE67222E0BC8B9005DCDCE /* block为何使用copy修饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */; };
+		95FE67252E0BCA5C005DCDCE /* base64编码是什么.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
 		B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */; };
@@ -1005,6 +1007,8 @@
 		95C8742A22E844CA002795D0 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		95D34B9126734E190007A67D /* TestOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestOC-Bridging-Header.h"; sourceTree = "<group>"; };
 		95D34C96267357250007A67D /* PBSwiftController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBSwiftController.swift; sourceTree = "<group>"; };
+		95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block为何使用copy修饰.png"; sourceTree = "<group>"; };
+		95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "base64编码是什么.png"; sourceTree = "<group>"; };
 		A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.debug.xcconfig"; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1616,6 +1620,7 @@
 			children = (
 				5C65C16E2BEBB27700F5F1EC /* PBNSLogController.h */,
 				5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */,
+				95FE67232E0BC9FA005DCDCE /* Resource */,
 			);
 			path = PBNSLog;
 			sourceTree = "<group>";
@@ -1654,6 +1659,7 @@
 			children = (
 				5C8EE01E2A810FBE008F00D8 /* PBBlockController.h */,
 				5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */,
+				95FE67202E0BC8A3005DCDCE /* Resource */,
 			);
 			path = PBBlock;
 			sourceTree = "<group>";
@@ -3050,6 +3056,22 @@
 			path = PBSwift;
 			sourceTree = "<group>";
 		};
+		95FE67202E0BC8A3005DCDCE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		95FE67232E0BC9FA005DCDCE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3324,6 +3346,7 @@
 				5CCC113B29CB03DE00F60C38 /* pbannotation_info.json in Resources */,
 				952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
+				95FE67252E0BCA5C005DCDCE /* base64编码是什么.png in Resources */,
 				5C63504A2BFF328800BDA678 /* pbcsbs.png in Resources */,
 				5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */,
 				5CCC111C29CAF92900F60C38 /* PBActivityDetail.js in Resources */,
@@ -3368,6 +3391,7 @@
 				9575944F22F95120009CA618 /* PBBackBtn.png in Resources */,
 				B0F04AB51F9E01BD00F69AC3 /* pbhome_header.jpg in Resources */,
 				5CCC10CD29CAF87700F60C38 /* pbseatselection_maoyan_logo.png in Resources */,
+				95FE67222E0BC8B9005DCDCE /* block为何使用copy修饰.png in Resources */,
 				9575940F22F92790009CA618 /* 冒泡排序.gif in Resources */,
 				9575944B22F95120009CA618 /* PBRound.png in Resources */,
 				952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */,
