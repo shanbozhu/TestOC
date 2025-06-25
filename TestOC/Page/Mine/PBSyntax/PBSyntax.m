@@ -10,25 +10,29 @@
 #import <objc/runtime.h>
 
 /**
- 1. interface 接口：类的声明。有声明，就可以调用。
+ 1. interface 接口：类的声明。有声明，就能调用。有实现，调用成功，无实现，调用崩溃。
  2. implementation 实现：类的定义。
  3. protocol 协议：只含有方法声明的公共头文件。
  3.1 表现形式：id<protocol>、Class<protocol>、UIView<protocol> *
  3.2 <protocol>：遵守协议，含有方法声明。
  4. category 分类：方法定义
  
- 1. @property 声明私有成员变量，定义getter、setter方法
- 2. @synthesize 声明私有成员变量
+ 1. @property 声明私有成员变量，声明getter、setter方法，自动合成方法定义。不允许同时重写getter、setter方法。
+ 2. @synthesize 声明私有成员变量，自动合成方法定义。允许同时重写getter、setter方法。
  */
 
 // class property
 static NSString *_someString;
 static Class<PBSyntaxProtocol> _someCls;
 
+#pragma mark - implementation
+
 @implementation PBSyntax
 
+// 使用协议里的属性有两种方法：
+// 1. 类实现里面用 @synthesize 修饰。
+// 2. 接口或扩展里面 复制一份 协议里的属性。
 @synthesize name=_name;
-//@synthesize height = _height; // 既可以在接口（interface）里声明私有成员变量，也可以在实现（implementation）里通过@synthesize声明私有成员变量
 
 #pragma mark - init
 
@@ -43,11 +47,7 @@ static Class<PBSyntaxProtocol> _someCls;
 
 // 没有@synthesize修饰，只能同时重写getter、setter方法中的一种。若同时重写，需要手动声明私有成员变量。
 
-// property
-
-//- (NSString *)age {
-//    return _age; // 同时重写会报错：提示未声明成员变量
-//}
+/// property
 
 - (void)setAge:(NSString *)age {
     // self是方法的默认参数
@@ -55,15 +55,7 @@ static Class<PBSyntaxProtocol> _someCls;
     _age = age;
 }
 
-- (NSString *)height {
-    return _height;
-}
-
-- (void)setHeight:(NSString *)height {
-    _height = height;
-}
-
-// class property
+/// class property
 
 + (void)setSomeString:(NSString *)someString {
     _someString = someString;

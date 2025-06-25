@@ -38,8 +38,6 @@
     // property
     syntax.age = @"18";
     NSLog(@"syntax.age = %@", syntax.age);
-    syntax.height = @"180";
-    NSLog(@"syntax.height = %@", syntax.height);
     
     // class property
     PBSyntax.someString = @"class property";

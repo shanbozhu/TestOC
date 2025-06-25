@@ -30,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @property (nonatomic, copy) NSString *age;
-@property (nonatomic, copy) NSString *height;
 
 // 类属性：类对象的属性。class property
 @property (nonatomic, class) NSString *someString; // 类属性存储“对象”
