@@ -45,8 +45,6 @@ static Class<PBSyntaxProtocol> _someCls;
 
 #pragma mark - interface
 
-// 没有@synthesize修饰，只能同时重写getter、setter方法中的一种。若同时重写，需要手动声明私有成员变量。
-
 /// property
 
 - (void)setAge:(NSString *)age {
@@ -90,7 +88,7 @@ static Class<PBSyntaxProtocol> _someCls;
 #pragma mark - category
 
 @implementation PBSyntax (ability)
-//@dynamic sing; // 使用@dynamic只会去除警告，实际上并不会自动生成getter、setter方法，执行会崩溃。
+//@dynamic sing; // 使用 @dynamic 只会去除警告，实际上并不会自动生成getter、setter方法，执行会崩溃。
 
 - (void)setSing:(NSString *)sing {
     // 设置 self的关联对象key/value

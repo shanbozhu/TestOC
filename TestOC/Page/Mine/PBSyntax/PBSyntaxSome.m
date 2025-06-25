@@ -9,7 +9,7 @@
 #import "PBSyntaxSome.h"
 #import "PBSyntax.h"
 
-@interface PBSyntaxSome () <PBSyntaxProtocol>
+@interface PBSyntaxSome ()
 
 @end
 
