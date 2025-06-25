@@ -25,15 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - interface
 
 @interface PBSyntax : NSObject <PBSyntaxProtocol>
-{
-    NSString *_height; // 手动声明私有成员变量
-}
 
 @property (nonatomic, copy) NSString *age;
 
 // 类属性：类对象的属性。class property
 @property (nonatomic, class) NSString *someString; // 类属性存储“对象”
 @property (nonatomic, class) Class<PBSyntaxProtocol> someCls; // 类属性存储“类对象”
+
+// 3.3.2 接口或扩展里面 复制一份 协议里的属性。
+//@property (nonatomic, copy) NSString *name;
 
 @end
 
