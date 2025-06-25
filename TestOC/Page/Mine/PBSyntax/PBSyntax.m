@@ -33,6 +33,7 @@ static Class<PBSyntaxProtocol> _someCls;
 @implementation PBSyntax
 
 // 3.3.1 类实现里面用 @synthesize 修饰。
+@synthesize name=_name;
 
 #pragma mark - init
 

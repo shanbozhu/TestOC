@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PBSyntax : NSObject <PBSyntaxProtocol>
 
+// 属性：对象属性。instance property
 @property (nonatomic, copy) NSString *age;
 
 // 类属性：类对象的属性。class property
