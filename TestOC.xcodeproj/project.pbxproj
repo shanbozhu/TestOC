@@ -357,6 +357,7 @@
 		95D34C97267357250007A67D /* PBSwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D34C96267357250007A67D /* PBSwiftController.swift */; };
 		95FE67222E0BC8B9005DCDCE /* block为何使用copy修饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */; };
 		95FE67252E0BCA5C005DCDCE /* base64编码是什么.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */; };
+		95FE67282E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
 		B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */; };
@@ -1009,6 +1010,7 @@
 		95D34C96267357250007A67D /* PBSwiftController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBSwiftController.swift; sourceTree = "<group>"; };
 		95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block为何使用copy修饰.png"; sourceTree = "<group>"; };
 		95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "base64编码是什么.png"; sourceTree = "<group>"; };
+		95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_cmd与@selector(task)一样吗.png"; sourceTree = "<group>"; };
 		A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.debug.xcconfig"; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3043,6 +3045,7 @@
 				5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */,
 				5C63502A2BFC791900BDA678 /* PBSyntaxSome.h */,
 				5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */,
+				95FE67262E0BCCD9005DCDCE /* Resource */,
 			);
 			path = PBSyntax;
 			sourceTree = "<group>";
@@ -3068,6 +3071,14 @@
 			isa = PBXGroup;
 			children = (
 				95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		95FE67262E0BCCD9005DCDCE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -3356,6 +3367,7 @@
 				5C2D063C280BFBFC00C775B3 /* iOS_origin.png in Resources */,
 				5CCC116B29CB040000F60C38 /* qrcode_leftbottom@2x.png in Resources */,
 				B0F04AB71F9E01BD00F69AC3 /* pbhome_icon@3x.png in Resources */,
+				95FE67282E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png in Resources */,
 				B0F04AB91F9E01BD00F69AC3 /* pbhome_sport_headerline@3x.png in Resources */,
 				952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */,
 				5CCC111729CAF92900F60C38 /* PBTestListView.xib in Resources */,
