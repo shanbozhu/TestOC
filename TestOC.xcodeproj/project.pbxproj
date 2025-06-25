@@ -356,8 +356,9 @@
 		95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8742A22E844CA002795D0 /* libxml2.2.tbd */; };
 		95D34C97267357250007A67D /* PBSwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D34C96267357250007A67D /* PBSwiftController.swift */; };
 		95FE67222E0BC8B9005DCDCE /* block为何使用copy修饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */; };
-		95FE67252E0BCA5C005DCDCE /* base64编码是什么.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */; };
 		95FE67282E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */; };
+		95FE672A2E0BD3DC005DCDCE /* base64编码是什么.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67292E0BD3DC005DCDCE /* base64编码是什么.png */; };
+		95FE672D2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE672C2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
 		B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */; };
@@ -1009,8 +1010,9 @@
 		95D34B9126734E190007A67D /* TestOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestOC-Bridging-Header.h"; sourceTree = "<group>"; };
 		95D34C96267357250007A67D /* PBSwiftController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBSwiftController.swift; sourceTree = "<group>"; };
 		95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block为何使用copy修饰.png"; sourceTree = "<group>"; };
-		95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "base64编码是什么.png"; sourceTree = "<group>"; };
 		95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_cmd与@selector(task)一样吗.png"; sourceTree = "<group>"; };
+		95FE67292E0BD3DC005DCDCE /* base64编码是什么.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "base64编码是什么.png"; sourceTree = "<group>"; };
+		95FE672C2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lottie是只有json，还是json与图片一起有的.png"; sourceTree = "<group>"; };
 		A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.debug.xcconfig"; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1622,7 +1624,7 @@
 			children = (
 				5C65C16E2BEBB27700F5F1EC /* PBNSLogController.h */,
 				5C65C16F2BEBB27700F5F1EC /* PBNSLogController.m */,
-				95FE67232E0BC9FA005DCDCE /* Resource */,
+				95FE67232E0BC9FA005DCDCE /* Picture */,
 			);
 			path = PBNSLog;
 			sourceTree = "<group>";
@@ -1661,7 +1663,7 @@
 			children = (
 				5C8EE01E2A810FBE008F00D8 /* PBBlockController.h */,
 				5C8EE01F2A810FBE008F00D8 /* PBBlockController.m */,
-				95FE67202E0BC8A3005DCDCE /* Resource */,
+				95FE67202E0BC8A3005DCDCE /* Picture */,
 			);
 			path = PBBlock;
 			sourceTree = "<group>";
@@ -2436,6 +2438,7 @@
 		952FF347265E42CA00B0D7DA /* PBAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				95FE672B2E0BD9E8005DCDCE /* Picture */,
 				952FF34C265E492F00B0D7DA /* Res */,
 				952FF348265E42F300B0D7DA /* PBAnimationController.h */,
 				952FF349265E42F300B0D7DA /* PBAnimationController.m */,
@@ -3045,7 +3048,7 @@
 				5C8EDCB42A792598008F00D8 /* PBSyntaxMidController.m */,
 				5C63502A2BFC791900BDA678 /* PBSyntaxSome.h */,
 				5C63502B2BFC791900BDA678 /* PBSyntaxSome.m */,
-				95FE67262E0BCCD9005DCDCE /* Resource */,
+				95FE67262E0BCCD9005DCDCE /* Picture */,
 			);
 			path = PBSyntax;
 			sourceTree = "<group>";
@@ -3059,28 +3062,36 @@
 			path = PBSwift;
 			sourceTree = "<group>";
 		};
-		95FE67202E0BC8A3005DCDCE /* Resource */ = {
+		95FE67202E0BC8A3005DCDCE /* Picture */ = {
 			isa = PBXGroup;
 			children = (
 				95FE67212E0BC8B9005DCDCE /* block为何使用copy修饰.png */,
 			);
-			path = Resource;
+			path = Picture;
 			sourceTree = "<group>";
 		};
-		95FE67232E0BC9FA005DCDCE /* Resource */ = {
+		95FE67232E0BC9FA005DCDCE /* Picture */ = {
 			isa = PBXGroup;
 			children = (
-				95FE67242E0BCA5C005DCDCE /* base64编码是什么.png */,
+				95FE67292E0BD3DC005DCDCE /* base64编码是什么.png */,
 			);
-			path = Resource;
+			path = Picture;
 			sourceTree = "<group>";
 		};
-		95FE67262E0BCCD9005DCDCE /* Resource */ = {
+		95FE67262E0BCCD9005DCDCE /* Picture */ = {
 			isa = PBXGroup;
 			children = (
 				95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */,
 			);
-			path = Resource;
+			path = Picture;
+			sourceTree = "<group>";
+		};
+		95FE672B2E0BD9E8005DCDCE /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				95FE672C2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png */,
+			);
+			path = Picture;
 			sourceTree = "<group>";
 		};
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
@@ -3339,6 +3350,7 @@
 				5C2D066C280C03A300C775B3 /* curl in Resources */,
 				9575940D22F92790009CA618 /* 选择排序.gif in Resources */,
 				952FF6F2265F785A00B0D7DA /* tomas_tts_invite_share_haoyou@3x.png in Resources */,
+				95FE672D2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png in Resources */,
 				5CCC116329CB040000F60C38 /* qrcode_righttop@2x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
 				5CCC111D29CAF92900F60C38 /* PBActivityDetail.css in Resources */,
@@ -3347,6 +3359,7 @@
 				5CCC116629CB040000F60C38 /* qrcode_lefttop@3x.png in Resources */,
 				B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */,
 				5CCC116129CB040000F60C38 /* pbqrcode_logo.png in Resources */,
+				95FE672A2E0BD3DC005DCDCE /* base64编码是什么.png in Resources */,
 				5CCC10CF29CAF87800F60C38 /* pbseatselection_xuanzhong.png in Resources */,
 				5CCC10CB29CAF87700F60C38 /* pbseatselection_screenBg@3x.png in Resources */,
 				5C2D0629280BFBFC00C775B3 /* 001@2x.png in Resources */,
@@ -3357,7 +3370,6 @@
 				5CCC113B29CB03DE00F60C38 /* pbannotation_info.json in Resources */,
 				952FF527265E734A00B0D7DA /* search_weather_voice_5_big.png in Resources */,
 				B0F04AB81F9E01BD00F69AC3 /* pbhome_sport_headerline@2x.png in Resources */,
-				95FE67252E0BCA5C005DCDCE /* base64编码是什么.png in Resources */,
 				5C63504A2BFF328800BDA678 /* pbcsbs.png in Resources */,
 				5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */,
 				5CCC111C29CAF92900F60C38 /* PBActivityDetail.js in Resources */,
