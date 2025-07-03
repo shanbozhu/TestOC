@@ -70,6 +70,62 @@
 
 @end
 
+#pragma mark - JSON转XML
+
+#import <Foundation/Foundation.h>
+
+@interface JSONToXMLConverter : NSObject
++ (NSString *)xmlStringFromJSON:(id)jsonObject rootElement:(NSString *)rootElement;
+@end
+
+@implementation JSONToXMLConverter
+
++ (NSString *)xmlStringFromJSON:(id)jsonObject rootElement:(NSString *)rootElement {
+    NSMutableString *xmlString = [NSMutableString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<%@>", rootElement];
+    
+    [self appendXML:jsonObject toString:xmlString indentLevel:1];
+    
+    [xmlString appendFormat:@"\n</%@>", rootElement];
+    return xmlString;
+}
+
++ (void)appendXML:(id)object toString:(NSMutableString *)xmlString indentLevel:(NSInteger)level {
+    NSString *indent = [@"" stringByPaddingToLength:level * 2 withString:@" " startingAtIndex:0];
+    
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dict = (NSDictionary *)object;
+        for (NSString *key in dict) {
+            id value = dict[key];
+            [xmlString appendFormat:@"\n%@<%@>", indent, key];
+            [self appendXML:value toString:xmlString indentLevel:level + 1];
+            [xmlString appendFormat:@"\n%@</%@>", indent, key];
+        }
+    } else if ([object isKindOfClass:[NSArray class]]) {
+        NSArray *array = (NSArray *)object;
+        for (id value in array) {
+            [xmlString appendFormat:@"\n%@<item>", indent];
+            [self appendXML:value toString:xmlString indentLevel:level + 1];
+            [xmlString appendFormat:@"\n%@</item>", indent];
+        }
+    } else {
+        NSString *value = [NSString stringWithFormat:@"%@", object];
+        [xmlString appendString:[self escapeXML:value]];
+    }
+}
+
+// 转义XML特殊字符
++ (NSString *)escapeXML:(NSString *)string {
+    return [[[[[string stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"]
+               stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"]
+               stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"]
+               stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"]
+               stringByReplacingOccurrencesOfString:@"'" withString:@"&apos;"];
+}
+
+@end
+
+
+
 #pragma mark - PBXMLController
 
 @interface PBXMLController ()
@@ -81,17 +137,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *jsonDict = @{
-        @"person": @{
-            @"name": @"Tom",
-            @"age": @(30),
-            @"city": @"Tokyo",
-            @"hobbies": @[@"reading", @"traveling"]
+    {
+        // 示例JSON字符串
+        NSString *jsonString = @"{\"name\":\"John\",\"age\":\"30\",\"city\":\"New York\"}";
+        
+        // 解析JSON
+        NSError *error;
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        
+        if (!error) {
+            // 转换为XML
+            NSString *xmlString = [JSONToXMLConverter xmlStringFromJSON:jsonDict rootElement:@"root"];
+            NSLog(@"XML Output:\n%@", xmlString);
+        } else {
+            NSLog(@"Error parsing JSON: %@", error.localizedDescription);
         }
-    };
-
-    NSString *xml = [self convertDictionaryToXML:jsonDict withRoot:@"root"];
-    NSLog(@"xml = %@", xml);
+    }
 
     {
         // 示例XML字符串
