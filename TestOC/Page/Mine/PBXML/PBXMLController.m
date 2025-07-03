@@ -180,35 +180,4 @@
     }
 }
 
-#pragma mark - JSON转XML
-
-- (NSString *)convertDictionaryToXML:(NSDictionary *)dict withRoot:(NSString *)rootName {
-    NSMutableString *xml = [NSMutableString string];
-    [xml appendFormat:@"<%@>", rootName];
-
-    for (NSString *key in dict) {
-        id value = dict[key];
-
-        if ([value isKindOfClass:[NSDictionary class]]) {
-            NSString *childXML = [self convertDictionaryToXML:value withRoot:key];
-            [xml appendString:childXML];
-        } else if ([value isKindOfClass:[NSArray class]]) {
-            for (id item in value) {
-                if ([item isKindOfClass:[NSDictionary class]]) {
-                    NSString *childXML = [self convertDictionaryToXML:item withRoot:key];
-                    [xml appendString:childXML];
-                } else {
-                    [xml appendFormat:@"<%@>%@</%@>", key, item, key];
-                }
-            }
-        } else {
-            [xml appendFormat:@"<%@>%@</%@>", key, value, key];
-        }
-    }
-
-    [xml appendFormat:@"</%@>", rootName];
-    return xml;
-}
-
-
 @end
