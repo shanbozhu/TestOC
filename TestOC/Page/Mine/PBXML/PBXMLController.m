@@ -8,6 +8,8 @@
 
 #import "PBXMLController.h"
 
+#pragma mark - XML转JSON
+
 #import <Foundation/Foundation.h>
 
 // XML解析器代理
@@ -123,8 +125,6 @@
 }
 
 @end
-
-
 
 #pragma mark - PBXMLController
 
