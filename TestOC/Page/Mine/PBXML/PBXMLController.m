@@ -72,7 +72,7 @@
 
 @end
 
-#pragma mark - JSON转XML
+#pragma mark - JSON转XML —— 支持嵌套字典、数组，并处理XML特殊字符转义。
 
 #import <Foundation/Foundation.h>
 
