@@ -154,7 +154,7 @@
             NSLog(@"Error parsing JSON: %@", error.localizedDescription);
         }
     }
-
+    
     {
         // 示例XML字符串
         NSString *xmlString = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
@@ -178,7 +178,6 @@
             NSLog(@"Error converting to JSON: %@", error.localizedDescription);
         }
     }
-
 }
 
 #pragma mark - JSON转XML
