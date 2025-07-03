@@ -26,6 +26,12 @@
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
+    {
+        NSDictionary *jsonDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+        // jsonDict = (null)
+        NSLog(@"jsonDict = %@", jsonDict);
+    }
+    
     // 3. 把字典封装成模型
     PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
     

@@ -348,6 +348,7 @@
 		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
+		959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959350A82E16BD0E00B9F3A8 /* PBXMLController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
@@ -996,6 +997,8 @@
 		958378D422EACE2800AA39AF /* PBUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUIWebViewController.h; sourceTree = "<group>"; };
 		958378D722EACE3C00AA39AF /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
+		959350A72E16BD0E00B9F3A8 /* PBXMLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBXMLController.h; sourceTree = "<group>"; };
+		959350A82E16BD0E00B9F3A8 /* PBXMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBXMLController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -3037,6 +3040,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		959350A62E16BCCE00B9F3A8 /* PBXML */ = {
+			isa = PBXGroup;
+			children = (
+				959350A72E16BD0E00B9F3A8 /* PBXMLController.h */,
+				959350A82E16BD0E00B9F3A8 /* PBXMLController.m */,
+			);
+			path = PBXML;
+			sourceTree = "<group>";
+		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
 			isa = PBXGroup;
 			children = (
@@ -3214,6 +3226,7 @@
 				5C354ADF2BD0123400A14B95 /* PBAlertController */,
 				5C8EE01D2A810FA4008F00D8 /* PBBlock */,
 				5C6350412BFF1DC800BDA678 /* PBDelegate */,
+				959350A62E16BCCE00B9F3A8 /* PBXML */,
 				5CCB742529B6039900853864 /* PBProtocol */,
 				5C9886672826527A00D3AEAD /* PBMasonry */,
 				5CEFE467281030FE0073BC47 /* PBArrayDelete */,
@@ -3695,6 +3708,7 @@
 				5C6CDC5D2833A9A6007B484B /* PBMasonryController.m in Sources */,
 				9575934922F82A93009CA618 /* PBStorageText.m in Sources */,
 				5C2D0615280BFBFC00C775B3 /* PBCellHeightZeroData.m in Sources */,
+				959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */,
 				5CEBEAAA2C11A0D20079CDDF /* PBRegexController.m in Sources */,
 				5C33FD812744DE9B00F6DDF0 /* UIColor+PBHexStr.m in Sources */,
 				B0300E6E1F11DE5D00624D91 /* main.m in Sources */,
