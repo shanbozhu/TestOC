@@ -139,6 +139,14 @@ postDocState('docEnd');\
         [self.navigationController pushViewController:vc animated:YES];
         vc.view.backgroundColor = [UIColor whiteColor];
     }
+    
+    if ([message.name isEqualToString:@"bd_doc_state_change"]) {
+        UIViewController *vc = [[UIViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        vc.view.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
