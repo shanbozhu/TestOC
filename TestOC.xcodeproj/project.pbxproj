@@ -223,6 +223,7 @@
 		5CF0588C281ABA800024B752 /* PBRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0588B281ABA7F0024B752 /* PBRefresh.m */; };
 		5CF412382A5ED97F00BC690C /* iOS_YYText_render.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF412372A5ED97F00BC690C /* iOS_YYText_render.png */; };
 		5CF415692A5FC79400BC690C /* PBAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF415682A5FC79400BC690C /* PBAttributedStringController.m */; };
+		95042B122E274A6F00B3120D /* JS自调用函数.png in Resources */ = {isa = PBXBuildFile; fileRef = 95042B112E274A6F00B3120D /* JS自调用函数.png */; };
 		950D2E822D958F230037BB7D /* PBHouseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D2E812D958F230037BB7D /* PBHouseController.m */; };
 		95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168893261F19C60047D1B2 /* PBTabBarController.m */; };
 		95168A03261F1FE70047D1B2 /* PBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95168A02261F1FE70047D1B2 /* PBTabBar.m */; };
@@ -769,6 +770,7 @@
 		5CF415672A5FC79400BC690C /* PBAttributedStringController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAttributedStringController.h; sourceTree = "<group>"; };
 		5CF415682A5FC79400BC690C /* PBAttributedStringController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAttributedStringController.m; sourceTree = "<group>"; };
 		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
+		95042B112E274A6F00B3120D /* JS自调用函数.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JS自调用函数.png"; sourceTree = "<group>"; };
 		950D2E802D958F230037BB7D /* PBHouseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHouseController.h; sourceTree = "<group>"; };
 		950D2E812D958F230037BB7D /* PBHouseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHouseController.m; sourceTree = "<group>"; };
 		95168892261F19C60047D1B2 /* PBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarController.h; sourceTree = "<group>"; };
@@ -2398,6 +2400,14 @@
 			path = BBACurrentVC;
 			sourceTree = "<group>";
 		};
+		95042B102E274A4100B3120D /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				95042B112E274A6F00B3120D /* JS自调用函数.png */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
 		950D2E7F2D958F020037BB7D /* PBHouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -3030,6 +3040,7 @@
 		958378CF22EACE1400AA39AF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				95042B102E274A4100B3120D /* Picture */,
 				958378D722EACE3C00AA39AF /* PBWebViewController.h */,
 				958378D822EACE3C00AA39AF /* PBWebViewController.m */,
 				958378D422EACE2800AA39AF /* PBUIWebViewController.h */,
@@ -3399,6 +3410,7 @@
 				5C2D0627280BFBFC00C775B3 /* pbyytext_pic.png in Resources */,
 				B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */,
 				952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */,
+				95042B122E274A6F00B3120D /* JS自调用函数.png in Resources */,
 				9575940E22F92790009CA618 /* 插入排序.gif in Resources */,
 				5CCC10D129CAF87800F60C38 /* pbseat_selection.json in Resources */,
 				5CCC116729CB040000F60C38 /* qrcode_lefttop@2x.png in Resources */,
