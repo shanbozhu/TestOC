@@ -15,6 +15,17 @@
  window.webkit.messageHandlers.openPage.postMessage(nativeDetailUrl);
  */
 
+/**
+ ocCalljs oc端语句如下：
+ evaluateJavaScript：调用 JavaScriptCore 立即执行 js
+ addUserScript：在 DocumentStart 或 DocumentEnd 时机注入 js，同时调用 JavaScriptCore 立即执行 js
+ 
+ 执行js有三种方式：
+ 1、h5本身含有 js 方法，oc 调用 JavaScriptCore 执行这个 js 方法
+ 2、oc端注入的 js 含有方法的定义和调用（一般为 自调用函数 的形式），oc 调用 JavaScriptCore 执行这个 js 方法
+ 3、oc端注入的 js 仅含有方法的定义，h5 端调用注入的 js 方法
+ */
+
 @interface PBWKWebViewController ()<WKNavigationDelegate, WKScriptMessageHandler>
 
 @property (nonatomic, weak) WKWebView *webView;
