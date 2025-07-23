@@ -24,11 +24,12 @@
 @end
 
 /**
- 查询输出 所有列 从 学生表 条件 分数大于等于80
+ 查询输出 所有列 从 学生表 条件为 分数大于等于80
  select * from students where score >= 80;
  
- 查询输出 score列的平均值 别名 average 从 学生表 条件 性别为男性
+ 查询输出 score列的平均值 别名 average 从 学生表 条件为 性别为男性
  select avg(score) average from students where gender = 'm';
+ 意译：从 学生表 中 查询 条件为 性别为男性 的 记录，输出 score列的平均值 别名 average
  
  查询输出 class_id gender 所有列的行数 别名 num 从 学生表 分组通过 class_id 和 gender
  select class_id, gender, count(*) num from students group by class_id, gender;
@@ -169,18 +170,9 @@
  
  **六、聚合查询**
  
- 聚合查询中的非聚合字段必须出现在group by中
+ 聚合查询中的非聚合字段必须出现在group by中。
  
  COUNT(1)和COUNT(*)在大多数数据库系统中是等价的，它们都会返回相同的结果。使用COUNT(1)而不是COUNT(*)有时候可以在某些数据库系统中提供更好的性能。COUNT(*)和COUNT(id)实际上是一样的效果。
- 
- -- 使用聚合查询
- SELECT COUNT(*) FROM students;
- 
- -- 使用聚合查询并设置结果集的列名为num
- SELECT COUNT(*) num FROM students;
- 
- -- 使用聚合查询并设置WHERE条件
- SELECT COUNT(*) boys FROM students WHERE gender = 'M';
  
  函数    说明
  COUNT  计算某一列的行数
@@ -189,13 +181,20 @@
  MAX    计算某一列的最大值
  MIN    计算某一列的最小值
  
- -- 使用聚合查询计算男生平均成绩:
- SELECT AVG(score) average FROM students WHERE gender = 'M';
+ -- 查询输出 所有列的行数
+ SELECT COUNT(*) FROM students;
  
- 也可以使用多个列进行分组。例如，我们想统计各班的男生和女生人数：
- -- 按class_id, gender分组:
- SELECT class_id, gender, COUNT(*) num FROM students GROUP BY class_id, gender;
- 上述查询结果集一共有6条记录，分别对应各班级的男生和女生人数。
+ -- 查询输出 不同班级的 平均分
+ SELECT class_id, AVG(score) average FROM students group by class_id;
+ 
+ -- 查询输出 不同班级的 不同性别的 平均分
+ SELECT class_id, gender, AVG(score) average FROM students group by class_id, gender;
+ 
+ -- 查询输出 不同班级的 不同性别的 分数大于等于80的 平均分
+ SELECT class_id, gender, AVG(score) average FROM students WHERE score >= 80 group by class_id, gender;
+ 
+ -- 查询输出 不同班级的 不同性别的 性别为男性的 平均分
+ SELECT class_id, gender, AVG(score) average FROM students WHERE gender = 'M' group by class_id, gender;
  
  **七、多表查询 或 笛卡尔查询**
  
