@@ -24,18 +24,13 @@
 @end
 
 /**
- 主键：唯一标识一条记录，不能有重复的，不允许为空。
- 注意：数据库的一张表中可以存储相同的记录，因为决定记录唯一性的是主键，主键一般不作为真正的记录。
- 参考文档：
- SQLite学习手册 - 自增与主键 https://blog.csdn.net/ghlfllz/article/details/21284627
- 
  查询输出 所有列 从 学生表 条件 分数大于等于80
  select * from students where score >= 80;
  
  查询输出 score列的平均值 别名 average 从 学生表 条件 性别为男性
  select avg(score) average from students where gender = 'm';
  
- 查询输出 class_id gender 所有列的行数 别名 num 从 学生表 条件 分组通过 class_id 和 gender
+ 查询输出 class_id gender 所有列的行数 别名 num 从 学生表 分组通过 class_id 和 gender
  select class_id, gender, count(*) num from students group by class_id, gender;
  
  执行效果如下：
@@ -76,6 +71,12 @@
  2. 开源数据库，例如：MySQL、PostgreSQL等；
  3. 桌面数据库，以微软Access为代表，适合桌面应用程序使用；
  4. 嵌入式数据库，以Sqlite为代表，适合手机应用和桌面程序。
+ 
+ 主键：唯一标识一条记录，不能有重复的，不允许为空。
+ 注意：数据库的一张表中可以存储相同的记录，因为决定记录唯一性的是主键，主键一般不作为真正的记录。
+ 参考文档：
+ SQLite学习手册 - 自增与主键 https://blog.csdn.net/ghlfllz/article/details/21284627
+ 廖雪峰SQL教程 https://liaoxuefeng.com/books/sql/query/basic/index.html
  
  **一、基本查询**
  
