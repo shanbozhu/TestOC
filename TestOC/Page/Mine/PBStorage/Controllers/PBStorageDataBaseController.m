@@ -29,18 +29,15 @@
  参考文档：
  SQLite学习手册 - 自增与主键 https://blog.csdn.net/ghlfllz/article/details/21284627
  
- SELECT：选择、查询
- 
- 聚合查询中的非聚合字段必须出现在group by中
- 
- 查询 所有列 来自 学生表 在那儿 分数大于等于80
+ 查询输出 所有列 从 学生表 条件 分数大于等于80
  select * from students where score >= 80;
  
- 查询 score列的平均值 作为 average 来自 学生表 在那儿 性别为男性
+ 查询输出 score列的平均值 别名 average 从 学生表 条件 性别为男性
  select avg(score) average from students where gender = 'm';
  
- 查询 class_id gender count(*)所有列的行数 作为 num 来自 学生表 在那儿 分组通过 class_id 和 gender
+ 查询输出 class_id gender 所有列的行数 别名 num 从 学生表 条件 分组通过 class_id 和 gender
  select class_id, gender, count(*) num from students group by class_id, gender;
+ 
  执行效果如下：
  原始表：
  id    class_id    name    gender    score
@@ -64,8 +61,6 @@
  3    F    2
  3    M    1
  
- COUNT(1)和COUNT(*)在大多数数据库系统中是等价的，它们都会返回相同的结果。使用COUNT(1)而不是COUNT(*)有时候可以在某些数据库系统中提供更好的性能。
- 
  // SQL简介
  SQL：Structured Query Language 结构化查询语言
  
@@ -82,7 +77,7 @@
  3. 桌面数据库，以微软Access为代表，适合桌面应用程序使用；
  4. 嵌入式数据库，以Sqlite为代表，适合手机应用和桌面程序。
  
- **基本查询**
+ **一、基本查询**
  
  -- 查询students表的所有数据
  SELECT * FROM students;
@@ -90,7 +85,9 @@
  -- 计算100+200
  SELECT 100+200;
  
- **条件查询**
+ 结果集也是个二维表。
+ 
+ **二、条件查询**
  
  -- 按AND条件查询students:
  SELECT * FROM students WHERE score >= 80 AND gender = 'M';
@@ -110,80 +107,78 @@
  -- gender是空
  SELECT * FROM students WHERE gender is null;
  
- **投影查询**
+ **三、投影查询**
  
  -- 使用投影查询
  SELECT id, score, name FROM students;
  
- -- 使用投影查询，并将列名重命名：
+ -- 使用投影查询，并将列名重命名
  SELECT id, score points, name FROM students;
  等价于
  SELECT id, score as points, name FROM students;
  
- as：作为、别名
+ as：别名，在SQL语句中可省略。
  
- -- 使用投影查询+WHERE条件：
+ -- 使用投影查询+WHERE条件
  SELECT id, score points, name FROM students WHERE gender = 'M';
  
- **排序查询**
+ **四、排序查询**
  
  ascending order：升序
  descending order：降序
  
- -- 按score从低到高:
+ -- 按score从低到高
  SELECT id, name, gender, score FROM students ORDER BY score;
  等价于
  SELECT id, name, gender, score FROM students ORDER BY score ASC;
  
- -- 按score从高到低:
+ -- 按score从高到低
  SELECT id, name, gender, score FROM students ORDER BY score DESC;
  
- -- 按score降序，如果遇到score相同，在按照gender升序:
+ -- 按score降序，如果遇到score相同，在按照gender升序
  SELECT id, name, gender, score FROM students ORDER BY score DESC, gender ASC;
  
- **分页查询**
+ **五、分页查询**
  
- -- 查询第1页:
- -- 从偏移量0开始，最多查询3条记录
+ -- 查询第1页
+ -- 从偏移量0开始，长度为3
  SELECT id, name, gender, score
  FROM students
  ORDER BY score DESC
  LIMIT 3 OFFSET 0;
  
- -- 查询第2页:
+ -- 查询第2页
+ -- 从偏移量3开始，长度为3
  SELECT id, name, gender, score
  FROM students
  ORDER BY score DESC
  LIMIT 3 OFFSET 3;
  
- -- 查询第3页:
+ -- 查询第3页
+ -- 从偏移量6开始，长度为3
  SELECT id, name, gender, score
  FROM students
  ORDER BY score DESC
  LIMIT 3 OFFSET 6;
- 
- -- 查询第4页:
- SELECT id, name, gender, score
- FROM students
- ORDER BY score DESC
- LIMIT 3 OFFSET 9;
  
  LIMIT：总是设定为pageSize
  OFFSET：计算公式为pageSize * (pageIndex - 1)
  
  OFFSET是可选的，如果只写LIMIT 15，那么相当于LIMIT 15 OFFSET 0
  
- **聚合查询**
+ **六、聚合查询**
  
- -- 使用聚合查询:
+ 聚合查询中的非聚合字段必须出现在group by中
+ 
+ COUNT(1)和COUNT(*)在大多数数据库系统中是等价的，它们都会返回相同的结果。使用COUNT(1)而不是COUNT(*)有时候可以在某些数据库系统中提供更好的性能。COUNT(*)和COUNT(id)实际上是一样的效果。
+ 
+ -- 使用聚合查询
  SELECT COUNT(*) FROM students;
  
- -- 使用聚合查询并设置结果集的列名为num:
+ -- 使用聚合查询并设置结果集的列名为num
  SELECT COUNT(*) num FROM students;
  
- COUNT(*)和COUNT(id)实际上是一样的效果。
- 
- -- 使用聚合查询并设置WHERE条件:
+ -- 使用聚合查询并设置WHERE条件
  SELECT COUNT(*) boys FROM students WHERE gender = 'M';
  
  函数    说明
@@ -196,21 +191,12 @@
  -- 使用聚合查询计算男生平均成绩:
  SELECT AVG(score) average FROM students WHERE gender = 'M';
  
- 如果我们要统计一班的学生数量，我们知道，可以用SELECT COUNT(*) num FROM students WHERE class_id = 1;。如果要继续统计二班、三班的学生数量，难道必须不断修改WHERE条件来执行SELECT语句吗？
- -- 按class_id分组:
- SELECT COUNT(*) num FROM students GROUP BY class_id;
- 执行该SELECT语句时，会把class_id相同的列先分组，再分别计算，因此，得到了3行结果。
- 
- 但是这3行结果分别是哪三个班级的，不好看出来，所以我们可以把class_id列也放入结果集中：
- -- 按class_id分组:
- SELECT class_id, COUNT(*) num FROM students GROUP BY class_id;
- 
  也可以使用多个列进行分组。例如，我们想统计各班的男生和女生人数：
  -- 按class_id, gender分组:
  SELECT class_id, gender, COUNT(*) num FROM students GROUP BY class_id, gender;
  上述查询结果集一共有6条记录，分别对应各班级的男生和女生人数。
  
- **多表查询**
+ **七、多表查询 或 笛卡尔查询**
  
  -- FROM students, classes:
  SELECT * FROM students, classes;
@@ -249,32 +235,32 @@
  FROM students s, classes c
  WHERE s.gender = 'M' AND c.id = 1;
  
- **连接查询**
+ **八、连接查询**
  
- -- 选出所有学生:
+ -- 选出所有学生
  SELECT s.id, s.name, s.class_id, s.gender, s.score FROM students s;
  
- -- 选出所有学生，同时返回班级名称:
+ -- 内连接。选出所有学生，同时返回班级名称
  SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
  FROM students s
  INNER JOIN classes c
  ON s.class_id = c.id;
  
- -- 使用OUTER JOIN:
+ -- 右外连接
  SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
  FROM students s
  RIGHT OUTER JOIN classes c
  ON s.class_id = c.id;
  
- -- 先增加一列class_id=5:
+ -- 先增加一列class_id=5
  INSERT INTO students (class_id, name, gender, score) values (5, '新生', 'M', 88);
- -- 使用LEFT OUTER JOIN:
+ -- 左外连接
  SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
  FROM students s
  LEFT OUTER JOIN classes c
  ON s.class_id = c.id;
  
- -- 使用FULL OUTER JOIN:
+ -- 全连接
  SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
  FROM students s
  FULL OUTER JOIN classes c
@@ -282,10 +268,10 @@
  
  **插入数据**
  
- -- 添加一条新记录:
+ -- 添加一条新记录
  INSERT INTO students (class_id, name, gender, score) VALUES (2, '大牛', 'M', 80);
  
- -- 一次性添加多条新记录:
+ -- 一次性添加多条新记录
  INSERT INTO students (class_id, name, gender, score) VALUES
    (1, '大宝', 'M', 87),
    (2, '二宝', 'M', 81),
@@ -293,31 +279,31 @@
  
  **更新数据**
  
- -- 更新id = 1的记录:
+ -- 更新id = 1的记录
  UPDATE students SET name = '大牛', score = 66 WHERE id = 1;
  
- -- 更新id = 5、6、7的记录:
+ -- 更新id = 5、6、7的记录
  UPDATE students SET name = '小牛', score = 77 WHERE id >= 5 AND id <= 7;
  
- 在UPDATE语句中，更新字段时可以使用表达式。例如，把所有80分以下的同学的成绩加10分：
- -- 更新score < 80的记录:
+ 在UPDATE语句中，更新字段时可以使用表达式。例如，把所有80分以下的同学的成绩加10分
+ -- 更新score < 80的记录
  UPDATE students SET score = score + 10 WHERE score < 80;
  
- 最后，要特别小心的是，UPDATE语句可以没有WHERE条件，例如：
- -- 更新所有记录:
+ 最后，要特别小心的是，UPDATE语句可以没有WHERE条件，例如
+ -- 更新所有记录
  UPDATE students SET score = 60;
  这时，整个表的所有记录都会被更新。
  
  **删除数据**
  
- -- 删除id = 1的记录:
+ -- 删除id = 1的记录
  DELETE FROM students WHERE id = 1;
  
- -- 删除id = 5、6、7的记录:
+ -- 删除id = 5、6、7的记录
  DELETE FROM students WHERE id >= 5 AND id <= 7;
  
- 最后，要特别小心的是，和UPDATE类似，不带WHERE条件的DELETE语句会删除整个表的数据：
- -- 删除所有记录:
+ 最后，要特别小心的是，和UPDATE类似，不带WHERE条件的DELETE语句会删除整个表的数据
+ -- 删除所有记录
  DELETE FROM students;
  这时，整个表的所有记录都会被删除。
  */
