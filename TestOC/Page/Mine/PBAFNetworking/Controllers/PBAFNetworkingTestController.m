@@ -19,6 +19,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /**
+     "Content-Type": "application/x-www-form-urlencoded"
+     主要用途：提交简单文本表单
+     数据格式：键值对，& 连接
+     编码效率：低（对特殊字符编码）
+     二进制支持：很差
+     复杂度支持：低（扁平键值对）
+     
+     "Content-Type": "application/json"
+     主要用途：API 数据传输
+     数据格式：结构化 JSON 对象
+     编码效率：高（纯文本）
+     二进制支持：需编码为 Base64
+     复杂度支持：高（任意复杂结构）
+     
+     "Content-Type": "multipart/form-data"
+     主要用途：提交表单（含文件上传）
+     数据格式：多部分混合，边界分隔
+     编码效率：中（有额外边界开销）
+     二进制支持：很好
+     复杂度支持：中（可嵌套）
+     */
+    
     // 请求路径、请求参数
     NSString *urlStr = @"https://mbd.baidu.com/searchbox?action=update&uuid=31CD314763DEA42D303CCDED424BC8BF42EF12&appname=tomas&branchname=tomas&cfrom=1025512a&ds_lv=4&ds_stc=0.7740&from=1025512a&fv=13.44.0.19&matrixstyle=1&mps=154326807&mpv=1&network=1_0&osbranch=i7&osname=baiduboxapp&puid=_u2Kt_OQv8SlmqqqB&service=bdbox&sid=35713_3-74953_5-72997_2-71741_6-35809_3-35412_1-77907_1-76140_2-35776_12-62205_2-35790_1-9580_5-35839_1-35870_1-79833_1-35832_3-78029_3-105949_1-79894_1-75001_2-35864_1-35719_1-5301_7550-80003_6-34336_1-35821_4-103916_8-32873_2-78752_3-35779_3-79203_3-30356_1-78040_1-73147_2-33497_1-78713_1-71552_5-77832_4-35873_10&st=0&submatrix=Tomas&ua=828_1792_iphone_2.30.0.0_0&uid=6D989E434574A6D38712A794674F6D74C81FC7309OLFQBBSCCC&zid=9TASkaL-1A1PjIZJkG-1CpxEMHpqPAMGnU9R9M2nVavACDd3ylgufV6_cvZwHIIcCh_qj-3hkxG-bAZ2h_cmmiw&lst=4&protocol=json&pv=1";
     
