@@ -42,7 +42,7 @@
      复杂度支持：中（可嵌套）
      */
     
-    // 请求路径、请求参数
+    // 请求路径、查询参数
     NSString *urlStr = @"https://mbd.baidu.com/searchbox?action=update&uuid=31CD314763DEA42D303CCDED424BC8BF42EF12&appname=tomas&branchname=tomas&cfrom=1025512a&ds_lv=4&ds_stc=0.7740&from=1025512a&fv=13.44.0.19&matrixstyle=1&mps=154326807&mpv=1&network=1_0&osbranch=i7&osname=baiduboxapp&puid=_u2Kt_OQv8SlmqqqB&service=bdbox&sid=35713_3-74953_5-72997_2-71741_6-35809_3-35412_1-77907_1-76140_2-35776_12-62205_2-35790_1-9580_5-35839_1-35870_1-79833_1-35832_3-78029_3-105949_1-79894_1-75001_2-35864_1-35719_1-5301_7550-80003_6-34336_1-35821_4-103916_8-32873_2-78752_3-35779_3-79203_3-30356_1-78040_1-73147_2-33497_1-78713_1-71552_5-77832_4-35873_10&st=0&submatrix=Tomas&ua=828_1792_iphone_2.30.0.0_0&uid=6D989E434574A6D38712A794674F6D74C81FC7309OLFQBBSCCC&zid=9TASkaL-1A1PjIZJkG-1CpxEMHpqPAMGnU9R9M2nVavACDd3ylgufV6_cvZwHIIcCh_qj-3hkxG-bAZ2h_cmmiw&lst=4&protocol=json&pv=1";
     
     {
