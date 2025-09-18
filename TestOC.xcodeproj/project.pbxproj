@@ -1437,7 +1437,7 @@
 			children = (
 				5C2D0655280C032A00C775B3 /* curl */,
 				5C2D0656280C032A00C775B3 /* json */,
-				5C2D065A280C032A00C775B3 /* x-www-form-urlencoded */,
+				5C2D065A280C032A00C775B3 /* form-urlencoded */,
 			);
 			path = curl;
 			sourceTree = "<group>";
@@ -1452,14 +1452,14 @@
 			path = json;
 			sourceTree = "<group>";
 		};
-		5C2D065A280C032A00C775B3 /* x-www-form-urlencoded */ = {
+		5C2D065A280C032A00C775B3 /* form-urlencoded */ = {
 			isa = PBXGroup;
 			children = (
 				5C2D065B280C032A00C775B3 /* x-www-form-urlencoded */,
 				5C2D065C280C032A00C775B3 /* header */,
 				5C2D065D280C032A00C775B3 /* request.sh */,
 			);
-			path = "x-www-form-urlencoded";
+			path = "form-urlencoded";
 			sourceTree = "<group>";
 		};
 		5C33FD742744DE9B00F6DDF0 /* PBFoundation */ = {
