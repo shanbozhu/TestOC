@@ -103,6 +103,12 @@
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
+        showData.title = @"--";
+        showData.content = @"";
+        [self.data addObject:showData];
+    }
+    {
+        PBHouseShowData *showData = [[PBHouseShowData alloc] init];
         showData.title = @"开始总成本：";
         showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment, self.house.totalMortgage, self.house.theFirstPayment + self.house.totalMortgage];
         [self.data addObject:showData];
