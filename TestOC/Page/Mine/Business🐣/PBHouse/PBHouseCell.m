@@ -53,7 +53,7 @@
     [self.lab sizeToFit];
     if ([self.showData.color isEqualToString:@"green"]) {
         self.lab.textColor = [UIColor redColor];
-    } else if ([self.showData.color isEqualToString:@"gray"]) {
+    } else if ([self.showData.color isEqualToString:@"blue"]) {
         self.lab.textColor = [UIColor blueColor];
     } else {
         self.lab.textColor = [UIColor blackColor];
