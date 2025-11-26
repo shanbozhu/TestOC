@@ -236,7 +236,7 @@
     }
     {
         PBHouseShowData *showData = [[PBHouseShowData alloc] init];
-        showData.title = @"整体亏损：";
+        showData.title = @"整体亏损（置换亏损）：";
         showData.content = [NSString stringWithFormat:@"%.2lf + %.2lf = %.2lf", self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell, self.house.buyAgain - self.house.buyAgain * 0.3 + (self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)) - self.house.remainingMortgage, (self.house.theFirstPayment + self.house.accumulatedRepaymentOfHousingLoans + self.house.remainingMortgage - self.house.sell) + (self.house.buyAgain - self.house.buyAgain * 0.3 + (self.house.buyAgain * 0.3 - (self.house.sell - self.house.remainingMortgage)) - self.house.remainingMortgage)];
         showData.color = @"blue";
         [self.data addObject:showData];

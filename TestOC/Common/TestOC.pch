@@ -28,6 +28,7 @@
 // helloworld!
 #define HELLOWORLD @"helloworld!"
 
+// oc调用swift
 #import "TestOC-Swift.h"
 
 #import "PBCommonUIParams.h"

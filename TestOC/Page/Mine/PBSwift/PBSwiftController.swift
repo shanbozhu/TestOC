@@ -45,6 +45,9 @@ class PBSwiftController: PBBaseController {
         if let tmp = myString { // 可选绑定。可选解包并绑定到变量
             print(tmp)
         }
+        if myString == "haha" {
+            
+        }
         
         myString = nil
         print(myString) // nil。Expression implicitly coerced from 'String?' to 'Any'
@@ -77,7 +80,7 @@ class PBSwiftController: PBBaseController {
         print(myString2) // world
         //myString2 = nil // 'nil' cannot be assigned to type 'String'
         
-        // 四
+        // 四、解包
         let num: Int! = 13
         let num2: Int! = 14
         let num3 = num + num2 // 可选隐式解包，!叹号可加可不加
