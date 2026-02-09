@@ -65,5 +65,3 @@ Done installing documentation for ffi, cocoapods-core, cocoapods after 2 seconds
 3 gems installed
 -> ~ 10:44:55
 ```
-
----
