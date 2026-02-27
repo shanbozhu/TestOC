@@ -6,11 +6,28 @@ draft: false
 
 [TOC]
 
-## 1. 查看当前 Ruby 镜像源
+## 1、查看当前 Ruby 版本
+
+`ruby --version`
+
+macOS 系统默认自带 ruby，无需安装。
+
+## 2、如果 Ruby 版本过低，可以使用 Homebrew 安装最新版 Ruby
+
+`brew install ruby`
+
+在环境变量中配置优先使用 Homebrew 安装的 ruby
+
+```
+# 优先使用 brew 安装的 ruby，如果未使用 brew 安装 ruby，则使用 macOS 默认自带的 ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+```
+
+## 3、查看当前 Ruby 镜像源
 
 `sudo gem sources -l`
 
-## 2. 更换 Ruby 镜像源
+## 4、更换 Ruby 镜像源
 
 `sudo gem sources -l`
 
@@ -18,28 +35,66 @@ draft: false
 
 `sudo gem sources -a https://mirrors.aliyun.com/rubygems/`
 
-## 3. 安装最新版 CocoaPods
+## 5、安装最新版 CocoaPods
 
-`sudo gem install -n /usr/local/bin cocoapods --pre`
+`sudo gem install cocoapods`
 
 查看 CocoaPods 版本号
 
 `pod --version`
 
-若是安装指定版本 CocoaPods，使用下面命令
-
-`sudo gem install -n /usr/local/bin cocoapods -v 1.2.0`
-
-## 4. 卸载 CocoaPods
+## 6、卸载 CocoaPods
 
 `sudo gem uninstall cocoapods`
 
-## 5. 使用 CocoaPods 管理库
+## 7、Podfile 配置
+
+```ruby
+#source 'https://github.com/CocoaPods/Specs.git'
+
+# 因为墙的原因，替换为国内 Specs 镜像源
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+
+#ali_source 'alibaba-specs' # 集团内部仓库
+#ali_source 'alibaba-specs-mirror' # 官方镜像仓库
+
+platform :ios, '8.0'
+
+target "TestOC" do
+  pod 'YYText', '1.0.7'
+  pod 'YYModel', '1.0.4'
+  pod 'YYImage', '1.0.4'
+  pod 'YYWebImage', '1.0.5'
+  pod 'YYCache', '1.0.4'
+  
+  pod 'AFNetworking', '~> 2.6.3'
+  #pod 'AFNetworking', '2.6.3'
+  #pod 'AFNetworking', '~> 3.0'
+  
+  pod 'SocketRocket', '0.5.1'
+  
+  pod 'SDWebImage', '5.9.5'
+  pod 'SDWebImageFLPlugin', '0.4.0'
+  pod 'SDWebImageLottiePlugin', '0.2.0'
+  
+  pod 'Masonry', '~> 1.1.0'
+  pod 'FMDB', '~> 2.7.5'
+  pod 'MJRefresh', '3.5.0'
+  pod 'CocoaLumberjack', '3.6.2'
+  pod 'HMSegmentedControl', '1.5.6'
+  pod 'SDCycleScrollView', '1.82'
+  
+  # swift框架
+  pod 'SnapKit', '4.2.0'
+end
+```
+
+## 8、Podfile 里的库版本配置
 
 ```
 # 取最新版本
 pod 'MJRefresh',
-# 取3.1.12
+# 取 3.1.12
 pod 'MJRefresh', '3.1.12'
 # [3.1.12, 3.2.0)
 pod 'MJRefresh', '~>3.1.12'
@@ -52,24 +107,4 @@ pod 'MJRefresh', '>3.1.12'
 pod 'MJRefresh', '<=3.1.12'
 # [0.0.0, 3.1.12)
 pod 'MJRefresh', '<3.1.12'
-```
-
-## 6. 安装 CocoaPods 时的输出日志
-
-```
--> ~ 10:35:00
- $ sudo gem install -n /usr/local/bin cocoapods --pre
-Fetching ffi-1.17.0-x86_64-darwin.gem
-Successfully installed ffi-1.17.0-x86_64-darwin
-Successfully installed cocoapods-core-1.16.2
-Successfully installed cocoapods-1.16.2
-Parsing documentation for ffi-1.17.0-x86_64-darwin
-Installing ri documentation for ffi-1.17.0-x86_64-darwin
-Parsing documentation for cocoapods-core-1.16.2
-Installing ri documentation for cocoapods-core-1.16.2
-Parsing documentation for cocoapods-1.16.2
-Installing ri documentation for cocoapods-1.16.2
-Done installing documentation for ffi, cocoapods-core, cocoapods after 2 seconds
-3 gems installed
--> ~ 10:44:55
 ```

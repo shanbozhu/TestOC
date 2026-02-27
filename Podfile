@@ -1,6 +1,10 @@
+#source 'https://github.com/CocoaPods/Specs.git'
 
-#ali_source 'alibaba-specs' #集团内部仓库
-#ali_source 'alibaba-specs-mirror' #官方镜像仓库
+# 因为墙的原因，替换为国内 Specs 镜像源
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+
+#ali_source 'alibaba-specs' # 集团内部仓库
+#ali_source 'alibaba-specs-mirror' # 官方镜像仓库
 
 platform :ios, '8.0'
 
