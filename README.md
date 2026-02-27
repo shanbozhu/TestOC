@@ -108,3 +108,31 @@ pod 'MJRefresh', '<=3.1.12'
 # [0.0.0, 3.1.12)
 pod 'MJRefresh', '<3.1.12'
 ```
+
+## 9、执行 pod install 命令安装依赖库
+
+```
+# 安装依赖库
+pod install
+# 更新依赖库
+pod update
+
+# 查看本地仓库列表
+pod repo list
+```
+
+## 10、常见问题
+
+### 10.1 Mac 执行 pod install 命令出现错误 Couldn't determine repo type for URL
+
+在 Mac 系统执行命令 pod install 时出现如下错误
+
+Analyzing dependencies  
+[!] Couldn't determine repo type for URL: `https://github.com/CocoaPods/Specs.git`: SSL_connect returned=1 errno=0 peeraddr=20.205.243.166:443 state=error: certificate verify failed (unable to get local issuer certificate)
+
+执行如下 2 条命令解决问题
+
+`export SSL_CERT_FILE=/etc/ssl/cert.pem`  
+`pod repo update`
+
+参考文档：[https://www.cnblogs.com/cadstudy/p/19607907](https://www.cnblogs.com/cadstudy/p/19607907)
