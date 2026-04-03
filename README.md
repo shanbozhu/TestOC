@@ -33,7 +33,7 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 `sudo gem sources --remove https://rubygems.org/`
 
-`sudo gem sources -a https://mirrors.aliyun.com/rubygems/`
+`sudo gem sources -a https://mirrors.tuna.tsinghua.edu.cn/rubygems/`
 
 ## 5、安装最新版 CocoaPods
 
