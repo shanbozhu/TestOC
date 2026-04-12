@@ -12,9 +12,9 @@
 /**
  1. interface 接口：类的声明。有声明，就能调用。有实现，调用成功，无实现，调用崩溃。
  2. implementation 实现：类的定义。
- 3. protocol 协议：只含有方法声明的公共头文件。
+ 3. protocol 协议：只含有方法声明的公共接口。
     3.1 表现形式：id<protocol>、Class<protocol>、UIView<protocol> *
-    3.2 <protocol>：遵守协议，含有方法声明，调用协议方法。
+    3.2 <protocol>：遵守协议，调用协议方法。
     3.3 使用协议里的属性有两种方法：
         3.3.1 类实现里面用 @synthesize 修饰。
         3.3.2 接口或扩展里面 复制一份 协议里的属性。

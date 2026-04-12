@@ -18,4 +18,12 @@
 }
 */
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    return [super hitTest:point withEvent:event];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Parent handled");
+}
+
 @end

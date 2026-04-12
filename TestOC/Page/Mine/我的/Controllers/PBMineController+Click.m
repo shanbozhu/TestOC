@@ -39,7 +39,8 @@
              @"PBNSLogController",
              @"PBRegexController",
              @"PBExceptionController",
-             @"PBXMLController"];
+             @"PBXMLController",
+             @"PBHitTestController"];
 }
 
 // delegate

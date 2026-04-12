@@ -350,6 +350,9 @@
 		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
+		959236822F70D8070086B733 /* PBHitTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236812F70D8070086B733 /* PBHitTestController.m */; };
+		959236852F70D8250086B733 /* PBHitTestMyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236842F70D8250086B733 /* PBHitTestMyButton.m */; };
+		959236882F70D86D0086B733 /* PBHitTestParentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236872F70D86D0086B733 /* PBHitTestParentView.m */; };
 		959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959350A82E16BD0E00B9F3A8 /* PBXMLController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
@@ -999,6 +1002,12 @@
 		958378D422EACE2800AA39AF /* PBUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUIWebViewController.h; sourceTree = "<group>"; };
 		958378D722EACE3C00AA39AF /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
+		959236802F70D8070086B733 /* PBHitTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestController.h; sourceTree = "<group>"; };
+		959236812F70D8070086B733 /* PBHitTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestController.m; sourceTree = "<group>"; };
+		959236832F70D8250086B733 /* PBHitTestMyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestMyButton.h; sourceTree = "<group>"; };
+		959236842F70D8250086B733 /* PBHitTestMyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestMyButton.m; sourceTree = "<group>"; };
+		959236862F70D86D0086B733 /* PBHitTestParentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestParentView.h; sourceTree = "<group>"; };
+		959236872F70D86D0086B733 /* PBHitTestParentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestParentView.m; sourceTree = "<group>"; };
 		959350A72E16BD0E00B9F3A8 /* PBXMLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBXMLController.h; sourceTree = "<group>"; };
 		959350A82E16BD0E00B9F3A8 /* PBXMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBXMLController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
@@ -3163,6 +3172,19 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		9592367D2F70D7D70086B733 /* PBHitTest */ = {
+			isa = PBXGroup;
+			children = (
+				959236802F70D8070086B733 /* PBHitTestController.h */,
+				959236812F70D8070086B733 /* PBHitTestController.m */,
+				959236832F70D8250086B733 /* PBHitTestMyButton.h */,
+				959236842F70D8250086B733 /* PBHitTestMyButton.m */,
+				959236862F70D86D0086B733 /* PBHitTestParentView.h */,
+				959236872F70D86D0086B733 /* PBHitTestParentView.m */,
+			);
+			path = PBHitTest;
+			sourceTree = "<group>";
+		};
 		959350A62E16BCCE00B9F3A8 /* PBXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -3342,6 +3364,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				9592367D2F70D7D70086B733 /* PBHitTest */,
 				953974882CDA382400EDF4C2 /* PBException */,
 				5CEBEAA72C11A08D0079CDDF /* PBRegularExpression */,
 				5C6350452BFF315F00BDA678 /* PBCSBS */,
@@ -3713,6 +3736,7 @@
 				957593CF22F84F20009CA618 /* PBGCDListNineController.m in Sources */,
 				5CCC111F29CAF92900F60C38 /* PBTestListTwoCell.m in Sources */,
 				9575998622FC2415009CA618 /* UITableView+FDIndexPathHeightCache.m in Sources */,
+				959236822F70D8070086B733 /* PBHitTestController.m in Sources */,
 				5CCC10D229CAF87800F60C38 /* PBTestEspressos.m in Sources */,
 				5C0E6D182852E894009A5BB1 /* PBCellHeightCollectionBaseView.m in Sources */,
 				5C2D0640280BFBFC00C775B3 /* BBACommentContentLabel.m in Sources */,
@@ -3812,6 +3836,7 @@
 				5C9883A1282616A000D3AEAD /* CLPlayer.swift in Sources */,
 				5CF05325281A92230024B752 /* PBCycleCollectionView.m in Sources */,
 				953ED62D2D96ED3100F32217 /* PBHouseCell.m in Sources */,
+				959236852F70D8250086B733 /* PBHitTestMyButton.m in Sources */,
 				5C09498B28142D03002CEBC2 /* PBCellHeightCollectionOneView.m in Sources */,
 				5C2D060B280BFBFC00C775B3 /* PBLinkageTwoListController.m in Sources */,
 				B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */,
@@ -3834,6 +3859,7 @@
 				957593FB22F84F3B009CA618 /* PBGCDLockOneController.m in Sources */,
 				9575930A22F81E65009CA618 /* PBMemoryListController.m in Sources */,
 				9575945322F95120009CA618 /* PBPlayerView.m in Sources */,
+				959236882F70D86D0086B733 /* PBHitTestParentView.m in Sources */,
 				5CEFEBA928117E950073BC47 /* PBCellHeightCollectionZeroCell.m in Sources */,
 				9575945222F95120009CA618 /* PBGCDTimerManager.m in Sources */,
 				95168894261F19C60047D1B2 /* PBTabBarController.m in Sources */,

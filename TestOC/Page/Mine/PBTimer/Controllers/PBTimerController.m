@@ -37,7 +37,7 @@
     
     {
         // 方式一【不推荐】
-        // 默认添加到NSDefaultRunLoopMode
+        // 默认添加到 NSDefaultRunLoopMode
         NSTimer *scheduledTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scheduledTimerClick:) userInfo:nil repeats:YES];
         self.scheduledTimer = scheduledTimer;
     }

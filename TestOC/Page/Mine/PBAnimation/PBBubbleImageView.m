@@ -11,6 +11,8 @@
 @implementation PBBubbleImageView
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    // _bubbleView 是当前 self 的子视图
+    // PBBubbleImageView 是 _bubbleView 的父视图
     if (_bubbleView) {
         if (CGRectContainsPoint(_bubbleView.frame, point)) {
             return _bubbleView;

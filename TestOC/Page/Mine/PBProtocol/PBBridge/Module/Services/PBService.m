@@ -28,7 +28,7 @@ static void registerClassService(void) {
 
 + (void)initialize {
     if (self == [PBService class]) {
-        NSLog(@"initialize, 第一次使用该类的时候调用");
+        NSLog(@"initialize，第一次使用该类的时候调用");
     }
 }
 
