@@ -49,9 +49,9 @@
     
     self.tableView.tableFooterView = [UIView new];
     
-    // 应用安装目录 /var/containers/Bundle/Application/203A6137-DA6D-4B7B-9163-20B3C801833D/TestOC.app
+    // 应用的安装目录 /var/containers/Bundle/Application/203A6137-DA6D-4B7B-9163-20B3C801833D/TestOC.app
     NSLog(@"[NSBundle mainBundle].bundlePath = %@", [NSBundle mainBundle].bundlePath);
-    // 应用沙盒目录 /var/mobile/Containers/Data/Application/6EB3CEC1-4D63-458E-97DD-3EDD686252D8
+    // 应用的沙盒目录 /var/mobile/Containers/Data/Application/6EB3CEC1-4D63-458E-97DD-3EDD686252D8
     NSLog(@"[PBSandBox path4Home] = %@", [PBSandBox path4Home]);
     
     // 字符串

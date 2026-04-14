@@ -6,9 +6,15 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 #ali_source 'alibaba-specs' # 集团内部仓库
 #ali_source 'alibaba-specs-mirror' # 官方镜像仓库
 
-platform :ios, '8.0'
+use_frameworks!
+platform :ios, '12.0'
 
 target "TestOC" do
+  pod 'MentaBaseGlobal',          '1.0.27'
+  pod 'MentaMediationGlobal',     '1.0.27'
+  pod 'MentaVlionGlobal',         '1.0.27'
+  pod 'MentaVlionGlobalAdapter',  '1.0.27'
+
   pod 'YYText', '1.0.7'
   pod 'YYModel', '1.0.4'
   pod 'YYImage', '1.0.4'
@@ -34,4 +40,14 @@ target "TestOC" do
   
   # swift框架
   pod 'SnapKit', '4.2.0'
+end
+
+post_install do |installer|
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+         end
+    end
+  end
 end

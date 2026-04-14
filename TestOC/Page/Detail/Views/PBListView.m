@@ -34,7 +34,7 @@
         self.tableView = tableView;
         [self addSubview:tableView];
         //tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-        tableView.contentInset = UIEdgeInsetsMake(44+150, 0, 0, 0);
+        tableView.contentInset = UIEdgeInsetsMake(44 + 150, 0, 0, 0);
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
