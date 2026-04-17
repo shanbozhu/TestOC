@@ -215,12 +215,12 @@ print_background: true
    ___
 
 9. **链接**  
-   链接title是当鼠标悬停在链接上时会出现的文字，这个title是可选的，它放在圆括号中链接地址后面，跟链接地址之间以空格分隔。  
+   链接 title 是当鼠标悬停在链接上时会出现的文字，这个 title 是可选的，它放在圆括号中链接地址后面，跟链接地址之间以空格分隔。  
    这是一个链接 [Markdown语法](https://markdown.com.cn)。  
    这是一个链接 [Markdown语法](https://markdown.com.cn "最好的markdown教程")。  
    这是一个链接 <a href="https://markdown.com.cn" title="最好的markdown教程">Markdown语法</a>。
 
-   使用尖括号可以很方便地把URL或者email地址变成可点击的链接。  
+   使用尖括号可以很方便地把 URL 或者 email 地址变成可点击的链接。  
    <https://markdown.com.cn>  
    <fake@example.com>
 
@@ -288,7 +288,7 @@ print_background: true
    - 更多使用教程可以参考网站[^2]
 
 4. **标题编号**  
-   许多Markdown处理器支持标题的自定义ID - 一些Markdown处理器会自动添加它们。添加自定义ID允许您直接链接到标题并使用CSS对其进行修改。要添加自定义标题ID，请在与标题相同的行上用大括号括起该自定义ID。
+   许多 Markdown 处理器支持标题的自定义 ID - 一些 Markdown 处理器会自动添加它们。添加自定义 ID 允许您直接链接到标题并使用 CSS 对其进行修改。要添加自定义标题 ID，请在与标题相同的行上用大括号括起该自定义 ID。
    ### My Great Heading {#custom-id}
    <h3 id="custom-id">My Great Heading</h3>
 
@@ -323,7 +323,7 @@ print_background: true
    真好笑！ :joy:
 
 9. **自动网址链接**  
-   许多Markdown处理器会自动将URL转换为链接。这意味着如果您输入https://markdown.com.cn，即使您未使用方括号，您的Markdown处理器也会自动将其转换为链接。
+   许多 Markdown 处理器会自动将URL转换为链接。这意味着如果您输入 https://markdown.com.cn，即使您未使用方括号，您的 Markdown 处理器也会自动将其转换为链接。
 
 10. **LaTex公式**
     - 行内显示公式：
@@ -477,8 +477,8 @@ print_background: true
 ---
 
 ## 五、导出文档 {#5}
-   - 导出为PDF文档：Open in Browser -> 打印 -> 另存为 PDF
-   - 导出为HTML文档：Export -> HTML -> HTML (offline)
+   - 导出为 PDF 文档：Open in Browser -> 打印 -> 另存为 PDF
+   - 导出为 HTML 文档：Export -> HTML -> HTML (offline)
 
 [^1]: [更多使用教程可以参考网站](https://markdown.com.cn)
 [^2]: [更多使用教程可以参考网站](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/)
