@@ -243,7 +243,7 @@ print_background: true
       </div>
 
 11. **转义**  
-    要显示原本用于格式化 Markdown 文档的字符，请在字符前面添加反斜杠字符`\`。  
+    要显示原本用于格式化 Markdown 文档的字符，请在字符前面添加反斜杠字符 `\`。  
     \* Without the backslash, this would be a bullet in an unordered list.
 
 12. **内嵌 HTML 标签**  
@@ -323,7 +323,7 @@ print_background: true
    真好笑！ :joy:
 
 9. **自动网址链接**  
-   许多 Markdown 处理器会自动将URL转换为链接。这意味着如果您输入 https://markdown.com.cn，即使您未使用方括号，您的 Markdown 处理器也会自动将其转换为链接。
+   许多 Markdown 处理器会自动将 URL 转换为链接。这意味着如果您输入 https://markdown.com.cn，即使您未使用方括号，您的 Markdown 处理器也会自动将其转换为链接。
 
 10. **LaTex公式**
     - 行内显示公式：
@@ -468,7 +468,7 @@ print_background: true
 
 13. **插入视频**  
     Markdown 不能直接嵌入视频，但可以使用 HTML，或变通方式（图片+链接）  
-    点击B站的分享图标，然后选择嵌入链接，会获得如下代码：  
+    点击 B 站的分享图标，然后选择嵌入链接，会获得如下代码：  
     <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=273997011&bvid=BV1Lc411F7H4&cid=1238581369&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="400px"></iframe>
 
     或者  
