@@ -28,27 +28,35 @@
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
     // testList
-    PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
-    
-    // 提供个假值，模拟"暂无更多内容"
-    if (status != 0 && arc4random_uniform(3) == 0) {
-        testList.data = nil;
-    }
-    
-    if (status == 0) {
-        self.testListView.testList = testList;
-    } else {
-        NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:self.testListView.testList.data];
-        [tmpArr addObjectsFromArray:testList.data];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
         
-        if (testList.data.count == 0) {
-            self.testListView.testList.dataAddIsNull = YES;
-        } else {
-            self.testListView.testList.dataAddIsNull = NO;
-        }
-        self.testListView.testList.data = tmpArr;
-        self.testListView.testList = self.testListView.testList;
-    }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            // 提供个假值，模拟"暂无更多内容"
+            if (status != 0 && arc4random_uniform(3) == 0) {
+                testList.data = nil;
+            }
+            
+            if (status == 0) {
+                strongSelf.testListView.testList = testList;
+            } else {
+                NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:strongSelf.testListView.testList.data];
+                [tmpArr addObjectsFromArray:testList.data];
+                
+                if (testList.data.count == 0) {
+                    strongSelf.testListView.testList.dataAddIsNull = YES;
+                } else {
+                    strongSelf.testListView.testList.dataAddIsNull = NO;
+                }
+                strongSelf.testListView.testList.data = tmpArr;
+                strongSelf.testListView.testList = strongSelf.testListView.testList;
+            }
+        });
+    });
 }
 
 - (void)viewDidLoad {

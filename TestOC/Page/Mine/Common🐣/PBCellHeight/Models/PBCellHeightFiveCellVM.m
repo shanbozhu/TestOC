@@ -12,26 +12,19 @@
 
 @interface PBCellHeightFiveCellVM ()
 
-@property (nonatomic, weak) PBCellHeightZeroData *testListData;
-
 @end
 
 @implementation PBCellHeightFiveCellVM
 
 - (void)layoutInfoWithData:(PBCellHeightZeroData *)testListData {
-    self.testListData = testListData;
-    
     //
     CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
     
     //
-    YYLabel *calLab = [[YYLabel alloc] init];
-    calLab.frame = CGRectMake(0, 0, size.width, size.height);
-    calLab.text = self.testListData.content;
-    calLab.font = [UIFont systemFontOfSize:labFont];
-    calLab.numberOfLines = 0;
-    [calLab sizeToFit];
-    self.labRect = CGRectMake(20, 20, calLab.frame.size.width, calLab.frame.size.height);
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:testListData.content];
+    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:attStr];
+    self.labRect = CGRectMake(20, 20, layout.textBoundingSize.width, layout.textBoundingSize.height);
     
     //
     self.imageViewRect = CGRectMake(CGRectGetMinX(self.labRect), CGRectGetMaxY(self.labRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
