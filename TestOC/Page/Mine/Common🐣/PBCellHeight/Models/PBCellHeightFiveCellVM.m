@@ -22,16 +22,16 @@
     //
     CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
     
-    //
+    // labRect
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:testListData.content];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
     YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:attStr];
     self.labRect = CGRectMake(20, 20, layout.textBoundingSize.width, layout.textBoundingSize.height);
     
-    //
+    // imageViewRect
     self.imageViewRect = CGRectMake(CGRectGetMinX(self.labRect), CGRectGetMaxY(self.labRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
     
-    //
+    // cellHeight
     self.cellHeight = CGRectGetMaxY(self.imageViewRect) + 20;
 }
 
