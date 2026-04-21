@@ -40,6 +40,8 @@
 
 // required
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"[NSThread currentThread] = %@", [NSThread currentThread]);
+    
     PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
     
     if (!testListData.cellHeight) {
