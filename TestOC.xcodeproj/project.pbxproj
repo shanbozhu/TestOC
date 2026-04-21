@@ -1070,17 +1070,6 @@
 			path = PBCellHeight;
 			sourceTree = "<group>";
 		};
-		5C0E6D122852E85A009A5BB1 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				5C0E6D162852E894009A5BB1 /* PBCellHeightBaseView.h */,
-				5C0E6D142852E894009A5BB1 /* PBCellHeightBaseView.m */,
-				5C0E6D132852E894009A5BB1 /* PBCellHeightCollectionBaseView.h */,
-				5C0E6D152852E894009A5BB1 /* PBCellHeightCollectionBaseView.m */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		5C2D057B280BFBFB00C775B3 /* Common🐣 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1199,7 +1188,10 @@
 		5C2D05AC280BFBFC00C775B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C0E6D122852E85A009A5BB1 /* Base */,
+				5C0E6D162852E894009A5BB1 /* PBCellHeightBaseView.h */,
+				5C0E6D142852E894009A5BB1 /* PBCellHeightBaseView.m */,
+				5C0E6D132852E894009A5BB1 /* PBCellHeightCollectionBaseView.h */,
+				5C0E6D152852E894009A5BB1 /* PBCellHeightCollectionBaseView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
