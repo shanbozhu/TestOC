@@ -26,6 +26,11 @@
     return self;
 }
 
+- (void)setTestList:(PBCellHeightZero *)testList {
+    _testList = testList;
+    [self.tableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

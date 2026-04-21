@@ -35,6 +35,8 @@
             make.right.mas_equalTo(-20);
             make.bottom.mas_equalTo(-20); // required
         }];
+        lab.layer.borderColor = [UIColor redColor].CGColor;
+        lab.layer.borderWidth = 1.1;
     }
     return self;
 }

@@ -26,8 +26,15 @@
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"jsonStr = %@, jsonDict = %@", jsonStr, jsonDict);
     
-    PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
-    self.testListThreeView.testList = testList;
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf.testListThreeView.testList = testList;
+        });
+    });
 }
 
 - (void)viewDidLoad {
