@@ -32,11 +32,17 @@
         NSLog(@"jsonDict = %@", jsonDict);
     }
     
-    // 3. 把字典封装成模型
-    PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
-    
-    // 4. 把模型填充到视图
-    self.testListView.testList = testList;
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 3. 把字典封装成模型
+        PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            // 4. 把模型填充到视图
+            strongSelf.testListView.testList = testList;
+        });
+    });
 }
 
 - (void)viewDidLoad {
