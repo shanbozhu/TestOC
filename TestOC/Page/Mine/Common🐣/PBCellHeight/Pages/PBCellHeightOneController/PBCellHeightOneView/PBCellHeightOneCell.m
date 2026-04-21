@@ -35,6 +35,8 @@
         [self.contentView addSubview:lab];
         lab.numberOfLines = 0;
         lab.font = [UIFont systemFontOfSize:15];
+        lab.layer.borderColor = [UIColor redColor].CGColor;
+        lab.layer.borderWidth = 1.1;
     }
     return self;
 }

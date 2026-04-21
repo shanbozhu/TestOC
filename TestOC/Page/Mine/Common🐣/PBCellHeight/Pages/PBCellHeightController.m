@@ -48,13 +48,13 @@
     if (!_titleArr) {
         _titleArr = @[@"frame布局，手动算高_viewModel",
                       @"frame布局，通用手动算高",
-                      @"frame布局，手动算高",
+                      @"frame布局，手动算高，FDTemplateLayoutCell",
                       @"frame布局，自动算高",
                       @"autolayout布局，手动算高",
                       @"autolayout布局，自动算高",
-                      @"UICollectionView_frame布局，通用手动算高",
-                      @"UICollectionView_WaterfallLayout瀑布流",
-                      @"UICollectionView_Cycle无限轮播"];
+                      @"UICollectionView，frame布局，通用手动算高",
+                      @"UICollectionView，WaterfallLayout瀑布流",
+                      @"UICollectionView，Cycle无限轮播"];
     }
     return _titleArr;
 }

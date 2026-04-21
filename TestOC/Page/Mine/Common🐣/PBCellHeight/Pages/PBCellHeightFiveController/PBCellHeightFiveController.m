@@ -30,7 +30,6 @@
     // testList
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
         PBCellHeightZero *testList = [PBCellHeightZero testListWithDict:jsonDict];
         
         dispatch_async(dispatch_get_main_queue(), ^{
