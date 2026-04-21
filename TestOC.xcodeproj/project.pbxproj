@@ -1064,13 +1064,6 @@
 		5C09495A2812C5C3002CEBC2 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				957CB2252F97BE7E00C76BE0 /* PBCellHeightFiveController */,
-				957CB2262F97BE8F00C76BE0 /* PBCellHeightOneController */,
-				957CB2272F97BEA200C76BE0 /* PBCellHeightTwoController */,
-				957CB2282F97BEAF00C76BE0 /* PBCellHeightThreeController */,
-				957CB2292F97BEBD00C76BE0 /* PBCellHeightFourController */,
-				957CB22A2F97BECE00C76BE0 /* PBCellHeightCollectionOneController */,
-				957CB22B2F97BEE000C76BE0 /* PBCellHeightCollectionTwoController */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1078,12 +1071,6 @@
 		5C0949672812C679002CEBC2 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				957CB21F2F97BDD400C76BE0 /* PBCellHeightOneView */,
-				957CB2202F97BDF400C76BE0 /* PBCellHeightTwoView */,
-				957CB2212F97BE0B00C76BE0 /* PBCellHeightThreeView */,
-				957CB2222F97BE2400C76BE0 /* PBCellHeightFourView */,
-				957CB2232F97BE3B00C76BE0 /* PBCellHeightFiveView */,
-				957CB2242F97BE4F00C76BE0 /* PBCellHeightCollectionOneView */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1208,6 +1195,13 @@
 		5C2D059C280BFBFB00C775B3 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				957CB22B2F97BEE000C76BE0 /* PBCellHeightCollectionTwoController */,
+				957CB22A2F97BECE00C76BE0 /* PBCellHeightCollectionOneController */,
+				957CB2292F97BEBD00C76BE0 /* PBCellHeightFourController */,
+				957CB2282F97BEAF00C76BE0 /* PBCellHeightThreeController */,
+				957CB2272F97BEA200C76BE0 /* PBCellHeightTwoController */,
+				957CB2262F97BE8F00C76BE0 /* PBCellHeightOneController */,
+				957CB2252F97BE7E00C76BE0 /* PBCellHeightFiveController */,
 				5C09495A2812C5C3002CEBC2 /* Others */,
 				5C2D05AA280BFBFC00C775B3 /* PBCellHeightController.h */,
 				5C2D05A5280BFBFC00C775B3 /* PBCellHeightController.m */,
@@ -3075,6 +3069,7 @@
 			children = (
 				5C42E3D9284DF4830065F887 /* PBCellHeightFiveController.h */,
 				5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */,
+				957CB2232F97BE3B00C76BE0 /* PBCellHeightFiveView */,
 			);
 			path = PBCellHeightFiveController;
 			sourceTree = "<group>";
@@ -3084,6 +3079,7 @@
 			children = (
 				5C09495D2812C5C3002CEBC2 /* PBCellHeightOneController.h */,
 				5C0949612812C5C3002CEBC2 /* PBCellHeightOneController.m */,
+				957CB21F2F97BDD400C76BE0 /* PBCellHeightOneView */,
 			);
 			path = PBCellHeightOneController;
 			sourceTree = "<group>";
@@ -3093,6 +3089,7 @@
 			children = (
 				5C09495B2812C5C3002CEBC2 /* PBCellHeightTwoController.h */,
 				5C0949602812C5C3002CEBC2 /* PBCellHeightTwoController.m */,
+				957CB2202F97BDF400C76BE0 /* PBCellHeightTwoView */,
 			);
 			path = PBCellHeightTwoController;
 			sourceTree = "<group>";
@@ -3102,6 +3099,7 @@
 			children = (
 				5C09495E2812C5C3002CEBC2 /* PBCellHeightThreeController.h */,
 				5C0949622812C5C3002CEBC2 /* PBCellHeightThreeController.m */,
+				957CB2212F97BE0B00C76BE0 /* PBCellHeightThreeView */,
 			);
 			path = PBCellHeightThreeController;
 			sourceTree = "<group>";
@@ -3111,6 +3109,7 @@
 			children = (
 				5C09495C2812C5C3002CEBC2 /* PBCellHeightFourController.h */,
 				5C09495F2812C5C3002CEBC2 /* PBCellHeightFourController.m */,
+				957CB2222F97BE2400C76BE0 /* PBCellHeightFourView */,
 			);
 			path = PBCellHeightFourController;
 			sourceTree = "<group>";
@@ -3120,6 +3119,7 @@
 			children = (
 				5C09498428142C60002CEBC2 /* PBCellHeightCollectionOneController.h */,
 				5C09498528142C60002CEBC2 /* PBCellHeightCollectionOneController.m */,
+				957CB2242F97BE4F00C76BE0 /* PBCellHeightCollectionOneView */,
 			);
 			path = PBCellHeightCollectionOneController;
 			sourceTree = "<group>";
