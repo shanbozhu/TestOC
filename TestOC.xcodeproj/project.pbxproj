@@ -1178,7 +1178,7 @@
 				5C0949802812C7A8002CEBC2 /* PBCellHeight */,
 				5C2D0595280BFBFB00C775B3 /* Res */,
 				5C2D0597280BFBFB00C775B3 /* Models */,
-				5C2D059C280BFBFB00C775B3 /* Controllers */,
+				5C2D059C280BFBFB00C775B3 /* Pages */,
 				5C2D05AC280BFBFC00C775B3 /* Views */,
 			);
 			path = PBCellHeight;
@@ -1205,7 +1205,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5C2D059C280BFBFB00C775B3 /* Controllers */ = {
+		5C2D059C280BFBFB00C775B3 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				5C09495A2812C5C3002CEBC2 /* Others */,
@@ -1216,7 +1216,7 @@
 				5CEFEBA128117B660073BC47 /* PBCellHeightCollectionZeroController.h */,
 				5CEFEBA228117B660073BC47 /* PBCellHeightCollectionZeroController.m */,
 			);
-			path = Controllers;
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		5C2D05AC280BFBFC00C775B3 /* Views */ = {
