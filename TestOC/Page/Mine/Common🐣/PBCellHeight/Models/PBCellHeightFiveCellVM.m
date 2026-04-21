@@ -17,6 +17,9 @@
 @implementation PBCellHeightFiveCellVM
 
 - (void)layoutInfoWithData:(PBCellHeightZeroData *)testListData {
+    // 注意：当前是在子线程计算，一定不能出现 UI 逻辑。
+    // 在子线程，提前计算各控件frame，然后赋值给属性。
+    
     //
     CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
     
