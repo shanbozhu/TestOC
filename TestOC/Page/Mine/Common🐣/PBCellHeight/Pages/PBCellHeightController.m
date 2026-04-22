@@ -46,7 +46,7 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"frame，子线程手动算高_viewModel",
+        _titleArr = @[@"frame，子线程手动算高，viewModel",
                       @"frame，手动算高，UITableViewCell",
                       @"frame，手动算高，FDTemplateLayoutCell",
                       @"frame，自动算高，UITableViewAutomaticDimension",
