@@ -324,6 +324,7 @@ Second Term
 - 化学公式：$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$
 2. 块内显示公式：
 - 示例一
+
 $$
 \begin{Bmatrix}
 a & b \\
