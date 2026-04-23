@@ -191,7 +191,7 @@
     highlightBorder.fillColor = [UIColor greenColor];
     [highlight setBackgroundBorder:highlightBorder];
     
-    highlight.tapAction =  ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+    highlight.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
         NSLog(@"%@", [attStr.string substringWithRange:range]);
     };
     [attStr yy_setTextHighlight:highlight range:range];

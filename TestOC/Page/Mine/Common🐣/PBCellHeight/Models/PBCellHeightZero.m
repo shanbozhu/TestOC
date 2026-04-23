@@ -17,6 +17,9 @@
 - (id)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
         
+        // zhutodo
+        // 模型对象中的健就是字典中的 key
+        
         // 所有键全部赋值：所有键对应的值全部赋值给与键同名的私有成员变量当中
         [self setValuesForKeysWithDictionary:dict];
         

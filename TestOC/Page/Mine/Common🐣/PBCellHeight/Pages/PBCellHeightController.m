@@ -108,7 +108,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
     UIViewController *testListController = [[aClass alloc]init];
