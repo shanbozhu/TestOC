@@ -48,6 +48,7 @@ c & d
 \end{Bmatrix}
 $$
 - 示例二 泰勒展开
+
 $$
 f(x)=f(a)+f'(a)(x-a)+\tfrac{f''(a)}{2!}(x-a)^{2}+\cdots
 $$
