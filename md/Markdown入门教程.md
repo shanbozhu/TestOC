@@ -333,12 +333,17 @@ c & d
 $$
 
 - 示例二 泰勒展开
+
 $$
 f(x)=f(a)+f'(a)(x-a)+\tfrac{f''(a)}{2!}(x-a)^{2}+\cdots
 $$
+
 - 示例三 二元离散随机变量的信息熵
+
 $$H(D_2) = -\left(\frac{2}{4}\log_2 \frac{2}{4} + \frac{2}{4}\log_2 \frac{2}{4}\right) = 1$$
+
 - 示例四 矩阵
+
 $$
 \begin{pmatrix}
 1 & a_1 & a_1^2 & \cdots & a_1^n \\
