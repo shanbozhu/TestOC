@@ -41,12 +41,6 @@ print("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
 if tenEighty === alsoTenEighty {
     print("tenEighty and alsoTenEighty refer to the same Resolution instance.")
 }
-
-let a = "he"
-let b = "he"
-if a == b {
-    print("zifuchuanxiangtong")
-}
 //:* Objective-C中NSString、 NSArray和NSDictionary类型均以类的形式实现，而并非结构体，它们在被赋值或者被传入函数或方法时，不会发生值拷贝，而是传递现有实例的引用
 
 //: [Next](@next)

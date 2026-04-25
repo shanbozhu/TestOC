@@ -12,12 +12,6 @@ func greetAgain(person: String) -> String {
 }
 print(greetAgain(person: "Anna"))
 
-func greet1(person: String) -> String {
-    let get = "heelo" + person + "!"
-    return get
-}
-print(greet1(person: "zhu"))
-
 //:**【函数参数与返回值】**
 // 无参数
 func sayHelloWorld() -> String {
@@ -34,12 +28,12 @@ func greet(person: String, alreadyGreeted: Bool) -> String {
 }
 print(greet(person: "Tim", alreadyGreeted: true))
 // 无返回值
-func greetPrint(person: String) -> Void {
+func greetPrint(person: String) {
     print("Hello, \(person)!")
 }
-greetPrint(person: "Dave6666")
+greetPrint(person: "Dave")
 // 多返回值
-func minMax(array: [Int]) -> (Int, Int) {
+func minMax(array: [Int]) -> (min: Int, max: Int) {
     var currentMin = array[0]
     var currentMax = array[0]
     for value in array[1..<array.count] {
@@ -52,17 +46,8 @@ func minMax(array: [Int]) -> (Int, Int) {
     return (currentMin, currentMax)
 }
 let bounds = minMax(array: [8, -6, 2, 109, 3, 71])
-print("min is \(bounds.0) and max is \(bounds.1)")
+print("min is \(bounds.min) and max is \(bounds.max)")
 
-let array = [8, -6, 2, 109, 3, 71]
-// [8, -6, 2, 109, 3, 71]
-print(array)
-// 0..<6
-print(0..<array.count)
-// [8, -6, 2, 109, 3, 71]
-print(array[0..<array.count])
-// [-6, 2, 109, 3, 71]
-print(array[1..<array.count])
 //:**【参数标签与参数名称】**
 //:* 每个函数参数都有一个参数标签以及一个参数名称。参数标签在调用函数的时候使用，调用的时候需要将函数的参数标签写在对应的参数前面，参数名称在函数的实现中使用，默认情况下，函数参数使用参数名称来作为它们的参数标签
 func greet(person: String, from hometown: String) -> String {
@@ -82,9 +67,6 @@ func someFunction(parameterWithoutDefault: Int, parameterWithDefault: Int = 12) 
 }
 someFunction(parameterWithoutDefault: 3, parameterWithDefault: 6)  // parameterWithDefault = 6
 someFunction(parameterWithoutDefault: 4)  // parameterWithDefault = 12
-someFunction(4, secondParameterName: 6)
-someFunction(parameterWithoutDefault: 1, parameterWithDefault: 2)
-someFunction(7, secondParameterName: 8)
 
 //:**【函数类型】**
 //:* 函数的类型由函数的参数类型和返回类型组成
@@ -112,32 +94,4 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
     return backward ? stepBackward : stepForward
 }
 
-
-func ster(_ input: Int) -> Int {
-    return input + 9
-}
-func sete(_ input: Int) -> Int {
-    return input - 1
-}
-
-func chouse(ba: Bool) -> (Int) -> Int {
-    return ba ? ster : sete
-}
-
-let fn = chouse(ba: true)
-print(fn(3))
-
-
-let tmp = {
-    let array = [8, -6, 2, 109, 3, 71]
-    // [8, -6, 2, 109, 3, 71]
-    print(array)
-    // 0..<6
-    print(0..<array.count)
-    // [8, -6, 2, 109, 3, 71]
-    print(array[0..<array.count])
-    // [-6, 2, 109, 3, 71]
-    print(array[1..<array.count])
-}
-tmp()
 //: [Next](@next)

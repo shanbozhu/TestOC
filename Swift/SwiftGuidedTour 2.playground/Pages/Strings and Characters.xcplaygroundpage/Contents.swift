@@ -3,17 +3,9 @@
 //:**【空字符串】**
 var emptyString = ""
 var anotherEmptyString = String()
-var aa = String("hello")
-print(aa)
 //:* 可以通过检查Bool类型的isEmpty属性来判断字符串是否为空
 if emptyString.isEmpty {
     print("Nothing to see here")
-}
-
-if (aa.isEmpty) {
-    print("empty")
-} else {
-    print("not empty")
 }
 
 //:**【字符串可变性】**
@@ -21,40 +13,21 @@ var variableString = "Horse"
 variableString += " and carriage"
 //let constantString = "Highlander"
 //constantString += " and another Highlander"
-print("hell" + "haha \(variableString)")
 //:* Swift的String类型是值类型，当进行常量、变量赋值操作，或在函数/方法中传递时，会进行值拷贝
 //:* 在Objective-C中，需要通过选择两个不同的类(NSString 和 NSMutableString)来指定字符串是否可以被修改
 import Foundation
 let oneNSString: NSString = "Horse  and carriage"
-oneNSString.appending("sss")
-print(oneNSString.appending("sss"))
-
 let anotherNSString = "Horse  and carriage" as NSString
-
-
-var anout = "hello" as NSMutableString
-anout.append("world")
-print(anout.appending("!!!"))
 
 //:**【字符】**
 let exclamationMark: Character = "!"
 //:* 可以通过for-in循环遍历字符串来获取每一个字符的值
-for character in String(exclamationMark) {
+for character in "Dog" {
     print(character)
-}
-
-for c in "helloworld\\n" {
-    print(c)
-}
-
-for c in "helloworld\n" {
-    print(c)
 }
 //:* 字符串可以通过传递一个值类型为Character的数组作为自变量来初始化
 let catCharacters: [Character] = ["C", "a", "t", "!", "?"]
 let catString = String(catCharacters)
-
-let cat = String(catCharacters)
 
 //:**【连接字符串和字符】**
 //:* 字符串可以通过加法运算符（+）连接在一起创建一个新的字符串
@@ -64,8 +37,7 @@ var welcomeString = string1 + string2
 //:* 可以用append()方法将一个字符附加到一个字符串变量的尾部
 let exclamationCharacter: Character = "!"
 welcomeString.append(exclamationCharacter)
-welcomeString.append("h")
-print(welcomeString)
+
 //:**【字符串插值】**
 //:* 字符串插值是一种构建新字符串的方式，可以在其中包含常量、变量、字面量和表达式，插入的字符串字面量的每一项都在以反斜线为前缀的圆括号中
 let apples = 3
@@ -81,7 +53,6 @@ let testNSString: NSString = "😃"
 let countNSString = testNSString.length
 let testString: String = "😃"
 let countString = testString.count
-print(countNSString, countString)
 
 //:**【访问和修改字符串】**
 //:* 每一个String值都有一个关联的索引类型String.Index，它对应着字符串中的每一个Character的位置，Swift的字符串不能用整数做索引
@@ -110,36 +81,6 @@ let sameQuotation = "We're a lot alike, you and I."
 if quotation == sameQuotation {
     print("These two strings are considered equal")
 }
-if quotation == sameQuotation {
-    print("equaltostring:")
-}
 //:* 通过调用字符串的hasPrefix(_:)或hasSuffix(_:)方法来检查字符串是否拥有特定前缀或后缀，两个方法均接收一个String类型的参数，并返回一个布尔值
-let tmp = {
-    // 1
-    let anout = "hello" as NSMutableString
-    anout.append("world1")
-    print(anout.appending("!!!"))
-    
-    var anoutt = "hello" as NSMutableString
-    anoutt.append("world2")
-    print(anoutt.appending("!!!"))
-    
-    // 2
-    for c in "helloworld\\n" {
-        print(c)
-    }
 
-    for c in "helloworld\n" {
-        print(c)
-    }
-    
-    // 3
-    // import Foundation
-    let testNSString: NSString = "😃"
-    let countNSString = testNSString.length
-    let testString: String = "😃"
-    let countString = testString.count
-    print(countNSString, countString)
-}
-tmp()
 //: [Next](@next)

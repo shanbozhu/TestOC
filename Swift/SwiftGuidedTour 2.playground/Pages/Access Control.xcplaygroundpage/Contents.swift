@@ -14,7 +14,6 @@
 
 //:**【自定义类型】**
 //:* 一个类型的访问级别会影响到类型成员（属性、方法、构造器）的默认访问级别，如果将类型指定为私有或者文件私有级别，那么该类型的所有成员的默认访问级别也会变成私有或者文件私有级别，如果将类型指定为公开或者内部访问级别（或者不明确指定访问级别，而使用默认的内部访问级别），那么该类型的所有成员的默认访问级别将是内部访问
-
 public class SomePublicClass { // 显式公开类
     public var somePublicProperty = 0 // 显式公开类成员
     var someInternalProperty = 0 // 隐式内部类成员
@@ -44,14 +43,4 @@ internal class B: A {
     override internal func someMethod() {}
 }
 
-
-let tmp = {
-    // 访问控制
-    // private：当前类中访问
-    // fileprivate：当前文件中访问
-    // protected：当前类和子类中访问
-    // internal：当前框架中访问（Swift默认）
-    // public：其他类中访问（可以跨框架）
-}
-tmp()
 //: [Next](@next)

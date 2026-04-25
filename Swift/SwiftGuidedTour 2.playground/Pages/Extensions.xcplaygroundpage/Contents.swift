@@ -34,10 +34,6 @@ extension Rect {
         self.init(origin: Point(x: originX, y: originY), size: size)
     }
 }
-
-let aaa = Rect()
-let aaa1 = Rect(origin: Point(), size: Size())
-let aaa2 = Rect(center: Point(), size: Size())
 //:* 扩展可以为已有类型添加新的实例方法和类型方法
 extension Int {
     func repetitions(task: () -> Void) {
@@ -49,8 +45,5 @@ extension Int {
 3.repetitions(task: {
     print("Hello!")
 })
-3.repetitions {
-    print("此处是调用!!!")
-}
 
 //: [Next](@next)

@@ -9,28 +9,10 @@ class Vehicle {
     }
     func makeNoise() {
     }
-    class var te: Int {
-        return 32
-    }
 }
 class Bicycle: Vehicle {
     var hasBasket = false
 }
-
-class ve {
-    var cur = 0.0
-    var de: String {
-        get {
-            return "haha"
-        }
-    }
-    func mak() -> Void {
-        
-    }
-    
-}
-let vee = ve()
-vee.mak()
 
 //:**【重写】**
 //:* 子类可以重写继承来的实例方法、类方法、实例属性，如果要重写某个特性，需要在重写定义的前面加上override关键字
@@ -44,30 +26,11 @@ class Train: Vehicle {
 //:* 可以将一个继承来的只读属性重写为一个读写属性，只需要在重写版本的属性里提供getter和setter即可，但是不可以将一个继承来的读写属性重写为一个只读属性
 class Car: Vehicle {
     var gear = 1
-    class override var te: Int {
-        return 78
-    }
-    final override var description: String {
-        
-        get {
-            return super.description + " in gear \(gear)"
-        }
-        set(xx) {
-            self.gear = Int(xx) ?? 0
-        }
-        
-//        willSet(xx) {
-//            
-//        }
-//        didSet(xx) {
-//            
-//        }
-        
+    override var description: String {
+        return super.description + " in gear \(gear)"
     }
 }
 
-let ca = Car.self.te
-print(ca, 90)
 //:**【防止重写】**
 //:* 可以通过把方法或属性标记为final来防止它们被重写，只需要在声明关键字前加上final修饰符即可（例如final var、 final func）
 //:* 可以通过在关键字class前添加final修饰符（final class）来将整个类标记为final的，这样的类是不可被继承的

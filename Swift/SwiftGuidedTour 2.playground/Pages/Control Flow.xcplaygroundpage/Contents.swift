@@ -19,33 +19,15 @@ repeat {
 } while condition
  */
 
-repeat {
-    print("nihao")
-} while false;
-print("end")
-
-var i = 0
-repeat {
-    print(i)
-    i += 1
-} while i < 5
-print(i, 888)
-
-
-//var i = 0
-//do {
-//    print(i)
-//    i += 1
-//} while i < 5
-
 //:**【If条件语句】**
 
 //:**【Swith条件语句】**
-let someCharacter: String = "a"
+let someCharacter: Character = "z"
 switch someCharacter {
-case "a", "z":
+case "a":
     print("The first letter of the alphabet")
-
+case "z":
+    print("The last letter of the alphabet")
 default:
     print("Some other character")
 }
@@ -71,7 +53,7 @@ default:
 
 //:**【提前退出】**
 //:* 像if语句一样，guard的执行取决于一个表达式的布尔值，可以使用guard语句来要求条件必须为真时，以执行guard语句后的代码，一个guard语句总是有一个else从句，如果条件不为真则执行else从句中的代码
-func greet(person: [String: String]) -> Void {
+func greet(person: [String: String]) {
     guard let name = person["name"] else {
         return
     }
@@ -83,16 +65,5 @@ func greet(person: [String: String]) -> Void {
     print("I hope the weather is nice in \(location).")
 }
 
-let tmp = {
-    let someCharacter: String = "a"
-    switch someCharacter {
-    case "a":
-        print("The first letter of the alphabet")
-    case "z":
-        print("The last letter of the alphabet")
-    default:
-        print("Some other character")
-    }
-}
-tmp()
+
 //: [Next](@next)

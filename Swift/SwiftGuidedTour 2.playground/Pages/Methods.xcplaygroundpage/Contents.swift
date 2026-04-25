@@ -24,8 +24,8 @@ counter.reset()
 struct Point {
     var x = 0.0, y = 0.0
     mutating func moveByX(x deltaX: Double, y deltaY: Double) {
-         self.x += deltaX
-         self.y += deltaY
+        x += deltaX
+        y += deltaY
     }
 }
 var somePoint = Point(x: 1.0, y: 1.0)

@@ -32,7 +32,7 @@ let library = [
 var movieCount = 0
 var songCount = 0
 for item in library {
-    if item is MediaItem {
+    if item is Movie {
         movieCount += 1
     } else if item is Song {
         songCount += 1
@@ -47,22 +47,10 @@ for item in library {
         print("Song: '\(song.name)', by \(song.artist)")
     }
 }
-
-for item in library {
-    if let mo = item as? Movie {
-        print(mo.name, mo.director, 12)
-    } else if let so = item as? Song {
-        print(so.name, so.artist, 12)
-    }
-}
-print(1111)
 //:* 桥接类型之间可以使用as转换，例如String和NSString
 import Foundation
 let name = "Steve Jobs"
 let firstName = (name as NSString).substring(to: 5)
-
-let fi = (name as NSString).substring(from: 5);
-print(fi, 666)
 //:* Any可以表示任何类型，包括函数类型，AnyObject可以表示任何类类型的实例
 var things = [Any]()
 things.append(0)
@@ -74,22 +62,4 @@ things.append((3.0, 5.0))
 things.append(Movie(name: "Ghostbusters", director: "Ivan Reitman"))
 things.append({ (name: String) -> String in "Hello, \(name)" })
 
-var th = Array<Any>()
-th.append(0)
-th.append(0.0)
-th.append(42)
-
-print(th, 789)
-
-var di = Dictionary<AnyHashable, Any>()
-
-di = [:]
-di = ["1": "2", 1: 2]
-print(di, 90)
-
-var didi = ["1": "2", 1: 2] as [AnyHashable : Any]
-print(didi, 91)
-
-var did = ["1": "2"]
-print(did, 92)
 //: [Next](@next)

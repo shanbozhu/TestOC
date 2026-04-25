@@ -8,12 +8,10 @@
 //:**【算术运算符】**
 //:* Swift二元算术运算符包括  +  -  *  /  %  一元算术运算符包括  +  -
 //:* 与C和Objective-C不同，Swift默认情况下不允许在数值运算中出现溢出情况，使用溢出运算符来实现溢出运算
+//let sum: Int8 = 103 + 89
 let sum: Int8 = 103 &+ 89
-let sum1: Int8 = 103 &+ 89
-print(sum, sum1)
 //:* 加法运算符可用于String的拼接
-let a = "hello, " + "world" + "     ''"
-print(a)
+"hello, " + "world"
 
 //:**【比较运算符】**
 //:* Swift比较运算符  ==  !=  >  >=  <  <=
@@ -22,26 +20,16 @@ print(a)
 (3, "apple") < (3, "bird") // true，因为 3 等于 3，但是 apple 小于 bird
 (4, "dog") == (4, "dog") // true，因为 4 等于 4，dog 等于 dog
 
-print((1, "zebra") < (2, "apple"))
-print((3, "apple") < (3, "bird"))
-print(((4, "dog") == (a: 4, b: "dog")))
-
-print((a: 4, b: "dog").0, (a: 4, b: "dog").1)
 //:**【三目运算符】**
 let contentHeight = 40
 let hasHeader = true
 let rowHeight = contentHeight + (hasHeader ? 50 : 20)
-
-let rowHeigth1 = contentHeight + (hasHeader ? 80 : 11)
-print(rowHeigth1)
 
 //:**【空合运算符】**
 //:* 空合运算符（a ?? b）将对可选类型a进行空判断，如果a包含一个值就进行解封，否则就返回一个默认值b，表达式a必须是可选 类型，默认值b的类型必须要和a存储值的类型保持一致，空合运算符是对以下代码的简短表达方法：a != nil ? a! : b
 let defaultColorName = "red"
 var userDefinedColorName: String?  // 默认值为 nil
 var colorNameToUse = userDefinedColorName ?? defaultColorName
-var color = userDefinedColorName
-print(userDefinedColorName ?? "userDefinedColorName is null")
 //:* 如果a 为非空值，那么值b 将不会被计算，即所谓的短路计算
 
 //:**【区间运算符】**
@@ -49,44 +37,15 @@ print(userDefinedColorName ?? "userDefinedColorName is null")
 for index in 1...5 {
     print("\(index) * 5 = \(index * 5)")
 }
-
-for indx in 1..<5 {
-    print( indx)
-}
 //:* 半开区间运算符（a..<b）定义一个从a到b但不包括b的区间
 let names = ["Anna", "Alex", "Brian", "Jack"]
-
-for i in 0...names.count-1 {
-    print(names[i])
-}
-
-for i in 0..<names.count {
-    print(names[i])
-}
-
-for name in names {
-    print(name)
+let count = names.count
+for i in 0..<count {
+    print("第 \(i + 1) 个人叫 \(names[i])")
 }
 
 //:**【逻辑运算符】**
 //:* Swift逻辑运算符包括  &&  ||  ！ ，逻辑运算符的操作对象是逻辑布尔值
 //:* &&和||存在短路计算
 
-
-let tmp: () -> () = { () -> () in
-    let names = ["Anna", "Alex", "Brian", "Jack"]
-
-    for i in 0...names.count-1 {
-        print(names[i])
-    }
-
-    for i in 0..<names.count {
-        print(names[i])
-    }
-
-    for name in names {
-        print(name)
-    }
-}
-tmp()
 //: [Next](@next)

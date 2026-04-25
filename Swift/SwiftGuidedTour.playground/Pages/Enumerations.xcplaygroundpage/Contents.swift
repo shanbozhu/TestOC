@@ -7,8 +7,17 @@ enum CompassPoint {
     case east
     case west
 }
-var directionToHead = CompassPoint.west
+var directionToHead: CompassPoint = CompassPoint.west
 directionToHead = .east
+directionToHead = CompassPoint.east
+print(directionToHead)
+
+//enum ekk {
+//    case actor
+//    case borrowing
+//}
+//var di: ekk = ekk.actor
+//print(di, 9)
 //:* 与C和Objective-C不同，Swift的枚举成员在被创建时不会被赋予一个默认的整型值，这些枚举成员本身就是完备的值
 
 //:**【关联值】**
@@ -19,12 +28,20 @@ enum Barcode {
 }
 var productBarcode = Barcode.upc(8, 85909, 51226, 3)
 productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
+print(productBarcode)
+
+enum bar {
+    case upc(Int, Int, Int ,Int)
+    case qrCode(String, String)
+}
+var pro: Barcode = Barcode.upc(1, 2, 3, 4)
+print(pro, 90)
 //:* 可以使用一个switch语句来检查不同的枚举值，关联值可以被提取出来作为switch语句的一部分，可以在switch的case分支代码中提取每个关联值作为一个常量（用let前缀）或者作为一个变量（用var前缀）来使用
 switch productBarcode {
-    case .upc(let numberSystem, let manufacturer, let product, let check):
-        print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
-    case .qrCode(let productCode):
-        print("QR code: \(productCode).")
+case .upc(let numberSystem, let manufacturer, let product, let check):
+    print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
+case .qrCode(let productCode):
+    print("QR code: \(productCode).")
 }
 
 //:**【原始值】**
@@ -33,6 +50,11 @@ enum ASCIIControlCharacter: Character {
     case tab = "\t"
     case lineFeed = "\n"
     case carriageReturn = "\r"
+}
+
+enum a: Int {
+    case aa = 1
+    case bb = 2
 }
 //:* 当使用整数作为原始值时，不需要显式地为每一个枚举成员设置原始值，隐式赋值的值依次递增1，如果第一个枚举成员没有设置原始值，其原始值将为0
 enum Planet: Int {
@@ -45,7 +67,81 @@ enum CompassPointEnum: String {
 //:* 使用枚举成员的rawValue属性可以访问该枚举成员的原始值
 let earthsOrder = Planet.earth.rawValue
 let sunsetDirection = CompassPointEnum.west.rawValue
+print(earthsOrder)
+print(sunsetDirection)
 //:* 如果在定义枚举类型的时候使用了原始值，那么将会自动获得一个初始化方法，这个方法接收一个叫做rawValue的参数，参数类型即为原始值类型，返回值则是枚举成员或nil
-let possiblePlanet = Planet(rawValue: 7)  // 类型为Planet?
+let possiblePlanet = Planet(rawValue: 7) // 类型为Planet?
+let possiblePlanet1 = Planet(rawValue: 9)
+if let _ = possiblePlanet {
+    print(possiblePlanet!)
+} else {
+    print("nil")
+}
+if let _ = possiblePlanet1 {
+    print(possiblePlanet1!)
+} else {
+    print("nil")
+}
 
+
+let tmp = {
+    enum CompassPoint {
+        case north
+        case south
+        case east
+        case west
+    }
+    var directionToHead: CompassPoint = CompassPoint.west
+    directionToHead = .east
+    directionToHead = CompassPoint.east
+    print(directionToHead)
+
+    enum Barcode {
+        case upc(Int, Int, Int, Int)
+        case qrCode(String)
+    }
+    var productBarcode = Barcode.upc(8, 85909, 51226, 3)
+    productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
+    print(productBarcode)
+
+    switch productBarcode {
+    case .upc(let numberSystem, let manufacturer, let product, let check):
+        print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
+    case .qrCode(let productCode):
+        print("QR code: \(productCode).")
+    }
+
+    enum ASCIIControlCharacter: Character {
+        case tab = "\t"
+        case lineFeed = "\n"
+        case carriageReturn = "\r"
+    }
+
+    enum Planet: Int {
+        case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
+    }
+
+    enum CompassPointEnum: String {
+        case north, south, east, west
+    }
+
+    let earthsOrder = Planet.earth.rawValue
+    let sunsetDirection = CompassPointEnum.west.rawValue
+    print(earthsOrder)
+    print(sunsetDirection)
+
+    let possiblePlanet = Planet(rawValue: 7) // 类型为Planet?
+    let possiblePlanet1 = Planet(rawValue: 9)
+    if let _ = possiblePlanet {
+        print(possiblePlanet!)
+    } else {
+        print("nil")
+    }
+    if let _ = possiblePlanet1 {
+        print(possiblePlanet1!)
+    } else {
+        print("nil")
+    }
+}
+tmp()
 //: [Next](@next)

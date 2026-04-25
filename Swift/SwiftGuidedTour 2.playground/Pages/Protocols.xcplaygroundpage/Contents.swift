@@ -40,15 +40,8 @@ class Dice {
         self.sides = sides
         self.generator = generator
     }
-    
     func roll() -> Int {
         return Int(generator.random() * Double(sides)) + 1
-    }
-}
-
-class DIC: RandomNumberGenerator {
-    func random() -> Double {
-        return 0.4
     }
 }
 
@@ -57,25 +50,11 @@ class DIC: RandomNumberGenerator {
 protocol TextRepresentable {
     var textualDescription: String { get }
 }
-protocol TextRepresentable11 {
-    var textualDescription11: String { get }
-}
 extension Dice: TextRepresentable {
     var textualDescription: String {
-        get {
-            return "A \(sides)-sided dice"
-        }
+        return "A \(sides)-sided dice"
     }
 }
-extension Dice: TextRepresentable11 {
-    var textualDescription11: String {
-        get {
-            return "A \(sides)-sided dice"
-        }
-    }
-}
-print(Dice(sides: 4, generator: DIC()).sides)
-print(55)
 //:* 当一个类型已经符合了某个协议中的所有要求，却还没有声明遵循该协议时，可以通过空扩展体的扩展来遵循该协议，即使满足了协议的所有要求，类型也不会自动遵循协议，必须显式地遵循协议
 struct Hamster {
     var name: String
@@ -83,11 +62,7 @@ struct Hamster {
         return "A hamster named \(name)"
     }
 }
-extension Hamster: TextRepresentable {
-//    var textualDescription: String {
-//        return "A hamster named \(name)"
-//    }
-}
+extension Hamster: TextRepresentable {}
 
 //:**【协议的继承】**
 //:* 协议能够继承一个或多个其他协议，可以在继承的协议的基础上增加新的要求，协议的继承语法与类的继承相似，多个被继承的协议间用逗号分隔
@@ -106,14 +81,12 @@ protocol Aged {
 struct Person: Named, Aged {
     var name: String
     var age: Int
-    
-    func wishHappyBirthday(to celebrator: Named & Aged) {
-        print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
-    }
 }
-
+func wishHappyBirthday(to celebrator: Named & Aged) {
+    print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
+}
 let birthdayPerson = Person(name: "Malcolm", age: 21)
-birthdayPerson.wishHappyBirthday(to: birthdayPerson)
+wishHappyBirthday(to: birthdayPerson)
 
 //:**【可选协议】**
 //:* 协议可以定义可选要求，遵循协议的类型可以选择是否实现这些要求，在协议中使用optional关键字作为前缀来定义可选要求，可选要求用在你需要和Objective-C打交道的代码中，协议和可选要求都必须带上@objc属性，标记@objc特性的协议只能被继承自Objective-C类的类或者@objc类遵循，其他类以及结构体和枚举均不能遵循这种协议
@@ -133,24 +106,13 @@ class Counter {
             count += amount
         }
     }
-    
-    func inc() {
-        if let amou = dataSource?.incrementForCount?(count: count) {
-            count += amou
-        } else if let amou = dataSource?.fixedIncrement {
-            count += amou
-        }
-        
-        
-        print(dataSource?.incrementForCount?(count: 444) ?? 0)
-    }
 }
 
 //:**【协议扩展】**
 //:* 可以通过协议扩展来为协议要求的属性、方法提供默认的实现，如果遵循协议的类型为这些要求提供了自己的实现，那么这些自定义实现将会替代扩展中的默认实现被使用
 extension PrettyTextRepresentable {
     var prettyTextualDescription: String {
-        return self.textualDescription
+        return textualDescription
     }
 }
 

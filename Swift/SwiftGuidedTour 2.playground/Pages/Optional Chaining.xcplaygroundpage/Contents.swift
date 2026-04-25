@@ -10,8 +10,6 @@ class Residence {
     func printNumberOfRooms() {
         print("The number of rooms is \(numberOfRooms)")
     }
-    
-    
 }
 let john = Person()
 if let roomCount = john.residence?.numberOfRooms {
@@ -19,32 +17,13 @@ if let roomCount = john.residence?.numberOfRooms {
 } else {
     print("Unable to retrieve the number of rooms.")
 }
-
-let a = Person()
-a.residence = Residence()
-if let r = a.residence?.numberOfRooms {
-    print(r, "not nil")
-} else {
-    print("is nil")
-}
-print(a.residence?.numberOfRooms ?? 0)
-print(a.residence!.numberOfRooms)
-print(a.residence?.numberOfRooms as Any)
 //:* 可以通过可选链式调用来设置属性值
 john.residence?.numberOfRooms = 2
-a.residence?.numberOfRooms = 4;
 //:* 可以通过可选链式调用来调用方法，并判断是否调用成功，即使这个方法没有返回值，没有返回值的方法具有隐式的返回类型Void，所以通过可选链式调用无返回值方法会得到Void?类型返回值，通过判断返回值是否为nil就可以知道调用是否成功
 if john.residence?.printNumberOfRooms() != nil {
     print("It was possible to print the number of rooms.")
 } else {
     print("It was not possible to print the number of rooms.")
 }
-
-if a.residence?.printNumberOfRooms() != nil {
-    print("suc")
-} else {
-    print("fail")
-}
-print(a.residence?.numberOfRooms ?? 0)
 
 //: [Next](@next)

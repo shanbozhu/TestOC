@@ -5,116 +5,67 @@
 //:* 如果创建一个Array、Set或Dictionary并且把它分配成一个变量，这个集合将会是可变的，这意味着我们可以在创建之后添加更多或移除已存在的数据项，或者改变集合中的数据项，如果我们把Array、Set或Dictionary分配成常量，那么它就是不可变的，它的大小和内容都不能被改变
 
 //:**【创建数组】**
-var someInts: [Int] = [1, 2]
+var someInts: [Int] = []
 var anotherInts = [Int]()
 var shoppingList = ["Eggs", "Milk"]
-
-var some: [Int] = []
-var antou = Int()
-var an = [Any]()
 
 //:**【访问和修改数组】**
 //:* 可以使用数组的只读属性count来获取数组中的数据项数量
 print("The shopping list contains \(shoppingList.count) items.")
-print(an.count)
 //:* 可以使用布尔属性isEmpty作为一个缩写形式去检查count属性是否为0
 if shoppingList.isEmpty {
     print("The shopping list is empty.")
 } else {
     print("The shopping list is not empty.")
 }
-if an.isEmpty {
-    print("isempty")
-} else {
-    print("not isempty")
-}
 //:* 可以使用append(_:)方法在数组后面添加新的数据项：
 shoppingList.append("Flour")
-an.append("nihoa ")
-an.append(11111)
 //:* 可以使用加法赋值运算符（+=）直接在数组后面添加一个或多个拥有相同类型的数据项
 shoppingList += ["Chocolate Spread", "Cheese", "Butter"]
-
-var ab = ["haha", "nihoa "]
-
-shoppingList = shoppingList + ab
-print(shoppingList)
-
-
 //:* 可以使用下标语法来获取或修改数组中的数据项
 var firstItem = shoppingList[0]
 shoppingList[0] = "Six eggs"
 //:* 可以利用下标来一次改变一系列数据值，即使新数据和原有数据的数量是不一样的
-shoppingList[2...3] = ["Bananas", "Apples", "haha", "gaga"]
-print(2...4)
-
-for i in 0...4 {
-    print(i)
-}
-
-//shoppingList.
+shoppingList[2...4] = ["Bananas", "Apples"]
 //:* 不可以用下标访问的形式去在数组尾部添加新项
 //:* 调用insert(_:at:)方法来在某个具体索引值之前添加数据项
 shoppingList.insert("Maple Syrup", at: 0)
-shoppingList.insert("wo", at: 0)
 //:* 可以使用remove(at:)方法来移除数组中的某一项，这个方法把数组在特定索引值中存储的数据项移除并且返回这个被移除的数据项
 let mapleSyrup = shoppingList.remove(at: 0)
-print(shoppingList)
 
 //:**【遍历数组】**
 //:* 可以使用for-in循环来遍历所有数组中的数据项
 for item in shoppingList {
     print(item)
 }
-
-for item in shoppingList {
-    print(item, "a")
-}
 //:* 如果同时需要每个数据项的值和索引值，可以使用enumerated()方法来进行数组遍历，enumerated()返回一个由每一个数据项索引值和数据值组成的元组
 for (index, value) in shoppingList.enumerated() {
     print("Item \(String(index + 1)): \(value)")
-}
-
-for (index, value) in shoppingList.enumerated() {
-    print(index, value)
 }
 
 //:**【创建集合】**
 //:* 一个类型为了存储在Set中，该类型必须是可哈希化的，即遵循Hashable协议，Swift的所有基本类型(比如String, Int, Double和Bool)默认都是可哈希化的
 var letters: Set<Character> = []
 var anotherLetters = Set<Character>()
+var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
 
-
-var lettre: Set<Character> = []
-var annou = Set<Int>()
-var far: Set<String> = ["1", "2"];
-
-
-let a = (2, 3)
-let b = (3,)
-print();
 //:**【访问和修改集合】**
 //:* 可以使用Set的只读属性count来获取Set中的数据项数量
-//print(/*"I have \(favoriteGenres.count) favorite music genres.")*/
+print("I have \(favoriteGenres.count) favorite music genres.")
 //:* 可以使用布尔属性isEmpty作为一个缩写形式去检查count属性是否为0
-//if favoriteGenres.isEmpty {
-//    print("As far as music goes, I'm not picky.")
-//} else {
-//    print("I have particular music preferences.")
-//}
+if favoriteGenres.isEmpty {
+    print("As far as music goes, I'm not picky.")
+} else {
+    print("I have particular music preferences.")
+}
 //:* 可以通过调用Set的insert(_:)方法来添加一个新元素
-//favoriteGenres.insert("Jazz")
+favoriteGenres.insert("Jazz")
 //:* 可以通过调用Set的remove(_:)方法去删除一个元素，如果该值是该Set的一个元素则删除该元素并且返回被删除的元素值，否则返回nil，另外， Set 中的所有元素可以通过它的removeAll()方法删除
-//if let removedGenre = favoriteGenres.remove("Rock") {
-//    print("\(removedGenre)? I'm over it.")
-//} else {
-//    print("I never much cared for that.")
-//}
-
-var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop", "Rock", "Hip hop"]
-// ["Rock", "Hip hop", "Classical"]
-// ["Classical", "Hip hop", "Rock"]
-print(favoriteGenres)
+if let removedGenre = favoriteGenres.remove("Rock") {
+    print("\(removedGenre)? I'm over it.")
+} else {
+    print("I never much cared for that.")
+}
 //:* 可以使用contains(_:)方法去检查Set中是否包含一个特定的值
 if favoriteGenres.contains("Funk") {
     print("I get up on the good foot.")
@@ -122,16 +73,10 @@ if favoriteGenres.contains("Funk") {
     print("It's too funky in here.")
 }
 
-print(favoriteGenres.contains("Rock"), 123)
-
 //:**【遍历集合】**
 //:* 可以在一个for-in循环中遍历一个Set中的所有值
 for genre in favoriteGenres {
     print("\(genre)")
-}
-
-for item in favoriteGenres {
-    print(item)
 }
 
 //:**【创建字典】**
@@ -140,29 +85,14 @@ var oneDictionary: [Int: String] = [:]
 var anotherDictionary = [Int: String]()
 var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
 
-var one: [Int: String] = [:]
-var aont = [Int: String]()
-var air: [String: String] = [:]
-
-air["wo"] = "shi"
-air["wo1"] = "shi"
-print(air, 23)
-
 //:**【访问和修改字典】**
 //:* 可以通过字典的只读属性count来获取某个字典的数据项数量
 print("The dictionary of airports contains \(airports.count) items.")
-print(air.count, 8)
 //:* 使用布尔属性isEmpty作为一个缩写形式去检查count属性是否为0
 if airports.isEmpty {
     print("The airports dictionary is empty.")
 } else {
     print("The airports dictionary is not empty.")
-}
-
-if air.count == 0 {
-    print("The air dictionary is empty.")
-} else {
-    print("The air dictionary is not empty.")
 }
 //:* 可以在字典中使用下标语法添加和修改数据项
 airports["LHR"] = "London"
@@ -177,14 +107,10 @@ if let airportName = airports["DUB"] {
 airports["APL"] = "Apple Internation"
 airports["APL"] = nil
 
-air.removeValue(forKey: "wo")
-air["wo1"] = nil
-print(air, 90)
-
 //:**【遍历字典】**
 //:* 可以使用for-in循环来遍历某个字典中的键值对，每一个字典中的数据项都以(key, value)元组形式返回
-for (hha) in airports {
-    print("\(hha)", 222)
+for (airportCode, airportName) in airports {
+    print("\(airportCode): \(airportName)")
 }
 //:* 通过访问keys或者values属性，可以遍历字典的键或者值
 for airportCode in airports.keys {
@@ -194,28 +120,4 @@ for airportName in airports.values {
     print("Airport name: \(airportName)")
 }
 
-for a in airports.values {
-    print(a)
-}
-
-let tmp = {
-    // 1
-    var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
-    
-    // Optional("Rock")
-    print(favoriteGenres.remove("Rock"))
-    // Rock
-    print(favoriteGenres.remove("Rock") ?? "default")
-    // Rock
-    // print(favoriteGenres.remove("Rock")!)
-    // Optional("Rock")
-    print(favoriteGenres.remove("Rock") as Any)
-    
-    // 2
-    var favoriteGenres1: Set<String> = ["Rock", "Classical", "Hip hop", "Rock", "Hip hop"]
-    // ["Rock", "Hip hop", "Classical"]
-    // ["Classical", "Hip hop", "Rock"]
-    print(favoriteGenres1)
-}
-tmp()
 //: [Next](@next)

@@ -10,7 +10,7 @@
 struct Celsius {
     let temperatureInCelsius: Double
     init(fromFahrenheit fahrenheit: Double) {
-        self.temperatureInCelsius = (fahrenheit - 32.0) / 1.8
+        temperatureInCelsius = (fahrenheit - 32.0) / 1.8
     }
     init(fromKelvin kelvin: Double) {
         temperatureInCelsius = kelvin - 273.15
@@ -18,35 +18,15 @@ struct Celsius {
 }
 let boilingPointOfWater = Celsius(fromFahrenheit: 212.0)
 let freezingPointOfWater = Celsius(fromKelvin: 273.15)
-let bo = Celsius(fromFahrenheit: 45.0)
 
 //:**【默认构造器】**
 //:* 如果结构体或类的所有属性都有默认值，同时没有自定义的构造器，那么Swift会给这些结构体或类提供一个默认构造器，这个默认构造器将简单地创建一个所有属性值都设置为默认值的实例
 class ShoppingListItem {
     var name: String?
-    var quantity: Int = 0
+    var quantity = 1
     var purchased = false
-    
-    init(name: String? = nil, quantity: Int, purchased: Bool = false) {
-        self.name = name
-        self.quantity = quantity
-        self.purchased = purchased
-    }
-    
-    convenience init() {
-        self.init(quantity: 2)
-    }
 }
 var item = ShoppingListItem()
-var i = ShoppingListItem(quantity: 3)
-var ii = ShoppingListItem()
-
-struct cxx {
-    var actor: Int
-    var aa: String
-}
-let aa = cxx(actor: 9, aa: "hah")
-print(aa.actor, 999)
 //:* 除了上面提到的默认构造器，如果结构体没有提供自定义的构造器，它们将自动获得一个逐一成员构造器，即使结构体的存储型属性没有默认值
 
 //:**【类的继承和构造过程】**
@@ -78,20 +58,10 @@ struct Animal {
         if species.isEmpty { return nil }
         self.species = species
     }
-    
-    init?(xx: String) {
-        if xx.count == 0 { return nil }
-        self.species = xx
-    }
 }
 let someCreature = Animal(species: "Giraffe")  // Animal?
 if let giraffe = someCreature {
     print("An animal was initialized with a species of \(giraffe.species)")
-}
-
-let xxxx = Animal(xx: "d")
-if xxxx != nil {
-    print(xxxx!)
 }
 
 //:**【必要构造器】**

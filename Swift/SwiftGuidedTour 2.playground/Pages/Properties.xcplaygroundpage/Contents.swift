@@ -9,31 +9,9 @@
 struct FixedLengthRange {
     var firstValue: Int
     let length: Int
-    
-    init(firstValue: Int, length: Int) {
-        self.firstValue = firstValue
-        self.length = length
-    }
-    
-    init() {
-        self.firstValue = 1
-        self.length = 2
-    }
-    
-    init(fal: Int) {
-        self.firstValue = fal;
-        self.length = 0;
-    }
 }
 var rangeOfThreeItems = FixedLengthRange(firstValue: 0, length: 3)
 rangeOfThreeItems.firstValue = 6
-
-let a = FixedLengthRange(firstValue: 2, length: 5)
-//FixedLengthRange(fal: <#T##Int#>)
-let xx = FixedLengthRange()
-
-var aa = FixedLengthRange(firstValue: 1, length: 2);
-
 //:* 延迟存储属性是指当第一次被调用的时候才会计算其初始值的属性，在属性声明前使用lazy来标示一个延迟存储属性，必须将延迟存储属性声明成变量，因为属性的初始值可能在实例构造完成之后才会得到，而常量属性在构造过程完成之前必须要有初始值，因此无法声明成延迟属性
 class DataImporter {
     /*
@@ -45,11 +23,9 @@ class DataImporter {
 class DataManager {
     lazy var importer = DataImporter()
     var data = [String]()
-    var da = Array<Any>()
     // 这里会提供数据管理功能
 }
 let manager = DataManager()
-let mm = DataManager()
 
 //:**【计算属性】**
 //:* 计算属性不直接存储值，而是提供一个getter和一个可选的setter，来间接获取和设置其他属性或变量的值，必须使用var关键字定义计算属性，因为它们的值不是固定的
@@ -76,33 +52,20 @@ struct Rect {
 }
 var square = Rect(origin: Point(x: 0.0, y: 0.0), size: Size(width: 10.0, height: 10.0))
 square.center = Point(x: 15.0, y: 15.0)
-print("11square.origin is now at (\(square.origin.x), \(square.origin.y))")
-
-var su = Rect(origin: Point(x: 1, y: 2), size: Size(width: 10, height: 5))
-su.center = Point(x: 15, y: 20)
-print("22square.origin is now at (\(su.origin.x), \(su.origin.y))")
+print("square.origin is now at (\(square.origin.x), \(square.origin.y))")
 //:* 如果计算属性的setter没有定义表示新值的参数名，则可以使用默认名称newValue
 struct AlternativeRect {
     var origin = Point()
     var size = Size()
     var center: Point {
-//        get {
-//            let centerX = origin.x + (size.width / 2)
-//            let centerY = origin.y + (size.height / 2)
-//            return Point(x: centerX, y: centerY)
-//        }
-//        set {
-//            origin.x = newValue.x - (size.width / 2)
-//            origin.y = newValue.y - (size.height / 2)
-//        }
-        
-        willSet(newTotalSteps) {
-//            print("About to set totalSteps to \(newTotalSteps)")
+        get {
+            let centerX = origin.x + (size.width / 2)
+            let centerY = origin.y + (size.height / 2)
+            return Point(x: centerX, y: centerY)
         }
-        didSet {
-//            if totalSteps > oldValue {
-//                print("Added \(totalSteps - oldValue) steps")
-//            }
+        set {
+            origin.x = newValue.x - (size.width / 2)
+            origin.y = newValue.y - (size.height / 2)
         }
     }
 }
@@ -112,11 +75,6 @@ struct Cuboid {
     var volume: Double {
         return width * height * depth
     }
-    var aa: Double {
-//        get {
-            return width * 90
-//        }
-    }
 }
 
 //:**【属性观察器】**
@@ -124,11 +82,11 @@ struct Cuboid {
 //:* 可以为除了延迟存储属性之外的其他存储属性添加属性观察器，也可以通过重写属性的方式为继承的属性（包括存储属性和计算属性）添加属性观察器
 //:* willSet观察器会将新的属性值作为常量参数传入，在willSet的实现代码中可以为这个参数指定一个名称，如果不指定则使用默认名称newValue表示，didSet观察器会将旧的属性值作为参数传入，可以为该参数命名或者使用默认参数名oldValue
 class StepCounter {
-     var totalSteps: Int = 0 {
+    var totalSteps: Int = 0 {
         willSet(newTotalSteps) {
             print("About to set totalSteps to \(newTotalSteps)")
         }
-        didSet(oldValue) {
+        didSet {
             if totalSteps > oldValue {
                 print("Added \(totalSteps - oldValue) steps")
             }
@@ -141,20 +99,14 @@ class StepCounter {
 //:* 使用关键字static来定义类型属性，在为类定义计算型类型属性时，可以改用关键字class来支持子类对父类的实现进行重写
 class SomeClass {
     static var storedTypeProperty = "Some value."
-    class var computedTypeProperty: Int {
-        get {
-            return 27
-        }
+    static var computedTypeProperty: Int {
+        return 27
     }
-    class var overrideableComputedTypeProperty: String {
-        get {
-            return "107" + storedTypeProperty
-        }
+    class var overrideableComputedTypeProperty: Int {
+        return 107
     }
 }
 //:* 类型属性是通过类型本身来访问，而不是通过实例
 print(SomeClass.computedTypeProperty)
-print(SomeClass.storedTypeProperty)
-print(SomeClass.overrideableComputedTypeProperty)
 
 //: [Next](@next)

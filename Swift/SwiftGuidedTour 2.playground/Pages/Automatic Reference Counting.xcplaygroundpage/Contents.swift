@@ -14,27 +14,10 @@ class Apartment {
     weak var tenant: Person?
     deinit { print("Apartment \(unit) is being deinitialized") }
 }
-
-let xx = Apartment(unit: "")
-let tt = Person(name: "jjj")
-xx.tenant = tt
 //:* 闭包中使用捕获列表解决循环强引用问题，捕获列表中的每一项都由一对元素组成，一个元素是weak关键字，另一个元素是类实例的引用（例如self）或初始化过的变量（如delegate = self.delegate!），这些项在方括号中用逗号分开
-var someClosure: (Int, String) -> String = {
-    (index: Int, stringToProcess: String) -> String in
-    // 这里是闭包的函数体
-    return String(index) + stringToProcess
-}
-print(someClosure(3, "hello") + "world")
-
-let tmp = {
-    var someClosure: (Int, String) -> String = {
-        // [weak self, weak delegate = self.delegate!]
-        (index: Int, stringToProcess: String) -> String in
-        // 这里是闭包的函数体
-        return String(index) + stringToProcess
-    }
-    print(someClosure(3, "hello") + "world")
-}
-tmp()
+//var someClosure: (Int, String) -> String = {
+//    [weak self, weak delegate = self.delegate!] (index: Int, stringToProcess: String) -> String in
+//    // 这里是闭包的函数体
+//}
 
 //: [Next](@next)

@@ -20,90 +20,55 @@ let explicitCGFloat: CGFloat = 70
 //:* 在32位平台上，Int和Int32长度相同，UInt和UInt32长度相同，在64位平台上，Int和Int64长度相同，UInt和UInt64长度相同
 //:* 统一使用Int可以提高代码的可复用性，避免不同类型数字之间的转换，并且匹配数字的类型推断
 let meaningOfLife = 42  // Int
-let me = 89
 //:* Swift的浮点数类型Float, Double
 let pi = 3.14159  // Double
-let pii = 5.6
 //:* 如果数字超出了常量或变量可存储的范围，编译的时候会报错
 //let cannotBeNegative: UInt8 = -1
 //:* 不同类型的常量或变量不能直接进行运算
 let twoThousand: UInt16 = 2000
 let one: UInt8 = 1
 let twoThousandAndOne = twoThousand + UInt16(one)
-let two = twoThousand + UInt16(one)
 //:* 结合数字类常量和变量不同于结合数字类字面量，字面量3可以直接和字面量0.14159相加，因为数字字面量本身没有明确的类型，它们的类型只在编译器需要求值的时候被推测
 
 //:**【布尔型】**
 //:* Swift的布尔类型为Bool，两个布尔常量为true和false
 let orangesAreOrange = true
 let turnipsAreDelicious = false
-let or = true
-let tu = false
 //:* 如果你在需要使用Bool类型的地方使用了非布尔值，Swift的类型安全机制会报错
-let i = 1
-if i == 1 {
-    /* */
-}
+//let i = 1
+//if i {
+//    /* */
+//}
 
 //:**【元组】**
 //:* 元组把多个值组合成一个复合值，元组内的值可以是任意类型，并不要求是相同类型
 let http404Error = (404, "Not Found")  // 类型为(Int, String)
-let htt = (4444, "dddd")
 //:* 可以将一个元组的内容分解成单独的常量和变量
-let (statusCode, statusMessage) = (404, "Not Found")
+let (statusCode, statusMessage) = http404Error
 let (justTheStatusCode, _) = http404Error
-print("statusCode \(statusCode), \(justTheStatusCode)")
 //:* 可以通过下标来访问元组中的单个元素，下标从零开始
 print("The status code is \(http404Error.0)")
 print("The status message is \(http404Error.1)")
-print("\(http404Error.0)")
 //:* 可以在定义元组的时候给单个元素命名，并通过名字来获取这些元素的值
 let http200Status = (statusCode: 200, description: "OK")
 print("The status code is \(http200Status.statusCode)")
 print("The status message is \(http200Status.description)")
-
-let hee = (a: 200, b: "ok")
-print("\(hee.a) ceshi \(hee.0)")
 //:* 元组在临时组织值的时候很有用，但是并不适合创建复杂的数据结构，如果你的数据结构并不是临时使用，请使用类或者结构体而不是元组
 
 //:**【可选类型】**
 //:* Swift使用可选类型来处理值可能缺失的情况，没有值时为nil
 var serverResponseCode: Int? = 404
 serverResponseCode = nil
-
-func t() {
-    var aa: Int? = 88
-    aa = nil
-    guard aa == nil else {
-        print(aa!)
-        return
-    }
-    print(aa as Any)
-}
-t()
 //:* 如果声明一个可选常量或者变量但是没有赋值，它们会自动被设置为nil
 var surveyAnswer: String?
 //:* 当确定可选类型确实包含值之后，可以在可选的名字后面加一个感叹号!来获取值，这被称为可选值的强制解析
-
+let possibleNumber = "123"
+let convertedNumber = Int(possibleNumber)
 if convertedNumber != nil {
     print("convertedNumber has an integer value of \(convertedNumber!).")
 }
-
-let po = "456"
-let con = Int(po)
-print("ceshi \(con)")
 //:* 使用可选绑定来判断可选类型是否包含值，如果包含就把值赋给一个临时常量或者变量。可选绑定可以用在if和while语句中，这条语句不仅可以用来判断可选类型中是否有值，同时可以将可选类型中的值赋给一个常量或者变量
-let possibleNumber = "123"
-let convertedNumber = Int(possibleNumber)
-
 if let actualNumber = convertedNumber {
-    print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
-} else {
-    print("\'\(possibleNumber)\' could not be converted to an integer")
-}
-
-if convertedNumber != nil {
-    let actualNumber = convertedNumber!
     print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
 } else {
     print("\'\(possibleNumber)\' could not be converted to an integer")
@@ -112,32 +77,11 @@ if convertedNumber != nil {
 if let firstNumber = Int("4"), let secondNumber = Int("42"), firstNumber < secondNumber && secondNumber < 100 {
     print("\(firstNumber) < \(secondNumber) < 100")
 }
-if let a = Int("7"), let b = Int("8"), a < 8 {
-    print("\(a) + \(b) = \(a+b)")
-}
 //:* 把想要用作可选的类型的后面的问号（String?）改成感叹号（String!）来声明一个隐式解析可选类型
 let possibleString: String? = "An optional string."
 let forcedString: String = possibleString!  // 需要感叹号来获取值
 let assumedString: String! = "An implicitly unwrapped optional string."
 let implicitString: String = assumedString  // 不需要感叹号
-
-let a: String? = "可选类型"
-let aa: String = a!
-print("\(aa)")
-
-let b: String! = "隐式解析可选类型"
-let bb: String = b
-let bbb: String = b!
-print("\(bb), \(bbb)")
-
-if b != nil {
-    print(b!)
-}
-
-if let tmp = b {
-    print(tmp)
-    print(b!)
-}
 //:* 仍然可以把隐式解析可选类型当做普通可选类型来判断它是否包含值
 if assumedString != nil {
     print(assumedString!)
@@ -146,45 +90,5 @@ if assumedString != nil {
 if let definiteString = assumedString {
     print(definiteString)
 }
-
-
-let tmp = {
-    // 1
-    let possibleNumber = "123"
-    let convertedNumber = Int(possibleNumber)
-    
-    if let actualNumber = convertedNumber {
-        print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
-    } else {
-        print("\'\(possibleNumber)\' could not be converted to an integer")
-    }
-    
-    if convertedNumber != nil {
-        let actualNumber = convertedNumber!
-        print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
-    } else {
-        print("\'\(possibleNumber)\' could not be converted to an integer")
-    }
-    
-    // 2
-    let a: String? = "可选类型"
-    let aa: String = a!
-    print("\(aa)")
-
-    let b: String! = "隐式解析可选类型"
-    let bb: String = b
-    let bbb: String = b!
-    print("\(bb), \(bbb)")
-
-    if b != nil {
-        print(b!)
-    }
-
-    if let tmp = b {
-        print(tmp)
-        print(b!)
-    }
-}
-tmp()
 
 //: [Next](@next)
