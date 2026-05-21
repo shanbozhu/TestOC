@@ -7,8 +7,12 @@ workspace.xml
 xcschememanagement.plist
 IDEFindNavigatorScopes.plist
 
-#CocoaPods
+# CocoaPods
 Pods/
 
 .update
 Podfile.lock
+
+# cursor
+build/
+DerivedData/
