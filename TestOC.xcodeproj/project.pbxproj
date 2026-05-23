@@ -353,6 +353,7 @@
 		959236822F70D8070086B733 /* PBHitTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236812F70D8070086B733 /* PBHitTestController.m */; };
 		959236852F70D8250086B733 /* PBHitTestMyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236842F70D8250086B733 /* PBHitTestMyButton.m */; };
 		959236882F70D86D0086B733 /* PBHitTestParentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236872F70D86D0086B733 /* PBHitTestParentView.m */; };
+		959236B72FC1C89A0086B733 /* PBOpenURLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236B62FC1C89A0086B733 /* PBOpenURLController.m */; };
 		959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959350A82E16BD0E00B9F3A8 /* PBXMLController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
@@ -1008,6 +1009,8 @@
 		959236842F70D8250086B733 /* PBHitTestMyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestMyButton.m; sourceTree = "<group>"; };
 		959236862F70D86D0086B733 /* PBHitTestParentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestParentView.h; sourceTree = "<group>"; };
 		959236872F70D86D0086B733 /* PBHitTestParentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestParentView.m; sourceTree = "<group>"; };
+		959236B52FC1C89A0086B733 /* PBOpenURLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBOpenURLController.h; sourceTree = "<group>"; };
+		959236B62FC1C89A0086B733 /* PBOpenURLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBOpenURLController.m; sourceTree = "<group>"; };
 		959350A72E16BD0E00B9F3A8 /* PBXMLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBXMLController.h; sourceTree = "<group>"; };
 		959350A82E16BD0E00B9F3A8 /* PBXMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBXMLController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
@@ -3185,6 +3188,15 @@
 			path = PBHitTest;
 			sourceTree = "<group>";
 		};
+		959236B42FC1C8660086B733 /* PBOpenURL */ = {
+			isa = PBXGroup;
+			children = (
+				959236B52FC1C89A0086B733 /* PBOpenURLController.h */,
+				959236B62FC1C89A0086B733 /* PBOpenURLController.m */,
+			);
+			path = PBOpenURL;
+			sourceTree = "<group>";
+		};
 		959350A62E16BCCE00B9F3A8 /* PBXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -3364,6 +3376,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				959236B42FC1C8660086B733 /* PBOpenURL */,
 				9592367D2F70D7D70086B733 /* PBHitTest */,
 				953974882CDA382400EDF4C2 /* PBException */,
 				5CEBEAA72C11A08D0079CDDF /* PBRegularExpression */,
@@ -3950,6 +3963,7 @@
 				5C354B962BD7537900A14B95 /* PBRuntimeSevenController.m in Sources */,
 				5C96B5B72BEF705E003CC48B /* NSString+BBAURL.m in Sources */,
 				5C354AE52BD0124D00A14B95 /* PBAlertController.m in Sources */,
+				959236B72FC1C89A0086B733 /* PBOpenURLController.m in Sources */,
 				9575998922FC2415009CA618 /* UIImageView+PBPhBrowserView.m in Sources */,
 				9575940622F92778009CA618 /* PBAlgorithmListController.m in Sources */,
 				5C33EB83273E939C00F6DDF0 /* PBBubbleImageView.m in Sources */,
