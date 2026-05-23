@@ -12,6 +12,9 @@
 
 @end
 
+#define schema_value @"https://itunes.apple.com/cn/app/id382201985"
+#define universal_link_value @"itms-apps://itunes.apple.com/cn/app/id382201985"
+
 @implementation PBOpenURLController
 
 - (void)viewDidLoad {
@@ -62,9 +65,9 @@
             // 2. 「百度」未安装
             
             // schema 方式
-            //NSURL *downloadSchema = [NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id382201985"];
+            NSURL *downloadSchema = [NSURL URLWithString:universal_link_value];
             // universal link 方式
-            NSURL *downloadSchema = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/id382201985"];
+            //NSURL *downloadSchema = [NSURL URLWithString:schema_value];
             [application openURL:downloadSchema options:@{} completionHandler:^(BOOL success) {
                 NSLog(@"success = %d", success);
             }];
@@ -83,8 +86,8 @@
             // 2.1 将当前页设置为「下载中间页」，用户点击下载按钮跳转至 App Store 下载
             // 2.2 将当前页设置为「下载中间页」，用户加载网页时自动跳转至 App Store 下载
             // 3. 网页里的下载行为可以是 schema 方式，也可以是 universal link 方式
-            // 3.1 schema 方式：点击网页下载按钮，href 跳转至 itms-apps://itunes.apple.com/cn/app/id382201985
-            // 3.2 universal link 方式：点击网页下载按钮，href 跳转至 https://itunes.apple.com/cn/app/id382201985
+            // 3.1 schema 方式：点击网页下载按钮，href 跳转至 universal_link_value（宏）
+            // 3.2 universal link 方式：点击网页下载按钮，href 跳转至 schema_value（宏）
             // 3.3 App Store 这款官方应用肯定是同时支持 schema 方式和 universal link 方式的。
         } else {
             NSLog(@"打开失败");
