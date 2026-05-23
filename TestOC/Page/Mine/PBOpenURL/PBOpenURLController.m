@@ -60,7 +60,11 @@
             NSLog(@"打开失败");
             // 1. schema 格式不正确
             // 2. 「百度」未安装
-            NSURL *downloadSchema = [NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id382201985"];
+            
+            // schema 方式
+            //NSURL *downloadSchema = [NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id382201985"];
+            // universal link 方式
+            NSURL *downloadSchema = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/id382201985"];
             [application openURL:downloadSchema options:@{} completionHandler:^(BOOL success) {
                 NSLog(@"success = %d", success);
             }];
