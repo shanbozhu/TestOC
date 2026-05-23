@@ -19,10 +19,10 @@
 // https://boxer2.baidu.com/apple-app-site-association
 
 // 百度极速版 universal link 地址：
-// https://wakeup.baidu.com/baiduboxlite/123
+// https://wakeup.baidu.com/baiduboxlite/scheme
 // 百度主板 universal link 地址：
-// https://boxer.baidu.com/scheme/123
-// https://boxer2.baidu.com/scheme/123
+// https://boxer.baidu.com/scheme
+// https://boxer2.baidu.com/scheme
 
 // 百度极速版 schema 头：baiduboxlite
 // 百度主板 schema 头：baiduboxapp
@@ -107,7 +107,7 @@
 
 - (void)uLinkBtnOnClick:(UIButton *)btn {
     UIApplication *application = [UIApplication sharedApplication];
-    NSURL *schema = [NSURL URLWithString:@"https://boxer.baidu.com/scheme/123"];
+    NSURL *schema = [NSURL URLWithString:@"https://boxer.baidu.com/scheme"];
     [application openURL:schema options:@{} completionHandler:^(BOOL success) {
         if (success) {
             NSLog(@"打开成功");
