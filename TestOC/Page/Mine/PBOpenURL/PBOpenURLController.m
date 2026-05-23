@@ -12,6 +12,10 @@
 
 @end
 
+// 百度极速版活动页：
+// https://activity.baidu.com/mbox/4a81aa9860/staticMiddlePage_3?appname=baiduboxlite
+// https://activity.baidu.com/mbox/4a81a89b62/defaultNewsPage_1?appname=baiduboxlite&vid=3185394484734977936&channel=bd-sem&channel_id=1021077d&invoke_id=1020204t&query%3D
+
 // 百度极速版 universal link 配置：
 // https://wakeup.baidu.com/apple-app-site-association
 // 百度主板 universal link 配置：
