@@ -10,20 +10,28 @@
 #import <WebKit/WebKit.h>
 
 /**
- jsCalloc js端语句如下：
+ jsCalloc 有三种方式：
+ 1. 前端调用 href（Hypertext Reference，超文本引用，是HTML中定义超链接的属性，用于指定链接目标的URL。）
+ 2. 通过 JSContext
+ 3. 通过 webkit 的 postMessage
+ 
+ href 方式的 js端语句如下：
+ <a href="https://itunes.apple.com/cn/app/id382201985?mt=8" class="btn" id="btn">去App Store下载</a>
+ 
+ postMessage 方式的 js端语句如下：
  var nativeDetailUrl = 'damai://V1/ProjectPage?id=' + id;
  window.webkit.messageHandlers.openPage.postMessage(nativeDetailUrl);
  */
 
 /**
- ocCalljs oc端语句如下：
- evaluateJavaScript：调用 JavaScriptCore 立即执行 js
- addUserScript：在 DocumentStart 或 DocumentEnd 时机注入 js，同时调用 JavaScriptCore 立即执行 js
+ ocCalljs 有两种方式：
+ 1. evaluateJavaScript：调用 JavaScriptCore 立即执行 js
+ 2. addUserScript：在 DocumentStart 或 DocumentEnd 时机注入 js，同时调用 JavaScriptCore 立即执行 js
  
  执行js有三种方式：
- 1、h5本身含有 js 方法，oc 调用 JavaScriptCore 执行这个 js 方法
- 2、oc端注入的 js 含有方法的定义和调用（一般为 自调用函数 的形式），oc 调用 JavaScriptCore 执行这个 js 方法
- 3、oc端注入的 js 仅含有方法的定义，h5 端调用注入的 js 方法
+ 1. h5本身含有 js 方法，oc 调用 JavaScriptCore 执行这个 js 方法
+ 2. oc端注入的 js 含有方法的定义和调用（一般为 自调用函数 的形式），oc 调用 JavaScriptCore 执行这个 js 方法
+ 3. oc端注入的 js 仅含有方法的定义，h5 端调用注入的 js 方法
  */
 
 @interface PBWKWebViewController ()<WKNavigationDelegate, WKScriptMessageHandler>
