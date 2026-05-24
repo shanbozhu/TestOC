@@ -97,6 +97,7 @@
             NSLog(@"打开失败");
             // 1. schema 格式不正确
             // 2. 「百度」未安装
+            // 3. 用户取消了系统弹窗
             
             // schema 方式
             NSURL *downloadSchema = [NSURL URLWithString:universal_link_value];
