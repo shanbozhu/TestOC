@@ -20,8 +20,9 @@
  <a href="https://itunes.apple.com/cn/app/id382201985?mt=8" class="btn" id="btn">去App Store下载</a>
  
  JSContext 方式的 js端语句如下：
- var nativeDetailUrl = 'damai://V1/ProjectPage?id=' + id;
- openPage(nativeDetailUrl);
+ AppBridge("openPage", {
+     url: "damai://V1/ProjectPage?id=123"
+ });
  
  postMessage 方式的 js端语句如下：
  var nativeDetailUrl = 'damai://V1/ProjectPage?id=' + id;
@@ -202,6 +203,12 @@ postDocState('docEnd');\
     [webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable data, NSError * _Nullable error) {
         NSLog(@"data = %@, error = %@", data, error);
     }];
+    
+    // jsCalloc
+    JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    context[@"AppBridge"] = ^(NSString *action, NSDictionary *params) {
+        NSLog(@"action=%@ params=%@", action, params);
+    };
 }
 
 // jsCalloc
