@@ -20,29 +20,21 @@
 // https://wakeup.baidu.com/apple-app-site-association
 // 百度主板 universal link 配置：
 // https://boxer.baidu.com/apple-app-site-association
-// https://boxer2.baidu.com/apple-app-site-association
 
 // 百度极速版 universal link 地址：
 // https://wakeup.baidu.com/baiduboxlite/scheme
 // 百度主板 universal link 地址：
 // https://boxer.baidu.com/scheme
-// https://boxer2.baidu.com/scheme
 
 // 百度极速版 schema 头：baiduboxlite
 // 百度主板 schema 头：baiduboxapp
 
 // App Store 的 schema 和 universal link
 // schema：
-// itms-apps://itunes.apple.com/app/id382201985
-// itms-apps://apps.apple.com/app/id382201985
-
 // itms-apps://itunes.apple.com/cn/app/id382201985
 // itms-apps://apps.apple.com/cn/app/id382201985
 
 // universal link：
-// https://itunes.apple.com/app/id382201985
-// https://apps.apple.com/app/id382201985
-
 // https://itunes.apple.com/cn/app/id382201985
 // https://apps.apple.com/cn/app/id382201985
 
