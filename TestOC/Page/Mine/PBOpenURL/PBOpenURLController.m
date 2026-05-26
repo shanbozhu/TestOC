@@ -38,6 +38,9 @@
 // https://itunes.apple.com/cn/app/id382201985
 // https://apps.apple.com/cn/app/id382201985
 
+// 从 App Store 查询应用信息：
+// https://itunes.apple.com/lookup?id=1281873118
+
 #define schema_value @"https://itunes.apple.com/cn/app/id382201985"
 #define universal_link_value @"itms-apps://itunes.apple.com/cn/app/id382201985"
 
