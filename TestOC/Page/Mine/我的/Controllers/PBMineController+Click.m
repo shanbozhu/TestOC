@@ -14,6 +14,7 @@
 - (NSArray *)pageArr {
     return @[@"PBCommonController🐣",
              @"PBBusinessController🐣",
+             @"PBUniqueIdentifierController",
              @"PBOpenURLController",
              @"PBCSBSController",
              @"PBSwiftController",

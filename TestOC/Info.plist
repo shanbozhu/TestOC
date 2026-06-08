@@ -48,6 +48,8 @@
 	<string>应用想要访问您的位置</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>应用想要访问您的相册</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>应用需要获取广告标识符（IDFA）用于标识方案对比测试</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

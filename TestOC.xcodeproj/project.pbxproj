@@ -355,6 +355,16 @@
 		959236882F70D86D0086B733 /* PBHitTestParentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236872F70D86D0086B733 /* PBHitTestParentView.m */; };
 		959236B72FC1C89A0086B733 /* PBOpenURLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236B62FC1C89A0086B733 /* PBOpenURLController.m */; };
 		959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959350A82E16BD0E00B9F3A8 /* PBXMLController.m */; };
+		95973CB72FD6D12B00F94AEB /* PBUniqueIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */; };
+		95973CBA2FD6DC4C00F94AEB /* Schema 跳转区别.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */; };
+		95973CBC2FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */; };
+		95973CBC2FD6DF0600F94AEB /* Unique Identifier 区别.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */; };
+		95973CBD2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CBB2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m */; };
+		95973CBF2FD6D12C00F94AEB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CBE2FD6D12C00F94AEB /* AdSupport.framework */; };
+		95973CC12FD6D12C00F94AEB /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CC02FD6D12C00F94AEB /* AppTrackingTransparency.framework */; };
+		95973CC32FD6D12C00F94AEB /* DeviceCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CC22FD6D12C00F94AEB /* DeviceCheck.framework */; };
+		95973CC82FD6D12D00F94AEB /* PBDeviceCheckExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */; };
+		95973CC92FD6D12D00F94AEB /* PBDeviceCheckExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
@@ -1013,6 +1023,21 @@
 		959236B62FC1C89A0086B733 /* PBOpenURLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBOpenURLController.m; sourceTree = "<group>"; };
 		959350A72E16BD0E00B9F3A8 /* PBXMLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBXMLController.h; sourceTree = "<group>"; };
 		959350A82E16BD0E00B9F3A8 /* PBXMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBXMLController.m; sourceTree = "<group>"; };
+		95973CB52FD6D12B00F94AEB /* PBUniqueIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierController.h; sourceTree = "<group>"; };
+		95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierController.m; sourceTree = "<group>"; };
+		95973CB82FD6D12C00F94AEB /* PBUniqueIdentifierHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierHelper.h; sourceTree = "<group>"; };
+		95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierHelper.m; sourceTree = "<group>"; };
+		95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Schema 跳转区别.png"; sourceTree = "<group>"; };
+		95973CBA2FD6D12C00F94AEB /* PBUniqueIdentifierItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierItem.h; sourceTree = "<group>"; };
+		95973CBB2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierItem.m; sourceTree = "<group>"; };
+		95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Unique Identifier 区别.png"; sourceTree = "<group>"; };
+		95973CBE2FD6D12C00F94AEB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		95973CC02FD6D12C00F94AEB /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		95973CC22FD6D12C00F94AEB /* DeviceCheck.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceCheck.framework; path = System/Library/Frameworks/DeviceCheck.framework; sourceTree = SDKROOT; };
+		95973CC42FD6D12D00F94AEB /* PBDeviceCheckExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceCheckExample.h; sourceTree = "<group>"; };
+		95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceCheckExample.m; sourceTree = "<group>"; };
+		95973CC62FD6D12D00F94AEB /* PBDeviceCheckExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceCheckExampleController.h; sourceTree = "<group>"; };
+		95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceCheckExampleController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -1065,6 +1090,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95973CBF2FD6D12C00F94AEB /* AdSupport.framework in Frameworks */,
+				95973CC12FD6D12C00F94AEB /* AppTrackingTransparency.framework in Frameworks */,
+				95973CC32FD6D12C00F94AEB /* DeviceCheck.framework in Frameworks */,
 				95C8742B22E844CB002795D0 /* libxml2.2.tbd in Frameworks */,
 				1B9E29B619861A989645BE38 /* Pods_TestOC.framework in Frameworks */,
 			);
@@ -3193,6 +3221,7 @@
 			children = (
 				959236B52FC1C89A0086B733 /* PBOpenURLController.h */,
 				959236B62FC1C89A0086B733 /* PBOpenURLController.m */,
+				95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */,
 			);
 			path = PBOpenURL;
 			sourceTree = "<group>";
@@ -3204,6 +3233,24 @@
 				959350A82E16BD0E00B9F3A8 /* PBXMLController.m */,
 			);
 			path = PBXML;
+			sourceTree = "<group>";
+		};
+		95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */,
+				95973CB52FD6D12B00F94AEB /* PBUniqueIdentifierController.h */,
+				95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */,
+				95973CB82FD6D12C00F94AEB /* PBUniqueIdentifierHelper.h */,
+				95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */,
+				95973CBA2FD6D12C00F94AEB /* PBUniqueIdentifierItem.h */,
+				95973CBB2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m */,
+				95973CC42FD6D12D00F94AEB /* PBDeviceCheckExample.h */,
+				95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */,
+				95973CC62FD6D12D00F94AEB /* PBDeviceCheckExampleController.h */,
+				95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */,
+			);
+			path = PBUniqueIdentifier;
 			sourceTree = "<group>";
 		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
@@ -3277,6 +3324,9 @@
 		A3542F169BD13378E7ADD731 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95973CBE2FD6D12C00F94AEB /* AdSupport.framework */,
+				95973CC02FD6D12C00F94AEB /* AppTrackingTransparency.framework */,
+				95973CC22FD6D12C00F94AEB /* DeviceCheck.framework */,
 				5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */,
 				95C8742A22E844CA002795D0 /* libxml2.2.tbd */,
 				FD6E0082006C05F34C50E321 /* Pods_TestOC.framework */,
@@ -3376,6 +3426,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */,
 				959236B42FC1C8660086B733 /* PBOpenURL */,
 				9592367D2F70D7D70086B733 /* PBHitTest */,
 				953974882CDA382400EDF4C2 /* PBException */,
@@ -3526,6 +3577,7 @@
 				95FE672D2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png in Resources */,
 				5CCC116329CB040000F60C38 /* qrcode_righttop@2x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
+				95973CBC2FD6DF0600F94AEB /* Unique Identifier 区别.png in Resources */,
 				5CCC111D29CAF92900F60C38 /* PBActivityDetail.css in Resources */,
 				5CAA01B22C187E1B00F059C1 /* PBRegex.patch in Resources */,
 				5CCC111229CAF92900F60C38 /* pbimage_text.html in Resources */,
@@ -3556,6 +3608,7 @@
 				B0F04AB91F9E01BD00F69AC3 /* pbhome_sport_headerline@3x.png in Resources */,
 				952FF51B265E731100B0D7DA /* search_weather_voice_1_big.png in Resources */,
 				5CCC111729CAF92900F60C38 /* PBTestListView.xib in Resources */,
+				95973CBA2FD6DC4C00F94AEB /* Schema 跳转区别.png in Resources */,
 				5C2D0627280BFBFC00C775B3 /* pbyytext_pic.png in Resources */,
 				B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */,
 				952FF521265E732D00B0D7DA /* search_weather_voice_3_big.png in Resources */,
@@ -3733,6 +3786,11 @@
 				5C9883A2282616A000D3AEAD /* CLFullScreenLeftController.swift in Sources */,
 				5CCC113D29CB03DE00F60C38 /* PBAnnotationController.m in Sources */,
 				5CCC117029CB040000F60C38 /* PBQRCodeScanView.m in Sources */,
+				95973CB72FD6D12B00F94AEB /* PBUniqueIdentifierController.m in Sources */,
+				95973CBC2FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m in Sources */,
+				95973CBD2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m in Sources */,
+				95973CC82FD6D12D00F94AEB /* PBDeviceCheckExample.m in Sources */,
+				95973CC92FD6D12D00F94AEB /* PBDeviceCheckExampleController.m in Sources */,
 				B0F04ACE1F9E02A600F69AC3 /* PBList.m in Sources */,
 				9575998222FC2415009CA618 /* XPathQuery.m in Sources */,
 				5CCC10D529CAF87800F60C38 /* PBSeatSelectionController.m in Sources */,
