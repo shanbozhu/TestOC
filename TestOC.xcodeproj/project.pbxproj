@@ -362,6 +362,7 @@
 		95973CBD2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CBB2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m */; };
 		95973CBF2FD6D12C00F94AEB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CBE2FD6D12C00F94AEB /* AdSupport.framework */; };
 		95973CC12FD6D12C00F94AEB /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CC02FD6D12C00F94AEB /* AppTrackingTransparency.framework */; };
+		95973CC12FD99A0500F94AEB /* PBTmpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC02FD99A0500F94AEB /* PBTmpController.m */; };
 		95973CC32FD6D12C00F94AEB /* DeviceCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CC22FD6D12C00F94AEB /* DeviceCheck.framework */; };
 		95973CC82FD6D12D00F94AEB /* PBDeviceCheckExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */; };
 		95973CC92FD6D12D00F94AEB /* PBDeviceCheckExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */; };
@@ -1032,7 +1033,9 @@
 		95973CBB2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierItem.m; sourceTree = "<group>"; };
 		95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Unique Identifier 区别.png"; sourceTree = "<group>"; };
 		95973CBE2FD6D12C00F94AEB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		95973CBF2FD99A0500F94AEB /* PBTmpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTmpController.h; sourceTree = "<group>"; };
 		95973CC02FD6D12C00F94AEB /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		95973CC02FD99A0500F94AEB /* PBTmpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTmpController.m; sourceTree = "<group>"; };
 		95973CC22FD6D12C00F94AEB /* DeviceCheck.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceCheck.framework; path = System/Library/Frameworks/DeviceCheck.framework; sourceTree = SDKROOT; };
 		95973CC42FD6D12D00F94AEB /* PBDeviceCheckExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceCheckExample.h; sourceTree = "<group>"; };
 		95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceCheckExample.m; sourceTree = "<group>"; };
@@ -3253,6 +3256,15 @@
 			path = PBUniqueIdentifier;
 			sourceTree = "<group>";
 		};
+		95973CBE2FD999E900F94AEB /* PBTmp */ = {
+			isa = PBXGroup;
+			children = (
+				95973CBF2FD99A0500F94AEB /* PBTmpController.h */,
+				95973CC02FD99A0500F94AEB /* PBTmpController.m */,
+			);
+			path = PBTmp;
+			sourceTree = "<group>";
+		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
 			isa = PBXGroup;
 			children = (
@@ -3426,6 +3438,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				95973CBE2FD999E900F94AEB /* PBTmp */,
 				95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */,
 				959236B42FC1C8660086B733 /* PBOpenURL */,
 				9592367D2F70D7D70086B733 /* PBHitTest */,
@@ -3882,6 +3895,7 @@
 				5CCC112B29CAFB6800F60C38 /* PBBusinessController+Click.m in Sources */,
 				9575942C22F950EB009CA618 /* PBAVPlayerListController.m in Sources */,
 				9575998322FC2415009CA618 /* UITableView+FDTemplateLayoutCell.m in Sources */,
+				95973CC12FD99A0500F94AEB /* PBTmpController.m in Sources */,
 				5CF05323281A92230024B752 /* PBCycleCell.m in Sources */,
 				5C09498628142C60002CEBC2 /* PBCellHeightCollectionOneController.m in Sources */,
 				9575998E22FC2415009CA618 /* PBNavigationController.m in Sources */,
