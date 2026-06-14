@@ -6,7 +6,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 #ali_source 'alibaba-specs' # 集团内部仓库
 #ali_source 'alibaba-specs-mirror' # 官方镜像仓库
 
-use_frameworks!
+use_frameworks! # 将 Pod 引入的源码编译成 framework，默认为动态库
 platform :ios, '12.0'
 
 target "TestOC" do

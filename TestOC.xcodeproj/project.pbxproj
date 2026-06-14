@@ -366,6 +366,7 @@
 		95973CC32FD6D12C00F94AEB /* DeviceCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95973CC22FD6D12C00F94AEB /* DeviceCheck.framework */; };
 		95973CC82FD6D12D00F94AEB /* PBDeviceCheckExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */; };
 		95973CC92FD6D12D00F94AEB /* PBDeviceCheckExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */; };
+		95973CD82FDECAED00F94AEB /* Pod 架构.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CD72FDECAED00F94AEB /* Pod 架构.png */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
@@ -1041,6 +1042,7 @@
 		95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceCheckExample.m; sourceTree = "<group>"; };
 		95973CC62FD6D12D00F94AEB /* PBDeviceCheckExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceCheckExampleController.h; sourceTree = "<group>"; };
 		95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceCheckExampleController.m; sourceTree = "<group>"; };
+		95973CD72FDECAED00F94AEB /* Pod 架构.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pod 架构.png"; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -2417,6 +2419,7 @@
 		9516BDC124696A390070C282 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				95973CD72FDECAED00F94AEB /* Pod 架构.png */,
 				9516BDC224696A390070C282 /* AppDelegate.h */,
 				9516BDC424696A390070C282 /* AppDelegate.m */,
 				9516BDC324696A390070C282 /* AppDelegate+UniversalLink_URLSchema.h */,
@@ -3657,6 +3660,7 @@
 				5CCC10CD29CAF87700F60C38 /* pbseatselection_maoyan_logo.png in Resources */,
 				95FE67222E0BC8B9005DCDCE /* block为何使用copy修饰.png in Resources */,
 				9575940F22F92790009CA618 /* 冒泡排序.gif in Resources */,
+				95973CD82FDECAED00F94AEB /* Pod 架构.png in Resources */,
 				9575944B22F95120009CA618 /* PBRound.png in Resources */,
 				952FF53A265F3FC600B0D7DA /* commentgif_liked.gif in Resources */,
 				5CCC116D29CB040000F60C38 /* qrcode_flashlightopenimage@2x.png in Resources */,
