@@ -350,6 +350,7 @@
 		958378D522EACE2800AA39AF /* PBUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D122EACE2800AA39AF /* PBUIWebViewController.m */; };
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
+		958DDB6A2FE7A5E800C69BF4 /* PBAPortalPodController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958DDB692FE7A5E800C69BF4 /* PBAPortalPodController.m */; };
 		959236822F70D8070086B733 /* PBHitTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236812F70D8070086B733 /* PBHitTestController.m */; };
 		959236852F70D8250086B733 /* PBHitTestMyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236842F70D8250086B733 /* PBHitTestMyButton.m */; };
 		959236882F70D86D0086B733 /* PBHitTestParentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236872F70D86D0086B733 /* PBHitTestParentView.m */; };
@@ -1015,6 +1016,8 @@
 		958378D422EACE2800AA39AF /* PBUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUIWebViewController.h; sourceTree = "<group>"; };
 		958378D722EACE3C00AA39AF /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
+		958DDB682FE7A5E800C69BF4 /* PBAPortalPodController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAPortalPodController.h; sourceTree = "<group>"; };
+		958DDB692FE7A5E800C69BF4 /* PBAPortalPodController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAPortalPodController.m; sourceTree = "<group>"; };
 		959236802F70D8070086B733 /* PBHitTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestController.h; sourceTree = "<group>"; };
 		959236812F70D8070086B733 /* PBHitTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestController.m; sourceTree = "<group>"; };
 		959236832F70D8250086B733 /* PBHitTestMyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestMyButton.h; sourceTree = "<group>"; };
@@ -3209,6 +3212,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		958DDB672FE7A5CF00C69BF4 /* PBAPortalPod */ = {
+			isa = PBXGroup;
+			children = (
+				958DDB682FE7A5E800C69BF4 /* PBAPortalPodController.h */,
+				958DDB692FE7A5E800C69BF4 /* PBAPortalPodController.m */,
+			);
+			path = PBAPortalPod;
+			sourceTree = "<group>";
+		};
 		9592367D2F70D7D70086B733 /* PBHitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -3441,6 +3453,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				958DDB672FE7A5CF00C69BF4 /* PBAPortalPod */,
 				95973CBE2FD999E900F94AEB /* PBTmp */,
 				95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */,
 				959236B42FC1C8660086B733 /* PBOpenURL */,
@@ -3777,6 +3790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C354C4A2BDA304A00A14B95 /* PBRuntimeEightController+Debug.m in Sources */,
+				958DDB6A2FE7A5E800C69BF4 /* PBAPortalPodController.m in Sources */,
 				5C09497E2812C679002CEBC2 /* PBCellHeightThreeCell.m in Sources */,
 				957593F322F84F3B009CA618 /* PBGCDLockController.m in Sources */,
 				5C9883A6282616A000D3AEAD /* CLGCDTimer.swift in Sources */,
