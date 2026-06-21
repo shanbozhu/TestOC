@@ -6,13 +6,13 @@ draft: false
 
 [TOC]
 
-## 1、查看当前 Ruby 版本
+## 1. 查看当前 Ruby 版本
 
 `ruby --version`
 
 macOS 系统默认自带 ruby，无需安装。
 
-## 2、如果 Ruby 版本过低，可以使用 Homebrew 安装最新版 Ruby
+## 2. 如果 Ruby 版本过低，可以使用 Homebrew 安装最新版 Ruby
 
 `brew install ruby`
 
@@ -23,11 +23,11 @@ macOS 系统默认自带 ruby，无需安装。
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 ```
 
-## 3、查看当前 Ruby 镜像源
+## 3. 查看当前 Ruby 镜像源
 
 `sudo gem sources -l`
 
-## 4、更换 Ruby 镜像源
+## 4. 更换 Ruby 镜像源
 
 `sudo gem sources -l`
 
@@ -35,7 +35,7 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 `sudo gem sources -a https://mirrors.tuna.tsinghua.edu.cn/rubygems/`
 
-## 5、安装最新版 CocoaPods
+## 5. 安装最新版 CocoaPods
 
 `sudo gem install cocoapods`  
 `sudo gem install -n /usr/local/bin cocoapods`
@@ -44,53 +44,24 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 `pod --version`
 
-## 6、卸载 CocoaPods
+## 6. 卸载 CocoaPods
 
 `sudo gem uninstall cocoapods`
 
-## 7、Podfile 配置
+## 7. Podfile 缓存路径
 
-```ruby
-#source 'https://github.com/CocoaPods/Specs.git'
+```
+// 是什么： Pod 的规格说明书（Ruby 格式），告诉 CocoaPods 这个库叫什么、从哪下载、有哪些依赖、怎么集成。
+/Users/zhushanbo/.cocoapods/repos/gitcode-shanbozhu-pbaspec/PBHomeSDK/1.0.2-SNAPSHOT/PBHomeSDK.podspec
 
-# 因为墙的原因，替换为国内 Specs 镜像源
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+// 是什么： 上面那份 .podspec 被 CocoaPods 解析后缓存的 JSON 快照，方便下次直接用，不用重复解析 Ruby。
+/Users/zhushanbo/Library/Caches/CocoaPods/Pods/Specs/Release/PBHomeSDK/1.0.2-SNAPSHOT-bf849.podspec.json
 
-#ali_source 'alibaba-specs' # 集团内部仓库
-#ali_source 'alibaba-specs-mirror' # 官方镜像仓库
-
-platform :ios, '8.0'
-
-target "TestOC" do
-  pod 'YYText', '1.0.7'
-  pod 'YYModel', '1.0.4'
-  pod 'YYImage', '1.0.4'
-  pod 'YYWebImage', '1.0.5'
-  pod 'YYCache', '1.0.4'
-  
-  pod 'AFNetworking', '~> 2.6.3'
-  #pod 'AFNetworking', '2.6.3'
-  #pod 'AFNetworking', '~> 3.0'
-  
-  pod 'SocketRocket', '0.5.1'
-  
-  pod 'SDWebImage', '5.9.5'
-  pod 'SDWebImageFLPlugin', '0.4.0'
-  pod 'SDWebImageLottiePlugin', '0.2.0'
-  
-  pod 'Masonry', '~> 1.1.0'
-  pod 'FMDB', '~> 2.7.5'
-  pod 'MJRefresh', '3.5.0'
-  pod 'CocoaLumberjack', '3.6.2'
-  pod 'HMSegmentedControl', '1.5.6'
-  pod 'SDCycleScrollView', '1.82'
-  
-  # swift框架
-  pod 'SnapKit', '4.2.0'
-end
+// 是什么： 根据 podspec 里 s.source 从 Git 仓库下载并解压后的实际产物，也就是 SDK 本体。
+/Users/zhushanbo/Library/Caches/CocoaPods/Pods/Release/PBHomeSDK/1.0.2-SNAPSHOT-bf849/PBHomeSDK.framework
 ```
 
-## 8、Podfile 里的库版本配置
+## 8. Podfile 里的库版本配置
 
 ```
 # 取最新版本
@@ -110,7 +81,7 @@ pod 'MJRefresh', '<=3.1.12'
 pod 'MJRefresh', '<3.1.12'
 ```
 
-## 9、执行 pod install 命令安装依赖库
+## 9. 执行 pod install 命令安装依赖库
 
 ```
 # 安装依赖库
@@ -122,7 +93,7 @@ pod update
 pod repo list
 ```
 
-## 10、常见问题
+## 10. 常见问题
 
 ### 10.1 Mac 执行 pod install 命令出现错误 Couldn't determine repo type for URL
 
