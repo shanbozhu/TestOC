@@ -1,6 +1,6 @@
-# 私有仓库地址
+# 私有仓库
 source 'https://gitcode.com/shanbozhu/PBASpec.git'
-# 公共仓库地址
+# 公共仓库（trunk）
 source 'https://github.com/CocoaPods/Specs.git'
 
 # 因为墙的原因，替换为国内「公共仓库」镜像源
@@ -25,9 +25,9 @@ target "TestOC" do
   ##################################
   
   # 测试
-  pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源
-  pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源
-  pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源
+  pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源。私有仓库
+  pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源。私有仓库
+  pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源。公共仓库
 
   ##################################
   
