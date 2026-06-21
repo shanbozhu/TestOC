@@ -25,9 +25,9 @@ target "TestOC" do
   ##################################
   
   # 测试
-  pod 'PBHome', '1.0.2-SNAPSHOT' # 动态库，带资源
-  pod 'PBMine', '1.0.2-SNAPSHOT' # 静态库，带资源
-  pod 'PBNavigator', '1.0.2-SNAPSHOT' # 动态库，不带资源
+  pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源
+  pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源
+  pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源
 
   ##################################
   
