@@ -3712,12 +3712,14 @@
 				"${PODS_ROOT}/MentaVlionBaseSDK/MVBaseSDK.bundle",
 				"${PODS_ROOT}/MentaVlionGlobal/Resource/VlionGlobal.bundle",
 				"${PODS_ROOT}/PBHomeSDK/PBHomeSDK.framework/PBHomeSDK.bundle",
+				"${PODS_ROOT}/PBMineSDK/PBMineSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MVBaseSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VlionGlobal.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PBHomeSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PBMineSDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
