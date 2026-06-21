@@ -399,7 +399,6 @@
 
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
-		3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.debug.xcconfig"; sourceTree = "<group>"; };
 		5C07E66D2BCD56FC0049758D /* PBRuntimeZeroDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroDebugController.h; sourceTree = "<group>"; };
 		5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeZeroDebugController.m; sourceTree = "<group>"; };
 		5C09495B2812C5C3002CEBC2 /* PBCellHeightTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoController.h; sourceTree = "<group>"; };
@@ -786,7 +785,6 @@
 		5CF412372A5ED97F00BC690C /* iOS_YYText_render.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_YYText_render.png; sourceTree = "<group>"; };
 		5CF415672A5FC79400BC690C /* PBAttributedStringController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAttributedStringController.h; sourceTree = "<group>"; };
 		5CF415682A5FC79400BC690C /* PBAttributedStringController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAttributedStringController.m; sourceTree = "<group>"; };
-		7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestBundle/Pods-TestBundle.release.xcconfig"; sourceTree = "<group>"; };
 		95042B112E274A6F00B3120D /* JS自调用函数.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JS自调用函数.png"; sourceTree = "<group>"; };
 		950D2E802D958F230037BB7D /* PBHouseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHouseController.h; sourceTree = "<group>"; };
 		950D2E812D958F230037BB7D /* PBHouseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHouseController.m; sourceTree = "<group>"; };
@@ -3340,8 +3338,6 @@
 		9E83BB1D845B7E187EEAE3DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3D8AB0C83099555FDB3679B2 /* Pods-TestBundle.debug.xcconfig */,
-				7B15444BFF46E75EEFBA7A00 /* Pods-TestBundle.release.xcconfig */,
 				A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */,
 				0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */,
 			);
@@ -3711,13 +3707,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-TestOC/Pods-TestOC-resources.sh",
 				"${PODS_ROOT}/MentaVlionBaseSDK/MVBaseSDK.bundle",
 				"${PODS_ROOT}/MentaVlionGlobal/Resource/VlionGlobal.bundle",
-				"${PODS_ROOT}/PBHomeSDK/PBHomeSDK.framework/PBHomeSDK.bundle",
+				"${PODS_ROOT}/PBMineSDK/Resources/PBMineSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MVBaseSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VlionGlobal.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PBHomeSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PBMineSDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
