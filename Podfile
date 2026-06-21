@@ -25,9 +25,9 @@ target "TestOC" do
   ##################################
   
   # 测试
-  pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源。「私有仓库」
-  pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源。「私有仓库」
-  pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源。「公共仓库」
+  pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源。「私有仓库」二进制发布
+  pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源。「私有仓库」二进制发布
+  pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源。「公共仓库」源码发布
 
   ##################################
   
