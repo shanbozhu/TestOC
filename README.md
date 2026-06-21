@@ -37,7 +37,8 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 ## 5、安装最新版 CocoaPods
 
-`sudo gem install cocoapods`
+`sudo gem install cocoapods`  
+`sudo gem install -n /usr/local/bin cocoapods`
 
 查看 CocoaPods 版本号
 

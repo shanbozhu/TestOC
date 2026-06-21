@@ -1,20 +1,36 @@
+# 私有仓库地址
+source 'https://gitcode.com/shanbozhu/PBASpec.git'
+# 公共仓库地址
 source 'https://github.com/CocoaPods/Specs.git'
 
-# 因为墙的原因，替换为国内 Specs 镜像源
+# 因为墙的原因，替换为国内「公共仓库」镜像源
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
-
-#ali_source 'alibaba-specs' # 集团内部仓库
-#ali_source 'alibaba-specs-mirror' # 官方镜像仓库
 
 use_frameworks! # 将 Pod 引入的源码编译成 framework，默认为动态库
 platform :ios, '12.0'
 
 target "TestOC" do
-  #pod 'MentaBaseGlobal',          '1.0.27'
-  pod 'MentaMediationGlobal',     '1.0.27'
-  #pod 'MentaVlionGlobal',         '1.0.27'
-  pod 'MentaVlionGlobalAdapter',  '1.0.27'
+  # menta 海外版
+  pod 'MentaMediationGlobal',      '1.0.27'
+  pod 'MentaVlionGlobalAdapter',   '1.0.27'
+  pod 'MentaVlionGlobal',          '1.0.27'
+  pod 'MentaBaseGlobal',           '1.0.27'
+  
+  # menta 国内版
+  pod 'MentaUnifiedSDK',        '7.00.22'
+  pod 'MentaVlionAdapter',      '7.00.22'
+  pod 'MentaVlionSDK',          '7.00.22'
+  pod 'MentaVlionBaseSDK',      '7.00.22'
+  
+  ##################################
+  
+  # 测试
+  pod 'PBHome', '1.0.2-SNAPSHOT' # 动态库，带资源
+  pod 'PBMine', '1.0.2-SNAPSHOT' # 静态库，带资源
+  pod 'PBNavigator', '1.0.2-SNAPSHOT' # 动态库，不带资源
 
+  ##################################
+  
   pod 'YYText', '1.0.7'
   pod 'YYModel', '1.0.4'
   pod 'YYImage', '1.0.4'
@@ -44,9 +60,9 @@ end
 post_install do |installer|
   installer.generated_projects.each do |project|
     project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-         end
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      end
     end
   end
 
