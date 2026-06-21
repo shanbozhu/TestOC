@@ -3712,7 +3712,7 @@
 				"${PODS_ROOT}/MentaVlionBaseSDK/MVBaseSDK.bundle",
 				"${PODS_ROOT}/MentaVlionGlobal/Resource/VlionGlobal.bundle",
 				"${PODS_ROOT}/PBHomeSDK/PBHomeSDK.framework/PBHomeSDK.bundle",
-				"${PODS_ROOT}/PBMineSDK/PBMineSDK.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PBMineSDK/PBMineSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
