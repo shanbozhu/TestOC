@@ -351,6 +351,8 @@
 		958378D622EACE2800AA39AF /* PBWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D222EACE2800AA39AF /* PBWKWebViewController.m */; };
 		958378D922EACE3C00AA39AF /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958378D822EACE3C00AA39AF /* PBWebViewController.m */; };
 		958DDB6A2FE7A5E800C69BF4 /* PBAPortalPodController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958DDB692FE7A5E800C69BF4 /* PBAPortalPodController.m */; };
+		958DDB6D2FE81F0700C69BF4 /* 图片获取方案_动态库.png in Resources */ = {isa = PBXBuildFile; fileRef = 958DDB6B2FE81F0700C69BF4 /* 图片获取方案_动态库.png */; };
+		958DDB6E2FE81F0700C69BF4 /* 图片获取方案_静态库.png in Resources */ = {isa = PBXBuildFile; fileRef = 958DDB6C2FE81F0700C69BF4 /* 图片获取方案_静态库.png */; };
 		959236822F70D8070086B733 /* PBHitTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236812F70D8070086B733 /* PBHitTestController.m */; };
 		959236852F70D8250086B733 /* PBHitTestMyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236842F70D8250086B733 /* PBHitTestMyButton.m */; };
 		959236882F70D86D0086B733 /* PBHitTestParentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236872F70D86D0086B733 /* PBHitTestParentView.m */; };
@@ -1016,6 +1018,8 @@
 		958378D822EACE3C00AA39AF /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
 		958DDB682FE7A5E800C69BF4 /* PBAPortalPodController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAPortalPodController.h; sourceTree = "<group>"; };
 		958DDB692FE7A5E800C69BF4 /* PBAPortalPodController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAPortalPodController.m; sourceTree = "<group>"; };
+		958DDB6B2FE81F0700C69BF4 /* 图片获取方案_动态库.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片获取方案_动态库.png"; sourceTree = "<group>"; };
+		958DDB6C2FE81F0700C69BF4 /* 图片获取方案_静态库.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片获取方案_静态库.png"; sourceTree = "<group>"; };
 		959236802F70D8070086B733 /* PBHitTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestController.h; sourceTree = "<group>"; };
 		959236812F70D8070086B733 /* PBHitTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHitTestController.m; sourceTree = "<group>"; };
 		959236832F70D8250086B733 /* PBHitTestMyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHitTestMyButton.h; sourceTree = "<group>"; };
@@ -2421,6 +2425,8 @@
 			isa = PBXGroup;
 			children = (
 				95973CD72FDECAED00F94AEB /* Pod 架构.png */,
+				958DDB6B2FE81F0700C69BF4 /* 图片获取方案_动态库.png */,
+				958DDB6C2FE81F0700C69BF4 /* 图片获取方案_静态库.png */,
 				9516BDC224696A390070C282 /* AppDelegate.h */,
 				9516BDC424696A390070C282 /* AppDelegate.m */,
 				9516BDC324696A390070C282 /* AppDelegate+UniversalLink_URLSchema.h */,
@@ -3602,6 +3608,8 @@
 				95FE672D2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png in Resources */,
 				5CCC116329CB040000F60C38 /* qrcode_righttop@2x.png in Resources */,
 				952FF524265E733A00B0D7DA /* search_weather_voice_4_big.png in Resources */,
+				958DDB6D2FE81F0700C69BF4 /* 图片获取方案_动态库.png in Resources */,
+				958DDB6E2FE81F0700C69BF4 /* 图片获取方案_静态库.png in Resources */,
 				95973CBC2FD6DF0600F94AEB /* Unique Identifier 区别.png in Resources */,
 				5CCC111D29CAF92900F60C38 /* PBActivityDetail.css in Resources */,
 				5CAA01B22C187E1B00F059C1 /* PBRegex.patch in Resources */,
