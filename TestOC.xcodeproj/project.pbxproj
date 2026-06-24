@@ -370,6 +370,7 @@
 		95973CC82FD6D12D00F94AEB /* PBDeviceCheckExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC52FD6D12D00F94AEB /* PBDeviceCheckExample.m */; };
 		95973CC92FD6D12D00F94AEB /* PBDeviceCheckExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */; };
 		95973CD82FDECAED00F94AEB /* Pod 架构.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CD72FDECAED00F94AEB /* Pod 架构.png */; };
+		95B90E132FEC2DE4009819C5 /* PBBackgroundTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
@@ -1048,6 +1049,8 @@
 		95973CC62FD6D12D00F94AEB /* PBDeviceCheckExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceCheckExampleController.h; sourceTree = "<group>"; };
 		95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceCheckExampleController.m; sourceTree = "<group>"; };
 		95973CD72FDECAED00F94AEB /* Pod 架构.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pod 架构.png"; sourceTree = "<group>"; };
+		95B90E112FEC2DE4009819C5 /* PBBackgroundTaskController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBackgroundTaskController.h; sourceTree = "<group>"; };
+		95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBackgroundTaskController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -3284,6 +3287,15 @@
 			path = PBTmp;
 			sourceTree = "<group>";
 		};
+		95B90E102FEC2DB2009819C5 /* BackgroundTask */ = {
+			isa = PBXGroup;
+			children = (
+				95B90E112FEC2DE4009819C5 /* PBBackgroundTaskController.h */,
+				95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */,
+			);
+			path = BackgroundTask;
+			sourceTree = "<group>";
+		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
 			isa = PBXGroup;
 			children = (
@@ -3455,6 +3467,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				95B90E102FEC2DB2009819C5 /* BackgroundTask */,
 				958DDB672FE7A5CF00C69BF4 /* PBAPortalPod */,
 				95973CBE2FD999E900F94AEB /* PBTmp */,
 				95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */,
@@ -3909,6 +3922,7 @@
 				5CCC117229CB040000F60C38 /* PBQRCodeController.m in Sources */,
 				9575940322F9275C009CA618 /* PBAlgorithmController.m in Sources */,
 				B0F04AB41F9E01BD00F69AC3 /* PBHomeController.m in Sources */,
+				95B90E132FEC2DE4009819C5 /* PBBackgroundTaskController.m in Sources */,
 				5CCB746529B82E2E00853864 /* PBService.m in Sources */,
 				957593D622F84F20009CA618 /* PBGCDListSixController.m in Sources */,
 				5CCC10E829CAF89A00F60C38 /* PBCalendarView.m in Sources */,
