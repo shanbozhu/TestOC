@@ -67,7 +67,7 @@
             if (count == 0) {
                 dispatch_source_cancel(gcdTimer);
             }
-            NSLog(@"count = %d, [NSThread currentThread] = %@", count, [NSThread currentThread]);
+            NSLog(@"方式三：count = %d, [NSThread currentThread] = %@", count, [NSThread currentThread]);
             
             count--;
         });
@@ -87,11 +87,14 @@
 }
 
 - (void)timerClick:(NSTimer *)timer {
-    NSLog(@"timer添加到NSRunLoopCommonModes");
+    NSLog(@"方式二：timer添加到NSRunLoopCommonModes");
 }
 
 - (void)scheduledTimerClick:(NSTimer *)timer {
-    NSLog(@"timer添加到NSDefaultRunLoopMode");
+    NSLog(@"方式一：timer添加到NSDefaultRunLoopMode");
+    NSLog(@"state = %ld, backgroundTimeRemaining = %f",
+          (long)[UIApplication sharedApplication].applicationState,
+          [UIApplication sharedApplication].backgroundTimeRemaining);
 }
 
 - (void)dealloc {
