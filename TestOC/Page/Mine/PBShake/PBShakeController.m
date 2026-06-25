@@ -14,7 +14,14 @@
 @property (nonatomic, strong) UILabel *shakeTipLabel;
 @property (nonatomic, strong) UILabel *twistTipLabel;
 @property (nonatomic, strong) UILabel *resultLabel;
+@property (nonatomic, strong) UILabel *shakeThresholdLabel;
+@property (nonatomic, strong) UILabel *twistThresholdLabel;
+@property (nonatomic, strong) UILabel *cooldownLabel;
 @property (nonatomic, strong) CMMotionManager *motionManager;
+@property (nonatomic, assign) double shakeThreshold;
+@property (nonatomic, assign) double twistThreshold;
+@property (nonatomic, assign) NSTimeInterval triggerCooldown;
+@property (nonatomic, assign) NSTimeInterval lastShakeTriggerTime;
 @property (nonatomic, assign) NSTimeInterval lastTwistTriggerTime;
 
 @end
@@ -27,34 +34,56 @@
     self.title = @"Shake";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self setupUI];
     [self setupMotionManager];
+    [self setupDefaultParams];
+    [self setupUI];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self becomeFirstResponder];
+    [self startShakeMonitoring];
     [self startTwistMonitoring];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [self resignFirstResponder];
+    [self.motionManager stopAccelerometerUpdates];
     [self.motionManager stopGyroUpdates];
 }
 
 #pragma mark - Shake
 
-- (BOOL)canBecomeFirstResponder {
-    return YES;
+- (void)startShakeMonitoring {
+    if (self.motionManager.isAccelerometerActive || !self.motionManager.isAccelerometerAvailable) {
+        if (!self.motionManager.isAccelerometerAvailable) {
+            self.shakeTipLabel.text = @"摇一摇：当前设备不支持加速度计";
+        }
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf || error) {
+            return;
+        }
+        
+        [strongSelf detectShakeWithAccelerometerData:accelerometerData];
+    }];
 }
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    [super motionEnded:motion withEvent:event];
+- (void)detectShakeWithAccelerometerData:(CMAccelerometerData *)accelerometerData {
+    CMAcceleration acceleration = accelerometerData.acceleration;
+    double accelerationValue = sqrt(acceleration.x * acceleration.x +
+                                    acceleration.y * acceleration.y +
+                                    acceleration.z * acceleration.z);
     
-    if (motion == UIEventSubtypeMotionShake) {
+    NSTimeInterval currentTime = CACurrentMediaTime();
+    if (accelerationValue >= self.shakeThreshold &&
+        currentTime - self.lastShakeTriggerTime > self.triggerCooldown) {
+        self.lastShakeTriggerTime = currentTime;
         [self handleShakeAction];
     }
 }
@@ -68,7 +97,14 @@
 
 - (void)setupMotionManager {
     self.motionManager = [[CMMotionManager alloc] init];
-    self.motionManager.gyroUpdateInterval = 0.1;
+    self.motionManager.accelerometerUpdateInterval = 0.05;
+    self.motionManager.gyroUpdateInterval = 0.05;
+}
+
+- (void)setupDefaultParams {
+    self.shakeThreshold = 2.4;
+    self.twistThreshold = 4.5;
+    self.triggerCooldown = 1.0;
 }
 
 - (void)startTwistMonitoring {
@@ -92,12 +128,9 @@
 
 - (void)detectTwistWithGyroData:(CMGyroData *)gyroData {
     // rotationRate.z 表示手机绕屏幕垂直方向旋转，适合演示“扭一扭”。
-    static const double kTwistThreshold = 4.5;
-    static const NSTimeInterval kTwistCooldown = 1.0;
-    
     NSTimeInterval currentTime = CACurrentMediaTime();
-    if (fabs(gyroData.rotationRate.z) >= kTwistThreshold &&
-        currentTime - self.lastTwistTriggerTime > kTwistCooldown) {
+    if (fabs(gyroData.rotationRate.z) >= self.twistThreshold &&
+        currentTime - self.lastTwistTriggerTime > self.triggerCooldown) {
         self.lastTwistTriggerTime = currentTime;
         [self handleTwistAction];
     }
@@ -130,6 +163,33 @@
     self.resultLabel.layer.cornerRadius = 6.0;
     self.resultLabel.layer.masksToBounds = YES;
     [self.view addSubview:self.resultLabel];
+    
+    CGFloat top = CGRectGetMaxY(self.resultLabel.frame) + 30;
+    self.shakeThresholdLabel = [self labelWithText:nil];
+    top = [self addSliderWithTitleLabel:self.shakeThresholdLabel
+                                  value:self.shakeThreshold
+                               minValue:1.5
+                               maxValue:4.0
+                                    top:top
+                                  action:@selector(shakeThresholdSliderChanged:)];
+    
+    self.twistThresholdLabel = [self labelWithText:nil];
+    top = [self addSliderWithTitleLabel:self.twistThresholdLabel
+                                  value:self.twistThreshold
+                               minValue:2.0
+                               maxValue:8.0
+                                    top:top
+                                  action:@selector(twistThresholdSliderChanged:)];
+    
+    self.cooldownLabel = [self labelWithText:nil];
+    [self addSliderWithTitleLabel:self.cooldownLabel
+                            value:self.triggerCooldown
+                         minValue:0.3
+                         maxValue:2.0
+                              top:top
+                            action:@selector(cooldownSliderChanged:)];
+    
+    [self updateParamLabels];
 }
 
 - (UILabel *)labelWithText:(NSString *)text {
@@ -139,6 +199,50 @@
     label.font = [UIFont systemFontOfSize:16];
     label.numberOfLines = 0;
     return label;
+}
+
+- (CGFloat)addSliderWithTitleLabel:(UILabel *)titleLabel
+                             value:(CGFloat)value
+                          minValue:(CGFloat)minValue
+                          maxValue:(CGFloat)maxValue
+                               top:(CGFloat)top
+                             action:(SEL)action {
+    CGFloat left = 24;
+    CGFloat width = CGRectGetWidth(self.view.bounds) - left * 2;
+    
+    titleLabel.frame = CGRectMake(left, top, width, 24);
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:titleLabel];
+    
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(left, CGRectGetMaxY(titleLabel.frame) + 6, width, 32)];
+    slider.minimumValue = minValue;
+    slider.maximumValue = maxValue;
+    slider.value = value;
+    [slider addTarget:self action:action forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:slider];
+    
+    return CGRectGetMaxY(slider.frame) + 16;
+}
+
+- (void)shakeThresholdSliderChanged:(UISlider *)slider {
+    self.shakeThreshold = slider.value;
+    [self updateParamLabels];
+}
+
+- (void)twistThresholdSliderChanged:(UISlider *)slider {
+    self.twistThreshold = slider.value;
+    [self updateParamLabels];
+}
+
+- (void)cooldownSliderChanged:(UISlider *)slider {
+    self.triggerCooldown = slider.value;
+    [self updateParamLabels];
+}
+
+- (void)updateParamLabels {
+    self.shakeThresholdLabel.text = [NSString stringWithFormat:@"摇一摇阈值 %.2f，越小越灵敏", self.shakeThreshold];
+    self.twistThresholdLabel.text = [NSString stringWithFormat:@"扭一扭阈值 %.2f，越小越灵敏", self.twistThreshold];
+    self.cooldownLabel.text = [NSString stringWithFormat:@"触发间隔 %.2fs，越小越容易连续触发", self.triggerCooldown];
 }
 
 - (void)updateResultWithText:(NSString *)text {
