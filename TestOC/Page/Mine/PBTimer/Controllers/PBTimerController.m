@@ -14,6 +14,7 @@
 @property (nonatomic, weak) NSTimer *timer;
 @property (nonatomic, weak) NSTimer *scheduledTimer;
 @property (nonatomic, strong) dispatch_source_t gcdTimer;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 
 @end
 
@@ -30,10 +31,23 @@
     
     // 停止定时器
     dispatch_source_cancel(self.gcdTimer);
+    
+    [self endTemporaryBackgroundTask];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
     
     {
         // 方式一【不推荐】
@@ -76,6 +90,50 @@
     }
 }
 
+- (void)applicationDidEnterBackground:(NSNotification *)notification {
+    [self beginTemporaryBackgroundTask];
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *)notification {
+    [self endTemporaryBackgroundTask];
+}
+
+- (void)beginTemporaryBackgroundTask {
+    if (self.backgroundTaskIdentifier != UIBackgroundTaskInvalid) {
+        return;
+    }
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    __weak typeof(self) weakSelf = self;
+    self.backgroundTaskIdentifier = [application beginBackgroundTaskWithName:@"PBTimerControllerBackgroundTask"
+                                                           expirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) self = weakSelf;
+            NSLog(@"临时后台任务即将到期，结束后台任务");
+            [self endTemporaryBackgroundTask];
+        });
+    }];
+    
+    if (self.backgroundTaskIdentifier == UIBackgroundTaskInvalid) {
+        NSLog(@"申请临时后台任务失败");
+        return;
+    }
+    
+    NSLog(@"申请临时后台任务成功，backgroundTimeRemaining = %f", application.backgroundTimeRemaining);
+}
+
+- (void)endTemporaryBackgroundTask {
+    if (self.backgroundTaskIdentifier == UIBackgroundTaskInvalid) {
+        return;
+    }
+    
+    UIBackgroundTaskIdentifier taskIdentifier = self.backgroundTaskIdentifier;
+    self.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+    
+    [[UIApplication sharedApplication] endBackgroundTask:taskIdentifier];
+    NSLog(@"临时后台任务已结束");
+}
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     // 暂停定时器
     dispatch_suspend(self.gcdTimer);
@@ -98,6 +156,9 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self endTemporaryBackgroundTask];
+    
     NSLog(@"PBTimerController被释放了");
 }
 
