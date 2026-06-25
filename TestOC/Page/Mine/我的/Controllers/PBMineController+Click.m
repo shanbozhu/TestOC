@@ -15,6 +15,7 @@
     return @[@"PBCommonController🐣",
              @"PBBusinessController🐣",
              @"PBTmpController",
+             @"PBShakeController",
              @"PBBackgroundTaskController",
              @"PBAPortalPodController",
              @"PBUniqueIdentifierController",
