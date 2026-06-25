@@ -3287,13 +3287,13 @@
 			path = PBTmp;
 			sourceTree = "<group>";
 		};
-		95B90E102FEC2DB2009819C5 /* BackgroundTask */ = {
+		95B90E102FEC2DB2009819C5 /* PBBackgroundTask */ = {
 			isa = PBXGroup;
 			children = (
 				95B90E112FEC2DE4009819C5 /* PBBackgroundTaskController.h */,
 				95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */,
 			);
-			path = BackgroundTask;
+			path = PBBackgroundTask;
 			sourceTree = "<group>";
 		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
@@ -3467,7 +3467,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				95B90E102FEC2DB2009819C5 /* BackgroundTask */,
+				95B90E102FEC2DB2009819C5 /* PBBackgroundTask */,
 				958DDB672FE7A5CF00C69BF4 /* PBAPortalPod */,
 				95973CBE2FD999E900F94AEB /* PBTmp */,
 				95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */,
