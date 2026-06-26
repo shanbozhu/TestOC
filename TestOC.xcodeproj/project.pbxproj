@@ -372,6 +372,7 @@
 		95973CD82FDECAED00F94AEB /* Pod 架构.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CD72FDECAED00F94AEB /* Pod 架构.png */; };
 		95B90E132FEC2DE4009819C5 /* PBBackgroundTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */; };
 		95B90E1D2FED20A2009819C5 /* PBShakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1C2FED20A2009819C5 /* PBShakeController.m */; };
+		95B90E202FED3000009819C5 /* PBShakeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
@@ -1054,6 +1055,8 @@
 		95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBackgroundTaskController.m; sourceTree = "<group>"; };
 		95B90E1B2FED20A2009819C5 /* PBShakeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBShakeController.h; sourceTree = "<group>"; };
 		95B90E1C2FED20A2009819C5 /* PBShakeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeController.m; sourceTree = "<group>"; };
+		95B90E1E2FED3000009819C5 /* PBShakeTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBShakeTwoController.h; sourceTree = "<group>"; };
+		95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeTwoController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -3304,6 +3307,8 @@
 			children = (
 				95B90E1B2FED20A2009819C5 /* PBShakeController.h */,
 				95B90E1C2FED20A2009819C5 /* PBShakeController.m */,
+				95B90E1E2FED3000009819C5 /* PBShakeTwoController.h */,
+				95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */,
 			);
 			path = PBShake;
 			sourceTree = "<group>";
@@ -4030,6 +4035,7 @@
 				5CEBEAA62C1198320079CDDF /* UIWindow+BBACurrentVC.m in Sources */,
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				95B90E1D2FED20A2009819C5 /* PBShakeController.m in Sources */,
+				95B90E202FED3000009819C5 /* PBShakeTwoController.m in Sources */,
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,

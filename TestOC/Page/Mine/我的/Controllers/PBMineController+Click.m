@@ -16,6 +16,7 @@
              @"PBBusinessController🐣",
              @"PBTmpController",
              @"PBShakeController",
+             @"PBShakeTwoController",
              @"PBBackgroundTaskController",
              @"PBAPortalPodController",
              @"PBUniqueIdentifierController",
