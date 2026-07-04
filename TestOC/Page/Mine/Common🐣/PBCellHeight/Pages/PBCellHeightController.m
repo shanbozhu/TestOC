@@ -47,7 +47,7 @@
     if (!_objs) {
         _objs = @[
             @{
-                @"title": @"frame，子线程手动算高，viewModel",
+                @"title": @"frame，子线程传统手动算高，viewModel",
                 @"vc": @"PBCellHeightFiveController"
             },
             @{
@@ -115,6 +115,7 @@
     cell.textLabel.numberOfLines = 0;
     cell.detailTextLabel.text = self.objs[indexPath.row][@"vc"];
     cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.textColor = [UIColor blueColor];
     return cell;
 }
 
