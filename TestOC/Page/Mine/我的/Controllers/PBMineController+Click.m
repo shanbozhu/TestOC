@@ -37,7 +37,6 @@
              @"PBMemoryController",
              @"PBStorageController",
              @"PBGCDController",
-             @"PBAlgorithmController",
              @"PBAVPlayerListController",
              @"PBUniversalLinkController",
              @"PBRuntimeController",
