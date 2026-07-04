@@ -19,9 +19,9 @@
         
         [self setValuesForKeysWithDictionary:dict];
         
-        // required
+        // 必选
         self.fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
-        [self.fiveCellVM layoutInfoWithData:self]; // 在子线程，提前计算各控件frame。
+        [self.fiveCellVM layoutInfoWithData:self]; // 在子线程，提前计算好各控件的frame
     }
     return self;
 }

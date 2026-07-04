@@ -21,7 +21,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.tableView.estimatedRowHeight = 100; // required
+        self.tableView.estimatedRowHeight = 100; // 必选
     }
     return self;
 }

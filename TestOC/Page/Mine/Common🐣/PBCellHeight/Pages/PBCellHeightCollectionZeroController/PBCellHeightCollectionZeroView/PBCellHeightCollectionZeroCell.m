@@ -48,7 +48,7 @@
     self.lab.text = self.testListData.content;
     [self.lab sizeToFit];
     
-    // required
+    // 必选
     CGRect rect = self.frame;
     rect.size.width = imageWidth;
     rect.size.height = CGRectGetMaxY(self.lab.frame);

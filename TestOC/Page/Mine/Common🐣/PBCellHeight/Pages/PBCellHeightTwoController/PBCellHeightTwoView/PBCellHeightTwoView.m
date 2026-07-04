@@ -21,7 +21,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.tableView.estimatedRowHeight = 100; // required
+        self.tableView.estimatedRowHeight = 100; // 必选
     }
     return self;
 }
@@ -39,8 +39,8 @@
     return self.testList.data.count;
 }
 
-// zhutodo
-// optional 行高已经默认设置为 UITableViewAutomaticDimension
+// 可选
+// 行高已经默认设置为 UITableViewAutomaticDimension
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
     

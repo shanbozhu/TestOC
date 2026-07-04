@@ -17,7 +17,7 @@
 
 @implementation PBCellHeightOneCell
 
-// required
+// 必选
 - (CGSize)sizeThatFits:(CGSize)size {
     return CGSizeMake(size.width, CGRectGetMaxY(self.lab.frame) + 20);
 }

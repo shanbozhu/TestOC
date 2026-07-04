@@ -60,7 +60,7 @@
     return self.testList.data.count;
 }
 
-// required
+// 必选
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
     return testListData.fiveCellVM.cellHeight;

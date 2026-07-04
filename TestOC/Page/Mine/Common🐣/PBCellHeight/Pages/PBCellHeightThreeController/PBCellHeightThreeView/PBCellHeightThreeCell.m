@@ -33,7 +33,7 @@
             make.left.mas_equalTo(20);
             make.top.mas_equalTo(20);
             make.right.mas_equalTo(-20);
-            make.bottom.mas_equalTo(-20); // required
+            make.bottom.mas_equalTo(-20); // 必选
         }];
         lab.layer.borderColor = [UIColor redColor].CGColor;
         lab.layer.borderWidth = 1.1;

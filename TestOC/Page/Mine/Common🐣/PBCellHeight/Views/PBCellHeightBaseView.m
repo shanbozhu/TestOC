@@ -21,7 +21,7 @@
         [self addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.estimatedRowHeight = 0; // required
+        tableView.estimatedRowHeight = 0; // 必选
         if (@available(iOS 11.0, *)) {
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

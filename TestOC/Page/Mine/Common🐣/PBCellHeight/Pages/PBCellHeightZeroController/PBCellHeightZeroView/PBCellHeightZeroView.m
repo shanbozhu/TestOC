@@ -38,7 +38,7 @@
     return self.testList.data.count;
 }
 
-// required
+// 必选
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"[NSThread currentThread] = %@", [NSThread currentThread]);
     
