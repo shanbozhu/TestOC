@@ -39,23 +39,6 @@
     return self.testList.data.count;
 }
 
-// zhutodo
-//// optional 行高已经默认设置为 UITableViewAutomaticDimension
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
-//    
-//    if (!testListData.cellHeight) {
-//        return UITableViewAutomaticDimension;
-//    }
-//    return testListData.cellHeight;
-//}
-//
-//// optional
-//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
-//    testListData.cellHeight = cell.frame.size.height;
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightFourCell *cell = [PBCellHeightFourCell testListFourCellWithTableView:tableView];
     cell.testListData = self.testList.data[indexPath.row];
