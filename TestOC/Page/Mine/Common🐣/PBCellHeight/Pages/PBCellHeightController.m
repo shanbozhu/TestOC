@@ -37,41 +37,54 @@
 
 @interface PBCellHeightController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray *titleArr;
-@property (nonatomic, strong) NSArray *vcArr;
+@property (nonatomic, strong) NSArray *objs;
 
 @end
 
 @implementation PBCellHeightController
 
-- (NSArray *)titleArr {
-    if (!_titleArr) {
-        _titleArr = @[@"frame，子线程手动算高，viewModel",
-                      @"frame，手动算高，UITableViewCell",
-                      @"frame，手动算高，FDTemplateLayoutCell",
-                      @"frame，自动算高，UITableViewAutomaticDimension",
-                      @"autolayout，手动算高，FDTemplateLayoutCell",
-                      @"autolayout，自动算高，UITableViewAutomaticDimension",
-                      @"UICollectionView，frame，手动算高",
-                      @"UICollectionView，WaterfallLayout瀑布流",
-                      @"UICollectionView，Cycle无限轮播"];
+- (NSArray *)objs {
+    if (!_objs) {
+        _objs = @[
+            @{
+                @"title": @"frame，子线程手动算高，viewModel",
+                @"vc": @"PBCellHeightFiveController"
+            },
+            @{
+                @"title": @"frame，手动算高，UITableViewCell",
+                @"vc": @"PBCellHeightZeroController"
+            },
+            @{
+                @"title": @"frame，手动算高，FDTemplateLayoutCell",
+                @"vc": @"PBCellHeightOneController"
+            },
+            @{
+                @"title": @"frame，自动算高，UITableViewAutomaticDimension",
+                @"vc": @"PBCellHeightTwoController"
+            },
+            @{
+                @"title": @"autolayout，手动算高，FDTemplateLayoutCell",
+                @"vc": @"PBCellHeightThreeController"
+            },
+            @{
+                @"title": @"autolayout，自动算高，UITableViewAutomaticDimension",
+                @"vc": @"PBCellHeightFourController"
+            },
+            @{
+                @"title": @"UICollectionView，frame，手动算高",
+                @"vc": @"PBCellHeightCollectionZeroController"
+            },
+            @{
+                @"title": @"UICollectionView，WaterfallLayout瀑布流",
+                @"vc": @"PBCellHeightCollectionOneController"
+            },
+            @{
+                @"title": @"UICollectionView，Cycle无限轮播",
+                @"vc": @"PBCellHeightCollectionTwoController"
+            }
+        ];
     }
-    return _titleArr;
-}
-
-- (NSArray *)vcArr {
-    if (!_vcArr) {
-        _vcArr = @[@"PBCellHeightFiveController",
-                   @"PBCellHeightZeroController",
-                   @"PBCellHeightOneController",
-                   @"PBCellHeightTwoController",
-                   @"PBCellHeightThreeController",
-                   @"PBCellHeightFourController",
-                   @"PBCellHeightCollectionZeroController",
-                   @"PBCellHeightCollectionOneController",
-                   @"PBCellHeightCollectionTwoController"];
-    }
-    return _vcArr;
+    return _objs;
 }
 
 - (void)viewDidLoad {
@@ -81,7 +94,7 @@
     [self.view addSubview:tableView];
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.estimatedRowHeight = 0;
+    tableView.estimatedRowHeight = 100;
     tableView.tableFooterView = [UIView new];
 }
 
@@ -90,11 +103,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vcArr.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return self.objs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,15 +111,17 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = self.titleArr[indexPath.row];
-    cell.detailTextLabel.text = self.vcArr[indexPath.row];
+    cell.textLabel.text = self.objs[indexPath.row][@"title"];
+    cell.textLabel.numberOfLines = 0;
+    cell.detailTextLabel.text = self.objs[indexPath.row][@"vc"];
+    cell.detailTextLabel.numberOfLines = 0;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    Class aClass = NSClassFromString(self.objs[indexPath.row][@"vc"]);
     UIViewController *testListController = [[aClass alloc]init];
     
     [self.navigationController pushViewController:testListController animated:YES];
