@@ -55,20 +55,20 @@
                 @"vc": @"PBCellHeightZeroController"
             },
             @{
-                @"title": @"frame，手动算高，FDTemplateLayoutCell",
-                @"vc": @"PBCellHeightOneController"
-            },
-            @{
                 @"title": @"frame，自动算高，UITableViewAutomaticDimension",
                 @"vc": @"PBCellHeightTwoController"
             },
             @{
-                @"title": @"autolayout，手动算高，FDTemplateLayoutCell",
-                @"vc": @"PBCellHeightThreeController"
+                @"title": @"frame，手动算高，FDTemplateLayoutCell",
+                @"vc": @"PBCellHeightOneController"
             },
             @{
                 @"title": @"autolayout，自动算高，UITableViewAutomaticDimension",
                 @"vc": @"PBCellHeightFourController"
+            },
+            @{
+                @"title": @"autolayout，手动算高，FDTemplateLayoutCell",
+                @"vc": @"PBCellHeightThreeController"
             },
             @{
                 @"title": @"UICollectionView，frame，手动算高",
