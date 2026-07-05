@@ -59,13 +59,12 @@ static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCell
 
 - (void)setTestListData:(PBCellHeightZeroData *)testListData {
     _testListData = testListData;
-    [self fillTestListCell];
+    [self configWithViewModel:testListData];
 }
 
-- (void)fillTestListCell {
-    if (!self.testListData) {
-        return;
-    }
+#pragma mark - config
+
+- (void)configWithViewModel:(PBCellHeightZeroData *)testListData {
     //
     CGRect titleRect = [[self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTitleRect] CGRectValue];
     self.lab.frame = titleRect;
@@ -99,7 +98,8 @@ static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCell
     [testListData.layoutInfoMutDic setObject:@(ImageRect) forKey:kPBCellHeightFiveCellImageRect];
     
     // cellHeight
-    [testListData.layoutInfoMutDic setObject:@(CGRectGetMaxY(ImageRect) + 20) forKey:HEIGHT_Cell];
+    CGFloat cellHeight = CGRectGetMaxY(ImageRect) + 20;
+    [testListData.layoutInfoMutDic setObject:@(cellHeight) forKey:HEIGHT_Cell];
     testListData.layoutCalculated = YES;
 }
 
