@@ -55,7 +55,7 @@
                 @"vc": @"PBCellHeightZeroController"
             },
             @{
-                @"title": @"frame，自动算高，UITableViewAutomaticDimension",
+                @"title": @"frame，自动算高，estimatedRowHeight",
                 @"vc": @"PBCellHeightTwoController"
             },
             @{
@@ -63,7 +63,7 @@
                 @"vc": @"PBCellHeightOneController"
             },
             @{
-                @"title": @"autolayout，自动算高，UITableViewAutomaticDimension",
+                @"title": @"autolayout，自动算高，estimatedRowHeight",
                 @"vc": @"PBCellHeightFourController"
             },
             @{
