@@ -20,7 +20,7 @@
         
         [self setValuesForKeysWithDictionary:dict];
         
-        // 必选        
+        // 必选
         // 在子线程，提前计算好各控件的frame
         [PBCellHeightFiveCell calculateLayoutWithViewModel:self preferredSize:CGSizeZero];
     }
@@ -31,15 +31,18 @@
     
 }
 
+- (void)dealloc {
+    NSLog(@"PBCellHeightZeroData对象被释放了");
+}
+
+#pragma mark - getter
+
+// 必选
 - (NSMutableDictionary *)layoutInfoMutDic {
     if (!_layoutInfoMutDic) {
         _layoutInfoMutDic = [NSMutableDictionary dictionary];
     }
     return _layoutInfoMutDic;
-}
-
-- (void)dealloc {
-    NSLog(@"PBCellHeightZeroData对象被释放了");
 }
 
 @end

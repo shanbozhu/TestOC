@@ -16,8 +16,9 @@
 @property (nonatomic, assign) CGFloat cellHeight; // cell的高度
 @property (nonatomic, copy) NSString *content;
 
+// 必选
 // 布局信息
-@property (nonatomic ,strong) NSMutableDictionary *layoutInfoMutDic;
+@property (nonatomic, strong) NSMutableDictionary *layoutInfoMutDic;
 @property (nonatomic, assign) BOOL layoutCalculated;
 
 + (id)testListDataWithDict:(NSDictionary *)dict;
