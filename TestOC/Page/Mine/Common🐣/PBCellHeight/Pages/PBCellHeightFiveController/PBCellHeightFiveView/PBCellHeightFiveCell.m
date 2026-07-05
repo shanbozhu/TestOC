@@ -66,12 +66,12 @@ static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCell
 
 - (void)configWithViewModel:(PBCellHeightZeroData *)testListData {
     //
-    CGRect titleRect = [[self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTitleRect] CGRectValue];
+    CGRect titleRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTitleRect]);
     self.lab.frame = titleRect;
     self.lab.text = self.testListData.content;
     
     //
-    CGRect imageRect = [[self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellImageRect] CGRectValue];
+    CGRect imageRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellImageRect]);
     self.oneImageView.frame = imageRect;
 }
 
@@ -89,14 +89,14 @@ static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCell
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
     YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:attStr];
     CGRect titleRect = CGRectMake(20, 20, layout.textBoundingSize.width, layout.textBoundingSize.height);
-    [testListData.layoutInfoMutDic setValue:@(titleRect) forKey:kPBCellHeightFiveCellTitleRect];
+    [testListData.layoutInfoMutDic setValue:NSStringFromCGRect(titleRect) forKey:kPBCellHeightFiveCellTitleRect];
     
     // imageViewRect
-    CGRect ImageRect = CGRectMake(CGRectGetMinX(titleRect), CGRectGetMaxY(titleRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
-    [testListData.layoutInfoMutDic setObject:@(ImageRect) forKey:kPBCellHeightFiveCellImageRect];
+    CGRect imageRect = CGRectMake(CGRectGetMinX(titleRect), CGRectGetMaxY(titleRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
+    [testListData.layoutInfoMutDic setObject:NSStringFromCGRect(imageRect) forKey:kPBCellHeightFiveCellImageRect];
     
     // cellHeight
-    CGFloat cellHeight = CGRectGetMaxY(ImageRect) + 20;
+    CGFloat cellHeight = CGRectGetMaxY(imageRect) + 20;
     [testListData.layoutInfoMutDic setObject:@(cellHeight) forKey:HEIGHT_Cell];
     testListData.layoutCalculated = YES;
 }
