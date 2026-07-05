@@ -15,4 +15,6 @@
 
 + (id)testListFiveCellWithTableView:(UITableView *)tableView;
 
++ (void)calculateLayoutWithViewModel:(PBCellHeightZeroData *)testListData preferredSize:(CGSize)preferredSize;
+
 @end

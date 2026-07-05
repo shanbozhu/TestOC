@@ -7,6 +7,7 @@
 //
 
 #import "PBCellHeightZeroData.h"
+#import "PBCellHeightFiveCell.h"
 
 @implementation PBCellHeightZeroData
 
@@ -19,15 +20,22 @@
         
         [self setValuesForKeysWithDictionary:dict];
         
-        // 必选
-        self.fiveCellVM = [[PBCellHeightFiveCellVM alloc] init];
-        [self.fiveCellVM layoutInfoWithData:self]; // 在子线程，提前计算好各控件的frame
+        // 必选        
+        // 在子线程，提前计算好各控件的frame
+        [PBCellHeightFiveCell calculateLayoutWithViewModel:self preferredSize:CGSizeZero];
     }
     return self;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
+}
+
+- (NSMutableDictionary *)layoutInfoMutDic {
+    if (!_layoutInfoMutDic) {
+        _layoutInfoMutDic = [NSMutableDictionary dictionary];
+    }
+    return _layoutInfoMutDic;
 }
 
 - (void)dealloc {

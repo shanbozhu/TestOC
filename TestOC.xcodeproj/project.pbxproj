@@ -89,7 +89,6 @@
 		5C42E3DA284DF4830065F887 /* PBCellHeightFiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3D8284DF4830065F887 /* PBCellHeightFiveController.m */; };
 		5C42E3DD284DF56E0065F887 /* PBCellHeightFiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DB284DF56E0065F887 /* PBCellHeightFiveView.m */; };
 		5C42E3E0284DF5ED0065F887 /* PBCellHeightFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */; };
-		5C42E3E3284DFDC10065F887 /* PBCellHeightFiveCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */; };
 		5C464D19293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */; };
 		5C464D1B293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */; };
 		5C516ED32ABAE48F0052E52C /* PBPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C516ED22ABAE48F0052E52C /* PBPanGestureRecognizer.m */; };
@@ -559,8 +558,6 @@
 		5C42E3DC284DF56E0065F887 /* PBCellHeightFiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveView.h; sourceTree = "<group>"; };
 		5C42E3DE284DF5ED0065F887 /* PBCellHeightFiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveCell.m; sourceTree = "<group>"; };
 		5C42E3DF284DF5ED0065F887 /* PBCellHeightFiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveCell.h; sourceTree = "<group>"; };
-		5C42E3E1284DFDC10065F887 /* PBCellHeightFiveCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCellHeightFiveCellVM.h; sourceTree = "<group>"; };
-		5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCellHeightFiveCellVM.m; sourceTree = "<group>"; };
 		5C464D122939EBAF00BA6B3D /* libswiftCoreGraphics.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftCoreGraphics.tbd; path = usr/lib/swift/libswiftCoreGraphics.tbd; sourceTree = SDKROOT; };
 		5C464D18293DB9CB00BA6B3D /* qipao_right_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_right_normal_blue@3x.png"; sourceTree = "<group>"; };
 		5C464D1A293DBF4900BA6B3D /* qipao_up_normal_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qipao_up_normal_blue@3x.png"; sourceTree = "<group>"; };
@@ -1205,8 +1202,6 @@
 				5C2D059A280BFBFB00C775B3 /* PBCellHeightZero.m */,
 				5C2D0599280BFBFB00C775B3 /* PBCellHeightZeroData.h */,
 				5C2D059B280BFBFB00C775B3 /* PBCellHeightZeroData.m */,
-				5C42E3E1284DFDC10065F887 /* PBCellHeightFiveCellVM.h */,
-				5C42E3E2284DFDC10065F887 /* PBCellHeightFiveCellVM.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3944,7 +3939,6 @@
 				9575931422F81E7E009CA618 /* PBMemoryListMRC.m in Sources */,
 				5CCC10EA29CAF89A00F60C38 /* PBCalendar.m in Sources */,
 				5CCC10DA29CAF87800F60C38 /* PBSeatButton.m in Sources */,
-				5C42E3E3284DFDC10065F887 /* PBCellHeightFiveCellVM.m in Sources */,
 				5C6CDC662833D437007B484B /* PBMasonryTwoController.m in Sources */,
 				5C6CDC632833AB17007B484B /* PBMasonryOneController.m in Sources */,
 				5CEFE46C281031170073BC47 /* PBArrayDeleteController.m in Sources */,

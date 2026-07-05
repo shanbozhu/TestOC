@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "PBCellHeightFiveCellVM.h"
+
+#define HEIGHT_Cell              @"height_cell"
 
 @interface PBCellHeightZeroData : NSObject
 
 @property (nonatomic, assign) CGFloat cellHeight; // cell的高度
 @property (nonatomic, copy) NSString *content;
 
-@property (nonatomic, strong) PBCellHeightFiveCellVM *fiveCellVM;
+// 布局信息
+@property (nonatomic ,strong) NSMutableDictionary *layoutInfoMutDic;
+@property (nonatomic, assign) BOOL layoutCalculated;
 
 + (id)testListDataWithDict:(NSDictionary *)dict;
 

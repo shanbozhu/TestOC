@@ -10,7 +10,6 @@
 #import "PBCellHeightFiveView.h"
 #import "YYFPSLabel.h"
 #import "PBCellHeightZero.h"
-#import "PBCellHeightFiveCellVM.h"
 
 @interface PBCellHeightFiveController () <PBCellHeightFiveViewDelegate>
 

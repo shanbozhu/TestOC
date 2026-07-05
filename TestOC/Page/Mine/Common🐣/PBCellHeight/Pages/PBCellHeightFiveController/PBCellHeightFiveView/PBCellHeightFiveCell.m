@@ -10,6 +10,11 @@
 #import <YYText.h>
 #import <Masonry.h>
 
+static CGFloat const labFont = 15;
+
+static NSString * const kPBCellHeightFiveCellTitleRect = @"kPBCellHeightFiveCellTitleRect";
+static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCellImageRect";
+
 @interface PBCellHeightFiveCell ()
 
 @property (nonatomic, weak) YYLabel *lab;
@@ -18,6 +23,12 @@
 @end
 
 @implementation PBCellHeightFiveCell
+
+#pragma mark - init
+
+- (void)dealloc {
+    NSLog(@"PBCellHeightFiveCell对象被释放了");
+}
 
 + (instancetype)testListFiveCellWithTableView:(UITableView *)tableView {
     [tableView registerClass:[self class] forCellReuseIdentifier:@"PBCellHeightFiveCell"];
@@ -52,16 +63,44 @@
 }
 
 - (void)fillTestListCell {
+    if (!self.testListData) {
+        return;
+    }
     //
-    self.lab.frame = self.testListData.fiveCellVM.labRect;
+    CGRect titleRect = [[self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTitleRect] CGRectValue];
+    self.lab.frame = titleRect;
     self.lab.text = self.testListData.content;
     
     //
-    self.oneImageView.frame = self.testListData.fiveCellVM.imageViewRect;
+    CGRect imageRect = [[self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellImageRect] CGRectValue];
+    self.oneImageView.frame = imageRect;
 }
 
-- (void)dealloc {
-    NSLog(@"PBCellHeightFiveCell对象被释放了");
+#pragma mark - calculateLayout
+
++ (void)calculateLayoutWithViewModel:(PBCellHeightZeroData *)testListData preferredSize:(CGSize)preferredSize {
+    if (![testListData isKindOfClass:[PBCellHeightZeroData class]] ||
+        testListData.layoutCalculated) {
+        return;
+    }
+    
+    //
+    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
+    
+    // labRect
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:testListData.content];
+    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:attStr];
+    CGRect titleRect = CGRectMake(20, 20, layout.textBoundingSize.width, layout.textBoundingSize.height);
+    [testListData.layoutInfoMutDic setValue:@(titleRect) forKey:kPBCellHeightFiveCellTitleRect];
+    
+    // imageViewRect
+    CGRect ImageRect = CGRectMake(CGRectGetMinX(titleRect), CGRectGetMaxY(titleRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
+    [testListData.layoutInfoMutDic setObject:@(ImageRect) forKey:kPBCellHeightFiveCellImageRect];
+    
+    // cellHeight
+    [testListData.layoutInfoMutDic setObject:@(CGRectGetMaxY(ImageRect) + 20) forKey:HEIGHT_Cell];
+    testListData.layoutCalculated = YES;
 }
 
 @end

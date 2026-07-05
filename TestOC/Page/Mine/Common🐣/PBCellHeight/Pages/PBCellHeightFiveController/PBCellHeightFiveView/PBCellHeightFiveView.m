@@ -8,7 +8,6 @@
 
 #import "PBCellHeightFiveView.h"
 #import "PBCellHeightFiveCell.h"
-#import "PBCellHeightFiveCellVM.h"
 #import "PBRefresh.h"
 
 @interface PBCellHeightFiveView ()<UITableViewDelegate, UITableViewDataSource>
@@ -63,7 +62,8 @@
 // 必选
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
-    return testListData.fiveCellVM.cellHeight;
+    CGFloat cellHeight = [[testListData.layoutInfoMutDic valueForKey:HEIGHT_Cell] floatValue];
+    return cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
