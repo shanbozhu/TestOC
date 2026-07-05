@@ -111,7 +111,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = self.objs[indexPath.row][@"title"];
+    cell.textLabel.text = [NSString stringWithFormat:@"【%ld】%@", indexPath.row, self.objs[indexPath.row][@"title"]];
     cell.textLabel.numberOfLines = 0;
     cell.detailTextLabel.text = self.objs[indexPath.row][@"vc"];
     cell.detailTextLabel.numberOfLines = 0;

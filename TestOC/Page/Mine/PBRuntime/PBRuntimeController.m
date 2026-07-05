@@ -10,41 +10,54 @@
 
 @interface PBRuntimeController ()
 
-@property (nonatomic, strong) NSArray *titleArr;
-@property (nonatomic, strong) NSArray *vcArr;
+@property (nonatomic, strong) NSArray *objs;
 
 @end
 
 @implementation PBRuntimeController
 
-- (NSArray *)titleArr {
-    if (!_titleArr) {
-        _titleArr = @[@"hook方法(方法替换)",
-                      @"遍历当前工程的所有类/所有自定义类",
-                      @"遍历某类的属性/方法/成员变量/协议",
-                      @"遍历某视图的所有子视图",
-                      @"获取调用方法的堆栈",
-                      @"消息转发",
-                      @"方法调用",
-                      @"方法添加",
-                      @"属性添加"];
+- (NSArray *)objs {
+    if (!_objs) {
+        _objs = @[
+            @{
+                @"title": @"hook方法(方法替换)",
+                @"vc": @"PBRuntimeZeroController"
+            },
+            @{
+                @"title": @"遍历当前工程的所有类/所有自定义类",
+                @"vc": @"PBRuntimeOneController"
+            },
+            @{
+                @"title": @"遍历某类的属性/方法/成员变量/协议",
+                @"vc": @"PBRuntimeTwoController"
+            },
+            @{
+                @"title": @"遍历某视图的所有子视图",
+                @"vc": @"PBRuntimeThreeController"
+            },
+            @{
+                @"title": @"获取调用方法的堆栈",
+                @"vc": @"PBRuntimeFourController"
+            },
+            @{
+                @"title": @"消息转发",
+                @"vc": @"PBRuntimeFiveController"
+            },
+            @{
+                @"title": @"方法调用",
+                @"vc": @"PBRuntimeSixController"
+            },
+            @{
+                @"title": @"方法添加",
+                @"vc": @"PBRuntimeSevenController"
+            },
+            @{
+                @"title": @"属性添加",
+                @"vc": @"PBRuntimeEightController"
+            }
+        ];
     }
-    return _titleArr;
-}
-
-- (NSArray *)vcArr {
-    if (!_vcArr) {
-        _vcArr = @[@"PBRuntimeZeroController",
-                   @"PBRuntimeOneController",
-                   @"PBRuntimeTwoController",
-                   @"PBRuntimeThreeController",
-                   @"PBRuntimeFourController",
-                   @"PBRuntimeFiveController",
-                   @"PBRuntimeSixController",
-                   @"PBRuntimeSevenController",
-                   @"PBRuntimeEightController"];
-    }
-    return _vcArr;
+    return _objs;
 }
 
 - (void)viewDidLoad {
@@ -58,7 +71,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vcArr.count;
+    return self.objs.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,15 +83,17 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
-    cell.textLabel.text = self.titleArr[indexPath.row];
-    cell.detailTextLabel.text = self.vcArr[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"【%ld】%@", indexPath.row, self.objs[indexPath.row][@"title"]];
+    cell.detailTextLabel.text = self.objs[indexPath.row][@"vc"];
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.textColor = [UIColor blueColor];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Class aClass = NSClassFromString(self.vcArr[indexPath.row]);
+    Class aClass = NSClassFromString(self.objs[indexPath.row][@"vc"]);
     UIViewController *testListController = [[aClass alloc]init];
     
     [self.navigationController pushViewController:testListController animated:YES];
