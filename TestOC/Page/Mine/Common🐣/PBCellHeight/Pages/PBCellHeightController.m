@@ -47,7 +47,7 @@
     if (!_objs) {
         _objs = @[
             @{
-                @"title": @"frame，子线程传统手动算高，viewModel",
+                @"title": @"frame，传统手动算高，viewModel",
                 @"vc": @"PBCellHeightFiveController"
             },
             @{

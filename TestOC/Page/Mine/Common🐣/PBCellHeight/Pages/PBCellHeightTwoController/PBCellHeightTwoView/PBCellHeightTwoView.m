@@ -41,6 +41,7 @@
 
 // 可选
 // 行高已经默认设置为 UITableViewAutomaticDimension
+/**
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
     
@@ -49,6 +50,7 @@
     }
     return testListData.cellHeight;
 }
+ */
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightTwoCell *cell = [PBCellHeightTwoCell testListTwoCellWithTableView:tableView];
