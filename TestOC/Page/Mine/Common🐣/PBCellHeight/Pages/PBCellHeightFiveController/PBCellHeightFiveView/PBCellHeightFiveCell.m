@@ -10,10 +10,10 @@
 #import <YYText.h>
 #import <Masonry.h>
 
-static CGFloat const labFont = 15;
-
 static NSString * const kPBCellHeightFiveCellTitleRect = @"kPBCellHeightFiveCellTitleRect";
 static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCellImageRect";
+
+static CGFloat const labFont = 15;
 
 @interface PBCellHeightFiveCell ()
 
