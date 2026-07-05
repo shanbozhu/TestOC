@@ -83,10 +83,8 @@ static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCell
         return;
     }
     
-    //
-    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
-    
     // labRect
+    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:testListData.content];
     [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
     YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:attStr];
