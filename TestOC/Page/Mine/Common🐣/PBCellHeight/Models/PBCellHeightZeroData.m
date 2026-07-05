@@ -21,7 +21,7 @@
         [self setValuesForKeysWithDictionary:dict];
         
         // 必选
-        // 在子线程，提前计算好各控件的frame
+        // 在子线程，提前计算好各控件的 frame
         [PBCellHeightFiveCell calculateLayoutWithViewModel:self preferredSize:CGSizeZero];
     }
     return self;
