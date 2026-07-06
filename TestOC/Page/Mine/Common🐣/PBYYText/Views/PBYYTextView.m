@@ -7,7 +7,6 @@
 //
 
 #import "PBYYTextView.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 #import "PBYYTextCell.h"
 
 @interface PBYYTextView ()<UITableViewDelegate, UITableViewDataSource, PBYYTextCellDelegate>
@@ -30,7 +29,7 @@
         tableView.delaysContentTouches = NO; // required
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.estimatedRowHeight = 0;
+        tableView.estimatedRowHeight = 200;
     }
     return self;
 }
@@ -57,15 +56,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView registerClass:[PBYYTextCell class] forCellReuseIdentifier:@"PBYYTextCell"];
-    return [tableView fd_heightForCellWithIdentifier:@"PBYYTextCell" configuration:^(id cell) {
-        PBYYTextCell *tmpCell = cell;
-        tmpCell.testList = self.testList;
-        tmpCell.fd_enforceFrameLayout = YES;
-    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
