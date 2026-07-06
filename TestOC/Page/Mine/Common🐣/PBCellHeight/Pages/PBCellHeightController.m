@@ -59,12 +59,12 @@
                 @"vc": @"PBCellHeightTwoController"
             },
             @{
-                @"title": @"frame，手动算高，FDTemplateLayoutCell",
-                @"vc": @"PBCellHeightOneController"
-            },
-            @{
                 @"title": @"autolayout，自动算高，estimatedRowHeight",
                 @"vc": @"PBCellHeightFourController"
+            },
+            @{
+                @"title": @"frame，手动算高，FDTemplateLayoutCell",
+                @"vc": @"PBCellHeightOneController"
             },
             @{
                 @"title": @"autolayout，手动算高，FDTemplateLayoutCell",
