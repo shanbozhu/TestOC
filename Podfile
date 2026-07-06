@@ -53,6 +53,8 @@ target "TestOC" do
   pod 'HMSegmentedControl', '1.5.6'
   pod 'SDCycleScrollView', '1.82'
   
+  pod 'GalaceanEffects'
+  
   # swift框架
   pod 'SnapKit', '4.2.0'
 end

@@ -366,6 +366,7 @@
 		95B90E132FEC2DE4009819C5 /* PBBackgroundTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */; };
 		95B90E1D2FED20A2009819C5 /* PBShakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1C2FED20A2009819C5 /* PBShakeController.m */; };
 		95B90E202FED3000009819C5 /* PBShakeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */; };
+		95B90E2D2FF20ACF009819C5 /* PBPAGController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E2C2FF20ACF009819C5 /* PBPAGController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
 		95C1922726246FE40008FD14 /* PBSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C1922626246FE30008FD14 /* PBSyntax.m */; };
@@ -1039,6 +1040,8 @@
 		95B90E1C2FED20A2009819C5 /* PBShakeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeController.m; sourceTree = "<group>"; };
 		95B90E1E2FED3000009819C5 /* PBShakeTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBShakeTwoController.h; sourceTree = "<group>"; };
 		95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeTwoController.m; sourceTree = "<group>"; };
+		95B90E2B2FF20ACF009819C5 /* PBPAGController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBPAGController.h; sourceTree = "<group>"; };
+		95B90E2C2FF20ACF009819C5 /* PBPAGController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBPAGController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
 		95B988CD262052E8003DABFF /* PBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTabBarButton.m; sourceTree = "<group>"; };
 		95B988D0262054E4003DABFF /* PBTabBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButtonItem.h; sourceTree = "<group>"; };
@@ -3261,6 +3264,15 @@
 			path = PBShake;
 			sourceTree = "<group>";
 		};
+		95B90E2A2FF20A8D009819C5 /* PBPAG */ = {
+			isa = PBXGroup;
+			children = (
+				95B90E2B2FF20ACF009819C5 /* PBPAGController.h */,
+				95B90E2C2FF20ACF009819C5 /* PBPAGController.m */,
+			);
+			path = PBPAG;
+			sourceTree = "<group>";
+		};
 		95C1922426246FA00008FD14 /* PBSyntax */ = {
 			isa = PBXGroup;
 			children = (
@@ -3432,6 +3444,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				95B90E2A2FF20A8D009819C5 /* PBPAG */,
 				95B90E1A2FED208E009819C5 /* PBShake */,
 				95B90E102FEC2DB2009819C5 /* PBBackgroundTask */,
 				958DDB672FE7A5CF00C69BF4 /* PBAPortalPod */,
@@ -4020,6 +4033,7 @@
 				5C8EDCB52A792598008F00D8 /* PBSyntaxMidController.m in Sources */,
 				9575998D22FC2415009CA618 /* PBBaseController.m in Sources */,
 				5CCC111A29CAF92900F60C38 /* PBTestTwoEspressos.m in Sources */,
+				95B90E2D2FF20ACF009819C5 /* PBPAGController.m in Sources */,
 				95C1922726246FE40008FD14 /* PBSyntax.m in Sources */,
 				9575931322F81E7E009CA618 /* PBMemoryList.m in Sources */,
 				957593D222F84F20009CA618 /* PBGCDListEightController.m in Sources */,
