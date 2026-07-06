@@ -62,6 +62,7 @@
                 @"title": @"frame，手动算高，UITableViewCell",
                 @"vc": @"PBCellHeightZeroController"
             },
+            /** FDTemplateLayoutCell 先注释，停止使用！
             @{
                 @"title": @"frame，手动算高，FDTemplateLayoutCell",
                 @"vc": @"PBCellHeightOneController"
@@ -70,6 +71,7 @@
                 @"title": @"autolayout，手动算高，FDTemplateLayoutCell",
                 @"vc": @"PBCellHeightThreeController"
             },
+             */
             @{
                 @"title": @"UICollectionView，frame，手动算高",
                 @"vc": @"PBCellHeightCollectionZeroController"
