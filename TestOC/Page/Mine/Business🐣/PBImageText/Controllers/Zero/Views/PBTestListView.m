@@ -29,6 +29,8 @@
     self.tableView.dataSource = self;
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(show:) name:@"hhhh" object:nil];
+    self.tableView.estimatedRowHeight = 200;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)setTestZeroEspressos:(PBTestZeroEspressos *)testZeroEspressos {
@@ -42,26 +44,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.testZeroEspressos.pEle.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PBContentModel *contentModel = self.testZeroEspressos.pEle[indexPath.row];
-    
-    [tableView registerClass:[PBTestListCell class] forCellReuseIdentifier:@"PBTestListCell"];
-    if ([contentModel height] == 0) {
-        [self.testZeroEspressos.pEle[indexPath.row]setHeight:[tableView fd_heightForCellWithIdentifier:@"PBTestListCell" configuration:^(id cell) {
-            PBTestListCell *testListCell = cell;
-            testListCell.fd_enforceFrameLayout = YES;
-            
-            testListCell.contentModel = self.testZeroEspressos.pEle[indexPath.row];
-        }]];
-    }
-    
-    if (indexPath.row == self.testZeroEspressos.pEle.count-1) {
-        return [contentModel height] + 10;
-    } else {
-        return [contentModel height];
-    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
