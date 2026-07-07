@@ -24,25 +24,6 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     
-//    // Controller
-//    PBHomeController *vc0 = [[PBHomeController alloc] init];
-//    vc0.view.backgroundColor = [UIColor whiteColor];
-//    vc0.title = @"首页";
-//
-//    PBMineController *vc1 = [[PBMineController alloc] init];
-//    vc1.view.backgroundColor = [UIColor whiteColor];
-//    vc1.title = @"我的";
-//
-//    UITabBarController *tab = [[UITabBarController alloc] init];
-//    tab.viewControllers = @[vc0, vc1];
-//
-//    PBNavigationController *nav = [[PBNavigationController alloc] initWithRootViewController:tab];
-//    nav.navigationBar.barTintColor = [UIColor redColor];
-//
-//    //window.rootViewController
-//    self.window.rootViewController = nav;
-    
-    
     // Controller
     PBHomeController *vc1 = [[PBHomeController alloc] init];
     UINavigationController *nav1 = [[PBNavigationController alloc] initWithRootViewController:vc1];

@@ -3,60 +3,15 @@ source 'https://gitcode.com/shanbozhu/PBASpec.git'
 # 公共仓库（trunk）
 source 'https://github.com/CocoaPods/Specs.git'
 
-# 因为墙的原因，替换为国内「公共仓库」镜像源
-#source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
-
 use_frameworks! # 将 Pod 引入的源码编译成 framework，默认为动态库
 platform :ios, '12.0'
 
 target "TestOC" do
-  # menta 海外版
-  pod 'MentaMediationGlobal',      '1.0.27'
-  pod 'MentaVlionGlobalAdapter',   '1.0.27'
-  pod 'MentaVlionGlobal',          '1.0.27'
-  pod 'MentaBaseGlobal',           '1.0.27'
-  
   # menta 国内版
   pod 'MentaUnifiedSDK',        '7.00.22'
   pod 'MentaVlionAdapter',      '7.00.22'
   pod 'MentaVlionSDK',          '7.00.22'
   pod 'MentaVlionBaseSDK',      '7.00.22'
-  
-  ##################################
-  
-  # 测试
-  pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源。「私有仓库」二进制发布
-  pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源。「私有仓库」二进制发布
-  pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源。「公共仓库」源码发布
-
-  ##################################
-  
-  pod 'YYText', '1.0.7'
-  pod 'YYModel', '1.0.4'
-  pod 'YYImage', '1.0.4'
-  pod 'YYWebImage', '1.0.5'
-  pod 'YYCache', '1.0.4'
-  
-  pod 'AFNetworking', '~> 2.6.3'
-  #pod 'AFNetworking', '~> 3.0'
-  
-  pod 'SocketRocket', '0.5.1'
-  
-  pod 'SDWebImage', '5.9.5'
-  pod 'SDWebImageFLPlugin', '0.4.0'
-  pod 'SDWebImageLottiePlugin', '0.2.0'
-  
-  pod 'Masonry', '~> 1.1.0'
-  pod 'FMDB', '~> 2.7.5'
-  pod 'MJRefresh', '3.5.0'
-  pod 'CocoaLumberjack', '3.6.2'
-  pod 'HMSegmentedControl', '1.5.6'
-  pod 'SDCycleScrollView', '1.82'
-  
-  pod 'GalaceanEffects'
-  
-  # swift框架
-  pod 'SnapKit', '4.2.0'
 end
 
 post_install do |installer|
