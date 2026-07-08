@@ -10,13 +10,16 @@
 #import <QuartzCore/QuartzCore.h>
 
 NSNotificationName const PBScreenshotMonitorDidTakeScreenshotNotification = @"PBScreenshotMonitorDidTakeScreenshotNotification";
+NSNotificationName const PBScreenshotMonitorScreenCapturedDidChangeNotification = @"PBScreenshotMonitorScreenCapturedDidChangeNotification";
 NSString * const PBScreenshotMonitorScreenshotDateKey = @"PBScreenshotMonitorScreenshotDateKey";
 NSString * const PBScreenshotMonitorApplicationStateKey = @"PBScreenshotMonitorApplicationStateKey";
 NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorScreenshotImageKey";
+NSString * const PBScreenshotMonitorScreenCapturedKey = @"PBScreenshotMonitorScreenCapturedKey";
 
 @interface PBScreenshotMonitor ()
 
 @property (nonatomic, assign, getter=isMonitoring) BOOL monitoring;
+@property (nonatomic, assign, getter=isScreenCaptured) BOOL screenCaptured;
 @property (nonatomic, strong) UIImageView *screenshotPreviewImageView;
 
 @end
@@ -41,6 +44,14 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
                                              selector:@selector(userDidTakeScreenshot:)
                                                  name:UIApplicationUserDidTakeScreenshotNotification
                                                object:nil];
+    if (@available(iOS 11.0, *)) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(screenCapturedDidChange:)
+                                                     name:UIScreenCapturedDidChangeNotification
+                                                   object:nil];
+        self.screenCaptured = [UIScreen mainScreen].isCaptured;
+        NSLog(@"系统屏幕捕获初始状态，captured = %@", self.isScreenCaptured ? @"YES" : @"NO");
+    }
     self.monitoring = YES;
 }
 
@@ -52,6 +63,11 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationUserDidTakeScreenshotNotification
                                                   object:nil];
+    if (@available(iOS 11.0, *)) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIScreenCapturedDidChangeNotification
+                                                      object:nil];
+    }
     self.monitoring = NO;
 }
 
@@ -70,6 +86,30 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
     
     NSLog(@"监听到系统截图事件，date = %@, applicationState = %ld", date, (long)applicationState);
     [[NSNotificationCenter defaultCenter] postNotificationName:PBScreenshotMonitorDidTakeScreenshotNotification
+                                                        object:self
+                                                      userInfo:userInfo];
+}
+
+- (void)screenCapturedDidChange:(NSNotification *)notification {
+    if (@available(iOS 11.0, *)) {
+        self.screenCaptured = [UIScreen mainScreen].isCaptured;
+    } else {
+        self.screenCaptured = NO;
+    }
+    
+    NSDate *date = [NSDate date];
+    UIApplicationState applicationState = [UIApplication sharedApplication].applicationState;
+    NSDictionary *userInfo = @{
+        PBScreenshotMonitorScreenshotDateKey : date,
+        PBScreenshotMonitorApplicationStateKey : @(applicationState),
+        PBScreenshotMonitorScreenCapturedKey : @(self.isScreenCaptured)
+    };
+    
+    NSLog(@"监听到系统屏幕捕获状态变化，captured = %@, date = %@, applicationState = %ld",
+          self.isScreenCaptured ? @"YES" : @"NO",
+          date,
+          (long)applicationState);
+    [[NSNotificationCenter defaultCenter] postNotificationName:PBScreenshotMonitorScreenCapturedDidChangeNotification
                                                         object:self
                                                       userInfo:userInfo];
 }

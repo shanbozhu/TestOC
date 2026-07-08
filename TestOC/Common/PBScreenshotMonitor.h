@@ -12,13 +12,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSNotificationName const PBScreenshotMonitorDidTakeScreenshotNotification;
+FOUNDATION_EXPORT NSNotificationName const PBScreenshotMonitorScreenCapturedDidChangeNotification;
 FOUNDATION_EXPORT NSString * const PBScreenshotMonitorScreenshotDateKey;
 FOUNDATION_EXPORT NSString * const PBScreenshotMonitorApplicationStateKey;
 FOUNDATION_EXPORT NSString * const PBScreenshotMonitorScreenshotImageKey;
+FOUNDATION_EXPORT NSString * const PBScreenshotMonitorScreenCapturedKey;
 
 @interface PBScreenshotMonitor : NSObject
 
 @property (nonatomic, assign, readonly, getter=isMonitoring) BOOL monitoring;
+@property (nonatomic, assign, readonly, getter=isScreenCaptured) BOOL screenCaptured;
 
 + (instancetype)sharedMonitor;
 
