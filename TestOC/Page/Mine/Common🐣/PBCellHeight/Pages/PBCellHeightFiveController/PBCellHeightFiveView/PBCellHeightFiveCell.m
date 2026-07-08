@@ -77,7 +77,7 @@ static CGFloat const labFont = 15;
     //
     CGRect titleRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTitleRect]);
     self.lab.frame = titleRect;
-    self.lab.text = self.testListData.content;
+    self.lab.attributedText = [self.class titleText:testListData];
     
     //
     CGRect imageRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellImageRect]);
@@ -86,6 +86,14 @@ static CGFloat const labFont = 15;
     // twoImageView
     CGRect twoImageRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTwoImageView]);
     self.twoImageView.frame = twoImageRect;
+}
+
++ (NSMutableAttributedString *)titleText:(PBCellHeightZeroData *)testListData {
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:testListData.content];
+    //[attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
+    [attStr yy_setFont:[UIFont systemFontOfSize:labFont] range:attStr.yy_rangeOfAll];
+    [attStr yy_setLineSpacing:10 range:attStr.yy_rangeOfAll];
+    return attStr;
 }
 
 #pragma mark - calculateLayout
@@ -98,8 +106,7 @@ static CGFloat const labFont = 15;
     
     // labRect
     CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, CGFLOAT_MAX);
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:testListData.content];
-    [attStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labFont]} range:NSMakeRange(0, testListData.content.length)];
+    NSMutableAttributedString *attStr = [self titleText:testListData];
     YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:attStr];
     CGRect titleRect = CGRectMake(20, 20, layout.textBoundingSize.width, layout.textBoundingSize.height);
     [testListData.layoutInfoMutDic setValue:NSStringFromCGRect(titleRect) forKey:kPBCellHeightFiveCellTitleRect];
