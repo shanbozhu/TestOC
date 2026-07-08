@@ -12,6 +12,7 @@
 
 static NSString * const kPBCellHeightFiveCellTitleRect = @"kPBCellHeightFiveCellTitleRect";
 static NSString * const kPBCellHeightFiveCellImageRect = @"kPBCellHeightFiveCellImageRect";
+static NSString * const kPBCellHeightFiveCellTwoImageView = @"kPBCellHeightFiveCellTwoImageView";
 
 static CGFloat const labFont = 15;
 
@@ -19,6 +20,7 @@ static CGFloat const labFont = 15;
 
 @property (nonatomic, weak) YYLabel *lab;
 @property (nonatomic, weak) UIImageView *oneImageView;
+@property (nonatomic, weak) UIImageView *twoImageView;
 
 @end
 
@@ -53,6 +55,13 @@ static CGFloat const labFont = 15;
         [self.contentView addSubview:imageView];
         imageView.layer.borderColor = [UIColor redColor].CGColor;
         imageView.layer.borderWidth = 1.1;
+        
+        //
+        UIImageView *twoImageView = [[UIImageView alloc] init];
+        self.twoImageView = twoImageView;
+        [self.contentView addSubview:twoImageView];
+        twoImageView.layer.borderColor = [UIColor redColor].CGColor;
+        twoImageView.layer.borderWidth = 1.1;
     }
     return self;
 }
@@ -73,6 +82,10 @@ static CGFloat const labFont = 15;
     //
     CGRect imageRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellImageRect]);
     self.oneImageView.frame = imageRect;
+    
+    // twoImageView
+    CGRect twoImageRect = CGRectFromString([self.testListData.layoutInfoMutDic valueForKey:kPBCellHeightFiveCellTwoImageView]);
+    self.twoImageView.frame = twoImageRect;
 }
 
 #pragma mark - calculateLayout
@@ -94,6 +107,10 @@ static CGFloat const labFont = 15;
     // imageViewRect
     CGRect imageRect = CGRectMake(CGRectGetMinX(titleRect), CGRectGetMaxY(titleRect) + 10, 150, 50 * (1 + arc4random_uniform(3)));
     [testListData.layoutInfoMutDic setObject:NSStringFromCGRect(imageRect) forKey:kPBCellHeightFiveCellImageRect];
+    
+    // twoImageView
+    CGRect twoImageRect = CGRectMake(CGRectGetMaxX(imageRect) + 10, CGRectGetMinY(imageRect), 80, 30);
+    [testListData.layoutInfoMutDic setObject:NSStringFromCGRect(twoImageRect) forKey:kPBCellHeightFiveCellTwoImageView];
     
     // cellHeight
     CGFloat cellHeight = CGRectGetMaxY(imageRect) + 20;
