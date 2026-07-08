@@ -97,7 +97,7 @@ static CGFloat const labFont = 15;
     
     // cellHeight
     CGFloat cellHeight = CGRectGetMaxY(imageRect) + 20;
-    [testListData.layoutInfoMutDic setObject:@(cellHeight) forKey:HEIGHT_Cell];
+    [testListData.layoutInfoMutDic setObject:@(cellHeight) forKey:Cell_HEIGHT];
     testListData.layoutCalculated = YES;
 }
 

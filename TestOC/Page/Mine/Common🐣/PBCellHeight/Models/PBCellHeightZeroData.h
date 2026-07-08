@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define HEIGHT_Cell              @"height_cell"
+#define Cell_HEIGHT @"Cell_HEIGHT"
 
 @interface PBCellHeightZeroData : NSObject
 

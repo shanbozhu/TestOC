@@ -62,7 +62,7 @@
 // 必选
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PBCellHeightZeroData *testListData = self.testList.data[indexPath.row];
-    CGFloat cellHeight = [[testListData.layoutInfoMutDic valueForKey:HEIGHT_Cell] floatValue];
+    CGFloat cellHeight = [[testListData.layoutInfoMutDic valueForKey:Cell_HEIGHT] floatValue];
     return cellHeight;
 }
 
