@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "PBHomeController.h"
 #import "PBMineController.h"
+#import "PBScreenshotMonitor.h"
 
 
 @interface AppDelegate ()
@@ -67,6 +68,8 @@
     
     //window.rootViewController
     self.window.rootViewController = tab;
+    
+    [[PBScreenshotMonitor sharedMonitor] startMonitoring];
     
     return YES;
 }
