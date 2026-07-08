@@ -109,7 +109,8 @@ static CGFloat const labFont = 15;
     [testListData.layoutInfoMutDic setObject:NSStringFromCGRect(imageRect) forKey:kPBCellHeightFiveCellImageRect];
     
     // twoImageView
-    CGRect twoImageRect = CGRectMake(CGRectGetMaxX(imageRect) + 10, CGRectGetMinY(imageRect), 80, 30);
+    CGFloat twoImageHeight = 30;
+    CGRect twoImageRect = CGRectMake(CGRectGetMaxX(imageRect) + 10, CGRectGetMidY(imageRect) - twoImageHeight * 0.5, 80, twoImageHeight);
     [testListData.layoutInfoMutDic setObject:NSStringFromCGRect(twoImageRect) forKey:kPBCellHeightFiveCellTwoImageView];
     
     // cellHeight
