@@ -17,6 +17,7 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
 @interface PBScreenshotMonitor ()
 
 @property (nonatomic, assign, getter=isMonitoring) BOOL monitoring;
+@property (nonatomic, strong) UIImageView *screenshotPreviewImageView;
 
 @end
 
@@ -64,6 +65,7 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
     userInfo[PBScreenshotMonitorApplicationStateKey] = @(applicationState);
     if (snapshotImage) {
         userInfo[PBScreenshotMonitorScreenshotImageKey] = snapshotImage;
+        [self showScreenshotPreviewWithImage:snapshotImage];
     }
     
     NSLog(@"监听到系统截图事件，date = %@, applicationState = %ld", date, (long)applicationState);
@@ -78,8 +80,12 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
         return nil;
     }
     
+    BOOL previewHidden = self.screenshotPreviewImageView.isHidden;
+    self.screenshotPreviewImageView.hidden = YES;
+    
     CGSize size = window.bounds.size;
     if (CGSizeEqualToSize(size, CGSizeZero)) {
+        self.screenshotPreviewImageView.hidden = previewHidden;
         return nil;
     }
     
@@ -94,8 +100,77 @@ NSString * const PBScreenshotMonitorScreenshotImageKey = @"PBScreenshotMonitorSc
             [window.layer renderInContext:rendererContext.CGContext];
         }
     }];
+    self.screenshotPreviewImageView.hidden = previewHidden;
     
     return image;
+}
+
+- (void)showScreenshotPreviewWithImage:(UIImage *)image {
+    UIWindow *window = [self currentKeyWindow];
+    if (!window) {
+        return;
+    }
+    
+    UIImageView *imageView = self.screenshotPreviewImageView;
+    if (!imageView) {
+        imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        imageView.backgroundColor = [UIColor whiteColor];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView.layer.cornerRadius = 8.0;
+        imageView.layer.borderWidth = 2.0;
+        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+        imageView.layer.shadowOpacity = 0.25;
+        imageView.layer.shadowOffset = CGSizeMake(0, 2);
+        imageView.layer.shadowRadius = 8.0;
+        imageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideScreenshotPreview)];
+        [imageView addGestureRecognizer:tap];
+        
+        self.screenshotPreviewImageView = imageView;
+    }
+    
+    if (imageView.superview != window) {
+        [imageView removeFromSuperview];
+        [window addSubview:imageView];
+    }
+    
+    imageView.hidden = NO;
+    imageView.alpha = 1.0;
+    imageView.image = image;
+    imageView.frame = [self screenshotPreviewFrameInWindow:window imageSize:image.size];
+    [window bringSubviewToFront:imageView];
+}
+
+- (CGRect)screenshotPreviewFrameInWindow:(UIWindow *)window imageSize:(CGSize)imageSize {
+    CGFloat margin = 16.0;
+    UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
+    if (@available(iOS 11.0, *)) {
+        safeAreaInsets = window.safeAreaInsets;
+    }
+    
+    CGSize windowSize = window.bounds.size;
+    CGFloat maxWidth = MIN(120.0, windowSize.width * 0.32);
+    CGFloat maxHeight = MIN(220.0, windowSize.height * 0.24);
+    CGFloat imageRatio = imageSize.width > 0 ? imageSize.height / imageSize.width : 1.0;
+    CGFloat width = maxWidth;
+    CGFloat height = width * imageRatio;
+    
+    if (height > maxHeight) {
+        height = maxHeight;
+        width = height / MAX(imageRatio, 0.01);
+    }
+    
+    CGFloat x = windowSize.width - safeAreaInsets.right - margin - width;
+    CGFloat y = windowSize.height - safeAreaInsets.bottom - margin - height;
+    
+    return CGRectIntegral(CGRectMake(x, y, width, height));
+}
+
+- (void)hideScreenshotPreview {
+    self.screenshotPreviewImageView.hidden = YES;
 }
 
 - (nullable UIWindow *)currentKeyWindow {
