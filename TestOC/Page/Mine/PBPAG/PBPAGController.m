@@ -7,6 +7,7 @@
 //
 
 #import "PBPAGController.h"
+#import <libpag/libpag.h>
 #import <Lottie/LOTAnimationView.h>
 #import <objc/message.h>
 
@@ -21,11 +22,12 @@ static NSString * const kPBLottieLocalFileName = @"bubble_voicesearch_lottie";
 
 @end
 
-@interface PBPAGController ()
+@interface PBPAGController () <PAGViewListener, PAGImageViewListener>
 
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *galaceanPlayer;
-@property (nonatomic, strong) UIView *pagAnimationView;
+@property (nonatomic, strong) PAGView *pagView;
+@property (nonatomic, strong) PAGImageView *pagImageView;
 @property (nonatomic, strong) LOTAnimationView *lottieAnimationView;
 
 @end
@@ -50,7 +52,12 @@ static NSString * const kPBLottieLocalFileName = @"bubble_voicesearch_lottie";
     [self.galaceanPlayer pb_performSelectorIfExists:NSSelectorFromString(@"destroy") withObject:nil];
     self.galaceanPlayer = nil;
     
-    [self.pagAnimationView pb_performSelectorIfExists:NSSelectorFromString(@"stop") withObject:nil];
+    [self.pagView stop];
+    [self.pagView removeListener:self];
+    [self.pagView freeCache];
+    
+    [self.pagImageView pause];
+    [self.pagImageView removeListener:self];
     [self.lottieAnimationView stop];
 }
 
@@ -61,7 +68,7 @@ static NSString * const kPBLottieLocalFileName = @"bubble_voicesearch_lottie";
     self.scrollView = scrollView;
     [self.view addSubview:scrollView];
     scrollView.alwaysBounceVertical = YES;
-    scrollView.contentSize = CGSizeMake(APPLICATION_FRAME_WIDTH, 720);
+    scrollView.contentSize = CGSizeMake(APPLICATION_FRAME_WIDTH, 820);
     if (@available(iOS 11.0, *)) {
         scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
@@ -170,44 +177,79 @@ static NSString * const kPBLottieLocalFileName = @"bubble_voicesearch_lottie";
 #pragma mark - PAG
 
 - (void)addPAGDemo {
-    UIView *container = [self demoContainerWithTitle:@"PAG" frame:CGRectMake(16, 222, APPLICATION_FRAME_WIDTH - 32, 190)];
-    CGRect animationFrame = CGRectMake(16, 48, 128, 128);
+    UIView *container = [self demoContainerWithTitle:@"PAG" frame:CGRectMake(16, 222, APPLICATION_FRAME_WIDTH - 32, 290)];
+    CGRect pagViewFrame = CGRectMake(16, 48, 128, 128);
+    CGRect pagImageViewFrame = CGRectMake(16, 190, 72, 72);
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:kPBPAGLocalFileName ofType:@"pag"];
-    Class pagImageViewClass = NSClassFromString(@"PAGImageView");
-    Class pagViewClass = NSClassFromString(@"PAGView");
     
-    UIView *pagView = nil;
-    if (pagImageViewClass) {
-        pagView = [[pagImageViewClass alloc] initWithFrame:animationFrame];
-    } else if (pagViewClass) {
-        pagView = [[pagViewClass alloc] initWithFrame:animationFrame];
-    } else {
-        pagView = [[UIImageView alloc] initWithImage:[self placeholderImageWithText:@"PAG"]];
-        pagView.frame = animationFrame;
-    }
-    self.pagAnimationView = pagView;
+    PAGView *pagView = [[PAGView alloc] initWithFrame:pagViewFrame];
+    self.pagView = pagView;
     [container addSubview:pagView];
     pagView.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#111827" alpha:1.0];
+    pagView.contentMode = UIViewContentModeScaleAspectFit;
+    [pagView setRepeatCount:0];
+    [pagView setCacheEnabled:YES];
+    [pagView setUseDiskCache:YES];
+    [pagView setMaxFrameRate:60];
+    [pagView setScaleMode:PAGScaleModeZoom];
+    [pagView addListener:self];
     
-    NSString *tipText = @"API: PAGImageView/PAGView 初始化后 setPath: 传入 .pag 文件路径，再 play。Podfile 加入 libpag 后，这段运行时 Demo 会自动走真实 PAG View。";
-    if (!pagImageViewClass && !pagViewClass) {
-        tipText = @"当前工程未安装 libpag，无法编译期 import PAG 头文件。接入 pod 'libpag' 并放入 pb_pag_demo.pag 后，将使用 setPath/play 播放。";
-    } else if (filePath.length == 0) {
-        tipText = @"已检测到 PAG View 类，但未找到 pb_pag_demo.pag。请把 .pag 资源加入 main bundle。";
+    PAGImageView *pagImageView = [[PAGImageView alloc] initWithFrame:pagImageViewFrame];
+    self.pagImageView = pagImageView;
+    [container addSubview:pagImageView];
+    pagImageView.backgroundColor = [UIColor bba_RGBColorFromHexString:@"#111827" alpha:1.0];
+    pagImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [pagImageView setRepeatCount:0];
+    [pagImageView setRenderScale:0.75];
+    [pagImageView setCacheAllFramesInMemory:NO];
+    [pagImageView addListener:self];
+    
+    NSString *tipText = @"PAGView: setPath/setRepeatCount/play，适合实时渲染和交互；PAGImageView: setPath:maxFrameRate/play，适合列表、小尺寸 UI 动效和磁盘缓存。";
+    if (filePath.length == 0) {
+        UIImageView *placeholderView = [[UIImageView alloc] initWithImage:[self placeholderImageWithText:@"PAG"]];
+        [container addSubview:placeholderView];
+        placeholderView.frame = pagViewFrame;
+        pagView.hidden = YES;
+        tipText = @"libpag 已接入。请把导出的 pb_pag_demo.pag 加入 main bundle 后，PAGView 和 PAGImageView 会分别播放同一份 .pag 资源。";
     } else {
-        [pagView pb_performSelectorIfExists:NSSelectorFromString(@"setPath:") withObject:filePath];
-        [pagView pb_performSelectorIfExists:NSSelectorFromString(@"play") withObject:nil];
+        BOOL pagViewLoaded = [pagView setPath:filePath];
+        BOOL pagImageViewLoaded = [pagImageView setPath:filePath maxFrameRate:30];
+        if (pagViewLoaded) {
+            [pagView play];
+        }
+        if (pagImageViewLoaded) {
+            [pagImageView play];
+        }
+        tipText = [self pagInfoTextWithFilePath:filePath pagViewLoaded:pagViewLoaded pagImageViewLoaded:pagImageViewLoaded];
     }
     
-    UILabel *tipLabel = [self tipLabelWithText:tipText frame:CGRectMake(CGRectGetMaxX(animationFrame) + 16, 52, container.frame.size.width - CGRectGetMaxX(animationFrame) - 32, 104)];
+    UILabel *tipLabel = [self tipLabelWithText:tipText frame:CGRectMake(CGRectGetMaxX(pagViewFrame) + 16, 52, container.frame.size.width - CGRectGetMaxX(pagViewFrame) - 32, 190)];
     [container addSubview:tipLabel];
+}
+
+#pragma mark - PAGViewListener
+
+- (void)onAnimationStart:(id)pagView {
+    NSLog(@"PAG animation start: %@", NSStringFromClass([pagView class]));
+}
+
+- (void)onAnimationEnd:(id)pagView {
+    NSLog(@"PAG animation end: %@", NSStringFromClass([pagView class]));
+}
+
+- (void)onAnimationCancel:(id)pagView {
+    NSLog(@"PAG animation cancel: %@", NSStringFromClass([pagView class]));
+}
+
+- (void)onAnimationRepeat:(id)pagView {
+    NSLog(@"PAG animation repeat: %@", NSStringFromClass([pagView class]));
 }
 
 #pragma mark - Lottie
 
 - (void)addLottieDemo {
-    UIView *container = [self demoContainerWithTitle:@"Lottie" frame:CGRectMake(16, 428, APPLICATION_FRAME_WIDTH - 32, 190)];
+    UIView *container = [self demoContainerWithTitle:@"Lottie" frame:CGRectMake(16, 528, APPLICATION_FRAME_WIDTH - 32, 190)];
     CGRect animationFrame = CGRectMake(16, 48, 128, 128);
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:kPBLottieLocalFileName ofType:@"json"];
@@ -238,6 +280,24 @@ static NSString * const kPBLottieLocalFileName = @"bubble_voicesearch_lottie";
 }
 
 #pragma mark - Helpers
+
+- (NSString *)pagInfoTextWithFilePath:(NSString *)filePath pagViewLoaded:(BOOL)pagViewLoaded pagImageViewLoaded:(BOOL)pagImageViewLoaded {
+    PAGFile *pagFile = [PAGFile Load:filePath];
+    if (!pagFile) {
+        return @"PAG 文件加载失败，请确认 pb_pag_demo.pag 是有效文件。";
+    }
+    
+    CGFloat duration = [pagFile duration] / 1000000.0;
+    return [NSString stringWithFormat:@"PAGView: %@，PAGImageView: %@\n尺寸: %.0f x %.0f，时长: %.2fs\n可替换文本: %d，可替换图片: %d，视频层: %d",
+            pagViewLoaded ? @"播放中" : @"加载失败",
+            pagImageViewLoaded ? @"播放中" : @"加载失败",
+            [pagFile width],
+            [pagFile height],
+            duration,
+            [pagFile numTexts],
+            [pagFile numImages],
+            [pagFile numVideos]];
+}
 
 - (UIImage *)placeholderImageWithText:(NSString *)text {
     CGSize size = CGSizeMake(128, 128);
