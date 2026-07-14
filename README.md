@@ -48,7 +48,7 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 `sudo gem uninstall cocoapods`
 
-## 7. Podfile 缓存路径
+## 7. Pod 缓存路径
 
 ```
 // 是什么： Pod 的规格说明书（Ruby 格式），告诉 CocoaPods 这个库叫什么、从哪下载、有哪些依赖、怎么集成。

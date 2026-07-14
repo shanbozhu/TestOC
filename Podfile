@@ -54,6 +54,7 @@ target "TestOC" do
   pod 'SDCycleScrollView', '1.82'
   
   pod 'GalaceanEffects'
+  pod 'libpag'
   
   # swift框架
   pod 'SnapKit', '4.2.0'
