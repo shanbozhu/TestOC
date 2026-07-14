@@ -10,6 +10,7 @@
 #import "PBHomeController.h"
 #import "PBMineController.h"
 #import "PBScreenshotMonitor.h"
+#import "AppDelegate+Menta.h"
 
 
 @interface AppDelegate ()
@@ -70,6 +71,8 @@
     self.window.rootViewController = tab;
     
     [[PBScreenshotMonitor sharedMonitor] startMonitoring];
+    // 初始化Sdk
+    [self setUpMentaSDK];
     
     return YES;
 }
