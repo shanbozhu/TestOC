@@ -14,6 +14,8 @@
 - (NSArray *)pageArr {
     return @[@"PBCommonController🐣",
              @"PBBusinessController🐣",
+             @"DemoMUVidEarnViewController",
+             @"PBPAGController",
              @"PBTmpController",
              @"PBShakeController",
              @"PBShakeTwoController",
