@@ -9,7 +9,7 @@
 #import "PBOpenURLController.h"
 #import <SafariServices/SafariServices.h>
 
-@interface PBOpenURLController ()
+@interface PBOpenURLController () <SFSafariViewControllerDelegate>
 
 @end
 
@@ -36,6 +36,9 @@
 // App Store 的 schema
 #define appstore_schema @"itms-apps://itunes.apple.com/cn/app/id382201985"
 #define appstore_schema1 @"itms-apps://apps.apple.com/cn/app/id382201985"
+
+// SFSafariViewController 仅支持 HTTP/HTTPS URL
+#define safari_demo_url @"https://www.baidu.com"
 
 // 从 App Store 查询应用信息
 // https://itunes.apple.com/lookup?id=1281873118
@@ -84,6 +87,16 @@
     [uLinkBtn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     uLinkBtn2.titleLabel.font = [UIFont systemFontOfSize:12];
     [uLinkBtn2 addTarget:self action:@selector(uLinkBtnOnClick2:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton *safariBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:safariBtn];
+    safariBtn.frame = CGRectMake(50, 350, 250, 50);
+    safariBtn.layer.borderColor = [UIColor redColor].CGColor;
+    safariBtn.layer.borderWidth = 1.112;
+    [safariBtn setTitle:@"SFSafariViewController 打开网页" forState:UIControlStateNormal];
+    [safariBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    safariBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [safariBtn addTarget:self action:@selector(safariBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (BOOL)isInstalled:(NSURL *)schema {
@@ -164,6 +177,30 @@
 //    SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:appstore_universal_link]];
     SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:baiduboxapp_universal_link]];
     [self presentViewController:safariViewController animated:YES completion:nil];
+}
+
+- (void)safariBtnOnClick:(UIButton *)btn {
+    NSURL *URL = [NSURL URLWithString:safari_demo_url];
+    SFSafariViewControllerConfiguration *configuration = [[SFSafariViewControllerConfiguration alloc] init];
+    configuration.entersReaderIfAvailable = NO;
+    configuration.barCollapsingEnabled = YES;
+
+    SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:URL configuration:configuration];
+    safariViewController.delegate = self;
+    safariViewController.dismissButtonStyle = SFSafariViewControllerDismissButtonStyleClose;
+    safariViewController.preferredBarTintColor = [UIColor whiteColor];
+    safariViewController.preferredControlTintColor = [UIColor blueColor];
+    [self presentViewController:safariViewController animated:YES completion:nil];
+}
+
+#pragma mark - SFSafariViewControllerDelegate
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    NSLog(@"SFSafariViewController 已关闭");
+}
+
+- (void)safariViewController:(SFSafariViewController *)controller initialLoadDidRedirectToURL:(NSURL *)URL {
+    NSLog(@"SFSafariViewController 首次加载发生重定向：%@", URL.absoluteString);
 }
 
 @end
