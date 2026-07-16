@@ -17,10 +17,10 @@ target "TestOC" do
   pod 'MentaBaseGlobal',           '1.0.27'
   
   # menta 国内版
-  pod 'MentaUnifiedSDK',        '7.00.22'
-  pod 'MentaVlionAdapter',      '7.00.22'
-  pod 'MentaVlionSDK',          '7.00.22'
-  pod 'MentaVlionBaseSDK',      '7.00.22'
+  pod 'MentaUnifiedSDK',        '7.00.30'
+  pod 'MentaVlionAdapter',      '7.00.30'
+  pod 'MentaVlionSDK',          '7.00.30'
+  pod 'MentaVlionBaseSDK',      '7.00.30'
   
   ##################################
   
