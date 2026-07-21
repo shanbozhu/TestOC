@@ -49,9 +49,10 @@ target "TestOC" do
   pod 'Masonry', '~> 1.1.0'
   pod 'FMDB', '~> 2.7.5'
   pod 'MJRefresh', '3.5.0'
-  pod 'CocoaLumberjack', '3.6.2'
-  pod 'HMSegmentedControl', '1.5.6'
-  pod 'SDCycleScrollView', '1.82'
+  pod 'CocoaLumberjack', '~> 3.6.2'
+  pod 'HMSegmentedControl', '~> 1.5.6'
+  pod 'SDCycleScrollView', '~> 1.82'
+  pod 'CocoaDebug', '~> 1.7.7'
   
   pod 'GalaceanEffects'
   pod 'libpag'
