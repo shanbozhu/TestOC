@@ -17,10 +17,12 @@ target "TestOC" do
   pod 'MentaBaseGlobal',           '1.0.27'
   
   # menta 国内版
-  pod 'MentaUnifiedSDK',        '7.00.30'
-  pod 'MentaVlionAdapter',      '7.00.30'
-  pod 'MentaVlionSDK',          '7.00.30'
-  pod 'MentaVlionBaseSDK',      '7.00.30'
+  pod 'MentaUnifiedSDK',        '7.00.31'
+  pod 'MentaVlionAdapter',      '7.00.31'
+  pod 'MentaVlionSDK',          '7.00.31'
+  pod 'MentaVlionBaseSDK',      '7.00.31'
+  
+  pod 'ToBidMentaCNAdapter',    '7.01.02'
   
   ##################################
   
@@ -40,8 +42,6 @@ target "TestOC" do
   pod 'AFNetworking', '~> 2.6.3'
   #pod 'AFNetworking', '~> 3.0'
   
-  pod 'SocketRocket', '0.5.1'
-  
   pod 'SDWebImage', '5.9.5'
   pod 'SDWebImageFLPlugin', '0.4.0'
   pod 'SDWebImageLottiePlugin', '0.2.0'
@@ -52,6 +52,7 @@ target "TestOC" do
   pod 'CocoaLumberjack', '~> 3.6.2'
   pod 'HMSegmentedControl', '~> 1.5.6'
   pod 'SDCycleScrollView', '~> 1.82'
+  pod 'SocketRocket', '0.5.1'
   pod 'CocoaDebug', '~> 1.7.7'
   
   pod 'GalaceanEffects'
