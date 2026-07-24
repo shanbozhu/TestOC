@@ -69,16 +69,16 @@ pod 'MJRefresh',
 # 取 3.1.12
 pod 'MJRefresh', '3.1.12'
 # [3.1.12, 3.2.0)
-pod 'MJRefresh', '~>3.1.12'
+pod 'MJRefresh', '~> 3.1.12'
 
 # [3.1.12, ...)
-pod 'MJRefresh', '>=3.1.12'
+pod 'MJRefresh', '>= 3.1.12'
 # (3.1.12, ...)
-pod 'MJRefresh', '>3.1.12'
+pod 'MJRefresh', '> 3.1.12'
 # [0.0.0, 3.1.12]
-pod 'MJRefresh', '<=3.1.12'
+pod 'MJRefresh', '<= 3.1.12'
 # [0.0.0, 3.1.12)
-pod 'MJRefresh', '<3.1.12'
+pod 'MJRefresh', '< 3.1.12'
 ```
 
 ## 9. 执行 pod install 命令安装依赖库

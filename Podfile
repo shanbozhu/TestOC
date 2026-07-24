@@ -34,6 +34,7 @@ target "TestOC" do
   pod 'MentaWXminiAdapter',  '7.00.33'
   pod 'MentaWangMaiAdapter', '7.00.33'
   pod 'MentaZplayAdapter',   '7.00.33'
+  
   pod 'MentaFunLinkAdapter', '7.00.33'
   pod 'MentaJiaTouAdapter',  '7.00.33'
   pod 'MentaQimingAdapter',  '7.00.33'
