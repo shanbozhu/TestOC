@@ -11,10 +11,10 @@ platform :ios, '12.0'
 
 target "TestOC" do
   # menta 海外版
-  pod 'MentaMediationGlobal',      '1.0.27'
-  pod 'MentaVlionGlobalAdapter',   '1.0.27'
-  pod 'MentaVlionGlobal',          '1.0.27'
-  pod 'MentaBaseGlobal',           '1.0.27'
+  # pod 'MentaMediationGlobal',      '1.0.27'
+  # pod 'MentaVlionGlobalAdapter',   '1.0.27'
+  # pod 'MentaVlionGlobal',          '1.0.27'
+  # pod 'MentaBaseGlobal',           '1.0.27'
   
   # menta 国内版
   pod 'MentaUnifiedSDK',        '7.01.00'
