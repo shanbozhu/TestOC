@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //id a = @"1234wo";
+    id a = @"wo";
+    NSLog(@"----- %@", @(((NSString *)a).doubleValue));
+    NSLog(@"----- %@", @([(NSString *)a doubleValue]));
+    
     UIView *view = nil;
     NSLog(@"view.tag = %ld", view.tag);
     
