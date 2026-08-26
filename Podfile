@@ -17,27 +17,15 @@ target "TestOC" do
   pod 'MentaBaseGlobal',           '1.0.27'
   
   # menta 国内版
-  pod 'ToBidMentaCNAdapter',    '7.01.02'
-  
-  pod 'MentaUnifiedSDK',        '7.00.33'
-  pod 'MentaVlionBaseSDK',      '7.00.33'
-  pod 'MentaVlionSDK',          '7.00.33'
-  pod 'MentaVlionAdapter',      '7.00.33'
-  pod 'MentaVlionLiteAdapter',  '7.00.33'
-  
-  pod 'MentaJDYunAdapter',   '7.00.33'
-  pod 'MentaTanxAdapter',    '7.00.33'
-  pod 'MentaBaiduAdapter',   '7.00.33'
-  pod 'MentaGDTAdapter',     '7.00.33'
-  pod 'MentaCSJAdapter',     '7.00.33'
-  pod 'MentaKSAdapter',      '7.00.33'
-  pod 'MentaWXminiAdapter',  '7.00.33'
-  pod 'MentaWangMaiAdapter', '7.00.33'
-  pod 'MentaZplayAdapter',   '7.00.33'
-  
-  pod 'MentaFunLinkAdapter', '7.00.33'
-  pod 'MentaJiaTouAdapter',  '7.00.33'
-  pod 'MentaQimingAdapter',  '7.00.33'
+  pod 'MentaUnifiedSDK',        '7.01.00'
+  pod 'MentaVlionBaseSDK',      '7.01.00'
+  pod 'MentaVlionSDK',          '7.01.00'
+  pod 'MentaVlionAdapter',      '7.01.00'
+
+  pod 'MentaBaiduAdapter',      '7.01.00'
+  pod 'MentaGDTAdapter',        '7.01.00'
+  pod 'MentaCSJAdapter',        '7.01.00'
+  pod 'MentaKSAdapter',         '7.01.00'
   
   ##################################
   
