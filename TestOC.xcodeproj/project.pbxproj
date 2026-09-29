@@ -367,6 +367,7 @@
 		95B90E132FEC2DE4009819C5 /* PBBackgroundTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */; };
 		95B90E1D2FED20A2009819C5 /* PBShakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1C2FED20A2009819C5 /* PBShakeController.m */; };
 		95B90E202FED3000009819C5 /* PBShakeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */; };
+		95B90E232FED4000009819C5 /* PBShakeThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E222FED4000009819C5 /* PBShakeThreeController.m */; };
 		95B90E2D2FF20ACF009819C5 /* PBPAGController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E2C2FF20ACF009819C5 /* PBPAGController.m */; };
 		95B988CE262052E8003DABFF /* PBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988CD262052E8003DABFF /* PBTabBarButton.m */; };
 		95B988D2262054E4003DABFF /* PBTabBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B988D1262054E4003DABFF /* PBTabBarButtonItem.m */; };
@@ -1047,6 +1048,8 @@
 		95B90E1C2FED20A2009819C5 /* PBShakeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeController.m; sourceTree = "<group>"; };
 		95B90E1E2FED3000009819C5 /* PBShakeTwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBShakeTwoController.h; sourceTree = "<group>"; };
 		95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeTwoController.m; sourceTree = "<group>"; };
+		95B90E212FED4000009819C5 /* PBShakeThreeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBShakeThreeController.h; sourceTree = "<group>"; };
+		95B90E222FED4000009819C5 /* PBShakeThreeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBShakeThreeController.m; sourceTree = "<group>"; };
 		95B90E2B2FF20ACF009819C5 /* PBPAGController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBPAGController.h; sourceTree = "<group>"; };
 		95B90E2C2FF20ACF009819C5 /* PBPAGController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBPAGController.m; sourceTree = "<group>"; };
 		95B988CC262052E8003DABFF /* PBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTabBarButton.h; sourceTree = "<group>"; };
@@ -3279,6 +3282,8 @@
 				95B90E1C2FED20A2009819C5 /* PBShakeController.m */,
 				95B90E1E2FED3000009819C5 /* PBShakeTwoController.h */,
 				95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */,
+				95B90E212FED4000009819C5 /* PBShakeThreeController.h */,
+				95B90E222FED4000009819C5 /* PBShakeThreeController.m */,
 			);
 			path = PBShake;
 			sourceTree = "<group>";
@@ -4069,6 +4074,7 @@
 				957593F522F84F3B009CA618 /* PBGCDLockEightController.m in Sources */,
 				95B90E1D2FED20A2009819C5 /* PBShakeController.m in Sources */,
 				95B90E202FED3000009819C5 /* PBShakeTwoController.m in Sources */,
+				95B90E232FED4000009819C5 /* PBShakeThreeController.m in Sources */,
 				5C2D0645280BFBFC00C775B3 /* PBChannelContentCell.m in Sources */,
 				5C33FD822744DE9B00F6DDF0 /* PBCommonUIParams.m in Sources */,
 				5C9883AA282616A000D3AEAD /* CLPlayerContentPanelCell.swift in Sources */,

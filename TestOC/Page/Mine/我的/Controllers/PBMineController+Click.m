@@ -19,6 +19,7 @@
              @"PBTmpController",
              @"PBShakeController",
              @"PBShakeTwoController",
+             @"PBShakeThreeController",
              @"PBBackgroundTaskController",
              @"PBAPortalPodController",
              @"PBUniqueIdentifierController",
