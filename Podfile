@@ -3,6 +3,9 @@ source 'https://gitcode.com/shanbozhu/PBASpec.git'
 # 公共仓库（trunk）
 source 'https://github.com/CocoaPods/Specs.git'
 
+# 私有仓库
+source 'https://github.com/mentasdk/menta-specs.git'
+
 # 因为墙的原因，替换为国内「公共仓库」镜像源
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
@@ -17,15 +20,29 @@ target "TestOC" do
   # pod 'MentaBaseGlobal',           '1.0.27'
   
   # menta 国内版
-  pod 'MentaUnifiedSDK',        '~> 7.01.00'
-  pod 'MentaVlionBaseSDK',      '~> 7.01.00'
-  pod 'MentaVlionSDK',          '~> 7.01.00'
-  pod 'MentaVlionAdapter',      '~> 7.01.00'
-
-  pod 'MentaBaiduAdapter',      '~> 7.01.00'
-  pod 'MentaGDTAdapter',        '~> 7.01.00'
-  pod 'MentaCSJAdapter',        '~> 7.01.00'
-  pod 'MentaKSAdapter',         '~> 7.01.00'
+  pod 'ToBidMentaCNAdapter',    '7.04.03'
+  
+  pod 'MentaUnifiedSDK',        '7.04.03'
+  pod 'MentaVlionBaseSDK',      '7.04.03'
+  pod 'MentaVlionSDK',          '7.04.03'
+  pod 'MentaVlionAdapter',      '7.04.03'
+#  pod 'MentaVlionLiteAdapter',  '7.04.03'
+  
+  pod 'MentaBaiduAdapter',      '7.04.03'
+  pod 'MentaGDTAdapter',        '7.04.03'
+  pod 'MentaCSJAdapter',        '7.04.03'
+  pod 'MentaKSAdapter',         '7.04.03'
+  
+  # menta 国内版 私有仓库
+#  pod 'MentaUnifiedSDK',        '7.04.02-TEST'
+#  pod 'MentaVlionBaseSDK',      '7.04.02-TEST'
+#  pod 'MentaVlionSDK',          '7.04.02-TEST'
+#  pod 'MentaVlionAdapter',      '7.04.02-TEST'
+#  
+#  pod 'MentaBaiduAdapter',      '7.04.02-TEST'
+#  pod 'MentaGDTAdapter',        '7.04.02-TEST'
+#  pod 'MentaCSJAdapter',        '7.04.02-TEST'
+#  pod 'MentaKSAdapter',         '7.04.02-TEST'
   
   ##################################
   
@@ -33,7 +50,7 @@ target "TestOC" do
   pod 'PBHomeSDK', '1.0.2-SNAPSHOT' # 动态库，带资源。「私有仓库」二进制发布
   pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源。「私有仓库」二进制发布
   pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源。「公共仓库」源码发布
-
+  
   ##################################
   
   pod 'YYText', '1.0.7'

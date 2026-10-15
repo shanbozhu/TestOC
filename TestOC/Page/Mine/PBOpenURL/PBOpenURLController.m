@@ -8,8 +8,12 @@
 
 #import "PBOpenURLController.h"
 #import <SafariServices/SafariServices.h>
+#import <StoreKit/StoreKit.h>
 
-@interface PBOpenURLController () <SFSafariViewControllerDelegate>
+@interface PBOpenURLController () <SFSafariViewControllerDelegate, SKStoreProductViewControllerDelegate>
+
+// 在异步加载期间持有产品页，同时避免重复加载。
+@property (nonatomic, strong) SKStoreProductViewController *storeProductViewController;
 
 @end
 
@@ -36,6 +40,9 @@
 // App Store 的 schema
 #define appstore_schema @"itms-apps://itunes.apple.com/cn/app/id382201985"
 #define appstore_schema1 @"itms-apps://apps.apple.com/cn/app/id382201985"
+
+// StoreKit 使用 App 的数字 ID，而不是完整的 App Store URL
+#define appstore_item_identifier @382201985
 
 // SFSafariViewController 仅支持 HTTP/HTTPS URL
 #define safari_demo_url @"https://www.baidu.com"
@@ -97,6 +104,20 @@
     [safariBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     safariBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [safariBtn addTarget:self action:@selector(safariBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton *storeProductBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:storeProductBtn];
+    storeProductBtn.frame = CGRectMake(50, 450, 250, 50);
+    storeProductBtn.layer.borderColor = [UIColor redColor].CGColor;
+    storeProductBtn.layer.borderWidth = 1.112;
+    [storeProductBtn setTitle:@"SKStoreProductViewController\n打开「百度」下载页" forState:UIControlStateNormal];
+    [storeProductBtn setTitle:@"正在加载 App Store 页面…" forState:UIControlStateDisabled];
+    [storeProductBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [storeProductBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    storeProductBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    storeProductBtn.titleLabel.numberOfLines = 2;
+    storeProductBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [storeProductBtn addTarget:self action:@selector(storeProductBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (BOOL)isInstalled:(NSURL *)schema {
@@ -191,6 +212,61 @@
     safariViewController.preferredBarTintColor = [UIColor whiteColor];
     safariViewController.preferredControlTintColor = [UIColor blueColor];
     [self presentViewController:safariViewController animated:YES completion:nil];
+}
+
+- (void)storeProductBtnOnClick:(UIButton *)btn {
+    if (self.storeProductViewController || self.presentedViewController) {
+        return;
+    }
+
+    SKStoreProductViewController *storeViewController = [[SKStoreProductViewController alloc] init];
+    storeViewController.delegate = self;
+    storeViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.storeProductViewController = storeViewController;
+    btn.enabled = NO;
+
+    // 在当前 App 内展示产品页；实际下载仍需用户主动操作，建议在真机验证。
+    NSDictionary *parameters = @{
+        SKStoreProductParameterITunesItemIdentifier : appstore_item_identifier
+    };
+    __weak typeof(self) weakSelf = self;
+    [storeViewController loadProductWithParameters:parameters completionBlock:^(BOOL result, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            btn.enabled = YES;
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf) {
+                return;
+            }
+
+            SKStoreProductViewController *productViewController = strongSelf.storeProductViewController;
+            // 加载结束时，原页面可能已退出，或正在展示其他控制器。
+            if (!productViewController || !strongSelf.viewIfLoaded.window || strongSelf.presentedViewController) {
+                strongSelf.storeProductViewController = nil;
+                return;
+            }
+
+            if (result) {
+                [strongSelf presentViewController:productViewController animated:YES completion:nil];
+            } else {
+                strongSelf.storeProductViewController = nil;
+                NSLog(@"App Store 产品页加载失败：%@", error);
+                NSString *message = error.localizedDescription ?: @"暂时无法加载产品页，请稍后重试。";
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"加载失败" message:message preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+                [strongSelf presentViewController:alert animated:YES completion:nil];
+            }
+        });
+    }];
+}
+
+#pragma mark - SKStoreProductViewControllerDelegate
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    if (self.storeProductViewController == viewController) {
+        self.storeProductViewController = nil;
+    }
+    NSLog(@"App Store 产品页已关闭");
 }
 
 #pragma mark - SFSafariViewControllerDelegate
