@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B9E29B619861A989645BE38 /* Pods_TestOC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6E0082006C05F34C50E321 /* Pods_TestOC.framework */; };
+		25D580FC70BB411485FC1946 /* PBUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */; };
 		5C07E66F2BCD56FC0049758D /* PBRuntimeZeroDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */; };
 		5C0949632812C5C3002CEBC2 /* PBCellHeightFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09495F2812C5C3002CEBC2 /* PBCellHeightFourController.m */; };
 		5C0949642812C5C3002CEBC2 /* PBCellHeightTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949602812C5C3002CEBC2 /* PBCellHeightTwoController.m */; };
@@ -402,11 +403,13 @@
 		B0F04ADD1F9E1BC200F69AC3 /* PBListFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F04ADC1F9E1BC200F69AC3 /* PBListFourController.m */; };
 		C69976016AC64659A7BF7133 /* PBDeviceIdentityStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AB32CB99E437E8ABD9310 /* PBDeviceIdentityStorage.m */; };
 		DD05A90D75F8489D85DF2D4B /* PBDeviceIdentityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B20B1A9C8B4590911BACCD /* PBDeviceIdentityManager.m */; };
-		25D580FC70BB411485FC1946 /* PBUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
+		1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
+		400C95F470C2476E9E13EBCF /* PBUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
+		516F727154374F1BBF8AA836 /* PBDeviceIdentityStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityStorage.h; sourceTree = "<group>"; };
 		5C07E66D2BCD56FC0049758D /* PBRuntimeZeroDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroDebugController.h; sourceTree = "<group>"; };
 		5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeZeroDebugController.m; sourceTree = "<group>"; };
 		5C09495B2812C5C3002CEBC2 /* PBCellHeightTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoController.h; sourceTree = "<group>"; };
@@ -791,6 +794,8 @@
 		5CF412372A5ED97F00BC690C /* iOS_YYText_render.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_YYText_render.png; sourceTree = "<group>"; };
 		5CF415672A5FC79400BC690C /* PBAttributedStringController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAttributedStringController.h; sourceTree = "<group>"; };
 		5CF415682A5FC79400BC690C /* PBAttributedStringController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAttributedStringController.m; sourceTree = "<group>"; };
+		5F3099B59FA4452B910385A3 /* PBDeviceIdentityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityManager.h; sourceTree = "<group>"; };
+		7C4AB32CB99E437E8ABD9310 /* PBDeviceIdentityStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceIdentityStorage.m; sourceTree = "<group>"; };
 		95042B112E274A6F00B3120D /* JS自调用函数.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JS自调用函数.png"; sourceTree = "<group>"; };
 		950D2E802D958F230037BB7D /* PBHouseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHouseController.h; sourceTree = "<group>"; };
 		950D2E812D958F230037BB7D /* PBHouseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBHouseController.m; sourceTree = "<group>"; };
@@ -1107,14 +1112,9 @@
 		B0F04AD91F9E1BB600F69AC3 /* PBListThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListThreeController.m; sourceTree = "<group>"; };
 		B0F04ADB1F9E1BC200F69AC3 /* PBListFourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBListFourController.h; sourceTree = "<group>"; };
 		B0F04ADC1F9E1BC200F69AC3 /* PBListFourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBListFourController.m; sourceTree = "<group>"; };
-		FD6E0082006C05F34C50E321 /* Pods_TestOC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestOC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		516F727154374F1BBF8AA836 /* PBDeviceIdentityStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityStorage.h; sourceTree = "<group>"; };
-		7C4AB32CB99E437E8ABD9310 /* PBDeviceIdentityStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceIdentityStorage.m; sourceTree = "<group>"; };
-		5F3099B59FA4452B910385A3 /* PBDeviceIdentityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityManager.h; sourceTree = "<group>"; };
 		B1B20B1A9C8B4590911BACCD /* PBDeviceIdentityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDeviceIdentityManager.m; sourceTree = "<group>"; };
-		400C95F470C2476E9E13EBCF /* PBUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
-		1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
 		E7D69A63465C4D31A8853DB2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FD6E0082006C05F34C50E321 /* Pods_TestOC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestOC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3337,6 +3337,13 @@
 			path = PBUniqueDeviceIdentifier;
 			sourceTree = "<group>";
 		};
+		95CC6DDD3090778000577B2C /* PBCrossAppUniqueDeviceIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PBCrossAppUniqueDeviceIdentifier;
+			sourceTree = "<group>";
+		};
 		95D34B9026734DE90007A67D /* PBSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -3505,6 +3512,7 @@
 		B0F04AA61F9E01BD00F69AC3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				95CC6DDD3090778000577B2C /* PBCrossAppUniqueDeviceIdentifier */,
 				95F4697F300683A8008EFE2B /* PBMenta */,
 				95B90E2A2FF20A8D009819C5 /* PBPAG */,
 				95B90E1A2FED208E009819C5 /* PBShake */,
