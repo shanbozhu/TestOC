@@ -23,6 +23,7 @@
              @"PBBackgroundTaskController",
              @"PBAPortalPodController",
              @"PBUniqueIdentifierController",
+             @"PBUniqueDeviceIdentifierController",
              @"PBOpenURLController",
              @"PBCSBSController",
              @"PBSwiftController",
