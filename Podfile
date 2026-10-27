@@ -51,6 +51,9 @@ target "TestOC" do
   pod 'PBMineSDK', '1.0.2-SNAPSHOT' # 静态库，带资源。「私有仓库」二进制发布
   pod 'PBNavigatorSDK', '1.0.2-SNAPSHOT' # 动态库，不带资源。「公共仓库」源码发布
   
+  # 跨 App / 跨公司统一设备标识示例（本仓库源码）
+  pod 'PBCrossAppUniqueDeviceIdentifier', :path => './PBCrossAppUniqueDeviceIdentifier'
+  
   ##################################
   
   pod 'YYText', '1.0.7'

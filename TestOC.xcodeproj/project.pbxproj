@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B9E29B619861A989645BE38 /* Pods_TestOC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6E0082006C05F34C50E321 /* Pods_TestOC.framework */; };
 		25D580FC70BB411485FC1946 /* PBUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */; };
+		A7C0DE012E5B4F1A9B2C3D04 /* PBCrossAppUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */; };
 		5C07E66F2BCD56FC0049758D /* PBRuntimeZeroDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */; };
 		5C0949632812C5C3002CEBC2 /* PBCellHeightFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09495F2812C5C3002CEBC2 /* PBCellHeightFourController.m */; };
 		5C0949642812C5C3002CEBC2 /* PBCellHeightTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949602812C5C3002CEBC2 /* PBCellHeightTwoController.m */; };
@@ -408,6 +409,9 @@
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
 		1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D01 /* PBCrossAppUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCrossAppUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCrossAppUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D03 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		400C95F470C2476E9E13EBCF /* PBUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
 		516F727154374F1BBF8AA836 /* PBDeviceIdentityStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityStorage.h; sourceTree = "<group>"; };
 		5C07E66D2BCD56FC0049758D /* PBRuntimeZeroDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroDebugController.h; sourceTree = "<group>"; };
@@ -3340,6 +3344,9 @@
 		95CC6DDD3090778000577B2C /* PBCrossAppUniqueDeviceIdentifier */ = {
 			isa = PBXGroup;
 			children = (
+				A7C0DE012E5B4F1A9B2C3D01 /* PBCrossAppUniqueDeviceIdentifierController.h */,
+				A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */,
+				A7C0DE012E5B4F1A9B2C3D03 /* README.md */,
 			);
 			path = PBCrossAppUniqueDeviceIdentifier;
 			sourceTree = "<group>";
@@ -3810,6 +3817,7 @@
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PBCrossAppUniqueDeviceIdentifier/PBCrossAppUniqueDeviceIdentifier.framework",
 				"${PODS_ROOT}/PBHomeSDK/PBHomeSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/PBNavigatorSDK/PBNavigatorSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
@@ -3850,6 +3858,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBCrossAppUniqueDeviceIdentifier.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBHomeSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBNavigatorSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
@@ -3895,6 +3904,7 @@
 				C69976016AC64659A7BF7133 /* PBDeviceIdentityStorage.m in Sources */,
 				DD05A90D75F8489D85DF2D4B /* PBDeviceIdentityManager.m in Sources */,
 				25D580FC70BB411485FC1946 /* PBUniqueDeviceIdentifierController.m in Sources */,
+				A7C0DE012E5B4F1A9B2C3D04 /* PBCrossAppUniqueDeviceIdentifierController.m in Sources */,
 				5C354C4A2BDA304A00A14B95 /* PBRuntimeEightController+Debug.m in Sources */,
 				958DDB6A2FE7A5E800C69BF4 /* PBAPortalPodController.m in Sources */,
 				5C09497E2812C679002CEBC2 /* PBCellHeightThreeCell.m in Sources */,

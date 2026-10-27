@@ -24,6 +24,7 @@
              @"PBAPortalPodController",
              @"PBUniqueIdentifierController",
              @"PBUniqueDeviceIdentifierController",
+             @"PBCrossAppUniqueDeviceIdentifierController",
              @"PBOpenURLController",
              @"PBCSBSController",
              @"PBSwiftController",
