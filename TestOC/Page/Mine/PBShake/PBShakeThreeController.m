@@ -58,6 +58,7 @@ typedef NS_ENUM(NSInteger, PBHeadingSwingDirection) {
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) PBHeadingShakeConfig *config;
 
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *stateLabel;
 @property (nonatomic, strong) UILabel *headingLabel;
 @property (nonatomic, strong) UILabel *progressLabel;
@@ -120,41 +121,41 @@ typedef NS_ENUM(NSInteger, PBHeadingSwingDirection) {
     CGFloat left = 24.0;
     CGFloat width = CGRectGetWidth(self.view.bounds) - left * 2.0;
 
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    scrollView.alwaysBounceVertical = YES;
-    [self.view addSubview:scrollView];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.scrollView.alwaysBounceVertical = YES;
+    [self.view addSubview:self.scrollView];
 
     UILabel *titleLabel = [self labelWithText:@"方向替代方案：CLLocationManager + CLHeading"];
     titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
     titleLabel.frame = CGRectMake(left, 110.0, width, 28.0);
-    [scrollView addSubview:titleLabel];
+    [self.scrollView addSubview:titleLabel];
 
     UILabel *descriptionLabel = [self labelWithText:@"这里的“位置方向”是电子罗盘航向，不是 GPS 坐标。它通过短时间内多次左右反向旋转来模拟摇一摇，适合作为受限场景的降级方案，但不能识别纯平移晃动。"];
     descriptionLabel.frame = CGRectMake(left, CGRectGetMaxY(titleLabel.frame) + 8.0, width, 88.0);
-    [scrollView addSubview:descriptionLabel];
+    [self.scrollView addSubview:descriptionLabel];
 
     UIButton *startButton = [self buttonWithTitle:@"启动方向摇一摇识别"];
     startButton.frame = CGRectMake(left, CGRectGetMaxY(descriptionLabel.frame) + 16.0, width, 44.0);
     [startButton addTarget:self action:@selector(startHeadingDetection) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:startButton];
+    [self.scrollView addSubview:startButton];
 
     UIButton *stopButton = [self buttonWithTitle:@"停止检测"];
     stopButton.frame = CGRectMake(left, CGRectGetMaxY(startButton.frame) + 10.0, width, 44.0);
     [stopButton addTarget:self action:@selector(stopHeadingDetection) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:stopButton];
+    [self.scrollView addSubview:stopButton];
 
     self.stateLabel = [self labelWithText:@"状态：未启动"];
     self.stateLabel.frame = CGRectMake(left, CGRectGetMaxY(stopButton.frame) + 18.0, width, 24.0);
-    [scrollView addSubview:self.stateLabel];
+    [self.scrollView addSubview:self.stateLabel];
 
     self.headingLabel = [self labelWithText:@"航向：等待有效数据"];
     self.headingLabel.frame = CGRectMake(left, CGRectGetMaxY(self.stateLabel.frame) + 8.0, width, 44.0);
-    [scrollView addSubview:self.headingLabel];
+    [self.scrollView addSubview:self.headingLabel];
 
     self.progressLabel = [self labelWithText:@"识别进度：等待动作"];
     self.progressLabel.frame = CGRectMake(left, CGRectGetMaxY(self.headingLabel.frame) + 8.0, width, 72.0);
-    [scrollView addSubview:self.progressLabel];
+    [self.scrollView addSubview:self.progressLabel];
 
     self.resultLabel = [self labelWithText:@"触发结果：等待动作触发"];
     self.resultLabel.frame = CGRectMake(left, CGRectGetMaxY(self.progressLabel.frame) + 12.0, width, 100.0);
@@ -162,7 +163,7 @@ typedef NS_ENUM(NSInteger, PBHeadingSwingDirection) {
     self.resultLabel.layer.borderWidth = 1.0;
     self.resultLabel.layer.cornerRadius = 6.0;
     self.resultLabel.layer.masksToBounds = YES;
-    [scrollView addSubview:self.resultLabel];
+    [self.scrollView addSubview:self.resultLabel];
 
     UILabel *configLabel = [self labelWithText:[NSString stringWithFormat:@"当前参数\n单段摆动 >= %.1f 度，完成段数 >= %ld\n累计角度 >= %.1f 度，最长时间 %.1fs，空闲超时 %.2fs",
                                                 self.config.singleSwingThreshold,
@@ -171,9 +172,70 @@ typedef NS_ENUM(NSInteger, PBHeadingSwingDirection) {
                                                 self.config.maximumDuration,
                                                 self.config.idleTimeout]];
     configLabel.frame = CGRectMake(left, CGRectGetMaxY(self.resultLabel.frame) + 18.0, width, 96.0);
-    [scrollView addSubview:configLabel];
+    [self.scrollView addSubview:configLabel];
 
-    scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetMaxY(configLabel.frame) + 28.0);
+    CGFloat explanationBottom = [self addExplanationModuleAtTop:CGRectGetMaxY(configLabel.frame) + 20.0
+                                                            left:left
+                                                           width:width];
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), explanationBottom + 32.0);
+}
+
+- (CGFloat)addExplanationModuleAtTop:(CGFloat)top left:(CGFloat)left width:(CGFloat)width {
+    UIView *divider = [[UIView alloc] initWithFrame:CGRectMake(left, top, width, 1.0)];
+    divider.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
+    [self.scrollView addSubview:divider];
+
+    UILabel *titleLabel = [self labelWithText:@"功能说明"];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titleLabel.frame = CGRectMake(left, CGRectGetMaxY(divider.frame) + 20.0, width, 26.0);
+    [self.scrollView addSubview:titleLabel];
+
+    UILabel *hardwareTitleLabel = [self explanationTitleLabelWithText:@"使用的手机硬件"];
+    hardwareTitleLabel.frame = CGRectMake(left, CGRectGetMaxY(titleLabel.frame) + 16.0, width, 22.0);
+    [self.scrollView addSubview:hardwareTitleLabel];
+
+    NSString *hardwareText = @"方向摇一摇：主要使用电子罗盘（磁力计），通过 CLHeading.magneticHeading 获取手机顶部相对磁北的方向角。iOS 可以使用其他运动传感器辅助修正航向，但当前代码只直接消费 CLHeading 数据。\n\n扭一扭：当前页面没有独立的“扭一扭”功能或触发方法。用户在方向摇一摇中做的顺时针、逆时针旋转动作类似“扭”，它同样是通过电子罗盘航向变化识别的。\n\n注意：本页没有读取 GPS 经纬度；由于 CLLocationManager 的航向服务属于 Core Location，启动时仍需要定位权限。";
+    UILabel *hardwareBodyLabel = [self explanationBodyLabelWithText:hardwareText];
+    hardwareBodyLabel.frame = CGRectMake(left,
+                                         CGRectGetMaxY(hardwareTitleLabel.frame) + 8.0,
+                                         width,
+                                         [self heightForExplanationText:hardwareText width:width]);
+    [self.scrollView addSubview:hardwareBodyLabel];
+
+    UILabel *principleTitleLabel = [self explanationTitleLabelWithText:@"当前页面的实现原理"];
+    principleTitleLabel.frame = CGRectMake(left, CGRectGetMaxY(hardwareBodyLabel.frame) + 20.0, width, 22.0);
+    [self.scrollView addSubview:principleTitleLabel];
+
+    NSString *principleText = @"方向摇一摇：CLLocationManager 在航向变化达到 1° 时尝试回调。代码先排除无效或误差大于 35° 的数据，再计算相邻两帧磁北航向差，并把 0°/360° 边界的跳变归一化到 -180°~180°。\n\n单帧变化小于 1.5° 时视为罗盘噪声。有效变化会按顺时针或逆时针分段累加；当方向发生反转时，上一段累计达到 12° 才记为一段有效摆动。在 1.8 秒内完成至少 2 段交替摆动，且累计绝对角度达到 45° 时，触发方向摇一摇。两次有效变化间隔超过 0.45 秒会开始新一轮识别。\n\n扭一扭：当前代码只记录单段顺时针或逆时针旋转，并把多段反向旋转组合成“方向摇一摇”。它没有在单次旋转达到阈值时单独触发扭一扭。\n\n识别成功后会停止航向更新，避免同一次动作被重复触发并减少耗电。";
+    UILabel *principleBodyLabel = [self explanationBodyLabelWithText:principleText];
+    principleBodyLabel.frame = CGRectMake(left,
+                                          CGRectGetMaxY(principleTitleLabel.frame) + 8.0,
+                                          width,
+                                          [self heightForExplanationText:principleText width:width]);
+    [self.scrollView addSubview:principleBodyLabel];
+
+    return CGRectGetMaxY(principleBodyLabel.frame);
+}
+
+- (UILabel *)explanationTitleLabelWithText:(NSString *)text {
+    UILabel *label = [self labelWithText:text];
+    label.font = [UIFont boldSystemFontOfSize:15.0];
+    return label;
+}
+
+- (UILabel *)explanationBodyLabelWithText:(NSString *)text {
+    UILabel *label = [self labelWithText:text];
+    label.font = [UIFont systemFontOfSize:14.0];
+    label.textColor = [UIColor colorWithWhite:0.25 alpha:1.0];
+    return label;
+}
+
+- (CGFloat)heightForExplanationText:(NSString *)text width:(CGFloat)width {
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                     options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                  attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}
+                                     context:nil];
+    return ceil(CGRectGetHeight(rect));
 }
 
 #pragma mark - Authorization And Lifecycle

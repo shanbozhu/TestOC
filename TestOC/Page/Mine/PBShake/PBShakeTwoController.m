@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, PBShakeTwoConditionMode) {
 @property (nonatomic, strong) NSOperationQueue *motionQueue;
 @property (nonatomic, strong) PBShakeTwoMotionConfig *currentConfig;
 
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *stateLabel;
 @property (nonatomic, strong) UILabel *configLabel;
 @property (nonatomic, strong) UILabel *resultLabel;
@@ -135,38 +136,43 @@ typedef NS_ENUM(NSInteger, PBShakeTwoConditionMode) {
 - (void)setupUI {
     CGFloat left = 24;
     CGFloat width = CGRectGetWidth(self.view.bounds) - left * 2;
+
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.scrollView.alwaysBounceVertical = YES;
+    [self.view addSubview:self.scrollView];
     
     UILabel *titleLabel = [self labelWithText:@"生产风格：用 DeviceMotion 融合数据做动作识别"];
     titleLabel.font = [UIFont boldSystemFontOfSize:17];
     titleLabel.frame = CGRectMake(left, 110, width, 28);
-    [self.view addSubview:titleLabel];
+    [self.scrollView addSubview:titleLabel];
     
     UILabel *descLabel = [self labelWithText:@"核心思想：以第一帧姿态为基准，后续计算相对角度；同时可组合加速度、角度、持续时间、单双向动作。"];
     descLabel.frame = CGRectMake(left, CGRectGetMaxY(titleLabel.frame) + 8, width, 62);
-    [self.view addSubview:descLabel];
+    [self.scrollView addSubview:descLabel];
     
     UIButton *shakeButton = [self buttonWithTitle:@"启动摇一摇识别"];
     shakeButton.frame = CGRectMake(left, CGRectGetMaxY(descLabel.frame) + 18, (width - 12) / 2, 44);
     [shakeButton addTarget:self action:@selector(startShakeDemo) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shakeButton];
+    [self.scrollView addSubview:shakeButton];
     
     UIButton *twistButton = [self buttonWithTitle:@"启动扭一扭识别"];
     twistButton.frame = CGRectMake(CGRectGetMaxX(shakeButton.frame) + 12, CGRectGetMinY(shakeButton.frame), CGRectGetWidth(shakeButton.frame), 44);
     [twistButton addTarget:self action:@selector(startTwistDemo) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:twistButton];
+    [self.scrollView addSubview:twistButton];
     
     UIButton *stopButton = [self buttonWithTitle:@"停止检测"];
     stopButton.frame = CGRectMake(left, CGRectGetMaxY(shakeButton.frame) + 12, width, 44);
     [stopButton addTarget:self action:@selector(stopMotionUpdates) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:stopButton];
+    [self.scrollView addSubview:stopButton];
     
     self.stateLabel = [self labelWithText:@"状态：未启动"];
     self.stateLabel.frame = CGRectMake(left, CGRectGetMaxY(stopButton.frame) + 18, width, 24);
-    [self.view addSubview:self.stateLabel];
+    [self.scrollView addSubview:self.stateLabel];
     
     self.configLabel = [self labelWithText:@"配置：点击上方按钮后展示"];
     self.configLabel.frame = CGRectMake(left, CGRectGetMaxY(self.stateLabel.frame) + 8, width, 86);
-    [self.view addSubview:self.configLabel];
+    [self.scrollView addSubview:self.configLabel];
     
     self.resultLabel = [self labelWithText:@"触发结果：等待动作触发"];
     self.resultLabel.frame = CGRectMake(left, CGRectGetMaxY(self.configLabel.frame) + 12, width, 128);
@@ -174,7 +180,70 @@ typedef NS_ENUM(NSInteger, PBShakeTwoConditionMode) {
     self.resultLabel.layer.borderWidth = 1.0;
     self.resultLabel.layer.cornerRadius = 6.0;
     self.resultLabel.layer.masksToBounds = YES;
-    [self.view addSubview:self.resultLabel];
+    [self.scrollView addSubview:self.resultLabel];
+
+    CGFloat explanationBottom = [self addExplanationModuleAtTop:CGRectGetMaxY(self.resultLabel.frame) + 28.0
+                                                            left:left
+                                                           width:width];
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), explanationBottom + 32.0);
+}
+
+- (CGFloat)addExplanationModuleAtTop:(CGFloat)top left:(CGFloat)left width:(CGFloat)width {
+    UIView *divider = [[UIView alloc] initWithFrame:CGRectMake(left, top, width, 1.0)];
+    divider.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
+    [self.scrollView addSubview:divider];
+
+    UILabel *titleLabel = [self labelWithText:@"功能说明"];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titleLabel.frame = CGRectMake(left, CGRectGetMaxY(divider.frame) + 20.0, width, 26.0);
+    [self.scrollView addSubview:titleLabel];
+
+    UILabel *hardwareTitleLabel = [self explanationTitleLabelWithText:@"使用的手机硬件"];
+    hardwareTitleLabel.frame = CGRectMake(left, CGRectGetMaxY(titleLabel.frame) + 16.0, width, 22.0);
+    [self.scrollView addSubview:hardwareTitleLabel];
+
+    NSString *hardwareText = @"摇一摇：加速度计是主要硬件，用于获取已去除重力的三轴线性加速度；同时使用 DeviceMotion 姿态角，因此也会用到陀螺仪。\n\n扭一扭：陀螺仪是主要硬件，用于感知手机的旋转；CoreMotion 会结合加速度计的重力方向修正姿态。\n\n当前代码没有直接读取位置，也没有指定磁北参考坐标系；加速度计和陀螺仪通常集成在同一颗 IMU 芯片中。";
+    UILabel *hardwareBodyLabel = [self explanationBodyLabelWithText:hardwareText];
+    hardwareBodyLabel.frame = CGRectMake(left,
+                                         CGRectGetMaxY(hardwareTitleLabel.frame) + 8.0,
+                                         width,
+                                         [self heightForExplanationText:hardwareText width:width]);
+    [self.scrollView addSubview:hardwareBodyLabel];
+
+    UILabel *principleTitleLabel = [self explanationTitleLabelWithText:@"当前页面的实现原理"];
+    principleTitleLabel.frame = CGRectMake(left, CGRectGetMaxY(hardwareBodyLabel.frame) + 20.0, width, 22.0);
+    [self.scrollView addSubview:principleTitleLabel];
+
+    NSString *principleText = @"共通流程：每 0.1 秒获取一次 CMDeviceMotion。第一帧记录为起始姿态，后续姿态与它做差，得到 pitch、roll、yaw 三轴相对角度。代码会解除 -180°/180° 边界跳变，并记录正反方向。动作过小或中断超过 0.5 秒时，本轮识别会重置。\n\n摇一摇：计算 userAcceleration 三轴合加速度，由 G 换算为 m/s²；同时判断任意姿态轴的累计角度。当“加速度 ≥ 11.0 m/s²”或“任意轴角度 ≥ 30°”，且动作持续至少 0.2 秒时触发。\n\n扭一扭：重点跟踪 roll，也就是当前代码中的 Y 轴相对旋转角度。当单个方向的累计角度 ≥ 35°，且动作持续至少 0.2 秒时触发；这个演示不使用加速度作为扭一扭门槛。\n\n识别成功后会立即停止 DeviceMotion 更新，避免同一次动作被重复触发。";
+    UILabel *principleBodyLabel = [self explanationBodyLabelWithText:principleText];
+    principleBodyLabel.frame = CGRectMake(left,
+                                          CGRectGetMaxY(principleTitleLabel.frame) + 8.0,
+                                          width,
+                                          [self heightForExplanationText:principleText width:width]);
+    [self.scrollView addSubview:principleBodyLabel];
+
+    return CGRectGetMaxY(principleBodyLabel.frame);
+}
+
+- (UILabel *)explanationTitleLabelWithText:(NSString *)text {
+    UILabel *label = [self labelWithText:text];
+    label.font = [UIFont boldSystemFontOfSize:15.0];
+    return label;
+}
+
+- (UILabel *)explanationBodyLabelWithText:(NSString *)text {
+    UILabel *label = [self labelWithText:text];
+    label.font = [UIFont systemFontOfSize:14.0];
+    label.textColor = [UIColor colorWithWhite:0.25 alpha:1.0];
+    return label;
+}
+
+- (CGFloat)heightForExplanationText:(NSString *)text width:(CGFloat)width {
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                     options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                  attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}
+                                     context:nil];
+    return ceil(CGRectGetHeight(rect));
 }
 
 #pragma mark - Demo Entrances
