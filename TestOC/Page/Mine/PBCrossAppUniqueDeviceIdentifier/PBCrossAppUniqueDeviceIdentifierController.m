@@ -81,6 +81,9 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
         PBCrossAttributeKeyIDFAMD5,
         PBCrossAttributeKeyCarrierMCC,
         PBCrossAttributeKeyCarrierMNC,
+        PBCrossAttributeKeySimulator,
+        PBCrossAttributeKeySystemName,
+        PBCrossAttributeKeyTimeZoneIdentifier,
     ];
     self.actionTitles = @[
         @"重新加载身份",
