@@ -60,26 +60,27 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
     // 这里只是 Demo 的“展示清单”：决定页面上显示哪些字段，并标注它们是否参与当前/兼容版本指纹。
     // 真正的指纹字段由 SDK 的 PBCrossIdentifierVersion 决定，不由此数组决定。
     self.attributeKeys = @[
-        PBCrossAttributeKeyMachine,
-        PBCrossAttributeKeyModel,
+        PBCrossAttributeKeyBootTimeInSec,
+        PBCrossAttributeKeyCountryCode,
+        PBCrossAttributeKeyLanguage,
         PBCrossAttributeKeyDeviceName,
         PBCrossAttributeKeySystemVersion,
-        PBCrossAttributeKeyBootTimeInSec,
-        PBCrossAttributeKeyDeviceInitTime,
-        PBCrossAttributeKeySysFileTime,
-        PBCrossAttributeKeyMntID,
-        PBCrossAttributeKeyDisk,
+        PBCrossAttributeKeyMachine,
+        PBCrossAttributeKeyCarrierInfo,
         PBCrossAttributeKeyMemory,
+        PBCrossAttributeKeyDisk,
+        PBCrossAttributeKeySysFileTime,
+        PBCrossAttributeKeyModel,
+        PBCrossAttributeKeyTimeZone,
+        PBCrossAttributeKeyMntID,
+        PBCrossAttributeKeyDeviceInitTime,
+        
         PBCrossAttributeKeyScreenResolution,
         PBCrossAttributeKeyProcessorCount,
         PBCrossAttributeKeyIDFV,
         PBCrossAttributeKeyIDFAMD5,
-        PBCrossAttributeKeyCarrierInfo,
         PBCrossAttributeKeyCarrierMCC,
         PBCrossAttributeKeyCarrierMNC,
-        PBCrossAttributeKeyTimeZone,
-        PBCrossAttributeKeyCountryCode,
-        PBCrossAttributeKeyLanguage,
     ];
     self.actionTitles = @[
         @"重新加载身份",
