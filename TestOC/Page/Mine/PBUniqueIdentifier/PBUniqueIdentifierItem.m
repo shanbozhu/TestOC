@@ -14,6 +14,7 @@
     PBUniqueIdentifierItem *item = [[PBUniqueIdentifierItem alloc] init];
     item.schemeType = schemeType;
     item.identifierValue = @"加载中...";
+    item.identifierCopyable = YES;
     
     switch (schemeType) {
         case PBUniqueIdentifierSchemeTypeUDID:
@@ -53,13 +54,14 @@
             item.available = YES;
             break;
         case PBUniqueIdentifierSchemeTypeDeviceCheck:
-            item.name = @"DeviceCheck";
-            item.uniquenessScope = @"全局（Apple 服务器状态位）";
-            item.persistAfterReinstall = @"不变";
+            item.name = @"DeviceCheck（风控状态）";
+            item.uniquenessScope = @"非设备 ID（每开发者 2 bit）";
+            item.persistAfterReinstall = @"状态位由 Apple 保存；Token 每次不同";
             item.requiresPermission = @"否";
-            item.purpose = @"风控、反欺诈、黑白名单";
-            item.recommendation = @"★★★★☆（特定场景）";
+            item.purpose = @"风控、防刷；不能作为唯一标识";
+            item.recommendation = @"★★★☆☆（仅作风控信号）";
             item.available = YES;
+            item.identifierCopyable = NO;
             break;
         case PBUniqueIdentifierSchemeTypeMACAddress:
             item.name = @"MAC 地址";
@@ -75,8 +77,14 @@
 }
 
 - (NSString *)summaryText {
-    return [NSString stringWithFormat:@"标识值：%@\n唯一性：%@ | 卸载重装：%@ | 权限：%@\n用途：%@ | 推荐：%@",
-            self.identifierValue,
+    NSString *value = self.identifierValue.length > 0 ? self.identifierValue : @"不可用";
+    if (self.identifierError.length > 0) {
+        value = [NSString stringWithFormat:@"不可用（%@）", self.identifierError];
+    }
+    NSString *valueLabel = self.schemeType == PBUniqueIdentifierSchemeTypeDeviceCheck ? @"当前状态" : @"标识值";
+    return [NSString stringWithFormat:@"%@：%@\n唯一性：%@ | 卸载重装：%@ | 权限：%@\n用途：%@ | 推荐：%@",
+            valueLabel,
+            value,
             self.uniquenessScope,
             self.persistAfterReinstall,
             self.requiresPermission,

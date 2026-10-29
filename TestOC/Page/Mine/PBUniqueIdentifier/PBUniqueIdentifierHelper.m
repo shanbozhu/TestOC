@@ -22,6 +22,8 @@
 // 两者组合唯一确定一条 Keychain 记录，同一 App 内请勿与其他业务复用
 static NSString * const kPBKeychainService = @"com.damaiios.PBUniqueIdentifier";
 static NSString * const kPBKeychainAccount = @"device_uuid";
+static NSString * const kPBKeychainErrorDomain = @"PBUniqueIdentifierKeychain";
+static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCheck";
 
 @implementation PBUniqueIdentifierHelper
 
@@ -61,6 +63,9 @@ static NSString * const kPBKeychainAccount = @"device_uuid";
         }
     };
     
+    item.identifierError = nil;
+    item.identifierCopyable = YES;
+    
     switch (item.schemeType) {
         case PBUniqueIdentifierSchemeTypeUDID: {
             item.identifierValue = [self udidDescription];
@@ -80,13 +85,20 @@ static NSString * const kPBKeychainAccount = @"device_uuid";
             break;
         }
         case PBUniqueIdentifierSchemeTypeKeychainUUID: {
-            item.identifierValue = [self keychainUUIDString];
+            NSError *error = nil;
+            NSString *uuid = [self keychainUUIDStringWithError:&error];
+            item.identifierValue = uuid;
+            item.identifierError = error.localizedDescription;
+            item.identifierCopyable = (uuid.length > 0 && error == nil);
             finish();
             break;
         }
         case PBUniqueIdentifierSchemeTypeDeviceCheck: {
-            [self fetchDeviceCheckTokenWithCompletion:^(NSString *value) {
+            [self fetchDeviceCheckStatusWithCompletion:^(NSString *value, NSError *error) {
                 item.identifierValue = value;
+                item.identifierError = error.localizedDescription;
+                // DeviceCheck 返回的是短时 Token/状态，不是可复用的设备标识，禁止复制。
+                item.identifierCopyable = NO;
                 finish();
             }];
             break;
@@ -167,22 +179,6 @@ static NSString * const kPBKeychainAccount = @"device_uuid";
  这是业务侧最常用的「设备/用户唯一标识」方案，无需用户授权。
  */
 
-/// 获取 Keychain 中持久化的 UUID（不存在则创建并保存）
-+ (NSString *)keychainUUIDString {
-    // 优先读取，避免重复生成导致标识变化
-    NSString *existing = [self keychainReadUUID];
-    if (existing.length > 0) {
-        return existing;
-    }
-    
-    // 首次使用：生成标准 UUID（如 550E8400-E29B-41D4-A716-446655440000）
-    NSString *uuid = [[NSUUID UUID] UUIDString];
-    if ([self keychainSaveUUID:uuid]) {
-        return uuid;
-    }
-    return @"Keychain 写入失败";
-}
-
 /// 构建 Keychain 查询/写入的基础字典（不含 kSecReturnData、kSecValueData 等操作项）
 + (NSMutableDictionary *)keychainBaseQuery {
     return [@{
@@ -192,69 +188,146 @@ static NSString * const kPBKeychainAccount = @"device_uuid";
         (__bridge id)kSecAttrService: kPBKeychainService,
         // kSecAttrAccount：具体键名，类似数据库的主键
         (__bridge id)kSecAttrAccount: kPBKeychainAccount,
+        // 设备标识不跟随 iCloud Keychain 同步到其他设备
+        (__bridge id)kSecAttrSynchronizable: @NO,
     } mutableCopy];
 }
 
-/// 从 Keychain 读取已保存的 UUID，不存在时返回 nil
-+ (NSString *)keychainReadUUID {
++ (NSError *)keychainErrorWithStatus:(OSStatus)status {
+    NSString *message = CFBridgingRelease(SecCopyErrorMessageString(status, NULL));
+    return [NSError errorWithDomain:kPBKeychainErrorDomain
+                               code:status
+                           userInfo:@{NSLocalizedDescriptionKey: message ?: @"Keychain 操作失败"}];
+}
+
++ (NSString *)keychainDataError {
+    return @"Keychain 中的标识格式损坏；为保护原数据，未自动覆盖";
+}
+
++ (NSString *)UUIDStringFromKeychainData:(NSData *)data error:(NSError **)error {
+    NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSUUID *uuid = value.length > 0 ? [[NSUUID alloc] initWithUUIDString:value] : nil;
+    if (!uuid || [uuid.UUIDString isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {
+        if (error) {
+            *error = [NSError errorWithDomain:kPBKeychainErrorDomain
+                                         code:-1
+                                     userInfo:@{NSLocalizedDescriptionKey: [self keychainDataError]}];
+        }
+        return nil;
+    }
+    // 保留 Keychain 中的原始大小写，避免已有标识的字符串表示发生变化。
+    return value;
+}
+
+/// 从 Keychain 读取 UUID；只有 errSecItemNotFound 才表示“没有记录”。
+/// 其他状态（锁屏、权限、Keychain 损坏）必须返回错误，不能生成新 ID。
++ (NSString *)keychainReadUUIDWithStatus:(OSStatus *)status error:(NSError **)error {
     NSMutableDictionary *query = [self keychainBaseQuery];
-    // 要求 API 返回存储的二进制数据（而非仅返回状态码）
     query[(__bridge id)kSecReturnData] = @YES;
-    // 只匹配一条记录（Service + Account 已唯一）
     query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitOne;
-    
+
     CFTypeRef result = NULL;
-    // SecItemCopyMatching：按 query 条件查询 Keychain
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
-    if (status == errSecSuccess && result) {
-        NSData *data = (__bridge_transfer NSData *)result;
-        return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    OSStatus readStatus = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
+    if (status) {
+        *status = readStatus;
+    }
+
+    id object = CFBridgingRelease(result);
+    if (readStatus != errSecSuccess) {
+        if (readStatus != errSecItemNotFound && error) {
+            *error = [self keychainErrorWithStatus:readStatus];
+        }
+        return nil;
+    }
+    if (![object isKindOfClass:[NSData class]]) {
+        if (error) {
+            *error = [NSError errorWithDomain:kPBKeychainErrorDomain
+                                         code:-1
+                                     userInfo:@{NSLocalizedDescriptionKey: [self keychainDataError]}];
+        }
+        return nil;
+    }
+    return [self UUIDStringFromKeychainData:(NSData *)object error:error];
+}
+
+/// 获取 Keychain 中持久化的 UUID；仅在“确实没有记录”时创建。
+/// 写失败时保留旧记录，绝不先删除再写入。
++ (NSString *)keychainUUIDStringWithError:(NSError **)error {
+    OSStatus readStatus = errSecSuccess;
+    NSError *readError = nil;
+    NSString *existing = [self keychainReadUUIDWithStatus:&readStatus error:&readError];
+    if (existing.length > 0) {
+        return existing;
+    }
+    if (readStatus != errSecItemNotFound) {
+        if (error) {
+            *error = readError ?: [self keychainErrorWithStatus:readStatus];
+        }
+        return nil;
+    }
+
+    NSString *candidate = NSUUID.UUID.UUIDString;
+    NSMutableDictionary *item = [self keychainBaseQuery];
+    item[(__bridge id)kSecValueData] = [candidate dataUsingEncoding:NSUTF8StringEncoding];
+    item[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+
+    OSStatus addStatus = SecItemAdd((__bridge CFDictionaryRef)item, NULL);
+    if (addStatus == errSecSuccess) {
+        return candidate;
+    }
+    if (addStatus == errSecDuplicateItem) {
+        // 并发创建时读取先写入的记录，不能返回未保存的 candidate。
+        OSStatus winnerStatus = errSecSuccess;
+        NSError *winnerError = nil;
+        NSString *winner = [self keychainReadUUIDWithStatus:&winnerStatus error:&winnerError];
+        if (winner.length > 0) {
+            return winner;
+        }
+        if (error) {
+            *error = winnerError ?: [self keychainErrorWithStatus:winnerStatus];
+        }
+        return nil;
+    }
+    if (error) {
+        *error = [self keychainErrorWithStatus:addStatus];
     }
     return nil;
 }
 
-/// 将 UUID 写入 Keychain；写入前先删除旧值，避免重复添加报错
-+ (BOOL)keychainSaveUUID:(NSString *)uuid {
-    NSData *data = [uuid dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableDictionary *query = [self keychainBaseQuery];
-    
-    // 若已有同 Service+Account 的记录，先删再写（SecItemAdd 不允许重复添加）
-    SecItemDelete((__bridge CFDictionaryRef)query);
-    
-    query[(__bridge id)kSecValueData] = data;
-    // kSecAttrAccessibleAfterFirstUnlock：设备首次解锁后可读
-    // 兼顾安全性与后台可用性，也是卸载重装后数据保留的常用配置
-    query[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlock;
-    return SecItemAdd((__bridge CFDictionaryRef)query, NULL) == errSecSuccess;
-}
-
 #pragma mark - DeviceCheck
 
-+ (void)fetchDeviceCheckTokenWithCompletion:(void (^)(NSString *value))completion {
++ (NSError *)deviceCheckErrorWithMessage:(NSString *)message {
+    return [NSError errorWithDomain:kPBDeviceCheckErrorDomain
+                               code:-1
+                           userInfo:@{NSLocalizedDescriptionKey: message ?: @"DeviceCheck 操作失败"}];
+}
+
+/// DeviceCheck 只返回一次性的 Token / 风控状态，不是设备唯一标识；
+/// 因此这里只展示“是否生成成功”，不展示或复制 Token 原文。
++ (void)fetchDeviceCheckStatusWithCompletion:(void (^)(NSString *value, NSError *error))completion {
     if (@available(iOS 11.0, *)) {
         DCDevice *device = DCDevice.currentDevice;
         if (!device.isSupported) {
-            completion(@"当前设备不支持 DeviceCheck");
+            completion(@"DeviceCheck 不可用（模拟器通常不支持，需真机）", nil);
             return;
         }
         
         [device generateTokenWithCompletionHandler:^(NSData * _Nullable token, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
-                    completion([NSString stringWithFormat:@"Token 获取失败：%@", error.localizedDescription]);
+                    completion(nil, error);
                     return;
                 }
                 if (token.length == 0) {
-                    completion(@"Token 为空");
+                    completion(nil, [self deviceCheckErrorWithMessage:@"DeviceCheck Token 为空"]);
                     return;
                 }
-                NSString *tokenBase64 = [token base64EncodedStringWithOptions:0];
-                completion([NSString stringWithFormat:@"Token（Base64，每次请求不同，需服务端校验）：\n%@", tokenBase64]);
+                completion(@"已生成一次性 Token（仅服务端校验用，非设备 ID）", nil);
             });
         }];
         return;
     }
-    completion(@"iOS 11 以下不支持 DeviceCheck");
+    completion(nil, [self deviceCheckErrorWithMessage:@"iOS 11 以下不支持 DeviceCheck"]);
 }
 
 #pragma mark - MAC Address

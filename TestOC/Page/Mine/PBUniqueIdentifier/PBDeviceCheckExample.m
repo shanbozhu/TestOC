@@ -101,10 +101,11 @@
  
  常用接口：
  - validate_device_token  校验 Token 是否有效
- - query_two_bits         查询该设备两个 bit 的当前值（0 或 1）
- - update_two_bits        更新该设备两个 bit（每台设备每 bit 只能写一次永久值）
+ - query_two_bits         查询该开发者在该设备上设置的两个 bit（0 或 1）
+ - update_two_bits        更新该开发者在该设备上的两个 bit（每台设备每 bit 通常只能写一次）
  
- 重点：Apple 不会返回 UDID / IDFA 等设备标识，只通过 bit 状态间接表达「是不是同一台设备」。
+ 重点：Apple 不会返回 UDID / IDFA 等设备标识。bit 是开发者定义的风控状态，
+ 不是设备身份；相同 bit 不能证明是同一台设备。
  */
 + (void)simulateServerWorkflowWithToken:(NSData *)token
                             tokenBase64:(NSString *)tokenBase64
@@ -136,8 +137,8 @@
              YES);
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // Step 4：Apple 判断结果（示例用本地逻辑演示 bit 读写含义）
-            [self simulateAppleBitQueryWithToken:token emitStep:emit];
+            // Step 4：展示 Apple 返回的两个 bit（本地固定模拟值，非真实 Apple 数据）
+            [self simulateAppleBitQueryWithEmitStep:emit];
             if (completion) {
                 completion();
             }
@@ -149,25 +150,23 @@
  模拟 query_two_bits / update_two_bits 的业务含义。
  真实环境中这两个接口由服务端调用，返回示例：
  { "bit0": false, "bit1": true, "last_update_time": "2024-01-01T00:00:00Z" }
+ 
+ 这里使用固定模拟值，避免用一次性 Token 推导出“每次不同”的 bit，
+ 也避免让人误以为 bit 可以作为设备 ID。
  */
-+ (void)simulateAppleBitQueryWithToken:(NSData *)token
-                              emitStep:(void (^)(NSString *, NSString *, BOOL))emit {
-    // 用 Token 哈希模拟「同一设备 bit 状态稳定」的特性（仅演示，非 Apple 真实算法）
-    uint64_t hash = 0;
-    const uint8_t *bytes = token.bytes;
-    for (NSUInteger i = 0; i < token.length; i++) {
-        hash = hash * 31 + bytes[i];
-    }
-    BOOL bit0 = (hash & 1) == 0;
-    BOOL bit1 = (hash & 2) == 0;
++ (void)simulateAppleBitQueryWithEmitStep:(void (^)(NSString *, NSString *, BOOL))emit {
+    BOOL bit0 = YES;
+    BOOL bit1 = NO;
     
-    emit(@"Step 4 · Apple 判断「是否同一台设备」",
+    emit(@"Step 4 · Apple 返回的风控 bit（模拟）",
          [NSString stringWithFormat:
-          @"Apple 不会把设备 ID 返回给开发者，只返回 bit 状态：\n"
-          @"  bit0 = %@（例如：是否领过新用户礼包）\n"
-          @"  bit1 = %@（例如：是否在风控黑名单）\n\n"
-          @"同一台设备多次 query_two_bits，bit 值保持一致 → 可判断「是同一台设备」。\n"
-          @"不同设备 bit 组合独立，开发者无法反查硬件标识。\n\n"
+          @"Apple 不会把设备 ID 返回给开发者，只返回开发者设置的两个 bit：\n"
+          @"  bit0 = %@（示例：是否已标记领取过新用户礼包）\n"
+          @"  bit1 = %@（示例：是否命中风控黑名单）\n\n"
+          @"以上是固定模拟值；真实值由服务端 query_two_bits 查询。\n"
+          @"注意：bit 只有 4 种组合，相同 bit 不能证明是同一台设备；\n"
+          @"不同设备可能得到相同组合，同一设备也可能因业务状态变化。\n"
+          @"DeviceCheck 只能作为风控信号，不能当作设备唯一标识。\n\n"
           @"update_two_bits 示例：首次注册时将 bit0 置为 true，防止卸载重装重复领取。",
           bit0 ? @"true" : @"false",
           bit1 ? @"true" : @"false"],

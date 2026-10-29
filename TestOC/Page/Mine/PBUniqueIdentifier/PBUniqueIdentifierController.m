@@ -71,6 +71,8 @@
     
     for (PBUniqueIdentifierItem *item in self.items) {
         item.identifierValue = @"加载中...";
+        item.identifierError = nil;
+        item.identifierCopyable = YES;
     }
     [self.tableView reloadData];
     
@@ -104,7 +106,9 @@
 
 - (void)copyIdentifierAtIndexPath:(NSIndexPath *)indexPath {
     PBUniqueIdentifierItem *item = self.items[indexPath.row];
-    if (item.identifierValue.length == 0 ||
+    if (!item.isIdentifierCopyable ||
+        item.identifierError.length > 0 ||
+        item.identifierValue.length == 0 ||
         [item.identifierValue isEqualToString:@"加载中..."]) {
         return;
     }
@@ -139,7 +143,9 @@
     PBUniqueIdentifierItem *item = self.items[indexPath.row];
     cell.textLabel.text = item.name;
     cell.detailTextLabel.text = [item summaryText];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = item.schemeType == PBUniqueIdentifierSchemeTypeDeviceCheck
+        ? UITableViewCellAccessoryDisclosureIndicator
+        : UITableViewCellAccessoryNone;
     return cell;
 }
 
@@ -176,7 +182,7 @@
             [label.bottomAnchor constraintEqualToAnchor:header.contentView.bottomAnchor constant:-8],
         ]];
     }
-    label.text = @"点击行可复制标识值；DeviceCheck 行可进入工作流示例；IDFA 需先点右上角「请求 IDFA 授权」";
+    label.text = @"点击可复制的行复制标识值；DeviceCheck 行仅进入工作流示例（不复制 Token）；IDFA 需先点右上角「请求 IDFA 授权」";
     return header;
 }
 

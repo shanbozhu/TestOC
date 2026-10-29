@@ -24,6 +24,8 @@ typedef NS_ENUM(NSInteger, PBUniqueIdentifierSchemeType) {
 @property (nonatomic, assign) PBUniqueIdentifierSchemeType schemeType;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *identifierValue;
+@property (nonatomic, copy, nullable) NSString *identifierError;
+@property (nonatomic, assign, getter=isIdentifierCopyable) BOOL identifierCopyable;
 @property (nonatomic, copy) NSString *uniquenessScope;
 @property (nonatomic, copy) NSString *persistAfterReinstall;
 @property (nonatomic, copy) NSString *requiresPermission;

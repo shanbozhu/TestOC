@@ -27,8 +27,9 @@
     [self setupNavigationItems];
     [self setupLogTextView];
     [self appendLog:@"点击右上角「运行示例」开始演示 DeviceCheck 工作流。\n\n"
-     @"流程：App 生成 Token → 上传服务器 → 服务器请求 Apple → Apple 返回 bit 状态\n"
-     @"（不会返回 UDID 等设备标识）\n"];
+     @"流程：App 生成 Token → 上传服务器 → 服务器请求 Apple → Apple 返回两个 bit 状态\n"
+     @"注意：DeviceCheck 不返回 UDID 等设备标识；bit 只是开发者定义的风控状态，\n"
+     @"相同 bit 不能证明是同一台设备，不能当作唯一 ID。\n"];
 }
 
 #pragma mark - UI
