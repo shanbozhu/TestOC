@@ -155,7 +155,7 @@ if (result.matched) {
 TestOC/Page/Mine/PBCrossAppUniqueDeviceIdentifier/
 ```
 
-入口：`TestOC → 我的 → PBCrossAppUniqueDeviceIdentifierController`（页面标题“跨 App 设备标识”）。示例页演示身份加载、共享自建 ID、设备属性、广告 Device 对象、`Device.ext` 与跨公司匹配结果；详见该目录下的 README。
+入口：`TestOC → 我的 → PBUniqueIdentifierTestController → PBCrossAppUniqueDeviceIdentifierController`（页面标题“跨 App 设备标识”）。示例页演示身份加载、共享自建 ID、设备属性、广告 Device 对象、`Device.ext` 与跨公司匹配结果；详见该目录下的 README。
 
 Podfile 配置：
 

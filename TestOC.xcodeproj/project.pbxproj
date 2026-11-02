@@ -354,6 +354,7 @@
 		959236B72FC1C89A0086B733 /* PBOpenURLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236B62FC1C89A0086B733 /* PBOpenURLController.m */; };
 		959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959350A82E16BD0E00B9F3A8 /* PBXMLController.m */; };
 		95973CB72FD6D12B00F94AEB /* PBUniqueIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */; };
+		95A19B033090000000000001 /* PBUniqueIdentifierTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */; };
 		95973CBA2FD6DC4C00F94AEB /* Schema 跳转区别.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */; };
 		95973CBC2FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */; };
 		95973CBC2FD6DF0600F94AEB /* Unique Identifier 区别.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */; };
@@ -1037,6 +1038,8 @@
 		959350A82E16BD0E00B9F3A8 /* PBXMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBXMLController.m; sourceTree = "<group>"; };
 		95973CB52FD6D12B00F94AEB /* PBUniqueIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierController.h; sourceTree = "<group>"; };
 		95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierController.m; sourceTree = "<group>"; };
+		95A19B013090000000000001 /* PBUniqueIdentifierTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierTestController.h; sourceTree = "<group>"; };
+		95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierTestController.m; sourceTree = "<group>"; };
 		95973CB82FD6D12C00F94AEB /* PBUniqueIdentifierHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierHelper.h; sourceTree = "<group>"; };
 		95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierHelper.m; sourceTree = "<group>"; };
 		95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Schema 跳转区别.png"; sourceTree = "<group>"; };
@@ -3259,6 +3262,8 @@
 		95973CB42FD6D10400F94AEB /* PBUniqueIdentifier */ = {
 			isa = PBXGroup;
 			children = (
+				95A19B013090000000000001 /* PBUniqueIdentifierTestController.h */,
+				95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */,
 				95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */,
 				95973CB52FD6D12B00F94AEB /* PBUniqueIdentifierController.h */,
 				95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */,
@@ -3947,6 +3952,7 @@
 				5CCC113D29CB03DE00F60C38 /* PBAnnotationController.m in Sources */,
 				5CCC117029CB040000F60C38 /* PBQRCodeScanView.m in Sources */,
 				95973CB72FD6D12B00F94AEB /* PBUniqueIdentifierController.m in Sources */,
+				95A19B033090000000000001 /* PBUniqueIdentifierTestController.m in Sources */,
 				95973CBC2FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m in Sources */,
 				95973CBD2FD6D12C00F94AEB /* PBUniqueIdentifierItem.m in Sources */,
 				95973CC82FD6D12D00F94AEB /* PBDeviceCheckExample.m in Sources */,

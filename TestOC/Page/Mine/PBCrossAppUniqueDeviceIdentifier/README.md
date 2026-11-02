@@ -2,7 +2,7 @@
 
 本目录是 `PBCrossAppUniqueDeviceIdentifier` 在 TestOC 中的接入示例。页面入口：
 
-> TestOC → 我的 → `PBCrossAppUniqueDeviceIdentifierController`（进入后页面标题为“跨 App 设备标识”）
+> TestOC → 我的 → `PBUniqueIdentifierTestController` → `PBCrossAppUniqueDeviceIdentifierController`（进入后页面标题为“跨 App 设备标识”）
 
 ## 集成方式
 
@@ -47,7 +47,7 @@ pod 'PBCrossAppUniqueDeviceIdentifier', :path => './PBCrossAppUniqueDeviceIdenti
 
 1. 在仓库根目录执行 `pod install`（本示例已接入）。若 CocoaPods 报 Ruby `Unicode Normalization` 错误，请先执行 `export LANG=en_US.UTF-8`；
 2. 打开 `TestOC.xcworkspace`，运行 `TestOC` scheme；
-3. 从“我的”进入“跨 App 设备标识”；
+3. 从“我的”进入 `PBUniqueIdentifierTestController`，再选择 `PBCrossAppUniqueDeviceIdentifierController`，打开“跨 App 设备标识”；
 4. 等待加载完成后：
    - 点击 ID/属性可复制；
    - 点击“复制 Device JSON”可查看拼多多 Device 对象；

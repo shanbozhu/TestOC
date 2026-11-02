@@ -4,7 +4,7 @@
 
 ## 运行入口
 
-打开 TestOC 项目的 `TestOC.xcworkspace`，选择 `TestOC` scheme 运行，在“我的”列表中进入 `PBUniqueDeviceIdentifierController`。
+打开 TestOC 项目的 `TestOC.xcworkspace`，选择 `TestOC` scheme 运行，在“我的”列表中进入 `PBUniqueIdentifierTestController`，再选择 `PBUniqueDeviceIdentifierController`。
 
 本目录没有额外的 App target、启动入口或独立工程。标识使用 TestOC 的 bundle ID 作为应用命名空间，原有 `PBUniqueIdentifier` 对比页面不受影响。TestOC 整体运行仍需其已有 Pods 依赖正常安装。
 
