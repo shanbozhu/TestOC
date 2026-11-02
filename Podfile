@@ -22,16 +22,16 @@ target "TestOC" do
   # menta 国内版
   pod 'ToBidMentaCNAdapter',    '7.04.03'
   
-  pod 'MentaUnifiedSDK',        '7.04.03'
-  pod 'MentaVlionBaseSDK',      '7.04.03'
-  pod 'MentaVlionSDK',          '7.04.03'
-  pod 'MentaVlionAdapter',      '7.04.03'
-#  pod 'MentaVlionLiteAdapter',  '7.04.03'
+  pod 'MentaUnifiedSDK',        '7.04.04'
+  pod 'MentaVlionBaseSDK',      '7.04.04'
+  pod 'MentaVlionSDK',          '7.04.04'
+  pod 'MentaVlionAdapter',      '7.04.04'
+  # pod 'MentaVlionLiteAdapter',  '7.04.04'
   
-  pod 'MentaBaiduAdapter',      '7.04.03'
-  pod 'MentaGDTAdapter',        '7.04.03'
-  pod 'MentaCSJAdapter',        '7.04.03'
-  pod 'MentaKSAdapter',         '7.04.03'
+  pod 'MentaBaiduAdapter',      '7.04.04'
+  pod 'MentaGDTAdapter',        '7.04.04'
+  pod 'MentaCSJAdapter',        '7.04.04'
+  pod 'MentaKSAdapter',         '7.04.04'
   
   # menta 国内版 私有仓库
 #  pod 'MentaUnifiedSDK',        '7.04.02-TEST'
