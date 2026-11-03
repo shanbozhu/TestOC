@@ -19,9 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) PBCrossConfiguration *configuration;
 
-/// 读取跨 App 自建 ID；不存在且 create 为 YES 时生成随机 UUID 并写入共享存储。
+/// 读取跨 App 自建 ID；仅 Keychain 确认无记录且 create 为 YES 时创建。
+/// 读取/写入失败时返回空串并报告错误，不切换存储或返回未持久化的候选值。
 /// @param serverIssued 输出是否为服务端下发（setServerIssuedSharedID）。
-- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create serverIssued:(nullable BOOL *)serverIssued;
+- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create
+                        serverIssued:(nullable BOOL *)serverIssued
+                               error:(NSError * _Nullable * _Nullable)error;
 
 /// 写入/清除服务端下发的共享 ID。sharedID 为空时仅清除"服务端下发"标记。
 - (BOOL)setServerIssuedSharedID:(nullable NSString *)sharedID;

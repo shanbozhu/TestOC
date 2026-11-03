@@ -10,7 +10,7 @@ iOS 没有稳定、可跨 App / 跨公司共享的设备号。IDFA 受 ATT 限�
 
 本 SDK 解决三件事：
 
-1. **同 Team 多个 App**：通过 Keychain Access Group / App Group 共享同一个自建 UUID（`shared_id`）。
+1. **同 Team 多个 App**：通过共享 Keychain Access Group 共享同一个自建 UUID（`shared_id`），App Group 可选，用于镜像数据。
 2. **不同媒体、不同开发者的 App**：用**同一套字段 + 同一套规范化规则 + 同一个盐值**拼接设备属性，在本地确定生成 128-bit 指纹 ID（`pb-xid-v1`），多个公司各自计算即可得到相同结果。
 3. **需要中心化发号时**：通过兼容 CAID API v1.15 协议的自建 ID 服务下发版本化 ID；广告请求可用 `PBCrossAdRequestAdapter` 直接产出拼多多 Bid Request 的 Device 字段。
 
@@ -22,7 +22,7 @@ iOS 没有稳定、可跨 App / 跨公司共享的设备号。IDFA 受 ATT 限�
 
 | 模式 | 适用场景 | 稳定性 | 实现 |
 | --- | --- | --- | --- |
-| 共享自建 UUID | 同一 Team 的多款 App（同一开发者/同一集团） | 高，App 重装后通常仍保留（Keychain 系统行为） | Keychain Access Group + App Group，`shared_id` |
+| 共享自建 UUID | 同一 Team 的多款 App（同一开发者/同一集团） | 高，App 重装后通常仍保留（Keychain 系统行为） | 共享 Keychain Access Group，App Group 可选；`shared_id` |
 | 设备属性指纹 | 不同公司、不同开发者的 App 互相对齐 | 单次开机内稳定；重启后轮换（与 CAID 行为一致） | `pb-xid-v1`，当前版本 + 上一版本双 ID |
 | 自建 ID 服务 | 需要中心化发号、跨公司强对齐、风控/归因 | 由服务端策略决定 | CAID API 兼容协议 + RSA，`remote` ID |
 
@@ -51,7 +51,7 @@ BOOL ok = [[PBCrossAppUniqueDeviceIdentifierManager sharedManager]
     // 跨公司必须一致；建议由合作方约定一个非公开值
     configuration.salt = @"your-ecosystem-salt";
 
-    // 同 Team 跨 App 共享；没有对应 entitlement 时留空即可
+    // 同 Team 跨 App 共享；App Group 可选。单 App 使用时两项均留空。
     configuration.keychainAccessGroup = @"ABCDE12345.com.example.pbcross";
     configuration.appGroupIdentifier = @"group.com.example.pbcross";
 
@@ -77,6 +77,8 @@ Entitlements 示例（两个 App 都要配置相同值）：
 ```
 
 > `keychainAccessGroup` 在运行时必须传展开后的完整值，例如 `ABCDE12345.com.example.pbcross`，不能直接传 `$(AppIdentifierPrefix)`。
+
+`appGroupIdentifier` 必须搭配共享 `keychainAccessGroup` 使用；仅配置 App Group 时，`configureWithBlock:error:` 返回 `NO` 和 `PBCrossIdentifierErrorInvalidConfiguration`，原有配置、缓存与身份保持不变。App Group 的 Defaults 仅作镜像，不参与跨进程首次发号。
 
 ### 3.3 加载身份
 
@@ -362,6 +364,8 @@ SDK 行为：
 - 仅采集设备级属性；设备名只保留不可逆 MD5，不保存/上报明文；IDFA 默认只输出 MD5。
 - `idfv` 会出现在 ext/identity JSON 中，如产品认为敏感，可在上报前裁剪 `attributes`（但会影响属性匹配）。
 - Keychain 数据在 App 卸载后通常仍保留；提供 `clearStoredIdentity` 清除（会清除同一 Keychain Access Group / App Group 内其他 App 的共享 ID，请谨慎调用）。
+- 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值；Defaults 仅镜像已确认持久化的 ID。
+- 配置 `keychainAccessGroup` 后不自动回退到私有 Keychain。异步加载遇到存储错误时返回不含 `shared_id` 的快照及 `NSError`，不缓存该快照，下次加载会重试；同步 `sharedID` 属性在不可用时返回空串。
 - 指纹 ID 是**伪匿名标识**，不是账号 ID，不应跨设备关联用户；salt 不是加密密钥，拿到 salt 的人可以复算 ID，它的作用是隔离生态/合作方。
 - 上线前请按 PIPL、CCPA、Apple ATT/隐私清单等要求完成法务与隐私评估，并提供可关闭/清除入口。
 - 本 SDK 使用了 `NSUserDefaults`、启动时间（`sysctl`）、文件时间戳、磁盘容量等 API，提交 App Store 时请按 Apple 的 Required Reason API 要求，在宿主 App 的 `PrivacyInfo.xcprivacy` 中声明与实际用途匹配的原因，并结合业务用途审核；仓库不附带可能不适用的隐私清单。
@@ -407,6 +411,9 @@ pod lib lint PBCrossAppUniqueDeviceIdentifier.podspec --allow-warnings --skip-te
 
 # 纯逻辑自检（指纹向量、匹配器、JSON 往返）
 ./Tools/verify_logic.sh
+
+# 存储回归（Keychain 故障、并发首次创建、恢复及错误回调；使用隔离的模拟存储）
+./Tools/verify_storage.sh
 ```
 
 也可以把 `Sources` 直接加入现有 iOS 工程，使用 `TestOC.xcworkspace` 构建。
@@ -420,7 +427,7 @@ pod lib lint PBCrossAppUniqueDeviceIdentifier.podspec --allow-warnings --skip-te
 ## 13. FAQ
 
 **Q: Keychain 返回 -34018 / 共享 ID 每次都不一样？**
-A: 通常是 App 缺少 keychain-access-groups entitlement，或 `keychainAccessGroup` 未传展开后的 TeamID 前缀。请检查两个 App 的 entitlements 是否一致；临时可留空该配置，退回 App 私有存储。
+A: 通常是 App 缺少 keychain-access-groups entitlement，或 `keychainAccessGroup` 未传展开后的 TeamID 前缀。请检查两个 App 的 entitlements 是否一致。SDK 会报告存储错误并保留原记录，不会自动生成另一个私有 ID；仅需单 App 身份时可明确留空该配置。
 
 **Q: 两个 App 的 `pb_xid` 不一致？**
 A: 依次检查：`salt`、`supportedVersions`、`collectsDeviceName`、`collectsCarrierInformation`、采集时机（是否跨重启）、SDK 版本。调试时打印 `PBCrossIdentityGenerator` 的 canonical string（内部头文件）对比。

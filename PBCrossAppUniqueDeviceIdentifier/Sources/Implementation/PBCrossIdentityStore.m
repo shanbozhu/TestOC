@@ -143,28 +143,68 @@ static NSString *PBCrossCurrentDayKey(void)
     return query;
 }
 
-- (nullable NSString *)keychainStringForKey:(NSString *)key accessGroup:(nullable NSString *)accessGroup
+- (NSError *)keychainErrorWithStatus:(OSStatus)status key:(NSString *)key
 {
+    NSString *message = CFBridgingRelease(SecCopyErrorMessageString(status, NULL));
+    return [NSError errorWithDomain:NSOSStatusErrorDomain code:status
+                          userInfo:@{NSLocalizedDescriptionKey:
+        [NSString stringWithFormat:@"Keychain 标识不可用（%@）：%@", key, message ?: @"操作失败"]}];
+}
+
+- (nullable NSString *)keychainStringForKey:(NSString *)key status:(OSStatus *)readStatus
+{
+    NSString *accessGroup = self.configuration.keychainAccessGroup;
     NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key accessGroup:accessGroup];
     query[(__bridge id)kSecReturnData] = @YES;
     query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitOne;
 
     CFTypeRef result = NULL;
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
-    if (status != errSecSuccess || result == NULL) {
+    id object = CFBridgingRelease(result);
+    NSString *value = nil;
+    if (status == errSecSuccess) {
+        if ([object isKindOfClass:[NSData class]]) {
+            value = [[NSString alloc] initWithData:object encoding:NSUTF8StringEncoding];
+        }
+        // 损坏记录也不等于不存在，保留原记录等待显式处理。
+        if (!PBCrossIsValidSharedID(value)) {
+            status = errSecDecode;
+        }
+    }
+    *readStatus = status;
+    if (status != errSecSuccess) {
         if (status != errSecItemNotFound) {
             PBCrossLog(self.configuration, @"Keychain 读取失败 account=%@ group=%@ status=%ld",
                        key, accessGroup ?: @"-", (long)status);
         }
-        if (result != NULL) {
-            CFRelease(result);
-        }
         return nil;
     }
+    return value;
+}
 
-    NSData *data = CFBridgingRelease(result);
-    NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return value.length > 0 ? value : nil;
+- (nullable NSString *)addKeychainStringIfAbsent:(NSString *)candidate
+                                        forKey:(NSString *)key
+                                         error:(NSError **)error
+{
+    NSMutableDictionary *query = [self keychainQueryForKey:key accessGroup:self.configuration.keychainAccessGroup];
+    query[(__bridge id)kSecValueData] = [candidate dataUsingEncoding:NSUTF8StringEncoding];
+    query[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+    query[(__bridge id)kSecAttrSynchronizable] = @NO;
+    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
+    if (status == errSecSuccess) {
+        return candidate;
+    }
+    if (status == errSecDuplicateItem) {
+        // 其他 App/进程已创建：返回持久化的胜出值，绝不覆盖它。
+        NSString *winner = [self keychainStringForKey:key status:&status];
+        if (winner) {
+            return winner;
+        }
+    }
+    if (error) {
+        *error = [self keychainErrorWithStatus:status key:key];
+    }
+    return nil;
 }
 
 - (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key accessGroup:(nullable NSString *)accessGroup
@@ -213,25 +253,10 @@ static NSString *PBCrossCurrentDayKey(void)
     }
 }
 
-- (nullable NSString *)keychainStringForKey:(NSString *)key
-{
-    NSString *accessGroup = self.configuration.keychainAccessGroup;
-    NSString *value = [self keychainStringForKey:key accessGroup:accessGroup];
-    if (value.length == 0 && accessGroup.length > 0) {
-        // 未正确配置 Keychain 共享 entitlement 时，回退到 App 私有 Keychain，避免 ID 丢失。
-        value = [self keychainStringForKey:key accessGroup:nil];
-    }
-    return value;
-}
-
 - (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key
 {
-    NSString *accessGroup = self.configuration.keychainAccessGroup;
-    BOOL success = [self writeKeychainString:value forKey:key accessGroup:accessGroup];
-    if (!success && accessGroup.length > 0) {
-        success = [self writeKeychainString:value forKey:key accessGroup:nil];
-    }
-    return success;
+    // 仅供显式注入服务端 ID 使用；读取与随机 ID 创建不得走覆盖写入。
+    return [self writeKeychainString:value forKey:key accessGroup:self.configuration.keychainAccessGroup];
 }
 
 - (void)removeKeychainValueForKey:(NSString *)key
@@ -247,29 +272,57 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (void)mirrorSharedID:(NSString *)sharedID
 {
-    NSString *keychainValue = [self keychainStringForKey:PBCrossSharedIDKey];
-    if (![keychainValue isEqualToString:sharedID]) {
-        if (![self writeKeychainString:sharedID forKey:PBCrossSharedIDKey]) {
-            PBCrossLog(self.configuration, @"共享 ID 写入 Keychain 失败，将依赖 UserDefaults");
-        }
-    }
-
     NSString *defaultsValue = [self defaultsStringForKey:PBCrossSharedIDKey];
     if (![defaultsValue isEqualToString:sharedID]) {
         [self setDefaultsString:sharedID forKey:PBCrossSharedIDKey];
     }
 }
 
-- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create serverIssued:(nullable BOOL *)serverIssued
+- (nullable NSString *)storedIDForKey:(NSString *)key create:(BOOL)create error:(NSError **)error
+{
+    OSStatus status = errSecSuccess;
+    NSString *stored = [self keychainStringForKey:key status:&status];
+    if (status == errSecSuccess) {
+        return stored;
+    }
+    if (status != errSecItemNotFound) {
+        if (error) {
+            *error = [self keychainErrorWithStatus:status key:key];
+        }
+        return nil;
+    }
+
+    // 兼容已有 Defaults 记录，但只返回 Keychain 原子新增确认后的最终值。
+    NSString *candidate = [self defaultsStringForKey:key];
+    if (candidate.length > 0 && !PBCrossIsValidSharedID(candidate)) {
+        if (error) {
+            *error = [self keychainErrorWithStatus:errSecDecode key:key];
+        }
+        return nil;
+    }
+    if (candidate.length == 0 && create) {
+        candidate = [PBCrossCrypto randomUUIDString];
+    }
+    return candidate.length > 0 ? [self addKeychainStringIfAbsent:candidate forKey:key error:error] : nil;
+}
+
+- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create
+                        serverIssued:(nullable BOOL *)serverIssued
+                               error:(NSError **)error
 {
     @synchronized(self) {
+        if (error) {
+            *error = nil;
+        }
         if (serverIssued != NULL) {
             *serverIssued = NO;
         }
 
-        NSString *serverSharedID = [self keychainStringForKey:PBCrossServerSharedIDKey];
-        if (serverSharedID.length == 0) {
-            serverSharedID = [self defaultsStringForKey:PBCrossServerSharedIDKey];
+        NSError *storageError = nil;
+        NSString *serverSharedID = [self storedIDForKey:PBCrossServerSharedIDKey create:NO error:&storageError];
+        if (storageError) {
+            if (error) { *error = storageError; }
+            return @"";
         }
         if (serverSharedID.length > 0) {
             if (serverIssued != NULL) {
@@ -279,14 +332,10 @@ static NSString *PBCrossCurrentDayKey(void)
             return serverSharedID;
         }
 
-        NSString *sharedID = [self keychainStringForKey:PBCrossSharedIDKey];
-        if (sharedID.length == 0) {
-            sharedID = [self defaultsStringForKey:PBCrossSharedIDKey];
-        }
-
-        if (sharedID.length == 0 && create) {
-            sharedID = [PBCrossCrypto randomUUIDString];
-            PBCrossLog(self.configuration, @"首次生成共享设备 ID: %@", sharedID);
+        NSString *sharedID = [self storedIDForKey:PBCrossSharedIDKey create:create error:&storageError];
+        if (storageError) {
+            if (error) { *error = storageError; }
+            return @"";
         }
 
         if (sharedID.length > 0) {
@@ -313,10 +362,13 @@ static NSString *PBCrossCurrentDayKey(void)
     }
 
     @synchronized(self) {
-        [self setDefaultsString:trimmed forKey:PBCrossServerSharedIDKey];
         if (![self writeKeychainString:trimmed forKey:PBCrossServerSharedIDKey]) {
-            PBCrossLog(self.configuration, @"服务端共享 ID 写入 Keychain 失败，将依赖 UserDefaults");
+            return NO;
         }
+        if (![self writeKeychainString:trimmed forKey:PBCrossSharedIDKey]) {
+            return NO;
+        }
+        [self setDefaultsString:trimmed forKey:PBCrossServerSharedIDKey];
         [self mirrorSharedID:trimmed];
     }
     return YES;

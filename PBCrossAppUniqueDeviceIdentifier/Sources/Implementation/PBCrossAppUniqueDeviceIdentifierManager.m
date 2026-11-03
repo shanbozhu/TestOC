@@ -42,10 +42,11 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (nullable PBCrossIdentity *)cachedIdentityIfFresh;
 - (nullable NSArray<PBCrossIdentifier *> *)cachedRemoteIdentifiersWithResolvedAt:(NSDate * _Nullable * _Nullable)resolvedAt;
 - (BOOL)canUseRemoteResolution;
-- (PBCrossIdentity *)ensureIdentityOnCurrentThread;
+- (PBCrossIdentity *)ensureIdentityOnCurrentThreadWithError:(NSError * _Nullable * _Nullable)error;
 - (PBCrossIdentity *)buildIdentityWithAttributes:(PBCrossDeviceAttributes *)attributes
                                remoteIdentifiers:(nullable NSArray<PBCrossIdentifier *> *)remoteIdentifiers
-                                    resolvedAt:(nullable NSDate *)resolvedAt;
+                                    resolvedAt:(nullable NSDate *)resolvedAt
+                                         error:(NSError * _Nullable * _Nullable)error;
 - (PBCrossIdentity *)identityByReplacingRemoteIdentifiers:(NSArray<PBCrossIdentifier *> *)remoteIdentifiers
                                               resolvedAt:(nullable NSDate *)resolvedAt
                                                     base:(PBCrossIdentity *)base;
@@ -252,12 +253,17 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (PBCrossIdentity *)buildIdentityWithAttributes:(PBCrossDeviceAttributes *)attributes
                                remoteIdentifiers:(NSArray<PBCrossIdentifier *> *)remoteIdentifiers
                                       resolvedAt:(NSDate *)resolvedAt
+                                           error:(NSError **)error
 {
     PBCrossConfiguration *configuration = [self configurationSnapshot];
     PBCrossIdentityStore *store = [self storeSnapshot];
 
     BOOL serverIssued = NO;
-    NSString *sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued];
+    NSError *storageError = nil;
+    NSString *sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued error:&storageError];
+    if (error) {
+        *error = storageError;
+    }
     NSString *previousSystemUpdateTime =
         [store updateSystemUpdateTimeHistoryWithCurrentValue:attributes.sysFileTime];
 
@@ -291,7 +297,12 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
                                           sources:sources
                                       generatedAt:[NSDate date]
                                  remoteResolvedAt:resolvedAt];
-    [self cacheIdentity:identity];
+    // 存储恢复后下次 load 应立即重试，不把不完整身份作为成功缓存。
+    if (!storageError) {
+        [self cacheIdentity:identity];
+    } else {
+        [self resetIdentityCache];
+    }
 
     PBCrossLog(configuration, @"生成身份 current=%@ sources=%@ shared=%@",
                identity.currentIdentifier ?: @"-",
@@ -300,8 +311,11 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     return identity;
 }
 
-- (PBCrossIdentity *)ensureIdentityOnCurrentThread
+- (PBCrossIdentity *)ensureIdentityOnCurrentThreadWithError:(NSError **)error
 {
+    if (error) {
+        *error = nil;
+    }
     PBCrossIdentity *cachedIdentity = [self cachedIdentityIfFresh];
     if (cachedIdentity) {
         return cachedIdentity;
@@ -315,7 +329,8 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         [self cachedRemoteIdentifiersWithResolvedAt:&resolvedAt];
     return [self buildIdentityWithAttributes:attributes
                            remoteIdentifiers:remoteIdentifiers
-                                  resolvedAt:resolvedAt];
+                                  resolvedAt:resolvedAt
+                                       error:error];
 }
 
 - (void)loadIdentityWithForce:(BOOL)force completion:(PBCrossIdentityCompletion)completion
@@ -323,6 +338,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     dispatch_async(self.workQueue, ^{
         PBCrossConfiguration *configuration = [self configurationSnapshot];
         PBCrossIdentity *identity = force ? nil : [self cachedIdentityIfFresh];
+        NSError *storageError = nil;
         if (!identity) {
             PBCrossDeviceAttributes *attributes =
                 [PBCrossDeviceAttributeCollector collectAttributesWithConfiguration:configuration];
@@ -331,12 +347,13 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
                 [self cachedRemoteIdentifiersWithResolvedAt:&resolvedAt];
             identity = [self buildIdentityWithAttributes:attributes
                                        remoteIdentifiers:remoteIdentifiers
-                                              resolvedAt:resolvedAt];
+                                              resolvedAt:resolvedAt
+                                                   error:&storageError];
         }
 
-        [self deliverIdentity:identity error:nil completion:completion];
+        [self deliverIdentity:identity error:storageError completion:completion];
 
-        if (configuration.automaticallyRefreshesRemoteIdentity
+        if (!storageError && configuration.automaticallyRefreshesRemoteIdentity
             && [self canUseRemoteResolution]
             && ![[self remoteResolverSnapshot] hasFreshCache]) {
             [self resolveRemoteIdentityWithCompletion:nil];
@@ -357,12 +374,12 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (PBCrossIdentity *)identitySynchronously
 {
     if ([self isOnWorkQueue] || [NSThread isMainThread]) {
-        return [self ensureIdentityOnCurrentThread];
+        return [self ensureIdentityOnCurrentThreadWithError:NULL];
     }
 
     __block PBCrossIdentity *identity = nil;
     dispatch_sync(self.workQueue, ^{
-        identity = [self ensureIdentityOnCurrentThread];
+        identity = [self ensureIdentityOnCurrentThreadWithError:NULL];
     });
     return identity;
 }
@@ -420,8 +437,13 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         PBCrossRemoteConfiguration *remoteConfiguration = configuration.remoteConfiguration;
         PBCrossRemoteResolver *resolver = [self remoteResolverSnapshot];
         PBCrossIdentity *baseIdentity = [self cachedIdentityIfFresh];
+        NSError *storageError = nil;
         if (!baseIdentity) {
-            baseIdentity = [self ensureIdentityOnCurrentThread];
+            baseIdentity = [self ensureIdentityOnCurrentThreadWithError:&storageError];
+        }
+        if (storageError) {
+            [self deliverIdentity:baseIdentity error:storageError completion:completion];
+            return;
         }
 
         if (!remoteConfiguration.enabled || resolver == nil) {
@@ -524,8 +546,9 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     }
 
     PBCrossIdentity *identity = [self cachedIdentity];
+    NSError *storageError = nil;
     if (!identity) {
-        identity = [self ensureIdentityOnCurrentThread];
+        identity = [self ensureIdentityOnCurrentThreadWithError:&storageError];
     }
     if (generation != [self currentGeneration]) {
         return;
@@ -539,10 +562,14 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             if (generation != self.configurationGeneration) {
                 return;
             }
-            self.cachedIdentityStorage = identity;
-            self.cachedIdentityDate = identity.generatedAt ?: [NSDate date];
+            if (!storageError) {
+                self.cachedIdentityStorage = identity;
+                self.cachedIdentityDate = identity.generatedAt ?: [NSDate date];
+            }
         }
-        [self postIdentityUpdateNotification:identity];
+        if (!storageError) {
+            [self postIdentityUpdateNotification:identity];
+        }
     }
 
     if (completions.count == 0) {
@@ -552,7 +579,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     PBCrossIdentity *resolvedIdentity = identity;
     dispatch_async(dispatch_get_main_queue(), ^{
         for (PBCrossIdentityCompletion completion in completions) {
-            completion(resolvedIdentity, error);
+            completion(resolvedIdentity, error ?: storageError);
         }
     });
 }
@@ -571,7 +598,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (NSString *)sharedID
 {
     PBCrossIdentityStore *store = [self storeSnapshot];
-    NSString *sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:NULL];
+    NSString *sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
     return sharedID ?: @"";
 }
 

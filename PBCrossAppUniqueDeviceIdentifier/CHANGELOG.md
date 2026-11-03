@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- 配置 App Group 时强制要求共享 Keychain Access Group，拒绝仅 App Group 配置并保留原配置，避免两个 App 分别创建私有身份。
+- 修复 Keychain 读取错误被当作无记录、导致临时生成其他共享 ID 的问题；存储错误返回给加载回调，恢复后重试。
+- 修复多个 App 并发首次创建共享 ID 时相互覆盖的问题；使用 `SecItemAdd`，重复时读取已持久化的胜出值。
+- 新增 `Tools/verify_storage.sh`，覆盖读取/写入失败、损坏记录、并发创建与缓存恢复。
+
 ## 1.0.0 — 2026-10-27
 
 首个版本。

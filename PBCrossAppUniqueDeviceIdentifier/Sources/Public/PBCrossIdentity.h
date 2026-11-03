@@ -17,7 +17,7 @@ typedef NS_OPTIONS(NSUInteger, PBCrossIdentitySource) {
     PBCrossIdentitySourceNone = 0,
     /// 本地由设备属性确定生成（跨公司可复现）。
     PBCrossIdentitySourceFingerprint = 1 << 0,
-    /// 通过 Keychain Access Group / App Group 共享的自建 ID。
+    /// 通过 Keychain Access Group 共享的自建 ID，可选镜像到 App Group。
     PBCrossIdentitySourceSharedStorage = 1 << 1,
     /// 自建 ID 服务下发。
     PBCrossIdentitySourceRemote = 1 << 2,
@@ -32,7 +32,7 @@ FOUNDATION_EXPORT NSString *PBCrossIdentitySourceDescription(PBCrossIdentitySour
  *
  *  同时包含：
  *  - 本地按版本生成的指纹 ID（默认当前版本 + 上一版本）；
- *  - 跨 App 共享的自建 UUID（可选，取决于 Keychain/App Group 配置）；
+ *  - 跨 App 共享的自建 UUID（取决于共享 Keychain 配置，App Group 可选）；
  *  - 远端服务返回的版本化 ID（可选）；
  *  - 采集到的设备属性，供广告归因方做属性相似度匹配。
  */

@@ -25,7 +25,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
  *  跨 App 统一设备标识入口。
  *
  *  设计目标：
- *  1. 同 Team 的多个 App：通过 Keychain Access Group / App Group 共享同一个自建 UUID；
+ *  1. 同 Team 的多个 App：通过共享 Keychain Access Group 共享同一个自建 UUID，App Group 可选；
  *  2. 不同公司/不同开发者的 App：通过 pb-xid-v1 设备属性指纹（相同字段集 + 相同盐值）得到同一个 ID；
  *  3. 需要中心化发号时：通过自建 ID 服务（CAID API 兼容协议）下发版本化 ID；
  *  4. 广告归因：用 PBCrossIdentityMatcher 对媒体回传的 ext.pb_cross_app 做匹配。
@@ -44,6 +44,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 
 /**
  *  更新配置。配置校验失败时保持原配置不变。
+ *  配置 appGroupIdentifier 时必须同时配置共享 keychainAccessGroup。
  *  示例：
  *    NSError *error = nil;
  *    [manager configureWithBlock:^(PBCrossConfiguration *config) {
@@ -56,6 +57,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
                      error:(NSError * _Nullable * _Nullable)error;
 
 /// 异步加载身份。completion 在主线程回调；优先返回内存缓存。
+/// Keychain 失败时返回不含共享 ID 的身份与 NSError，后续加载会重试。
 - (void)loadIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
 /// 同步加载身份（可能阻塞主线程约 0.5 秒，不发起远端请求）。建议仅在非主线程或启动早期使用。
@@ -70,7 +72,8 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 /// 请求远端自建 ID 服务。completion 在主线程回调；未启用/未同意隐私授权时返回错误。
 - (void)resolveRemoteIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
-/// 跨 App 共享的自建 ID。首次调用会生成并写入 Keychain/App Group。
+/// 跨 App 共享的自建 ID。首次调用会生成并写入 Keychain，可选镜像到 App Group。
+/// Keychain 不可用时返回空串，不生成替代身份；需要错误详情时使用异步加载接口。
 @property (nonatomic, copy, readonly) NSString *sharedID;
 
 /// 注入服务端下发的共享 ID（用于中心化发号），下次加载身份时生效。

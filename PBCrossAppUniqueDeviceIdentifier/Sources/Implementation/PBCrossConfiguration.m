@@ -323,6 +323,17 @@ NSString * const PBCrossDefaultKeychainService = @"com.pb.crossapp.unique-device
         return NO;
     }
 
+    // App Group 的 Defaults 不提供跨进程原子创建；共享 UUID 必须由同一条
+    // Keychain 记录决定，不能让各 App 向自己的私有 Keychain 分别创建。
+    if (self.appGroupIdentifier.length > 0 &&
+        [self.keychainAccessGroup stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].length == 0) {
+        if (error) {
+            *error = PBCrossErrorMake(PBCrossIdentifierErrorInvalidConfiguration,
+                                      @"配置 appGroupIdentifier 时必须同时配置共享 keychainAccessGroup；仅 App Group 不支持共享身份的并发创建");
+        }
+        return NO;
+    }
+
     if (self.identityCacheDuration < 0) {
         if (error) {
             *error = PBCrossErrorMake(PBCrossIdentifierErrorInvalidConfiguration, @"identityCacheDuration 不能为负数");
