@@ -7,6 +7,7 @@
 //
 
 #import "PBCrossDeviceAttributeCollector.h"
+#import "PBCrossAdvertisingAuthorization.h"
 #import "PBCrossConfiguration.h"
 #import "PBCrossCrypto.h"
 #import "PBCrossLogging.h"
@@ -250,10 +251,6 @@ static NSDictionary<NSString *, NSString *> *PBCrossCarrierInformation(void)
 
 #pragma mark - IDFA
 
-@protocol PBCrossTrackingManagerClass <NSObject>
-+ (NSInteger)trackingAuthorizationStatus;
-@end
-
 @protocol PBCrossIdentifierManagerClass <NSObject>
 + (id)sharedManager;
 - (BOOL)isAdvertisingTrackingEnabled;
@@ -262,15 +259,8 @@ static NSDictionary<NSString *, NSString *> *PBCrossCarrierInformation(void)
 
 static NSString *PBCrossAdvertisingIdentifier(void)
 {
-    if (@available(iOS 14.0, *)) {
-        Class trackingManagerClass = NSClassFromString(@"ATTrackingManager");
-        if ([trackingManagerClass respondsToSelector:@selector(trackingAuthorizationStatus)]) {
-            NSInteger status = [(id<PBCrossTrackingManagerClass>)trackingManagerClass trackingAuthorizationStatus];
-            // 3 = ATTrackingManagerAuthorizationStatusAuthorized
-            if (status != 3) {
-                return nil;
-            }
-        }
+    if (!PBCrossAdvertisingIdentifierIsAuthorized()) {
+        return nil;
     }
 
     Class identifierManagerClass = NSClassFromString(@"ASIdentifierManager");

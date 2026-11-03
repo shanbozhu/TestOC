@@ -14,12 +14,23 @@
 #import "PBCrossRemoteResolver.h"
 #import "PBCrossErrors.h"
 #import "PBCrossLogging.h"
+#import "PBCrossAdvertisingAuthorization.h"
 
 NSNotificationName const PBCrossAppUniqueDeviceIdentifierDidUpdateNotification =
     @"PBCrossAppUniqueDeviceIdentifierDidUpdateNotification";
 NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserInfoKey = @"PBCrossIdentity";
 
 static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
+
+/// 一次加载所使用的配置、存储和版本必须来自同一个临界区。
+@interface PBCrossIdentityLoadContext : NSObject
+@property (nonatomic, strong) PBCrossConfiguration *configuration;
+@property (nonatomic, strong) PBCrossIdentityStore *store;
+@property (nonatomic, strong, nullable) PBCrossRemoteResolver *resolver;
+@property (nonatomic, assign) NSUInteger generation;
+@end
+@implementation PBCrossIdentityLoadContext
+@end
 
 @interface PBCrossAppUniqueDeviceIdentifierManager ()
 
@@ -35,31 +46,35 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (instancetype)initPrivate;
 - (BOOL)isOnWorkQueue;
-- (PBCrossConfiguration *)configurationSnapshot;
 - (nullable PBCrossIdentityStore *)storeSnapshot;
-- (nullable PBCrossRemoteResolver *)remoteResolverSnapshot;
 - (NSUInteger)currentGeneration;
 - (nullable PBCrossIdentity *)cachedIdentityIfFresh;
-- (nullable NSArray<PBCrossIdentifier *> *)cachedRemoteIdentifiersWithResolvedAt:(NSDate * _Nullable * _Nullable)resolvedAt;
-- (BOOL)canUseRemoteResolution;
+- (PBCrossIdentityLoadContext *)loadContext;
+- (nullable PBCrossIdentity *)identityByApplyingAdvertisingAuthorization:(nullable PBCrossIdentity *)identity;
+- (nullable NSArray<PBCrossIdentifier *> *)cachedRemoteIdentifiersWithContext:(PBCrossIdentityLoadContext *)context
+                                                                 resolvedAt:(NSDate * _Nullable * _Nullable)resolvedAt;
 - (PBCrossIdentity *)ensureIdentityOnCurrentThreadWithError:(NSError * _Nullable * _Nullable)error;
-- (PBCrossIdentity *)buildIdentityWithAttributes:(PBCrossDeviceAttributes *)attributes
+- (nullable PBCrossIdentity *)identityWithContext:(PBCrossIdentityLoadContext *)context
+                                          force:(BOOL)force
+                                          error:(NSError * _Nullable * _Nullable)error;
+- (nullable PBCrossIdentity *)buildIdentityWithAttributes:(PBCrossDeviceAttributes *)attributes
                                remoteIdentifiers:(nullable NSArray<PBCrossIdentifier *> *)remoteIdentifiers
                                     resolvedAt:(nullable NSDate *)resolvedAt
+                                       context:(PBCrossIdentityLoadContext *)context
                                          error:(NSError * _Nullable * _Nullable)error;
 - (PBCrossIdentity *)identityByReplacingRemoteIdentifiers:(NSArray<PBCrossIdentifier *> *)remoteIdentifiers
                                               resolvedAt:(nullable NSDate *)resolvedAt
                                                     base:(PBCrossIdentity *)base;
-- (void)cacheIdentity:(PBCrossIdentity *)identity;
 - (void)loadIdentityWithForce:(BOOL)force completion:(nullable PBCrossIdentityCompletion)completion;
 - (void)deliverIdentity:(nullable PBCrossIdentity *)identity
                   error:(nullable NSError *)error
+             generation:(NSUInteger)generation
              completion:(nullable PBCrossIdentityCompletion)completion;
 - (void)finishRemoteResolutionWithIdentifiers:(nullable NSArray<PBCrossIdentifier *> *)identifiers
                                    resolvedAt:(nullable NSDate *)resolvedAt
                                         error:(nullable NSError *)error
                                    generation:(NSUInteger)generation;
-- (void)postIdentityUpdateNotification:(PBCrossIdentity *)identity;
+- (void)postIdentityUpdateNotification:(PBCrossIdentity *)identity generation:(NSUInteger)generation;
 
 @end
 
@@ -152,13 +167,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 #pragma mark - Snapshots
 
-- (PBCrossConfiguration *)configurationSnapshot
-{
-    @synchronized(self) {
-        return self.configurationStorage;
-    }
-}
-
 - (nullable PBCrossIdentityStore *)storeSnapshot
 {
     @synchronized(self) {
@@ -166,17 +174,22 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     }
 }
 
-- (nullable PBCrossRemoteResolver *)remoteResolverSnapshot
-{
-    @synchronized(self) {
-        return self.remoteResolverStorage;
-    }
-}
-
 - (NSUInteger)currentGeneration
 {
     @synchronized(self) {
         return self.configurationGeneration;
+    }
+}
+
+- (PBCrossIdentityLoadContext *)loadContext
+{
+    @synchronized(self) {
+        PBCrossIdentityLoadContext *context = [[PBCrossIdentityLoadContext alloc] init];
+        context.configuration = self.configurationStorage;
+        context.store = self.storeStorage;
+        context.resolver = self.remoteResolverStorage;
+        context.generation = self.configurationGeneration;
+        return context;
     }
 }
 
@@ -190,6 +203,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (nullable PBCrossIdentity *)cachedIdentity
 {
     @synchronized(self) {
+        self.cachedIdentityStorage = [self identityByApplyingAdvertisingAuthorization:self.cachedIdentityStorage];
         return self.cachedIdentityStorage;
     }
 }
@@ -205,21 +219,38 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             return nil;
         }
         NSTimeInterval age = [[NSDate date] timeIntervalSinceDate:self.cachedIdentityDate];
+        self.cachedIdentityStorage = [self identityByApplyingAdvertisingAuthorization:self.cachedIdentityStorage];
         return age < cacheDuration ? self.cachedIdentityStorage : nil;
     }
 }
 
-- (void)cacheIdentity:(PBCrossIdentity *)identity
+- (nullable PBCrossIdentity *)identityByApplyingAdvertisingAuthorization:(nullable PBCrossIdentity *)identity
 {
-    @synchronized(self) {
-        self.cachedIdentityStorage = identity;
-        self.cachedIdentityDate = identity.generatedAt ?: [NSDate date];
+    if (!identity || (PBCrossAdvertisingIdentifierIsAuthorized()
+                     && self.configurationStorage.allowsAdvertisingIdentifier)) {
+        return identity;
     }
+    if (identity.attributes.advertisingIdentifier.length == 0
+        && identity.attributes.advertisingIdentifierMD5.length == 0) {
+        return identity;
+    }
+    NSMutableDictionary *values = [identity.attributes.values mutableCopy];
+    [values removeObjectForKey:PBCrossAttributeKeyIDFAMD5];
+    PBCrossDeviceAttributes *attributes = [PBCrossDeviceAttributes attributesWithValues:values];
+    return [[PBCrossIdentity alloc] initWithSharedID:identity.sharedID
+                                      identifiers:identity.identifiers
+                                       attributes:attributes
+                        previousSystemUpdateTime:identity.previousSystemUpdateTime
+                                        algorithm:identity.algorithm
+                                          sources:identity.sources
+                                      generatedAt:identity.generatedAt
+                                 remoteResolvedAt:identity.remoteResolvedAt];
 }
 
-- (nullable NSArray<PBCrossIdentifier *> *)cachedRemoteIdentifiersWithResolvedAt:(NSDate **)resolvedAt
+- (nullable NSArray<PBCrossIdentifier *> *)cachedRemoteIdentifiersWithContext:(PBCrossIdentityLoadContext *)context
+                                                                 resolvedAt:(NSDate **)resolvedAt
 {
-    PBCrossConfiguration *configuration = [self configurationSnapshot];
+    PBCrossConfiguration *configuration = context.configuration;
     PBCrossRemoteConfiguration *remoteConfiguration = configuration.remoteConfiguration;
     if (!remoteConfiguration.enabled) {
         return nil;
@@ -228,7 +259,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         return nil;
     }
 
-    PBCrossRemoteResolver *resolver = [self remoteResolverSnapshot];
+    PBCrossRemoteResolver *resolver = context.resolver;
     NSDate *date = nil;
     NSArray<PBCrossIdentifier *> *identifiers = [resolver cachedIdentifiersWithResolvedAt:&date];
     if (resolvedAt) {
@@ -237,26 +268,14 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     return identifiers;
 }
 
-- (BOOL)canUseRemoteResolution
-{
-    PBCrossConfiguration *configuration = [self configurationSnapshot];
-    PBCrossRemoteConfiguration *remoteConfiguration = configuration.remoteConfiguration;
-    if (!remoteConfiguration.enabled) {
-        return NO;
-    }
-    if (remoteConfiguration.requiresUserConsent && !remoteConfiguration.hasUserConsent) {
-        return NO;
-    }
-    return [self remoteResolverSnapshot] != nil;
-}
-
-- (PBCrossIdentity *)buildIdentityWithAttributes:(PBCrossDeviceAttributes *)attributes
+- (nullable PBCrossIdentity *)buildIdentityWithAttributes:(PBCrossDeviceAttributes *)attributes
                                remoteIdentifiers:(NSArray<PBCrossIdentifier *> *)remoteIdentifiers
                                       resolvedAt:(NSDate *)resolvedAt
+                                         context:(PBCrossIdentityLoadContext *)context
                                            error:(NSError **)error
 {
-    PBCrossConfiguration *configuration = [self configurationSnapshot];
-    PBCrossIdentityStore *store = [self storeSnapshot];
+    PBCrossConfiguration *configuration = context.configuration;
+    PBCrossIdentityStore *store = context.store;
 
     BOOL serverIssued = NO;
     NSError *storageError = nil;
@@ -297,11 +316,17 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
                                           sources:sources
                                       generatedAt:[NSDate date]
                                  remoteResolvedAt:resolvedAt];
-    // 存储恢复后下次 load 应立即重试，不把不完整身份作为成功缓存。
-    if (!storageError) {
-        [self cacheIdentity:identity];
-    } else {
-        [self resetIdentityCache];
+    @synchronized(self) {
+        if (context.generation != self.configurationGeneration) {
+            if (error) {
+                *error = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"配置或身份已更新，本次加载已取消");
+            }
+            return nil;
+        }
+        identity = [self identityByApplyingAdvertisingAuthorization:identity];
+        // 存储恢复后下次 load 应立即重试，不把不完整身份作为成功缓存。
+        self.cachedIdentityStorage = storageError ? nil : identity;
+        self.cachedIdentityDate = storageError ? nil : identity.generatedAt;
     }
 
     PBCrossLog(configuration, @"生成身份 current=%@ sources=%@ shared=%@",
@@ -311,51 +336,62 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     return identity;
 }
 
-- (PBCrossIdentity *)ensureIdentityOnCurrentThreadWithError:(NSError **)error
+- (nullable PBCrossIdentity *)identityWithContext:(PBCrossIdentityLoadContext *)context
+                                          force:(BOOL)force
+                                          error:(NSError **)error
 {
-    if (error) {
-        *error = nil;
-    }
-    PBCrossIdentity *cachedIdentity = [self cachedIdentityIfFresh];
-    if (cachedIdentity) {
-        return cachedIdentity;
+    if (error) { *error = nil; }
+    @synchronized(self) {
+        if (context.generation != self.configurationGeneration) {
+            if (error) {
+                *error = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"配置或身份已更新，本次加载已取消");
+            }
+            return nil;
+        }
+        PBCrossIdentity *cached = force ? nil : [self cachedIdentityIfFresh];
+        if (cached) { return cached; }
     }
 
-    PBCrossConfiguration *configuration = [self configurationSnapshot];
     PBCrossDeviceAttributes *attributes =
-        [PBCrossDeviceAttributeCollector collectAttributesWithConfiguration:configuration];
+        [PBCrossDeviceAttributeCollector collectAttributesWithConfiguration:context.configuration];
     NSDate *resolvedAt = nil;
     NSArray<PBCrossIdentifier *> *remoteIdentifiers =
-        [self cachedRemoteIdentifiersWithResolvedAt:&resolvedAt];
+        [self cachedRemoteIdentifiersWithContext:context resolvedAt:&resolvedAt];
     return [self buildIdentityWithAttributes:attributes
                            remoteIdentifiers:remoteIdentifiers
                                   resolvedAt:resolvedAt
+                                     context:context
                                        error:error];
+}
+
+- (PBCrossIdentity *)ensureIdentityOnCurrentThreadWithError:(NSError **)error
+{
+    // 同步 API 没有取消回调；配置切换时使用新的完整上下文重试。
+    while (YES) {
+        PBCrossIdentityLoadContext *context = [self loadContext];
+        NSError *loadError = nil;
+        PBCrossIdentity *identity = [self identityWithContext:context force:NO error:&loadError];
+        @synchronized(self) {
+            if (context.generation != self.configurationGeneration) { continue; }
+            if (error) { *error = loadError; }
+            return [self identityByApplyingAdvertisingAuthorization:identity];
+        }
+    }
 }
 
 - (void)loadIdentityWithForce:(BOOL)force completion:(PBCrossIdentityCompletion)completion
 {
     dispatch_async(self.workQueue, ^{
-        PBCrossConfiguration *configuration = [self configurationSnapshot];
-        PBCrossIdentity *identity = force ? nil : [self cachedIdentityIfFresh];
-        NSError *storageError = nil;
-        if (!identity) {
-            PBCrossDeviceAttributes *attributes =
-                [PBCrossDeviceAttributeCollector collectAttributesWithConfiguration:configuration];
-            NSDate *resolvedAt = nil;
-            NSArray<PBCrossIdentifier *> *remoteIdentifiers =
-                [self cachedRemoteIdentifiersWithResolvedAt:&resolvedAt];
-            identity = [self buildIdentityWithAttributes:attributes
-                                       remoteIdentifiers:remoteIdentifiers
-                                              resolvedAt:resolvedAt
-                                                   error:&storageError];
-        }
+        PBCrossIdentityLoadContext *context = [self loadContext];
+        NSError *loadError = nil;
+        PBCrossIdentity *identity = [self identityWithContext:context force:force error:&loadError];
+        [self deliverIdentity:identity error:loadError generation:context.generation completion:completion];
 
-        [self deliverIdentity:identity error:storageError completion:completion];
-
-        if (!storageError && configuration.automaticallyRefreshesRemoteIdentity
-            && [self canUseRemoteResolution]
-            && ![[self remoteResolverSnapshot] hasFreshCache]) {
+        PBCrossRemoteConfiguration *remote = context.configuration.remoteConfiguration;
+        if (!loadError && context.generation == [self currentGeneration]
+            && context.configuration.automaticallyRefreshesRemoteIdentity
+            && remote.enabled && (!remote.requiresUserConsent || remote.hasUserConsent)
+            && context.resolver && ![context.resolver hasFreshCache]) {
             [self resolveRemoteIdentityWithCompletion:nil];
         }
     });
@@ -386,13 +422,23 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (void)deliverIdentity:(PBCrossIdentity *)identity
                   error:(NSError *)error
+             generation:(NSUInteger)generation
              completion:(PBCrossIdentityCompletion)completion
 {
     if (!completion) {
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        completion(identity, error);
+        PBCrossIdentity *deliveredIdentity = nil;
+        NSError *deliveredError = error;
+        @synchronized(self) {
+            if (generation != self.configurationGeneration) {
+                deliveredError = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"配置或身份已更新，本次加载已取消");
+            } else {
+                deliveredIdentity = [self identityByApplyingAdvertisingAuthorization:identity];
+            }
+        }
+        completion(deliveredIdentity, deliveredError);
     });
 }
 
@@ -433,16 +479,14 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (void)resolveRemoteIdentityWithCompletion:(PBCrossIdentityCompletion)completion
 {
     dispatch_async(self.workQueue, ^{
-        PBCrossConfiguration *configuration = [self configurationSnapshot];
+        PBCrossIdentityLoadContext *context = [self loadContext];
+        PBCrossConfiguration *configuration = context.configuration;
         PBCrossRemoteConfiguration *remoteConfiguration = configuration.remoteConfiguration;
-        PBCrossRemoteResolver *resolver = [self remoteResolverSnapshot];
-        PBCrossIdentity *baseIdentity = [self cachedIdentityIfFresh];
+        PBCrossRemoteResolver *resolver = context.resolver;
         NSError *storageError = nil;
-        if (!baseIdentity) {
-            baseIdentity = [self ensureIdentityOnCurrentThreadWithError:&storageError];
-        }
+        PBCrossIdentity *baseIdentity = [self identityWithContext:context force:NO error:&storageError];
         if (storageError) {
-            [self deliverIdentity:baseIdentity error:storageError completion:completion];
+            [self deliverIdentity:baseIdentity error:storageError generation:context.generation completion:completion];
             return;
         }
 
@@ -450,7 +494,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             [self deliverIdentity:baseIdentity
                             error:PBCrossErrorMake(PBCrossRemoteErrorNotConfigured,
                                                    @"%@", PBCrossRemoteErrorDescription(PBCrossRemoteErrorNotConfigured))
-                       completion:completion];
+                       generation:context.generation completion:completion];
             return;
         }
 
@@ -458,12 +502,16 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             [self deliverIdentity:baseIdentity
                             error:PBCrossErrorMake(PBCrossRemoteErrorConsentRequired,
                                                    @"%@", PBCrossRemoteErrorDescription(PBCrossRemoteErrorConsentRequired))
-                       completion:completion];
+                       generation:context.generation completion:completion];
             return;
         }
 
-        NSUInteger generation = [self currentGeneration];
+        NSUInteger generation = context.generation;
         @synchronized(self) {
+            if (generation != self.configurationGeneration) {
+                [self deliverIdentity:nil error:nil generation:generation completion:completion];
+                return;
+            }
             if (self.remoteResolutionInFlight) {
                 if (completion) {
                     [self.pendingRemoteCompletions addObject:[completion copy]];
@@ -551,6 +599,9 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         identity = [self ensureIdentityOnCurrentThreadWithError:&storageError];
     }
     if (generation != [self currentGeneration]) {
+        for (PBCrossIdentityCompletion completion in completions) {
+            [self deliverIdentity:nil error:nil generation:generation completion:completion];
+        }
         return;
     }
 
@@ -560,15 +611,19 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
                                                          base:identity];
         @synchronized(self) {
             if (generation != self.configurationGeneration) {
+                for (PBCrossIdentityCompletion completion in completions) {
+                    [self deliverIdentity:nil error:nil generation:generation completion:completion];
+                }
                 return;
             }
+            identity = [self identityByApplyingAdvertisingAuthorization:identity];
             if (!storageError) {
                 self.cachedIdentityStorage = identity;
                 self.cachedIdentityDate = identity.generatedAt ?: [NSDate date];
             }
         }
         if (!storageError) {
-            [self postIdentityUpdateNotification:identity];
+            [self postIdentityUpdateNotification:identity generation:generation];
         }
     }
 
@@ -576,20 +631,22 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         return;
     }
 
-    PBCrossIdentity *resolvedIdentity = identity;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        for (PBCrossIdentityCompletion completion in completions) {
-            completion(resolvedIdentity, error ?: storageError);
-        }
-    });
+    for (PBCrossIdentityCompletion completion in completions) {
+        [self deliverIdentity:identity error:error ?: storageError generation:generation completion:completion];
+    }
 }
 
-- (void)postIdentityUpdateNotification:(PBCrossIdentity *)identity
+- (void)postIdentityUpdateNotification:(PBCrossIdentity *)identity generation:(NSUInteger)generation
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        PBCrossIdentity *deliveredIdentity = nil;
+        @synchronized(self) {
+            if (generation != self.configurationGeneration) { return; }
+            deliveredIdentity = [self identityByApplyingAdvertisingAuthorization:identity];
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:PBCrossAppUniqueDeviceIdentifierDidUpdateNotification
                                                             object:self
-                                                          userInfo:@{PBCrossAppUniqueDeviceIdentifierIdentityUserInfoKey: identity}];
+                                                          userInfo:@{PBCrossAppUniqueDeviceIdentifierIdentityUserInfoKey: deliveredIdentity}];
     });
 }
 
@@ -619,17 +676,18 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (PBCrossAdRequestAdapter *)adRequestAdapterWithContext:(PBCrossAdRequestContext *)context
 {
-    PBCrossIdentity *identity = [self cachedIdentityIfFresh];
-    if (!identity) {
-        identity = [self identitySynchronously];
+    while (YES) {
+        PBCrossIdentityLoadContext *loadContext = [self loadContext];
+        PBCrossIdentity *identity = [self identitySynchronously];
+        @synchronized(self) {
+            if (loadContext.generation != self.configurationGeneration) { continue; }
+            PBCrossAdRequestAdapter *adapter =
+                [[PBCrossAdRequestAdapter alloc] initWithIdentity:identity context:context];
+            adapter.emitsRawAdvertisingIdentifier = loadContext.configuration.emitsRawAdvertisingIdentifier;
+            adapter.emitsLegacyCAIDFields = loadContext.configuration.emitsLegacyCAIDFields;
+            return adapter;
+        }
     }
-
-    PBCrossConfiguration *configuration = [self configurationSnapshot];
-    PBCrossAdRequestAdapter *adapter =
-        [[PBCrossAdRequestAdapter alloc] initWithIdentity:identity context:context];
-    adapter.emitsRawAdvertisingIdentifier = configuration.emitsRawAdvertisingIdentifier;
-    adapter.emitsLegacyCAIDFields = configuration.emitsLegacyCAIDFields;
-    return adapter;
 }
 
 @end

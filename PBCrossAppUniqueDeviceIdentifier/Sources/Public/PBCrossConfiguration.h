@@ -18,6 +18,8 @@ FOUNDATION_EXPORT NSErrorDomain const PBCrossIdentifierErrorDomain;
 typedef NS_ERROR_ENUM(PBCrossIdentifierErrorDomain, PBCrossIdentifierErrorCode) {
     PBCrossIdentifierErrorInvalidConfiguration = 1,
     PBCrossIdentifierErrorIdentityUnavailable = 2,
+    /// 加载期间配置或持久身份已更新，原结果已失效。
+    PBCrossIdentifierErrorOperationCancelled = 3,
 };
 
 /// 远端自建 ID 服务错误码。

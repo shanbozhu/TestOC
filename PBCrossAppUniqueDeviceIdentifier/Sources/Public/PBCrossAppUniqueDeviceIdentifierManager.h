@@ -58,9 +58,12 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 
 /// 异步加载身份。completion 在主线程回调；优先返回内存缓存。
 /// Keychain 失败时返回不含共享 ID 的身份与 NSError，后续加载会重试。
+/// 加载或等待回调期间配置/身份被更新时，返回 nil 与 PBCrossIdentifierErrorOperationCancelled。
+/// 返回缓存与交付回调前均检查广告授权；撤回后移除明文 IDFA 和 idfa_md5。
 - (void)loadIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
 /// 同步加载身份（可能阻塞主线程约 0.5 秒，不发起远端请求）。建议仅在非主线程或启动早期使用。
+/// 加载期间配置更新时使用新配置重试。
 - (PBCrossIdentity *)identitySynchronously;
 
 /// 已缓存的最近一次身份；尚未加载时为 nil。

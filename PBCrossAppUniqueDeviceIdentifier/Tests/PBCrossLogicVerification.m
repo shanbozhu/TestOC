@@ -17,6 +17,14 @@
 
 static int PBCrossFailures = 0;
 
+// The macOS harness supplies the authorized host state for IDFA export checks.
+@interface ATTrackingManager : NSObject
++ (NSInteger)trackingAuthorizationStatus;
+@end
+@implementation ATTrackingManager
++ (NSInteger)trackingAuthorizationStatus { return 3; }
+@end
+
 static void PBCrossAssert(BOOL condition, NSString *name)
 {
     if (condition) {

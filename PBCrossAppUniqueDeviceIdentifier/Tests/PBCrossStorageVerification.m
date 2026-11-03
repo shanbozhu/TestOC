@@ -3,6 +3,8 @@
 #import "PBCrossIdentityStore.h"
 #import "PBCrossAppUniqueDeviceIdentifierManager.h"
 #import "PBCrossDeviceAttributeCollector.h"
+#import "PBCrossIdentityGenerator.h"
+#import "PBCrossRemoteResolver.h"
 
 static NSString * const CRSharedKey = @"pb_shared_id";
 static NSString * const CRServerKey = @"pb_server_shared_id";
@@ -15,6 +17,17 @@ static BOOL CRInjectDuplicate, CRFailWinnerRead;
 static dispatch_semaphore_t CRRaceReady, CRRaceRelease;
 static NSUInteger CRRaceReaders;
 static int CRFailures;
+static NSInteger CRTrackingStatus = 3;
+static BOOL CRAdvertisingFixture;
+static NSUInteger CRCollections;
+static dispatch_semaphore_t CRCollectionReady, CRCollectionRelease;
+
+@interface ATTrackingManager : NSObject
++ (NSInteger)trackingAuthorizationStatus;
+@end
+@implementation ATTrackingManager
++ (NSInteger)trackingAuthorizationStatus { return CRTrackingStatus; }
+@end
 
 static NSString *CRRecordKey(NSDictionary *query)
 {
@@ -94,7 +107,20 @@ OSStatus SecItemDelete(CFDictionaryRef rawQuery)
 @implementation PBCrossDeviceAttributeCollector
 + (PBCrossDeviceAttributes *)collectAttributesWithConfiguration:(PBCrossConfiguration *)configuration
 {
-    return [PBCrossDeviceAttributes attributesWithValues:@{PBCrossAttributeKeyMachine: @"test-device"}];
+    CRCollections++;
+    NSDictionary *values = @{PBCrossAttributeKeyMachine: configuration.collectsDeviceName ? @"test-device" : @"alternate-device"};
+    PBCrossDeviceAttributes *attributes = [PBCrossDeviceAttributes attributesWithValues:values];
+    if (CRAdvertisingFixture && CRTrackingStatus == 3 && configuration.allowsAdvertisingIdentifier) {
+        NSMutableDictionary *withIDFA = [values mutableCopy];
+        withIDFA[PBCrossAttributeKeyIDFAMD5] = @"authorized-idfa-md5";
+        attributes = [PBCrossDeviceAttributes attributesWithValues:withIDFA
+                                          advertisingIdentifier:@"6ABF0056-2C6A-4378-9E80-9143C2669683"];
+    }
+    if (CRCollectionReady) {
+        dispatch_semaphore_signal(CRCollectionReady);
+        dispatch_semaphore_wait(CRCollectionRelease, DISPATCH_TIME_FOREVER);
+    }
+    return attributes;
 }
 @end
 
@@ -352,6 +378,217 @@ static void CRVerifyAppGroupConfiguration(NSString *suite)
     [groupDefaults removePersistentDomainForName:groupSuite];
 }
 
+
+static void CRPumpUntil(BOOL (^done)(void))
+{
+    NSDate *deadline = [NSDate dateWithTimeIntervalSinceNow:5];
+    while (!done() && deadline.timeIntervalSinceNow > 0) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.005]];
+    }
+    CRAssert(done(), @"expected manager callback is delivered");
+}
+
+static void CRPrepareManager(NSString *suite)
+{
+    CRReset();
+    [[[NSUserDefaults alloc] initWithSuiteName:suite] removePersistentDomainForName:suite];
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    [manager configureWithBlock:^(PBCrossConfiguration *configuration) {
+        configuration.keychainService = CRConfiguration().keychainService;
+        configuration.keychainAccessGroup = CRConfiguration().keychainAccessGroup;
+        configuration.appGroupIdentifier = nil;
+        configuration.collectsDeviceName = YES;
+        configuration.allowsAdvertisingIdentifier = NO;
+        configuration.remoteConfiguration.enabled = NO;
+        configuration.automaticallyRefreshesRemoteIdentity = NO;
+    } error:NULL];
+    [manager setValue:CRStore(suite) forKey:@"storeStorage"];
+}
+
+static void CRVerifyAdvertisingRevocation(NSString *suite)
+{
+    CRPrepareManager(suite);
+    CRTrackingStatus = 3; CRAdvertisingFixture = YES;
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    [manager configureWithBlock:^(PBCrossConfiguration *configuration) {
+        configuration.allowsAdvertisingIdentifier = YES;
+        configuration.emitsRawAdvertisingIdentifier = YES;
+    } error:NULL];
+    [manager setValue:CRStore(suite) forKey:@"storeStorage"];
+    PBCrossIdentity *authorized = manager.identitySynchronously;
+    PBCrossAdRequestContext *context = [[PBCrossAdRequestContext alloc] init];
+    context.advertisingIdentifier = authorized.attributes.advertisingIdentifier;
+    PBCrossAdRequestAdapter *existingAdapter = [manager adRequestAdapterWithContext:context];
+    CRAssert(existingAdapter.deviceDictionary[@"idfa"] != nil && existingAdapter.deviceDictionary[@"idfa_md5"] != nil,
+             @"authorized cached identity exports IDFA when enabled");
+    NSUInteger collections = CRCollections;
+    for (NSNumber *status in @[@2, @1, @0]) {
+        CRTrackingStatus = status.integerValue;
+        CRAssert(existingAdapter.deviceDictionary[@"idfa"] == nil && existingAdapter.deviceDictionary[@"idfa_md5"] == nil &&
+                 existingAdapter.extensionObject[@"pb_cross_app"][@"attributes"][@"idfa_md5"] == nil,
+                 @"existing adapter blocks raw, hashed, context IDFA and ext after authorization changes");
+    }
+    CRTrackingStatus = 2;
+    CRAssert(manager.cachedIdentity.attributes.advertisingIdentifier == nil &&
+             manager.identitySynchronously.attributes.advertisingIdentifierMD5 == nil,
+             @"cached and synchronous identities remove revoked advertising fields");
+    __block NSUInteger callbacks = 0;
+    [manager loadIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(NSThread.isMainThread && !error && identity.attributes.advertisingIdentifier == nil &&
+                 identity.attributes.advertisingIdentifierMD5 == nil && [identity.sharedID isEqual:authorized.sharedID] &&
+                 [identity.currentIdentifier isEqual:authorized.currentIdentifier],
+                 @"normal cached load removes IDFA while preserving shared and default fingerprint IDs");
+    }];
+    CRPumpUntil(^BOOL { return callbacks == 1; });
+    CRAssert(CRCollections == collections, @"authorization check preserves non-advertising cache without recollection");
+    CRTrackingStatus = 3;
+    [manager refreshIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(identity.attributes.advertisingIdentifierMD5 != nil, @"fresh authorized collection restores advertising fields");
+    }];
+    CRPumpUntil(^BOOL { return callbacks == 2; });
+
+    // Queue the callback while authorized, then revoke before main-thread delivery.
+    [manager loadIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(identity.attributes.advertisingIdentifierMD5 == nil, @"authorization is rechecked at callback delivery");
+    }];
+    dispatch_sync([manager valueForKey:@"workQueue"], ^{});
+    CRTrackingStatus = 2;
+    CRPumpUntil(^BOOL { return callbacks == 3; });
+    CRAdvertisingFixture = NO; CRTrackingStatus = 3;
+}
+
+static void CRVerifyConfigurationRace(NSString *suite, BOOL duringCollection)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRRecords[CRStorageKey(CRSharedKey)] = [@"old-scope-id" dataUsingEncoding:NSUTF8StringEncoding];
+    CRCollections = 0;
+    CRCollectionReady = duringCollection ? dispatch_semaphore_create(0) : nil;
+    CRCollectionRelease = duringCollection ? dispatch_semaphore_create(0) : nil;
+    __block NSUInteger callbacks = 0;
+    [manager refreshIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(NSThread.isMainThread && identity == nil &&
+                 [error.domain isEqual:PBCrossIdentifierErrorDomain] && error.code == PBCrossIdentifierErrorOperationCancelled,
+                 @"old-generation load returns cancellation without exposing obsolete identity");
+    }];
+    if (duringCollection) {
+        CRAssert(dispatch_semaphore_wait(CRCollectionReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0,
+                 @"old load captures its configuration before collection finishes");
+    } else {
+        dispatch_sync([manager valueForKey:@"workQueue"], ^{});
+    }
+    [manager configureWithBlock:^(PBCrossConfiguration *configuration) {
+        configuration.keychainService = @"cr.new.scope";
+        configuration.keychainAccessGroup = @"TEAM.cr.other";
+        configuration.salt = @"new-salt";
+        configuration.collectsDeviceName = NO;
+    } error:NULL];
+    PBCrossIdentityStore *newStore = [[PBCrossIdentityStore alloc] initWithConfiguration:manager.configuration];
+    [newStore setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    [manager setValue:newStore forKey:@"storeStorage"];
+    CRRecords[@"cr.new.scope/TEAM.cr.other/pb_shared_id"] = [@"new-scope-id" dataUsingEncoding:NSUTF8StringEncoding];
+    if (duringCollection) {
+        dispatch_semaphore_signal(CRCollectionRelease);
+        dispatch_sync([manager valueForKey:@"workQueue"], ^{});
+        CRCollectionReady = CRCollectionRelease = nil;
+    }
+    CRAssert(manager.cachedIdentity == nil, @"obsolete work cannot repopulate the new configuration cache");
+    CRPumpUntil(^BOOL { return callbacks == 1; });
+    PBCrossIdentity *fresh = manager.identitySynchronously;
+    NSString *expected = [PBCrossIdentityGenerator fingerprintIdentifiersWithAttributes:
+        [PBCrossDeviceAttributes attributesWithValues:@{PBCrossAttributeKeyMachine:@"alternate-device"}]
+        configuration:manager.configuration].firstObject.value;
+    CRAssert([fresh.sharedID isEqual:@"new-scope-id"] && [fresh.currentIdentifier isEqual:expected] &&
+             [manager.sharedID isEqual:fresh.sharedID] && manager.cachedIdentity == fresh,
+             @"new load uses matching attributes, salt, access group, service and cache");
+}
+
+
+static dispatch_semaphore_t CRStoreReady, CRStoreRelease;
+static OSStatus CRBlockedReadStatus;
+@interface CRBlockedIdentityStore : PBCrossIdentityStore
+@end
+@implementation CRBlockedIdentityStore
+- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create serverIssued:(BOOL *)serverIssued error:(NSError **)error
+{
+    dispatch_semaphore_signal(CRStoreReady);
+    dispatch_semaphore_wait(CRStoreRelease, DISPATCH_TIME_FOREVER);
+    if (CRBlockedReadStatus) {
+        if (error) { *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:CRBlockedReadStatus userInfo:nil]; }
+        return @"";
+    }
+    return [super sharedIDCreatingIfNeeded:create serverIssued:serverIssued error:error];
+}
+@end
+
+static void CRVerifyStaleStoreCannotChangeCache(NSString *suite, BOOL failing)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRBlockedIdentityStore *blocked = [[CRBlockedIdentityStore alloc] initWithConfiguration:manager.configuration];
+    [blocked setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    [manager setValue:blocked forKey:@"storeStorage"];
+    CRStoreReady = dispatch_semaphore_create(0); CRStoreRelease = dispatch_semaphore_create(0);
+    CRBlockedReadStatus = failing ? errSecInteractionNotAllowed : 0;
+    __block NSUInteger callbacks = 0;
+    [manager refreshIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(identity == nil && error.code == PBCrossIdentifierErrorOperationCancelled,
+                 @"stale store success or failure delivers cancellation");
+    }];
+    CRAssert(dispatch_semaphore_wait(CRStoreReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0,
+             @"old load is paused inside its captured store");
+    [manager configureWithBlock:^(PBCrossConfiguration *configuration) {
+        configuration.keychainService = @"cr.current.scope";
+    } error:NULL];
+    PBCrossIdentityStore *currentStore = [[PBCrossIdentityStore alloc] initWithConfiguration:manager.configuration];
+    [currentStore setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    [manager setValue:currentStore forKey:@"storeStorage"];
+    CRRecords[@"cr.current.scope/TEAM.cr.shared/pb_shared_id"] = [@"current-scope-id" dataUsingEncoding:NSUTF8StringEncoding];
+    PBCrossIdentity *current = manager.identitySynchronously;
+    dispatch_semaphore_signal(CRStoreRelease);
+    dispatch_sync([manager valueForKey:@"workQueue"], ^{});
+    CRAssert(manager.cachedIdentity == current && [manager.identitySynchronously.sharedID isEqual:@"current-scope-id"],
+             @"stale store success cannot overwrite, and stale failure cannot erase, the new cache");
+    CRPumpUntil(^BOOL { return callbacks == 1; });
+    CRBlockedReadStatus = 0;
+}
+
+
+static void CRVerifySynchronousConfigurationRetry(NSString *suite)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRBlockedIdentityStore *blocked = [[CRBlockedIdentityStore alloc] initWithConfiguration:manager.configuration];
+    [blocked setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    [manager setValue:blocked forKey:@"storeStorage"];
+    CRStoreReady = dispatch_semaphore_create(0); CRStoreRelease = dispatch_semaphore_create(0);
+    CRBlockedReadStatus = 0;
+    dispatch_semaphore_t finished = dispatch_semaphore_create(0);
+    __block PBCrossIdentity *returned = nil;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        returned = manager.identitySynchronously;
+        dispatch_semaphore_signal(finished);
+    });
+    CRAssert(dispatch_semaphore_wait(CRStoreReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0,
+             @"synchronous load captures the old store before configuration changes");
+    [manager configureWithBlock:^(PBCrossConfiguration *configuration) {
+        configuration.keychainService = @"cr.sync.scope";
+    } error:NULL];
+    PBCrossIdentityStore *currentStore = [[PBCrossIdentityStore alloc] initWithConfiguration:manager.configuration];
+    [currentStore setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    [manager setValue:currentStore forKey:@"storeStorage"];
+    CRRecords[@"cr.sync.scope/TEAM.cr.shared/pb_shared_id"] = [@"sync-current-id" dataUsingEncoding:NSUTF8StringEncoding];
+    dispatch_semaphore_signal(CRStoreRelease);
+    CRAssert(dispatch_semaphore_wait(finished, dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC)) == 0 &&
+             [returned.sharedID isEqual:@"sync-current-id"] && manager.cachedIdentity == returned,
+             @"synchronous load retries against the latest configuration without returning the obsolete identity");
+}
+
 static void CRVerifyManagerRecovery(NSString *suite)
 {
     CRReset();
@@ -396,6 +633,12 @@ int main(void)
         CRVerifyCreation(suite);
         CRVerifyConcurrentCreation(suite, [suite stringByAppendingString:@".peer"]);
         CRVerifyAppGroupConfiguration(suite);
+        CRVerifyAdvertisingRevocation(suite);
+        CRVerifyConfigurationRace(suite, YES);
+        CRVerifyConfigurationRace(suite, NO);
+        CRVerifyStaleStoreCannotChangeCache(suite, NO);
+        CRVerifyStaleStoreCannotChangeCache(suite, YES);
+        CRVerifySynchronousConfigurationRetry(suite);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             fprintf(stderr, "FAIL manager callbacks timed out\n");
             exit(1);

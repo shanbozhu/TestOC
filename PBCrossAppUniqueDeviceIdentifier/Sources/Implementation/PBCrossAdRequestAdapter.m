@@ -8,6 +8,7 @@
 
 #import "PBCrossAdRequestAdapter.h"
 #import "PBCrossConfiguration.h"
+#import "PBCrossAdvertisingAuthorization.h"
 
 static BOOL PBCrossScreenPixelSize(PBCrossDeviceAttributes *attributes, NSInteger *width, NSInteger *height)
 {
@@ -181,10 +182,11 @@ static NSString *PBCrossPDDCarrierValue(PBCrossDeviceAttributes *attributes)
         ? self.context.carrier
         : PBCrossPDDCarrierValue(attributes);
 
-    if (attributes.advertisingIdentifierMD5.length > 0) {
+    BOOL advertisingAuthorized = PBCrossAdvertisingIdentifierIsAuthorized();
+    if (advertisingAuthorized && attributes.advertisingIdentifierMD5.length > 0) {
         device[@"idfa_md5"] = attributes.advertisingIdentifierMD5;
     }
-    if (self.emitsRawAdvertisingIdentifier) {
+    if (advertisingAuthorized && self.emitsRawAdvertisingIdentifier) {
         NSString *advertisingIdentifier = self.context.advertisingIdentifier.length > 0
             ? self.context.advertisingIdentifier
             : attributes.advertisingIdentifier;
@@ -253,6 +255,11 @@ static NSString *PBCrossPDDCarrierValue(PBCrossDeviceAttributes *attributes)
     }
 
     NSMutableDictionary<NSString *, id> *crossApp = [[self.identity dictionaryRepresentation] mutableCopy];
+    if (!PBCrossAdvertisingIdentifierIsAuthorized()) {
+        NSMutableDictionary *attributes = [crossApp[@"attributes"] mutableCopy];
+        [attributes removeObjectForKey:PBCrossAttributeKeyIDFAMD5];
+        crossApp[@"attributes"] = attributes;
+    }
     if (self.identity.currentIdentifier.length > 0) {
         crossApp[@"id"] = self.identity.currentIdentifier;
     }

@@ -10,6 +10,7 @@ BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/pb-crossapp-logic.XXXXXX")"
 trap 'rm -rf "$BUILD_DIR"' EXIT
 
 SOURCES=(
+  "$ROOT_DIR/Sources/Implementation/PBCrossAdvertisingAuthorization.m"
   "$ROOT_DIR/Sources/Implementation/PBCrossDeviceAttributes.m"
   "$ROOT_DIR/Sources/Implementation/PBCrossConfiguration.m"
   "$ROOT_DIR/Sources/Implementation/PBCrossErrors.m"

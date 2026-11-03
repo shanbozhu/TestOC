@@ -95,6 +95,10 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 同步接口 `identitySynchronously` 可能阻塞约 0.5 秒（运营商读取超时），不要在启动关键路径的主线程上反复调用；加载完成后 SDK 会做内存缓存（默认 300 秒）。
 
+每次加载使用同一份配置、存储和配置版本。加载或等待主线程回调期间，若配置更新或身份被清除，旧结果不会写回缓存；异步接口返回 `nil` 与 `PBCrossIdentifierErrorOperationCancelled`，同步接口按最新配置重试。
+
+缓存读取、异步回调及广告适配器导出时都会检查当前广告授权。撤回 ATT 后不再输出缓存中的明文 IDFA、`idfa_md5` 或 `ext.pb_cross_app.attributes.idfa_md5`；已有适配器也会在导出时检查。已交付给宿主的身份快照不可变，宿主需停止使用自己的旧快照和缓存。重新授权后可调用强制刷新重新采集。
+
 ### 3.4 生成拼多多 Device 对象
 
 ```objc
@@ -412,7 +416,7 @@ pod lib lint PBCrossAppUniqueDeviceIdentifier.podspec --allow-warnings --skip-te
 # 纯逻辑自检（指纹向量、匹配器、JSON 往返）
 ./Tools/verify_logic.sh
 
-# 存储回归（Keychain 故障、并发首次创建、恢复及错误回调；使用隔离的模拟存储）
+# 存储回归（Keychain 故障、并发创建、配置切换与 ATT 撤回；使用隔离的模拟存储/授权状态）
 ./Tools/verify_storage.sh
 ```
 
