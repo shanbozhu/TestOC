@@ -123,7 +123,8 @@ FOUNDATION_EXPORT NSString * const PBCrossDefaultKeychainService;
 /// 远端结果缓存时长，默认 24 小时（CAID 文档要求不超过 24 小时）。
 @property (nonatomic, assign) NSTimeInterval cacheTimeToLive;
 
-/// 同一设备每天最多请求次数，默认 5 次（CAID 文档要求平均每天不超过 5 次）。
+/// 每个本地日期的请求上限，默认 5 次；同 Keychain service/accessGroup、developerID/endpoint 共享原子额度。
+/// 网络失败也消耗额度；首次升级到 Keychain 额度机制时重新计数，旧 Defaults 计数不迁移。
 @property (nonatomic, assign) NSUInteger dailyRequestLimit;
 
 /// 是否需要用户已同意隐私政策/设备信息上报，默认 YES。

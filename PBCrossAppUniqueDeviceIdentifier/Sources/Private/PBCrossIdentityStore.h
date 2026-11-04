@@ -33,8 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSDictionary<NSString *, id> *)remoteCache;
 - (void)setRemoteCache:(nullable NSDictionary<NSString *, id> *)cache;
 
-/// 请求计数（按本地日期）；未超限时自增并返回 YES。
+/// 按本地日期原子占用 Keychain 请求额度；同命名空间跨进程共享。
 - (BOOL)registerRemoteRequestIfAllowed:(NSUInteger)dailyLimit;
+- (BOOL)registerRemoteRequestIfAllowed:(NSUInteger)dailyLimit error:(NSError * _Nullable * _Nullable)error;
 
 /// 记录本次 systemUpdateTime，返回上一次的 systemUpdateTime。
 - (NSString *)updateSystemUpdateTimeHistoryWithCurrentValue:(nullable NSString *)currentValue;

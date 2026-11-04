@@ -17,6 +17,9 @@ static NSString * const PBCrossServerSharedIDKey = @"pb_server_shared_id";
 static NSString * const PBCrossRemoteCacheKeyPrefix = @"pb_remote_cache";
 static NSString * const PBCrossRemoteRequestLogKeyPrefix = @"pb_remote_request_log";
 static NSString * const PBCrossSystemUpdateHistoryKey = @"pb_system_update_history";
+static NSString * const PBCrossRequestReservationLabel = @"com.pb.crossapp.remote-request-reservation.v1";
+static NSString * const PBCrossRequestReservationPrefix = @"pb_remote_request_slot.";
+static NSString * const PBCrossLocalPriorityMarker = @"pb.local-priority.v1";
 
 static BOOL PBCrossIsValidSharedID(NSString *sharedID)
 {
@@ -43,6 +46,8 @@ static NSString *PBCrossCurrentDayKey(void)
 @property (nonatomic, copy, readwrite) PBCrossConfiguration *configuration;
 @property (nonatomic, strong) NSUserDefaults *standardDefaults;
 @property (nonatomic, strong, nullable) NSUserDefaults *groupDefaults;
+@property (nonatomic, copy, nullable) NSString *defaultAccessGroup;
+@property (nonatomic, copy, nullable) NSString *lastPrunedRequestDay;
 
 @end
 
@@ -83,10 +88,9 @@ static NSString *PBCrossCurrentDayKey(void)
 - (nullable NSString *)defaultsStringForKey:(NSString *)key
 {
     key = [self scopedDefaultsKey:key];
-    NSString *value = [self.groupDefaults stringForKey:key];
-    if (value.length == 0) {
-        value = [self.standardDefaults stringForKey:key];
-    }
+    // Absence in the shared domain means cleared, not "use a private old copy".
+    NSUserDefaults *defaults = self.groupDefaults ?: self.standardDefaults;
+    NSString *value = [defaults stringForKey:key];
     return value.length > 0 ? value : nil;
 }
 
@@ -97,8 +101,9 @@ static NSString *PBCrossCurrentDayKey(void)
         [self.groupDefaults removeObjectForKey:key];
         [self.standardDefaults removeObjectForKey:key];
     } else {
-        [self.groupDefaults setObject:value forKey:key];
-        [self.standardDefaults setObject:value forKey:key];
+        NSUserDefaults *defaults = self.groupDefaults ?: self.standardDefaults;
+        [defaults setObject:value forKey:key];
+        if (self.groupDefaults) { [self.standardDefaults removeObjectForKey:key]; }
     }
 }
 
@@ -143,15 +148,60 @@ static NSString *PBCrossCurrentDayKey(void)
 
 #pragma mark - Keychain
 
-- (NSMutableDictionary<id, id> *)keychainQueryForKey:(NSString *)key accessGroup:(nullable NSString *)accessGroup
+- (nullable NSString *)resolvedAccessGroupWithError:(NSError **)error
 {
+    if (self.configuration.keychainAccessGroup.length > 0) { return self.configuration.keychainAccessGroup; }
+    if (self.defaultAccessGroup) { return self.defaultAccessGroup; }
+
+    // SecItemAdd alone uses the default group. Reads/updates/deletes without a
+    // group search every accessible group, so discover it using a unique probe.
+    NSDictionary *probe = @{
+        (__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+        (__bridge id)kSecAttrService: [PBCrossDefaultKeychainService stringByAppendingString:@".group-probe"],
+        (__bridge id)kSecAttrAccount: NSUUID.UUID.UUIDString,
+        (__bridge id)kSecAttrSynchronizable: @NO,
+        (__bridge id)kSecAttrAccessible: (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+        (__bridge id)kSecValueData: NSData.data,
+        (__bridge id)kSecReturnAttributes: @YES,
+    };
+    CFTypeRef result = NULL;
+    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)probe, &result);
+    id attributes = CFBridgingRelease(result);
+    if (status != errSecSuccess) {
+        if (error) { *error = [self keychainErrorWithStatus:status key:@"default_access_group"]; }
+        return nil;
+    }
+    NSString *group = [attributes isKindOfClass:NSDictionary.class] ? attributes[(__bridge id)kSecAttrAccessGroup] : nil;
+    if (![group isKindOfClass:NSString.class] || group.length == 0) {
+        if (error) { *error = [self keychainErrorWithStatus:errSecDecode key:@"default_access_group"]; }
+        return nil; // Never try an unscoped cleanup if the system did not return a group.
+    }
+    NSDictionary *cleanup = @{
+        (__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+        (__bridge id)kSecAttrService: probe[(__bridge id)kSecAttrService],
+        (__bridge id)kSecAttrAccount: probe[(__bridge id)kSecAttrAccount],
+        (__bridge id)kSecAttrAccessGroup: group,
+        (__bridge id)kSecAttrSynchronizable: @NO,
+    };
+    status = SecItemDelete((__bridge CFDictionaryRef)cleanup);
+    if (status != errSecSuccess && status != errSecItemNotFound) {
+        if (error) { *error = [self keychainErrorWithStatus:status key:@"default_access_group"]; }
+        return nil;
+    }
+    self.defaultAccessGroup = group;
+    return group;
+}
+
+- (nullable NSMutableDictionary<id, id> *)keychainQueryForKey:(nullable NSString *)key error:(NSError **)error
+{
+    NSString *accessGroup = [self resolvedAccessGroupWithError:error];
+    if (!accessGroup) { return nil; }
     NSMutableDictionary<id, id> *query = [NSMutableDictionary dictionary];
     query[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
     query[(__bridge id)kSecAttrService] = self.configuration.keychainService;
-    query[(__bridge id)kSecAttrAccount] = key;
-    if (accessGroup.length > 0) {
-        query[(__bridge id)kSecAttrAccessGroup] = accessGroup;
-    }
+    if (key) { query[(__bridge id)kSecAttrAccount] = key; }
+    query[(__bridge id)kSecAttrAccessGroup] = accessGroup;
+    query[(__bridge id)kSecAttrSynchronizable] = @NO;
     return query;
 }
 
@@ -165,9 +215,16 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (nullable NSString *)keychainStringForKey:(NSString *)key status:(OSStatus *)readStatus
 {
-    NSString *accessGroup = self.configuration.keychainAccessGroup;
-    NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key accessGroup:accessGroup];
+    return [self keychainStringForKey:key serverIssued:NULL status:readStatus];
+}
+
+- (nullable NSString *)keychainStringForKey:(NSString *)key serverIssued:(BOOL *)serverIssued status:(OSStatus *)readStatus
+{
+    NSError *groupError = nil;
+    NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key error:&groupError];
+    if (!query) { *readStatus = (OSStatus)groupError.code; return nil; }
     query[(__bridge id)kSecReturnData] = @YES;
+    query[(__bridge id)kSecReturnAttributes] = @YES;
     query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitOne;
 
     CFTypeRef result = NULL;
@@ -175,8 +232,13 @@ static NSString *PBCrossCurrentDayKey(void)
     id object = CFBridgingRelease(result);
     NSString *value = nil;
     if (status == errSecSuccess) {
-        if ([object isKindOfClass:[NSData class]]) {
-            value = [[NSString alloc] initWithData:object encoding:NSUTF8StringEncoding];
+        NSData *data = [object isKindOfClass:NSDictionary.class] ? object[(__bridge id)kSecValueData] : nil;
+        if ([data isKindOfClass:NSData.class]) {
+            value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+        if (serverIssued && [object isKindOfClass:NSDictionary.class]) {
+            NSData *marker = [PBCrossLocalPriorityMarker dataUsingEncoding:NSUTF8StringEncoding];
+            *serverIssued = ![object[(__bridge id)kSecAttrGeneric] isEqual:marker];
         }
         // 损坏记录也不等于不存在，保留原记录等待显式处理。
         if (!PBCrossIsValidSharedID(value)) {
@@ -187,7 +249,7 @@ static NSString *PBCrossCurrentDayKey(void)
     if (status != errSecSuccess) {
         if (status != errSecItemNotFound) {
             PBCrossLog(self.configuration, @"Keychain 读取失败 account=%@ group=%@ status=%ld",
-                       key, accessGroup ?: @"-", (long)status);
+                       key, self.configuration.keychainAccessGroup ?: self.defaultAccessGroup ?: @"-", (long)status);
         }
         return nil;
     }
@@ -198,7 +260,8 @@ static NSString *PBCrossCurrentDayKey(void)
                                         forKey:(NSString *)key
                                          error:(NSError **)error
 {
-    NSMutableDictionary *query = [self keychainQueryForKey:key accessGroup:self.configuration.keychainAccessGroup];
+    NSMutableDictionary *query = [self keychainQueryForKey:key error:error];
+    if (!query) { return nil; }
     query[(__bridge id)kSecValueData] = [candidate dataUsingEncoding:NSUTF8StringEncoding];
     query[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
     query[(__bridge id)kSecAttrSynchronizable] = @NO;
@@ -219,15 +282,19 @@ static NSString *PBCrossCurrentDayKey(void)
     return nil;
 }
 
-- (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key accessGroup:(nullable NSString *)accessGroup
+- (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key
 {
     NSData *data = [value dataUsingEncoding:NSUTF8StringEncoding];
     if (!data) {
         return NO;
     }
 
-    NSDictionary<id, id> *updateAttributes = @{(__bridge id)kSecValueData: data};
-    NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key accessGroup:accessGroup];
+    NSMutableDictionary *updateAttributes = [@{(__bridge id)kSecValueData: data} mutableCopy];
+    if ([key isEqual:PBCrossServerSharedIDKey]) {
+        updateAttributes[(__bridge id)kSecAttrGeneric] = NSData.data; // Explicit injection restores server priority.
+    }
+    NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key error:NULL];
+    if (!query) { return NO; }
     OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)updateAttributes);
     if (status == errSecSuccess) {
         return YES;
@@ -235,7 +302,7 @@ static NSString *PBCrossCurrentDayKey(void)
 
     if (status == errSecItemNotFound) {
         NSMutableDictionary<id, id> *addQuery = [query mutableCopy];
-        addQuery[(__bridge id)kSecValueData] = data;
+        [addQuery addEntriesFromDictionary:updateAttributes];
         addQuery[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
         addQuery[(__bridge id)kSecAttrSynchronizable] = @NO;
         status = SecItemAdd((__bridge CFDictionaryRef)addQuery, NULL);
@@ -251,22 +318,18 @@ static NSString *PBCrossCurrentDayKey(void)
     }
 
     PBCrossLog(self.configuration, @"Keychain 写入失败 account=%@ group=%@ status=%ld",
-               key, accessGroup ?: @"-", (long)status);
+               key, self.configuration.keychainAccessGroup ?: self.defaultAccessGroup ?: @"-", (long)status);
     return NO;
 }
 
 - (BOOL)removeKeychainValueForKey:(NSString *)key error:(NSError **)error
 {
-    NSMutableDictionary *query = [self keychainQueryForKey:key accessGroup:self.configuration.keychainAccessGroup];
+    NSMutableDictionary *query = [self keychainQueryForKey:key error:error];
+    if (!query) { return NO; }
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
     if (status == errSecSuccess || status == errSecItemNotFound) { return YES; }
     if (error) { *error = [self keychainErrorWithStatus:status key:key]; }
     return NO;
-}
-
-- (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key
-{
-    return [self writeKeychainString:value forKey:key accessGroup:self.configuration.keychainAccessGroup];
 }
 
 #pragma mark - Shared ID
@@ -312,14 +375,16 @@ static NSString *PBCrossCurrentDayKey(void)
         }
 
         NSError *storageError = nil;
-        NSString *serverSharedID = [self storedIDForKey:PBCrossServerSharedIDKey create:NO error:&storageError];
-        if (storageError) {
-            if (error) { *error = storageError; }
+        OSStatus status = errSecSuccess;
+        BOOL hasServerPriority = YES;
+        NSString *serverSharedID = [self keychainStringForKey:PBCrossServerSharedIDKey serverIssued:&hasServerPriority status:&status];
+        if (status != errSecSuccess && status != errSecItemNotFound) {
+            if (error) { *error = [self keychainErrorWithStatus:status key:PBCrossServerSharedIDKey]; }
             return @"";
         }
         if (serverSharedID.length > 0) {
             if (serverIssued != NULL) {
-                *serverIssued = YES;
+                *serverIssued = hasServerPriority;
             }
             [self mirrorSharedID:serverSharedID];
             return serverSharedID;
@@ -342,15 +407,18 @@ static NSString *PBCrossCurrentDayKey(void)
 {
     @synchronized(self) {
         if (sharedID.length == 0) {
-            OSStatus status = errSecSuccess;
-            NSString *serverID = [self keychainStringForKey:PBCrossServerSharedIDKey status:&status];
+            OSStatus readStatus = errSecSuccess;
+            [self keychainStringForKey:PBCrossServerSharedIDKey status:&readStatus];
+            if (readStatus != errSecSuccess && readStatus != errSecItemNotFound) { return NO; }
+            NSMutableDictionary *query = [self keychainQueryForKey:PBCrossServerSharedIDKey error:NULL];
+            if (!query) { return NO; }
+            // Change priority in place without reading/copying/deleting the ID.
+            // A peer injection before or after this atomic update keeps its value.
+            NSDictionary *attributes = @{(__bridge id)kSecAttrGeneric:
+                [PBCrossLocalPriorityMarker dataUsingEncoding:NSUTF8StringEncoding]};
+            OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)attributes);
             if (status != errSecSuccess && status != errSecItemNotFound) { return NO; }
-            // Preserve the last effective ID before removing the server priority.
-            // A failed copy/delete leaves the authoritative server ID unchanged.
-            if (serverID && ![self writeKeychainString:serverID forKey:PBCrossSharedIDKey]) { return NO; }
-            if (![self removeKeychainValueForKey:PBCrossServerSharedIDKey error:NULL]) { return NO; }
             [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
-            if (serverID) { [self mirrorSharedID:serverID]; }
             return YES;
         }
         NSString *trimmed = [sharedID stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
@@ -401,22 +469,73 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (BOOL)registerRemoteRequestIfAllowed:(NSUInteger)dailyLimit
 {
+    return [self registerRemoteRequestIfAllowed:dailyLimit error:NULL];
+}
+
+- (BOOL)pruneRequestReservationsBeforeDay:(NSString *)today error:(NSError **)error
+{
+    if ([self.lastPrunedRequestDay isEqual:today]) { return YES; }
+    NSMutableDictionary *query = [self keychainQueryForKey:nil error:error];
+    if (!query) { return NO; }
+    query[(__bridge id)kSecAttrLabel] = PBCrossRequestReservationLabel;
+    query[(__bridge id)kSecReturnAttributes] = @YES;
+    query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitAll;
+    CFTypeRef result = NULL;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
+    id records = CFBridgingRelease(result);
+    if (status != errSecSuccess && status != errSecItemNotFound) {
+        if (error) { *error = [self keychainErrorWithStatus:status key:PBCrossRequestReservationLabel]; }
+        return NO;
+    }
+    for (NSDictionary *record in [records isKindOfClass:NSArray.class] ? records : @[]) {
+        NSString *account = record[(__bridge id)kSecAttrAccount];
+        if (![account isKindOfClass:NSString.class] || ![account hasPrefix:PBCrossRequestReservationPrefix]) { continue; }
+        NSArray *parts = [account componentsSeparatedByString:@"."];
+        // pb_remote_request_slot.<service digest>.<YYYYMMDD>.<slot>
+        if (parts.count == 4 && [parts[2] compare:today] == NSOrderedAscending) {
+            NSMutableDictionary *deletion = [self keychainQueryForKey:account error:error];
+            if (!deletion) { return NO; }
+            deletion[(__bridge id)kSecAttrLabel] = PBCrossRequestReservationLabel;
+            status = SecItemDelete((__bridge CFDictionaryRef)deletion);
+            if (status != errSecSuccess && status != errSecItemNotFound) {
+                if (error) { *error = [self keychainErrorWithStatus:status key:account]; }
+                return NO;
+            }
+        }
+    }
+    self.lastPrunedRequestDay = today;
+    return YES;
+}
+
+- (BOOL)registerRemoteRequestIfAllowed:(NSUInteger)dailyLimit error:(NSError **)error
+{
+    if (error) { *error = nil; }
     if (dailyLimit == 0) {
         return NO;
     }
 
     @synchronized(self) {
-        id object = [self defaultsJSONObjectForKey:[self remoteRequestLogKey]];
-        NSDictionary *log = [object isKindOfClass:[NSDictionary class]] ? object : @{};
         NSString *today = PBCrossCurrentDayKey();
-        NSUInteger count = [log[@"day"] isEqual:today] ? [log[@"count"] unsignedIntegerValue] : 0;
-        if (count >= dailyLimit) {
-            return NO;
+        if (![self pruneRequestReservationsBeforeDay:today error:error]) { return NO; }
+        // Slots are the only quota authority. Old Defaults counters can differ
+        // between Apps and cannot be merged atomically; the new quota starts
+        // fresh on upgrade instead of importing a stale private count.
+        for (NSUInteger slot = 0; slot < dailyLimit; slot++) {
+            NSString *account = [NSString stringWithFormat:@"%@%@.%@.%lu", PBCrossRequestReservationPrefix,
+                [self remoteServiceScope], today, (unsigned long)slot];
+            NSMutableDictionary *reservation = [self keychainQueryForKey:account error:error];
+            if (!reservation) { return NO; }
+            reservation[(__bridge id)kSecAttrLabel] = PBCrossRequestReservationLabel;
+            reservation[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+            reservation[(__bridge id)kSecValueData] = NSData.data;
+            OSStatus status = SecItemAdd((__bridge CFDictionaryRef)reservation, NULL);
+            if (status == errSecSuccess) { return YES; }
+            if (status != errSecDuplicateItem) {
+                if (error) { *error = [self keychainErrorWithStatus:status key:account]; }
+                return NO;
+            }
         }
-
-        [self setDefaultsJSONObject:@{@"day": today, @"count": @(count + 1)}
-                             forKey:[self remoteRequestLogKey]];
-        return YES;
+        return NO;
     }
 }
 
@@ -480,7 +599,18 @@ static NSString *PBCrossCurrentDayKey(void)
         NSError *serverError = nil;
         BOOL sharedRemoved = [self removeKeychainValueForKey:PBCrossSharedIDKey error:&sharedError];
         BOOL serverRemoved = [self removeKeychainValueForKey:PBCrossServerSharedIDKey error:&serverError];
-        if (error) { *error = sharedError ?: serverError; }
+        NSError *reservationError = nil;
+        NSMutableDictionary *reservations = [self keychainQueryForKey:nil error:&reservationError];
+        BOOL reservationsRemoved = NO;
+        if (reservations) {
+            reservations[(__bridge id)kSecAttrLabel] = PBCrossRequestReservationLabel;
+            OSStatus status = SecItemDelete((__bridge CFDictionaryRef)reservations);
+            reservationsRemoved = status == errSecSuccess || status == errSecItemNotFound;
+            if (!reservationsRemoved) {
+                reservationError = [self keychainErrorWithStatus:status key:PBCrossRequestReservationLabel];
+            }
+        }
+        if (error) { *error = sharedError ?: serverError ?: reservationError; }
         [self removeDefaultsValueForKey:PBCrossSharedIDKey];
         [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
         [self removeDefaultsValueForKey:[self remoteCacheKey]];
@@ -488,7 +618,7 @@ static NSString *PBCrossCurrentDayKey(void)
         [self removeDefaultsKeysWithPrefix:[PBCrossRemoteCacheKeyPrefix stringByAppendingString:@"."]];
         [self removeDefaultsKeysWithPrefix:[PBCrossRemoteRequestLogKeyPrefix stringByAppendingString:@"."]];
         [self removeDefaultsValueForKey:PBCrossSystemUpdateHistoryKey];
-        return sharedRemoved && serverRemoved;
+        return sharedRemoved && serverRemoved && reservationsRemoved;
     }
 }
 

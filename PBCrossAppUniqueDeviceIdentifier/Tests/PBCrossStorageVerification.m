@@ -14,9 +14,18 @@ static NSMutableDictionary<NSString *, NSNumber *> *CRReadErrors;
 static OSStatus CRAddError;
 static NSMutableDictionary<NSString *, NSNumber *> *CRWriteErrors;
 static OSStatus CRDeleteError;
+static OSStatus CRReservationDeleteError;
+static NSMutableDictionary<NSString *, NSMutableDictionary *> *CRAttributes;
+static NSString * const CRDefaultGroup = @"TEAM.cr.default";
+static BOOL CRProbeOmitsGroup, CRBlockPriorityUpdate;
+static dispatch_semaphore_t CRPriorityReady, CRPriorityRelease;
+static dispatch_semaphore_t CRSlotReady, CRSlotRelease;
+static NSUInteger CRSlotArrivals;
 
 @interface PBCrossIdentityStore (Verification)
 - (NSString *)scopedDefaultsKey:(NSString *)key;
+- (NSString *)remoteRequestLogKey;
+- (NSString *)remoteServiceScope;
 @end
 @interface PBCrossRemoteResolver (Verification)
 - (void)handleResponseData:(NSData *)data response:(NSURLResponse *)response networkError:(NSError *)error
@@ -41,14 +50,42 @@ static dispatch_semaphore_t CRCollectionReady, CRCollectionRelease;
 
 static NSString *CRRecordKey(NSDictionary *query)
 {
-    NSString *group = query[(__bridge id)kSecAttrAccessGroup] ?: @"private";
+    NSString *group = query[(__bridge id)kSecAttrAccessGroup] ?: CRDefaultGroup;
     return [NSString stringWithFormat:@"%@/%@/%@", query[(__bridge id)kSecAttrService],
             group, query[(__bridge id)kSecAttrAccount]];
 }
 
-// Each SecItem operation is atomic. Independent stores model separate app
-// processes, while barriers force both initial reads to observe no record.
-// No real Keychain or production UserDefaults are touched by this executable.
+static NSArray<NSString *> *CRMatchingRecords(NSDictionary *query)
+{
+    NSMutableArray *matches = [NSMutableArray array];
+    for (NSString *key in CRRecords.allKeys) {
+        NSArray *parts = [key componentsSeparatedByString:@"/"];
+        if (parts.count != 3 || ![parts[0] isEqual:query[(__bridge id)kSecAttrService]]) { continue; }
+        NSString *group = query[(__bridge id)kSecAttrAccessGroup];
+        NSString *account = query[(__bridge id)kSecAttrAccount];
+        if (group && ![group isEqual:parts[1]]) { continue; }
+        if (account && ![account isEqual:parts[2]]) { continue; }
+        id label = query[(__bridge id)kSecAttrLabel];
+        if (label && ![label isEqual:CRAttributes[key][(__bridge id)kSecAttrLabel]]) { continue; }
+        [matches addObject:key];
+    }
+    return [matches sortedArrayUsingSelector:@selector(compare:)];
+}
+
+static NSDictionary *CRReturnedAttributes(NSString *key, BOOL includingData)
+{
+    NSArray *parts = [key componentsSeparatedByString:@"/"];
+    NSMutableDictionary *attributes = [CRAttributes[key] mutableCopy] ?: [NSMutableDictionary dictionary];
+    attributes[(__bridge id)kSecAttrService] = parts[0];
+    attributes[(__bridge id)kSecAttrAccessGroup] = parts[1];
+    attributes[(__bridge id)kSecAttrAccount] = parts[2];
+    if (includingData) { attributes[(__bridge id)kSecValueData] = CRRecords[key]; }
+    else { [attributes removeObjectForKey:(__bridge id)kSecValueData]; }
+    return attributes;
+}
+
+// Match actual SecItem semantics: omitting a group searches all accessible
+// groups; only SecItemAdd assigns the default group. No real Keychain is used.
 OSStatus SecItemCopyMatching(CFDictionaryRef rawQuery, CFTypeRef *result)
 {
     NSDictionary *query = (__bridge NSDictionary *)rawQuery;
@@ -56,11 +93,19 @@ OSStatus SecItemCopyMatching(CFDictionaryRef rawQuery, CFTypeRef *result)
     BOOL waitForPeer = NO;
     @synchronized(CRLock) {
         if (!query[(__bridge id)kSecAttrAccessGroup]) { CRPrivateQueries++; }
-        NSNumber *failure = CRReadErrors[account];
+        NSNumber *failure = account ? CRReadErrors[account] : nil;
         if (failure) { return failure.intValue; }
-        id data = CRRecords[CRRecordKey(query)];
-        if (data) {
-            if (result) { *result = CFBridgingRetain(data); }
+        NSArray *matches = CRMatchingRecords(query);
+        if (matches.count) {
+            BOOL all = [query[(__bridge id)kSecMatchLimit] isEqual:(__bridge id)kSecMatchLimitAll];
+            BOOL attributes = [query[(__bridge id)kSecReturnAttributes] boolValue];
+            BOOL data = [query[(__bridge id)kSecReturnData] boolValue];
+            NSMutableArray *values = [NSMutableArray array];
+            for (NSString *key in matches) {
+                [values addObject:attributes ? CRReturnedAttributes(key, data) : CRRecords[key]];
+                if (!all) { break; }
+            }
+            if (result) { *result = CFBridgingRetain(all ? values : values.firstObject); }
             return errSecSuccess;
         }
         if (CRRaceReady && [account isEqualToString:CRSharedKey] && CRRaceReaders < 2) {
@@ -78,6 +123,16 @@ OSStatus SecItemCopyMatching(CFDictionaryRef rawQuery, CFTypeRef *result)
 OSStatus SecItemAdd(CFDictionaryRef rawQuery, CFTypeRef *result)
 {
     NSDictionary *query = (__bridge NSDictionary *)rawQuery;
+    BOOL blockSlot = NO;
+    @synchronized(CRLock) {
+        if (CRSlotReady && [query[(__bridge id)kSecAttrAccount] hasPrefix:@"pb_remote_request_slot."] && CRSlotArrivals < 2) {
+            CRSlotArrivals++; blockSlot = YES;
+        }
+    }
+    if (blockSlot) {
+        dispatch_semaphore_signal(CRSlotReady);
+        dispatch_semaphore_wait(CRSlotRelease, dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC));
+    }
     @synchronized(CRLock) {
         CRAdds++;
         NSNumber *failure = CRWriteErrors[query[(__bridge id)kSecAttrAccount]];
@@ -91,19 +146,43 @@ OSStatus SecItemAdd(CFDictionaryRef rawQuery, CFTypeRef *result)
         }
         if (CRRecords[key]) { return errSecDuplicateItem; }
         CRRecords[key] = query[(__bridge id)kSecValueData];
+        CRAttributes[key] = [query mutableCopy];
+        if (result && [query[(__bridge id)kSecReturnAttributes] boolValue]) {
+            NSMutableDictionary *attributes = [CRReturnedAttributes(key, NO) mutableCopy];
+            if (CRProbeOmitsGroup) { [attributes removeObjectForKey:(__bridge id)kSecAttrAccessGroup]; }
+            *result = CFBridgingRetain(attributes);
+        }
         return errSecSuccess;
     }
 }
 
 OSStatus SecItemUpdate(CFDictionaryRef rawQuery, CFDictionaryRef rawAttributes)
 {
+    NSDictionary *query = (__bridge NSDictionary *)rawQuery;
+    NSDictionary *attributes = (__bridge NSDictionary *)rawAttributes;
+    BOOL blockPriority = NO;
+    @synchronized(CRLock) {
+        if (CRBlockPriorityUpdate && [query[(__bridge id)kSecAttrAccount] isEqual:CRServerKey] &&
+            attributes[(__bridge id)kSecAttrGeneric] && !attributes[(__bridge id)kSecValueData]) {
+            CRBlockPriorityUpdate = NO; blockPriority = YES;
+        }
+    }
+    if (blockPriority) {
+        dispatch_semaphore_signal(CRPriorityReady);
+        dispatch_semaphore_wait(CRPriorityRelease, dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC));
+    }
     @synchronized(CRLock) {
         CRUpdates++;
-        NSNumber *failure = CRWriteErrors[((__bridge NSDictionary *)rawQuery)[(__bridge id)kSecAttrAccount]];
+        if (!query[(__bridge id)kSecAttrAccessGroup]) { CRPrivateQueries++; }
+        NSNumber *failure = CRWriteErrors[query[(__bridge id)kSecAttrAccount]];
         if (failure) { return failure.intValue; }
-        NSString *key = CRRecordKey((__bridge NSDictionary *)rawQuery);
-        if (!CRRecords[key]) { return errSecItemNotFound; }
-        CRRecords[key] = ((__bridge NSDictionary *)rawAttributes)[(__bridge id)kSecValueData];
+        NSArray *matches = CRMatchingRecords(query);
+        if (!matches.count) { return errSecItemNotFound; }
+        for (NSString *key in matches) {
+            if (attributes[(__bridge id)kSecValueData]) { CRRecords[key] = attributes[(__bridge id)kSecValueData]; }
+            if (!CRAttributes[key]) { CRAttributes[key] = [NSMutableDictionary dictionary]; }
+            [CRAttributes[key] addEntriesFromDictionary:attributes];
+        }
         return errSecSuccess;
     }
 }
@@ -111,9 +190,15 @@ OSStatus SecItemUpdate(CFDictionaryRef rawQuery, CFDictionaryRef rawAttributes)
 OSStatus SecItemDelete(CFDictionaryRef rawQuery)
 {
     @synchronized(CRLock) {
+        NSDictionary *query = (__bridge NSDictionary *)rawQuery;
+        if (!query[(__bridge id)kSecAttrAccessGroup]) { CRPrivateQueries++; }
         if (CRDeleteError) { return CRDeleteError; }
-        [CRRecords removeObjectForKey:CRRecordKey((__bridge NSDictionary *)rawQuery)];
-        return errSecSuccess;
+        if (CRReservationDeleteError && query[(__bridge id)kSecAttrLabel]) { return CRReservationDeleteError; }
+        NSArray *matches = CRMatchingRecords(query);
+        for (NSString *key in matches) {
+            [CRRecords removeObjectForKey:key]; [CRAttributes removeObjectForKey:key];
+        }
+        return matches.count ? errSecSuccess : errSecItemNotFound;
     }
 }
 
@@ -148,9 +233,13 @@ static void CRAssert(BOOL condition, NSString *name)
 static void CRReset(void)
 {
     CRRecords = [NSMutableDictionary dictionary];
+    CRAttributes = [NSMutableDictionary dictionary];
+    CRProbeOmitsGroup = CRBlockPriorityUpdate = NO;
+    CRSlotReady = CRSlotRelease = nil; CRSlotArrivals = 0;
     CRReadErrors = [NSMutableDictionary dictionary];
     CRWriteErrors = [NSMutableDictionary dictionary];
     CRDeleteError = errSecSuccess;
+    CRReservationDeleteError = errSecSuccess;
     CRAdds = CRUpdates = CRPrivateQueries = CRRaceReaders = 0;
     CRAddError = errSecSuccess;
     CRInjectDuplicate = CRFailWinnerRead = NO;
@@ -685,12 +774,14 @@ static void CRVerifyMutationFailures(NSString *suite)
     CRWriteErrors[CRSharedKey] = @(errSecInteractionNotAllowed);
     CRAssert([m setServerIssuedSharedID:@"server-new"] && [m.identitySynchronously.sharedID isEqual:@"server-new"] &&
              [m.sharedID isEqual:@"server-new"], @"server injection has one authoritative write, so a second-key failure cannot split identity");
+    CRAssert([m setServerIssuedSharedID:nil] && [m.sharedID isEqual:@"server-new"],
+             @"priority removal keeps the value without writing the secondary shared key");
+    [CRWriteErrors removeAllObjects];
+    CRWriteErrors[CRServerKey] = @(errSecInteractionNotAllowed);
     CRAssert(![m setServerIssuedSharedID:nil] && [m.sharedID isEqual:@"server-new"],
-             @"failed preservation when removing server priority leaves effective identity intact");
+             @"priority metadata update failure preserves identity and reports failure");
     [CRWriteErrors removeAllObjects];
     CRDeleteError = errSecInteractionNotAllowed;
-    CRAssert(![m setServerIssuedSharedID:nil] && [m.sharedID isEqual:@"server-new"],
-             @"server marker delete failure is reported without changing effective identity");
     NSError *error = nil;
     CRAssert(![m clearStoredIdentityWithError:&error] && error.code == errSecInteractionNotAllowed &&
              [m.sharedID isEqual:@"server-new"] && !m.cachedIdentity,
@@ -762,11 +853,201 @@ static void CRVerifyServerInjectionRace(NSString *suite, BOOL afterBuild)
              @"old load cannot restore pre-injection identity to cache");
 }
 
+static void CRVerifyDefaultGroupIsolation(NSString *suite)
+{
+    CRReset();
+    NSString *sharedRecord = CRStorageKey(CRSharedKey);
+    NSString *sharedServerRecord = CRStorageKey(CRServerKey);
+    NSString *privateRecord = [NSString stringWithFormat:@"cr.test.identity/%@/%@", CRDefaultGroup, CRSharedKey];
+    CRRecords[sharedRecord] = [@"shared-scope-id" dataUsingEncoding:NSUTF8StringEncoding];
+    CRRecords[sharedServerRecord] = [@"shared-server-id" dataUsingEncoding:NSUTF8StringEncoding];
+    PBCrossConfiguration *configuration = CRConfiguration(); configuration.keychainAccessGroup = nil;
+    PBCrossIdentityStore *store = [[PBCrossIdentityStore alloc] initWithConfiguration:configuration];
+    [store setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    NSError *error = nil;
+    NSString *own = [store sharedIDCreatingIfNeeded:YES serverIssued:NULL error:&error];
+    CRAssert(own.length && ![own isEqual:@"shared-scope-id"] && ![own isEqual:@"shared-server-id"] && CRRecords[privateRecord] && !error,
+             @"default group discovery creates an independent ID without reading accessible shared groups");
+    CRAssert([store setServerIssuedSharedID:@"default-server"] &&
+             [[store sharedIDCreatingIfNeeded:NO serverIssued:NULL error:NULL] isEqual:@"default-server"] &&
+             [[[NSString alloc] initWithData:CRRecords[sharedRecord] encoding:NSUTF8StringEncoding] isEqual:@"shared-scope-id"] &&
+             [[[NSString alloc] initWithData:CRRecords[sharedServerRecord] encoding:NSUTF8StringEncoding] isEqual:@"shared-server-id"],
+             @"default-group injection never updates an accessible shared-group record");
+    CRAssert([store clearStoredIdentityWithError:&error] && !error && !CRRecords[privateRecord] && CRRecords[sharedRecord] && CRRecords[sharedServerRecord] &&
+             CRPrivateQueries == 0, @"default-group clear leaves shared records intact and issues no unscoped queries");
+
+    // Fail closed before any identity read/update/delete when group resolution fails.
+    for (NSNumber *failureKind in @[@0, @1, @2]) {
+        CRReset(); CRRecords[sharedRecord] = [@"keep-shared" dataUsingEncoding:NSUTF8StringEncoding];
+        PBCrossIdentityStore *unresolved = [[PBCrossIdentityStore alloc] initWithConfiguration:configuration];
+        [unresolved setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+        if (failureKind.integerValue == 2) { CRDeleteError = errSecInteractionNotAllowed; }
+        else if (failureKind.integerValue == 1) { CRProbeOmitsGroup = YES; }
+        else { CRAddError = errSecInteractionNotAllowed; }
+        error = nil;
+        CRAssert(![unresolved clearStoredIdentityWithError:&error] && error && CRRecords[sharedRecord] && CRPrivateQueries == 0,
+                 @"failed default-group discovery cannot broaden a clear to other groups");
+    }
+}
+
+static void CRVerifyConcurrentPriorityRemoval(NSString *suite)
+{
+    CRReset();
+    PBCrossIdentityStore *a = CRStore(suite), *b = CRStore([suite stringByAppendingString:@".peer"]);
+    [a setServerIssuedSharedID:@"server-A"];
+    CRBlockPriorityUpdate = YES;
+    CRPriorityReady = dispatch_semaphore_create(0); CRPriorityRelease = dispatch_semaphore_create(0);
+    dispatch_semaphore_t done = dispatch_semaphore_create(0);
+    __block BOOL removed = NO;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        removed = [a setServerIssuedSharedID:nil]; dispatch_semaphore_signal(done);
+    });
+    BOOL ready = dispatch_semaphore_wait(CRPriorityReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0;
+    BOOL injected = [b setServerIssuedSharedID:@"server-B"];
+    NSString *observed = [b sharedIDCreatingIfNeeded:NO serverIssued:NULL error:NULL];
+    dispatch_semaphore_signal(CRPriorityRelease);
+    BOOL finished = dispatch_semaphore_wait(done, dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC)) == 0;
+    BOOL server = YES;
+    NSString *final = [b sharedIDCreatingIfNeeded:NO serverIssued:&server error:NULL];
+    CRAssert(ready && finished && removed && injected && [observed isEqual:@"server-B"] &&
+             [final isEqual:@"server-B"] && !server, @"priority removal after a peer injection preserves the newest ID atomically");
+    CRAssert([a setServerIssuedSharedID:@"server-C"] &&
+             [[b sharedIDCreatingIfNeeded:NO serverIssued:&server error:NULL] isEqual:@"server-C"] && server,
+             @"a later injection restores server priority and keeps its new ID");
+    CRReadErrors[CRServerKey] = @(errSecInteractionNotAllowed);
+    CRAssert(![a setServerIssuedSharedID:nil], @"priority removal preserves read errors before metadata mutation");
+    [CRReadErrors removeAllObjects];
+    CRRecords[CRStorageKey(CRServerKey)] = [@"!corrupt" dataUsingEncoding:NSUTF8StringEncoding];
+    CRAssert(![a setServerIssuedSharedID:nil], @"priority removal does not turn a corrupt record into success");
+}
+
+static void CRVerifySharedCacheAuthority(NSString *suite)
+{
+    CRReset();
+    NSString *peerSuite = [suite stringByAppendingString:@".peer"], *groupSuite = [suite stringByAppendingString:@".group"];
+    NSUserDefaults *group = [[NSUserDefaults alloc] initWithSuiteName:groupSuite];
+    [group removePersistentDomainForName:groupSuite];
+    PBCrossIdentityStore *a = CRStore(suite), *b = CRStore(peerSuite);
+    [a setValue:group forKey:@"groupDefaults"]; [b setValue:group forKey:@"groupDefaults"];
+    NSDictionary *cache = @{@"resolved_at": @(NSDate.date.timeIntervalSince1970),
+                            @"identifiers": @[@{@"id": @"old-remote", @"version": @"1"}]};
+    [b setRemoteCache:cache];
+    NSUserDefaults *private = [b valueForKey:@"standardDefaults"];
+    // Model a private copy left by the previous release.
+    for (NSString *key in group.dictionaryRepresentation) {
+        if ([key containsString:@"pb_remote_cache."]) { [private setObject:[group objectForKey:key] forKey:key]; }
+    }
+    CRAssert(a.remoteCache != nil, @"peer reads the shared remote cache before clear");
+    [a clearStoredIdentityWithError:NULL];
+    PBCrossIdentityStore *restarted = CRStore(peerSuite);
+    [restarted setValue:[[NSUserDefaults alloc] initWithSuiteName:groupSuite] forKey:@"groupDefaults"];
+    CRAssert(!a.remoteCache && !b.remoteCache && !restarted.remoteCache,
+             @"shared clear is authoritative for peers and restarted stores despite legacy private cache");
+    [a setRemoteCache:cache];
+    CRAssert(b.remoteCache != nil, @"a new shared cache is visible after clear");
+    [group removePersistentDomainForName:groupSuite];
+}
+
+static void CRVerifyAtomicRequestQuota(NSString *suite)
+{
+    CRReset();
+    PBCrossIdentityStore *a = CRStore(suite), *b = CRStore([suite stringByAppendingString:@".peer"]);
+    CRAssert(![a registerRemoteRequestIfAllowed:0] && CRAdds == 0, @"zero request limit reserves nothing");
+    CRSlotReady = dispatch_semaphore_create(0); CRSlotRelease = dispatch_semaphore_create(0);
+    dispatch_group_t done = dispatch_group_create();
+    __block BOOL allowedA = NO, allowedB = NO;
+    dispatch_group_async(done, dispatch_get_global_queue(0, 0), ^{ allowedA = [a registerRemoteRequestIfAllowed:1]; });
+    dispatch_group_async(done, dispatch_get_global_queue(0, 0), ^{ allowedB = [b registerRemoteRequestIfAllowed:1]; });
+    BOOL ready = dispatch_semaphore_wait(CRSlotReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0;
+    ready &= dispatch_semaphore_wait(CRSlotReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0;
+    dispatch_semaphore_signal(CRSlotRelease); dispatch_semaphore_signal(CRSlotRelease);
+    BOOL finished = dispatch_group_wait(done, dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC)) == 0;
+    CRAssert(ready && finished && (allowedA != allowedB), @"two independent stores contend for limit 1 and exactly one succeeds");
+    CRSlotReady = CRSlotRelease = nil;
+    PBCrossIdentityStore *restarted = CRStore(suite);
+    CRAssert(![restarted registerRemoteRequestIfAllowed:1], @"request reservations survive store restart");
+    NSError *error = nil;
+    [a clearStoredIdentityWithError:&error];
+    CRAssert(!error && [b registerRemoteRequestIfAllowed:1] && ![a registerRemoteRequestIfAllowed:1],
+             @"clear releases shared quota without private count resurrection");
+    PBCrossConfiguration *otherConfig = CRConfiguration(); otherConfig.keychainAccessGroup = @"TEAM.quota.other";
+    PBCrossIdentityStore *other = [[PBCrossIdentityStore alloc] initWithConfiguration:otherConfig];
+    CRAssert([other registerRemoteRequestIfAllowed:1], @"request quota is isolated by Keychain namespace");
+    CRAddError = errSecInteractionNotAllowed;
+    CRAssert(![a registerRemoteRequestIfAllowed:2 error:&error] && error.code == errSecInteractionNotAllowed,
+             @"request quota storage failure fails closed with the underlying error");
+    CRAddError = errSecSuccess;
+
+    CRReservationDeleteError = errSecInteractionNotAllowed;
+    CRAssert(![a clearStoredIdentityWithError:&error] && error.code == errSecInteractionNotAllowed &&
+             ![b registerRemoteRequestIfAllowed:1], @"quota deletion failure is reported and does not silently release reservations");
+    CRReservationDeleteError = errSecSuccess;
+    CRAssert([a clearStoredIdentityWithError:&error] && !error && [b registerRemoteRequestIfAllowed:1],
+             @"quota clear can be retried after storage recovery");
+
+    PBCrossConfiguration *serviceConfig = CRConfiguration(); serviceConfig.keychainService = @"cr.quota.other-service";
+    PBCrossIdentityStore *otherService = [[PBCrossIdentityStore alloc] initWithConfiguration:serviceConfig];
+    PBCrossConfiguration *remoteConfig = CRConfiguration(); remoteConfig.remoteConfiguration.developerID = @"other-developer";
+    PBCrossIdentityStore *otherRemote = [[PBCrossIdentityStore alloc] initWithConfiguration:remoteConfig];
+    CRAssert([otherService registerRemoteRequestIfAllowed:1] && [otherRemote registerRemoteRequestIfAllowed:1],
+             @"quota is isolated by Keychain service and remote developer scope");
+}
+
+static NSString *CRDayKey(NSInteger offset)
+{
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    calendar.timeZone = NSTimeZone.localTimeZone;
+    NSDate *date = [calendar dateByAddingUnit:NSCalendarUnitDay value:offset toDate:NSDate.date options:0];
+    NSDateComponents *day = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
+    return [NSString stringWithFormat:@"%04ld%02ld%02ld", (long)day.year, (long)day.month, (long)day.day];
+}
+
+static void CRVerifyQuotaUpgradeAndPruning(NSString *suite)
+{
+    CRReset();
+    PBCrossIdentityStore *a = CRStore(suite), *b = CRStore([suite stringByAppendingString:@".peer"]);
+    NSUserDefaults *aDefaults = [a valueForKey:@"standardDefaults"], *bDefaults = [b valueForKey:@"standardDefaults"];
+    NSString *logKey = [a scopedDefaultsKey:[a remoteRequestLogKey]];
+    for (NSUserDefaults *defaults in @[aDefaults, bDefaults]) {
+        NSDictionary *log = @{@"day": CRDayKey(0), @"count": defaults == aDefaults ? @5 : @2};
+        NSData *data = [NSJSONSerialization dataWithJSONObject:log options:0 error:NULL];
+        [defaults setObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] forKey:logKey];
+    }
+    NSUInteger allowed = 0;
+    for (NSUInteger i = 0; i < 8; i++) { allowed += [(i % 2 ? a : b) registerRemoteRequestIfAllowed:5]; }
+    CRAssert(allowed == 5, @"upgrade starts one shared quota instead of importing divergent private legacy counts");
+    [a clearStoredIdentityWithError:NULL];
+    CRAssert([b registerRemoteRequestIfAllowed:1] && ![a registerRemoteRequestIfAllowed:1],
+             @"a peer's old Defaults count cannot restore quota state after shared clear");
+
+    NSString *prefix = [@"pb_remote_request_slot." stringByAppendingString:[a remoteServiceScope]];
+    NSString *oldAccount = [NSString stringWithFormat:@"%@.%@.0", prefix, CRDayKey(-1)];
+    NSString *todayAccount = [NSString stringWithFormat:@"%@.%@.0", prefix, CRDayKey(0)];
+    NSString *futureAccount = [NSString stringWithFormat:@"%@.%@.0", prefix, CRDayKey(1)];
+    NSString *unrelatedAccount = [NSString stringWithFormat:@"%@.%@.unrelated", prefix, CRDayKey(-1)];
+    for (NSString *account in @[oldAccount, futureAccount, unrelatedAccount]) {
+        CRRecords[CRStorageKey(account)] = NSData.data;
+        CRAttributes[CRStorageKey(account)] = [@{(__bridge id)kSecAttrLabel:
+            [account isEqual:unrelatedAccount] ? @"unrelated-label" : @"com.pb.crossapp.remote-request-reservation.v1"} mutableCopy];
+    }
+    PBCrossIdentityStore *restarted = CRStore(suite);
+    CRAssert(![restarted registerRemoteRequestIfAllowed:1] && !CRRecords[CRStorageKey(oldAccount)] &&
+             CRRecords[CRStorageKey(todayAccount)] && CRRecords[CRStorageKey(futureAccount)] && CRRecords[CRStorageKey(unrelatedAccount)],
+             @"quota pruning removes only older SDK reservations, preserving current, future and unrelated records");
+    [a clearStoredIdentityWithError:NULL];
+    CRAssert(CRRecords[CRStorageKey(unrelatedAccount)] != nil, @"quota clear preserves unrelated Keychain labels");
+}
+
 int main(void)
 {
     @autoreleasepool {
         CRLock = [NSObject new];
         NSString *suite = [@"cr.pbcross.storage." stringByAppendingString:NSUUID.UUID.UUIDString];
+        CRVerifyDefaultGroupIsolation(suite);
+        CRVerifyConcurrentPriorityRemoval(suite);
+        CRVerifySharedCacheAuthority(suite);
+        CRVerifyAtomicRequestQuota(suite);
+        CRVerifyQuotaUpgradeAndPruning(suite);
         CRVerifyReadFailures(suite);
         CRVerifyCreation(suite);
         CRVerifyConcurrentCreation(suite, [suite stringByAppendingString:@".peer"]);

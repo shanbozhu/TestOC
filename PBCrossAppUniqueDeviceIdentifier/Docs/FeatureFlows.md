@@ -1,6 +1,6 @@
 # PBCrossAppUniqueDeviceIdentifier 功能流程图
 
-按当前源码整理，更新于 2026-11-04，包含本轮 P2 修复。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
+按当前源码整理，更新于 2026-11-04，包含本轮 P1 / P2 修复。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
 
 本文使用 Mermaid，可在支持 Mermaid 的 Markdown 阅读器中查看和维护。
 
@@ -145,11 +145,16 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Start["读取 sharedID"] --> Server["读取 pb_server_shared_id<br/>不生成随机候选值"]
+    Start["读取 sharedID"] --> Scope{"已确定 Keychain Access Group？"}
+    Scope -->|显式配置或已缓存默认组| Server["读取 pb_server_shared_id 及优先元数据<br/>不生成随机候选值"]
+    Scope -->|未配置且未缓存| Probe["SecItemAdd 唯一临时记录<br/>返回默认组属性，并按组删除临时记录"]
+    Probe --> ProbeOK{"解析和清理成功？"}
+    ProbeOK -->|是| Server
+    ProbeOK -->|否| Fail["返回空串 + 错误<br/>不生成替代身份"]
     Server --> ServerError{"有存储错误？"}
-    ServerError -->|是| Fail["返回空串 + 错误<br/>不生成替代身份"]
-    ServerError -->|否| HasServer{"存在服务端 ID？"}
-    HasServer -->|是| ServerReturn["镜像 sharedID<br/>标记 serverIssued=YES 并返回"]
+    ServerError -->|是| Fail
+    ServerError -->|否| HasServer{"权威记录存在？"}
+    HasServer -->|是| ServerReturn["镜像 sharedID 并返回<br/>serverIssued 取决于优先元数据"]
     HasServer -->|否| Local["读取 pb_shared_id<br/>按 create 参数决定能否创建"]
     Local --> LocalError{"有存储错误？"}
     LocalError -->|是| Fail
@@ -176,7 +181,9 @@ flowchart TD
     Status -->|其他错误| Error
 ```
 
-并发首次创建依靠 Keychain 的原子新增确定胜出值，不返回未保存的随机候选值。Defaults 仅作镜像，并按 service/accessGroup 隔离；Keychain 缺失时不会从任何旧镜像恢复 ID。已有 Keychain 记录沿用，旧 Defaults 单独存留的 ID 不再迁移。
+并发首次创建依靠 Keychain 的原子新增确定胜出值，不返回未保存的随机候选值。所有读、写、删除显式限定配置组或已解析的默认组；不会用省略 Access Group 的查询搜索其他可访问组。`pb_server_shared_id` 在移除服务端优先标记后仍保留 ID，通过 `kSecAttrGeneric` 区分来源；旧记录没有该标记时视为服务端下发。
+
+Defaults 中的共享 ID 仅作镜像，并按 service/accessGroup 隔离；Keychain 缺失时不会从任何旧镜像恢复 ID。已有 Keychain 记录沿用，旧 Defaults 单独存留的 ID 不再迁移。App Group 可用时 Defaults 只读写共享域，缺项表示无数据，不回退到旧私有副本。
 
 ## 5. 设备属性采集与版本指纹
 
@@ -229,7 +236,7 @@ flowchart TD
     Fresh -->|是| Cached["直接返回缓存标识和解析时间"]
     Fresh -->|否| Prepare["校验 12 个必填属性<br/>解析 RSA 公钥并构造设备信息 JSON"]
     Prepare --> Encrypt["RSA PKCS#1 分段加密<br/>Base64 编码请求数据"]
-    Encrypt --> Limit{"可登记今天的请求次数？"}
+    Encrypt --> Limit{"Keychain 原子新增<br/>可占用今天的请求额度？"}
     Limit -->|否| ResolverError
     Limit -->|是| Request["NSURLSession POST<br/>dev_id + encrypted_device_info"]
     Prepare -. "字段或公钥错误" .-> ResolverError
@@ -239,7 +246,11 @@ flowchart TD
     Request --> Response["网络响应进入 6.2 的响应解析流程"]
 ```
 
-新鲜度默认 TTL 为 24 小时，请求上限默认每天 5 次，按设备本地日期计数。缓存和计数使用 `developerID + endpointURL` 派生的作用域。登记次数发生在网络请求前，网络失败也消耗已登记次数。
+新鲜度默认 TTL 为 24 小时，请求上限默认每天 5 次，按设备本地日期划分。缓存和额度使用 `developerID + endpointURL` 派生的作用域，并按 Keychain service/accessGroup 隔离。App Group 可用时，共享域是远端缓存的唯一 Defaults 来源；额度始终存于 Keychain，同组 App 即使没有 App Group 也能协调。
+
+额度对应 `0..<dailyRequestLimit` 的占位，`SecItemAdd` 成功才允许请求，重复则尝试下一占位；全部占满返回每日上限错误，其他存储失败透传 Keychain 错误。登记发生在网络请求前，网络失败也消耗额度。请求前会回收同命名空间内旧日期的 SDK 占位；重启不重置当天额度。
+
+旧 Defaults 计数不再参与限额，首次升级当天从新额度开始；仍运行旧版 SDK 的 App 不参与新额度协调。清理持久身份会删除当前 Keychain 命名空间所有远端作用域的额度。
 
 远端用户同意配置与 ATT 是两个独立条件。该请求使用 CAID 兼容设备信息字段，不包含 IDFA；SDK 默认关闭远端服务。
 
@@ -366,7 +377,8 @@ flowchart TD
     Reset --> ResetDone["保留持久数据和 generation<br/>下次正常加载重新构建"]
     Kind -->|clearStoredIdentityWithError:| Invalidate["使旧 Resolver 失效并取消网络任务"]
     Invalidate --> Delete["尝试删除共享 / 服务端 Keychain ID<br/>记录删除错误，清除当前作用域镜像"]
-    Delete --> Persistent["清除远端缓存、请求计数<br/>及系统更新时间历史"]
+    Delete --> Quota["按同组、同 service 与 SDK label<br/>删除全部远端请求额度，记录错误"]
+    Quota --> Persistent["清除远端缓存、旧请求计数<br/>及系统更新时间历史"]
     Persistent --> Memory["清空内存身份<br/>清除远端进行中标记"]
     Memory --> Resolver["为当前配置创建新 Resolver"]
     Resolver --> Generation["generation 加一<br/>取出并清空等待回调"]
@@ -376,7 +388,7 @@ flowchart TD
     Result -->|否| Failed["返回 NO + 删除错误<br/>页面展示未完成并允许重试"]
 ```
 
-当前清理只移除当前 Keychain 命名空间内的 SDK 镜像、远端缓存、请求计数和系统更新时间历史。`resetIdentityCache` 不使在途任务失效；在途任务随后仍可能重新填充内存缓存。旧 `clearStoredIdentity` 保留兼容，但不返回删除错误；需要确认结果时使用 `clearStoredIdentityWithError:`。
+当前清理只移除当前 Keychain 命名空间内的 SDK 身份、请求占位、镜像、远端缓存、旧请求计数和系统更新时间历史。App Group 可用时，其他 App 不会从旧私有 Defaults 恢复已删除缓存。`resetIdentityCache` 不使在途任务失效；在途任务随后仍可能重新填充内存缓存。旧 `clearStoredIdentity` 保留兼容，但不返回删除错误；需要确认结果时使用 `clearStoredIdentityWithError:`。
 
 ### 9.2 显式注入服务端共享 ID
 
@@ -386,14 +398,17 @@ flowchart TD
 flowchart TD
     Start["setServerIssuedSharedID:"] --> Empty{"传入 nil 或空串？"}
     Empty -->|是| Read["读取当前服务端 ID"]
-    Read --> Copy["如有服务端 ID，先保存到共享 Key<br/>失败则保留服务端优先记录并返回 NO"]
-    Copy --> Remove["删除服务端优先记录<br/>失败则返回 NO"]
-    Remove --> MirrorPreserved["清除服务端镜像<br/>保留最后有效共享 ID"]
+    Read --> ReadOK{"读取成功或记录不存在？"}
+    ReadOK -->|否| Fail["返回 NO"]
+    ReadOK -->|是| Remove["SecItemUpdate 只修改同一记录的优先元数据<br/>保留 ID，不复制或删除记录"]
+    Remove --> Removed{"更新成功或记录不存在？"}
+    Removed -->|否| Fail
+    Removed -->|是| MirrorPreserved["清除服务端镜像<br/>保留最后有效共享 ID"]
     MirrorPreserved --> Success["Store 返回 YES"]
     Empty -->|否| Validate["去首尾空白并校验 ID"]
     Validate --> Valid{"有效？"}
-    Valid -->|否| Fail["返回 NO"]
-    Valid -->|是| Server["单次覆盖写入服务端 Keychain 权威记录"]
+    Valid -->|否| Fail
+    Valid -->|是| Server["单次写入服务端 Keychain 权威记录<br/>同时更新 ID 并恢复服务端优先元数据"]
     Server --> ServerOK{"写入成功？"}
     ServerOK -->|否| Fail
     ServerOK -->|是| Mirror["按命名空间更新 Defaults 镜像"]
@@ -402,17 +417,20 @@ flowchart TD
     Reset --> Done["返回 YES<br/>下次加载读取新持久化结果"]
 ```
 
-注入非空值只写入服务端权威 Key，避免双写部分失败。传入空值会先把最后有效服务端 ID 保存在共享 Key，再移除优先记录，不主动轮换成随机 UUID；任一步骤失败都会返回 NO，服务端优先记录保留。成功变更会增加 generation，使旧加载结果失效。
+注入非空值只写入服务端权威 Key，避免双写部分失败。传入空值以单次原子更新移除优先标记，保留当前记录内的 ID；即使其他 App 在读取后注入新值，也不会删掉新值或写回旧 ID。读取或元数据更新失败返回 NO。成功变更会增加 generation，使旧加载结果失效。
 
 ## 10. 当前实现边界
 
-本轮 P2 已按以下规则修复，使用时仍需理解接口范围。
+本轮 P1 / P2 已按以下规则修复，使用时仍需理解接口范围。
 
 | 关联流程 | 当前行为与边界 |
 | --- | --- |
 | 镜像与升级 | Keychain 是身份依据，旧 Defaults 不再自动恢复到 Keychain；仅存于旧镜像的 ID 不会继续沿用。 |
 | 命名空间 | Defaults 使用 service/accessGroup 派生的前缀；其他命名空间的身份和镜像不受当前清理影响。旧无命名空间记录被忽略。 |
-| 服务端注入 | 单条权威 Key 写入；成功后取消旧任务和等待者。空值用于移除优先标记，失败保持最后有效身份。 |
+| 默认 Keychain 组 | 未配置组时通过唯一临时记录解析默认组，后续操作显式限定；解析/临时记录清理失败则返回错误。 |
+| 服务端注入 | 单条权威 Key 同时写入 ID 与优先元数据；空值原子移除优先标记并保留当前 ID。成功后取消旧任务和等待者。 |
+| App Group 缓存 | 可用时只读写共享域；缺项不回退到各 App 私有旧副本。无可用 App Group 时仅使用各 App 私有缓存。 |
+| 请求额度 | Keychain 原子占位跨进程协调，默认每天 5 次；升级当天从新额度开始，混用旧版 SDK 不参与协调；清理会重置当前命名空间额度。 |
 | 远端失效 | 同一 Manager 内，清理/配置/注入与旧 Resolver 的持久缓存提交互斥；不提供跨进程网络任务取消。 |
 | 清理结果 | 新增带错误接口；删除失败可能已完成部分清理，应处理错误后重试。旧无错误接口仅作兼容。 |
 | 其他 App | 清理共享记录影响后续持久化读取；不会主动清除其他进程已持有的内存身份快照，宿主须刷新。 |

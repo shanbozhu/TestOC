@@ -257,9 +257,10 @@
                              completion:completion];
             return;
         }
-        if (![self.store registerRemoteRequestIfAllowed:remoteConfiguration.dailyRequestLimit]) {
+        NSError *reservationError = nil;
+        if (![self.store registerRemoteRequestIfAllowed:remoteConfiguration.dailyRequestLimit error:&reservationError]) {
             [self finishWithIdentifiers:nil resolvedAt:nil
-                                  error:PBCrossErrorMake(PBCrossRemoteErrorDailyLimitExceeded,
+                                  error:reservationError ?: PBCrossErrorMake(PBCrossRemoteErrorDailyLimitExceeded,
                                                          @"%@(%lu)",
                                                          PBCrossRemoteErrorDescription(PBCrossRemoteErrorDailyLimitExceeded),
                                                          (unsigned long)remoteConfiguration.dailyRequestLimit)

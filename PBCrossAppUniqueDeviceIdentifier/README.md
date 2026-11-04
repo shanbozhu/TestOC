@@ -80,7 +80,7 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 > `keychainAccessGroup` 在运行时必须传展开后的完整值，例如 `ABCDE12345.com.example.pbcross`，不能直接传 `$(AppIdentifierPrefix)`。
 
-`appGroupIdentifier` 必须搭配共享 `keychainAccessGroup` 使用；仅配置 App Group 时，`configureWithBlock:error:` 返回 `NO` 和 `PBCrossIdentifierErrorInvalidConfiguration`，原有配置、缓存与身份保持不变。App Group 的 Defaults 仅作镜像，不参与跨进程首次发号。
+`appGroupIdentifier` 必须搭配共享 `keychainAccessGroup` 使用；仅配置 App Group 时，`configureWithBlock:error:` 返回 `NO` 和 `PBCrossIdentifierErrorInvalidConfiguration`，原有配置、缓存与身份保持不变。App Group 的 Defaults 不参与跨进程首次发号；可用时，它是远端缓存等 Defaults 数据的唯一读写域，缺项视为已清除，不回退到各 App 的旧私有副本。
 
 ### 3.3 加载身份
 
@@ -101,7 +101,7 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 缓存读取、异步回调及广告适配器导出时都会检查当前广告授权。撤回 ATT 后不再输出缓存中的明文 IDFA、`idfa_md5` 或 `ext.pb_cross_app.attributes.idfa_md5`；已有适配器也会在导出时检查。已交付给宿主的身份快照不可变，宿主需停止使用自己的旧快照和缓存。重新授权后可调用强制刷新重新采集。
 
-服务端注入 `setServerIssuedSharedID:` 使用单条服务端权威记录，成功后清缓存并取消旧加载/远端任务。传入 nil/空串会先保留最后有效 ID 再移除服务端优先标记；失败返回 NO。远端 Resolver 返回的版本化 remote ID 与此共享 ID 注入接口相互独立。
+服务端注入 `setServerIssuedSharedID:` 使用单条服务端权威记录，成功后清缓存并取消旧加载/远端任务。传入 nil/空串会在同一记录上原子移除服务端优先标记，保留 ID，不复制或删除记录，避免覆盖其他 App 并发注入的新值；失败返回 NO。后续非空注入会同时更新 ID 并恢复服务端优先标记。远端 Resolver 返回的版本化 remote ID 与此共享 ID 注入接口相互独立。
 
 配置更新和清理使旧 Resolver 失效并取消网络任务；响应持久缓存提交也受失效检查保护，迟到响应不会恢复本 Manager 已清除的缓存。
 
@@ -360,8 +360,10 @@ SDK 行为：
 - 用公钥对响应做 Raw RSA 解密并去除 PKCS#1 Type 1 padding（与 CAID 客户端示例一致）；
 - 解析 `data` 中的 `caid`/`id` 字段并映射为 `PBCrossIdentifierKindRemote`；
 - 最多保留 2 个版本；
-- 缓存、每日 5 次限流；
+- 缓存、每日 5 次限流（同 Keychain service/accessGroup、developerID 与 endpoint 的 App 共享额度）；
 - 未同意隐私授权时不发请求。
+
+额度按设备本地日期划分，通过 Keychain 原子新增占位在请求前扣除；网络失败也消耗额度，存储失败返回 Keychain 错误。旧 Defaults 计数不再参与判定，首次升级到该机制时当日额度重新开始；仍运行旧版 SDK 的 App 不参与新额度协调。清理接口删除当前 Keychain 命名空间内所有远端作用域的额度，随后可重新请求；普通缓存过期或 App 重启不会重置额度。旧日期占位会在后续请求时清理。
 
 公钥支持 X.509 证书（Base64/PEM）、PKCS#1 公钥、SPKI 公钥。生产环境建议把加解密放到服务端，客户端只拿结果，避免密钥与协议细节暴露。
 
@@ -376,6 +378,7 @@ SDK 行为：
 - Keychain 数据在 App 卸载后通常仍保留；使用 `clearStoredIdentityWithError:` 清理并检查返回值与错误。失败可能已完成部分删除，可恢复后重试。旧 `clearStoredIdentity` 保留兼容但不返回错误。共享记录清除会影响同组其他 App 后续读取，其他 App 的内存快照需主动刷新。
 - 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值；Defaults 按 Keychain service/accessGroup 隔离，仅镜像已确认持久化的 ID；Keychain 缺失时不再从旧镜像迁入 ID，避免其他 App 恢复已清除的身份。已有 Keychain 记录沿用；仅存于旧 Defaults 的标识不再自动恢复。
 - 配置 `keychainAccessGroup` 后不自动回退到私有 Keychain。异步加载遇到存储错误时返回不含 `shared_id` 的快照及 `NSError`，不缓存该快照，下次加载会重试；同步 `sharedID` 属性在不可用时返回空串。
+- 未配置 `keychainAccessGroup` 时，先用唯一临时记录解析系统默认组，随后所有读、写、清理均显式限定该组；解析或临时记录清理失败会返回错误，避免误读、误改或误删其他可访问共享组的数据。
 - 指纹 ID 是**伪匿名标识**，不是账号 ID，不应跨设备关联用户；salt 不是加密密钥，拿到 salt 的人可以复算 ID，它的作用是隔离生态/合作方。
 - 上线前请按 PIPL、CCPA、Apple ATT/隐私清单等要求完成法务与隐私评估，并提供可关闭/清除入口。
 - 本 SDK 使用了 `NSUserDefaults`、启动时间（`sysctl`）、文件时间戳、磁盘容量等 API，提交 App Store 时请按 Apple 的 Required Reason API 要求，在宿主 App 的 `PrivacyInfo.xcprivacy` 中声明与实际用途匹配的原因，并结合业务用途审核；仓库不附带可能不适用的隐私清单。
@@ -422,7 +425,7 @@ pod lib lint PBCrossAppUniqueDeviceIdentifier.podspec --allow-warnings --skip-te
 # 纯逻辑自检（指纹向量、匹配器、JSON 往返）
 ./Tools/verify_logic.sh
 
-# 存储回归（Keychain 故障、并发创建、配置切换与 ATT 撤回；使用隔离的模拟存储/授权状态）
+# 存储回归（Keychain 故障/组隔离、并发创建/注入/限流、共享缓存清理、配置切换与 ATT 撤回；使用隔离模拟存储）
 ./Tools/verify_storage.sh
 ```
 
