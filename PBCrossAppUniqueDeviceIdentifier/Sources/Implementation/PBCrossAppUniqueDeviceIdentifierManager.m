@@ -140,6 +140,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
     NSArray<PBCrossIdentityCompletion> *pendingCompletions = nil;
     @synchronized(self) {
+        [self.remoteResolverStorage invalidate];
         self.configurationStorage = [configuration copy];
         self.storeStorage = [[PBCrossIdentityStore alloc] initWithConfiguration:self.configurationStorage];
         self.remoteResolverStorage = self.configurationStorage.remoteConfiguration.enabled
@@ -452,9 +453,20 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (void)clearStoredIdentity
 {
+    [self clearStoredIdentityWithError:NULL];
+}
+
+- (BOOL)clearStoredIdentityWithError:(NSError **)error
+{
     NSArray<PBCrossIdentityCompletion> *pendingCompletions = nil;
+    BOOL success = NO;
     @synchronized(self) {
-        [self.storeStorage clearStoredIdentity];
+        // Invalidation and response persistence share the resolver lock. Invalidate
+        // before deleting cache so even a response already parsing cannot restore it.
+        [self.remoteResolverStorage invalidate];
+        success = [self.storeStorage clearStoredIdentityWithError:error];
+        self.remoteResolverStorage = self.configurationStorage.remoteConfiguration.enabled
+            ? [[PBCrossRemoteResolver alloc] initWithConfiguration:self.configurationStorage store:self.storeStorage] : nil;
         self.cachedIdentityStorage = nil;
         self.cachedIdentityDate = nil;
         self.remoteResolutionInFlight = NO;
@@ -472,6 +484,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             }
         });
     }
+    return success;
 }
 
 #pragma mark - Remote
@@ -661,13 +674,26 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (BOOL)setServerIssuedSharedID:(NSString *)sharedID
 {
-    PBCrossIdentityStore *store = [self storeSnapshot];
-    BOOL success = [store setServerIssuedSharedID:sharedID];
-    if (success) {
-        @synchronized(self) {
+    NSArray<PBCrossIdentityCompletion> *pending = nil;
+    BOOL success = NO;
+    @synchronized(self) {
+        success = [self.storeStorage setServerIssuedSharedID:sharedID];
+        if (success) {
+            [self.remoteResolverStorage invalidate];
+            self.remoteResolverStorage = self.configurationStorage.remoteConfiguration.enabled
+                ? [[PBCrossRemoteResolver alloc] initWithConfiguration:self.configurationStorage store:self.storeStorage] : nil;
             self.cachedIdentityStorage = nil;
             self.cachedIdentityDate = nil;
+            self.configurationGeneration += 1;
+            self.remoteResolutionInFlight = NO;
+            pending = [self.pendingRemoteCompletions copy];
+            [self.pendingRemoteCompletions removeAllObjects];
         }
+    }
+    for (PBCrossIdentityCompletion completion in pending) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"共享身份已更新"));
+        });
     }
     return success;
 }

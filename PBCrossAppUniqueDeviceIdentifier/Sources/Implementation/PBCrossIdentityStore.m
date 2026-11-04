@@ -71,8 +71,18 @@ static NSString *PBCrossCurrentDayKey(void)
 
 #pragma mark - NSUserDefaults
 
+- (NSString *)scopedDefaultsKey:(NSString *)key
+{
+    // Mirrors from different Keychain namespaces must never mix.
+    NSData *scope = [NSJSONSerialization dataWithJSONObject:@[self.configuration.keychainService,
+        self.configuration.keychainAccessGroup ?: @""] options:0 error:NULL];
+    NSString *digest = [PBCrossCrypto MD5HexString:[[NSString alloc] initWithData:scope encoding:NSUTF8StringEncoding]];
+    return [NSString stringWithFormat:@"pb_identity.%@.%@", digest, key];
+}
+
 - (nullable NSString *)defaultsStringForKey:(NSString *)key
 {
+    key = [self scopedDefaultsKey:key];
     NSString *value = [self.groupDefaults stringForKey:key];
     if (value.length == 0) {
         value = [self.standardDefaults stringForKey:key];
@@ -82,6 +92,7 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (void)setDefaultsString:(NSString *)value forKey:(NSString *)key
 {
+    key = [self scopedDefaultsKey:key];
     if (value.length == 0) {
         [self.groupDefaults removeObjectForKey:key];
         [self.standardDefaults removeObjectForKey:key];
@@ -93,6 +104,7 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (void)removeDefaultsValueForKey:(NSString *)key
 {
+    key = [self scopedDefaultsKey:key];
     [self.groupDefaults removeObjectForKey:key];
     [self.standardDefaults removeObjectForKey:key];
 }
@@ -243,29 +255,18 @@ static NSString *PBCrossCurrentDayKey(void)
     return NO;
 }
 
-- (void)removeKeychainValueForKey:(NSString *)key accessGroup:(nullable NSString *)accessGroup
+- (BOOL)removeKeychainValueForKey:(NSString *)key error:(NSError **)error
 {
-    NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key accessGroup:accessGroup];
+    NSMutableDictionary *query = [self keychainQueryForKey:key accessGroup:self.configuration.keychainAccessGroup];
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
-    if (status != errSecSuccess && status != errSecItemNotFound) {
-        PBCrossLog(self.configuration, @"Keychain 删除失败 account=%@ group=%@ status=%ld",
-                   key, accessGroup ?: @"-", (long)status);
-    }
+    if (status == errSecSuccess || status == errSecItemNotFound) { return YES; }
+    if (error) { *error = [self keychainErrorWithStatus:status key:key]; }
+    return NO;
 }
 
 - (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key
 {
-    // 仅供显式注入服务端 ID 使用；读取与随机 ID 创建不得走覆盖写入。
     return [self writeKeychainString:value forKey:key accessGroup:self.configuration.keychainAccessGroup];
-}
-
-- (void)removeKeychainValueForKey:(NSString *)key
-{
-    NSString *accessGroup = self.configuration.keychainAccessGroup;
-    [self removeKeychainValueForKey:key accessGroup:accessGroup];
-    if (accessGroup.length > 0) {
-        [self removeKeychainValueForKey:key accessGroup:nil];
-    }
 }
 
 #pragma mark - Shared ID
@@ -292,18 +293,10 @@ static NSString *PBCrossCurrentDayKey(void)
         return nil;
     }
 
-    // 兼容已有 Defaults 记录，但只返回 Keychain 原子新增确认后的最终值。
-    NSString *candidate = [self defaultsStringForKey:key];
-    if (candidate.length > 0 && !PBCrossIsValidSharedID(candidate)) {
-        if (error) {
-            *error = [self keychainErrorWithStatus:errSecDecode key:key];
-        }
-        return nil;
-    }
-    if (candidate.length == 0 && create) {
-        candidate = [PBCrossCrypto randomUUIDString];
-    }
-    return candidate.length > 0 ? [self addKeychainStringIfAbsent:candidate forKey:key error:error] : nil;
+    // Defaults are mirrors only. A peer App may still hold a pre-reset mirror;
+    // never resurrect it when the authoritative Keychain record is absent.
+    if (!create) { return nil; }
+    return [self addKeychainStringIfAbsent:[PBCrossCrypto randomUUIDString] forKey:key error:error];
 }
 
 - (NSString *)sharedIDCreatingIfNeeded:(BOOL)create
@@ -347,31 +340,27 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (BOOL)setServerIssuedSharedID:(nullable NSString *)sharedID
 {
-    if (sharedID.length == 0) {
-        @synchronized(self) {
-            [self removeKeychainValueForKey:PBCrossServerSharedIDKey];
-            [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
-        }
-        return YES;
-    }
-
-    NSString *trimmed = [sharedID stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (!PBCrossIsValidSharedID(trimmed)) {
-        PBCrossLog(self.configuration, @"服务端下发的共享 ID 非法，已忽略");
-        return NO;
-    }
-
     @synchronized(self) {
-        if (![self writeKeychainString:trimmed forKey:PBCrossServerSharedIDKey]) {
-            return NO;
+        if (sharedID.length == 0) {
+            OSStatus status = errSecSuccess;
+            NSString *serverID = [self keychainStringForKey:PBCrossServerSharedIDKey status:&status];
+            if (status != errSecSuccess && status != errSecItemNotFound) { return NO; }
+            // Preserve the last effective ID before removing the server priority.
+            // A failed copy/delete leaves the authoritative server ID unchanged.
+            if (serverID && ![self writeKeychainString:serverID forKey:PBCrossSharedIDKey]) { return NO; }
+            if (![self removeKeychainValueForKey:PBCrossServerSharedIDKey error:NULL]) { return NO; }
+            [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
+            if (serverID) { [self mirrorSharedID:serverID]; }
+            return YES;
         }
-        if (![self writeKeychainString:trimmed forKey:PBCrossSharedIDKey]) {
-            return NO;
-        }
+        NSString *trimmed = [sharedID stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+        if (!PBCrossIsValidSharedID(trimmed)) { return NO; }
+        // One authoritative write: no second Keychain write can partially fail.
+        if (![self writeKeychainString:trimmed forKey:PBCrossServerSharedIDKey]) { return NO; }
         [self setDefaultsString:trimmed forKey:PBCrossServerSharedIDKey];
         [self mirrorSharedID:trimmed];
+        return YES;
     }
-    return YES;
 }
 
 #pragma mark - Remote cache / rate limit
@@ -461,6 +450,7 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (void)removeDefaultsKeysWithPrefix:(NSString *)prefix
 {
+    prefix = [self scopedDefaultsKey:prefix];
     NSMutableSet<NSString *> *keys = [NSMutableSet set];
     NSDictionary *standardValues = self.standardDefaults.dictionaryRepresentation;
     if (standardValues) {
@@ -472,16 +462,25 @@ static NSString *PBCrossCurrentDayKey(void)
     }
     for (NSString *key in keys) {
         if ([key isKindOfClass:[NSString class]] && [key hasPrefix:prefix]) {
-            [self removeDefaultsValueForKey:key];
+            [self.groupDefaults removeObjectForKey:key];
+            [self.standardDefaults removeObjectForKey:key];
         }
     }
 }
 
 - (void)clearStoredIdentity
 {
+    [self clearStoredIdentityWithError:NULL];
+}
+
+- (BOOL)clearStoredIdentityWithError:(NSError **)error
+{
     @synchronized(self) {
-        [self removeKeychainValueForKey:PBCrossSharedIDKey];
-        [self removeKeychainValueForKey:PBCrossServerSharedIDKey];
+        NSError *sharedError = nil;
+        NSError *serverError = nil;
+        BOOL sharedRemoved = [self removeKeychainValueForKey:PBCrossSharedIDKey error:&sharedError];
+        BOOL serverRemoved = [self removeKeychainValueForKey:PBCrossServerSharedIDKey error:&serverError];
+        if (error) { *error = sharedError ?: serverError; }
         [self removeDefaultsValueForKey:PBCrossSharedIDKey];
         [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
         [self removeDefaultsValueForKey:[self remoteCacheKey]];
@@ -489,6 +488,7 @@ static NSString *PBCrossCurrentDayKey(void)
         [self removeDefaultsKeysWithPrefix:[PBCrossRemoteCacheKeyPrefix stringByAppendingString:@"."]];
         [self removeDefaultsKeysWithPrefix:[PBCrossRemoteRequestLogKeyPrefix stringByAppendingString:@"."]];
         [self removeDefaultsValueForKey:PBCrossSystemUpdateHistoryKey];
+        return sharedRemoved && serverRemoved;
     }
 }
 

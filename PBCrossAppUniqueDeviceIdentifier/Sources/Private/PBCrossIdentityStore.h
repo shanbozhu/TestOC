@@ -39,9 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 记录本次 systemUpdateTime，返回上一次的 systemUpdateTime。
 - (NSString *)updateSystemUpdateTimeHistoryWithCurrentValue:(nullable NSString *)currentValue;
 
-/// 清除共享 ID、服务端下发 ID、当前服务的远端缓存/请求计数与系统更新时间历史。
+/// 清除当前 Keychain 命名空间内的身份、远端缓存/请求计数与系统更新时间历史。
 /// 注意：会同时影响同一 Keychain Access Group / App Group 内的其他 App。
 - (void)clearStoredIdentity;
+- (BOOL)clearStoredIdentityWithError:(NSError * _Nullable * _Nullable)error;
 
 @end
 

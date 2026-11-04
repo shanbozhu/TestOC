@@ -79,7 +79,8 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 /// Keychain 不可用时返回空串，不生成替代身份；需要错误详情时使用异步加载接口。
 @property (nonatomic, copy, readonly) NSString *sharedID;
 
-/// 注入服务端下发的共享 ID（用于中心化发号），下次加载身份时生效。
+/// 注入服务端下发的共享 ID；成功后使旧加载与远端请求失效，下次加载生效。
+/// nil/空串移除服务端优先标记并保留最后有效 ID；失败返回 NO。
 - (BOOL)setServerIssuedSharedID:(nullable NSString *)sharedID;
 
 /// 生成广告请求适配器；无缓存身份时会同步加载。
@@ -90,7 +91,11 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 
 /// 清除已持久化的共享 ID、服务端 ID、远端缓存与请求计数。
 /// 注意：会同时影响同一 Keychain Access Group / App Group 内的其他 App；下次加载会生成新的 UUID。
+/// 兼容接口不返回删除错误；需要确认清理结果时使用 clearStoredIdentityWithError:。
 - (void)clearStoredIdentity;
+
+/// 清理并报告 Keychain 删除错误；失败时可能已完成部分清理，应处理错误后重试。
+- (BOOL)clearStoredIdentityWithError:(NSError * _Nullable * _Nullable)error;
 
 @end
 

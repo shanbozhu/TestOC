@@ -4,6 +4,8 @@
 >
 > 版本：1.0.0 · 平台：iOS 12.0+ · 语言：Objective-C
 
+功能流程图见 [Docs/FeatureFlows.md](Docs/FeatureFlows.md)，包含配置、身份加载与缓存、共享 ID、指纹计算、远端解析、广告输出、归因匹配及身份清理。
+
 ## 1. 背景与目标
 
 iOS 没有稳定、可跨 App / 跨公司共享的设备号。IDFA 受 ATT 限制且用户可关闭，IDFV 只在同一 Vendor 的 App 间一致，Keychain / App Group 也只能在同一 Apple Developer Team 内共享。
@@ -95,9 +97,13 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 同步接口 `identitySynchronously` 可能阻塞约 0.5 秒（运营商读取超时），不要在启动关键路径的主线程上反复调用；加载完成后 SDK 会做内存缓存（默认 300 秒）。
 
-每次加载使用同一份配置、存储和配置版本。加载或等待主线程回调期间，若配置更新或身份被清除，旧结果不会写回缓存；异步接口返回 `nil` 与 `PBCrossIdentifierErrorOperationCancelled`，同步接口按最新配置重试。
+每次加载使用同一份配置、存储和配置版本。加载或等待主线程回调期间，若配置更新、服务端共享 ID 注入成功或身份被清除，旧结果不会写回缓存；异步接口返回 `nil` 与 `PBCrossIdentifierErrorOperationCancelled`，同步接口按最新配置重试。
 
 缓存读取、异步回调及广告适配器导出时都会检查当前广告授权。撤回 ATT 后不再输出缓存中的明文 IDFA、`idfa_md5` 或 `ext.pb_cross_app.attributes.idfa_md5`；已有适配器也会在导出时检查。已交付给宿主的身份快照不可变，宿主需停止使用自己的旧快照和缓存。重新授权后可调用强制刷新重新采集。
+
+服务端注入 `setServerIssuedSharedID:` 使用单条服务端权威记录，成功后清缓存并取消旧加载/远端任务。传入 nil/空串会先保留最后有效 ID 再移除服务端优先标记；失败返回 NO。远端 Resolver 返回的版本化 remote ID 与此共享 ID 注入接口相互独立。
+
+配置更新和清理使旧 Resolver 失效并取消网络任务；响应持久缓存提交也受失效检查保护，迟到响应不会恢复本 Manager 已清除的缓存。
 
 ### 3.4 生成拼多多 Device 对象
 
@@ -367,8 +373,8 @@ SDK 行为：
 - 默认**不发网络请求**；远端能力需显式启用并完成隐私授权。
 - 仅采集设备级属性；设备名只保留不可逆 MD5，不保存/上报明文；IDFA 默认只输出 MD5。
 - `idfv` 会出现在 ext/identity JSON 中，如产品认为敏感，可在上报前裁剪 `attributes`（但会影响属性匹配）。
-- Keychain 数据在 App 卸载后通常仍保留；提供 `clearStoredIdentity` 清除（会清除同一 Keychain Access Group / App Group 内其他 App 的共享 ID，请谨慎调用）。
-- 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值；Defaults 仅镜像已确认持久化的 ID。
+- Keychain 数据在 App 卸载后通常仍保留；使用 `clearStoredIdentityWithError:` 清理并检查返回值与错误。失败可能已完成部分删除，可恢复后重试。旧 `clearStoredIdentity` 保留兼容但不返回错误。共享记录清除会影响同组其他 App 后续读取，其他 App 的内存快照需主动刷新。
+- 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值；Defaults 按 Keychain service/accessGroup 隔离，仅镜像已确认持久化的 ID；Keychain 缺失时不再从旧镜像迁入 ID，避免其他 App 恢复已清除的身份。已有 Keychain 记录沿用；仅存于旧 Defaults 的标识不再自动恢复。
 - 配置 `keychainAccessGroup` 后不自动回退到私有 Keychain。异步加载遇到存储错误时返回不含 `shared_id` 的快照及 `NSError`，不缓存该快照，下次加载会重试；同步 `sharedID` 属性在不可用时返回空串。
 - 指纹 ID 是**伪匿名标识**，不是账号 ID，不应跨设备关联用户；salt 不是加密密钥，拿到 salt 的人可以复算 ID，它的作用是隔离生态/合作方。
 - 上线前请按 PIPL、CCPA、Apple ATT/隐私清单等要求完成法务与隐私评估，并提供可关闭/清除入口。

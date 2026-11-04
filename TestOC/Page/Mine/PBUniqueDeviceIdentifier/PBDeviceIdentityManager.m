@@ -146,9 +146,28 @@
         NSDictionary *fields = [self.environment currentIdentityFields];
         dispatch_async(self.storageQueue, ^{
             PBDeviceIdentitySnapshot *snapshot = [self snapshotWithFields:fields];
-            dispatch_async(dispatch_get_main_queue(), ^{ completion(snapshot); });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion([self snapshotByApplyingCurrentAuthorization:snapshot]);
+            });
         });
     });
+}
+
+// Called immediately before delivering on the main thread, after storage I/O.
+- (PBDeviceIdentitySnapshot *)snapshotByApplyingCurrentAuthorization:(PBDeviceIdentitySnapshot *)snapshot {
+    NSDictionary *fields = [self.environment currentIdentityFields];
+    NSMutableDictionary *payload = [snapshot.payload mutableCopy];
+    NSString *status = fields[@"att_status"] ?: @"unknown";
+    payload[@"att_status"] = status;
+    [payload removeObjectForKey:@"idfa"];
+    if ([status isEqual:@"authorized"] || [status isEqual:@"not_required"]) {
+        NSString *idfa = [self validUUID:fields[@"idfa"]];
+        if (idfa) { payload[@"idfa"] = idfa; }
+    }
+    PBDeviceIdentitySnapshot *updated = [PBDeviceIdentitySnapshot new];
+    updated.payload = payload;
+    updated.diagnostics = snapshot.diagnostics;
+    return updated;
 }
 
 - (void)requestTrackingAuthorizationWithCompletion:(void (^)(NSError * _Nullable))completion {
@@ -189,11 +208,25 @@
             if (success) { success = [self.storage removeInstallationIdentifierWithError:&error]; }
             // Reads after failure preserve valid records; never claim a successful reset.
             PBDeviceIdentitySnapshot *snapshot = [self snapshotWithFields:fields];
+            if (success && (!snapshot.payload[@"installation_id"] ||
+                            (includingKeychain && !snapshot.payload[@"app_device_id"]))) {
+                NSDictionary *detail = snapshot.diagnostics[@"installation_id_error"];
+                if (includingKeychain && !snapshot.payload[@"app_device_id"]) {
+                    detail = snapshot.diagnostics[@"app_device_id_error"] ?: detail;
+                }
+                error = detail ? [NSError errorWithDomain:detail[@"domain"] code:[detail[@"code"] integerValue]
+                    userInfo:@{NSLocalizedDescriptionKey: detail[@"message"]}] :
+                    [NSError errorWithDomain:@"PBDeviceIdentityMutation" code:2
+                                    userInfo:@{NSLocalizedDescriptionKey: @"删除后重新生成标识失败，请重试"}];
+                success = NO;
+            }
             if (!success && !error) {
                 error = [NSError errorWithDomain:@"PBDeviceIdentityMutation" code:1
                                        userInfo:@{NSLocalizedDescriptionKey: @"重置未完成"}];
             }
-            dispatch_async(dispatch_get_main_queue(), ^{ completion(snapshot, error); });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion([self snapshotByApplyingCurrentAuthorization:snapshot], error);
+            });
         });
     });
 }

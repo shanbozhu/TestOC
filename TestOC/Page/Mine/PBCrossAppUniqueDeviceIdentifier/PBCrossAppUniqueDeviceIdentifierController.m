@@ -428,11 +428,18 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
         if (!strongSelf) {
             return;
         }
-        [[PBCrossAppUniqueDeviceIdentifierManager sharedManager] clearStoredIdentity];
+        NSError *clearError = nil;
+        BOOL cleared = [[PBCrossAppUniqueDeviceIdentifierManager sharedManager] clearStoredIdentityWithError:&clearError];
         strongSelf.identity = nil;
-        strongSelf.lastError = nil;
-        strongSelf.lastAction = @"身份已清除，正在重新生成…";
-        [strongSelf loadIdentityForce:YES];
+        strongSelf.lastError = clearError;
+        if (cleared) {
+            strongSelf.lastAction = @"身份已清除，正在重新生成…";
+            [strongSelf loadIdentityForce:YES];
+        } else {
+            strongSelf.lastAction = @"身份未完全清除，请重试";
+            [strongSelf.tableView reloadData];
+            [strongSelf showMessage:clearError.localizedDescription title:@"清理未完成"];
+        }
     }]];
     [self presentViewController:alert animated:YES completion:nil];
 }

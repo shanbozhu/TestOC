@@ -33,6 +33,9 @@ typedef void (^PBCrossRemoteResolutionCompletion)(NSArray<PBCrossIdentifier *> *
 /// 缓存是否仍在 TTL 内。
 - (BOOL)hasFreshCache;
 
+/// 永久使本实例失效；与响应缓存写入互斥，阻止旧响应恢复已清理的数据。
+- (void)invalidate;
+
 /// 解析远端 ID；优先使用 TTL 内缓存，否则发起网络请求（受每日次数限制）。
 - (void)resolveIdentifiersWithAttributes:(PBCrossDeviceAttributes *)attributes
                               completion:(nullable PBCrossRemoteResolutionCompletion)completion;

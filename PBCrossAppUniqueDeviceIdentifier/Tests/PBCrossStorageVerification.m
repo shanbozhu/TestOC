@@ -12,6 +12,16 @@ static NSObject *CRLock;
 static NSMutableDictionary<NSString *, id> *CRRecords;
 static NSMutableDictionary<NSString *, NSNumber *> *CRReadErrors;
 static OSStatus CRAddError;
+static NSMutableDictionary<NSString *, NSNumber *> *CRWriteErrors;
+static OSStatus CRDeleteError;
+
+@interface PBCrossIdentityStore (Verification)
+- (NSString *)scopedDefaultsKey:(NSString *)key;
+@end
+@interface PBCrossRemoteResolver (Verification)
+- (void)handleResponseData:(NSData *)data response:(NSURLResponse *)response networkError:(NSError *)error
+               completion:(PBCrossRemoteResolutionCompletion)completion;
+@end
 static NSUInteger CRAdds, CRUpdates, CRPrivateQueries;
 static BOOL CRInjectDuplicate, CRFailWinnerRead;
 static dispatch_semaphore_t CRRaceReady, CRRaceRelease;
@@ -70,6 +80,8 @@ OSStatus SecItemAdd(CFDictionaryRef rawQuery, CFTypeRef *result)
     NSDictionary *query = (__bridge NSDictionary *)rawQuery;
     @synchronized(CRLock) {
         CRAdds++;
+        NSNumber *failure = CRWriteErrors[query[(__bridge id)kSecAttrAccount]];
+        if (failure) { return failure.intValue; }
         if (CRAddError) { return CRAddError; }
         NSString *key = CRRecordKey(query);
         if (CRInjectDuplicate) {
@@ -87,6 +99,8 @@ OSStatus SecItemUpdate(CFDictionaryRef rawQuery, CFDictionaryRef rawAttributes)
 {
     @synchronized(CRLock) {
         CRUpdates++;
+        NSNumber *failure = CRWriteErrors[((__bridge NSDictionary *)rawQuery)[(__bridge id)kSecAttrAccount]];
+        if (failure) { return failure.intValue; }
         NSString *key = CRRecordKey((__bridge NSDictionary *)rawQuery);
         if (!CRRecords[key]) { return errSecItemNotFound; }
         CRRecords[key] = ((__bridge NSDictionary *)rawAttributes)[(__bridge id)kSecValueData];
@@ -97,6 +111,7 @@ OSStatus SecItemUpdate(CFDictionaryRef rawQuery, CFDictionaryRef rawAttributes)
 OSStatus SecItemDelete(CFDictionaryRef rawQuery)
 {
     @synchronized(CRLock) {
+        if (CRDeleteError) { return CRDeleteError; }
         [CRRecords removeObjectForKey:CRRecordKey((__bridge NSDictionary *)rawQuery)];
         return errSecSuccess;
     }
@@ -134,6 +149,8 @@ static void CRReset(void)
 {
     CRRecords = [NSMutableDictionary dictionary];
     CRReadErrors = [NSMutableDictionary dictionary];
+    CRWriteErrors = [NSMutableDictionary dictionary];
+    CRDeleteError = errSecSuccess;
     CRAdds = CRUpdates = CRPrivateQueries = CRRaceReaders = 0;
     CRAddError = errSecSuccess;
     CRInjectDuplicate = CRFailWinnerRead = NO;
@@ -212,8 +229,8 @@ static void CRVerifyCreation(NSString *suite)
     [defaults removePersistentDomainForName:suite];
     [defaults setObject:@"legacy-id" forKey:CRSharedKey];
     value = [store sharedIDCreatingIfNeeded:YES serverIssued:NULL error:&error];
-    CRAssert([value isEqual:@"legacy-id"] && !error && CRAdds == 1 && CRUpdates == 0,
-             @"legacy Defaults identity migrates through an atomic add");
+    CRAssert(![value isEqual:@"legacy-id"] && value.length > 0 && !error && CRAdds == 1 && CRUpdates == 0,
+             @"legacy Defaults cannot resurrect an absent Keychain identity");
 
     CRReset();
     [defaults removePersistentDomainForName:suite];
@@ -248,7 +265,7 @@ static void CRVerifyCreation(NSString *suite)
                      @"duplicate winner read failure does not expose or mirror the losing candidate");
         } else {
             CRAssert([value isEqual:@"persisted-winner"] && !error && CRUpdates == 0 &&
-                     [[defaults stringForKey:CRSharedKey] isEqual:value], @"duplicate creation returns and mirrors the winner");
+                     [[defaults stringForKey:[store scopedDefaultsKey:CRSharedKey]] isEqual:value], @"duplicate creation returns and mirrors the winner");
         }
     }
 
@@ -296,7 +313,7 @@ static void CRVerifyConcurrentCreation(NSString *suiteA, NSString *suiteB)
              CRAdds == 2 && CRUpdates == 0, @"concurrent creators return the same persisted ID without overwrites");
     NSUserDefaults *defaultsA = [[NSUserDefaults alloc] initWithSuiteName:suiteA];
     NSUserDefaults *defaultsB = [[NSUserDefaults alloc] initWithSuiteName:suiteB];
-    CRAssert([[defaultsA stringForKey:CRSharedKey] isEqual:persisted] && [[defaultsB stringForKey:CRSharedKey] isEqual:persisted],
+    CRAssert([[defaultsA stringForKey:[a scopedDefaultsKey:CRSharedKey]] isEqual:persisted] && [[defaultsB stringForKey:[b scopedDefaultsKey:CRSharedKey]] isEqual:persisted],
              @"both apps mirror only the persisted winner");
 }
 
@@ -624,6 +641,127 @@ static void CRVerifyManagerRecovery(NSString *suite)
     }];
 }
 
+
+static void CRVerifyMirrorsAndNamespace(NSString *suite)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    PBCrossIdentityStore *a = [manager valueForKey:@"storeStorage"];
+    NSString *peerSuite = [suite stringByAppendingString:@".peer"];
+    NSUserDefaults *peerDefaults = [[NSUserDefaults alloc] initWithSuiteName:peerSuite];
+    [peerDefaults removePersistentDomainForName:peerSuite];
+    PBCrossIdentityStore *peer = CRStore(peerSuite);
+    NSString *old = [a sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
+    [peer sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
+    CRAssert([[peerDefaults stringForKey:[peer scopedDefaultsKey:CRSharedKey]] isEqual:old], @"peer App holds its private old mirror");
+    NSError *error = nil;
+    CRAssert([manager clearStoredIdentityWithError:&error] && !error, @"shared identity clear succeeds");
+    NSString *next = [peer sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
+    CRAssert(![next isEqual:old] && [manager.sharedID isEqual:next], @"peer mirror cannot restore a cleared shared identity");
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:suite];
+    for (NSNumber *changeGroup in @[@NO, @YES]) {
+        PBCrossConfiguration *config = CRConfiguration();
+        if (changeGroup.boolValue) { config.keychainAccessGroup = @"TEAM.independent"; }
+        else { config.keychainService = @"independent.service"; }
+        PBCrossIdentityStore *other = [[PBCrossIdentityStore alloc] initWithConfiguration:config];
+        [other setValue:defaults forKey:@"standardDefaults"];
+        NSString *separate = [other sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
+        CRAssert(separate.length > 0 && ![separate isEqual:next] &&
+            [[defaults stringForKey:[a scopedDefaultsKey:CRSharedKey]] isEqual:next] &&
+            [[defaults stringForKey:[other scopedDefaultsKey:CRSharedKey]] isEqual:separate],
+            @"service and access group each isolate their persistent IDs and mirrors");
+    }
+}
+
+static void CRVerifyMutationFailures(NSString *suite)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *m = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    NSString *old = m.identitySynchronously.sharedID;
+    CRWriteErrors[CRServerKey] = @(errSecInteractionNotAllowed);
+    CRAssert(![m setServerIssuedSharedID:@"server-new"] && [m.sharedID isEqual:old] &&
+             [m.cachedIdentity.sharedID isEqual:old], @"failed authoritative write changes neither direct nor cached identity");
+    [CRWriteErrors removeAllObjects];
+    CRWriteErrors[CRSharedKey] = @(errSecInteractionNotAllowed);
+    CRAssert([m setServerIssuedSharedID:@"server-new"] && [m.identitySynchronously.sharedID isEqual:@"server-new"] &&
+             [m.sharedID isEqual:@"server-new"], @"server injection has one authoritative write, so a second-key failure cannot split identity");
+    CRAssert(![m setServerIssuedSharedID:nil] && [m.sharedID isEqual:@"server-new"],
+             @"failed preservation when removing server priority leaves effective identity intact");
+    [CRWriteErrors removeAllObjects];
+    CRDeleteError = errSecInteractionNotAllowed;
+    CRAssert(![m setServerIssuedSharedID:nil] && [m.sharedID isEqual:@"server-new"],
+             @"server marker delete failure is reported without changing effective identity");
+    NSError *error = nil;
+    CRAssert(![m clearStoredIdentityWithError:&error] && error.code == errSecInteractionNotAllowed &&
+             [m.sharedID isEqual:@"server-new"] && !m.cachedIdentity,
+             @"clear propagates Keychain delete error and invalidates cached identity");
+    CRDeleteError = errSecSuccess;
+    CRAssert([m clearStoredIdentityWithError:&error] && !error && ![m.sharedID isEqual:@"server-new"],
+             @"clear retries successfully after Keychain recovery");
+}
+
+static void CRVerifyLateRemote(NSString *suite, BOOL reconfigure)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *m = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    PBCrossIdentityStore *store = [m valueForKey:@"storeStorage"];
+    PBCrossRemoteResolver *resolver = [[PBCrossRemoteResolver alloc] initWithConfiguration:m.configuration store:store];
+    [m setValue:resolver forKey:@"remoteResolverStorage"];
+    [store setRemoteCache:@{@"identifiers": @[@{@"id": @"before-clear", @"version": @"1"}]}];
+    if (reconfigure) {
+        [m configureWithBlock:^(PBCrossConfiguration *c) { c.salt = @"updated-salt"; } error:NULL];
+        [store setRemoteCache:nil];
+    } else { [m clearStoredIdentityWithError:NULL]; }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"code": @0, @"data": @[@{@"id": @"late-old-response", @"version": @"1"}]} options:0 error:NULL];
+    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"https://example.invalid"] statusCode:200 HTTPVersion:nil headerFields:nil];
+    __block BOOL done = NO;
+    [resolver handleResponseData:data response:response networkError:nil completion:^(NSArray *ids, NSDate *date, NSError *error) {
+        CRAssert(ids == nil && error.code == PBCrossIdentifierErrorOperationCancelled, @"invalidated response delivers cancellation");
+        done = YES;
+    }];
+    CRPumpUntil(^BOOL { return done; });
+    CRAssert(store.remoteCache == nil, @"late response after clear or reconfiguration cannot repopulate persistent cache");
+}
+
+@interface CRPostReadStore : PBCrossIdentityStore
+@end
+@implementation CRPostReadStore
+- (NSString *)updateSystemUpdateTimeHistoryWithCurrentValue:(NSString *)value
+{
+    dispatch_semaphore_signal(CRStoreReady);
+    dispatch_semaphore_wait(CRStoreRelease, dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC));
+    return [super updateSystemUpdateTimeHistoryWithCurrentValue:value];
+}
+@end
+
+static void CRVerifyServerInjectionRace(NSString *suite, BOOL afterBuild)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *m = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRRecords[CRStorageKey(CRSharedKey)] = [@"before-server" dataUsingEncoding:NSUTF8StringEncoding];
+    if (!afterBuild) {
+        CRPostReadStore *store = [[CRPostReadStore alloc] initWithConfiguration:m.configuration];
+        [store setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+        [m setValue:store forKey:@"storeStorage"];
+        CRStoreReady = dispatch_semaphore_create(0); CRStoreRelease = dispatch_semaphore_create(0);
+    }
+    __block BOOL done = NO;
+    [m refreshIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        CRAssert(identity == nil && error.code == PBCrossIdentifierErrorOperationCancelled,
+                 @"server injection cancels old load even while its main-thread callback is queued");
+        done = YES;
+    }];
+    if (afterBuild) { dispatch_sync([m valueForKey:@"workQueue"], ^{}); }
+    else { CRAssert(dispatch_semaphore_wait(CRStoreReady, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC)) == 0, @"load paused after reading old shared ID"); }
+    CRAssert([m setServerIssuedSharedID:@"server-new"], @"server injection succeeds while old load is pending");
+    if (!afterBuild) { dispatch_semaphore_signal(CRStoreRelease); }
+    CRPumpUntil(^BOOL { return done; });
+    // Replace only the test barrier, preserving the same actual storage namespace.
+    [m setValue:CRStore(suite) forKey:@"storeStorage"];
+    CRAssert([m.identitySynchronously.sharedID isEqual:@"server-new"] && [m.cachedIdentity.sharedID isEqual:m.sharedID],
+             @"old load cannot restore pre-injection identity to cache");
+}
+
 int main(void)
 {
     @autoreleasepool {
@@ -632,6 +770,12 @@ int main(void)
         CRVerifyReadFailures(suite);
         CRVerifyCreation(suite);
         CRVerifyConcurrentCreation(suite, [suite stringByAppendingString:@".peer"]);
+        CRVerifyMirrorsAndNamespace(suite);
+        CRVerifyMutationFailures(suite);
+        CRVerifyLateRemote(suite, NO);
+        CRVerifyLateRemote(suite, YES);
+        CRVerifyServerInjectionRace(suite, NO);
+        CRVerifyServerInjectionRace(suite, YES);
         CRVerifyAppGroupConfiguration(suite);
         CRVerifyAdvertisingRevocation(suite);
         CRVerifyConfigurationRace(suite, YES);

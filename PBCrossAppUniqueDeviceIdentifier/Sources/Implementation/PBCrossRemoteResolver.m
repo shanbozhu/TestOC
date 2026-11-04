@@ -19,6 +19,8 @@
 
 @property (nonatomic, copy, readwrite) PBCrossConfiguration *configuration;
 @property (nonatomic, strong) PBCrossIdentityStore *store;
+@property (nonatomic, assign) BOOL invalidated;
+@property (nonatomic, strong, nullable) NSURLSessionDataTask *task;
 
 @end
 
@@ -47,6 +49,15 @@
 }
 
 #pragma mark - Cache
+
+- (void)invalidate
+{
+    @synchronized(self) {
+        self.invalidated = YES;
+        [self.task cancel];
+        self.task = nil;
+    }
+}
 
 - (nullable NSArray<PBCrossIdentifier *> *)identifiersFromDictionaries:(NSArray *)dictionaries
 {
@@ -121,6 +132,14 @@
 - (void)resolveIdentifiersWithAttributes:(PBCrossDeviceAttributes *)attributes
                               completion:(PBCrossRemoteResolutionCompletion)completion
 {
+    @synchronized(self) {
+        if (self.invalidated) {
+            [self finishWithIdentifiers:nil resolvedAt:nil
+                                  error:PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"身份或配置已更新")
+                             completion:completion];
+            return;
+        }
+    }
     PBCrossRemoteConfiguration *remoteConfiguration = self.configuration.remoteConfiguration;
     if (!remoteConfiguration.enabled) {
         [self finishWithIdentifiers:nil resolvedAt:nil
@@ -231,39 +250,48 @@
         return;
     }
 
-    if (![self.store registerRemoteRequestIfAllowed:remoteConfiguration.dailyRequestLimit]) {
-        [self finishWithIdentifiers:nil resolvedAt:nil
-                              error:PBCrossErrorMake(PBCrossRemoteErrorDailyLimitExceeded,
-                                                     @"%@(%lu)",
-                                                     PBCrossRemoteErrorDescription(PBCrossRemoteErrorDailyLimitExceeded),
-                                                     (unsigned long)remoteConfiguration.dailyRequestLimit)
-                         completion:completion];
-        return;
-    }
-
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:remoteConfiguration.endpointURL
-                                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                                       timeoutInterval:remoteConfiguration.requestTimeout];
-    request.HTTPMethod = @"POST";
-    request.HTTPBody = bodyData;
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"no-cache" forHTTPHeaderField:@"Cache-Control"];
-
-    PBCrossLog(self.configuration, @"请求远端 ID 服务: %@", remoteConfiguration.endpointURL.absoluteString);
-
-    __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
-                                                                 completionHandler:^(NSData *data,
-                                                                                     NSURLResponse *response,
-                                                                                     NSError *networkError) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (!strongSelf) {
+    @synchronized(self) {
+        if (self.invalidated) {
+            [self finishWithIdentifiers:nil resolvedAt:nil
+                                  error:PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"身份或配置已更新")
+                             completion:completion];
             return;
         }
-        [strongSelf handleResponseData:data response:response networkError:networkError completion:completion];
-    }];
-    [task resume];
+        if (![self.store registerRemoteRequestIfAllowed:remoteConfiguration.dailyRequestLimit]) {
+            [self finishWithIdentifiers:nil resolvedAt:nil
+                                  error:PBCrossErrorMake(PBCrossRemoteErrorDailyLimitExceeded,
+                                                         @"%@(%lu)",
+                                                         PBCrossRemoteErrorDescription(PBCrossRemoteErrorDailyLimitExceeded),
+                                                         (unsigned long)remoteConfiguration.dailyRequestLimit)
+                             completion:completion];
+            return;
+        }
+
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:remoteConfiguration.endpointURL
+                                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                           timeoutInterval:remoteConfiguration.requestTimeout];
+        request.HTTPMethod = @"POST";
+        request.HTTPBody = bodyData;
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"no-cache" forHTTPHeaderField:@"Cache-Control"];
+
+        PBCrossLog(self.configuration, @"请求远端 ID 服务: %@", remoteConfiguration.endpointURL.absoluteString);
+
+        __weak typeof(self) weakSelf = self;
+        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
+                                                                     completionHandler:^(NSData *data,
+                                                                                         NSURLResponse *response,
+                                                                                         NSError *networkError) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf) {
+                return;
+            }
+            [strongSelf handleResponseData:data response:response networkError:networkError completion:completion];
+        }];
+        self.task = task;
+        [task resume];
+    }
 }
 
 - (nullable SecKeyRef)resolvedPublicKeyWithError:(NSError **)error
@@ -409,10 +437,18 @@
             @"version": identifier.version,
         }];
     }
-    [self.store setRemoteCache:@{
-        @"resolved_at": @([resolvedAt timeIntervalSince1970]),
-        @"identifiers": cacheIdentifiers,
-    }];
+    @synchronized(self) {
+        if (self.invalidated) {
+            [self finishWithIdentifiers:nil resolvedAt:nil
+                                  error:PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"身份或配置已更新")
+                             completion:completion];
+            return;
+        }
+        [self.store setRemoteCache:@{
+            @"resolved_at": @([resolvedAt timeIntervalSince1970]),
+            @"identifiers": cacheIdentifiers,
+        }];
+    }
 
     PBCrossLog(self.configuration, @"远端 ID 解析成功: %lu 个版本", (unsigned long)identifiers.count);
     [self finishWithIdentifiers:[identifiers copy] resolvedAt:resolvedAt error:nil completion:completion];

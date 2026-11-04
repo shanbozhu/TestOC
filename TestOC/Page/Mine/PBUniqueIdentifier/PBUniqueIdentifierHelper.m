@@ -75,6 +75,8 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
         case PBUniqueIdentifierSchemeTypeIDFA: {
             [self fetchIDFAWithCompletion:^(NSString *value) {
                 item.identifierValue = value;
+                NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:value];
+                item.identifierCopyable = uuid && ![uuid.UUIDString isEqual:@"00000000-0000-0000-0000-000000000000"];
                 finish();
             }];
             break;
@@ -150,8 +152,15 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
             completion(@"设备受限，无法获取 IDFA");
             return;
         }
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        if (![ASIdentifierManager sharedManager].advertisingTrackingEnabled) {
+            completion(@"广告跟踪已关闭，无法获取 IDFA");
+            return;
+        }
+#pragma clang diagnostic pop
     }
-    
     NSUUID *idfa = [ASIdentifierManager sharedManager].advertisingIdentifier;
     NSString *idfaString = idfa.UUIDString ?: @"";
     if ([idfaString isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {

@@ -28,7 +28,19 @@
     
     [self setupNavigationItems];
     [self setupTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshIDFA)
+        name:UIApplicationDidBecomeActiveNotification object:nil];
     [self refreshAllIdentifiers];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshIDFA {
+    PBUniqueIdentifierItem *item = [self itemForSchemeType:PBUniqueIdentifierSchemeTypeIDFA];
+    if (!item) { return; }
+    [PBUniqueIdentifierHelper refreshIdentifierForItem:item completion:^{ [self.tableView reloadData]; }];
 }
 
 #pragma mark - UI
@@ -106,6 +118,17 @@
 
 - (void)copyIdentifierAtIndexPath:(NSIndexPath *)indexPath {
     PBUniqueIdentifierItem *item = self.items[indexPath.row];
+    if (item.schemeType == PBUniqueIdentifierSchemeTypeIDFA) {
+        [PBUniqueIdentifierHelper refreshIdentifierForItem:item completion:^{
+            [self.tableView reloadData];
+            [self copyItem:item];
+        }];
+        return;
+    }
+    [self copyItem:item];
+}
+
+- (void)copyItem:(PBUniqueIdentifierItem *)item {
     if (!item.isIdentifierCopyable ||
         item.identifierError.length > 0 ||
         item.identifierValue.length == 0 ||
