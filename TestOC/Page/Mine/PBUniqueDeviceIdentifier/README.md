@@ -46,7 +46,7 @@
 
 关键实现约束：
 
-- Keychain 使用 `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly`，不启用 iCloud 同步，不指定共享 access group；首次解锁前可能不可用。
+- Keychain 使用 `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly`，不启用 iCloud 同步。先用唯一临时记录解析宿主默认 access group，后续读写、重置显式限定该组；解析或临时记录清理失败则返回错误，不扩大查询范围到其他可访问共享组。首次解锁前可能不可用。
 - 仅在 `errSecItemNotFound` 时创建 UUID。锁定、权限错误和记录损坏均不会触发替换；写入失败也不返回尚未保存的候选值。
 - 并发首次读取由共享 manager 的串行队列控制。Keychain 创建遇到 `errSecDuplicateItem`，重新读取胜出的记录。
 - 安装文件只在确实不存在时创建；读写错误和损坏不会静默创建另一个身份。该存储仅用于当前 App 进程；扩展进程共享身份需要另行设计跨进程锁和受控共享容器。

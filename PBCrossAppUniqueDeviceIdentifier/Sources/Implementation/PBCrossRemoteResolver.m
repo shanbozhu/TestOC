@@ -89,6 +89,7 @@
 
 - (nullable NSArray<PBCrossIdentifier *> *)cachedIdentifiersWithResolvedAt:(NSDate **)resolvedAt
 {
+    if (resolvedAt) { *resolvedAt = nil; }
     NSDictionary<NSString *, id> *cache = [self cacheDictionary];
     if (!cache) {
         return nil;
@@ -119,6 +120,11 @@
 {
     NSDate *resolvedAt = nil;
     NSArray<PBCrossIdentifier *> *identifiers = [self cachedIdentifiersWithResolvedAt:&resolvedAt];
+    return [self identifiers:identifiers areFreshAt:resolvedAt];
+}
+
+- (BOOL)identifiers:(nullable NSArray<PBCrossIdentifier *> *)identifiers areFreshAt:(nullable NSDate *)resolvedAt
+{
     if (identifiers.count == 0 || resolvedAt == nil) {
         return NO;
     }
@@ -168,7 +174,7 @@
 
     NSDate *cachedResolvedAt = nil;
     NSArray<PBCrossIdentifier *> *cachedIdentifiers = [self cachedIdentifiersWithResolvedAt:&cachedResolvedAt];
-    if ([self hasFreshCache]) {
+    if ([self identifiers:cachedIdentifiers areFreshAt:cachedResolvedAt]) {
         PBCrossLog(self.configuration, @"命中远端 ID 缓存: %lu 个版本", (unsigned long)cachedIdentifiers.count);
         [self finishWithIdentifiers:cachedIdentifiers resolvedAt:cachedResolvedAt error:nil completion:completion];
         return;

@@ -416,6 +416,7 @@
 		A7C0DE012E5B4F1A9B2C3D03 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		400C95F470C2476E9E13EBCF /* PBUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
 		516F727154374F1BBF8AA836 /* PBDeviceIdentityStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityStorage.h; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D05 /* PBDefaultKeychainAccessGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDefaultKeychainAccessGroup.h; sourceTree = "<group>"; };
 		5C07E66D2BCD56FC0049758D /* PBRuntimeZeroDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroDebugController.h; sourceTree = "<group>"; };
 		5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeZeroDebugController.m; sourceTree = "<group>"; };
 		5C09495B2812C5C3002CEBC2 /* PBCellHeightTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoController.h; sourceTree = "<group>"; };
@@ -3341,6 +3342,7 @@
 			isa = PBXGroup;
 			children = (
 				516F727154374F1BBF8AA836 /* PBDeviceIdentityStorage.h */,
+				A7C0DE012E5B4F1A9B2C3D05 /* PBDefaultKeychainAccessGroup.h */,
 				7C4AB32CB99E437E8ABD9310 /* PBDeviceIdentityStorage.m */,
 				5F3099B59FA4452B910385A3 /* PBDeviceIdentityManager.h */,
 				B1B20B1A9C8B4590911BACCD /* PBDeviceIdentityManager.m */,

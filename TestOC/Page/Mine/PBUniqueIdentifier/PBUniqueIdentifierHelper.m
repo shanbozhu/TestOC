@@ -7,6 +7,7 @@
 //
 
 #import "PBUniqueIdentifierHelper.h"
+#import "../PBUniqueDeviceIdentifier/PBDefaultKeychainAccessGroup.h"
 
 #import <UIKit/UIKit.h>
 #import <AdSupport/AdSupport.h>
@@ -17,6 +18,7 @@
 #import <net/if_dl.h>
 #import <net/if_types.h>
 #import <sys/socket.h>
+#include <stddef.h>
 
 // Keychain 存储的业务标识：Service 相当于「命名空间」，Account 相当于「键名」
 // 两者组合唯一确定一条 Keychain 记录，同一 App 内请勿与其他业务复用
@@ -189,7 +191,14 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
  */
 
 /// 构建 Keychain 查询/写入的基础字典（不含 kSecReturnData、kSecValueData 等操作项）
-+ (NSMutableDictionary *)keychainBaseQuery {
++ (nullable NSMutableDictionary *)keychainBaseQueryWithError:(NSError **)error {
+    static NSString *defaultAccessGroup;
+    @synchronized(PBUniqueIdentifierHelper.class) {
+        if (!defaultAccessGroup) {
+            defaultAccessGroup = PBResolveDefaultKeychainAccessGroup(kPBKeychainService, error);
+        }
+        if (!defaultAccessGroup) { return nil; }
+    }
     return [@{
         // kSecClassGenericPassword：以「账号+密码」形式存储任意小数据（此处存 UUID 字符串）
         (__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
@@ -197,6 +206,7 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
         (__bridge id)kSecAttrService: kPBKeychainService,
         // kSecAttrAccount：具体键名，类似数据库的主键
         (__bridge id)kSecAttrAccount: kPBKeychainAccount,
+        (__bridge id)kSecAttrAccessGroup: defaultAccessGroup,
         // 设备标识不跟随 iCloud Keychain 同步到其他设备
         (__bridge id)kSecAttrSynchronizable: @NO,
     } mutableCopy];
@@ -231,7 +241,13 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
 /// 从 Keychain 读取 UUID；只有 errSecItemNotFound 才表示“没有记录”。
 /// 其他状态（锁屏、权限、Keychain 损坏）必须返回错误，不能生成新 ID。
 + (NSString *)keychainReadUUIDWithStatus:(OSStatus *)status error:(NSError **)error {
-    NSMutableDictionary *query = [self keychainBaseQuery];
+    NSError *groupError = nil;
+    NSMutableDictionary *query = [self keychainBaseQueryWithError:&groupError];
+    if (!query) {
+        if (status) { *status = (OSStatus)groupError.code; }
+        if (error) { *error = groupError; }
+        return nil;
+    }
     query[(__bridge id)kSecReturnData] = @YES;
     query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitOne;
 
@@ -262,6 +278,7 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
 /// 获取 Keychain 中持久化的 UUID；仅在“确实没有记录”时创建。
 /// 写失败时保留旧记录，绝不先删除再写入。
 + (NSString *)keychainUUIDStringWithError:(NSError **)error {
+    if (error) { *error = nil; }
     OSStatus readStatus = errSecSuccess;
     NSError *readError = nil;
     NSString *existing = [self keychainReadUUIDWithStatus:&readStatus error:&readError];
@@ -276,7 +293,8 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
     }
 
     NSString *candidate = NSUUID.UUID.UUIDString;
-    NSMutableDictionary *item = [self keychainBaseQuery];
+    NSMutableDictionary *item = [self keychainBaseQueryWithError:error];
+    if (!item) { return nil; }
     item[(__bridge id)kSecValueData] = [candidate dataUsingEncoding:NSUTF8StringEncoding];
     item[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
 
@@ -372,11 +390,18 @@ static NSString * const kPBDeviceCheckErrorDomain = @"PBUniqueIdentifierDeviceCh
         if (cursor->ifa_addr->sa_family != AF_LINK) {
             continue;
         }
-        if (![interfaceName isEqualToString:[NSString stringWithUTF8String:cursor->ifa_name]]) {
+        if (!cursor->ifa_name || ![interfaceName isEqualToString:[NSString stringWithUTF8String:cursor->ifa_name]]) {
             continue;
         }
         
         struct sockaddr_dl *sdl = (struct sockaddr_dl *)cursor->ifa_addr;
+        // AF_LINK includes cellular interfaces with no MAC address. Check the
+        // fixed header before accessing its lengths, then bound LLADDR + 6.
+        const size_t headerLength = offsetof(struct sockaddr_dl, sdl_data);
+        if (sdl->sdl_len < headerLength || sdl->sdl_alen != 6 ||
+            headerLength + (size_t)sdl->sdl_nlen + 6 > sdl->sdl_len) {
+            continue;
+        }
         unsigned char *base = (unsigned char *)LLADDR(sdl);
         macAddress = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X",
                       base[0], base[1], base[2], base[3], base[4], base[5]];

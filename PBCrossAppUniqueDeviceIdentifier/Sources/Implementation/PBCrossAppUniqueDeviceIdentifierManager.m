@@ -46,7 +46,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (instancetype)initPrivate;
 - (BOOL)isOnWorkQueue;
-- (nullable PBCrossIdentityStore *)storeSnapshot;
 - (NSUInteger)currentGeneration;
 - (nullable PBCrossIdentity *)cachedIdentityIfFresh;
 - (PBCrossIdentityLoadContext *)loadContext;
@@ -168,13 +167,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 #pragma mark - Snapshots
 
-- (nullable PBCrossIdentityStore *)storeSnapshot
-{
-    @synchronized(self) {
-        return self.storeStorage;
-    }
-}
-
 - (NSUInteger)currentGeneration
 {
     @synchronized(self) {
@@ -280,12 +272,23 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
     BOOL serverIssued = NO;
     NSError *storageError = nil;
-    NSString *sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued error:&storageError];
+    NSString *sharedID = nil;
+    NSString *previousSystemUpdateTime = nil;
+    @synchronized(self) {
+        // Storage may create an ID or update history. Validate and perform both
+        // under the mutation lock so clear/configure cannot finish in between.
+        if (context.generation != self.configurationGeneration) {
+            if (error) {
+                *error = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"配置或身份已更新，本次加载已取消");
+            }
+            return nil;
+        }
+        sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued error:&storageError];
+        previousSystemUpdateTime = [store updateSystemUpdateTimeHistoryWithCurrentValue:attributes.sysFileTime];
+    }
     if (error) {
         *error = storageError;
     }
-    NSString *previousSystemUpdateTime =
-        [store updateSystemUpdateTimeHistoryWithCurrentValue:attributes.sysFileTime];
 
     NSArray<PBCrossIdentifier *> *fingerprints =
         [PBCrossIdentityGenerator fingerprintIdentifiersWithAttributes:attributes configuration:configuration];
@@ -667,9 +670,10 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (NSString *)sharedID
 {
-    PBCrossIdentityStore *store = [self storeSnapshot];
-    NSString *sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
-    return sharedID ?: @"";
+    @synchronized(self) {
+        // Serialize the full read/create with configuration and identity changes.
+        return [self.storeStorage sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL] ?: @"";
+    }
 }
 
 - (BOOL)setServerIssuedSharedID:(NSString *)sharedID

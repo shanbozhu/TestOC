@@ -96,9 +96,12 @@ flowchart TD
     Cached --> Return["进入结果交付流程"]
     Hit -->|否| Collect["采集设备属性"]
     Collect --> Remote["读取已缓存 remote ID<br/>需远端启用且满足同意条件"]
-    Remote --> Shared["读取或创建 sharedID<br/>保留存储错误"]
+    Remote --> StorageLock{"Manager 锁内复核<br/>generation 仍有效？"}
+    StorageLock -->|否| Cancel
+    StorageLock -->|是| Shared["锁内读取或创建 sharedID<br/>保留存储错误"]
     Shared --> History["维护系统更新时间历史"]
-    History --> Generate["按 supportedVersions 计算指纹"]
+    History --> Unlock["释放 Manager 锁<br/>与配置 / 注入 / 清理互斥"]
+    Unlock --> Generate["按 supportedVersions 计算指纹"]
     Generate --> Build["组合 sharedID、fingerprint、remote<br/>属性、来源、时间戳"]
     Build --> Commit{"提交时 generation 仍有效？"}
     Commit -->|否| Cancel
@@ -114,6 +117,7 @@ flowchart TD
 - 强制刷新绕过内存缓存，但仍使用持久化共享 ID 和已缓存的远端 ID，不强制发起网络请求。
 - 本地加载允许带入已过期的远端缓存；远端 TTL 用于决定是否需要后台刷新，而不是立即删除旧远端 ID。
 - `cachedIdentity` 返回最近快照，不检查缓存时效，但会检查当前广告授权。
+- 身份创建/镜像和历史更新在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
 
 ### 3.2 同步、异步与取消
 
@@ -233,7 +237,7 @@ flowchart TD
     Mark --> Validate{"Resolver 复核配置与同意条件<br/>是否通过？"}
     Validate -->|否| ResolverError["Resolver 生成错误结果"]
     Validate -->|是| Fresh{"有新鲜远端缓存？"}
-    Fresh -->|是| Cached["直接返回缓存标识和解析时间"]
+    Fresh -->|是| Cached["返回同一快照的缓存标识和解析时间<br/>TTL 判断不再二次读取缓存"]
     Fresh -->|否| Prepare["校验 12 个必填属性<br/>解析 RSA 公钥并构造设备信息 JSON"]
     Prepare --> Encrypt["RSA PKCS#1 分段加密<br/>Base64 编码请求数据"]
     Encrypt --> Limit{"Keychain 原子新增<br/>可占用今天的请求额度？"}
@@ -432,6 +436,9 @@ flowchart TD
 | App Group 缓存 | 可用时只读写共享域；缺项不回退到各 App 私有旧副本。无可用 App Group 时仅使用各 App 私有缓存。 |
 | 请求额度 | Keychain 原子占位跨进程协调，默认每天 5 次；升级当天从新额度开始，混用旧版 SDK 不参与协调；清理会重置当前命名空间额度。 |
 | 远端失效 | 同一 Manager 内，清理/配置/注入与旧 Resolver 的持久缓存提交互斥；不提供跨进程网络任务取消。 |
+| 本地写入与清理 | 同一 Manager 内，版本复核和身份/历史写入使用同一把锁；清理等已有写入完成后删除，采集中取消的旧加载不再落盘。其他 App 可继续发起新的读取/创建。 |
+| 同步共享 ID | 完整读取/创建与配置更新互斥，配置提交后的读取使用新的存储命名空间。 |
+| 远端缓存命中 | TTL、标识及解析时间均取自同一份缓存快照。 |
 | 清理结果 | 新增带错误接口；删除失败可能已完成部分清理，应处理错误后重试。旧无错误接口仅作兼容。 |
 | 其他 App | 清理共享记录影响后续持久化读取；不会主动清除其他进程已持有的内存身份快照，宿主须刷新。 |
 

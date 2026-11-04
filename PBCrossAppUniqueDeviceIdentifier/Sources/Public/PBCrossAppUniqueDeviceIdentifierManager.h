@@ -77,6 +77,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 
 /// 跨 App 共享的自建 ID。首次调用会生成并写入 Keychain，可选镜像到 App Group。
 /// Keychain 不可用时返回空串，不生成替代身份；需要错误详情时使用异步加载接口。
+/// 完整读取/创建与本 Manager 的配置、注入和清理互斥。
 @property (nonatomic, copy, readonly) NSString *sharedID;
 
 /// 注入服务端下发的共享 ID；成功后使旧加载与远端请求失效，下次加载生效。
@@ -95,6 +96,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 - (void)clearStoredIdentity;
 
 /// 清理并报告 Keychain 删除错误；失败时可能已完成部分清理，应处理错误后重试。
+/// 等待本 Manager 已开始的身份写入后再删除；已取消的旧加载不再创建身份或写回历史。
 - (BOOL)clearStoredIdentityWithError:(NSError * _Nullable * _Nullable)error;
 
 @end

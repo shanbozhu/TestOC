@@ -1,4 +1,5 @@
 #import "PBDeviceIdentityStorage.h"
+#import "PBDefaultKeychainAccessGroup.h"
 #import <Security/Security.h>
 
 static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage";
@@ -6,6 +7,7 @@ static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage
 @interface PBDeviceIdentityStorage ()
 @property (nonatomic, copy) NSString *namespace;
 @property (nonatomic, strong) NSURL *directoryURL;
+@property (nonatomic, copy, nullable) NSString *defaultAccessGroup;
 @end
 
 @implementation PBDeviceIdentityStorage
@@ -21,11 +23,15 @@ static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage
     return self;
 }
 
-- (NSMutableDictionary *)keychainQuery {
-    // No accessGroup: use the host app's default Keychain group, never an SDK-wide group.
+- (nullable NSMutableDictionary *)keychainQueryWithError:(NSError **)error {
+    if (!self.defaultAccessGroup) {
+        self.defaultAccessGroup = PBResolveDefaultKeychainAccessGroup(self.namespace, error);
+    }
+    if (!self.defaultAccessGroup) { return nil; }
     return [@{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
               (__bridge id)kSecAttrService: self.namespace,
               (__bridge id)kSecAttrAccount: @"app_device_id",
+              (__bridge id)kSecAttrAccessGroup: self.defaultAccessGroup,
               (__bridge id)kSecAttrSynchronizable: @NO} mutableCopy];
 }
 
@@ -49,7 +55,13 @@ static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage
 }
 
 - (nullable NSString *)readKeychainIdentifierWithStatus:(OSStatus *)status error:(NSError **)error {
-    NSMutableDictionary *query = [self keychainQuery];
+    NSError *groupError = nil;
+    NSMutableDictionary *query = [self keychainQueryWithError:&groupError];
+    if (!query) {
+        *status = (OSStatus)groupError.code;
+        if (error) { *error = groupError; }
+        return nil;
+    }
     query[(__bridge id)kSecReturnData] = @YES;
     query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitOne;
     CFTypeRef result = NULL;
@@ -66,6 +78,7 @@ static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage
 
 - (nullable NSString *)appDeviceIdentifierWithError:(NSError **)error {
     @synchronized (self) {
+        if (error) { *error = nil; }
         OSStatus status = errSecSuccess;
         NSString *existing = [self readKeychainIdentifierWithStatus:&status error:error];
         if (status != errSecItemNotFound) {
@@ -73,7 +86,8 @@ static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage
             return existing;
         }
         NSString *candidate = NSUUID.UUID.UUIDString.lowercaseString;
-        NSMutableDictionary *item = [self keychainQuery];
+        NSMutableDictionary *item = [self keychainQueryWithError:error];
+        if (!item) { return nil; }
         item[(__bridge id)kSecValueData] = [candidate dataUsingEncoding:NSUTF8StringEncoding];
         item[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
         status = SecItemAdd((__bridge CFDictionaryRef)item, NULL);
@@ -142,7 +156,10 @@ static NSString * const PBIdentityStorageErrorDomain = @"PBDeviceIdentityStorage
 
 - (BOOL)removeAppDeviceIdentifierWithError:(NSError **)error {
     @synchronized (self) {
-        OSStatus status = SecItemDelete((__bridge CFDictionaryRef)[self keychainQuery]);
+        if (error) { *error = nil; }
+        NSMutableDictionary *query = [self keychainQueryWithError:error];
+        if (!query) { return NO; }
+        OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
         if (status == errSecSuccess || status == errSecItemNotFound) { return YES; }
         if (error) { *error = [self keychainError:status]; }
         return NO;

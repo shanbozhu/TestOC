@@ -14,9 +14,10 @@ xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter \
 "$BUILD_DIR/verify"
 
 COMPARISON_DIR="$TEST_DIR/../../Page/Mine/PBUniqueIdentifier"
-xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter \
+xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter -fsanitize=address -g \
   -framework Foundation -framework Security \
-  -I "$TEST_DIR/Stubs" -I "$COMPARISON_DIR" \
+  -I "$TEST_DIR/Stubs" -I "$COMPARISON_DIR" -I "$MODULE_DIR" \
+  "$MODULE_DIR/PBDeviceIdentityStorage.m" \
   "$COMPARISON_DIR/PBUniqueIdentifierHelper.m" "$COMPARISON_DIR/PBUniqueIdentifierItem.m" \
   "$TEST_DIR/PBComparisonVerification.m" -o "$BUILD_DIR/verify_comparison"
 "$BUILD_DIR/verify_comparison"
