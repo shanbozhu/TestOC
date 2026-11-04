@@ -88,7 +88,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Start["加载身份"] --> Context["原子捕获 Context<br/>配置 / Store / Resolver / generation"]
+    Start["加载身份"] --> Context["异步请求在提交时原子捕获 Context<br/>配置 / Store / Resolver / generation"]
     Context --> Valid{"generation 仍有效？"}
     Valid -->|否| Cancel["本次加载取消"]
     Valid -->|是| Hit{"非强制刷新，且缓存未过期？"}
@@ -117,6 +117,7 @@ flowchart TD
 - 强制刷新绕过内存缓存，但仍使用持久化共享 ID 和已缓存的远端 ID，不强制发起网络请求。
 - 本地加载允许带入已过期的远端缓存；远端 TTL 用于决定是否需要后台刷新，而不是立即删除旧远端 ID。
 - `cachedIdentity` 返回最近快照，不检查缓存时效，但会检查当前广告授权。
+- 异步入口在提交时绑定 Context；清理或配置切换前已提交、仍在排队的请求也会取消，不会按新版本执行。
 - 身份创建/镜像和历史更新在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
 
 ### 3.2 同步、异步与取消
@@ -135,7 +136,7 @@ flowchart TD
     CallbackCheck -->|否| CallbackAuth["重查广告授权"]
     CallbackAuth --> Deliver["completion：身份 + 原加载错误"]
     Schedule -. "独立检查，不等待网络结果" .-> Auto{"加载无错误、版本有效<br/>自动刷新开关开启、远端可用<br/>同意条件满足、远端缓存不新鲜？"}
-    Auto -->|是| Resolve["排队执行远端解析"]
+    Auto -->|是| Resolve["沿用原 Context 排队执行远端解析<br/>执行时再次复核 generation"]
     Auto -->|否| Finish["结束本次自动刷新检查"]
 ```
 
@@ -224,7 +225,8 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Start["Manager 排队执行远端解析"] --> Base["捕获 Context<br/>加载基础身份"]
+    Start["显式请求提交时捕获 Context<br/>自动刷新沿用原加载 Context"] --> Queue["Manager 排队执行远端解析"]
+    Queue --> Base["按原 Context 复核 generation<br/>加载基础身份"]
     Base --> Storage{"有存储错误？"}
     Storage -->|是| ReturnError["主线程返回基础身份 + 错误"]
     Storage -->|否| Allowed{"已启用、Resolver 存在<br/>且满足用户同意条件？"}
@@ -282,15 +284,17 @@ flowchart TD
     Queue --> Generation{"请求 generation 仍有效？"}
     Generation -->|否| Discard["忽略旧结果<br/>配置 / 清理路径负责取消等待者"]
     Generation -->|是| Drain["清除进行中标记<br/>取出等待 completion"]
-    Drain --> Base["取缓存身份，必要时重新加载"]
-    Base --> RemoteIDs{"返回了远端 ID？"}
+    Drain --> Base["取缓存身份，必要时按原 Context 重建<br/>不切换到新版本重试"]
+    Base --> BaseValid{"generation 仍有效？"}
+    BaseValid -->|否| CancelTaken["向已取出的等待者返回取消错误"]
+    BaseValid -->|是| RemoteIDs{"返回了远端 ID？"}
     RemoteIDs -->|否| Deliver["主线程交付当前身份 + 错误"]
     RemoteIDs -->|是| Merge["替换 remote 类标识<br/>保留共享 ID 与本地指纹"]
     Merge --> Commit["重查 generation 和广告授权<br/>存储无错误时更新内存缓存"]
     Commit --> Notify["主线程发送身份更新通知<br/>交付所有等待 completion"]
 ```
 
-Manager 在重建、提交和主线程交付时也会复核 generation；期间版本变化时，已取出的等待回调仍会收到取消结果。配置更新、清理和成功注入会使旧 Resolver 失效并取消任务；失效与持久缓存写入互斥。清理在旧 Resolver 失效后删除缓存，再创建新的 Resolver，因此迟到响应无法重新填回旧数据。请求计数登记与任务发起也在失效锁内复核有效性。
+Manager 在重建、提交和主线程交付时也会复核 generation；基础身份重建沿用原请求 Context，不采用同步接口的跨版本重试。期间版本变化时，已取出的等待回调仍会收到取消结果。配置更新、清理和成功注入会使旧 Resolver 失效并取消任务；失效与持久缓存写入互斥。清理在旧 Resolver 失效后删除缓存，再创建新的 Resolver，因此迟到响应无法重新填回旧数据。请求计数登记与任务发起也在失效锁内复核有效性。
 
 ## 7. 广告授权与广告请求输出
 
@@ -436,6 +440,7 @@ flowchart TD
 | App Group 缓存 | 可用时只读写共享域；缺项不回退到各 App 私有旧副本。无可用 App Group 时仅使用各 App 私有缓存。 |
 | 请求额度 | Keychain 原子占位跨进程协调，默认每天 5 次；升级当天从新额度开始，混用旧版 SDK 不参与协调；清理会重置当前命名空间额度。 |
 | 远端失效 | 同一 Manager 内，清理/配置/注入与旧 Resolver 的持久缓存提交互斥；不提供跨进程网络任务取消。 |
+| 异步任务上下文 | 提交时绑定版本，自动刷新和远端补建沿用原 Context；清理前排队或执行中的旧请求不会跨版本重新创建身份。 |
 | 本地写入与清理 | 同一 Manager 内，版本复核和身份/历史写入使用同一把锁；清理等已有写入完成后删除，采集中取消的旧加载不再落盘。其他 App 可继续发起新的读取/创建。 |
 | 同步共享 ID | 完整读取/创建与配置更新互斥，配置提交后的读取使用新的存储命名空间。 |
 | 远端缓存命中 | TTL、标识及解析时间均取自同一份缓存快照。 |

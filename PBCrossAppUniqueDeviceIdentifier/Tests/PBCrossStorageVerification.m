@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <Security/Security.h>
+#import <objc/runtime.h>
 #import "PBCrossIdentityStore.h"
 #import "PBCrossAppUniqueDeviceIdentifierManager.h"
 #import "PBCrossDeviceAttributeCollector.h"
@@ -1198,6 +1199,255 @@ static void CRVerifyRemoteCacheSnapshot(void)
     }
 }
 
+
+// Deterministic continuations: only the real Manager/Store are exercised; the
+// resolver never creates a network task and all Keychain operations stay mocked.
+static dispatch_semaphore_t CRContinuationReady, CRContinuationRelease;
+static IMP CROriginalCachedIdentity;
+static PBCrossIdentity *CRPausedCachedIdentity(id manager, SEL selector)
+{
+    dispatch_semaphore_signal(CRContinuationReady);
+    dispatch_semaphore_wait(CRContinuationRelease, DISPATCH_TIME_FOREVER);
+    return ((PBCrossIdentity *(*)(id, SEL))CROriginalCachedIdentity)(manager, selector);
+}
+
+@interface CRControlledRemoteResolver : PBCrossRemoteResolver
+@property (nonatomic, copy) PBCrossRemoteResolutionCompletion pending;
+@property (nonatomic, assign) NSUInteger calls;
+@end
+@implementation CRControlledRemoteResolver
+- (void)resolveIdentifiersWithAttributes:(PBCrossDeviceAttributes *)attributes
+                              completion:(PBCrossRemoteResolutionCompletion)completion
+{
+    self.calls++;
+    self.pending = completion;
+}
+@end
+
+@interface CRPausedFreshnessResolver : CRControlledRemoteResolver
+@end
+@implementation CRPausedFreshnessResolver
+- (BOOL)hasFreshCache
+{
+    dispatch_semaphore_signal(CRContinuationReady);
+    dispatch_semaphore_wait(CRContinuationRelease, DISPATCH_TIME_FOREVER);
+    return NO;
+}
+@end
+
+static void CRWaitForContinuation(dispatch_semaphore_t ready)
+{
+    BOOL reached = dispatch_semaphore_wait(ready, dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC)) == 0;
+    CRAssert(reached, @"old request reaches the continuation barrier");
+    if (!reached) { exit(1); }
+}
+
+static PBCrossIdentityStore *CRInstallCurrentStore(NSString *suite)
+{
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    PBCrossIdentityStore *store = [[PBCrossIdentityStore alloc] initWithConfiguration:manager.configuration];
+    [store setValue:[[NSUserDefaults alloc] initWithSuiteName:suite] forKey:@"standardDefaults"];
+    [manager setValue:store forKey:@"storeStorage"];
+    return store;
+}
+
+static CRControlledRemoteResolver *CRInstallResolver(PBCrossIdentityStore *store, Class resolverClass)
+{
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRControlledRemoteResolver *resolver = [[resolverClass alloc] initWithConfiguration:manager.configuration store:store];
+    [manager setValue:resolver forKey:@"remoteResolverStorage"];
+    return resolver;
+}
+
+static PBCrossIdentityStore *CRPrepareRemoteManager(NSString *suite, BOOL automatic)
+{
+    CRPrepareManager(suite);
+    [PBCrossAppUniqueDeviceIdentifierManager.sharedManager configureWithBlock:^(PBCrossConfiguration *c) {
+        c.automaticallyRefreshesRemoteIdentity = automatic;
+        c.remoteConfiguration.enabled = YES;
+        c.remoteConfiguration.endpointURL = [NSURL URLWithString:@"https://example.invalid"];
+        c.remoteConfiguration.developerID = @"fixture";
+        c.remoteConfiguration.publicKey = @"unused-no-network";
+        c.remoteConfiguration.userConsentGranted = YES;
+    } error:NULL];
+    return CRInstallCurrentStore(suite);
+}
+
+// mutation: 0 = keep the generation, 1 = clear, 2 = switch storage namespace.
+static void CRMutateContinuation(NSString *suite, NSUInteger mutation)
+{
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    if (mutation == 1) {
+        NSError *error = nil;
+        CRAssert([manager clearStoredIdentityWithError:&error] && !error, @"clear succeeds while old continuation is paused");
+    } else if (mutation == 2) {
+        CRAssert([manager configureWithBlock:^(PBCrossConfiguration *c) {
+            c.keychainService = @"cr.continuation.new";
+        } error:NULL], @"configuration switches while old continuation is paused");
+        CRInstallCurrentStore(suite);
+    } else {
+        [manager resetIdentityCache];
+    }
+}
+
+static void CRVerifyRemoteCompletionContinuation(NSString *suite, NSUInteger mutation, BOOL success)
+{
+    PBCrossIdentityStore *store = CRPrepareRemoteManager(suite, NO);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRControlledRemoteResolver *resolver = CRInstallResolver(store, CRControlledRemoteResolver.class);
+    CRSystemUpdateFixture = @"continuation-system-time";
+    __block NSUInteger callbacks = 0, notifications = 0;
+    NSString *originalID = manager.identitySynchronously.sharedID;
+    id observer = [NSNotificationCenter.defaultCenter addObserverForName:PBCrossAppUniqueDeviceIdentifierDidUpdateNotification
+        object:manager queue:nil usingBlock:^(__unused NSNotification *note) { notifications++; }];
+    PBCrossIdentityCompletion completion = ^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        if (mutation) {
+            CRAssert(NSThread.isMainThread && !identity && error.code == PBCrossIdentifierErrorOperationCancelled,
+                     @"old remote completion delivers cancellation exactly once to each waiter");
+        } else {
+            CRAssert(NSThread.isMainThread && [identity.sharedID isEqual:originalID] &&
+                (success ? (!error && [identity identifiersWithKind:PBCrossIdentifierKindRemote].count == 1) :
+                           error.code == PBCrossRemoteErrorNetwork),
+                     @"current remote completion rebuilds an evicted base identity and preserves its result");
+        }
+    };
+    [manager resolveRemoteIdentityWithCompletion:completion];
+    [manager resolveRemoteIdentityWithCompletion:completion];
+    dispatch_queue_t queue = [manager valueForKey:@"workQueue"];
+    dispatch_sync(queue, ^{});
+    CRAssert(resolver.calls == 1 && resolver.pending != nil, @"remote waiters share one controlled resolution");
+    if (!resolver.pending) { exit(1); }
+
+    CRContinuationReady = dispatch_semaphore_create(0); CRContinuationRelease = dispatch_semaphore_create(0);
+    Method method = class_getInstanceMethod(manager.class, @selector(cachedIdentity));
+    CROriginalCachedIdentity = method_setImplementation(method, (IMP)CRPausedCachedIdentity);
+    PBCrossIdentifier *remote = [PBCrossIdentifier identifierWithValue:@"resolved-id" version:@"1" kind:PBCrossIdentifierKindRemote];
+    resolver.pending(success ? @[remote] : nil, success ? NSDate.date : nil,
+                     success ? nil : [NSError errorWithDomain:PBCrossIdentifierErrorDomain code:PBCrossRemoteErrorNetwork userInfo:nil]);
+    resolver.pending = nil;
+    CRWaitForContinuation(CRContinuationReady);
+    CRMutateContinuation(suite, mutation);
+    NSDictionary *records = CRRecords.copy;
+    NSUserDefaults *defaults = [store valueForKey:@"standardDefaults"];
+    NSDictionary *persisted = [defaults persistentDomainForName:suite] ?: @{};
+    NSUInteger adds = CRAdds, updates = CRUpdates;
+    dispatch_semaphore_signal(CRContinuationRelease);
+    dispatch_sync(queue, ^{});
+    method_setImplementation(method, CROriginalCachedIdentity);
+    CRPumpUntil(^BOOL { return callbacks == 2; });
+    CRAssert(callbacks == 2 && notifications == (success && !mutation ? 1 : 0),
+             @"remote completion sends no duplicate callbacks or obsolete update notifications");
+    if (mutation) {
+        CRAssert([records isEqual:CRRecords] && adds == CRAdds && updates == CRUpdates &&
+            [persisted isEqual:([defaults persistentDomainForName:suite] ?: @{})] && !manager.cachedIdentity,
+            @"old remote completion cannot create identity, mirrors, history or cache after clear/configure");
+    }
+    [NSNotificationCenter.defaultCenter removeObserver:observer];
+    CRSystemUpdateFixture = nil;
+}
+
+static void CRVerifyAutomaticContinuation(NSString *suite, NSUInteger mutation)
+{
+    PBCrossIdentityStore *store = CRPrepareRemoteManager(suite, YES);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRControlledRemoteResolver *oldResolver = CRInstallResolver(store, CRPausedFreshnessResolver.class);
+    CRContinuationReady = dispatch_semaphore_create(0); CRContinuationRelease = dispatch_semaphore_create(0);
+    __block NSUInteger callbacks = 0;
+    [manager loadIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(!identity && error.code == PBCrossIdentifierErrorOperationCancelled,
+                 @"clear/configure cancels the local result waiting for main-thread delivery");
+    }];
+    CRWaitForContinuation(CRContinuationReady);
+    CRMutateContinuation(suite, mutation);
+    CRControlledRemoteResolver *currentResolver = CRInstallResolver([manager valueForKey:@"storeStorage"], CRControlledRemoteResolver.class);
+    NSDictionary *records = CRRecords.copy;
+    NSUserDefaults *defaults = [store valueForKey:@"standardDefaults"];
+    NSDictionary *persisted = [defaults persistentDomainForName:suite] ?: @{};
+    NSUInteger collections = CRCollections, adds = CRAdds;
+    dispatch_semaphore_signal(CRContinuationRelease);
+    dispatch_queue_t queue = [manager valueForKey:@"workQueue"];
+    // The first drain lets the old load submit its automatic continuation.
+    dispatch_sync(queue, ^{}); dispatch_sync(queue, ^{});
+    CRPumpUntil(^BOOL { return callbacks == 1; });
+    CRAssert(callbacks == 1 && !oldResolver.calls && !currentResolver.calls && !manager.cachedIdentity &&
+        collections == CRCollections && adds == CRAdds && [records isEqual:CRRecords] &&
+        [persisted isEqual:([defaults persistentDomainForName:suite] ?: @{})],
+        @"obsolete automatic refresh cannot recollect, create identity or invoke either resolver");
+
+    __block BOOL loaded = NO;
+    [manager loadIdentityWithCompletion:^(PBCrossIdentity *identity, NSError *error) { loaded = identity.sharedID.length > 0 && !error; }];
+    dispatch_sync(queue, ^{}); dispatch_sync(queue, ^{});
+    CRPumpUntil(^BOOL { return loaded; });
+    CRAssert(currentResolver.calls == 1 && currentResolver.pending != nil,
+             @"a new load after clear/configure still starts automatic remote resolution");
+    if (!currentResolver.pending) { exit(1); }
+    currentResolver.pending(nil, nil, [NSError errorWithDomain:PBCrossIdentifierErrorDomain code:PBCrossRemoteErrorNetwork userInfo:nil]);
+    currentResolver.pending = nil;
+    dispatch_sync(queue, ^{});
+}
+
+static void CRVerifyQueuedRequests(NSString *suite, NSUInteger mutation)
+{
+    PBCrossIdentityStore *store = CRPrepareRemoteManager(suite, NO);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRControlledRemoteResolver *resolver = CRInstallResolver(store, CRControlledRemoteResolver.class);
+    (void)manager.identitySynchronously;
+    dispatch_queue_t queue = [manager valueForKey:@"workQueue"];
+    dispatch_semaphore_t ready = dispatch_semaphore_create(0), release = dispatch_semaphore_create(0);
+    dispatch_async(queue, ^{ dispatch_semaphore_signal(ready); dispatch_semaphore_wait(release, DISPATCH_TIME_FOREVER); });
+    CRWaitForContinuation(ready);
+    __block NSUInteger callbacks = 0;
+    PBCrossIdentityCompletion completion = ^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(NSThread.isMainThread && !identity && error.code == PBCrossIdentifierErrorOperationCancelled,
+                 @"queued load/refresh/remote request keeps its submission generation and returns cancellation");
+    };
+    [manager loadIdentityWithCompletion:completion];
+    [manager refreshIdentityWithCompletion:completion];
+    [manager resolveRemoteIdentityWithCompletion:completion];
+    CRMutateContinuation(suite, mutation);
+    NSDictionary *records = CRRecords.copy;
+    NSUserDefaults *defaults = [store valueForKey:@"standardDefaults"];
+    NSDictionary *persisted = [defaults persistentDomainForName:suite] ?: @{};
+    NSUInteger collections = CRCollections, adds = CRAdds;
+    dispatch_semaphore_signal(release);
+    dispatch_sync(queue, ^{});
+    CRPumpUntil(^BOOL { return callbacks == 3; });
+    CRAssert(callbacks == 3 && !resolver.calls && collections == CRCollections && adds == CRAdds &&
+        [records isEqual:CRRecords] && [persisted isEqual:([defaults persistentDomainForName:suite] ?: @{})] && !manager.cachedIdentity,
+        @"requests queued before clear/configure perform no collection, persistence or remote resolution");
+}
+
+static void CRVerifyPendingRemoteCancellation(NSString *suite, NSUInteger mutation)
+{
+    PBCrossIdentityStore *store = CRPrepareRemoteManager(suite, NO);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    CRControlledRemoteResolver *resolver = CRInstallResolver(store, CRControlledRemoteResolver.class);
+    __block NSUInteger callbacks = 0;
+    PBCrossIdentityCompletion completion = ^(PBCrossIdentity *identity, NSError *error) {
+        callbacks++;
+        CRAssert(NSThread.isMainThread && !identity && error.code == PBCrossIdentifierErrorOperationCancelled,
+                 @"clear/configure cancels in-flight remote waiters with OperationCancelled");
+    };
+    [manager resolveRemoteIdentityWithCompletion:completion];
+    [manager resolveRemoteIdentityWithCompletion:completion];
+    dispatch_queue_t queue = [manager valueForKey:@"workQueue"];
+    dispatch_sync(queue, ^{});
+    CRAssert(resolver.calls == 1 && resolver.pending != nil, @"remote waiters are registered before cancellation");
+    if (!resolver.pending) { exit(1); }
+    CRMutateContinuation(suite, mutation);
+    NSDictionary *records = CRRecords.copy;
+    PBCrossIdentifier *late = [PBCrossIdentifier identifierWithValue:@"late-id" version:@"1" kind:PBCrossIdentifierKindRemote];
+    resolver.pending(@[late], NSDate.date, nil);
+    resolver.pending = nil;
+    dispatch_sync(queue, ^{});
+    CRPumpUntil(^BOOL { return callbacks == 2; });
+    CRAssert(callbacks == 2 && [records isEqual:CRRecords] && !manager.cachedIdentity,
+             @"late resolver completion cannot duplicate cancellation or restore an identity");
+}
+
 int main(void)
 {
     @autoreleasepool {
@@ -1228,6 +1478,15 @@ int main(void)
         CRVerifyClearAgainstOldLoad(suite, NO);
         CRVerifySharedGetterConfiguration(suite);
         CRVerifyRemoteCacheSnapshot();
+        for (NSUInteger mutation = 0; mutation < 3; mutation++) {
+            CRVerifyRemoteCompletionContinuation(suite, mutation, YES);
+            CRVerifyRemoteCompletionContinuation(suite, mutation, NO);
+            if (mutation) {
+                CRVerifyAutomaticContinuation(suite, mutation);
+                CRVerifyQueuedRequests(suite, mutation);
+                CRVerifyPendingRemoteCancellation(suite, mutation);
+            }
+        }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             fprintf(stderr, "FAIL manager callbacks timed out\n");
             exit(1);

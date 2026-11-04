@@ -69,10 +69,12 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
                   error:(nullable NSError *)error
              generation:(NSUInteger)generation
              completion:(nullable PBCrossIdentityCompletion)completion;
+- (void)resolveRemoteIdentityWithContext:(PBCrossIdentityLoadContext *)context
+                             completion:(nullable PBCrossIdentityCompletion)completion;
 - (void)finishRemoteResolutionWithIdentifiers:(nullable NSArray<PBCrossIdentifier *> *)identifiers
                                    resolvedAt:(nullable NSDate *)resolvedAt
                                         error:(nullable NSError *)error
-                                   generation:(NSUInteger)generation;
+                                      context:(PBCrossIdentityLoadContext *)context;
 - (void)postIdentityUpdateNotification:(PBCrossIdentity *)identity generation:(NSUInteger)generation;
 
 @end
@@ -154,7 +156,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     }
 
     if (pendingCompletions.count > 0) {
-        NSError *cancelledError = PBCrossErrorMake(PBCrossRemoteErrorNotConfigured,
+        NSError *cancelledError = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled,
                                                    @"配置已更新，本次远端解析已取消");
         dispatch_async(dispatch_get_main_queue(), ^{
             for (PBCrossIdentityCompletion completion in pendingCompletions) {
@@ -385,8 +387,9 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (void)loadIdentityWithForce:(BOOL)force completion:(PBCrossIdentityCompletion)completion
 {
+    // Capture at submission, including work still waiting in the queue.
+    PBCrossIdentityLoadContext *context = [self loadContext];
     dispatch_async(self.workQueue, ^{
-        PBCrossIdentityLoadContext *context = [self loadContext];
         NSError *loadError = nil;
         PBCrossIdentity *identity = [self identityWithContext:context force:force error:&loadError];
         [self deliverIdentity:identity error:loadError generation:context.generation completion:completion];
@@ -396,7 +399,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             && context.configuration.automaticallyRefreshesRemoteIdentity
             && remote.enabled && (!remote.requiresUserConsent || remote.hasUserConsent)
             && context.resolver && ![context.resolver hasFreshCache]) {
-            [self resolveRemoteIdentityWithCompletion:nil];
+            [self resolveRemoteIdentityWithContext:context completion:nil];
         }
     });
 }
@@ -479,7 +482,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     }
 
     if (pendingCompletions.count > 0) {
-        NSError *cancelledError = PBCrossErrorMake(PBCrossRemoteErrorNotConfigured,
+        NSError *cancelledError = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled,
                                                    @"身份数据已清除，本次远端解析已取消");
         dispatch_async(dispatch_get_main_queue(), ^{
             for (PBCrossIdentityCompletion completion in pendingCompletions) {
@@ -494,8 +497,13 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 
 - (void)resolveRemoteIdentityWithCompletion:(PBCrossIdentityCompletion)completion
 {
+    [self resolveRemoteIdentityWithContext:[self loadContext] completion:completion];
+}
+
+- (void)resolveRemoteIdentityWithContext:(PBCrossIdentityLoadContext *)context
+                             completion:(PBCrossIdentityCompletion)completion
+{
     dispatch_async(self.workQueue, ^{
-        PBCrossIdentityLoadContext *context = [self loadContext];
         PBCrossConfiguration *configuration = context.configuration;
         PBCrossRemoteConfiguration *remoteConfiguration = configuration.remoteConfiguration;
         PBCrossRemoteResolver *resolver = context.resolver;
@@ -541,6 +549,10 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         }
 
         __weak typeof(self) weakSelf = self;
+        // Keep the original snapshot without a resolver -> task -> completion
+        // -> context -> resolver retain cycle while the network is in flight.
+        PBCrossIdentityStore *store = context.store;
+        __weak PBCrossRemoteResolver *weakResolver = resolver;
         [resolver resolveIdentifiersWithAttributes:baseIdentity.attributes
                                         completion:^(NSArray<PBCrossIdentifier *> *identifiers,
                                                      NSDate *resolvedAt,
@@ -549,6 +561,11 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             if (!strongSelf) {
                 return;
             }
+            PBCrossIdentityLoadContext *resultContext = [[PBCrossIdentityLoadContext alloc] init];
+            resultContext.configuration = configuration;
+            resultContext.store = store;
+            resultContext.resolver = weakResolver;
+            resultContext.generation = generation;
             dispatch_async(strongSelf.workQueue, ^{
                 @synchronized(strongSelf) {
                     if (generation != strongSelf.configurationGeneration) {
@@ -558,7 +575,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
                 [strongSelf finishRemoteResolutionWithIdentifiers:identifiers
                                                        resolvedAt:resolvedAt
                                                             error:error
-                                                       generation:generation];
+                                                          context:resultContext];
             });
         }];
     });
@@ -597,8 +614,9 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (void)finishRemoteResolutionWithIdentifiers:(NSArray<PBCrossIdentifier *> *)identifiers
                                    resolvedAt:(NSDate *)resolvedAt
                                         error:(NSError *)error
-                                   generation:(NSUInteger)generation
+                                      context:(PBCrossIdentityLoadContext *)context
 {
+    NSUInteger generation = context.generation;
     NSArray<PBCrossIdentityCompletion> *completions = nil;
     @synchronized(self) {
         if (generation != self.configurationGeneration) {
@@ -612,7 +630,9 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     PBCrossIdentity *identity = [self cachedIdentity];
     NSError *storageError = nil;
     if (!identity) {
-        identity = [self ensureIdentityOnCurrentThreadWithError:&storageError];
+        // This is a continuation of the original asynchronous request, not a
+        // synchronous caller that may retry into a newer identity generation.
+        identity = [self identityWithContext:context force:NO error:&storageError];
     }
     if (generation != [self currentGeneration]) {
         for (PBCrossIdentityCompletion completion in completions) {

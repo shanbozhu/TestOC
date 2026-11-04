@@ -58,7 +58,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 
 /// 异步加载身份。completion 在主线程回调；优先返回内存缓存。
 /// Keychain 失败时返回不含共享 ID 的身份与 NSError，后续加载会重试。
-/// 加载或等待回调期间配置/身份被更新时，返回 nil 与 PBCrossIdentifierErrorOperationCancelled。
+/// 从提交请求（含排队等待）到交付回调期间配置/身份被更新时，返回 nil 与 PBCrossIdentifierErrorOperationCancelled。
 /// 返回缓存与交付回调前均检查广告授权；撤回后移除明文 IDFA 和 idfa_md5。
 - (void)loadIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
@@ -73,6 +73,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 - (void)refreshIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
 /// 请求远端自建 ID 服务。completion 在主线程回调；未启用/未同意隐私授权时返回错误。
+/// 请求及其自动刷新、结果合并使用原加载上下文；版本失效时取消，不切换到新版本补建身份。
 - (void)resolveRemoteIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
 /// 跨 App 共享的自建 ID。首次调用会生成并写入 Keychain，可选镜像到 App Group。
@@ -96,7 +97,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 - (void)clearStoredIdentity;
 
 /// 清理并报告 Keychain 删除错误；失败时可能已完成部分清理，应处理错误后重试。
-/// 等待本 Manager 已开始的身份写入后再删除；已取消的旧加载不再创建身份或写回历史。
+/// 等待本 Manager 已开始的身份写入后再删除；已取消的排队请求、旧加载及远端后续任务不再创建身份或写回历史。
 - (BOOL)clearStoredIdentityWithError:(NSError * _Nullable * _Nullable)error;
 
 @end
