@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设备标识 Demo";
+    self.title = @"应用内持久身份";
     self.view.backgroundColor = UIColor.whiteColor;
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;

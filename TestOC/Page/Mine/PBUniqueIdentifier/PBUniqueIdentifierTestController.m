@@ -24,11 +24,11 @@
                 @"vc": @"PBUniqueIdentifierController"
             },
             @{
-                @"title": @"应用范围的持久设备标识",
+                @"title": @"应用内持久身份",
                 @"vc": @"PBUniqueDeviceIdentifierController"
             },
             @{
-                @"title": @"跨 App 统一设备标识",
+                @"title": @"跨 App 身份与归因",
                 @"vc": @"PBCrossAppUniqueDeviceIdentifierController"
             }
         ];
