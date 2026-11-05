@@ -249,48 +249,6 @@ static NSDictionary<NSString *, NSString *> *PBCrossCarrierInformation(void)
 #endif
 }
 
-#pragma mark - IDFA
-
-@protocol PBCrossIdentifierManagerClass <NSObject>
-+ (id)sharedManager;
-- (BOOL)isAdvertisingTrackingEnabled;
-- (NSUUID *)advertisingIdentifier;
-@end
-
-static NSString *PBCrossAdvertisingIdentifier(void)
-{
-    if (!PBCrossAdvertisingIdentifierIsAuthorized()) {
-        return nil;
-    }
-
-    Class identifierManagerClass = NSClassFromString(@"ASIdentifierManager");
-    if (![identifierManagerClass respondsToSelector:@selector(sharedManager)]) {
-        return nil;
-    }
-
-    id<PBCrossIdentifierManagerClass> identifierManager =
-        [(id<PBCrossIdentifierManagerClass>)identifierManagerClass sharedManager];
-    if ([identifierManager respondsToSelector:@selector(isAdvertisingTrackingEnabled)]
-        && ![identifierManager isAdvertisingTrackingEnabled]) {
-        return nil;
-    }
-    if (![identifierManager respondsToSelector:@selector(advertisingIdentifier)]) {
-        return nil;
-    }
-
-    NSUUID *advertisingIdentifier = identifierManager.advertisingIdentifier;
-    if (![advertisingIdentifier isKindOfClass:[NSUUID class]]) {
-        return nil;
-    }
-
-    NSString *value = advertisingIdentifier.UUIDString;
-    if (value.length == 0 || [[value lowercaseString] isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {
-        return nil;
-    }
-    // 保留标准大写 UUID 形式，按业界惯例对其做 MD5（idfa_md5）。
-    return value;
-}
-
 #pragma mark - Collector
 
 static void PBCrossRunOnMainThreadSynchronously(dispatch_block_t block)
@@ -442,7 +400,7 @@ static void PBCrossRunOnMainThreadSynchronously(dispatch_block_t block)
 
     NSString *advertisingIdentifier = nil;
     if (configuration.allowsAdvertisingIdentifier) {
-        advertisingIdentifier = PBCrossAdvertisingIdentifier();
+        advertisingIdentifier = PBCrossReadAuthorizedAdvertisingIdentifier();
         if (advertisingIdentifier.length > 0) {
             values[PBCrossAttributeKeyIDFAMD5] = [PBCrossCrypto MD5HexString:advertisingIdentifier];
         }

@@ -14,15 +14,43 @@
 #import "PBCrossIdentity.h"
 #import "PBCrossIdentityGenerator.h"
 #import "PBCrossIdentityMatcher.h"
+#import "PBCrossAdvertisingAuthorization.h"
+#import "PBCrossCrypto.h"
 
 static int PBCrossFailures = 0;
+static NSInteger PBCrossTrackingStatus = 3;
+static NSUInteger PBCrossLegacyTrackingReads, PBCrossAdvertisingIdentifierReads;
+static NSUUID *PBCrossAdvertisingIdentifierFixture;
 
 // The macOS harness supplies the authorized host state for IDFA export checks.
 @interface ATTrackingManager : NSObject
 + (NSInteger)trackingAuthorizationStatus;
 @end
 @implementation ATTrackingManager
-+ (NSInteger)trackingAuthorizationStatus { return 3; }
++ (NSInteger)trackingAuthorizationStatus { return PBCrossTrackingStatus; }
+@end
+
+// No real advertising identifier is read. Reproduce iOS 14+ with ATT authorized
+// while the deprecated AdSupport switch returns NO.
+@interface ASIdentifierManager : NSObject
++ (instancetype)sharedManager;
+- (BOOL)isAdvertisingTrackingEnabled;
+- (NSUUID *)advertisingIdentifier;
+@end
+@implementation ASIdentifierManager
++ (instancetype)sharedManager
+{
+    static ASIdentifierManager *manager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ manager = [self new]; });
+    return manager;
+}
+- (BOOL)isAdvertisingTrackingEnabled { PBCrossLegacyTrackingReads++; return NO; }
+- (NSUUID *)advertisingIdentifier
+{
+    PBCrossAdvertisingIdentifierReads++;
+    return PBCrossAdvertisingIdentifierFixture;
+}
 @end
 
 static void PBCrossAssert(BOOL condition, NSString *name)
@@ -63,9 +91,47 @@ static PBCrossIdentity *PBCrossTestIdentity(NSArray<PBCrossIdentifier *> *identi
                                      remoteResolvedAt:nil];
 }
 
+static void PBCrossVerifyAdvertisingCollection(void)
+{
+    NSString *identifier = @"6ABF0056-2C6A-4378-9E80-9143C2669683";
+    PBCrossAdvertisingIdentifierFixture = [[NSUUID alloc] initWithUUIDString:identifier.lowercaseString];
+    PBCrossTrackingStatus = 3;
+    NSString *collected = PBCrossReadAuthorizedAdvertisingIdentifier();
+    PBCrossAssertEqual(collected, identifier,
+                       @"ATT authorization permits IDFA despite the disabled legacy switch");
+    PBCrossAssert(PBCrossLegacyTrackingReads == 0,
+                  @"modern IDFA collection never queries the deprecated tracking switch");
+    NSString *digest = [PBCrossCrypto MD5HexString:collected];
+    PBCrossAssertEqual(digest, @"2ca37998d8e0c2a1d1fb8a8e26ac4374",
+                       @"collected IDFA retains the uppercase UUID MD5 contract");
+    PBCrossDeviceAttributes *attributes = [PBCrossDeviceAttributes
+        attributesWithValues:@{PBCrossAttributeKeyIDFAMD5: digest} advertisingIdentifier:collected];
+    PBCrossAdRequestAdapter *adapter = [PBCrossAdRequestAdapter
+        adapterWithIdentity:PBCrossTestIdentity(@[], @"", attributes) context:nil];
+    PBCrossAssertEqual(adapter.deviceDictionary[@"idfa_md5"], digest,
+                       @"authorized collected IDFA MD5 reaches the ad request");
+
+    for (NSNumber *status in @[@2, @1, @0]) {
+        PBCrossTrackingStatus = status.integerValue;
+        NSUInteger reads = PBCrossAdvertisingIdentifierReads;
+        PBCrossAssert(!PBCrossReadAuthorizedAdvertisingIdentifier()
+                      && PBCrossAdvertisingIdentifierReads == reads,
+                      [NSString stringWithFormat:@"ATT status %@ blocks IDFA before reading it", status]);
+        PBCrossAssert(adapter.deviceDictionary[@"idfa_md5"] == nil,
+                      [NSString stringWithFormat:@"ATT status %@ omits the existing adapter IDFA MD5", status]);
+    }
+    PBCrossTrackingStatus = 3;
+    PBCrossAdvertisingIdentifierFixture = [[NSUUID alloc]
+        initWithUUIDString:@"00000000-0000-0000-0000-000000000000"];
+    PBCrossAssert(!PBCrossReadAuthorizedAdvertisingIdentifier(), @"authorized zero IDFA remains unavailable");
+    PBCrossAdvertisingIdentifierFixture = nil;
+    PBCrossAssert(!PBCrossReadAuthorizedAdvertisingIdentifier(), @"authorized missing IDFA remains unavailable");
+}
+
 int main(int argc, const char *argv[])
 {
     @autoreleasepool {
+        PBCrossVerifyAdvertisingCollection();
         NSDictionary<PBCrossAttributeKey, NSString *> *fixture = @{
             PBCrossAttributeKeyBootTimeInSec: @"1600607106",
             PBCrossAttributeKeyCountryCode: @"CN",

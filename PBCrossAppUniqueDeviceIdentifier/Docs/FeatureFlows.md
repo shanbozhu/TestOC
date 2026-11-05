@@ -307,7 +307,7 @@ flowchart TD
     Allows -->|是| Authorized{"当前广告授权有效？"}
     Authorized -->|否| Omit
     Authorized -->|是| Read["读取 AdSupport IDFA"]
-    Read --> Valid{"跟踪未关闭且 UUID 非全零？"}
+    Read --> Valid{"UUID 有效且非全零？"}
     Valid -->|否| Omit
     Valid -->|是| Keep["内存保留明文 IDFA<br/>attributes 保存 idfa_md5"]
     Keep --> Snapshot["身份快照"]

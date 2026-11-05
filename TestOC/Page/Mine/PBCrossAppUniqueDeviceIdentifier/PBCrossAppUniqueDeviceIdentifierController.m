@@ -126,7 +126,7 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
         // Demo 使用固定 salt；跨公司接入时，双方必须使用完全相同的 salt。
         configuration.salt = PBCrossDemoSalt;
         configuration.loggingEnabled = NO;
-        configuration.allowsAdvertisingIdentifier = NO; // Demo 不请求 ATT
+        configuration.allowsAdvertisingIdentifier = YES; // 允许读取已授权的 IDFA，不主动请求 ATT
         configuration.emitsLegacyCAIDFields = YES;      // 展示 caid/caid_info 兼容字段
         configuration.remoteConfiguration.enabled = NO; // 默认纯本地
     } error:&error];
