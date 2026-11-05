@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1B9E29B619861A989645BE38 /* Pods_TestOC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6E0082006C05F34C50E321 /* Pods_TestOC.framework */; };
 		25D580FC70BB411485FC1946 /* PBUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */; };
-		A7C0DE012E5B4F1A9B2C3D04 /* PBCrossAppUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */; };
 		5C07E66F2BCD56FC0049758D /* PBRuntimeZeroDebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */; };
 		5C0949632812C5C3002CEBC2 /* PBCellHeightFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C09495F2812C5C3002CEBC2 /* PBCellHeightFourController.m */; };
 		5C0949642812C5C3002CEBC2 /* PBCellHeightTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0949602812C5C3002CEBC2 /* PBCellHeightTwoController.m */; };
@@ -354,7 +353,6 @@
 		959236B72FC1C89A0086B733 /* PBOpenURLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959236B62FC1C89A0086B733 /* PBOpenURLController.m */; };
 		959350A92E16BD0E00B9F3A8 /* PBXMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959350A82E16BD0E00B9F3A8 /* PBXMLController.m */; };
 		95973CB72FD6D12B00F94AEB /* PBUniqueIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */; };
-		95A19B033090000000000001 /* PBUniqueIdentifierTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */; };
 		95973CBA2FD6DC4C00F94AEB /* Schema 跳转区别.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */; };
 		95973CBC2FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */; };
 		95973CBC2FD6DF0600F94AEB /* Unique Identifier 区别.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CBB2FD6DF0600F94AEB /* Unique Identifier 区别.png */; };
@@ -367,6 +365,7 @@
 		95973CC92FD6D12D00F94AEB /* PBDeviceCheckExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95973CC72FD6D12D00F94AEB /* PBDeviceCheckExampleController.m */; };
 		95973CD82FDECAED00F94AEB /* Pod 架构.png in Resources */ = {isa = PBXBuildFile; fileRef = 95973CD72FDECAED00F94AEB /* Pod 架构.png */; };
 		95A0F0032FEB000000000001 /* PBScreenshotMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A0F0022FEB000000000001 /* PBScreenshotMonitor.m */; };
+		95A19B033090000000000001 /* PBUniqueIdentifierTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */; };
 		95B90E132FEC2DE4009819C5 /* PBBackgroundTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */; };
 		95B90E1D2FED20A2009819C5 /* PBShakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1C2FED20A2009819C5 /* PBShakeController.m */; };
 		95B90E202FED3000009819C5 /* PBShakeTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B90E1F2FED3000009819C5 /* PBShakeTwoController.m */; };
@@ -388,6 +387,7 @@
 		95FE67282E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67272E0BCCE2005DCDCE /* _cmd与@selector(task)一样吗.png */; };
 		95FE672A2E0BD3DC005DCDCE /* base64编码是什么.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE67292E0BD3DC005DCDCE /* base64编码是什么.png */; };
 		95FE672D2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FE672C2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png */; };
+		A7C0DE012E5B4F1A9B2C3D04 /* PBCrossAppUniqueDeviceIdentifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */; };
 		B0300E6E1F11DE5D00624D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0300E6D1F11DE5D00624D91 /* main.m */; };
 		B0300E791F11DE5D00624D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0300E781F11DE5D00624D91 /* Assets.xcassets */; };
 		B0300E7C1F11DE5D00624D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0300E7A1F11DE5D00624D91 /* LaunchScreen.storyboard */; };
@@ -411,12 +411,8 @@
 /* Begin PBXFileReference section */
 		0EAECF538E1AFD05466F6C8E /* Pods-TestOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.release.xcconfig"; sourceTree = "<group>"; };
 		1F4AFC1144614156BEB1BF94 /* PBUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
-		A7C0DE012E5B4F1A9B2C3D01 /* PBCrossAppUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCrossAppUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
-		A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCrossAppUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
-		A7C0DE012E5B4F1A9B2C3D03 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		400C95F470C2476E9E13EBCF /* PBUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
 		516F727154374F1BBF8AA836 /* PBDeviceIdentityStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDeviceIdentityStorage.h; sourceTree = "<group>"; };
-		A7C0DE012E5B4F1A9B2C3D05 /* PBDefaultKeychainAccessGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDefaultKeychainAccessGroup.h; sourceTree = "<group>"; };
 		5C07E66D2BCD56FC0049758D /* PBRuntimeZeroDebugController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBRuntimeZeroDebugController.h; sourceTree = "<group>"; };
 		5C07E66E2BCD56FC0049758D /* PBRuntimeZeroDebugController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBRuntimeZeroDebugController.m; sourceTree = "<group>"; };
 		5C09495B2812C5C3002CEBC2 /* PBCellHeightTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCellHeightTwoController.h; sourceTree = "<group>"; };
@@ -1039,8 +1035,6 @@
 		959350A82E16BD0E00B9F3A8 /* PBXMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBXMLController.m; sourceTree = "<group>"; };
 		95973CB52FD6D12B00F94AEB /* PBUniqueIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierController.h; sourceTree = "<group>"; };
 		95973CB62FD6D12B00F94AEB /* PBUniqueIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierController.m; sourceTree = "<group>"; };
-		95A19B013090000000000001 /* PBUniqueIdentifierTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierTestController.h; sourceTree = "<group>"; };
-		95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierTestController.m; sourceTree = "<group>"; };
 		95973CB82FD6D12C00F94AEB /* PBUniqueIdentifierHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierHelper.h; sourceTree = "<group>"; };
 		95973CB92FD6D12C00F94AEB /* PBUniqueIdentifierHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierHelper.m; sourceTree = "<group>"; };
 		95973CB92FD6DC4C00F94AEB /* Schema 跳转区别.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Schema 跳转区别.png"; sourceTree = "<group>"; };
@@ -1059,6 +1053,8 @@
 		95973CD72FDECAED00F94AEB /* Pod 架构.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pod 架构.png"; sourceTree = "<group>"; };
 		95A0F0012FEB000000000001 /* PBScreenshotMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBScreenshotMonitor.h; sourceTree = "<group>"; };
 		95A0F0022FEB000000000001 /* PBScreenshotMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBScreenshotMonitor.m; sourceTree = "<group>"; };
+		95A19B013090000000000001 /* PBUniqueIdentifierTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUniqueIdentifierTestController.h; sourceTree = "<group>"; };
+		95A19B023090000000000001 /* PBUniqueIdentifierTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUniqueIdentifierTestController.m; sourceTree = "<group>"; };
 		95B90E112FEC2DE4009819C5 /* PBBackgroundTaskController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBackgroundTaskController.h; sourceTree = "<group>"; };
 		95B90E122FEC2DE4009819C5 /* PBBackgroundTaskController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBackgroundTaskController.m; sourceTree = "<group>"; };
 		95B90E1B2FED20A2009819C5 /* PBShakeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBShakeController.h; sourceTree = "<group>"; };
@@ -1097,6 +1093,10 @@
 		95FE67292E0BD3DC005DCDCE /* base64编码是什么.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "base64编码是什么.png"; sourceTree = "<group>"; };
 		95FE672C2E0BD9EF005DCDCE /* lottie是只有json，还是json与图片一起有的.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lottie是只有json，还是json与图片一起有的.png"; sourceTree = "<group>"; };
 		A6E368E17C0EAC6744FC41BC /* Pods-TestOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestOC/Pods-TestOC.debug.xcconfig"; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D01 /* PBCrossAppUniqueDeviceIdentifierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBCrossAppUniqueDeviceIdentifierController.h; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D02 /* PBCrossAppUniqueDeviceIdentifierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBCrossAppUniqueDeviceIdentifierController.m; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D03 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A7C0DE012E5B4F1A9B2C3D05 /* PBDefaultKeychainAccessGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDefaultKeychainAccessGroup.h; sourceTree = "<group>"; };
 		B0300E691F11DE5D00624D91 /* TestOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0300E6D1F11DE5D00624D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0300E781F11DE5D00624D91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3653,9 +3653,9 @@
 				TargetAttributes = {
 					B0300E681F11DE5D00624D91 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = W4TDPYH3Z3;
+						DevelopmentTeam = 7TS7V48SA9;
 						LastSwiftMigration = 1210;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -4343,8 +4343,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = W4TDPYH3Z3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7TS7V48SA9;
 				ENABLE_DEBUG_DYLIB = NO;
 				GCC_PREFIX_HEADER = "$(PROJECT)/Common/TestOC.pch";
 				HEADER_SEARCH_PATHS = (
@@ -4367,6 +4369,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsb.TestOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "*_dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestOC/Page/Mine/PBSwift/TestOC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -4379,7 +4383,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = W4TDPYH3Z3;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7TS7V48SA9;
 				ENABLE_DEBUG_DYLIB = NO;
 				GCC_PREFIX_HEADER = "$(PROJECT)/Common/TestOC.pch";
 				HEADER_SEARCH_PATHS = (
@@ -4402,6 +4408,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsb.TestOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "*_dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestOC/Page/Mine/PBSwift/TestOC-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
