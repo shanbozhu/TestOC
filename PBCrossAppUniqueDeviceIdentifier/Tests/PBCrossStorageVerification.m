@@ -357,7 +357,8 @@ static void CRVerifyCreation(NSString *suite)
                      @"duplicate winner read failure does not expose or mirror the losing candidate");
         } else {
             CRAssert([value isEqual:@"persisted-winner"] && !error && CRUpdates == 0 &&
-                     [[defaults stringForKey:[store scopedDefaultsKey:CRSharedKey]] isEqual:value], @"duplicate creation returns and mirrors the winner");
+                     ![defaults objectForKey:[store scopedDefaultsKey:CRSharedKey]],
+                     @"duplicate creation returns the persisted winner without a Defaults mirror");
         }
     }
 
@@ -371,6 +372,9 @@ static void CRVerifyCreation(NSString *suite)
     CRAssert([store setServerIssuedSharedID:nil], @"server identity marker can be cleared");
     value = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued error:&error];
     CRAssert([value isEqual:@"server-id"] && !serverIssued && !error, @"clearing the server marker preserves the last shared ID");
+    CRAssert(![defaults objectForKey:[store scopedDefaultsKey:CRSharedKey]] &&
+             ![defaults objectForKey:[store scopedDefaultsKey:CRServerKey]],
+             @"creation, reads, server injection and marker removal do not persist identity mirrors");
     [store clearStoredIdentity];
     value = [store sharedIDCreatingIfNeeded:YES serverIssued:NULL error:&error];
     CRAssert(value.length > 0 && ![value isEqual:@"server-id"] && !error, @"successful explicit reset creates a new persisted UUID");
@@ -405,8 +409,9 @@ static void CRVerifyConcurrentCreation(NSString *suiteA, NSString *suiteB)
              CRAdds == 2 && CRUpdates == 0, @"concurrent creators return the same persisted ID without overwrites");
     NSUserDefaults *defaultsA = [[NSUserDefaults alloc] initWithSuiteName:suiteA];
     NSUserDefaults *defaultsB = [[NSUserDefaults alloc] initWithSuiteName:suiteB];
-    CRAssert([[defaultsA stringForKey:[a scopedDefaultsKey:CRSharedKey]] isEqual:persisted] && [[defaultsB stringForKey:[b scopedDefaultsKey:CRSharedKey]] isEqual:persisted],
-             @"both apps mirror only the persisted winner");
+    CRAssert(![defaultsA objectForKey:[a scopedDefaultsKey:CRSharedKey]] &&
+             ![defaultsB objectForKey:[b scopedDefaultsKey:CRSharedKey]],
+             @"concurrent creators share the Keychain winner without Defaults mirrors");
 }
 
 static void CRVerifyAppGroupConfiguration(NSString *suite)
@@ -449,7 +454,7 @@ static void CRVerifyAppGroupConfiguration(NSString *suite)
     NSUInteger originalAdds = CRAdds, originalUpdates = CRUpdates;
 
     // Simultaneous host configuration attempts are rejected before either can
-    // install its own private Keychain store or mirror an ID into App Group.
+    // install its own private Keychain store or change shared auxiliary data.
     dispatch_group_t group = dispatch_group_create();
     __block BOOL acceptedA = YES, acceptedB = YES;
     __block NSError *errorA, *errorB;
@@ -745,7 +750,7 @@ static void CRVerifyManagerRecovery(NSString *suite)
 }
 
 
-static void CRVerifyMirrorsAndNamespace(NSString *suite)
+static void CRVerifyKeychainIdentityAndNamespace(NSString *suite)
 {
     CRPrepareManager(suite);
     PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
@@ -755,12 +760,19 @@ static void CRVerifyMirrorsAndNamespace(NSString *suite)
     [peerDefaults removePersistentDomainForName:peerSuite];
     PBCrossIdentityStore *peer = CRStore(peerSuite);
     NSString *old = [a sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
-    [peer sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
-    CRAssert([[peerDefaults stringForKey:[peer scopedDefaultsKey:CRSharedKey]] isEqual:old], @"peer App holds its private old mirror");
+    CRAssert([[peer sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL] isEqual:old] &&
+             ![peerDefaults objectForKey:[peer scopedDefaultsKey:CRSharedKey]],
+             @"peer reads the shared Keychain identity without creating a Defaults mirror");
+    // Simulate scoped mirrors left in another App by the previous SDK release.
+    [peerDefaults setObject:old forKey:[peer scopedDefaultsKey:CRSharedKey]];
+    [peerDefaults setObject:@"stale-server-id" forKey:[peer scopedDefaultsKey:CRServerKey]];
     NSError *error = nil;
     CRAssert([manager clearStoredIdentityWithError:&error] && !error, @"shared identity clear succeeds");
     NSString *next = [peer sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
-    CRAssert(![next isEqual:old] && [manager.sharedID isEqual:next], @"peer mirror cannot restore a cleared shared identity");
+    CRAssert(![next isEqual:old] && ![next isEqual:@"stale-server-id"] && [manager.sharedID isEqual:next],
+             @"legacy peer mirrors cannot restore a cleared shared identity");
+    CRAssert([[peerDefaults stringForKey:[peer scopedDefaultsKey:CRSharedKey]] isEqual:old],
+             @"identity reads no longer update legacy Defaults mirrors");
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:suite];
     for (NSNumber *changeGroup in @[@NO, @YES]) {
         PBCrossConfiguration *config = CRConfiguration();
@@ -770,10 +782,39 @@ static void CRVerifyMirrorsAndNamespace(NSString *suite)
         [other setValue:defaults forKey:@"standardDefaults"];
         NSString *separate = [other sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL];
         CRAssert(separate.length > 0 && ![separate isEqual:next] &&
-            [[defaults stringForKey:[a scopedDefaultsKey:CRSharedKey]] isEqual:next] &&
-            [[defaults stringForKey:[other scopedDefaultsKey:CRSharedKey]] isEqual:separate],
-            @"service and access group each isolate their persistent IDs and mirrors");
+            ![defaults objectForKey:[a scopedDefaultsKey:CRSharedKey]] &&
+            ![defaults objectForKey:[other scopedDefaultsKey:CRSharedKey]],
+            @"service and access group isolate Keychain identities without Defaults mirrors");
     }
+
+    NSString *groupSuite = [suite stringByAppendingString:@".group"];
+    NSUserDefaults *groupDefaults = [[NSUserDefaults alloc] initWithSuiteName:groupSuite];
+    [groupDefaults removePersistentDomainForName:groupSuite];
+    [peer setValue:groupDefaults forKey:@"groupDefaults"];
+    CRAssert([peer setServerIssuedSharedID:@"server-group-id"] &&
+             [[peer sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL] isEqual:@"server-group-id"] &&
+             ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRSharedKey]] &&
+             ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRServerKey]],
+             @"App Group also receives no mirrors after server injection and identity reads");
+    [groupDefaults setObject:@"stale-shared-id" forKey:[peer scopedDefaultsKey:CRSharedKey]];
+    [groupDefaults setObject:@"stale-server-id" forKey:[peer scopedDefaultsKey:CRServerKey]];
+    CRAssert([peer clearStoredIdentityWithError:NULL] &&
+             ![peerDefaults objectForKey:[peer scopedDefaultsKey:CRSharedKey]] &&
+             ![peerDefaults objectForKey:[peer scopedDefaultsKey:CRServerKey]] &&
+             ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRSharedKey]] &&
+             ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRServerKey]],
+             @"explicit clear removes legacy identity mirrors from private and shared Defaults");
+    CRAssert([peer updateSystemUpdateTimeHistoryWithCurrentValue:@"100"].length == 0 &&
+             [[peer updateSystemUpdateTimeHistoryWithCurrentValue:@"200"] isEqual:@"100"],
+             @"system update history remains available without identity mirrors");
+    NSDictionary *cache = @{@"resolved_at": @123, @"identifiers": @[]};
+    [peer setRemoteCache:cache];
+    PBCrossIdentityStore *restarted = CRStore(peerSuite);
+    [restarted setValue:groupDefaults forKey:@"groupDefaults"];
+    CRAssert([restarted.remoteCache isEqual:cache] &&
+             [[restarted updateSystemUpdateTimeHistoryWithCurrentValue:@"200"] isEqual:@"100"],
+             @"remote cache and update history persist across store recreation");
+    [groupDefaults removePersistentDomainForName:groupSuite];
 }
 
 static void CRVerifyMutationFailures(NSString *suite)
@@ -1112,7 +1153,7 @@ static void CRVerifyClearAgainstOldLoad(NSString *suite, BOOL duringCollection)
     CRAssert(cleared && !CRRecords[CRStorageKey(CRSharedKey)] && !CRRecords[CRStorageKey(CRServerKey)] &&
              ![defaults objectForKey:[store scopedDefaultsKey:CRSharedKey]] &&
              ![defaults objectForKey:[store scopedDefaultsKey:@"pb_system_update_history"]] && !manager.cachedIdentity,
-             @"old load cannot recreate Keychain identity, Defaults mirror or history after successful clear");
+             @"old load cannot recreate Keychain identity or Defaults history after successful clear");
     CRCollectionReady = CRCollectionRelease = nil;
     CRSystemUpdateFixture = nil;
     [manager setValue:CRStore(suite) forKey:@"storeStorage"];
@@ -1341,7 +1382,7 @@ static void CRVerifyRemoteCompletionContinuation(NSString *suite, NSUInteger mut
     if (mutation) {
         CRAssert([records isEqual:CRRecords] && adds == CRAdds && updates == CRUpdates &&
             [persisted isEqual:([defaults persistentDomainForName:suite] ?: @{})] && !manager.cachedIdentity,
-            @"old remote completion cannot create identity, mirrors, history or cache after clear/configure");
+            @"old remote completion cannot create identity, history or cache after clear/configure");
     }
     [NSNotificationCenter.defaultCenter removeObserver:observer];
     CRSystemUpdateFixture = nil;
@@ -1461,7 +1502,7 @@ int main(void)
         CRVerifyReadFailures(suite);
         CRVerifyCreation(suite);
         CRVerifyConcurrentCreation(suite, [suite stringByAppendingString:@".peer"]);
-        CRVerifyMirrorsAndNamespace(suite);
+        CRVerifyKeychainIdentityAndNamespace(suite);
         CRVerifyMutationFailures(suite);
         CRVerifyLateRemote(suite, NO);
         CRVerifyLateRemote(suite, YES);

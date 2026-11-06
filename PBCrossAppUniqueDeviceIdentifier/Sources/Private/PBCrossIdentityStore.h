@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Keychain + App Group 持久化。所有方法线程安全。
+/// 共享 ID 仅持久化到 Keychain；远端缓存和更新时间历史使用 Defaults（可选 App Group）。所有方法线程安全。
 @interface PBCrossIdentityStore : NSObject
 
 - (instancetype)initWithConfiguration:(PBCrossConfiguration *)configuration;

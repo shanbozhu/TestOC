@@ -76,7 +76,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 /// 请求及其自动刷新、结果合并使用原加载上下文；版本失效时取消，不切换到新版本补建身份。
 - (void)resolveRemoteIdentityWithCompletion:(nullable PBCrossIdentityCompletion)completion;
 
-/// 跨 App 共享的自建 ID。首次调用会生成并写入 Keychain，可选镜像到 App Group。
+/// 跨 App 共享的自建 ID。首次调用会生成并写入 Keychain，不写入 Defaults 镜像。
 /// Keychain 不可用时返回空串，不生成替代身份；需要错误详情时使用异步加载接口。
 /// 完整读取/创建与本 Manager 的配置、注入和清理互斥。
 @property (nonatomic, copy, readonly) NSString *sharedID;
@@ -88,7 +88,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 /// 生成广告请求适配器；无缓存身份时会同步加载。
 - (PBCrossAdRequestAdapter *)adRequestAdapterWithContext:(nullable PBCrossAdRequestContext *)context;
 
-/// 清空内存中的身份缓存（不会删除 Keychain/App Group 中的 ID）。
+/// 清空内存中的身份缓存（不会删除 Keychain ID 或 Defaults 辅助数据）。
 - (void)resetIdentityCache;
 
 /// 清除已持久化的共享 ID、服务端 ID、远端缓存与请求计数。

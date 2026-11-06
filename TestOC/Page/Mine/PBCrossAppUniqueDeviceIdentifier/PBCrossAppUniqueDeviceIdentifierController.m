@@ -555,7 +555,7 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
     } else if (row == 2) {
         title = @"共享自建 ID";
         value = self.identity.sharedID;
-        suffix = @"Keychain / App Group 可跨同 Team App 共享";
+        suffix = @"配置共享 Keychain Access Group 后可跨同 Team App 共享";
     } else {
         title = self.busy ? @"加载中…" : @"状态";
         NSMutableArray<NSString *> *lines = [NSMutableArray array];

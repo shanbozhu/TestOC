@@ -1,6 +1,6 @@
 # PBCrossAppUniqueDeviceIdentifier 功能流程图
 
-按当前源码整理，更新于 2026-11-04，包含本轮 P1 / P2 修复。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
+按当前源码整理，更新于 2026-11-06，已移除共享 ID 与服务端 ID 的 Defaults 镜像。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
 
 本文使用 Mermaid，可在支持 Mermaid 的 Markdown 阅读器中查看和维护。
 
@@ -118,7 +118,7 @@ flowchart TD
 - 本地加载允许带入已过期的远端缓存；远端 TTL 用于决定是否需要后台刷新，而不是立即删除旧远端 ID。
 - `cachedIdentity` 返回最近快照，不检查缓存时效，但会检查当前广告授权。
 - 异步入口在提交时绑定 Context；清理或配置切换前已提交、仍在排队的请求也会取消，不会按新版本执行。
-- 身份创建/镜像和历史更新在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
+- 身份创建和历史更新在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
 
 ### 3.2 同步、异步与取消
 
@@ -159,11 +159,11 @@ flowchart TD
     Server --> ServerError{"有存储错误？"}
     ServerError -->|是| Fail
     ServerError -->|否| HasServer{"权威记录存在？"}
-    HasServer -->|是| ServerReturn["镜像 sharedID 并返回<br/>serverIssued 取决于优先元数据"]
+    HasServer -->|是| ServerReturn["返回 sharedID<br/>serverIssued 取决于优先元数据"]
     HasServer -->|否| Local["读取 pb_shared_id<br/>按 create 参数决定能否创建"]
     Local --> LocalError{"有存储错误？"}
     LocalError -->|是| Fail
-    LocalError -->|否| Mirror["有值时镜像到 Defaults<br/>返回 ID；无值则空串"]
+    LocalError -->|否| Return["返回 ID；无值则空串<br/>不读写 Defaults 镜像"]
 ```
 
 ### 4.2 单个 Key 的读取和原子新增
@@ -188,7 +188,7 @@ flowchart TD
 
 并发首次创建依靠 Keychain 的原子新增确定胜出值，不返回未保存的随机候选值。所有读、写、删除显式限定配置组或已解析的默认组；不会用省略 Access Group 的查询搜索其他可访问组。`pb_server_shared_id` 在移除服务端优先标记后仍保留 ID，通过 `kSecAttrGeneric` 区分来源；旧记录没有该标记时视为服务端下发。
 
-Defaults 中的共享 ID 仅作镜像，并按 service/accessGroup 隔离；Keychain 缺失时不会从任何旧镜像恢复 ID。已有 Keychain 记录沿用，旧 Defaults 单独存留的 ID 不再迁移。App Group 可用时 Defaults 只读写共享域，缺项表示无数据，不回退到旧私有副本。
+共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 Defaults 镜像；Keychain 缺失或读取失败时不会从旧镜像恢复 ID。已有 Keychain 记录沿用；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像。Defaults 继续保存远端缓存和系统更新时间历史；App Group 可用时只读写共享域，缺项表示无数据，不回退到旧私有副本。
 
 ## 5. 设备属性采集与版本指纹
 
@@ -384,9 +384,9 @@ flowchart TD
     Kind -->|resetIdentityCache| Reset["清空 cachedIdentity 和缓存时间"]
     Reset --> ResetDone["保留持久数据和 generation<br/>下次正常加载重新构建"]
     Kind -->|clearStoredIdentityWithError:| Invalidate["使旧 Resolver 失效并取消网络任务"]
-    Invalidate --> Delete["尝试删除共享 / 服务端 Keychain ID<br/>记录删除错误，清除当前作用域镜像"]
+    Invalidate --> Delete["尝试删除共享 / 服务端 Keychain ID<br/>记录删除错误"]
     Delete --> Quota["按同组、同 service 与 SDK label<br/>删除全部远端请求额度，记录错误"]
-    Quota --> Persistent["清除远端缓存、旧请求计数<br/>及系统更新时间历史"]
+    Quota --> Persistent["清除远端缓存、旧请求计数<br/>系统更新时间历史及遗留 ID 镜像"]
     Persistent --> Memory["清空内存身份<br/>清除远端进行中标记"]
     Memory --> Resolver["为当前配置创建新 Resolver"]
     Resolver --> Generation["generation 加一<br/>取出并清空等待回调"]
@@ -396,7 +396,7 @@ flowchart TD
     Result -->|否| Failed["返回 NO + 删除错误<br/>页面展示未完成并允许重试"]
 ```
 
-当前清理只移除当前 Keychain 命名空间内的 SDK 身份、请求占位、镜像、远端缓存、旧请求计数和系统更新时间历史。App Group 可用时，其他 App 不会从旧私有 Defaults 恢复已删除缓存。`resetIdentityCache` 不使在途任务失效；在途任务随后仍可能重新填充内存缓存。旧 `clearStoredIdentity` 保留兼容，但不返回删除错误；需要确认结果时使用 `clearStoredIdentityWithError:`。
+当前清理只移除当前 Keychain 命名空间内的 SDK 身份、请求占位、遗留 ID 镜像、远端缓存、旧请求计数和系统更新时间历史。App Group 可用时，其他 App 不会从旧私有 Defaults 恢复已删除缓存。`resetIdentityCache` 不使在途任务失效；在途任务随后仍可能重新填充内存缓存。旧 `clearStoredIdentity` 保留兼容，但不返回删除错误；需要确认结果时使用 `clearStoredIdentityWithError:`。
 
 ### 9.2 显式注入服务端共享 ID
 
@@ -411,16 +411,14 @@ flowchart TD
     ReadOK -->|是| Remove["SecItemUpdate 只修改同一记录的优先元数据<br/>保留 ID，不复制或删除记录"]
     Remove --> Removed{"更新成功或记录不存在？"}
     Removed -->|否| Fail
-    Removed -->|是| MirrorPreserved["清除服务端镜像<br/>保留最后有效共享 ID"]
-    MirrorPreserved --> Success["Store 返回 YES"]
+    Removed -->|是| Success["Store 返回 YES<br/>不更新 Defaults"]
     Empty -->|否| Validate["去首尾空白并校验 ID"]
     Validate --> Valid{"有效？"}
     Valid -->|否| Fail
     Valid -->|是| Server["单次写入服务端 Keychain 权威记录<br/>同时更新 ID 并恢复服务端优先元数据"]
     Server --> ServerOK{"写入成功？"}
     ServerOK -->|否| Fail
-    ServerOK -->|是| Mirror["按命名空间更新 Defaults 镜像"]
-    Mirror --> Success
+    ServerOK -->|是| Success
     Success --> Reset["Manager 使旧 Resolver 失效<br/>清缓存、generation 加一、取消旧等待者"]
     Reset --> Done["返回 YES<br/>下次加载读取新持久化结果"]
 ```
@@ -433,8 +431,8 @@ flowchart TD
 
 | 关联流程 | 当前行为与边界 |
 | --- | --- |
-| 镜像与升级 | Keychain 是身份依据，旧 Defaults 不再自动恢复到 Keychain；仅存于旧镜像的 ID 不会继续沿用。 |
-| 命名空间 | Defaults 使用 service/accessGroup 派生的前缀；其他命名空间的身份和镜像不受当前清理影响。旧无命名空间记录被忽略。 |
+| 持久化与升级 | 共享 ID 仅保存在 Keychain，不再读写 Defaults 镜像；旧镜像被忽略，显式清理仍移除当前作用域内的遗留镜像。 |
+| 存储命名空间 | Defaults 辅助数据使用 service/accessGroup 派生的前缀；其他命名空间的数据不受当前清理影响。旧无命名空间记录被忽略。 |
 | 默认 Keychain 组 | 未配置组时通过唯一临时记录解析默认组，后续操作显式限定；解析/临时记录清理失败则返回错误。 |
 | 服务端注入 | 单条权威 Key 同时写入 ID 与优先元数据；空值原子移除优先标记并保留当前 ID。成功后取消旧任务和等待者。 |
 | App Group 缓存 | 可用时只读写共享域；缺项不回退到各 App 私有旧副本。无可用 App Group 时仅使用各 App 私有缓存。 |

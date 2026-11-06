@@ -58,6 +58,7 @@ pod 'PBCrossAppUniqueDeviceIdentifier', :path => './PBCrossAppUniqueDeviceIdenti
 
 - 当前版本指纹包含 `bootTimeInSec`，设备重启后会轮换；同 Team 的共享 UUID 不随重启变化。
 - 同 Team 跨 App 共享需要在两个 App 中配置相同的 Keychain Access Group 及对应 entitlement；App Group 可选，配置时必须搭配共享 Keychain。示例未配置，因此默认只在本 App 内稳定。
+- 共享 ID 与服务端注入 ID 仅持久化到 Keychain，不再写入 NSUserDefaults 镜像；NSUserDefaults 继续保存系统更新时间历史和可选远端缓存，App Group 可共享这些辅助数据。
 - Demo 不发送网络请求、不主动请求 ATT；正式接入时如需 IDFA，请链接 `AdSupport`/`AppTrackingTransparency` 并完成授权。
 - 正式跨公司接入必须统一 salt、算法版本、字段集和采集开关；该 salt 仅为演示。
 - 该页面会修改 SDK 的全局配置（salt 等），仅用于 Demo；正式 App 建议在启动阶段统一配置一次。

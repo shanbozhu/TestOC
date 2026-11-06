@@ -78,7 +78,7 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (NSString *)scopedDefaultsKey:(NSString *)key
 {
-    // Mirrors from different Keychain namespaces must never mix.
+    // Auxiliary data from different Keychain namespaces must never mix.
     NSData *scope = [NSJSONSerialization dataWithJSONObject:@[self.configuration.keychainService,
         self.configuration.keychainAccessGroup ?: @""] options:0 error:NULL];
     NSString *digest = [PBCrossCrypto MD5HexString:[[NSString alloc] initWithData:scope encoding:NSUTF8StringEncoding]];
@@ -334,14 +334,6 @@ static NSString *PBCrossCurrentDayKey(void)
 
 #pragma mark - Shared ID
 
-- (void)mirrorSharedID:(NSString *)sharedID
-{
-    NSString *defaultsValue = [self defaultsStringForKey:PBCrossSharedIDKey];
-    if (![defaultsValue isEqualToString:sharedID]) {
-        [self setDefaultsString:sharedID forKey:PBCrossSharedIDKey];
-    }
-}
-
 - (nullable NSString *)storedIDForKey:(NSString *)key create:(BOOL)create error:(NSError **)error
 {
     OSStatus status = errSecSuccess;
@@ -356,8 +348,8 @@ static NSString *PBCrossCurrentDayKey(void)
         return nil;
     }
 
-    // Defaults are mirrors only. A peer App may still hold a pre-reset mirror;
-    // never resurrect it when the authoritative Keychain record is absent.
+    // Keychain is the only persistent identity source. Ignore legacy Defaults
+    // copies so a peer App cannot resurrect a cleared identity.
     if (!create) { return nil; }
     return [self addKeychainStringIfAbsent:[PBCrossCrypto randomUUIDString] forKey:key error:error];
 }
@@ -386,7 +378,6 @@ static NSString *PBCrossCurrentDayKey(void)
             if (serverIssued != NULL) {
                 *serverIssued = hasServerPriority;
             }
-            [self mirrorSharedID:serverSharedID];
             return serverSharedID;
         }
 
@@ -396,9 +387,6 @@ static NSString *PBCrossCurrentDayKey(void)
             return @"";
         }
 
-        if (sharedID.length > 0) {
-            [self mirrorSharedID:sharedID];
-        }
         return sharedID ?: @"";
     }
 }
@@ -418,15 +406,12 @@ static NSString *PBCrossCurrentDayKey(void)
                 [PBCrossLocalPriorityMarker dataUsingEncoding:NSUTF8StringEncoding]};
             OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)attributes);
             if (status != errSecSuccess && status != errSecItemNotFound) { return NO; }
-            [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
             return YES;
         }
         NSString *trimmed = [sharedID stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
         if (!PBCrossIsValidSharedID(trimmed)) { return NO; }
         // One authoritative write: no second Keychain write can partially fail.
         if (![self writeKeychainString:trimmed forKey:PBCrossServerSharedIDKey]) { return NO; }
-        [self setDefaultsString:trimmed forKey:PBCrossServerSharedIDKey];
-        [self mirrorSharedID:trimmed];
         return YES;
     }
 }
@@ -611,6 +596,7 @@ static NSString *PBCrossCurrentDayKey(void)
             }
         }
         if (error) { *error = sharedError ?: serverError ?: reservationError; }
+        // Remove scoped mirrors left by previous SDK releases; never recreate them.
         [self removeDefaultsValueForKey:PBCrossSharedIDKey];
         [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
         [self removeDefaultsValueForKey:[self remoteCacheKey]];
