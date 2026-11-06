@@ -1,6 +1,6 @@
 # PBCrossAppUniqueDeviceIdentifier 功能流程图
 
-按当前源码整理，更新于 2026-11-06，已移除 ID 镜像和系统更新时间历史存储，Defaults 仅用于可选远端缓存。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
+按当前源码整理，更新于 2026-11-06，已移除本地 UUID 生成、ID 镜像和系统更新时间历史存储，Defaults 仅用于可选远端缓存。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
 
 本文使用 Mermaid，可在支持 Mermaid 的 Markdown 阅读器中查看和维护。
 
@@ -9,7 +9,7 @@
 1. [功能总览](#1-功能总览)
 2. [配置更新](#2-配置更新)
 3. [身份加载、缓存与结果交付](#3-身份加载缓存与结果交付)
-4. [共享 ID 读取与原子创建](#4-共享-id-读取与原子创建)
+4. [服务端 VID 读取](#4-服务端-vid-读取)
 5. [设备属性采集与版本指纹](#5-设备属性采集与版本指纹)
 6. [远端解析](#6-远端解析)
 7. [广告授权与广告请求输出](#7-广告授权与广告请求输出)
@@ -45,7 +45,7 @@ flowchart TD
 
 | 数据 | 来源与用途 |
 | --- | --- |
-| `sharedID` / `shared_id` | 服务端显式注入的共享 ID 优先，否则使用 Keychain 自建 UUID；同 Team 可通过共享 Access Group 共享。 |
+| `sharedID` / `shared_id` | 仅为接入方注入并保存于 `pb_server_shared_id` 的服务端 VID；缺失返回空串，JSON 省略。旧 `pb_shared_id` 不参与读取。 |
 | `identifiers` 中的 `fingerprint` | 每个受支持版本独立计算；默认包含当前版本 `20261001` 和兼容版本 `20260301`。 |
 | `identifiers` 中的 `remote` | 自建远端服务返回的版本化 ID；与本地指纹并存，不自动覆盖 `sharedID`。 |
 | `attributes` | 设备属性；可选 IDFA MD5 用于匹配和广告输出，默认指纹字段不含 IDFA。 |
@@ -98,7 +98,7 @@ flowchart TD
     Collect --> Remote["读取已缓存 remote ID<br/>需远端启用且满足同意条件"]
     Remote --> StorageLock{"Manager 锁内复核<br/>generation 仍有效？"}
     StorageLock -->|否| Cancel
-    StorageLock -->|是| Shared["锁内读取或创建 sharedID<br/>保留存储错误"]
+    StorageLock -->|是| Shared["锁内读取服务端 VID<br/>保留存储错误"]
     Shared --> Unlock["释放 Manager 锁<br/>与配置 / 注入 / 清理互斥"]
     Unlock --> Generate["按 supportedVersions 计算指纹"]
     Generate --> Build["组合 sharedID、fingerprint、remote<br/>属性、来源、时间戳"]
@@ -117,7 +117,7 @@ flowchart TD
 - 本地加载允许带入已过期的远端缓存；远端 TTL 用于决定是否需要后台刷新，而不是立即删除旧远端 ID。
 - `cachedIdentity` 返回最近快照，不检查缓存时效，但会检查当前广告授权。
 - 异步入口在提交时绑定 Context；清理或配置切换前已提交、仍在排队的请求也会取消，不会按新版本执行。
-- 身份读取/创建在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
+- VID 读取在版本检查后使用同一 Manager 锁，与配置、注入和清理互斥；清理等待已开始的操作完成后再删除。缺失 VID 是正常状态，指纹快照仍可缓存，不生成本地 ID。
 - 当前 `sysFileTime` 仍参与指纹计算并可输出为 `update_time`；不再记录它的历史值，也不输出 `last_update_time` 或 `previous_system_update_time`。旧 JSON 中的历史字段被忽略。
 
 ### 3.2 同步、异步与取消
@@ -142,53 +142,31 @@ flowchart TD
 
 同步加载本身不触发自动远端请求。若 Keychain 失败，同步接口返回不含共享 ID 的快照，错误详情需通过异步加载获取。
 
-## 4. 共享 ID 读取与原子创建
+## 4. 服务端 VID 读取
 
-### 4.1 服务端 ID 优先
-
-入口：Store 的 `sharedIDCreatingIfNeeded:serverIssued:error:`；Manager 的 `sharedID` 属性会以 `create=YES` 调用。
+入口：Store 的 `sharedIDWithError:`；Manager 的 `sharedID` 属性仅读取服务端 VID。
 
 ```mermaid
 flowchart TD
-    Start["读取 sharedID"] --> Scope{"已确定 Keychain Access Group？"}
-    Scope -->|显式配置或已缓存默认组| Server["读取 pb_server_shared_id 及优先元数据<br/>不生成随机候选值"]
-    Scope -->|未配置且未缓存| Probe["SecItemAdd 唯一临时记录<br/>返回默认组属性，并按组删除临时记录"]
+    Start["读取 sharedID / 构建身份快照"] --> Scope{"已确定 Keychain Access Group？"}
+    Scope -->|显式配置或已缓存默认组| Server["读取 pb_server_shared_id"]
+    Scope -->|未配置且未缓存| Probe["新增唯一临时探测记录<br/>解析默认组，随后删除临时记录"]
     Probe --> ProbeOK{"解析和清理成功？"}
     ProbeOK -->|是| Server
-    ProbeOK -->|否| Fail["返回空串 + 错误<br/>不生成替代身份"]
-    Server --> ServerError{"有存储错误？"}
-    ServerError -->|是| Fail
-    ServerError -->|否| HasServer{"权威记录存在？"}
-    HasServer -->|是| ServerReturn["返回 sharedID<br/>serverIssued 取决于优先元数据"]
-    HasServer -->|否| Local["读取 pb_shared_id<br/>按 create 参数决定能否创建"]
-    Local --> LocalError{"有存储错误？"}
-    LocalError -->|是| Fail
-    LocalError -->|否| Return["返回 ID；无值则空串<br/>不读写 Defaults 镜像"]
+    ProbeOK -->|否| Fail["返回空串 + 错误<br/>不返回替代 ID"]
+    Server --> Status{"读取结果？"}
+    Status -->|成功且 VID 有效| Return["返回服务端 VID<br/>新快照来源包含 server"]
+    Status -->|记录不存在| Empty["返回空串，无错误<br/>指纹照常生成和缓存"]
+    Status -->|锁定 / 权限错误 / 数据损坏| Fail
+    Empty --> Export["JSON/ext 省略 shared_id<br/>监测参数省略 pb_shared_id"]
+    Fail --> Partial["异步加载返回无 VID 快照 + 错误<br/>不缓存快照，下次重试"]
 ```
 
-### 4.2 单个 Key 的读取和原子新增
+客户端不生成本地设备 UUID，也不读取旧 Keychain `pb_shared_id` 或 Defaults 镜像作为回退。默认组探测所用的临时 UUID 仅为查找系统默认组，随后删除，不是设备标识。所有读、写和删除均显式限定组，避免搜索其他可访问组。
 
-```mermaid
-flowchart TD
-    Start["读取指定 Keychain Key"] --> Read{"读取状态？"}
-    Read -->|成功且数据有效| Existing["返回已存 ID"]
-    Read -->|不可用 / 权限错误 / 数据损坏| Error["返回错误<br/>保留记录，不覆盖"]
-    Read -->|errSecItemNotFound| Create{"允许创建？"}
-    Create -->|否| Empty["返回无值"]
-    Create -->|是| UUID["生成随机 UUID 候选值"]
-    UUID --> Add["SecItemAdd 原子新增"]
-    Add --> Status{"新增状态？"}
-    Status -->|成功| Winner["返回已落盘候选值"]
-    Status -->|errSecDuplicateItem| Reread["重新读取持久化胜出值"]
-    Reread --> RereadOK{"读取成功且有效？"}
-    RereadOK -->|是| Existing
-    RereadOK -->|否| Error
-    Status -->|其他错误| Error
-```
+已有 `pb_server_shared_id` 继续使用，包括旧版写入的优先元数据；元数据不再改变新快照的 `server` 来源。显式清理仍删除当前 service/accessGroup 的 VID、旧本地 ID、镜像和系统更新时间历史。
 
-并发首次创建依靠 Keychain 的原子新增确定胜出值，不返回未保存的随机候选值。所有读、写、删除显式限定配置组或已解析的默认组；不会用省略 Access Group 的查询搜索其他可访问组。`pb_server_shared_id` 在移除服务端优先标记后仍保留 ID，通过 `kSecAttrGeneric` 区分来源；旧记录没有该标记时视为服务端下发。
-
-共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 Defaults 镜像；Keychain 缺失或读取失败时不会从旧镜像恢复 ID。已有 Keychain 记录沿用；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像和系统更新时间历史。Defaults 只保存可选远端缓存；App Group 可用时只读写共享域，缺项表示无数据，不回退到旧私有副本。
+普通身份加载优先使用内存快照，缓存失效后读取 Keychain。Defaults 仅保存可选远端缓存；App Group 可用时只读写共享域，缺项不回退到旧私有副本。VID 申请服务尚未接入，宿主取得 VID 后需显式注入；可选 Resolver 的版本化 `remote` ID 不会自动写入此 Key。
 
 ## 5. 设备属性采集与版本指纹
 
@@ -384,7 +362,7 @@ flowchart TD
     Kind -->|resetIdentityCache| Reset["清空 cachedIdentity 和缓存时间"]
     Reset --> ResetDone["保留持久数据和 generation<br/>下次正常加载重新构建"]
     Kind -->|clearStoredIdentityWithError:| Invalidate["使旧 Resolver 失效并取消网络任务"]
-    Invalidate --> Delete["尝试删除共享 / 服务端 Keychain ID<br/>记录删除错误"]
+    Invalidate --> Delete["尝试删除 VID / 旧本地 Keychain ID<br/>记录删除错误"]
     Delete --> Quota["按同组、同 service 与 SDK label<br/>删除全部远端请求额度，记录错误"]
     Quota --> Persistent["清除远端缓存、旧请求计数<br/>及遗留的 ID 镜像、更新时间历史"]
     Persistent --> Memory["清空内存身份<br/>清除远端进行中标记"]
@@ -392,7 +370,7 @@ flowchart TD
     Resolver --> Generation["generation 加一<br/>取出并清空等待回调"]
     Generation --> Cancel["安排主线程向等待者返回取消错误"]
     Cancel --> Result{"Keychain 删除均成功或无记录？"}
-    Result -->|是| Done["返回 YES<br/>下次加载走共享 ID 创建流程"]
+    Result -->|是| Done["返回 YES<br/>下次加载 VID 为空<br/>等待业务申请并注入"]
     Result -->|否| Failed["返回 NO + 删除错误<br/>页面展示未完成并允许重试"]
 ```
 
@@ -415,7 +393,7 @@ flowchart TD
     Empty -->|否| Validate["去首尾空白并校验 ID"]
     Validate --> Valid{"有效？"}
     Valid -->|否| Fail
-    Valid -->|是| Server["单次写入服务端 Keychain 权威记录<br/>同时更新 ID 并恢复服务端优先元数据"]
+    Valid -->|是| Server["单次写入服务端 Keychain 权威记录<br/>更新 VID 并清理旧优先元数据"]
     Server --> ServerOK{"写入成功？"}
     ServerOK -->|否| Fail
     ServerOK -->|是| Success
@@ -423,7 +401,7 @@ flowchart TD
     Reset --> Done["返回 YES<br/>下次加载读取新持久化结果"]
 ```
 
-注入非空值只写入服务端权威 Key，避免双写部分失败。传入空值以单次原子更新移除优先标记，保留当前记录内的 ID；即使其他 App 在读取后注入新值，也不会删掉新值或写回旧 ID。读取或元数据更新失败返回 NO。成功变更会增加 generation，使旧加载结果失效。
+注入非空值只写入 `pb_server_shared_id`。nil/空串保留现有 VID，仅兼容处理旧版优先元数据，该元数据不再影响来源标记。元数据更新不改 ID，避免覆盖其他 App 并发注入的新值；读取或更新失败返回 NO。删除 VID 请使用清理接口。成功调用会增加 generation，使旧加载结果失效。此接口仅存储字符串，不负责向服务端申请或验证 VID。
 
 ## 10. 当前实现边界
 
@@ -431,17 +409,17 @@ flowchart TD
 
 | 关联流程 | 当前行为与边界 |
 | --- | --- |
-| 持久化与升级 | 共享 ID 仅保存在 Keychain，不再读写 Defaults 镜像；旧镜像被忽略，显式清理仍移除当前作用域内的遗留镜像。 |
+| 持久化与升级 | 服务端 VID 仅读取 pb_server_shared_id；缺失时空值，旧 pb_shared_id 和镜像均忽略，显式清理仍删除遗留数据。 |
 | 更新时间历史 | 不再读取、写入或输出历史值；当前 sysFileTime 仍参与指纹和 update_time 输出。显式清理会删除当前作用域的旧历史记录。 |
 | 存储命名空间 | Defaults 辅助数据使用 service/accessGroup 派生的前缀；其他命名空间的数据不受当前清理影响。旧无命名空间记录被忽略。 |
 | 默认 Keychain 组 | 未配置组时通过唯一临时记录解析默认组，后续操作显式限定；解析/临时记录清理失败则返回错误。 |
-| 服务端注入 | 单条权威 Key 同时写入 ID 与优先元数据；空值原子移除优先标记并保留当前 ID。成功后取消旧任务和等待者。 |
+| 服务端注入 | 只写入服务端 VID 记录；空值保留现有 VID，兼容处理旧元数据。成功后取消旧任务和等待者。 |
 | App Group 缓存 | 可用时只读写共享域；缺项不回退到各 App 私有旧副本。无可用 App Group 时仅使用各 App 私有缓存。 |
 | 请求额度 | Keychain 原子占位跨进程协调，默认每天 5 次；升级当天从新额度开始，混用旧版 SDK 不参与协调；清理会重置当前命名空间额度。 |
 | 远端失效 | 同一 Manager 内，清理/配置/注入与旧 Resolver 的持久缓存提交互斥；不提供跨进程网络任务取消。 |
-| 异步任务上下文 | 提交时绑定版本，自动刷新和远端补建沿用原 Context；清理前排队或执行中的旧请求不会跨版本重新创建身份。 |
-| 本地写入与清理 | 同一 Manager 内，版本复核和身份读取/创建使用同一把锁；清理等已有写入完成后删除，采集中取消的旧加载不再落盘。其他 App 可继续发起新的读取/创建。 |
-| 同步共享 ID | 完整读取/创建与配置更新互斥，配置提交后的读取使用新的存储命名空间。 |
+| 异步任务上下文 | 提交时绑定版本，自动刷新和远端补建沿用原 Context；清理前排队或执行中的旧请求不会跨版本重建身份。 |
+| VID 读写与清理 | 同一 Manager 内，版本复核和 VID 读取使用同一把锁，与显式注入、配置、清理互斥；其他 App 仍可显式注入 VID，不提供跨进程取消。 |
+| 同步共享 ID | 完整读取与配置更新互斥，配置提交后的读取使用新的存储命名空间。 |
 | 远端缓存命中 | TTL、标识及解析时间均取自同一份缓存快照。 |
 | 清理结果 | 新增带错误接口；删除失败可能已完成部分清理，应处理错误后重试。旧无错误接口仅作兼容。 |
 | 其他 App | 清理共享记录影响后续持久化读取；不会主动清除其他进程已持有的内存身份快照，宿主须刷新。 |

@@ -12,7 +12,7 @@
 #import "PBCrossLogging.h"
 #import <Security/Security.h>
 
-static NSString * const PBCrossSharedIDKey = @"pb_shared_id";
+static NSString * const PBCrossLegacySharedIDKey = @"pb_shared_id";
 static NSString * const PBCrossServerSharedIDKey = @"pb_server_shared_id";
 static NSString * const PBCrossRemoteCacheKeyPrefix = @"pb_remote_cache";
 static NSString * const PBCrossRemoteRequestLogKeyPrefix = @"pb_remote_request_log";
@@ -215,11 +215,6 @@ static NSString *PBCrossCurrentDayKey(void)
 
 - (nullable NSString *)keychainStringForKey:(NSString *)key status:(OSStatus *)readStatus
 {
-    return [self keychainStringForKey:key serverIssued:NULL status:readStatus];
-}
-
-- (nullable NSString *)keychainStringForKey:(NSString *)key serverIssued:(BOOL *)serverIssued status:(OSStatus *)readStatus
-{
     NSError *groupError = nil;
     NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key error:&groupError];
     if (!query) { *readStatus = (OSStatus)groupError.code; return nil; }
@@ -235,10 +230,6 @@ static NSString *PBCrossCurrentDayKey(void)
         NSData *data = [object isKindOfClass:NSDictionary.class] ? object[(__bridge id)kSecValueData] : nil;
         if ([data isKindOfClass:NSData.class]) {
             value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        }
-        if (serverIssued && [object isKindOfClass:NSDictionary.class]) {
-            NSData *marker = [PBCrossLocalPriorityMarker dataUsingEncoding:NSUTF8StringEncoding];
-            *serverIssued = ![object[(__bridge id)kSecAttrGeneric] isEqual:marker];
         }
         // 损坏记录也不等于不存在，保留原记录等待显式处理。
         if (!PBCrossIsValidSharedID(value)) {
@@ -256,32 +247,6 @@ static NSString *PBCrossCurrentDayKey(void)
     return value;
 }
 
-- (nullable NSString *)addKeychainStringIfAbsent:(NSString *)candidate
-                                        forKey:(NSString *)key
-                                         error:(NSError **)error
-{
-    NSMutableDictionary *query = [self keychainQueryForKey:key error:error];
-    if (!query) { return nil; }
-    query[(__bridge id)kSecValueData] = [candidate dataUsingEncoding:NSUTF8StringEncoding];
-    query[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
-    query[(__bridge id)kSecAttrSynchronizable] = @NO;
-    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
-    if (status == errSecSuccess) {
-        return candidate;
-    }
-    if (status == errSecDuplicateItem) {
-        // 其他 App/进程已创建：返回持久化的胜出值，绝不覆盖它。
-        NSString *winner = [self keychainStringForKey:key status:&status];
-        if (winner) {
-            return winner;
-        }
-    }
-    if (error) {
-        *error = [self keychainErrorWithStatus:status key:key];
-    }
-    return nil;
-}
-
 - (BOOL)writeKeychainString:(NSString *)value forKey:(NSString *)key
 {
     NSData *data = [value dataUsingEncoding:NSUTF8StringEncoding];
@@ -291,7 +256,7 @@ static NSString *PBCrossCurrentDayKey(void)
 
     NSMutableDictionary *updateAttributes = [@{(__bridge id)kSecValueData: data} mutableCopy];
     if ([key isEqual:PBCrossServerSharedIDKey]) {
-        updateAttributes[(__bridge id)kSecAttrGeneric] = NSData.data; // Explicit injection restores server priority.
+        updateAttributes[(__bridge id)kSecAttrGeneric] = NSData.data; // Clear legacy priority metadata on explicit injection.
     }
     NSMutableDictionary<id, id> *query = [self keychainQueryForKey:key error:NULL];
     if (!query) { return NO; }
@@ -334,59 +299,17 @@ static NSString *PBCrossCurrentDayKey(void)
 
 #pragma mark - Shared ID
 
-- (nullable NSString *)storedIDForKey:(NSString *)key create:(BOOL)create error:(NSError **)error
-{
-    OSStatus status = errSecSuccess;
-    NSString *stored = [self keychainStringForKey:key status:&status];
-    if (status == errSecSuccess) {
-        return stored;
-    }
-    if (status != errSecItemNotFound) {
-        if (error) {
-            *error = [self keychainErrorWithStatus:status key:key];
-        }
-        return nil;
-    }
-
-    // Keychain is the only persistent identity source. Ignore legacy Defaults
-    // copies so a peer App cannot resurrect a cleared identity.
-    if (!create) { return nil; }
-    return [self addKeychainStringIfAbsent:[PBCrossCrypto randomUUIDString] forKey:key error:error];
-}
-
-- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create
-                        serverIssued:(nullable BOOL *)serverIssued
-                               error:(NSError **)error
+- (NSString *)sharedIDWithError:(NSError **)error
 {
     @synchronized(self) {
-        if (error) {
-            *error = nil;
-        }
-        if (serverIssued != NULL) {
-            *serverIssued = NO;
-        }
-
-        NSError *storageError = nil;
+        if (error) { *error = nil; }
         OSStatus status = errSecSuccess;
-        BOOL hasServerPriority = YES;
-        NSString *serverSharedID = [self keychainStringForKey:PBCrossServerSharedIDKey serverIssued:&hasServerPriority status:&status];
+        NSString *sharedID = [self keychainStringForKey:PBCrossServerSharedIDKey status:&status];
         if (status != errSecSuccess && status != errSecItemNotFound) {
             if (error) { *error = [self keychainErrorWithStatus:status key:PBCrossServerSharedIDKey]; }
-            return @"";
         }
-        if (serverSharedID.length > 0) {
-            if (serverIssued != NULL) {
-                *serverIssued = hasServerPriority;
-            }
-            return serverSharedID;
-        }
-
-        NSString *sharedID = [self storedIDForKey:PBCrossSharedIDKey create:create error:&storageError];
-        if (storageError) {
-            if (error) { *error = storageError; }
-            return @"";
-        }
-
+        // Only a server-issued VID is an identity. Legacy local IDs and Defaults
+        // mirrors are ignored; a missing VID is a normal state, not an error.
         return sharedID ?: @"";
     }
 }
@@ -400,7 +323,7 @@ static NSString *PBCrossCurrentDayKey(void)
             if (readStatus != errSecSuccess && readStatus != errSecItemNotFound) { return NO; }
             NSMutableDictionary *query = [self keychainQueryForKey:PBCrossServerSharedIDKey error:NULL];
             if (!query) { return NO; }
-            // Change priority in place without reading/copying/deleting the ID.
+            // Preserve the legacy nil-call metadata behavior without changing the VID.
             // A peer injection before or after this atomic update keeps its value.
             NSDictionary *attributes = @{(__bridge id)kSecAttrGeneric:
                 [PBCrossLocalPriorityMarker dataUsingEncoding:NSUTF8StringEncoding]};
@@ -556,7 +479,7 @@ static NSString *PBCrossCurrentDayKey(void)
     @synchronized(self) {
         NSError *sharedError = nil;
         NSError *serverError = nil;
-        BOOL sharedRemoved = [self removeKeychainValueForKey:PBCrossSharedIDKey error:&sharedError];
+        BOOL sharedRemoved = [self removeKeychainValueForKey:PBCrossLegacySharedIDKey error:&sharedError];
         BOOL serverRemoved = [self removeKeychainValueForKey:PBCrossServerSharedIDKey error:&serverError];
         NSError *reservationError = nil;
         NSMutableDictionary *reservations = [self keychainQueryForKey:nil error:&reservationError];
@@ -571,7 +494,7 @@ static NSString *PBCrossCurrentDayKey(void)
         }
         if (error) { *error = sharedError ?: serverError ?: reservationError; }
         // Remove scoped mirrors left by previous SDK releases; never recreate them.
-        [self removeDefaultsValueForKey:PBCrossSharedIDKey];
+        [self removeDefaultsValueForKey:PBCrossLegacySharedIDKey];
         [self removeDefaultsValueForKey:PBCrossServerSharedIDKey];
         [self removeDefaultsValueForKey:[self remoteCacheKey]];
         [self removeDefaultsValueForKey:[self remoteRequestLogKey]];

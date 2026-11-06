@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 命中原因。
 typedef NS_ENUM(NSUInteger, PBCrossIdentityMatchReason) {
     PBCrossIdentityMatchReasonNone = 0,
-    /// 共享自建 ID 命中。
+    /// 共享 ID（当前为服务端 VID）命中。
     PBCrossIdentityMatchReasonSharedIdentifier,
     /// 任一版本指纹/远端 ID 命中。
     PBCrossIdentityMatchReasonVersionedIdentifier,

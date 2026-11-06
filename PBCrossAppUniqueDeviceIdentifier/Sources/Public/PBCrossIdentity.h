@@ -17,7 +17,7 @@ typedef NS_OPTIONS(NSUInteger, PBCrossIdentitySource) {
     PBCrossIdentitySourceNone = 0,
     /// 本地由设备属性确定生成（跨公司可复现）。
     PBCrossIdentitySourceFingerprint = 1 << 0,
-    /// 通过 Keychain Access Group 共享的自建 ID，仅持久化到 Keychain。
+    /// 旧版本地共享 ID 来源，仅用于兼容历史快照；当前 Manager 不再产生此来源。
     PBCrossIdentitySourceSharedStorage = 1 << 1,
     /// 自建 ID 服务下发。
     PBCrossIdentitySourceRemote = 1 << 2,
@@ -32,7 +32,7 @@ FOUNDATION_EXPORT NSString *PBCrossIdentitySourceDescription(PBCrossIdentitySour
  *
  *  同时包含：
  *  - 本地按版本生成的指纹 ID（默认当前版本 + 上一版本）；
- *  - 跨 App 共享的自建 UUID（取决于共享 Keychain 配置）；
+ *  - 服务端下发的 VID（取决于共享 Keychain 配置）；
  *  - 远端服务返回的版本化 ID（可选）；
  *  - 采集到的设备属性，供广告归因方做属性相似度匹配。
  */
@@ -49,7 +49,7 @@ FOUNDATION_EXPORT NSString *PBCrossIdentitySourceDescription(PBCrossIdentitySour
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
-/// 跨 App 共享的自建 ID；未获授权共享时仍然会生成一个本 App 内稳定的 UUID。
+/// 服务端 VID；尚未取得或 Keychain 读取失败时为空串，不生成本地替代 ID。
 @property (nonatomic, copy, readonly) NSString *sharedID;
 
 /// 全部版本化 ID，顺序：本地指纹（当前、上一版本）、远端。共享/服务端 ID 见 sharedID。
@@ -83,7 +83,7 @@ FOUNDATION_EXPORT NSString *PBCrossIdentitySourceDescription(PBCrossIdentitySour
 
 - (nullable PBCrossIdentifier *)identifierForVersion:(NSString *)version;
 
-/// 可直接写入 ad request ext 的 JSON 字典。
+/// 可直接写入 ad request ext 的 JSON 字典；sharedID 为空时省略 shared_id。
 - (NSDictionary<NSString *, id> *)dictionaryRepresentation;
 
 /// 从媒体/广告主回传的 JSON 还原，用于跨公司归因匹配。

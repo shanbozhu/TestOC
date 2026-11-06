@@ -271,19 +271,18 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     PBCrossConfiguration *configuration = context.configuration;
     PBCrossIdentityStore *store = context.store;
 
-    BOOL serverIssued = NO;
     NSError *storageError = nil;
     NSString *sharedID = nil;
     @synchronized(self) {
-        // Storage may create an ID. Validate and perform the read/create under
-        // the mutation lock so clear/configure cannot finish in between.
+        // Validate and read under the mutation lock so clear/configure
+        // cannot finish between checking the generation and reading the VID.
         if (context.generation != self.configurationGeneration) {
             if (error) {
                 *error = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"配置或身份已更新，本次加载已取消");
             }
             return nil;
         }
-        sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued error:&storageError];
+        sharedID = [store sharedIDWithError:&storageError];
     }
     if (error) {
         *error = storageError;
@@ -304,7 +303,7 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         sources |= PBCrossIdentitySourceFingerprint;
     }
     if (sharedID.length > 0) {
-        sources |= serverIssued ? PBCrossIdentitySourceServer : PBCrossIdentitySourceSharedStorage;
+        sources |= PBCrossIdentitySourceServer;
     }
     if (remoteIdentifiers.count > 0) {
         sources |= PBCrossIdentitySourceRemote;
@@ -686,8 +685,8 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
 - (NSString *)sharedID
 {
     @synchronized(self) {
-        // Serialize the full read/create with configuration and identity changes.
-        return [self.storeStorage sharedIDCreatingIfNeeded:YES serverIssued:NULL error:NULL] ?: @"";
+        // Serialize the full read with configuration and identity changes.
+        return [self.storeStorage sharedIDWithError:NULL] ?: @"";
     }
 }
 

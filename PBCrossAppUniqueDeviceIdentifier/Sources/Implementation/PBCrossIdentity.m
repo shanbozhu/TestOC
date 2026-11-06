@@ -203,7 +203,6 @@ static NSDate *PBCrossDateFromJSONValue(id value)
     }
 
     NSMutableDictionary<NSString *, id> *dictionary = [@{
-        @"shared_id": self.sharedID ?: @"",
         @"algorithm": self.algorithm,
         @"sources": PBCrossIdentitySourceDescription(self.sources).length > 0
             ? [PBCrossIdentitySourceDescription(self.sources) componentsSeparatedByString:@","]
@@ -213,6 +212,9 @@ static NSDate *PBCrossDateFromJSONValue(id value)
         @"attributes": [self.attributes dictionaryRepresentation],
     } mutableCopy];
 
+    if (self.sharedID.length > 0) {
+        dictionary[@"shared_id"] = self.sharedID;
+    }
     if (self.remoteResolvedAt) {
         dictionary[@"remote_resolved_at"] = @([self.remoteResolvedAt timeIntervalSince1970]);
     }

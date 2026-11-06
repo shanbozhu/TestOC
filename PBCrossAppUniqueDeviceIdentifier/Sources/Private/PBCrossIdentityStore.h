@@ -19,14 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) PBCrossConfiguration *configuration;
 
-/// 读取跨 App 自建 ID；仅 Keychain 确认无记录且 create 为 YES 时创建。
-/// 读取/写入失败时返回空串并报告错误，不切换存储或返回未持久化的候选值。
-/// @param serverIssued 输出是否为服务端下发（setServerIssuedSharedID）。
-- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create
-                        serverIssued:(nullable BOOL *)serverIssued
-                               error:(NSError * _Nullable * _Nullable)error;
+/// 仅读取 Keychain 中的服务端 VID；缺失时返回空串，不创建本地 ID。
+/// 读取失败时返回空串并报告错误，不切换存储或使用旧版本地 ID。
+- (NSString *)sharedIDWithError:(NSError * _Nullable * _Nullable)error;
 
-/// 写入/清除服务端下发的共享 ID。sharedID 为空时仅清除"服务端下发"标记。
+/// 写入服务端 VID；nil/空串保留现有 VID，仅兼容处理旧版优先标记。
 - (BOOL)setServerIssuedSharedID:(nullable NSString *)sharedID;
 
 /// 远端解析结果缓存（NSDictionary，包含 identifiers / resolved_at 等）。

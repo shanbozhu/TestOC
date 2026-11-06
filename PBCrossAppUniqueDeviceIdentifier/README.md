@@ -10,23 +10,23 @@
 
 iOS 没有稳定、可跨 App / 跨公司共享的设备号。IDFA 受 ATT 限制且用户可关闭，IDFV 只在同一 Vendor 的 App 间一致，Keychain / App Group 也只能在同一 Apple Developer Team 内共享。
 
-本 SDK 解决三件事：
+本 SDK 提供以下能力（VID 申请服务需业务接入）：
 
-1. **同 Team 多个 App**：通过共享 Keychain Access Group 共享同一个自建 UUID（`shared_id`），App Group 可选，用于共享远端缓存。
-2. **不同媒体、不同开发者的 App**：用**同一套字段 + 同一套规范化规则 + 同一个盐值**拼接设备属性，在本地确定生成 128-bit 指纹 ID（`pb-xid-v1`），多个公司各自计算即可得到相同结果。
-3. **需要中心化发号时**：通过兼容 CAID API v1.15 协议的自建 ID 服务下发版本化 ID；广告请求可用 `PBCrossAdRequestAdapter` 直接产出拼多多 Bid Request 的 Device 字段。
+1. **同 Team 多个 App**：通过共享 Keychain Access Group 共享服务端签发的 VID（兼容字段 `shared_id`），App Group 可选，用于共享远端缓存。
+2. **不同媒体、不同开发者的 App**：用**同一套字段 + 同一套规范化规则 + 同一个盐值**拼接设备属性，在本地确定生成 128-bit 指纹 ID（`pb-xid-v1`），实际采集值一致时可以复现相同结果；字段漂移或缺失会影响结果。
+3. **可选版本化 ID 服务**：通过兼容 CAID API v1.15 协议的自建 ID 服务下发版本化 ID；广告请求可用 `PBCrossAdRequestAdapter` 直接产出拼多多 Bid Request 的 Device 字段。
 
-同时提供归因匹配器：媒体把广告请求中的 `ext.pb_cross_app` 原样回传，广告主侧还原为 `PBCrossIdentity` 后即可判断是否同一设备。
+同时提供归因匹配器：媒体把广告请求中的 `ext.pb_cross_app` 原样回传，广告主侧还原为 `PBCrossIdentity` 后可获得匹配结果，不能据此保证物理设备唯一。
 
 > **背景说明**：拼多多《媒体广告平台接入拼多多外投广告技术规范》从 V0.0.33（2026.07.03）起已下线 Caid 字段。本 SDK 不依赖 CAID 官方服务；默认纯本地生成、不发起网络请求。
 
-## 2. 三种接入模式
+## 2. 标识能力
 
 | 模式 | 适用场景 | 稳定性 | 实现 |
 | --- | --- | --- | --- |
-| 共享自建 UUID | 同一 Team 的多款 App（同一开发者/同一集团） | 高，App 重装后通常仍保留（Keychain 系统行为） | 共享 Keychain Access Group，App Group 可选；`shared_id` |
+| 服务端 VID 共享 | 同一 Team 的多款 App（同一开发者/同一集团） | 高，App 重装后通常仍保留（Keychain 系统行为） | 业务申请 VID 后调用 `setServerIssuedSharedID:`；共享 Keychain Access Group，App Group 可选；`shared_id` |
 | 设备属性指纹 | 不同公司、不同开发者的 App 互相对齐 | 单次开机内稳定；重启后轮换（与 CAID 行为一致） | `pb-xid-v1`，当前版本 + 上一版本双 ID |
-| 自建 ID 服务 | 需要中心化发号、跨公司强对齐、风控/归因 | 由服务端策略决定 | CAID API 兼容协议 + RSA，`remote` ID |
+| 自建 ID 服务 | 可选版本化 ID 解析、归因 | 由服务端策略决定 | CAID API 兼容协议 + RSA，`remote` ID |
 
 跨公司对齐的前提是：双方 App 使用**相同的 SDK 配置**——相同算法版本、相同字段集、相同 salt、相同采集开关。任一不同，指纹就会不同。算法规范见 [Docs/CrossCompanyIdentifierSpec.md](Docs/CrossCompanyIdentifierSpec.md)。
 
@@ -80,7 +80,7 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 > `keychainAccessGroup` 在运行时必须传展开后的完整值，例如 `ABCDE12345.com.example.pbcross`，不能直接传 `$(AppIdentifierPrefix)`。
 
-`appGroupIdentifier` 必须搭配共享 `keychainAccessGroup` 使用；仅配置 App Group 时，`configureWithBlock:error:` 返回 `NO` 和 `PBCrossIdentifierErrorInvalidConfiguration`，原有配置、缓存与身份保持不变。App Group 的 Defaults 不参与跨进程首次发号；可用时，它是远端缓存等 Defaults 数据的唯一读写域，缺项视为已清除，不回退到各 App 的旧私有副本。
+`appGroupIdentifier` 必须搭配共享 `keychainAccessGroup` 使用；仅配置 App Group 时，`configureWithBlock:error:` 返回 `NO` 和 `PBCrossIdentifierErrorInvalidConfiguration`，原有配置、缓存与身份保持不变。客户端不生成 VID；App Group 的 Defaults 不保存 VID；可用时，它是远端缓存等 Defaults 数据的唯一读写域，缺项视为已清除，不回退到各 App 的旧私有副本。
 
 ### 3.3 加载身份
 
@@ -99,19 +99,19 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 异步加载和显式远端请求在提交时捕获同一份配置、存储和配置版本，包含工作队列中尚未执行的请求。排队、加载或等待主线程回调期间，若配置更新、服务端共享 ID 注入成功或身份被清除，旧结果不会写回缓存；异步接口返回 `nil` 与 `PBCrossIdentifierErrorOperationCancelled`，同步接口按最新配置重试。
 
-采集后再次复核配置版本，并将共享 ID 读取/创建与配置、注入、清理互斥：清理会等待已经开始的存储操作完成后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 的完整读取/创建也与这些操作串行，配置提交后的读取使用新命名空间。范围限于同一 Manager，不会取消其他 App 的在途操作。
+采集后再次复核配置版本，并将 VID 读取与配置、注入、清理互斥：清理会等待已经开始的存储操作完成后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 的完整读取也与这些操作串行，配置提交后的读取使用新命名空间。范围限于同一 Manager，不会取消其他 App 的在途操作。
 
-共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 NSUserDefaults 镜像。普通身份加载优先命中内存缓存；缓存失效后读取 Keychain。NSUserDefaults 仅用于可选远端缓存，App Group 可用时共享这份缓存。
+`sharedID` 只读取 Keychain 的 `pb_server_shared_id`，表示业务通过 `setServerIssuedSharedID:` 注入的服务端 VID。不再生成或读取旧的本地 `pb_shared_id`，也不读写 NSUserDefaults 镜像。未取得 VID 时返回空串且不报错；JSON/ext 省略 `shared_id`，监测参数省略 `pb_shared_id`。字段名为兼容保留，`pb_shared_id` 监测参数与同名旧 Keychain 记录没有存储关联。普通身份加载优先命中内存缓存；缓存失效后读取 Keychain。NSUserDefaults 仅用于可选远端缓存，App Group 可用时共享这份缓存。
 
 不再记录系统更新时间历史，也不再输出 `last_update_time` 和 `previous_system_update_time`。当前 `sysFileTime` 仍参与指纹计算并输出为 `update_time`，指纹版本及计算规则不变。旧历史仅在显式清理身份时删除；旧 JSON 中的历史字段按未知字段忽略。手动构建 `PBCrossIdentity` 时，使用不含 `previousSystemUpdateTime:` 的初始化方法。
 
 缓存读取、异步回调及广告适配器导出时都会检查当前广告授权。撤回 ATT 后不再输出缓存中的明文 IDFA、`idfa_md5` 或 `ext.pb_cross_app.attributes.idfa_md5`；已有适配器也会在导出时检查。已交付给宿主的身份快照不可变，宿主需停止使用自己的旧快照和缓存。重新授权后可调用强制刷新重新采集。
 
-服务端注入 `setServerIssuedSharedID:` 使用单条服务端权威记录，成功后清缓存并取消旧加载/远端任务。传入 nil/空串会在同一记录上原子移除服务端优先标记，保留 ID，不复制或删除记录，避免覆盖其他 App 并发注入的新值；失败返回 NO。后续非空注入会同时更新 ID 并恢复服务端优先标记。远端 Resolver 返回的版本化 remote ID 与此共享 ID 注入接口相互独立。
+服务端注入 `setServerIssuedSharedID:` 只写入 `pb_server_shared_id`，成功后清缓存并取消旧加载/远端任务。传入 nil/空串保留最后有效 VID，仅兼容处理旧版优先标记；该标记不再影响新快照的 `server` 来源。删除 VID 请使用 `clearStoredIdentityWithError:`。本接口仅保存调用方提供的字符串，不验证服务端签名或权限；业务仍需实现 VID 申请及响应验证。远端 Resolver 返回的版本化 `remote` ID 不会自动成为 VID。
 
 配置更新和清理使旧 Resolver 失效并取消网络任务；响应持久缓存提交也受失效检查保护，迟到响应不会恢复本 Manager 已清除的缓存。
 
-自动远端刷新沿用触发它的本地加载上下文，远端完成时补建基础身份也使用原请求上下文。旧任务不会转用新版本重新创建身份；本 Manager 清理成功后，只有之后提交的新请求才能再次创建身份。
+自动远端刷新沿用触发它的本地加载上下文，远端完成时补建基础身份也使用原请求上下文。旧任务不会转用新版本重建身份；本 Manager 清理成功后，新加载仅重新采集指纹，VID 保持为空，直到业务再次注入。
 
 远端缓存命中时，TTL 判断与返回的标识/时间来自同一份快照，避免其他 App 更新缓存时混用两次读取结果。
 
@@ -177,7 +177,7 @@ if (result.matched) {
 TestOC/Page/Mine/PBCrossAppUniqueDeviceIdentifier/
 ```
 
-入口：`TestOC → 我的 → PBUniqueIdentifierTestController → PBCrossAppUniqueDeviceIdentifierController`（页面标题“跨 App 设备标识”）。示例页演示身份加载、共享自建 ID、设备属性、广告 Device 对象、`Device.ext` 与跨公司匹配结果；详见该目录下的 README。
+入口：`TestOC → 我的 → PBUniqueIdentifierTestController → PBCrossAppUniqueDeviceIdentifierController`（页面标题“跨 App 身份与归因”）。示例页演示身份加载、服务端 VID、设备属性、广告 Device 对象、`Device.ext` 与跨公司匹配结果；详见该目录下的 README。
 
 Podfile 配置：
 
@@ -281,11 +281,11 @@ id   = 820640c66e2c2009becf80c042afda97
   "birth_time": "1632467920.301150749",
   "boot_time": "1600607106",
   "update_time": "1595214620.383940",
-  "ext": "{\"pb_cross_app\":{\"algorithm\":\"pb-xid-v1\",\"id\":\"820640c66e2c2009becf80c042afda97\",\"version\":\"20261001\",\"previous_id\":\"b045cceaf204a9e9846e2f5573dd12d8\",\"previous_version\":\"20260301\",\"shared_id\":\"939ef7d9-1a4a-4f5e-a2f2-5126cb8af469\",\"sources\":[\"fingerprint\",\"shared_storage\"],\"identifiers\":[...],\"attributes\":{...},\"sdk_version\":\"1.0.0\"}}"
+  "ext": "{\"pb_cross_app\":{\"algorithm\":\"pb-xid-v1\",\"id\":\"820640c66e2c2009becf80c042afda97\",\"version\":\"20261001\",\"previous_id\":\"b045cceaf204a9e9846e2f5573dd12d8\",\"previous_version\":\"20260301\",\"shared_id\":\"VID_123\",\"sources\":[\"fingerprint\",\"server\"],\"identifiers\":[...],\"attributes\":{...},\"sdk_version\":\"1.0.0\"}}"
 }
 ```
 
-> 上例中的 ID/deviceName 来自测试向量，实际设备会不同。
+> 指纹来自测试向量，`VID_123` 表示业务已取得并注入的服务端 VID；未取得时省略 `shared_id`。
 
 S2S 上报/点击监测 URL 可追加 `trackingParameters`：
 
@@ -294,9 +294,9 @@ pb_xid=820640c66e2c2009becf80c042afda97
 pb_xid_version=20261001
 pb_xid_prev=b045cceaf204a9e9846e2f5573dd12d8
 pb_xid_prev_version=20260301
-pb_shared_id=939ef7d9-1a4a-4f5e-a2f2-5126cb8af469
+pb_shared_id=VID_123
 pb_algorithm=pb-xid-v1
-pb_xid_source=fingerprint,shared_storage
+pb_xid_source=fingerprint,server
 ```
 
 有远端 ID 时还会带 `pb_xid_remote`、`pb_xid_remote_version`。参数未做 URL 编码，请调用方自行编码。
@@ -385,8 +385,8 @@ SDK 行为：
 - 仅采集设备级属性；设备名只保留不可逆 MD5，不保存/上报明文；IDFA 默认只输出 MD5。
 - `idfv` 会出现在 ext/identity JSON 中，如产品认为敏感，可在上报前裁剪 `attributes`（但会影响属性匹配）。
 - Keychain 数据在 App 卸载后通常仍保留；使用 `clearStoredIdentityWithError:` 清理并检查返回值与错误。失败可能已完成部分删除，可恢复后重试。旧 `clearStoredIdentity` 保留兼容但不返回错误。共享记录清除会影响同组其他 App 后续读取，其他 App 的内存快照需主动刷新。
-- 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值。ID 不再写入 Defaults；已有 Keychain 记录沿用，旧 Defaults 镜像被忽略，不用于兜底或恢复；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像和系统更新时间历史。远端缓存继续使用按 service/accessGroup 隔离的 Defaults。
-- 配置 `keychainAccessGroup` 后不自动回退到私有 Keychain。异步加载遇到存储错误时返回不含 `shared_id` 的快照及 `NSError`，不缓存该快照，下次加载会重试；同步 `sharedID` 属性在不可用时返回空串。
+- VID 仅读取 `pb_server_shared_id`，缺失、锁定、权限错误和损坏记录均不生成替代身份。旧 `pb_shared_id` 和 Defaults 镜像被忽略；显式清理仍删除当前 service/accessGroup 下的旧 ID、镜像和系统更新时间历史。已有服务端 VID 继续沿用。远端缓存使用按 service/accessGroup 隔离的 Defaults。
+- 配置 `keychainAccessGroup` 后不自动回退到私有 Keychain。异步加载遇到存储错误时返回省略 `shared_id` 的快照及 `NSError`，不缓存该快照，下次加载会重试；同步 `sharedID` 属性在不可用时返回空串。
 - 未配置 `keychainAccessGroup` 时，先用唯一临时记录解析系统默认组，随后所有读、写、清理均显式限定该组；解析或临时记录清理失败会返回错误，避免误读、误改或误删其他可访问共享组的数据。
 - 指纹 ID 是**伪匿名标识**，不是账号 ID，不应跨设备关联用户；salt 不是加密密钥，拿到 salt 的人可以复算 ID，它的作用是隔离生态/合作方。
 - 上线前请按 PIPL、CCPA、Apple ATT/隐私清单等要求完成法务与隐私评估，并提供可关闭/清除入口。
@@ -396,8 +396,8 @@ SDK 行为：
 
 | 情况 | 结果 |
 | --- | --- |
-| App 重装（未重启） | 指纹 ID 不变；共享 UUID 通常也不变（Keychain 保留） |
-| 设备重启 | 当前/兼容指纹变化（`bootTimeInSec` 变化）；共享 UUID 不变；可用属性匹配兜底 |
+| App 重装（未重启） | 指纹 ID 不变；已保存 VID 通常也不变（Keychain 保留） |
+| 设备重启 | 当前/兼容指纹变化（`bootTimeInSec` 变化）；已保存 VID 不变；可用属性匹配兜底 |
 | 系统升级 | `sysFileTime`/`deviceInitTime`/`systemVersion` 可能变化，指纹可能变化；属性匹配可能降级 |
 | 同一机型多台设备 | 依赖启动时间、设备初始化时间、系统更新时间、mntId、设备名等熵源；这些字段都不可用时存在碰撞风险 |
 | 不同公司配置不一致 | salt/版本/字段/service 不同 → ID 不同，这是设计行为 |
@@ -434,13 +434,13 @@ pod lib lint PBCrossAppUniqueDeviceIdentifier.podspec --allow-warnings --skip-te
 # 纯逻辑自检（指纹向量、匹配器、JSON 往返）
 ./Tools/verify_logic.sh
 
-# 存储回归（Keychain 故障/组隔离、并发创建/注入/限流、共享缓存清理、配置切换与 ATT 撤回；使用隔离模拟存储）
+# 存储回归（Keychain 故障/组隔离、缺失 VID、并发读取/注入/限流、共享缓存清理、配置切换与 ATT 撤回；使用隔离模拟存储）
 ./Tools/verify_storage.sh
 ```
 
 也可以把 `Sources` 直接加入现有 iOS 工程，使用 `TestOC.xcworkspace` 构建。
 
-当前版本已验证：
+已有验证记录（以下模拟器与 lint 记录来自此前版本；本次变更以两组脚本回归为准）：
 
 - `pod lib lint`（CocoaPods 1.16.2 / Xcode 26.3）通过；
 - `Tools/verify_logic.sh` 的指纹测试向量与匹配用例全部通过；
@@ -455,7 +455,7 @@ A: 通常是 App 缺少 keychain-access-groups entitlement，或 `keychainAccess
 A: 依次检查：`salt`、`supportedVersions`、`collectsDeviceName`、`collectsCarrierInformation`、采集时机（是否跨重启）、SDK 版本。调试时打印 `PBCrossIdentityGenerator` 的 canonical string（内部头文件）对比。
 
 **Q: 重启后 ID 变了？**
-A: 当前版本包含 `bootTimeInSec`，这是为了避免同机型设备仅靠硬件字段产生确定性碰撞。共享 UUID 不受影响；跨重启归因可用属性匹配或服务端 ID。
+A: 当前版本包含 `bootTimeInSec`，这是为了避免同机型设备仅靠硬件字段产生确定性碰撞。已保存 VID 不受影响；跨重启归因可用属性匹配或服务端 ID。
 
 **Q: IDFA 为空？**
 A: 默认不采集；开启后仍需 ATT 已授权且广告跟踪未关闭。系统也可能返回全零 UUID。

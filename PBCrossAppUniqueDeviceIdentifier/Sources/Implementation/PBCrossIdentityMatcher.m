@@ -211,7 +211,7 @@ static NSString *PBCrossComparableAttributeValue(NSString *rawValue, PBCrossAttr
         return [self emptyResult];
     }
 
-    // 1. 共享自建 ID
+    // 1. 服务端 VID（sharedID）
     if (identity.sharedID.length > 0
         && otherIdentity.sharedID.length > 0
         && [identity.sharedID caseInsensitiveCompare:otherIdentity.sharedID] == NSOrderedSame) {

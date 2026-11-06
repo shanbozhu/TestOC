@@ -202,6 +202,21 @@ int main(int argc, const char *argv[])
         PBCrossAssert(versionResult.matched, @"cross-version identifier matches");
         PBCrossAssert(versionResult.reason == PBCrossIdentityMatchReasonVersionedIdentifier, @"cross-version reason");
 
+        PBCrossIdentity *withoutVID = PBCrossTestIdentity(identifiers, @"", attributes);
+        PBCrossAdRequestAdapter *withoutVIDAdapter =
+            [[PBCrossAdRequestAdapter alloc] initWithIdentity:withoutVID context:nil];
+        PBCrossAssert(!withoutVID.dictionaryRepresentation[@"shared_id"] &&
+                      !withoutVIDAdapter.extensionObject[@"pb_cross_app"][@"shared_id"] &&
+                      !withoutVIDAdapter.trackingParameters[@"pb_shared_id"],
+                      @"missing VID is omitted from JSON, ext and tracking parameters");
+        PBCrossIdentity *restoredWithoutVID = [PBCrossIdentity
+            identityWithDictionaryRepresentation:withoutVID.dictionaryRepresentation];
+        PBCrossIdentityMatchResult *withoutVIDResult =
+            [matcher matchIdentity:withoutVID withIdentity:restoredWithoutVID];
+        PBCrossAssert(restoredWithoutVID.sharedID.length == 0 && withoutVIDResult.matched &&
+                      withoutVIDResult.reason == PBCrossIdentityMatchReasonVersionedIdentifier,
+                      @"missing VID round-trips and matches by fingerprint without a placeholder");
+
         NSMutableDictionary *attributeOnlyFixture = [fixture mutableCopy];
         [attributeOnlyFixture removeObjectForKey:PBCrossAttributeKeyIDFAMD5];
         PBCrossDeviceAttributes *attributeOnlyAttributes =

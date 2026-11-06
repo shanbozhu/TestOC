@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- 标识精简为服务端 VID：`sharedID` 仅读取 `pb_server_shared_id`，移除本地 UUID 生成和 `pb_shared_id` 回退；无 VID 时返回空串且无存储错误，JSON/ext 与监测参数省略该字段。新 Manager 快照的 VID 来源统一为 `server`。
+- 旧本地 ID 与 Defaults 镜像不迁移为 VID，显式清理仍删除遗留数据。`setServerIssuedSharedID:nil` 保留原 VID，仅兼容旧元数据处理；删除使用清理接口。指纹算法与可选版本化远端 ID 逻辑不变。
+
+以下为本次精简前的修复记录；本地 UUID 创建相关行为已由上述规则取代。
+
 - 精简系统更新时间历史：移除 Defaults 历史读写、`previousSystemUpdateTime` 属性及初始化参数，不再输出 `last_update_time` 和 `previous_system_update_time`；旧 JSON 历史字段被忽略，显式清理仍删除遗留历史。当前 `sysFileTime`、`update_time` 和指纹算法保持不变。手动构建身份的接入方需移除初始化调用中的 `previousSystemUpdateTime:` 参数。
 - 移除共享 ID 和服务端 ID 的 Defaults 镜像读写，Keychain 为唯一持久化来源；Defaults 保留可选远端缓存，显式清理仍删除遗留 ID 镜像。
 - 修复 iOS 14 及以上 ATT 已授权时仍被旧版 `isAdvertisingTrackingEnabled` 拦截的问题；统一 IDFA 读取与授权检查，旧开关仅用于 iOS 14 以下，保留全零过滤。

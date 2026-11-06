@@ -61,9 +61,4 @@ static NSString *PBCrossHexString(const unsigned char *bytes, NSUInteger length)
     return PBCrossHexString(digest, CC_SHA256_DIGEST_LENGTH);
 }
 
-+ (NSString *)randomUUIDString
-{
-    return [[[NSUUID UUID] UUIDString] lowercaseString];
-}
-
 @end

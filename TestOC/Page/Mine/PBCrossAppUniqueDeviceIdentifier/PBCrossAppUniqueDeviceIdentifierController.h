@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// PBUniqueIdentifierTestController 列表中的跨 App 统一设备标识接入示例。
 ///
-/// 页面演示：身份加载、共享自建 ID、CAID 兼容字段、广告请求 Device 适配、
+/// 页面演示：身份加载、服务端 VID、CAID 兼容字段、广告请求 Device 适配、
 /// ext.pb_cross_app 还原以及跨公司归因匹配。所有操作仅在本机完成。
 @interface PBCrossAppUniqueDeviceIdentifierController : UIViewController
 

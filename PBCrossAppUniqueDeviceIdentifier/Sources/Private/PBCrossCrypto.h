@@ -22,9 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// HMAC-SHA256，输出 64 位小写十六进制。
 + (NSString *)HMACSHA256HexString:(NSString *)string key:(NSString *)key;
 
-/// 小写 UUID 字符串。
-+ (NSString *)randomUUIDString;
-
 @end
 
 NS_ASSUME_NONNULL_END

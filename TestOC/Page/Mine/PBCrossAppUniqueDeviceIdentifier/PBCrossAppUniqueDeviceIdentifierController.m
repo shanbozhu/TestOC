@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
         @"拼多多 Bid Request 的 Device 对象",
         @"Device.ext（pb_cross_app 身份快照）",
         @"把 ext 还原为身份并运行 PBCrossIdentityMatcher",
-        @"删除共享 ID、远端缓存与请求计数",
+        @"删除 VID、远端缓存与请求计数",
     ];
     self.currentVersionFields = [[PBCrossIdentifierVersion defaultVersion] attributeKeys];
     self.compatibilityVersionFields = [[PBCrossIdentifierVersion compatibilityVersion] attributeKeys];
@@ -401,11 +401,12 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
                                                           withIdentity:mediaIdentityWithoutShared];
 
     NSString *message = [NSString stringWithFormat:
-        @"① 同一份 ext（含共享 ID）：%@\n"
+        @"① 同一份 ext（%@）：%@\n"
         @"   原因：%@，置信度：%.2f\n\n"
         @"② 清空 shared_id 后（仅版本指纹）：%@\n"
         @"   原因：%@，置信度：%.2f，属性相似度：%.2f\n\n"
-        @"说明：归因方可先用共享 ID，再回退到当前/上一版本指纹；双方 salt、版本和采集开关必须一致。",
+        @"说明：这是同一份数据的序列化自测；归因方可先比较 VID，再比较版本指纹。双方 salt、版本和采集开关必须一致，指纹命中不保证设备唯一。",
+        self.identity.sharedID.length > 0 ? @"含服务端 VID" : @"尚无 VID，使用版本指纹",
         sharedResult.matched ? @"命中" : @"未命中",
         PBCrossIdentityMatchReasonDescription(sharedResult.reason),
         sharedResult.confidence,
@@ -418,7 +419,7 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
 
 - (void)confirmClearIdentity {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清除本地身份"
-        message:@"将删除共享 ID、服务端下发 ID、当前服务的远端缓存与请求计数；下次加载会生成新的 UUID。\n同 Keychain Access Group / App Group 的其他 App 也会受影响。"
+        message:@"将删除服务端 VID、旧版本地 ID、当前服务的远端缓存与请求计数；VID 将为空，等待业务重新申请并注入。\n同 Keychain Access Group / App Group 的其他 App 也会受影响。"
         preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     __weak typeof(self) weakSelf = self;
@@ -433,7 +434,7 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
         strongSelf.identity = nil;
         strongSelf.lastError = clearError;
         if (cleared) {
-            strongSelf.lastAction = @"身份已清除，正在重新生成…";
+            strongSelf.lastAction = @"VID 已清除，正在重新采集指纹…";
             [strongSelf loadIdentityForce:YES];
         } else {
             strongSelf.lastAction = @"身份未完全清除，请重试";
@@ -553,9 +554,9 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
         version = self.identity.previousVersion;
         suffix = @"用于兼容旧版本/旧合作方，归因时任一命中即可";
     } else if (row == 2) {
-        title = @"共享自建 ID";
+        title = @"服务端 VID";
         value = self.identity.sharedID;
-        suffix = @"配置共享 Keychain Access Group 后可跨同 Team App 共享";
+        suffix = @"读取 pb_server_shared_id；相同 Keychain Access Group 可跨同 Team App 共享";
     } else {
         title = self.busy ? @"加载中…" : @"状态";
         NSMutableArray<NSString *> *lines = [NSMutableArray array];
@@ -576,7 +577,10 @@ typedef NS_ENUM(NSInteger, PBCrossDemoSection) {
 
     cell.textLabel.text = title;
     if (value.length == 0) {
-        cell.detailTextLabel.text = @"暂不可用（等待加载或本机采集失败）";
+        cell.detailTextLabel.text = row == 2
+            ? (self.lastError ? @"VID 暂不可用，请查看状态中的错误"
+               : (self.identity ? @"尚未取得服务端 VID；示例未接入 VID 申请服务" : @"等待加载 VID…"))
+            : @"暂不可用（等待加载或本机采集失败）";
         cell.detailTextLabel.textColor = [UIColor grayColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return;

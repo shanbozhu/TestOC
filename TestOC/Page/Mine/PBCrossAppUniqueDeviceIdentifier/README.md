@@ -2,7 +2,7 @@
 
 本目录是 `PBCrossAppUniqueDeviceIdentifier` 在 TestOC 中的接入示例。页面入口：
 
-> TestOC → 我的 → `PBUniqueIdentifierTestController` → `PBCrossAppUniqueDeviceIdentifierController`（进入后页面标题为“跨 App 设备标识”）
+> TestOC → 我的 → `PBUniqueIdentifierTestController` → `PBCrossAppUniqueDeviceIdentifierController`（进入后页面标题为“跨 App 身份与归因”）
 
 ## 集成方式
 
@@ -24,12 +24,12 @@ pod 'PBCrossAppUniqueDeviceIdentifier', :path => './PBCrossAppUniqueDeviceIdenti
 
 | 区域 | 内容 |
 | --- | --- |
-| 身份概览 | 当前版本指纹、上一版本指纹、共享自建 ID、来源与生成时间 |
+| 身份概览 | 当前版本指纹、上一版本指纹、服务端 VID、来源与生成时间 |
 | 设备属性 | CAID API v1.15 的 14 个字段 + 屏幕/CPU/IDFV/IDFA MD5 等扩展，并标注是否参与当前/兼容版本指纹 |
 | 验证操作 | 加载、强制刷新、复制身份 JSON、复制 Device JSON、复制 Device.ext、跨公司匹配、清除身份 |
 | 广告请求示例 | `Device.ext` 预览与 `trackingParameters` 预览，点击可复制 |
 
-页面使用固定 Demo salt：`testoc-crossapp-demo-salt`；关闭远端服务、关闭 IDFA 采集、打开旧版 `caid`/`caid_info` 输出。
+页面使用固定 Demo salt：`testoc-crossapp-demo-salt`；关闭远端服务、允许读取已授权 IDFA、打开旧版 `caid`/`caid_info` 输出。
 
 ## 跨公司匹配验证
 
@@ -38,27 +38,27 @@ pod 'PBCrossAppUniqueDeviceIdentifier', :path => './PBCrossAppUniqueDeviceIdenti
 1. 用 `PBCrossAdRequestAdapter` 生成拼多多 Device.ext；
 2. 把 `ext.pb_cross_app` 还原为 `PBCrossIdentity`；
 3. 运行 `PBCrossIdentityMatcher`：
-   - 第一组保留 `shared_id`，预期命中 `shared_identifier`；
+   - 第一组保留已有 `shared_id`；有 VID 时命中 `shared_identifier`，无 VID 时命中版本指纹；
    - 第二组清空 `shared_id`，预期命中 `versioned_identifier`（当前/上一版本指纹）。
 
-这说明媒体侧把 ext 原样交给广告主后，广告主侧可以用同一套字段、salt 和算法完成归因匹配。
+这是同一份数据的序列化自测，只验证 JSON 往返和匹配器，不能证明真实跨 App 识别准确率。
 
 ## 运行与验证
 
 1. 在仓库根目录执行 `pod install`（本示例已接入）。若 CocoaPods 报 Ruby `Unicode Normalization` 错误，请先执行 `export LANG=en_US.UTF-8`；
 2. 打开 `TestOC.xcworkspace`，运行 `TestOC` scheme；
-3. 从“我的”进入 `PBUniqueIdentifierTestController`，再选择 `PBCrossAppUniqueDeviceIdentifierController`，打开“跨 App 设备标识”；
+3. 从“我的”进入 `PBUniqueIdentifierTestController`，再选择 `PBCrossAppUniqueDeviceIdentifierController`，打开“跨 App 身份与归因”；
 4. 等待加载完成后：
    - 点击 ID/属性可复制；
    - 点击“复制 Device JSON”可查看拼多多 Device 对象；
    - 点击“验证跨公司匹配”查看匹配原因和置信度；
-   - 点击“清除本地身份”后重新加载，共享 ID 会更新。
+   - 点击“清除本地身份”后重新加载，VID 保持为空，指纹按当前属性重新计算。
 
 ## 注意事项
 
-- 当前版本指纹包含 `bootTimeInSec`，设备重启后会轮换；同 Team 的共享 UUID 不随重启变化。
-- 同 Team 跨 App 共享需要在两个 App 中配置相同的 Keychain Access Group 及对应 entitlement；App Group 可选，配置时必须搭配共享 Keychain。示例未配置，因此默认只在本 App 内稳定。
-- 共享 ID 与服务端注入 ID 仅持久化到 Keychain，不再写入 NSUserDefaults 镜像；NSUserDefaults 仅保存可选远端缓存，App Group 可共享该缓存。系统更新时间历史及 `last_update_time` 输出已移除，当前 `sysFileTime` 采集和指纹计算保留。
+- 当前版本指纹包含 `bootTimeInSec`，设备重启后会轮换；已保存的服务端 VID 不随重启变化。
+- 同 Team 跨 App 共享需要在两个 App 中配置相同的 Keychain Access Group 及对应 entitlement；App Group 可选，配置时必须搭配共享 Keychain。示例未配置共享组，也未接入 VID 申请服务；无已有 VID 时页面显示“尚未取得服务端 VID”。
+- `sharedID` 仅从 Keychain `pb_server_shared_id` 读取服务端 VID，不生成或读取旧 `pb_shared_id`。业务获得 VID 后调用 `setServerIssuedSharedID:` 保存；没有 VID 时 JSON/ext 和监测参数省略对应字段。VID 不写入 NSUserDefaults 镜像；NSUserDefaults 仅保存可选远端缓存，App Group 可共享该缓存。系统更新时间历史及 `last_update_time` 输出已移除，当前 `sysFileTime` 采集和指纹计算保留。
 - Demo 不发送网络请求、不主动请求 ATT；正式接入时如需 IDFA，请链接 `AdSupport`/`AppTrackingTransparency` 并完成授权。
 - 正式跨公司接入必须统一 salt、算法版本、字段集和采集开关；该 salt 仅为演示。
 - 该页面会修改 SDK 的全局配置（salt 等），仅用于 Demo；正式 App 建议在启动阶段统一配置一次。
