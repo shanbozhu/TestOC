@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 共享 ID 仅持久化到 Keychain；远端缓存和更新时间历史使用 Defaults（可选 App Group）。所有方法线程安全。
+/// 共享 ID 仅持久化到 Keychain；远端缓存使用 Defaults（可选 App Group）。所有方法线程安全。
 @interface PBCrossIdentityStore : NSObject
 
 - (instancetype)initWithConfiguration:(PBCrossConfiguration *)configuration;
@@ -37,10 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)registerRemoteRequestIfAllowed:(NSUInteger)dailyLimit;
 - (BOOL)registerRemoteRequestIfAllowed:(NSUInteger)dailyLimit error:(NSError * _Nullable * _Nullable)error;
 
-/// 记录本次 systemUpdateTime，返回上一次的 systemUpdateTime。
-- (NSString *)updateSystemUpdateTimeHistoryWithCurrentValue:(nullable NSString *)currentValue;
-
-/// 清除当前 Keychain 命名空间内的身份、远端缓存/请求计数与系统更新时间历史。
+/// 清除当前 Keychain 命名空间内的身份、远端缓存/请求计数及旧版遗留数据。
 /// 注意：会同时影响同一 Keychain Access Group / App Group 内的其他 App。
 - (void)clearStoredIdentity;
 - (BOOL)clearStoredIdentityWithError:(NSError * _Nullable * _Nullable)error;

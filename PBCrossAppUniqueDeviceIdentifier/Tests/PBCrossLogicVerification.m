@@ -84,7 +84,6 @@ static PBCrossIdentity *PBCrossTestIdentity(NSArray<PBCrossIdentifier *> *identi
     return [[PBCrossIdentity alloc] initWithSharedID:sharedID ?: @""
                                           identifiers:identifiers ?: @[]
                                            attributes:attributes ?: [PBCrossDeviceAttributes attributesWithValues:@{}]
-                            previousSystemUpdateTime:@""
                                             algorithm:PBCrossIdentifierAlgorithmName
                                               sources:PBCrossIdentitySourceFingerprint
                                           generatedAt:[NSDate date]
@@ -244,6 +243,16 @@ int main(int argc, const char *argv[])
         PBCrossAssert(identityJSON.length > 0, @"identity JSON serializable");
         PBCrossIdentity *restoredIdentity = [PBCrossIdentity identityWithDictionaryRepresentation:identityDictionary];
         PBCrossAssertEqual(restoredIdentity.currentIdentifier, identityA.currentIdentifier, @"identity JSON round trip");
+        NSMutableDictionary *legacyIdentityDictionary = [identityDictionary mutableCopy];
+        legacyIdentityDictionary[@"previous_system_update_time"] = @"1590000000.000000";
+        PBCrossIdentity *legacyIdentity = [PBCrossIdentity identityWithDictionaryRepresentation:legacyIdentityDictionary];
+        PBCrossAssert(legacyIdentity && [legacyIdentity isEqual:identityA] &&
+                      !legacyIdentity.dictionaryRepresentation[@"previous_system_update_time"],
+                      @"legacy history is ignored while the remaining identity round-trips");
+        PBCrossAdRequestAdapter *legacyIdentityAdapter =
+            [[PBCrossAdRequestAdapter alloc] initWithIdentity:legacyIdentity context:nil];
+        PBCrossAssert(!legacyIdentityAdapter.deviceDictionary[@"last_update_time"],
+                      @"legacy identity history is not exported as last_update_time");
 
         PBCrossAdRequestAdapter *adapter = [[PBCrossAdRequestAdapter alloc] initWithIdentity:identityA context:nil];
         NSDictionary *device = [adapter deviceDictionary];
@@ -252,6 +261,8 @@ int main(int argc, const char *argv[])
         PBCrossAssertEqual(device[@"boot_time"], @"1600607106", @"adapter boot_time");
         PBCrossAssertEqual(device[@"birth_time"], @"1632467920.301150749", @"adapter birth_time");
         PBCrossAssertEqual(device[@"update_time"], @"1595214620.383940", @"adapter update_time");
+        PBCrossAssert(!device[@"last_update_time"] && !identityDictionary[@"previous_system_update_time"],
+                      @"current system time is exported without system update history");
         PBCrossAssertEqual(device[@"idfa_md5"], @"8356c484baee55db3144931bd2b3bfc6", @"adapter idfa_md5");
         PBCrossAssertEqual(device[@"carrier"], @"unicom", @"adapter carrier enum");
         PBCrossAssertEqual([device[@"w"] stringValue], @"1170", @"adapter width");

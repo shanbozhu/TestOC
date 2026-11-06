@@ -1,6 +1,6 @@
 # PBCrossAppUniqueDeviceIdentifier 功能流程图
 
-按当前源码整理，更新于 2026-11-06，已移除共享 ID 与服务端 ID 的 Defaults 镜像。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
+按当前源码整理，更新于 2026-11-06，已移除 ID 镜像和系统更新时间历史存储，Defaults 仅用于可选远端缓存。图中的步骤表示当前实现；升级、跨 App 和兼容接口的边界列在第 10 节。
 
 本文使用 Mermaid，可在支持 Mermaid 的 Markdown 阅读器中查看和维护。
 
@@ -99,8 +99,7 @@ flowchart TD
     Remote --> StorageLock{"Manager 锁内复核<br/>generation 仍有效？"}
     StorageLock -->|否| Cancel
     StorageLock -->|是| Shared["锁内读取或创建 sharedID<br/>保留存储错误"]
-    Shared --> History["维护系统更新时间历史"]
-    History --> Unlock["释放 Manager 锁<br/>与配置 / 注入 / 清理互斥"]
+    Shared --> Unlock["释放 Manager 锁<br/>与配置 / 注入 / 清理互斥"]
     Unlock --> Generate["按 supportedVersions 计算指纹"]
     Generate --> Build["组合 sharedID、fingerprint、remote<br/>属性、来源、时间戳"]
     Build --> Commit{"提交时 generation 仍有效？"}
@@ -118,7 +117,8 @@ flowchart TD
 - 本地加载允许带入已过期的远端缓存；远端 TTL 用于决定是否需要后台刷新，而不是立即删除旧远端 ID。
 - `cachedIdentity` 返回最近快照，不检查缓存时效，但会检查当前广告授权。
 - 异步入口在提交时绑定 Context；清理或配置切换前已提交、仍在排队的请求也会取消，不会按新版本执行。
-- 身份创建和历史更新在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
+- 身份读取/创建在版本检查后使用同一 Manager 锁；清理等待已开始的写入后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 属性的完整读取/创建也与配置、注入和清理互斥。
+- 当前 `sysFileTime` 仍参与指纹计算并可输出为 `update_time`；不再记录它的历史值，也不输出 `last_update_time` 或 `previous_system_update_time`。旧 JSON 中的历史字段被忽略。
 
 ### 3.2 同步、异步与取消
 
@@ -188,7 +188,7 @@ flowchart TD
 
 并发首次创建依靠 Keychain 的原子新增确定胜出值，不返回未保存的随机候选值。所有读、写、删除显式限定配置组或已解析的默认组；不会用省略 Access Group 的查询搜索其他可访问组。`pb_server_shared_id` 在移除服务端优先标记后仍保留 ID，通过 `kSecAttrGeneric` 区分来源；旧记录没有该标记时视为服务端下发。
 
-共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 Defaults 镜像；Keychain 缺失或读取失败时不会从旧镜像恢复 ID。已有 Keychain 记录沿用；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像。Defaults 继续保存远端缓存和系统更新时间历史；App Group 可用时只读写共享域，缺项表示无数据，不回退到旧私有副本。
+共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 Defaults 镜像；Keychain 缺失或读取失败时不会从旧镜像恢复 ID。已有 Keychain 记录沿用；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像和系统更新时间历史。Defaults 只保存可选远端缓存；App Group 可用时只读写共享域，缺项表示无数据，不回退到旧私有副本。
 
 ## 5. 设备属性采集与版本指纹
 
@@ -386,7 +386,7 @@ flowchart TD
     Kind -->|clearStoredIdentityWithError:| Invalidate["使旧 Resolver 失效并取消网络任务"]
     Invalidate --> Delete["尝试删除共享 / 服务端 Keychain ID<br/>记录删除错误"]
     Delete --> Quota["按同组、同 service 与 SDK label<br/>删除全部远端请求额度，记录错误"]
-    Quota --> Persistent["清除远端缓存、旧请求计数<br/>系统更新时间历史及遗留 ID 镜像"]
+    Quota --> Persistent["清除远端缓存、旧请求计数<br/>及遗留的 ID 镜像、更新时间历史"]
     Persistent --> Memory["清空内存身份<br/>清除远端进行中标记"]
     Memory --> Resolver["为当前配置创建新 Resolver"]
     Resolver --> Generation["generation 加一<br/>取出并清空等待回调"]
@@ -396,7 +396,7 @@ flowchart TD
     Result -->|否| Failed["返回 NO + 删除错误<br/>页面展示未完成并允许重试"]
 ```
 
-当前清理只移除当前 Keychain 命名空间内的 SDK 身份、请求占位、遗留 ID 镜像、远端缓存、旧请求计数和系统更新时间历史。App Group 可用时，其他 App 不会从旧私有 Defaults 恢复已删除缓存。`resetIdentityCache` 不使在途任务失效；在途任务随后仍可能重新填充内存缓存。旧 `clearStoredIdentity` 保留兼容，但不返回删除错误；需要确认结果时使用 `clearStoredIdentityWithError:`。
+当前清理只移除当前 Keychain 命名空间内的 SDK 身份、请求占位、远端缓存，以及遗留的 ID 镜像、旧请求计数和系统更新时间历史。App Group 可用时，其他 App 不会从旧私有 Defaults 恢复已删除缓存。`resetIdentityCache` 不使在途任务失效；在途任务随后仍可能重新填充内存缓存。旧 `clearStoredIdentity` 保留兼容，但不返回删除错误；需要确认结果时使用 `clearStoredIdentityWithError:`。
 
 ### 9.2 显式注入服务端共享 ID
 
@@ -432,6 +432,7 @@ flowchart TD
 | 关联流程 | 当前行为与边界 |
 | --- | --- |
 | 持久化与升级 | 共享 ID 仅保存在 Keychain，不再读写 Defaults 镜像；旧镜像被忽略，显式清理仍移除当前作用域内的遗留镜像。 |
+| 更新时间历史 | 不再读取、写入或输出历史值；当前 sysFileTime 仍参与指纹和 update_time 输出。显式清理会删除当前作用域的旧历史记录。 |
 | 存储命名空间 | Defaults 辅助数据使用 service/accessGroup 派生的前缀；其他命名空间的数据不受当前清理影响。旧无命名空间记录被忽略。 |
 | 默认 Keychain 组 | 未配置组时通过唯一临时记录解析默认组，后续操作显式限定；解析/临时记录清理失败则返回错误。 |
 | 服务端注入 | 单条权威 Key 同时写入 ID 与优先元数据；空值原子移除优先标记并保留当前 ID。成功后取消旧任务和等待者。 |
@@ -439,7 +440,7 @@ flowchart TD
 | 请求额度 | Keychain 原子占位跨进程协调，默认每天 5 次；升级当天从新额度开始，混用旧版 SDK 不参与协调；清理会重置当前命名空间额度。 |
 | 远端失效 | 同一 Manager 内，清理/配置/注入与旧 Resolver 的持久缓存提交互斥；不提供跨进程网络任务取消。 |
 | 异步任务上下文 | 提交时绑定版本，自动刷新和远端补建沿用原 Context；清理前排队或执行中的旧请求不会跨版本重新创建身份。 |
-| 本地写入与清理 | 同一 Manager 内，版本复核和身份/历史写入使用同一把锁；清理等已有写入完成后删除，采集中取消的旧加载不再落盘。其他 App 可继续发起新的读取/创建。 |
+| 本地写入与清理 | 同一 Manager 内，版本复核和身份读取/创建使用同一把锁；清理等已有写入完成后删除，采集中取消的旧加载不再落盘。其他 App 可继续发起新的读取/创建。 |
 | 同步共享 ID | 完整读取/创建与配置更新互斥，配置提交后的读取使用新的存储命名空间。 |
 | 远端缓存命中 | TTL、标识及解析时间均取自同一份缓存快照。 |
 | 清理结果 | 新增带错误接口；删除失败可能已完成部分清理，应处理错误后重试。旧无错误接口仅作兼容。 |

@@ -235,7 +235,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     return [[PBCrossIdentity alloc] initWithSharedID:identity.sharedID
                                       identifiers:identity.identifiers
                                        attributes:attributes
-                        previousSystemUpdateTime:identity.previousSystemUpdateTime
                                         algorithm:identity.algorithm
                                           sources:identity.sources
                                       generatedAt:identity.generatedAt
@@ -275,10 +274,9 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     BOOL serverIssued = NO;
     NSError *storageError = nil;
     NSString *sharedID = nil;
-    NSString *previousSystemUpdateTime = nil;
     @synchronized(self) {
-        // Storage may create an ID or update history. Validate and perform both
-        // under the mutation lock so clear/configure cannot finish in between.
+        // Storage may create an ID. Validate and perform the read/create under
+        // the mutation lock so clear/configure cannot finish in between.
         if (context.generation != self.configurationGeneration) {
             if (error) {
                 *error = PBCrossErrorMake(PBCrossIdentifierErrorOperationCancelled, @"配置或身份已更新，本次加载已取消");
@@ -286,7 +284,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
             return nil;
         }
         sharedID = [store sharedIDCreatingIfNeeded:YES serverIssued:&serverIssued error:&storageError];
-        previousSystemUpdateTime = [store updateSystemUpdateTimeHistoryWithCurrentValue:attributes.sysFileTime];
     }
     if (error) {
         *error = storageError;
@@ -317,7 +314,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
         [[PBCrossIdentity alloc] initWithSharedID:sharedID
                                       identifiers:identifiers
                                        attributes:attributes
-                        previousSystemUpdateTime:previousSystemUpdateTime
                                         algorithm:PBCrossIdentifierAlgorithmName
                                           sources:sources
                                       generatedAt:[NSDate date]
@@ -604,7 +600,6 @@ static void *PBCrossManagerWorkQueueKey = &PBCrossManagerWorkQueueKey;
     return [[PBCrossIdentity alloc] initWithSharedID:base.sharedID
                                           identifiers:identifiers
                                            attributes:base.attributes
-                            previousSystemUpdateTime:base.previousSystemUpdateTime
                                             algorithm:base.algorithm
                                               sources:sources
                                           generatedAt:[NSDate date]

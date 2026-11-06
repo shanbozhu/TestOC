@@ -41,7 +41,6 @@ FOUNDATION_EXPORT NSString *PBCrossIdentitySourceDescription(PBCrossIdentitySour
 - (instancetype)initWithSharedID:(NSString *)sharedID
                      identifiers:(NSArray<PBCrossIdentifier *> *)identifiers
                       attributes:(PBCrossDeviceAttributes *)attributes
-       previousSystemUpdateTime:(NSString *)previousSystemUpdateTime
                        algorithm:(NSString *)algorithm
                          sources:(PBCrossIdentitySource)sources
                      generatedAt:(NSDate *)generatedAt
@@ -58,9 +57,6 @@ FOUNDATION_EXPORT NSString *PBCrossIdentitySourceDescription(PBCrossIdentitySour
 
 /// 设备属性快照。
 @property (nonatomic, strong, readonly) PBCrossDeviceAttributes *attributes;
-
-/// 上一次系统更新时间（PDD last_update_time），用于系统升级前后关联。
-@property (nonatomic, copy, readonly) NSString *previousSystemUpdateTime;
 
 /// 算法标识，如 pb-xid-v1。
 @property (nonatomic, copy, readonly) NSString *algorithm;

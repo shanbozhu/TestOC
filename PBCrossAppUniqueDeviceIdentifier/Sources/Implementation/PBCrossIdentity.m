@@ -71,7 +71,6 @@ static NSDate *PBCrossDateFromJSONValue(id value)
 - (instancetype)initWithSharedID:(NSString *)sharedID
                      identifiers:(NSArray<PBCrossIdentifier *> *)identifiers
                       attributes:(PBCrossDeviceAttributes *)attributes
-       previousSystemUpdateTime:(NSString *)previousSystemUpdateTime
                        algorithm:(NSString *)algorithm
                          sources:(PBCrossIdentitySource)sources
                      generatedAt:(NSDate *)generatedAt
@@ -92,8 +91,6 @@ static NSDate *PBCrossDateFromJSONValue(id value)
         _attributes = [attributes isKindOfClass:[PBCrossDeviceAttributes class]]
             ? attributes
             : [PBCrossDeviceAttributes attributesWithValues:@{}];
-        _previousSystemUpdateTime = [previousSystemUpdateTime isKindOfClass:[NSString class]]
-            ? [previousSystemUpdateTime copy] : @"";
         _algorithm = ([algorithm isKindOfClass:[NSString class]] && algorithm.length > 0)
             ? [algorithm copy] : [PBCrossIdentifierAlgorithmName copy];
         _sources = sources;
@@ -216,9 +213,6 @@ static NSDate *PBCrossDateFromJSONValue(id value)
         @"attributes": [self.attributes dictionaryRepresentation],
     } mutableCopy];
 
-    if (self.previousSystemUpdateTime.length > 0) {
-        dictionary[@"previous_system_update_time"] = self.previousSystemUpdateTime;
-    }
     if (self.remoteResolvedAt) {
         dictionary[@"remote_resolved_at"] = @([self.remoteResolvedAt timeIntervalSince1970]);
     }
@@ -276,15 +270,12 @@ static NSDate *PBCrossDateFromJSONValue(id value)
 
     NSString *sharedID = [dictionary[@"shared_id"] isKindOfClass:[NSString class]] ? dictionary[@"shared_id"] : @"";
     NSString *algorithm = [dictionary[@"algorithm"] isKindOfClass:[NSString class]] ? dictionary[@"algorithm"] : PBCrossIdentifierAlgorithmName;
-    NSString *previousUpdateTime = [dictionary[@"previous_system_update_time"] isKindOfClass:[NSString class]]
-        ? dictionary[@"previous_system_update_time"] : @"";
     NSDate *generatedAt = PBCrossDateFromJSONValue(dictionary[@"generated_at"]) ?: [NSDate date];
     NSDate *remoteResolvedAt = PBCrossDateFromJSONValue(dictionary[@"remote_resolved_at"]);
 
     return [[self alloc] initWithSharedID:sharedID
                               identifiers:identifiers
                                attributes:attributes
-                previousSystemUpdateTime:previousUpdateTime
                                 algorithm:algorithm
                                   sources:sources
                               generatedAt:generatedAt
@@ -333,7 +324,6 @@ static NSDate *PBCrossDateFromJSONValue(id value)
     return [self.sharedID isEqualToString:other.sharedID]
         && [self.identifiers isEqualToArray:other.identifiers]
         && [self.attributes isEqual:other.attributes]
-        && [self.previousSystemUpdateTime isEqualToString:other.previousSystemUpdateTime]
         && [self.algorithm isEqualToString:other.algorithm]
         && self.sources == other.sources;
 }

@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, PBCrossDeviceType) {
  *  把 PBCrossIdentity 转换为拼多多 Bid Request Device 对象与跨公司追踪参数。
  *
  *  输出：
- *  - Device 对象中的 CAID 兼容字段：birth_time、boot_time、update_time、last_update_time、idfa_md5；
+ *  - Device 对象中的 CAID 兼容字段：birth_time、boot_time、update_time、idfa_md5；
  *  - Device.ext.pb_cross_app：完整身份快照，供其他媒体/广告主还原匹配；
  *  - 可选旧版 caid / caid_info（默认关闭）；
  *  - trackingParameters：用于点击/曝光监测 URL 的扁平参数。

@@ -369,7 +369,7 @@ SDK 把 `caid`（或 `id`）映射为远端 ID，最多保留 2 个版本，并�
 - salt 用于生态隔离，不是密码学密钥；持有 salt 的一方可复算全部 ID。建议合作方约定非公开 salt，并通过安全渠道分发。
 - 指纹输出是 128-bit 截断 HMAC，碰撞概率与截断长度相关，不应作为支付/风控的唯一凭据。
 - 禁止把明文设备名、IDFA、IDFV 等写入指纹字符串；SDK 只上报 `deviceName` 的 MD5 与 `idfa_md5`。
-- 共享 ID 的 Keychain Access Group 仅能在同一 Apple Developer Team 内生效；App Group 只共享远端缓存和系统更新时间历史，不保存 ID 镜像。不同公司必须使用指纹或远端服务。
+- 共享 ID 的 Keychain Access Group 仅能在同一 Apple Developer Team 内生效；App Group 只共享远端缓存，不保存 ID 镜像或系统更新时间历史。不同公司必须使用指纹或远端服务。
 - 需要用户同意、隐私政策披露、关闭/清除入口；SDK 默认不联网、不读 IDFA，并提供 `clearStoredIdentity`。
 - 具体合规要求以业务所在司法辖区、Apple 审核规则和双方合同为准。
 

@@ -97,7 +97,7 @@ FOUNDATION_EXPORT NSString * const PBCrossAppUniqueDeviceIdentifierIdentityUserI
 - (void)clearStoredIdentity;
 
 /// 清理并报告 Keychain 删除错误；失败时可能已完成部分清理，应处理错误后重试。
-/// 等待本 Manager 已开始的身份写入后再删除；已取消的排队请求、旧加载及远端后续任务不再创建身份或写回历史。
+/// 等待本 Manager 已开始的身份写入后再删除；已取消的排队请求、旧加载及远端后续任务不再创建身份或写回缓存。
 - (BOOL)clearStoredIdentityWithError:(NSError * _Nullable * _Nullable)error;
 
 @end

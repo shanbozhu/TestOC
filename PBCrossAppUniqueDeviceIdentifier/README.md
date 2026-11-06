@@ -12,7 +12,7 @@ iOS 没有稳定、可跨 App / 跨公司共享的设备号。IDFA 受 ATT 限�
 
 本 SDK 解决三件事：
 
-1. **同 Team 多个 App**：通过共享 Keychain Access Group 共享同一个自建 UUID（`shared_id`），App Group 可选，用于共享远端缓存和系统更新时间历史。
+1. **同 Team 多个 App**：通过共享 Keychain Access Group 共享同一个自建 UUID（`shared_id`），App Group 可选，用于共享远端缓存。
 2. **不同媒体、不同开发者的 App**：用**同一套字段 + 同一套规范化规则 + 同一个盐值**拼接设备属性，在本地确定生成 128-bit 指纹 ID（`pb-xid-v1`），多个公司各自计算即可得到相同结果。
 3. **需要中心化发号时**：通过兼容 CAID API v1.15 协议的自建 ID 服务下发版本化 ID；广告请求可用 `PBCrossAdRequestAdapter` 直接产出拼多多 Bid Request 的 Device 字段。
 
@@ -99,9 +99,11 @@ Entitlements 示例（两个 App 都要配置相同值）：
 
 异步加载和显式远端请求在提交时捕获同一份配置、存储和配置版本，包含工作队列中尚未执行的请求。排队、加载或等待主线程回调期间，若配置更新、服务端共享 ID 注入成功或身份被清除，旧结果不会写回缓存；异步接口返回 `nil` 与 `PBCrossIdentifierErrorOperationCancelled`，同步接口按最新配置重试。
 
-采集后再次复核配置版本，并将共享 ID 创建和系统更新时间历史写入与配置、注入、清理互斥：清理会等待已经开始的存储操作完成后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 的完整读取/创建也与这些操作串行，配置提交后的读取使用新命名空间。范围限于同一 Manager，不会取消其他 App 的在途操作。
+采集后再次复核配置版本，并将共享 ID 读取/创建与配置、注入、清理互斥：清理会等待已经开始的存储操作完成后再删除，采集中被取消的旧加载不会继续落盘。`sharedID` 的完整读取/创建也与这些操作串行，配置提交后的读取使用新命名空间。范围限于同一 Manager，不会取消其他 App 的在途操作。
 
-共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 NSUserDefaults 镜像。普通身份加载优先命中内存缓存；缓存失效后读取 Keychain。NSUserDefaults 仍保存远端缓存和系统更新时间历史，App Group 可用时共享这些辅助数据。
+共享 ID 和服务端注入 ID 仅持久化到 Keychain，不再读写 NSUserDefaults 镜像。普通身份加载优先命中内存缓存；缓存失效后读取 Keychain。NSUserDefaults 仅用于可选远端缓存，App Group 可用时共享这份缓存。
+
+不再记录系统更新时间历史，也不再输出 `last_update_time` 和 `previous_system_update_time`。当前 `sysFileTime` 仍参与指纹计算并输出为 `update_time`，指纹版本及计算规则不变。旧历史仅在显式清理身份时删除；旧 JSON 中的历史字段按未知字段忽略。手动构建 `PBCrossIdentity` 时，使用不含 `previousSystemUpdateTime:` 的初始化方法。
 
 缓存读取、异步回调及广告适配器导出时都会检查当前广告授权。撤回 ATT 后不再输出缓存中的明文 IDFA、`idfa_md5` 或 `ext.pb_cross_app.attributes.idfa_md5`；已有适配器也会在导出时检查。已交付给宿主的身份快照不可变，宿主需停止使用自己的旧快照和缓存。重新授权后可调用强制刷新重新采集。
 
@@ -138,7 +140,7 @@ NSString *deviceExtJSON = device[@"ext"];
 
 - `make`、`model`、`os`、`osv`、`h`、`w`、`devicetype`、`connectiontype`、`carrier`；
 - `idfa_md5`（默认只输出 MD5；明文 IDFA 需 `allowsAdvertisingIdentifier` + `emitsRawAdvertisingIdentifier`，并自行完成 ATT 授权）；
-- `birth_time`、`boot_time`、`update_time`、`last_update_time`（CAID 兼容字段，映射自 `deviceInitTime`、`bootTimeInSec`、`sysFileTime`、上一次 `sysFileTime`）；
+- `birth_time`、`boot_time`、`update_time`（CAID 兼容字段，映射自 `deviceInitTime`、`bootTimeInSec`、`sysFileTime`）；
 - `paid` / `paid_1_4`（宿主从拼多多 SDK 获取后填入 context）；
 - `ext`：JSON 字符串，核心是 `pb_cross_app` 完整身份快照（即 `PBCrossIdentity.dictionaryRepresentation`）；
 - 可选 `caid` / `caid_info`（默认关闭，仅用于仍消费 CAID 的平台）。
@@ -279,7 +281,6 @@ id   = 820640c66e2c2009becf80c042afda97
   "birth_time": "1632467920.301150749",
   "boot_time": "1600607106",
   "update_time": "1595214620.383940",
-  "last_update_time": "1590000000.000000",
   "ext": "{\"pb_cross_app\":{\"algorithm\":\"pb-xid-v1\",\"id\":\"820640c66e2c2009becf80c042afda97\",\"version\":\"20261001\",\"previous_id\":\"b045cceaf204a9e9846e2f5573dd12d8\",\"previous_version\":\"20260301\",\"shared_id\":\"939ef7d9-1a4a-4f5e-a2f2-5126cb8af469\",\"sources\":[\"fingerprint\",\"shared_storage\"],\"identifiers\":[...],\"attributes\":{...},\"sdk_version\":\"1.0.0\"}}"
 }
 ```
@@ -384,7 +385,7 @@ SDK 行为：
 - 仅采集设备级属性；设备名只保留不可逆 MD5，不保存/上报明文；IDFA 默认只输出 MD5。
 - `idfv` 会出现在 ext/identity JSON 中，如产品认为敏感，可在上报前裁剪 `attributes`（但会影响属性匹配）。
 - Keychain 数据在 App 卸载后通常仍保留；使用 `clearStoredIdentityWithError:` 清理并检查返回值与错误。失败可能已完成部分删除，可恢复后重试。旧 `clearStoredIdentity` 保留兼容但不返回错误。共享记录清除会影响同组其他 App 后续读取，其他 App 的内存快照需主动刷新。
-- 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值。ID 不再写入 Defaults；已有 Keychain 记录沿用，旧 Defaults 镜像被忽略，不用于兜底或恢复；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像。远端缓存和更新时间历史继续使用按 service/accessGroup 隔离的 Defaults。
+- 共享 ID 仅在 Keychain 确认无记录时创建；锁定、权限错误和损坏记录不会生成替代身份。首次创建使用原子新增，竞争失败的 App 重新读取胜出值。ID 不再写入 Defaults；已有 Keychain 记录沿用，旧 Defaults 镜像被忽略，不用于兜底或恢复；显式清理时仍删除当前 service/accessGroup 下遗留的 ID 镜像和系统更新时间历史。远端缓存继续使用按 service/accessGroup 隔离的 Defaults。
 - 配置 `keychainAccessGroup` 后不自动回退到私有 Keychain。异步加载遇到存储错误时返回不含 `shared_id` 的快照及 `NSError`，不缓存该快照，下次加载会重试；同步 `sharedID` 属性在不可用时返回空串。
 - 未配置 `keychainAccessGroup` 时，先用唯一临时记录解析系统默认组，随后所有读、写、清理均显式限定该组；解析或临时记录清理失败会返回错误，避免误读、误改或误删其他可访问共享组的数据。
 - 指纹 ID 是**伪匿名标识**，不是账号 ID，不应跨设备关联用户；salt 不是加密密钥，拿到 salt 的人可以复算 ID，它的作用是隔离生态/合作方。
@@ -463,7 +464,7 @@ A: 默认不采集；开启后仍需 ATT 已授权且广告跟踪未关闭。系
 A: CAID 协议要求 14 字段中除 `mntId`/`deviceInitTime` 外均有值；模拟器或受限沙箱可能拿不到 `sysFileTime`，请改用本地指纹或放宽自建服务校验。
 
 **Q: 能否在 App Extension 中使用？**
-A: 可以使用本地指纹与共享存储；运营商/Keychain 的可用性受 Extension 环境限制。共享 ID 通过相同的 Keychain Access Group 读取，App Group 仅共享远端缓存和系统更新时间历史。
+A: 可以使用本地指纹与共享存储；运营商/Keychain 的可用性受 Extension 环境限制。共享 ID 通过相同的 Keychain Access Group 读取，App Group 仅共享远端缓存。
 
 ## 14. 参考资料
 

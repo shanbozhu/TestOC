@@ -71,7 +71,7 @@ FOUNDATION_EXPORT NSString * const PBCrossDefaultKeychainService;
  *  字段集包含启动时间、设备名称 MD5、设备初始化时间、系统更新时间、mntId 等设备级熵源，
  *  排除系统版本、时区、语言、运营商等易变字段。该版本在单次开机内稳定、跨 App 可复现；
  *  重启后启动时间变化，ID 会轮换（与 CAID 的行为一致）。需要重启后仍不变的自建 ID 时，
- *  请使用共享 Keychain UUID 或服务端下发 ID；App Group 可选，用于共享远端缓存和更新时间历史。
+ *  请使用共享 Keychain UUID 或服务端下发 ID；App Group 可选，用于共享远端缓存。
  */
 + (instancetype)defaultVersion;
 
@@ -162,7 +162,7 @@ FOUNDATION_EXPORT NSString * const PBCrossDefaultKeychainService;
 /// Keychain Service，默认 PBCrossDefaultKeychainService。
 @property (nonatomic, copy) NSString *keychainService;
 
-/// App Group，可选；共享远端缓存和系统更新时间历史，必须同时配置共享 keychainAccessGroup。
+/// App Group，可选；共享远端缓存，必须同时配置共享 keychainAccessGroup。
 /// 共享 ID 仅持久化到 Keychain，不写入 Defaults 镜像。
 /// 仅配置 App Group 会校验失败，避免多个 App 在各自私有 Keychain 中创建不同身份。
 @property (nonatomic, copy, nullable) NSString *appGroupIdentifier;

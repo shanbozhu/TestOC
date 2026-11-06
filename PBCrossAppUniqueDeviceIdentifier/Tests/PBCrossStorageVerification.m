@@ -798,23 +798,53 @@ static void CRVerifyKeychainIdentityAndNamespace(NSString *suite)
              @"App Group also receives no mirrors after server injection and identity reads");
     [groupDefaults setObject:@"stale-shared-id" forKey:[peer scopedDefaultsKey:CRSharedKey]];
     [groupDefaults setObject:@"stale-server-id" forKey:[peer scopedDefaultsKey:CRServerKey]];
+    for (NSUserDefaults *defaults in @[peerDefaults, groupDefaults]) {
+        [defaults setObject:@"{\"current\":\"200\",\"previous\":\"100\"}"
+                     forKey:[peer scopedDefaultsKey:@"pb_system_update_history"]];
+    }
     CRAssert([peer clearStoredIdentityWithError:NULL] &&
              ![peerDefaults objectForKey:[peer scopedDefaultsKey:CRSharedKey]] &&
              ![peerDefaults objectForKey:[peer scopedDefaultsKey:CRServerKey]] &&
              ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRSharedKey]] &&
-             ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRServerKey]],
-             @"explicit clear removes legacy identity mirrors from private and shared Defaults");
-    CRAssert([peer updateSystemUpdateTimeHistoryWithCurrentValue:@"100"].length == 0 &&
-             [[peer updateSystemUpdateTimeHistoryWithCurrentValue:@"200"] isEqual:@"100"],
-             @"system update history remains available without identity mirrors");
+             ![groupDefaults objectForKey:[peer scopedDefaultsKey:CRServerKey]] &&
+             ![peerDefaults objectForKey:[peer scopedDefaultsKey:@"pb_system_update_history"]] &&
+             ![groupDefaults objectForKey:[peer scopedDefaultsKey:@"pb_system_update_history"]],
+             @"explicit clear removes legacy mirrors and history from private and shared Defaults");
     NSDictionary *cache = @{@"resolved_at": @123, @"identifiers": @[]};
     [peer setRemoteCache:cache];
     PBCrossIdentityStore *restarted = CRStore(peerSuite);
     [restarted setValue:groupDefaults forKey:@"groupDefaults"];
-    CRAssert([restarted.remoteCache isEqual:cache] &&
-             [[restarted updateSystemUpdateTimeHistoryWithCurrentValue:@"200"] isEqual:@"100"],
-             @"remote cache and update history persist across store recreation");
+    CRAssert([restarted.remoteCache isEqual:cache], @"remote cache persists across store recreation");
     [groupDefaults removePersistentDomainForName:groupSuite];
+}
+
+static void CRVerifyNoSystemUpdateHistory(NSString *suite)
+{
+    CRPrepareManager(suite);
+    PBCrossAppUniqueDeviceIdentifierManager *manager = PBCrossAppUniqueDeviceIdentifierManager.sharedManager;
+    PBCrossIdentityStore *store = [manager valueForKey:@"storeStorage"];
+    NSUserDefaults *defaults = [store valueForKey:@"standardDefaults"];
+    CRSystemUpdateFixture = @"100";
+    PBCrossIdentity *first = manager.identitySynchronously;
+    CRAssert([first.attributes.sysFileTime isEqual:@"100"] &&
+             ([defaults persistentDomainForName:suite] ?: @{}).count == 0,
+             @"local identity load retains current system time without writing Defaults history");
+    NSString *historyKey = [store scopedDefaultsKey:@"pb_system_update_history"];
+    NSString *legacyHistory = @"{\"current\":\"10\",\"previous\":\"5\"}";
+    [defaults setObject:legacyHistory forKey:historyKey];
+    CRSystemUpdateFixture = @"200";
+    [manager resetIdentityCache];
+    PBCrossIdentity *updated = manager.identitySynchronously;
+    PBCrossAdRequestAdapter *adapter = [[PBCrossAdRequestAdapter alloc] initWithIdentity:updated context:nil];
+    CRAssert([updated.attributes.sysFileTime isEqual:@"200"] &&
+             [updated.sharedID isEqual:first.sharedID] && ![updated.currentIdentifier isEqual:first.currentIdentifier] &&
+             [[defaults stringForKey:historyKey] isEqual:legacyHistory] &&
+             !updated.dictionaryRepresentation[@"previous_system_update_time"] &&
+             !adapter.deviceDictionary[@"last_update_time"] && [adapter.deviceDictionary[@"update_time"] isEqual:@"200"],
+             @"system time changes affect the fingerprint without reading or updating legacy history");
+    CRAssert([manager clearStoredIdentityWithError:NULL] && ![defaults objectForKey:historyKey],
+             @"explicit clear still removes legacy system update history");
+    CRSystemUpdateFixture = nil;
 }
 
 static void CRVerifyMutationFailures(NSString *suite)
@@ -872,11 +902,12 @@ static void CRVerifyLateRemote(NSString *suite, BOOL reconfigure)
 @interface CRPostReadStore : PBCrossIdentityStore
 @end
 @implementation CRPostReadStore
-- (NSString *)updateSystemUpdateTimeHistoryWithCurrentValue:(NSString *)value
+- (NSString *)sharedIDCreatingIfNeeded:(BOOL)create serverIssued:(BOOL *)serverIssued error:(NSError **)error
 {
+    NSString *value = [super sharedIDCreatingIfNeeded:create serverIssued:serverIssued error:error];
     dispatch_semaphore_signal(CRStoreReady);
     dispatch_semaphore_wait(CRStoreRelease, dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC));
-    return [super updateSystemUpdateTimeHistoryWithCurrentValue:value];
+    return value;
 }
 @end
 
@@ -1153,7 +1184,7 @@ static void CRVerifyClearAgainstOldLoad(NSString *suite, BOOL duringCollection)
     CRAssert(cleared && !CRRecords[CRStorageKey(CRSharedKey)] && !CRRecords[CRStorageKey(CRServerKey)] &&
              ![defaults objectForKey:[store scopedDefaultsKey:CRSharedKey]] &&
              ![defaults objectForKey:[store scopedDefaultsKey:@"pb_system_update_history"]] && !manager.cachedIdentity,
-             @"old load cannot recreate Keychain identity or Defaults history after successful clear");
+             @"old load cannot recreate Keychain identity or legacy Defaults history after successful clear");
     CRCollectionReady = CRCollectionRelease = nil;
     CRSystemUpdateFixture = nil;
     [manager setValue:CRStore(suite) forKey:@"storeStorage"];
@@ -1382,7 +1413,7 @@ static void CRVerifyRemoteCompletionContinuation(NSString *suite, NSUInteger mut
     if (mutation) {
         CRAssert([records isEqual:CRRecords] && adds == CRAdds && updates == CRUpdates &&
             [persisted isEqual:([defaults persistentDomainForName:suite] ?: @{})] && !manager.cachedIdentity,
-            @"old remote completion cannot create identity, history or cache after clear/configure");
+            @"old remote completion cannot create identity or cache after clear/configure");
     }
     [NSNotificationCenter.defaultCenter removeObserver:observer];
     CRSystemUpdateFixture = nil;
@@ -1503,6 +1534,7 @@ int main(void)
         CRVerifyCreation(suite);
         CRVerifyConcurrentCreation(suite, [suite stringByAppendingString:@".peer"]);
         CRVerifyKeychainIdentityAndNamespace(suite);
+        CRVerifyNoSystemUpdateHistory(suite);
         CRVerifyMutationFailures(suite);
         CRVerifyLateRemote(suite, NO);
         CRVerifyLateRemote(suite, YES);

@@ -204,9 +204,6 @@ static NSString *PBCrossPDDCarrierValue(PBCrossDeviceAttributes *attributes)
     if (attributes.sysFileTime.length > 0) {
         device[@"update_time"] = attributes.sysFileTime;
     }
-    if (self.identity.previousSystemUpdateTime.length > 0) {
-        device[@"last_update_time"] = self.identity.previousSystemUpdateTime;
-    }
 
     if (self.context.paid.length > 0) {
         device[@"paid"] = self.context.paid;

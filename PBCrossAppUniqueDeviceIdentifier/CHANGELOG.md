@@ -2,11 +2,13 @@
 
 ## Unreleased
 
+- 精简系统更新时间历史：移除 Defaults 历史读写、`previousSystemUpdateTime` 属性及初始化参数，不再输出 `last_update_time` 和 `previous_system_update_time`；旧 JSON 历史字段被忽略，显式清理仍删除遗留历史。当前 `sysFileTime`、`update_time` 和指纹算法保持不变。手动构建身份的接入方需移除初始化调用中的 `previousSystemUpdateTime:` 参数。
+- 移除共享 ID 和服务端 ID 的 Defaults 镜像读写，Keychain 为唯一持久化来源；Defaults 保留可选远端缓存，显式清理仍删除遗留 ID 镜像。
 - 修复 iOS 14 及以上 ATT 已授权时仍被旧版 `isAdvertisingTrackingEnabled` 拦截的问题；统一 IDFA 读取与授权检查，旧开关仅用于 iOS 14 以下，保留全零过滤。
 - 异步加载/远端解析在提交时捕获上下文；清理或配置切换会取消尚未开始执行的旧请求。
 - 自动远端刷新与远端完成后的基础身份重建沿用原上下文，避免旧任务跨版本补建已清除的身份；远端等待者统一返回 OperationCancelled。
 - 新增排队请求、自动刷新检查、远端结果合并与清理/配置切换交错回归，同时覆盖正常补建、失败结果、请求合并与回调次数。
-- 身份创建/镜像/系统更新时间历史写入与配置、注入、清理在同一 Manager 锁内协调；旧加载在采集后复核版本，不再在清理成功后重新创建持久身份。
+- 身份读取/创建与配置、注入、清理在同一 Manager 锁内协调；旧加载在采集后复核版本，不再在清理成功后重新创建持久身份。
 - `sharedID` 的完整读取/创建与配置更新互斥，避免使用已切换的旧命名空间。
 - 远端解析以同一缓存快照判断 TTL 并返回标识，避免共享缓存更新时成功返回空值或过期数据。
 - 补充采集中/写入中清理、同步读取与配置交错、远端缓存快照更新的隔离回归。
@@ -15,7 +17,7 @@
 - App Group 可用时只读取共享 Defaults，缺项不再回退到私有副本，避免清理后的旧远端缓存复活。
 - 每日请求额度改用 Keychain 原子占位，同命名空间跨 App 共享；存储失败透传错误，清理同时删除占位。升级当天从新额度开始，忽略旧 Defaults 计数；混用旧版 SDK 不参与新额度协调。
 - 新增默认组解析故障、并发移除优先标记、共享缓存清理、跨 Store 额度竞争/重启/清理/日期回收的隔离回归。
-- Defaults 镜像按 Keychain service/accessGroup 隔离；缺少 Keychain 记录时不再从旧镜像恢复身份，避免其他 App 将已清除 ID 写回。
+- Defaults 辅助数据按 Keychain service/accessGroup 隔离；缺少 Keychain 记录时不再从旧镜像恢复身份，避免其他 App 将已清除 ID 写回。
 - 服务端共享 ID 改为单条权威记录写入；成功注入使旧加载与远端请求失效，移除优先标记时保留最后有效 ID 并报告失败。
 - 清理/重新配置使旧 Resolver 失效并取消请求；缓存提交与失效互斥，迟到响应不再恢复已删除远端缓存。
 - 新增 `clearStoredIdentityWithError:`，页面展示真实 Keychain 删除错误并允许重试；保留原无错误返回的兼容接口。

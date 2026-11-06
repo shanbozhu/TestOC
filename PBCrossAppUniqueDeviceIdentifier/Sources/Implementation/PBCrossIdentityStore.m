@@ -16,7 +16,7 @@ static NSString * const PBCrossSharedIDKey = @"pb_shared_id";
 static NSString * const PBCrossServerSharedIDKey = @"pb_server_shared_id";
 static NSString * const PBCrossRemoteCacheKeyPrefix = @"pb_remote_cache";
 static NSString * const PBCrossRemoteRequestLogKeyPrefix = @"pb_remote_request_log";
-static NSString * const PBCrossSystemUpdateHistoryKey = @"pb_system_update_history";
+static NSString * const PBCrossLegacySystemUpdateHistoryKey = @"pb_system_update_history";
 static NSString * const PBCrossRequestReservationLabel = @"com.pb.crossapp.remote-request-reservation.v1";
 static NSString * const PBCrossRequestReservationPrefix = @"pb_remote_request_slot.";
 static NSString * const PBCrossLocalPriorityMarker = @"pb.local-priority.v1";
@@ -524,32 +524,6 @@ static NSString *PBCrossCurrentDayKey(void)
     }
 }
 
-#pragma mark - System update history
-
-- (NSString *)updateSystemUpdateTimeHistoryWithCurrentValue:(nullable NSString *)currentValue
-{
-    @synchronized(self) {
-        id object = [self defaultsJSONObjectForKey:PBCrossSystemUpdateHistoryKey];
-        NSDictionary *history = [object isKindOfClass:[NSDictionary class]] ? object : @{};
-        NSString *storedCurrent = [history[@"current"] isKindOfClass:[NSString class]] ? history[@"current"] : nil;
-        NSString *previous = [history[@"previous"] isKindOfClass:[NSString class]] ? history[@"previous"] : @"";
-
-        if (currentValue.length == 0) {
-            return previous ?: @"";
-        }
-
-        if (storedCurrent.length > 0 && ![storedCurrent isEqualToString:currentValue]) {
-            previous = storedCurrent;
-        }
-        NSDictionary *updated = @{
-            @"current": currentValue,
-            @"previous": previous ?: @"",
-        };
-        [self setDefaultsJSONObject:updated forKey:PBCrossSystemUpdateHistoryKey];
-        return previous ?: @"";
-    }
-}
-
 #pragma mark - Reset
 
 - (void)removeDefaultsKeysWithPrefix:(NSString *)prefix
@@ -603,7 +577,8 @@ static NSString *PBCrossCurrentDayKey(void)
         [self removeDefaultsValueForKey:[self remoteRequestLogKey]];
         [self removeDefaultsKeysWithPrefix:[PBCrossRemoteCacheKeyPrefix stringByAppendingString:@"."]];
         [self removeDefaultsKeysWithPrefix:[PBCrossRemoteRequestLogKeyPrefix stringByAppendingString:@"."]];
-        [self removeDefaultsValueForKey:PBCrossSystemUpdateHistoryKey];
+        // Cleanup only: system update history is no longer read or written.
+        [self removeDefaultsValueForKey:PBCrossLegacySystemUpdateHistoryKey];
         return sharedRemoved && serverRemoved && reservationsRemoved;
     }
 }
